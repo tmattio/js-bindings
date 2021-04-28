@@ -110,26 +110,20 @@ module Os : sig
   [@@js.scope "NetworkInterfaceBase"]
 
   module NetworkInterfaceInfoIPv4 : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include NetworkInterfaceBase
+    end
 
     val get_family : t -> ([ `IPv4 [@js "IPv4"] ][@js.enum]) [@@js.get "family"]
 
     val set_family : t -> ([ `IPv4 ][@js.enum]) -> unit [@@js.set "family"]
-
-    val cast : t -> NetworkInterfaceBase.t [@@js.cast]
   end
   [@@js.scope "NetworkInterfaceInfoIPv4"]
 
   module NetworkInterfaceInfoIPv6 : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include NetworkInterfaceBase
+    end
 
     val get_family : t -> ([ `IPv6 [@js "IPv6"] ][@js.enum]) [@@js.get "family"]
 
@@ -138,8 +132,6 @@ module Os : sig
     val get_scopeid : t -> int [@@js.get "scopeid"]
 
     val set_scopeid : t -> int -> unit [@@js.set "scopeid"]
-
-    val cast : t -> NetworkInterfaceBase.t [@@js.cast]
   end
   [@@js.scope "NetworkInterfaceInfoIPv6"]
 

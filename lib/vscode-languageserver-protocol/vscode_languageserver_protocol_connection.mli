@@ -3,15 +3,9 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
+open Vscode_jsonrpc
+open Vscode_languageserver_protocol_messages
 
-(* import { Message, NotificationMessage, CancellationToken, RequestHandler0,
-   RequestHandler, GenericRequestHandler, NotificationHandler0,
-   NotificationHandler, GenericNotificationHandler, ProgressType, Trace, Tracer,
-   TraceOptions, Disposable, Event, MessageReader, MessageWriter, Logger,
-   ConnectionStrategy, ConnectionOptions, RequestType0, RequestType,
-   NotificationType0, NotificationType } from 'vscode-jsonrpc'; *)
-(* import { ProtocolRequestType, ProtocolRequestType0, ProtocolNotificationType,
-   ProtocolNotificationType0 } from './messages'; *)
 module ProtocolConnection : sig
   type t
 

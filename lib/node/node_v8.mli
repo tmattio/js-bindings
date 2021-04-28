@@ -193,15 +193,10 @@ module V8 : sig
   [@@js.scope "Serializer"]
 
   module DefaultSerializer : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> Serializer.t [@@js.cast]
+    include module type of struct
+      include Serializer
+    end
   end
-  [@@js.scope "DefaultSerializer"]
 
   module Deserializer : sig
     type t
@@ -236,15 +231,10 @@ module V8 : sig
   [@@js.scope "Deserializer"]
 
   module DefaultDeserializer : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> Deserializer.t [@@js.cast]
+    include module type of struct
+      include Deserializer
+    end
   end
-  [@@js.scope "DefaultDeserializer"]
 
   val serialize : value:any -> Buffer.t [@@js.global "serialize"]
 

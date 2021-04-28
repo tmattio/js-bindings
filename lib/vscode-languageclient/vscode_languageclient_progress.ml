@@ -36,6 +36,5 @@ module ProgressFeature =
       fun (x12 : t) -> ignore (Ojs.call (t_to_js x12) "initialize" [||])
     let (dispose : t -> unit) =
       fun (x13 : t) -> ignore (Ojs.call (t_to_js x13) "dispose" [||])
-    let (cast : t -> StaticFeature.t) =
-      fun (x14 : t) -> StaticFeature.t_of_js (t_to_js x14)
+    include struct include StaticFeature end
   end

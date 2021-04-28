@@ -53,9 +53,8 @@ module ConfigurationFeature =
           Ojs.set_prop_ascii (t_to_js x16) "getConfiguration" (any_to_js x17)
     let (dispose : t -> unit) =
       fun (x18 : t) -> ignore (Ojs.call (t_to_js x18) "dispose" [||])
-    let (cast : t -> StaticFeature.t) =
-      fun (x19 : t) -> StaticFeature.t_of_js (t_to_js x19)
+    include struct include StaticFeature end
   end
 let (to_json_object : obj:any -> any) =
-  fun ~obj:(x20 : any) ->
-    any_of_js (Ojs.call Ojs.global "toJSONObject" [|(any_to_js x20)|])
+  fun ~obj:(x19 : any) ->
+    any_of_js (Ojs.call Ojs.global "toJSONObject" [|(any_to_js x19)|])

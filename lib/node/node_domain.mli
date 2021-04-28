@@ -35,8 +35,6 @@ module Domain : sig
     val bind : t -> cb:'T -> 'T [@@js.call "bind"]
 
     val intercept : t -> cb:'T -> 'T [@@js.call "intercept"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Domain"]
 
@@ -65,8 +63,6 @@ module Domain : sig
     val enter : t -> unit [@@js.call "enter"]
 
     val exit : t -> unit [@@js.call "exit"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Domain"]
 

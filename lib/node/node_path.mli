@@ -12,23 +12,23 @@ module Path : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_root : t -> string [@@js.get "root"]
+    val root : t -> string [@@js.get "root"]
 
     val set_root : t -> string -> unit [@@js.set "root"]
 
-    val get_dir : t -> string [@@js.get "dir"]
+    val dir : t -> string [@@js.get "dir"]
 
     val set_dir : t -> string -> unit [@@js.set "dir"]
 
-    val get_base : t -> string [@@js.get "base"]
+    val base : t -> string [@@js.get "base"]
 
     val set_base : t -> string -> unit [@@js.set "base"]
 
-    val get_ext : t -> string [@@js.get "ext"]
+    val ext : t -> string [@@js.get "ext"]
 
     val set_ext : t -> string -> unit [@@js.set "ext"]
 
-    val get_name : t -> string [@@js.get "name"]
+    val name : t -> string [@@js.get "name"]
 
     val set_name : t -> string -> unit [@@js.set "name"]
   end
@@ -41,23 +41,23 @@ module Path : sig
 
     val t_of_js : Ojs.t -> t
 
-    val get_root : t -> string [@@js.get "root"]
+    val root : t -> string [@@js.get "root"]
 
     val set_root : t -> string -> unit [@@js.set "root"]
 
-    val get_dir : t -> string [@@js.get "dir"]
+    val dir : t -> string [@@js.get "dir"]
 
     val set_dir : t -> string -> unit [@@js.set "dir"]
 
-    val get_base : t -> string [@@js.get "base"]
+    val base : t -> string [@@js.get "base"]
 
     val set_base : t -> string -> unit [@@js.set "base"]
 
-    val get_ext : t -> string [@@js.get "ext"]
+    val ext : t -> string [@@js.get "ext"]
 
     val set_ext : t -> string -> unit [@@js.set "ext"]
 
-    val get_name : t -> string [@@js.get "name"]
+    val name : t -> string [@@js.get "name"]
 
     val set_name : t -> string -> unit [@@js.set "name"]
   end
@@ -89,9 +89,9 @@ module Path : sig
 
     val extname : t -> string -> string [@@js.call "extname"]
 
-    val get_sep : t -> string [@@js.get "sep"]
+    val sep : t -> string [@@js.get "sep"]
 
-    val get_delimiter : t -> string [@@js.get "delimiter"]
+    val delimiter : t -> string [@@js.get "delimiter"]
 
     val parse : t -> string -> ParsedPath.t [@@js.call "parse"]
 
@@ -100,9 +100,9 @@ module Path : sig
     val to_namespaced_path : t -> string -> string
       [@@js.call "toNamespacedPath"]
 
-    val get_posix : t -> t [@@js.get "posix"]
+    val posix : t -> t [@@js.get "posix"]
 
-    val get_win32 : t -> t [@@js.get "win32"]
+    val win32 : t -> t [@@js.get "win32"]
   end
   [@@js.scope "PlatformPath"]
 
@@ -123,9 +123,9 @@ module Path : sig
 
   val extname : string -> string [@@js.global "extname"]
 
-  val get_sep : string [@@js.global "sep"]
+  val sep : string [@@js.global "sep"]
 
-  val get_delimiter : string [@@js.global "delimiter"]
+  val delimiter : string [@@js.global "delimiter"]
 
   val parse : string -> ParsedPath.t [@@js.global "parse"]
 

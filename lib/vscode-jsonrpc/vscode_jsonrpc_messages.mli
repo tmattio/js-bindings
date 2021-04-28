@@ -2,6 +2,8 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
+[@@@js.scope "__LIB__VSCODE_JSONRPC__IMPORTS"]
+
 open Es5
 
 module Message : sig
@@ -18,11 +20,9 @@ end
 [@@js.scope "Message"]
 
 module RequestMessage : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Message
+  end
 
   val get_id : t -> string or_number or_null [@@js.get "id"]
 
@@ -36,8 +36,6 @@ module RequestMessage : sig
 
   val set_params : t -> (untyped_object, any) or_array -> unit
     [@@js.set "params"]
-
-  val cast : t -> Message.t [@@js.cast]
 end
 [@@js.scope "RequestMessage"]
 
@@ -126,11 +124,9 @@ end
 [@@js.scope "ResponseError"]
 
 module ResponseMessage : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Message
+  end
 
   val get_id : t -> string or_number or_null [@@js.get "id"]
 
@@ -150,8 +146,6 @@ module ResponseMessage : sig
   val get_error : t -> any ResponseErrorLiteral.t [@@js.get "error"]
 
   val set_error : t -> any ResponseErrorLiteral.t -> unit [@@js.set "error"]
-
-  val cast : t -> Message.t [@@js.cast]
 end
 [@@js.scope "ResponseMessage"]
 
@@ -172,11 +166,9 @@ module LSPMessageType : sig
 end
 
 module NotificationMessage : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Message
+  end
 
   val get_method : t -> string [@@js.get "method"]
 
@@ -186,8 +178,6 @@ module NotificationMessage : sig
 
   val set_params : t -> (untyped_object, unit) union2 -> unit
     [@@js.set "params"]
-
-  val cast : t -> Message.t [@@js.cast]
 end
 
 module LSPLogMessage : sig
@@ -258,11 +248,9 @@ end
 [@@js.scope "MessageSignature"]
 
 module AbstractMessageSignature : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include MessageSignature
+  end
 
   val get_method : t -> string [@@js.get "method"]
 
@@ -272,8 +260,6 @@ module AbstractMessageSignature : sig
 
   val get_parameter_structures : t -> ParameterStructures.t
     [@@js.get "parameterStructures"]
-
-  val cast : t -> MessageSignature.t [@@js.cast]
 end
 [@@js.scope "AbstractMessageSignature"]
 
@@ -742,17 +728,13 @@ end
 [@@js.scope "NotificationType"]
 
 module NotificationType0 : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include AbstractMessageSignature
+  end
 
   val get__ : t -> EM.t or_undefined [@@js.get "_"]
 
   val create : method_:string -> t [@@js.create]
-
-  val cast : t -> AbstractMessageSignature.t [@@js.cast]
 end
 [@@js.scope "NotificationType0"]
 

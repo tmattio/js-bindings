@@ -54,7 +54,10 @@ module Event =
                                   x6))|])
     let (none : any t) =
       t_of_js any_of_js
-        (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Event") "None")
+        (Ojs.get_prop_ascii
+           (Ojs.get_prop_ascii
+              (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+              "Event") "None")
   end
 module EmitterOptions =
   struct
@@ -98,12 +101,16 @@ module Emitter =
     let (get__noop : unit -> any) =
       fun () ->
         any_of_js
-          (Ojs.get_prop_ascii (Ojs.get_prop_ascii Ojs.global "Emitter")
-             "_noop")
+          (Ojs.get_prop_ascii
+             (Ojs.get_prop_ascii
+                (Ojs.get_prop_ascii Ojs.global
+                   "__LIB__VSCODE_JSONRPC__IMPORTS") "Emitter") "_noop")
     let (set__noop : any -> unit) =
       fun (x29 : any) ->
-        Ojs.set_prop_ascii (Ojs.get_prop_ascii Ojs.global "Emitter") "_noop"
-          (any_to_js x29)
+        Ojs.set_prop_ascii
+          (Ojs.get_prop_ascii
+             (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+             "Emitter") "_noop" (any_to_js x29)
     let (get__event : 'T t -> any) =
       fun (x30 : 'T t) ->
         any_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x30) "_event")
@@ -123,7 +130,10 @@ module Emitter =
       fun ?_options:(x40 : EmitterOptions.t or_undefined option) ->
         fun () ->
           t_of_js Obj.magic
-            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Emitter")
+            (Ojs.new_obj_arr
+               (Ojs.get_prop_ascii
+                  (Ojs.get_prop_ascii Ojs.global
+                     "__LIB__VSCODE_JSONRPC__IMPORTS") "Emitter")
                (let x41 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
                 (match x40 with

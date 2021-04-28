@@ -19,6 +19,7 @@ module Console : sig
       -> ?message:string
       -> params:(any list[@js.variadic])
       -> unit
+      -> unit
       [@@js.call "assert"]
 
     val clear : t -> unit [@@js.call "clear"]
@@ -84,10 +85,20 @@ module Console : sig
 
     val time_end : t -> ?label:string -> unit -> unit [@@js.call "timeEnd"]
 
-    val time_log : t -> ?label:string -> data:(any list[@js.variadic]) -> unit
+    val time_log
+      :  t
+      -> ?label:string
+      -> data:(any list[@js.variadic])
+      -> unit
+      -> unit
       [@@js.call "timeLog"]
 
-    val trace : t -> ?message:any -> params:(any list[@js.variadic]) -> unit
+    val trace
+      :  t
+      -> ?message:any
+      -> params:(any list[@js.variadic])
+      -> unit
+      -> unit
       [@@js.call "trace"]
 
     val warn
@@ -214,7 +225,7 @@ module Console : sig
 
   val time_end : ?label:string -> unit -> unit [@@js.global "timeEnd"]
 
-  val time_log : ?label:string -> data:(any list[@js.variadic]) -> unit
+  val time_log : ?label:string -> data:(any list[@js.variadic]) -> unit -> unit
     [@@js.global "timeLog"]
 
   val trace : string -> params:(any list[@js.variadic]) -> unit -> unit

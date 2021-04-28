@@ -42,7 +42,10 @@ module Semaphore =
       fun ?capacity:(x22 : int option) ->
         fun () ->
           t_of_js Obj.magic
-            (Ojs.new_obj_arr (Ojs.get_prop_ascii Ojs.global "Semaphore")
+            (Ojs.new_obj_arr
+               (Ojs.get_prop_ascii
+                  (Ojs.get_prop_ascii Ojs.global
+                     "__LIB__VSCODE_JSONRPC__IMPORTS") "Semaphore")
                (let x23 =
                   Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array") [||] in
                 (match x22 with

@@ -98,8 +98,6 @@ module Promise : sig
   val all2 : 'T1 Promise.t * 'T2 Promise.t -> ('T1 * 'T2) Promise.t
     [@@js.global "Promise.all"]
 
-  val all1 : 'T Promise.t list -> 'T list Promise.t [@@js.global "Promise.all"]
-
   val race
     :  'T list
     -> (* FIXME: unknown type 'T extends Promise<infer U> ? U : T' *)

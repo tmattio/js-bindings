@@ -1,16 +1,19 @@
 module Rpc = Vscode_jsonrpc
 
-let stdout = Node.Child_process.ChildProcess.get_stdout child_process
+let stdout = Node.Process.stdout
 
-let stdin = Node.Child_process.ChildProcess.get_stdin child_process
+let stdin = Node.Process.stdin
 
 let connection =
-  Rpc.create_message_connection
-    (Rpc.StreamMessageReader.create stdout)
-    (Rpc.StreamMessageWriter.create stdin)
+  Rpc.create_message_connection' ~input_stream:stdout ~output_stream:stdin ()
 
-let notification = Rpc.NotificationType.create "testNotification"
+let notification_type =
+  Rpc.NotificationType.create ~method_:"testNotification" ()
 
-let () =
-  Rpc.MessageConnection.on_notification notification (fun param ->
-      Node.Console.Console.log param)
+let (_ : Rpc.Disposable.t) =
+  Rpc.MessageConnection.on_notification'
+    connection
+    ~type_:notification_type
+    ~handler:(fun param -> Node.Console.log param ~params:[] ())
+
+let () = Rpc.MessageConnection.listen connection

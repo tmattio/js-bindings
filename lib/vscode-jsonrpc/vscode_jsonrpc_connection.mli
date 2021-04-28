@@ -2,6 +2,8 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
+[@@@js.scope "__LIB__VSCODE_JSONRPC__IMPORTS"]
+
 open Es2020
 open Vscode_jsonrpc_messages
 
@@ -957,17 +959,13 @@ module ConnectionErrors : sig
 end
 
 module ConnectionError : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Error
+  end
 
   val get_code : t -> ConnectionErrors.t [@@js.get "code"]
 
   val create : code:ConnectionErrors.t -> message:string -> t [@@js.create]
-
-  val cast : t -> Error.t [@@js.cast]
 end
 [@@js.scope "ConnectionError"]
 
@@ -1331,70 +1329,63 @@ module MessageConnection : sig
   val on_notification
     :  t
     -> type_:NotificationType0.t
-    -> handler:NotificationHandler0.t
+    -> handler:(unit -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val on_notification'
     :  t
     -> type_:'P NotificationType.t
-    -> handler:'P NotificationHandler.t
-    -> Vscode_jsonrpc_disposable.Disposable.t
-    [@@js.call "onNotification"]
-
-  val on_notification''
-    :  t
-    -> type_:'P1 NotificationType1.t
-    -> handler:'P1 NotificationHandler1.t
+    -> handler:('P -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val on_notification'''
     :  t
     -> type_:('P1, 'P2) NotificationType2.t
-    -> handler:('P1, 'P2) NotificationHandler2.t
+    -> handler:('P1 -> 'P2 -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val on_notification''''
     :  t
     -> type_:('P1, 'P2, 'P3) NotificationType3.t
-    -> handler:('P1, 'P2, 'P3) NotificationHandler3.t
+    -> handler:('P1 -> 'P2 -> 'P3 -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val on_notification'''''
     :  t
     -> type_:('P1, 'P2, 'P3, 'P4) NotificationType4.t
-    -> handler:('P1, 'P2, 'P3, 'P4) NotificationHandler4.t
+    -> handler:('P1 -> 'P2 -> 'P3 -> 'P4 -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val on_notification''''''
     :  t
     -> type_:('P1, 'P2, 'P3, 'P4, 'P5) NotificationType5.t
-    -> handler:('P1, 'P2, 'P3, 'P4, 'P5) NotificationHandler5.t
+    -> handler:('P1 -> 'P2 -> 'P3 -> 'P4 -> 'P5 -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val on_notification'''''''
     :  t
     -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationType6.t
-    -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6) NotificationHandler6.t
+    -> handler:('P1 -> 'P2 -> 'P3 -> 'P4 -> 'P5 -> 'P6 -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val on_notification''''''''
     :  t
     -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationType7.t
-    -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7) NotificationHandler7.t
+    -> handler:('P1 -> 'P2 -> 'P3 -> 'P4 -> 'P5 -> 'P6 -> 'P7 -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
   val on_notification'''''''''
     :  t
     -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationType8.t
-    -> handler:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8) NotificationHandler8.t
+    -> handler:('P1 -> 'P2 -> 'P3 -> 'P4 -> 'P5 -> 'P6 -> 'P7 -> 'P8 -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
@@ -1402,7 +1393,7 @@ module MessageConnection : sig
     :  t
     -> type_:('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationType9.t
     -> handler:
-         ('P1, 'P2, 'P3, 'P4, 'P5, 'P6, 'P7, 'P8, 'P9) NotificationHandler9.t
+         ('P1 -> 'P2 -> 'P3 -> 'P4 -> 'P5 -> 'P6 -> 'P7 -> 'P8 -> 'P9 -> unit)
     -> Vscode_jsonrpc_disposable.Disposable.t
     [@@js.call "onNotification"]
 
@@ -1620,8 +1611,8 @@ end
 [@@js.scope "ConnectionOptions"]
 
 val create_message_connection
-  :  message_reader:Vscode_jsonrpc_messageReader.MessageReader.t
-  -> message_writer:Vscode_jsonrpc_messageWriter.MessageWriter.t
+  :  message_reader:Vscode_jsonrpc_message_reader.MessageReader.t
+  -> message_writer:Vscode_jsonrpc_message_writer.MessageWriter.t
   -> ?_logger:Logger.t
   -> ?options:ConnectionOptions.t
   -> unit

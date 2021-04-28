@@ -93,507 +93,495 @@ module Vm =
       end
     module ScriptOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x37 : Ojs.t) -> x37
-        and t_to_js : t -> Ojs.t = fun (x36 : Ojs.t) -> x36
+        include struct include BaseOptions end
         let (get_display_errors : t -> bool) =
-          fun (x38 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x38) "displayErrors")
+          fun (x36 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x36) "displayErrors")
         let (set_display_errors : t -> bool -> unit) =
-          fun (x39 : t) ->
-            fun (x40 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x39) "displayErrors"
-                (Ojs.bool_to_js x40)
+          fun (x37 : t) ->
+            fun (x38 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x37) "displayErrors"
+                (Ojs.bool_to_js x38)
         let (get_timeout : t -> int) =
-          fun (x41 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x41) "timeout")
+          fun (x39 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x39) "timeout")
         let (set_timeout : t -> int -> unit) =
-          fun (x42 : t) ->
-            fun (x43 : int) ->
-              Ojs.set_prop_ascii (t_to_js x42) "timeout" (Ojs.int_to_js x43)
+          fun (x40 : t) ->
+            fun (x41 : int) ->
+              Ojs.set_prop_ascii (t_to_js x40) "timeout" (Ojs.int_to_js x41)
         let (get_cached_data : t -> Buffer.t) =
-          fun (x44 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x44) "cachedData")
+          fun (x42 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x42) "cachedData")
         let (set_cached_data : t -> Buffer.t -> unit) =
-          fun (x45 : t) ->
-            fun (x46 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x45) "cachedData"
-                (Buffer.t_to_js x46)
+          fun (x43 : t) ->
+            fun (x44 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x43) "cachedData"
+                (Buffer.t_to_js x44)
         let (get_produce_cached_data : t -> bool) =
-          fun (x47 : t) ->
+          fun (x45 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x47) "produceCachedData")
+              (Ojs.get_prop_ascii (t_to_js x45) "produceCachedData")
         let (set_produce_cached_data : t -> bool -> unit) =
-          fun (x48 : t) ->
-            fun (x49 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x48) "produceCachedData"
-                (Ojs.bool_to_js x49)
-        let (cast : t -> BaseOptions.t) =
-          fun (x50 : t) -> BaseOptions.t_of_js (t_to_js x50)
+          fun (x46 : t) ->
+            fun (x47 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x46) "produceCachedData"
+                (Ojs.bool_to_js x47)
       end
     module RunningScriptOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x52 : Ojs.t) -> x52
-        and t_to_js : t -> Ojs.t = fun (x51 : Ojs.t) -> x51
+        include struct include BaseOptions end
         let (get_display_errors : t -> bool) =
-          fun (x53 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x53) "displayErrors")
+          fun (x48 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x48) "displayErrors")
         let (set_display_errors : t -> bool -> unit) =
-          fun (x54 : t) ->
-            fun (x55 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x54) "displayErrors"
-                (Ojs.bool_to_js x55)
+          fun (x49 : t) ->
+            fun (x50 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x49) "displayErrors"
+                (Ojs.bool_to_js x50)
         let (get_timeout : t -> int) =
-          fun (x56 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x56) "timeout")
+          fun (x51 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x51) "timeout")
         let (set_timeout : t -> int -> unit) =
-          fun (x57 : t) ->
-            fun (x58 : int) ->
-              Ojs.set_prop_ascii (t_to_js x57) "timeout" (Ojs.int_to_js x58)
+          fun (x52 : t) ->
+            fun (x53 : int) ->
+              Ojs.set_prop_ascii (t_to_js x52) "timeout" (Ojs.int_to_js x53)
         let (get_break_on_sigint : t -> bool) =
-          fun (x59 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x59) "breakOnSigint")
+          fun (x54 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x54) "breakOnSigint")
         let (set_break_on_sigint : t -> bool -> unit) =
-          fun (x60 : t) ->
-            fun (x61 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x60) "breakOnSigint"
-                (Ojs.bool_to_js x61)
+          fun (x55 : t) ->
+            fun (x56 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x55) "breakOnSigint"
+                (Ojs.bool_to_js x56)
         let (get_microtask_mode : t -> [ `afterEvaluate ]) =
-          fun (x62 : t) ->
-            let x63 = Ojs.get_prop_ascii (t_to_js x62) "microtaskMode" in
-            match Ojs.string_of_js x63 with
+          fun (x57 : t) ->
+            let x58 = Ojs.get_prop_ascii (t_to_js x57) "microtaskMode" in
+            match Ojs.string_of_js x58 with
             | "afterEvaluate" -> `afterEvaluate
             | _ -> assert false
         let (set_microtask_mode : t -> [ `afterEvaluate ] -> unit) =
-          fun (x64 : t) ->
-            fun (x65 : [ `afterEvaluate ]) ->
-              Ojs.set_prop_ascii (t_to_js x64) "microtaskMode"
-                (match x65 with
+          fun (x59 : t) ->
+            fun (x60 : [ `afterEvaluate ]) ->
+              Ojs.set_prop_ascii (t_to_js x59) "microtaskMode"
+                (match x60 with
                  | `afterEvaluate -> Ojs.string_to_js "afterEvaluate")
-        let (cast : t -> BaseOptions.t) =
-          fun (x66 : t) -> BaseOptions.t_of_js (t_to_js x66)
       end
     module CompileFunctionOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x68 : Ojs.t) -> x68
-        and t_to_js : t -> Ojs.t = fun (x67 : Ojs.t) -> x67
+        include struct include BaseOptions end
         let (get_cached_data : t -> Buffer.t) =
-          fun (x69 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x69) "cachedData")
+          fun (x61 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x61) "cachedData")
         let (set_cached_data : t -> Buffer.t -> unit) =
-          fun (x70 : t) ->
-            fun (x71 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x70) "cachedData"
-                (Buffer.t_to_js x71)
+          fun (x62 : t) ->
+            fun (x63 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x62) "cachedData"
+                (Buffer.t_to_js x63)
         let (get_produce_cached_data : t -> bool) =
-          fun (x72 : t) ->
+          fun (x64 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x72) "produceCachedData")
+              (Ojs.get_prop_ascii (t_to_js x64) "produceCachedData")
         let (set_produce_cached_data : t -> bool -> unit) =
-          fun (x73 : t) ->
-            fun (x74 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x73) "produceCachedData"
-                (Ojs.bool_to_js x74)
+          fun (x65 : t) ->
+            fun (x66 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x65) "produceCachedData"
+                (Ojs.bool_to_js x66)
         let (get_parsing_context : t -> Context.t) =
-          fun (x75 : t) ->
+          fun (x67 : t) ->
             Context.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x75) "parsingContext")
+              (Ojs.get_prop_ascii (t_to_js x67) "parsingContext")
         let (set_parsing_context : t -> Context.t -> unit) =
-          fun (x76 : t) ->
-            fun (x77 : Context.t) ->
-              Ojs.set_prop_ascii (t_to_js x76) "parsingContext"
-                (Context.t_to_js x77)
+          fun (x68 : t) ->
+            fun (x69 : Context.t) ->
+              Ojs.set_prop_ascii (t_to_js x68) "parsingContext"
+                (Context.t_to_js x69)
         let (get_context_extensions : t -> untyped_object list) =
-          fun (x78 : t) ->
+          fun (x70 : t) ->
             Ojs.list_of_js untyped_object_of_js
-              (Ojs.get_prop_ascii (t_to_js x78) "contextExtensions")
+              (Ojs.get_prop_ascii (t_to_js x70) "contextExtensions")
         let (set_context_extensions : t -> untyped_object list -> unit) =
-          fun (x80 : t) ->
-            fun (x81 : untyped_object list) ->
-              Ojs.set_prop_ascii (t_to_js x80) "contextExtensions"
-                (Ojs.list_to_js untyped_object_to_js x81)
-        let (cast : t -> BaseOptions.t) =
-          fun (x83 : t) -> BaseOptions.t_of_js (t_to_js x83)
+          fun (x72 : t) ->
+            fun (x73 : untyped_object list) ->
+              Ojs.set_prop_ascii (t_to_js x72) "contextExtensions"
+                (Ojs.list_to_js untyped_object_to_js x73)
       end
     module CreateContextOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x85 : Ojs.t) -> x85
-        and t_to_js : t -> Ojs.t = fun (x84 : Ojs.t) -> x84
+        let rec t_of_js : Ojs.t -> t = fun (x76 : Ojs.t) -> x76
+        and t_to_js : t -> Ojs.t = fun (x75 : Ojs.t) -> x75
         let (get_name : t -> string) =
-          fun (x86 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x86) "name")
+          fun (x77 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x77) "name")
         let (set_name : t -> string -> unit) =
-          fun (x87 : t) ->
-            fun (x88 : string) ->
-              Ojs.set_prop_ascii (t_to_js x87) "name" (Ojs.string_to_js x88)
+          fun (x78 : t) ->
+            fun (x79 : string) ->
+              Ojs.set_prop_ascii (t_to_js x78) "name" (Ojs.string_to_js x79)
         let (get_origin : t -> string) =
-          fun (x89 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x89) "origin")
+          fun (x80 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x80) "origin")
         let (set_origin : t -> string -> unit) =
-          fun (x90 : t) ->
-            fun (x91 : string) ->
-              Ojs.set_prop_ascii (t_to_js x90) "origin"
-                (Ojs.string_to_js x91)
+          fun (x81 : t) ->
+            fun (x82 : string) ->
+              Ojs.set_prop_ascii (t_to_js x81) "origin"
+                (Ojs.string_to_js x82)
         let (get_code_generation : t -> AnonymousInterface1.t) =
-          fun (x92 : t) ->
+          fun (x83 : t) ->
             AnonymousInterface1.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x92) "codeGeneration")
+              (Ojs.get_prop_ascii (t_to_js x83) "codeGeneration")
         let (set_code_generation : t -> AnonymousInterface1.t -> unit) =
-          fun (x93 : t) ->
-            fun (x94 : AnonymousInterface1.t) ->
-              Ojs.set_prop_ascii (t_to_js x93) "codeGeneration"
-                (AnonymousInterface1.t_to_js x94)
+          fun (x84 : t) ->
+            fun (x85 : AnonymousInterface1.t) ->
+              Ojs.set_prop_ascii (t_to_js x84) "codeGeneration"
+                (AnonymousInterface1.t_to_js x85)
         let (get_microtask_mode : t -> [ `afterEvaluate ]) =
-          fun (x95 : t) ->
-            let x96 = Ojs.get_prop_ascii (t_to_js x95) "microtaskMode" in
-            match Ojs.string_of_js x96 with
+          fun (x86 : t) ->
+            let x87 = Ojs.get_prop_ascii (t_to_js x86) "microtaskMode" in
+            match Ojs.string_of_js x87 with
             | "afterEvaluate" -> `afterEvaluate
             | _ -> assert false
         let (set_microtask_mode : t -> [ `afterEvaluate ] -> unit) =
-          fun (x97 : t) ->
-            fun (x98 : [ `afterEvaluate ]) ->
-              Ojs.set_prop_ascii (t_to_js x97) "microtaskMode"
-                (match x98 with
+          fun (x88 : t) ->
+            fun (x89 : [ `afterEvaluate ]) ->
+              Ojs.set_prop_ascii (t_to_js x88) "microtaskMode"
+                (match x89 with
                  | `afterEvaluate -> Ojs.string_to_js "afterEvaluate")
       end
     module MeasureMemoryMode =
       struct
         type t = [ `detailed  | `summary ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x100 : Ojs.t) ->
-            let x101 = x100 in
-            match Ojs.string_of_js x101 with
+          fun (x91 : Ojs.t) ->
+            let x92 = x91 in
+            match Ojs.string_of_js x92 with
             | "detailed" -> `detailed
             | "summary" -> `summary
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x99 : [ `detailed  | `summary ]) ->
-            match x99 with
+          fun (x90 : [ `detailed  | `summary ]) ->
+            match x90 with
             | `detailed -> Ojs.string_to_js "detailed"
             | `summary -> Ojs.string_to_js "summary"
       end
     module MeasureMemoryOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x103 : Ojs.t) -> x103
-        and t_to_js : t -> Ojs.t = fun (x102 : Ojs.t) -> x102
+        let rec t_of_js : Ojs.t -> t = fun (x94 : Ojs.t) -> x94
+        and t_to_js : t -> Ojs.t = fun (x93 : Ojs.t) -> x93
         let (get_mode : t -> MeasureMemoryMode.t) =
-          fun (x104 : t) ->
+          fun (x95 : t) ->
             MeasureMemoryMode.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x104) "mode")
+              (Ojs.get_prop_ascii (t_to_js x95) "mode")
         let (set_mode : t -> MeasureMemoryMode.t -> unit) =
-          fun (x105 : t) ->
-            fun (x106 : MeasureMemoryMode.t) ->
-              Ojs.set_prop_ascii (t_to_js x105) "mode"
-                (MeasureMemoryMode.t_to_js x106)
+          fun (x96 : t) ->
+            fun (x97 : MeasureMemoryMode.t) ->
+              Ojs.set_prop_ascii (t_to_js x96) "mode"
+                (MeasureMemoryMode.t_to_js x97)
         let (get_context : t -> Context.t) =
-          fun (x107 : t) ->
-            Context.t_of_js (Ojs.get_prop_ascii (t_to_js x107) "context")
+          fun (x98 : t) ->
+            Context.t_of_js (Ojs.get_prop_ascii (t_to_js x98) "context")
         let (set_context : t -> Context.t -> unit) =
-          fun (x108 : t) ->
-            fun (x109 : Context.t) ->
-              Ojs.set_prop_ascii (t_to_js x108) "context"
-                (Context.t_to_js x109)
+          fun (x99 : t) ->
+            fun (x100 : Context.t) ->
+              Ojs.set_prop_ascii (t_to_js x99) "context"
+                (Context.t_to_js x100)
       end
     module MemoryMeasurement =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x111 : Ojs.t) -> x111
-        and t_to_js : t -> Ojs.t = fun (x110 : Ojs.t) -> x110
+        let rec t_of_js : Ojs.t -> t = fun (x102 : Ojs.t) -> x102
+        and t_to_js : t -> Ojs.t = fun (x101 : Ojs.t) -> x101
         let (get_total : t -> AnonymousInterface0.t) =
-          fun (x112 : t) ->
+          fun (x103 : t) ->
             AnonymousInterface0.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x112) "total")
+              (Ojs.get_prop_ascii (t_to_js x103) "total")
         let (set_total : t -> AnonymousInterface0.t -> unit) =
-          fun (x113 : t) ->
-            fun (x114 : AnonymousInterface0.t) ->
-              Ojs.set_prop_ascii (t_to_js x113) "total"
-                (AnonymousInterface0.t_to_js x114)
+          fun (x104 : t) ->
+            fun (x105 : AnonymousInterface0.t) ->
+              Ojs.set_prop_ascii (t_to_js x104) "total"
+                (AnonymousInterface0.t_to_js x105)
       end
     module Script =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x116 : Ojs.t) -> x116
-        and t_to_js : t -> Ojs.t = fun (x115 : Ojs.t) -> x115
+        let rec t_of_js : Ojs.t -> t = fun (x107 : Ojs.t) -> x107
+        and t_to_js : t -> Ojs.t = fun (x106 : Ojs.t) -> x106
         let (create : code:string -> ?options:ScriptOptions.t -> unit -> t) =
-          fun ~code:(x117 : string) ->
-            fun ?options:(x118 : ScriptOptions.t option) ->
+          fun ~code:(x108 : string) ->
+            fun ?options:(x109 : ScriptOptions.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.vm "Script")
-                     (let x119 =
+                     (let x110 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x119 "push" [|(Ojs.string_to_js x117)|]);
-                      (match x118 with
-                       | Some x120 ->
+                        (Ojs.call x110 "push" [|(Ojs.string_to_js x108)|]);
+                      (match x109 with
+                       | Some x111 ->
                            ignore
-                             (Ojs.call x119 "push"
-                                [|(ScriptOptions.t_to_js x120)|])
+                             (Ojs.call x110 "push"
+                                [|(ScriptOptions.t_to_js x111)|])
                        | None -> ());
-                      x119))
+                      x110))
         let (run_in_context :
           t ->
             contextified_sandbox:Context.t ->
               ?options:RunningScriptOptions.t -> unit -> any)
           =
-          fun (x125 : t) ->
-            fun ~contextified_sandbox:(x121 : Context.t) ->
-              fun ?options:(x122 : RunningScriptOptions.t option) ->
+          fun (x116 : t) ->
+            fun ~contextified_sandbox:(x112 : Context.t) ->
+              fun ?options:(x113 : RunningScriptOptions.t option) ->
                 fun () ->
                   any_of_js
-                    (let x126 = t_to_js x125 in
-                     Ojs.call (Ojs.get_prop_ascii x126 "runInContext")
+                    (let x117 = t_to_js x116 in
+                     Ojs.call (Ojs.get_prop_ascii x117 "runInContext")
                        "apply"
-                       [|x126;((let x123 =
+                       [|x117;((let x114 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x123 "push"
-                                     [|(Context.t_to_js x121)|]);
-                                (match x122 with
-                                 | Some x124 ->
+                                  (Ojs.call x114 "push"
+                                     [|(Context.t_to_js x112)|]);
+                                (match x113 with
+                                 | Some x115 ->
                                      ignore
-                                       (Ojs.call x123 "push"
+                                       (Ojs.call x114 "push"
                                           [|(RunningScriptOptions.t_to_js
-                                               x124)|])
+                                               x115)|])
                                  | None -> ());
-                                x123))|])
+                                x114))|])
         let (run_in_new_context :
           t ->
             ?sandbox:Context.t ->
               ?options:RunningScriptOptions.t -> unit -> any)
           =
-          fun (x132 : t) ->
-            fun ?sandbox:(x127 : Context.t option) ->
-              fun ?options:(x128 : RunningScriptOptions.t option) ->
+          fun (x123 : t) ->
+            fun ?sandbox:(x118 : Context.t option) ->
+              fun ?options:(x119 : RunningScriptOptions.t option) ->
                 fun () ->
                   any_of_js
-                    (let x133 = t_to_js x132 in
-                     Ojs.call (Ojs.get_prop_ascii x133 "runInNewContext")
+                    (let x124 = t_to_js x123 in
+                     Ojs.call (Ojs.get_prop_ascii x124 "runInNewContext")
                        "apply"
-                       [|x133;((let x129 =
+                       [|x124;((let x120 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x127 with
-                                 | Some x131 ->
+                                (match x118 with
+                                 | Some x122 ->
                                      ignore
-                                       (Ojs.call x129 "push"
-                                          [|(Context.t_to_js x131)|])
+                                       (Ojs.call x120 "push"
+                                          [|(Context.t_to_js x122)|])
                                  | None -> ());
-                                (match x128 with
-                                 | Some x130 ->
+                                (match x119 with
+                                 | Some x121 ->
                                      ignore
-                                       (Ojs.call x129 "push"
+                                       (Ojs.call x120 "push"
                                           [|(RunningScriptOptions.t_to_js
-                                               x130)|])
+                                               x121)|])
                                  | None -> ());
-                                x129))|])
+                                x120))|])
         let (run_in_this_context :
           t -> ?options:RunningScriptOptions.t -> unit -> any) =
-          fun (x137 : t) ->
-            fun ?options:(x134 : RunningScriptOptions.t option) ->
+          fun (x128 : t) ->
+            fun ?options:(x125 : RunningScriptOptions.t option) ->
               fun () ->
                 any_of_js
-                  (let x138 = t_to_js x137 in
-                   Ojs.call (Ojs.get_prop_ascii x138 "runInThisContext")
+                  (let x129 = t_to_js x128 in
+                   Ojs.call (Ojs.get_prop_ascii x129 "runInThisContext")
                      "apply"
-                     [|x138;((let x135 =
+                     [|x129;((let x126 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x134 with
-                               | Some x136 ->
+                              (match x125 with
+                               | Some x127 ->
                                    ignore
-                                     (Ojs.call x135 "push"
-                                        [|(RunningScriptOptions.t_to_js x136)|])
+                                     (Ojs.call x126 "push"
+                                        [|(RunningScriptOptions.t_to_js x127)|])
                                | None -> ());
-                              x135))|])
+                              x126))|])
         let (create_cached_data : t -> Buffer.t) =
-          fun (x139 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x139) "createCachedData" [||])
+          fun (x130 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x130) "createCachedData" [||])
         let (get_cached_data_rejected : t -> bool) =
-          fun (x140 : t) ->
+          fun (x131 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x140) "cachedDataRejected")
+              (Ojs.get_prop_ascii (t_to_js x131) "cachedDataRejected")
         let (set_cached_data_rejected : t -> bool -> unit) =
-          fun (x141 : t) ->
-            fun (x142 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x141) "cachedDataRejected"
-                (Ojs.bool_to_js x142)
+          fun (x132 : t) ->
+            fun (x133 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x132) "cachedDataRejected"
+                (Ojs.bool_to_js x133)
       end
     let (create_context :
       ?sandbox:Context.t ->
         ?options:CreateContextOptions.t -> unit -> Context.t)
       =
-      fun ?sandbox:(x143 : Context.t option) ->
-        fun ?options:(x144 : CreateContextOptions.t option) ->
+      fun ?sandbox:(x134 : Context.t option) ->
+        fun ?options:(x135 : CreateContextOptions.t option) ->
           fun () ->
             Context.t_of_js
-              (let x148 = Import.vm in
-               Ojs.call (Ojs.get_prop_ascii x148 "createContext") "apply"
-                 [|x148;((let x145 =
+              (let x139 = Import.vm in
+               Ojs.call (Ojs.get_prop_ascii x139 "createContext") "apply"
+                 [|x139;((let x136 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          (match x143 with
-                           | Some x147 ->
+                          (match x134 with
+                           | Some x138 ->
                                ignore
-                                 (Ojs.call x145 "push"
-                                    [|(Context.t_to_js x147)|])
+                                 (Ojs.call x136 "push"
+                                    [|(Context.t_to_js x138)|])
                            | None -> ());
-                          (match x144 with
-                           | Some x146 ->
+                          (match x135 with
+                           | Some x137 ->
                                ignore
-                                 (Ojs.call x145 "push"
-                                    [|(CreateContextOptions.t_to_js x146)|])
+                                 (Ojs.call x136 "push"
+                                    [|(CreateContextOptions.t_to_js x137)|])
                            | None -> ());
-                          x145))|])
+                          x136))|])
     let (is_context : sandbox:Context.t -> bool) =
-      fun ~sandbox:(x149 : Context.t) ->
+      fun ~sandbox:(x140 : Context.t) ->
         Ojs.bool_of_js
-          (Ojs.call Import.vm "isContext" [|(Context.t_to_js x149)|])
+          (Ojs.call Import.vm "isContext" [|(Context.t_to_js x140)|])
     let (run_in_context :
       code:string ->
         contextified_sandbox:Context.t ->
           ?options:RunningScriptOptions.t or_string -> unit -> any)
       =
-      fun ~code:(x150 : string) ->
-        fun ~contextified_sandbox:(x151 : Context.t) ->
-          fun ?options:(x152 : RunningScriptOptions.t or_string option) ->
+      fun ~code:(x141 : string) ->
+        fun ~contextified_sandbox:(x142 : Context.t) ->
+          fun ?options:(x143 : RunningScriptOptions.t or_string option) ->
             fun () ->
               any_of_js
-                (let x156 = Import.vm in
-                 Ojs.call (Ojs.get_prop_ascii x156 "runInContext") "apply"
-                   [|x156;((let x153 =
+                (let x147 = Import.vm in
+                 Ojs.call (Ojs.get_prop_ascii x147 "runInContext") "apply"
+                   [|x147;((let x144 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x153 "push"
-                                 [|(Ojs.string_to_js x150)|]);
+                              (Ojs.call x144 "push"
+                                 [|(Ojs.string_to_js x141)|]);
                             ignore
-                              (Ojs.call x153 "push"
-                                 [|(Context.t_to_js x151)|]);
-                            (match x152 with
-                             | Some x154 ->
+                              (Ojs.call x144 "push"
+                                 [|(Context.t_to_js x142)|]);
+                            (match x143 with
+                             | Some x145 ->
                                  ignore
-                                   (Ojs.call x153 "push"
+                                   (Ojs.call x144 "push"
                                       [|(or_string_to_js
-                                           RunningScriptOptions.t_to_js x154)|])
+                                           RunningScriptOptions.t_to_js x145)|])
                              | None -> ());
-                            x153))|])
+                            x144))|])
     let (run_in_new_context :
       code:string ->
         ?sandbox:Context.t ->
           ?options:RunningScriptOptions.t or_string -> unit -> any)
       =
-      fun ~code:(x157 : string) ->
-        fun ?sandbox:(x158 : Context.t option) ->
-          fun ?options:(x159 : RunningScriptOptions.t or_string option) ->
+      fun ~code:(x148 : string) ->
+        fun ?sandbox:(x149 : Context.t option) ->
+          fun ?options:(x150 : RunningScriptOptions.t or_string option) ->
             fun () ->
               any_of_js
-                (let x164 = Import.vm in
-                 Ojs.call (Ojs.get_prop_ascii x164 "runInNewContext") "apply"
-                   [|x164;((let x160 =
+                (let x155 = Import.vm in
+                 Ojs.call (Ojs.get_prop_ascii x155 "runInNewContext") "apply"
+                   [|x155;((let x151 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x160 "push"
-                                 [|(Ojs.string_to_js x157)|]);
-                            (match x158 with
-                             | Some x163 ->
+                              (Ojs.call x151 "push"
+                                 [|(Ojs.string_to_js x148)|]);
+                            (match x149 with
+                             | Some x154 ->
                                  ignore
-                                   (Ojs.call x160 "push"
-                                      [|(Context.t_to_js x163)|])
+                                   (Ojs.call x151 "push"
+                                      [|(Context.t_to_js x154)|])
                              | None -> ());
-                            (match x159 with
-                             | Some x161 ->
+                            (match x150 with
+                             | Some x152 ->
                                  ignore
-                                   (Ojs.call x160 "push"
+                                   (Ojs.call x151 "push"
                                       [|(or_string_to_js
-                                           RunningScriptOptions.t_to_js x161)|])
+                                           RunningScriptOptions.t_to_js x152)|])
                              | None -> ());
-                            x160))|])
+                            x151))|])
     let (run_in_this_context :
       code:string -> ?options:RunningScriptOptions.t or_string -> unit -> any)
       =
-      fun ~code:(x165 : string) ->
-        fun ?options:(x166 : RunningScriptOptions.t or_string option) ->
+      fun ~code:(x156 : string) ->
+        fun ?options:(x157 : RunningScriptOptions.t or_string option) ->
           fun () ->
             any_of_js
-              (let x170 = Import.vm in
-               Ojs.call (Ojs.get_prop_ascii x170 "runInThisContext") "apply"
-                 [|x170;((let x167 =
+              (let x161 = Import.vm in
+               Ojs.call (Ojs.get_prop_ascii x161 "runInThisContext") "apply"
+                 [|x161;((let x158 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x167 "push" [|(Ojs.string_to_js x165)|]);
-                          (match x166 with
-                           | Some x168 ->
+                            (Ojs.call x158 "push" [|(Ojs.string_to_js x156)|]);
+                          (match x157 with
+                           | Some x159 ->
                                ignore
-                                 (Ojs.call x167 "push"
+                                 (Ojs.call x158 "push"
                                     [|(or_string_to_js
-                                         RunningScriptOptions.t_to_js x168)|])
+                                         RunningScriptOptions.t_to_js x159)|])
                            | None -> ());
-                          x167))|])
+                          x158))|])
     let (compile_function :
       code:string ->
         ?params:string list ->
           ?options:CompileFunctionOptions.t -> unit -> untyped_function)
       =
-      fun ~code:(x171 : string) ->
-        fun ?params:(x172 : string list option) ->
-          fun ?options:(x173 : CompileFunctionOptions.t option) ->
+      fun ~code:(x162 : string) ->
+        fun ?params:(x163 : string list option) ->
+          fun ?options:(x164 : CompileFunctionOptions.t option) ->
             fun () ->
               untyped_function_of_js
-                (let x178 = Import.vm in
-                 Ojs.call (Ojs.get_prop_ascii x178 "compileFunction") "apply"
-                   [|x178;((let x174 =
+                (let x169 = Import.vm in
+                 Ojs.call (Ojs.get_prop_ascii x169 "compileFunction") "apply"
+                   [|x169;((let x165 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x174 "push"
-                                 [|(Ojs.string_to_js x171)|]);
-                            (match x172 with
-                             | Some x176 ->
+                              (Ojs.call x165 "push"
+                                 [|(Ojs.string_to_js x162)|]);
+                            (match x163 with
+                             | Some x167 ->
                                  ignore
-                                   (Ojs.call x174 "push"
-                                      [|(Ojs.list_to_js Ojs.string_to_js x176)|])
+                                   (Ojs.call x165 "push"
+                                      [|(Ojs.list_to_js Ojs.string_to_js x167)|])
                              | None -> ());
-                            (match x173 with
-                             | Some x175 ->
+                            (match x164 with
+                             | Some x166 ->
                                  ignore
-                                   (Ojs.call x174 "push"
-                                      [|(CompileFunctionOptions.t_to_js x175)|])
+                                   (Ojs.call x165 "push"
+                                      [|(CompileFunctionOptions.t_to_js x166)|])
                              | None -> ());
-                            x174))|])
+                            x165))|])
     let (measure_memory :
       ?options:MeasureMemoryOptions.t ->
         unit -> MemoryMeasurement.t Promise.t)
       =
-      fun ?options:(x179 : MeasureMemoryOptions.t option) ->
+      fun ?options:(x170 : MeasureMemoryOptions.t option) ->
         fun () ->
           Promise.t_of_js MemoryMeasurement.t_of_js
-            (let x182 = Import.vm in
-             Ojs.call (Ojs.get_prop_ascii x182 "measureMemory") "apply"
-               [|x182;((let x180 =
+            (let x173 = Import.vm in
+             Ojs.call (Ojs.get_prop_ascii x173 "measureMemory") "apply"
+               [|x173;((let x171 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x179 with
-                         | Some x181 ->
+                        (match x170 with
+                         | Some x172 ->
                              ignore
-                               (Ojs.call x180 "push"
-                                  [|(MeasureMemoryOptions.t_to_js x181)|])
+                               (Ojs.call x171 "push"
+                                  [|(MeasureMemoryOptions.t_to_js x172)|])
                          | None -> ());
-                        x180))|])
+                        x171))|])
   end

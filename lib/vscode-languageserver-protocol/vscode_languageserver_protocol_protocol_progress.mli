@@ -3,6 +3,9 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
+open Vscode_jsonrpc
+open Vscode_languageserver_types
+open Vscode_languageserver_protocol_messages
 
 module AnonymousInterface0 : sig
   type t
@@ -16,10 +19,6 @@ module AnonymousInterface0 : sig
   val set_work_done_progress : t -> bool -> unit [@@js.set "workDoneProgress"]
 end
 
-(* import { NotificationHandler, RequestHandler, ProgressType, ProgressToken }
-   from 'vscode-jsonrpc'; *)
-(* import { uinteger } from 'vscode-languageserver-types'; *)
-(* import { ProtocolRequestType, ProtocolNotificationType } from './messages'; *)
 module WorkDoneProgressClientCapabilities : sig
   type t
 

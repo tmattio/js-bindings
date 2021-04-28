@@ -2,6 +2,10 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
+open Vscode_jsonrpc
+open Vscode_languageserver_types
+open Vscode_languageserver_protocol_messages
+open Vscode_languageserver_protocol_protocol
 module ImplementationClientCapabilities =
   struct
     type t = Ojs.t

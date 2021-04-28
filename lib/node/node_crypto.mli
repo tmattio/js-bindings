@@ -328,17 +328,13 @@ module Crypto : sig
   [@@js.scope "constants"]
 
   module HashOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.TransformOptions
+    end
 
     val get_output_length : t -> int [@@js.get "outputLength"]
 
     val set_output_length : t -> int -> unit [@@js.set "outputLength"]
-
-    val cast : t -> Stream.TransformOptions.t [@@js.cast]
   end
   [@@js.scope "HashOptions"]
 
@@ -423,11 +419,9 @@ module Crypto : sig
   end
 
   module Hash : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Transform
+    end
 
     val create : unit -> t [@@js.create]
 
@@ -442,17 +436,13 @@ module Crypto : sig
 
     val digest' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "digest"]
-
-    val cast : t -> Stream.Transform.t [@@js.cast]
   end
   [@@js.scope "Hash"]
 
   module Hmac : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Transform
+    end
 
     val create : unit -> t [@@js.create]
 
@@ -465,8 +455,6 @@ module Crypto : sig
 
     val digest' : t -> encoding:BinaryToTextEncoding.t -> string
       [@@js.call "digest"]
-
-    val cast : t -> Stream.Transform.t [@@js.cast]
   end
   [@@js.scope "Hmac"]
 
@@ -509,41 +497,31 @@ module Crypto : sig
   end
 
   module CipherCCMOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.TransformOptions
+    end
 
     val get_auth_tag_length : t -> int [@@js.get "authTagLength"]
 
     val set_auth_tag_length : t -> int -> unit [@@js.set "authTagLength"]
-
-    val cast : t -> Stream.TransformOptions.t [@@js.cast]
   end
   [@@js.scope "CipherCCMOptions"]
 
   module CipherGCMOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.TransformOptions
+    end
 
     val get_auth_tag_length : t -> int [@@js.get "authTagLength"]
 
     val set_auth_tag_length : t -> int -> unit [@@js.set "authTagLength"]
-
-    val cast : t -> Stream.TransformOptions.t [@@js.cast]
   end
   [@@js.scope "CipherGCMOptions"]
 
   module Cipher : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Transform
+    end
 
     val create : unit -> t [@@js.create]
 
@@ -575,8 +553,6 @@ module Crypto : sig
 
     val set_auto_padding : t -> ?auto_padding:bool -> unit -> t
       [@@js.call "setAutoPadding"]
-
-    val cast : t -> Stream.Transform.t [@@js.cast]
   end
   [@@js.scope "Cipher"]
 
@@ -593,11 +569,9 @@ module Crypto : sig
   end
 
   module CipherCCM : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Cipher
+    end
 
     val set_aad
       :  t
@@ -607,17 +581,13 @@ module Crypto : sig
       [@@js.call "setAAD"]
 
     val get_auth_tag : t -> Buffer.t [@@js.call "getAuthTag"]
-
-    val cast : t -> Cipher.t [@@js.cast]
   end
   [@@js.scope "CipherCCM"]
 
   module CipherGCM : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Cipher
+    end
 
     val set_aad
       :  t
@@ -628,8 +598,6 @@ module Crypto : sig
       [@@js.call "setAAD"]
 
     val get_auth_tag : t -> Buffer.t [@@js.call "getAuthTag"]
-
-    val cast : t -> Cipher.t [@@js.cast]
   end
   [@@js.scope "CipherGCM"]
 
@@ -683,11 +651,9 @@ module Crypto : sig
     [@@js.global "createCipheriv"]
 
   module Decipher : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Transform
+    end
 
     val create : unit -> t [@@js.create]
 
@@ -719,17 +685,13 @@ module Crypto : sig
 
     val set_auto_padding : t -> ?auto_padding:bool -> unit -> t
       [@@js.call "setAutoPadding"]
-
-    val cast : t -> Stream.Transform.t [@@js.cast]
   end
   [@@js.scope "Decipher"]
 
   module DecipherCCM : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Decipher
+    end
 
     val set_auth_tag : t -> buffer:ArrayBufferView.t -> t
       [@@js.call "setAuthTag"]
@@ -740,17 +702,13 @@ module Crypto : sig
       -> options:AnonymousInterface0.t
       -> t
       [@@js.call "setAAD"]
-
-    val cast : t -> Decipher.t [@@js.cast]
   end
   [@@js.scope "DecipherCCM"]
 
   module DecipherGCM : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Decipher
+    end
 
     val set_auth_tag : t -> buffer:ArrayBufferView.t -> t
       [@@js.call "setAuthTag"]
@@ -762,8 +720,6 @@ module Crypto : sig
       -> unit
       -> t
       [@@js.call "setAAD"]
-
-    val cast : t -> Decipher.t [@@js.cast]
   end
   [@@js.scope "DecipherGCM"]
 
@@ -939,58 +895,42 @@ module Crypto : sig
   [@@js.scope "SigningOptions"]
 
   module SignPrivateKeyInput : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> PrivateKeyInput.t [@@js.cast]
+    include module type of struct
+      include PrivateKeyInput
+    end
 
     val cast' : t -> SigningOptions.t [@@js.cast]
   end
   [@@js.scope "SignPrivateKeyInput"]
 
   module SignKeyObjectInput : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SigningOptions
+    end
 
     val get_key : t -> KeyObject.t [@@js.get "key"]
 
     val set_key : t -> KeyObject.t -> unit [@@js.set "key"]
-
-    val cast : t -> SigningOptions.t [@@js.cast]
   end
   [@@js.scope "SignKeyObjectInput"]
 
   module VerifyPublicKeyInput : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> PublicKeyInput.t [@@js.cast]
+    include module type of struct
+      include PublicKeyInput
+    end
 
     val cast' : t -> SigningOptions.t [@@js.cast]
   end
   [@@js.scope "VerifyPublicKeyInput"]
 
   module VerifyKeyObjectInput : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SigningOptions
+    end
 
     val get_key : t -> KeyObject.t [@@js.get "key"]
 
     val set_key : t -> KeyObject.t -> unit [@@js.set "key"]
-
-    val cast : t -> SigningOptions.t [@@js.cast]
   end
   [@@js.scope "VerifyKeyObjectInput"]
 
@@ -1003,11 +943,9 @@ module Crypto : sig
   end
 
   module Signer : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Writable
+    end
 
     val create : unit -> t [@@js.create]
 
@@ -1054,8 +992,6 @@ module Crypto : sig
       -> output_format:BinaryToTextEncoding.t
       -> string
       [@@js.call "sign"]
-
-    val cast : t -> Stream.Writable.t [@@js.cast]
   end
   [@@js.scope "Signer"]
 
@@ -1067,11 +1003,9 @@ module Crypto : sig
     [@@js.global "createSign"]
 
   module Verify : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Writable
+    end
 
     val create : unit -> t [@@js.create]
 
@@ -1119,8 +1053,6 @@ module Crypto : sig
       -> unit
       -> bool
       [@@js.call "verify"]
-
-    val cast : t -> Stream.Writable.t [@@js.cast]
   end
   [@@js.scope "Verify"]
 
@@ -1554,8 +1486,6 @@ module Crypto : sig
 
   val timing_safe_equal : a:ArrayBufferView.t -> b:ArrayBufferView.t -> bool
     [@@js.global "timingSafeEqual"]
-
-  val d_efault_encoding : BufferEncoding.t [@@js.global "DEFAULT_ENCODING"]
 
   module AnonymousInterface2 : sig
     type t

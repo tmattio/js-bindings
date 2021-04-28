@@ -71,11 +71,9 @@ module Vm : sig
   [@@js.scope "BaseOptions"]
 
   module ScriptOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include BaseOptions
+    end
 
     val get_display_errors : t -> bool [@@js.get "displayErrors"]
 
@@ -93,17 +91,13 @@ module Vm : sig
 
     val set_produce_cached_data : t -> bool -> unit
       [@@js.set "produceCachedData"]
-
-    val cast : t -> BaseOptions.t [@@js.cast]
   end
   [@@js.scope "ScriptOptions"]
 
   module RunningScriptOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include BaseOptions
+    end
 
     val get_display_errors : t -> bool [@@js.get "displayErrors"]
 
@@ -124,17 +118,13 @@ module Vm : sig
 
     val set_microtask_mode : t -> ([ `afterEvaluate ][@js.enum]) -> unit
       [@@js.set "microtaskMode"]
-
-    val cast : t -> BaseOptions.t [@@js.cast]
   end
   [@@js.scope "RunningScriptOptions"]
 
   module CompileFunctionOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include BaseOptions
+    end
 
     val get_cached_data : t -> Buffer.t [@@js.get "cachedData"]
 
@@ -154,8 +144,6 @@ module Vm : sig
 
     val set_context_extensions : t -> untyped_object list -> unit
       [@@js.set "contextExtensions"]
-
-    val cast : t -> BaseOptions.t [@@js.cast]
   end
   [@@js.scope "CompileFunctionOptions"]
 

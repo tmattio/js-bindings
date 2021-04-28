@@ -182,11 +182,9 @@ module WithImplicitCoercion : sig
 end
 
 module Buffer : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Uint8Array
+  end
 
   val create : str:string -> ?encoding:BufferEncoding.t -> unit -> t
     [@@js.create]
@@ -490,8 +488,6 @@ module Buffer : sig
   val keys : t -> int IterableIterator.t [@@js.call "keys"]
 
   val values : t -> int IterableIterator.t [@@js.call "values"]
-
-  val cast : t -> Uint8Array.t [@@js.cast]
 end
 [@@js.scope "Buffer"]
 
@@ -557,11 +553,9 @@ end
 [@@js.scope "InspectOptions"]
 
 module ErrnoException : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Error
+  end
 
   val get_errno : t -> int [@@js.get "errno"]
 
@@ -582,13 +576,17 @@ module ErrnoException : sig
   val get_stack : t -> string [@@js.get "stack"]
 
   val set_stack : t -> string -> unit [@@js.set "stack"]
-
-  val cast : t -> Error.t [@@js.cast]
 end
 [@@js.scope "ErrnoException"]
 
+type stream
+
+val stream_to_js : stream -> Ojs.t
+
+val stream_of_js : Ojs.t -> stream
+
 module WritableStream : sig
-  type t
+  type t = stream
 
   val t_to_js : t -> Ojs.t
 
@@ -633,13 +631,11 @@ module WritableStream : sig
     -> unit
     -> unit
     [@@js.call "end"]
-
-  (* val cast : t -> EventEmitter.t [@@js.cast] *)
 end
 [@@js.scope "WritableStream"]
 
 module ReadableStream : sig
-  type t
+  type t = stream
 
   val t_to_js : t -> Ojs.t
 
@@ -675,19 +671,13 @@ module ReadableStream : sig
     [@@js.call "unshift"]
 
   val wrap : t -> old_stream:t -> t [@@js.call "wrap"]
-
-  (* val cast : t -> EventEmitter.t [@@js.cast] *)
 end
 [@@js.scope "ReadableStream"]
 
 module ReadWriteStream : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> ReadableStream.t [@@js.cast]
+  include module type of struct
+    include ReadableStream
+  end
 
   val cast' : t -> WritableStream.t [@@js.cast]
 end
@@ -707,49 +697,37 @@ end
 [@@js.scope "RefCounted"]
 
 module Timer : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include RefCounted
+  end
 
   val has_ref : t -> bool [@@js.call "hasRef"]
 
   val refresh : t -> t [@@js.call "refresh"]
-
-  val cast : t -> RefCounted.t [@@js.cast]
 end
 [@@js.scope "Timer"]
 
 module Immediate : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include RefCounted
+  end
 
   val has_ref : t -> bool [@@js.call "hasRef"]
 
   val get_on_immediate : t -> untyped_function [@@js.get "_onImmediate"]
 
   val set_on_immediate : t -> untyped_function -> unit [@@js.set "_onImmediate"]
-
-  val cast : t -> RefCounted.t [@@js.cast]
 end
 [@@js.scope "Immediate"]
 
 module Timeout : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Timer
+  end
 
   val has_ref : t -> bool [@@js.call "hasRef"]
 
   val refresh : t -> t [@@js.call "refresh"]
-
-  val cast : t -> Timer.t [@@js.cast]
 end
 [@@js.scope "Timeout"]
 
@@ -1140,6 +1118,7 @@ module Global : sig
     :  t
     -> callback:(args:(any list[@js.variadic]) -> unit)
     -> args:(any list[@js.variadic])
+    -> unit
     -> Immediate.t
     [@@js.call "setImmediate"]
 
@@ -1148,6 +1127,7 @@ module Global : sig
     -> callback:(args:(any list[@js.variadic]) -> unit)
     -> ?ms:int
     -> args:(any list[@js.variadic])
+    -> unit
     -> Timeout.t
     [@@js.call "setInterval"]
 
@@ -1156,6 +1136,7 @@ module Global : sig
     -> callback:(args:(any list[@js.variadic]) -> unit)
     -> ?ms:int
     -> args:(any list[@js.variadic])
+    -> unit
     -> Timeout.t
     [@@js.call "setTimeout"]
 
@@ -1349,7 +1330,7 @@ end
 [@@js.scope "RequireResolve"]
 
 module RequireExtensions : sig
-  type t
+  type t = (m:Module.t -> filename:string -> any) Dict.t
 
   val t_to_js : t -> Ojs.t
 
@@ -1360,21 +1341,13 @@ module RequireExtensions : sig
   (* val json.t : t -> m:Module.t -> filename:string -> any [@@js.call ".json"] *)
 
   (* val node.t : t -> m:Module.t -> filename:string -> any [@@js.call ".node"] *)
-
-  val cast : t -> (m:Module.t -> filename:string -> any) Dict.t [@@js.cast]
 end
-[@@js.scope "RequireExtensions"]
 
 module NodeModule : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Module.t [@@js.cast]
+  include module type of struct
+    include Module
+  end
 end
-[@@js.scope "NodeModule"]
 
 module Require : sig
   type t
@@ -1408,15 +1381,10 @@ end
 (* val console : Console.t [@@js.global "console"] *)
 
 module NodeRequire : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> Require.t [@@js.cast]
+  include module type of struct
+    include Require
+  end
 end
-[@@js.scope "NodeRequire"]
 
 [@@@js.stop]
 
@@ -1437,6 +1405,7 @@ val set_timeout
   :  callback:(args:(any list[@js.variadic]) -> unit)
   -> ?ms:int
   -> args:(any list[@js.variadic])
+  -> unit
   -> Timeout.t
   [@@js.global "setTimeout"]
 
@@ -1454,6 +1423,7 @@ val set_interval
   :  callback:(args:(any list[@js.variadic]) -> unit)
   -> ?ms:int
   -> args:(any list[@js.variadic])
+  -> unit
   -> Timeout.t
   [@@js.global "setInterval"]
 

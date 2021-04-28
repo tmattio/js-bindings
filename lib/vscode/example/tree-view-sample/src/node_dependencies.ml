@@ -35,7 +35,9 @@ module Dependency = struct
       Vscode.TreeItemLabel.label label
 
   let create ~label ~version ~collapsible_state ?command () =
-    let t = Vscode.TreeItem.create (`String label) ~collapsible_state () in
+    let t =
+      Vscode.TreeItem.create ~label:(`String label) ~collapsible_state ()
+    in
     set_tooltip t (Some (`String (Printf.sprintf "%s-%s" label version)));
     set_context_value t "dependency";
     set_description t (`String version);

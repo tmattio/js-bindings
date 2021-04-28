@@ -1022,360 +1022,191 @@ module Dgram =
                        [|((match x276 with
                            | `message -> Ojs.string_to_js "message"));(
                          Buffer.t_to_js x277);(RemoteInfo.t_to_js x278)|])
-        let (on : t -> event:string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x284 : t) ->
-            fun ~event:(x280 : string) ->
-              fun ~listener:(x281 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x284) "on"
-                     [|(Ojs.string_to_js x280);(Ojs.fun_to_js_args
-                                                  (fun (x282 : _) ->
-                                                     x281
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x282 0)))|])
-        let (on' : t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x287 : t) ->
-            fun ~event:(x285 : [ `close ]) ->
-              fun ~listener:(x286 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x287) "on"
-                     [|((match x285 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x286 ()))|])
-        let (on'' : t -> event:[ `connect ] -> listener:(unit -> unit) -> t)
-          =
-          fun (x290 : t) ->
-            fun ~event:(x288 : [ `connect ]) ->
-              fun ~listener:(x289 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x290) "on"
-                     [|((match x288 with
-                         | `connect -> Ojs.string_to_js "connect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x289 ()))|])
-        let (on''' :
-          t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x294 : t) ->
-            fun ~event:(x291 : [ `error ]) ->
-              fun ~listener:(x292 : err:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x294) "on"
-                     [|((match x291 with | `error -> Ojs.string_to_js "error"));(
-                       Ojs.fun_to_js 1
-                         (fun (x293 : Ojs.t) ->
-                            x292 ~err:(Error.t_of_js x293)))|])
-        let (on'''' :
-          t -> event:[ `listening ] -> listener:(unit -> unit) -> t) =
-          fun (x297 : t) ->
-            fun ~event:(x295 : [ `listening ]) ->
-              fun ~listener:(x296 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x297) "on"
-                     [|((match x295 with
-                         | `listening -> Ojs.string_to_js "listening"));(
-                       Ojs.fun_to_js 1 (fun _ -> x296 ()))|])
-        let (on''''' :
-          t ->
-            event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
-          =
-          fun (x302 : t) ->
-            fun ~event:(x298 : [ `message ]) ->
-              fun
-                ~listener:(x299 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-                ->
-                t_of_js
-                  (Ojs.call (t_to_js x302) "on"
-                     [|((match x298 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 2
-                         (fun (x300 : Ojs.t) ->
-                            fun (x301 : Ojs.t) ->
-                              x299 ~msg:(Buffer.t_of_js x300)
-                                ~rinfo:(RemoteInfo.t_of_js x301)))|])
-        let (once :
-          t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x307 : t) ->
-            fun ~event:(x303 : string) ->
-              fun ~listener:(x304 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x307) "once"
-                     [|(Ojs.string_to_js x303);(Ojs.fun_to_js_args
-                                                  (fun (x305 : _) ->
-                                                     x304
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x305 0)))|])
-        let (once' : t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x310 : t) ->
-            fun ~event:(x308 : [ `close ]) ->
-              fun ~listener:(x309 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x310) "once"
-                     [|((match x308 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x309 ()))|])
-        let (once'' :
-          t -> event:[ `connect ] -> listener:(unit -> unit) -> t) =
-          fun (x313 : t) ->
-            fun ~event:(x311 : [ `connect ]) ->
-              fun ~listener:(x312 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x313) "once"
-                     [|((match x311 with
-                         | `connect -> Ojs.string_to_js "connect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x312 ()))|])
-        let (once''' :
-          t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x317 : t) ->
-            fun ~event:(x314 : [ `error ]) ->
-              fun ~listener:(x315 : err:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x317) "once"
-                     [|((match x314 with | `error -> Ojs.string_to_js "error"));(
-                       Ojs.fun_to_js 1
-                         (fun (x316 : Ojs.t) ->
-                            x315 ~err:(Error.t_of_js x316)))|])
-        let (once'''' :
-          t -> event:[ `listening ] -> listener:(unit -> unit) -> t) =
-          fun (x320 : t) ->
-            fun ~event:(x318 : [ `listening ]) ->
-              fun ~listener:(x319 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x320) "once"
-                     [|((match x318 with
-                         | `listening -> Ojs.string_to_js "listening"));(
-                       Ojs.fun_to_js 1 (fun _ -> x319 ()))|])
-        let (once''''' :
-          t ->
-            event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
-          =
-          fun (x325 : t) ->
-            fun ~event:(x321 : [ `message ]) ->
-              fun
-                ~listener:(x322 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-                ->
-                t_of_js
-                  (Ojs.call (t_to_js x325) "once"
-                     [|((match x321 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 2
-                         (fun (x323 : Ojs.t) ->
-                            fun (x324 : Ojs.t) ->
-                              x322 ~msg:(Buffer.t_of_js x323)
-                                ~rinfo:(RemoteInfo.t_of_js x324)))|])
-        let (prepend_listener :
-          t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x330 : t) ->
-            fun ~event:(x326 : string) ->
-              fun ~listener:(x327 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x330) "prependListener"
-                     [|(Ojs.string_to_js x326);(Ojs.fun_to_js_args
-                                                  (fun (x328 : _) ->
-                                                     x327
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x328 0)))|])
-        let (prepend_listener' :
-          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x333 : t) ->
-            fun ~event:(x331 : [ `close ]) ->
-              fun ~listener:(x332 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x333) "prependListener"
-                     [|((match x331 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x332 ()))|])
-        let (prepend_listener'' :
-          t -> event:[ `connect ] -> listener:(unit -> unit) -> t) =
-          fun (x336 : t) ->
-            fun ~event:(x334 : [ `connect ]) ->
-              fun ~listener:(x335 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x336) "prependListener"
-                     [|((match x334 with
-                         | `connect -> Ojs.string_to_js "connect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x335 ()))|])
-        let (prepend_listener''' :
-          t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x340 : t) ->
-            fun ~event:(x337 : [ `error ]) ->
-              fun ~listener:(x338 : err:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x340) "prependListener"
-                     [|((match x337 with | `error -> Ojs.string_to_js "error"));(
-                       Ojs.fun_to_js 1
-                         (fun (x339 : Ojs.t) ->
-                            x338 ~err:(Error.t_of_js x339)))|])
-        let (prepend_listener'''' :
-          t -> event:[ `listening ] -> listener:(unit -> unit) -> t) =
-          fun (x343 : t) ->
-            fun ~event:(x341 : [ `listening ]) ->
-              fun ~listener:(x342 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x343) "prependListener"
-                     [|((match x341 with
-                         | `listening -> Ojs.string_to_js "listening"));(
-                       Ojs.fun_to_js 1 (fun _ -> x342 ()))|])
-        let (prepend_listener''''' :
-          t ->
-            event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
-          =
-          fun (x348 : t) ->
-            fun ~event:(x344 : [ `message ]) ->
-              fun
-                ~listener:(x345 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-                ->
-                t_of_js
-                  (Ojs.call (t_to_js x348) "prependListener"
-                     [|((match x344 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 2
-                         (fun (x346 : Ojs.t) ->
-                            fun (x347 : Ojs.t) ->
-                              x345 ~msg:(Buffer.t_of_js x346)
-                                ~rinfo:(RemoteInfo.t_of_js x347)))|])
-        let (prepend_once_listener :
-          t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x353 : t) ->
-            fun ~event:(x349 : string) ->
-              fun ~listener:(x350 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x353) "prependOnceListener"
-                     [|(Ojs.string_to_js x349);(Ojs.fun_to_js_args
-                                                  (fun (x351 : _) ->
-                                                     x350
-                                                       ~args:(Ojs.list_of_js_from
-                                                                any_of_js
-                                                                x351 0)))|])
-        let (prepend_once_listener' :
-          t -> event:[ `close ] -> listener:(unit -> unit) -> t) =
-          fun (x356 : t) ->
-            fun ~event:(x354 : [ `close ]) ->
-              fun ~listener:(x355 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x356) "prependOnceListener"
-                     [|((match x354 with | `close -> Ojs.string_to_js "close"));(
-                       Ojs.fun_to_js 1 (fun _ -> x355 ()))|])
-        let (prepend_once_listener'' :
-          t -> event:[ `connect ] -> listener:(unit -> unit) -> t) =
-          fun (x359 : t) ->
-            fun ~event:(x357 : [ `connect ]) ->
-              fun ~listener:(x358 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x359) "prependOnceListener"
-                     [|((match x357 with
-                         | `connect -> Ojs.string_to_js "connect"));(
-                       Ojs.fun_to_js 1 (fun _ -> x358 ()))|])
-        let (prepend_once_listener''' :
-          t -> event:[ `error ] -> listener:(err:Error.t -> unit) -> t) =
-          fun (x363 : t) ->
-            fun ~event:(x360 : [ `error ]) ->
-              fun ~listener:(x361 : err:Error.t -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x363) "prependOnceListener"
-                     [|((match x360 with | `error -> Ojs.string_to_js "error"));(
-                       Ojs.fun_to_js 1
-                         (fun (x362 : Ojs.t) ->
-                            x361 ~err:(Error.t_of_js x362)))|])
-        let (prepend_once_listener'''' :
-          t -> event:[ `listening ] -> listener:(unit -> unit) -> t) =
-          fun (x366 : t) ->
-            fun ~event:(x364 : [ `listening ]) ->
-              fun ~listener:(x365 : unit -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x366) "prependOnceListener"
-                     [|((match x364 with
-                         | `listening -> Ojs.string_to_js "listening"));(
-                       Ojs.fun_to_js 1 (fun _ -> x365 ()))|])
-        let (prepend_once_listener''''' :
-          t ->
-            event:[ `message ] ->
-              listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) -> t)
-          =
-          fun (x371 : t) ->
-            fun ~event:(x367 : [ `message ]) ->
-              fun
-                ~listener:(x368 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-                ->
-                t_of_js
-                  (Ojs.call (t_to_js x371) "prependOnceListener"
-                     [|((match x367 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       Ojs.fun_to_js 2
-                         (fun (x369 : Ojs.t) ->
-                            fun (x370 : Ojs.t) ->
-                              x368 ~msg:(Buffer.t_of_js x369)
-                                ~rinfo:(RemoteInfo.t_of_js x370)))|])
-        let (cast : t -> Node_events.Events.EventEmitter.t) =
-          fun (x372 : t) ->
-            Node_events.Events.EventEmitter.t_of_js (t_to_js x372)
+        module CloseListener =
+          struct
+            type t = unit -> unit
+            let rec t_of_js : Ojs.t -> t =
+              fun (x281 : Ojs.t) -> fun () -> ignore (Ojs.apply x281 [||])
+            and t_to_js : t -> Ojs.t =
+              fun (x280 : unit -> unit) -> Ojs.fun_to_js 1 (fun _ -> x280 ())
+          end
+        module ConnectListener =
+          struct
+            type t = unit -> unit
+            let rec t_of_js : Ojs.t -> t =
+              fun (x283 : Ojs.t) -> fun () -> ignore (Ojs.apply x283 [||])
+            and t_to_js : t -> Ojs.t =
+              fun (x282 : unit -> unit) -> Ojs.fun_to_js 1 (fun _ -> x282 ())
+          end
+        module ErrorListener =
+          struct
+            type t = err:Error.t -> unit
+            let rec t_of_js : Ojs.t -> t =
+              fun (x286 : Ojs.t) ->
+                fun ~err:(x287 : Error.t) ->
+                  ignore (Ojs.apply x286 [|(Error.t_to_js x287)|])
+            and t_to_js : t -> Ojs.t =
+              fun (x284 : err:Error.t -> unit) ->
+                Ojs.fun_to_js 1
+                  (fun (x285 : Ojs.t) -> x284 ~err:(Error.t_of_js x285))
+          end
+        module ListeningListener =
+          struct
+            type t = unit -> unit
+            let rec t_of_js : Ojs.t -> t =
+              fun (x289 : Ojs.t) -> fun () -> ignore (Ojs.apply x289 [||])
+            and t_to_js : t -> Ojs.t =
+              fun (x288 : unit -> unit) -> Ojs.fun_to_js 1 (fun _ -> x288 ())
+          end
+        module MessageListener =
+          struct
+            type t = msg:Buffer.t -> rinfo:RemoteInfo.t -> unit
+            let rec t_of_js : Ojs.t -> t =
+              fun (x293 : Ojs.t) ->
+                fun ~msg:(x294 : Buffer.t) ->
+                  fun ~rinfo:(x295 : RemoteInfo.t) ->
+                    ignore
+                      (Ojs.apply x293
+                         [|(Buffer.t_to_js x294);(RemoteInfo.t_to_js x295)|])
+            and t_to_js : t -> Ojs.t =
+              fun (x290 : msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) ->
+                Ojs.fun_to_js 2
+                  (fun (x291 : Ojs.t) ->
+                     fun (x292 : Ojs.t) ->
+                       x290 ~msg:(Buffer.t_of_js x291)
+                         ~rinfo:(RemoteInfo.t_of_js x292))
+          end
+        type listener =
+          [ `Close of CloseListener.t  | `Connect of ConnectListener.t 
+          | `Error of ErrorListener.t  | `Listening of ListeningListener.t 
+          | `Message of MessageListener.t ]
+        let rec listener_to_js : listener -> Ojs.t =
+          fun
+            (x296 :
+              [ `Close of CloseListener.t  | `Connect of ConnectListener.t 
+              | `Error of ErrorListener.t 
+              | `Listening of ListeningListener.t 
+              | `Message of MessageListener.t ])
+            ->
+            match x296 with
+            | `Close x297 -> CloseListener.t_to_js x297
+            | `Connect x298 -> ConnectListener.t_to_js x298
+            | `Error x299 -> ErrorListener.t_to_js x299
+            | `Listening x300 -> ListeningListener.t_to_js x300
+            | `Message x301 -> MessageListener.t_to_js x301
+        let (on : t -> string -> Ojs.t -> unit) =
+          fun (x306 : t) ->
+            fun (x304 : string) ->
+              fun (x305 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x306) "on"
+                     [|(Ojs.string_to_js x304);x305|])
+        let (add_listener : t -> string -> Ojs.t -> unit) =
+          fun (x309 : t) ->
+            fun (x307 : string) ->
+              fun (x308 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x309) "addListener"
+                     [|(Ojs.string_to_js x307);x308|])
+        let (once : t -> string -> Ojs.t -> unit) =
+          fun (x312 : t) ->
+            fun (x310 : string) ->
+              fun (x311 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x312) "once"
+                     [|(Ojs.string_to_js x310);x311|])
+        let (prepend_listener : t -> string -> Ojs.t -> unit) =
+          fun (x315 : t) ->
+            fun (x313 : string) ->
+              fun (x314 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x315) "prependListener"
+                     [|(Ojs.string_to_js x313);x314|])
+        let (prepend_once_listener : t -> string -> Ojs.t -> unit) =
+          fun (x318 : t) ->
+            fun (x316 : string) ->
+              fun (x317 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x318) "prependOnceListener"
+                     [|(Ojs.string_to_js x316);x317|])
+        let with_listener_fn fn t =
+          function
+          | `Close f -> (fn t "close") @@ (CloseListener.t_to_js f)
+          | `Connect f -> (fn t "connect") @@ (ConnectListener.t_to_js f)
+          | `Error f -> (fn t "error") @@ (ErrorListener.t_to_js f)
+          | `Listening f ->
+              (fn t "listening") @@ (ListeningListener.t_to_js f)
+          | `Message f -> (fn t "message") @@ (MessageListener.t_to_js f)
+        let on = with_listener_fn on
+        let add_listener = with_listener_fn add_listener
+        let once = with_listener_fn once
+        let prepend_listener = with_listener_fn prepend_listener
+        let prepend_once_listener = with_listener_fn prepend_once_listener
       end
     let (create_socket :
       type_:SocketType.t ->
         ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) ->
           unit -> Socket.t)
       =
-      fun ~type_:(x373 : SocketType.t) ->
+      fun ~type_:(x324 : SocketType.t) ->
         fun
-          ?callback:(x374 :
+          ?callback:(x325 :
                       (msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) option)
           ->
           fun () ->
             Socket.t_of_js
-              (let x379 = Import.dgram in
-               Ojs.call (Ojs.get_prop_ascii x379 "createSocket") "apply"
-                 [|x379;((let x375 =
+              (let x330 = Import.dgram in
+               Ojs.call (Ojs.get_prop_ascii x330 "createSocket") "apply"
+                 [|x330;((let x326 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x375 "push"
-                               [|(SocketType.t_to_js x373)|]);
-                          (match x374 with
-                           | Some x376 ->
+                            (Ojs.call x326 "push"
+                               [|(SocketType.t_to_js x324)|]);
+                          (match x325 with
+                           | Some x327 ->
                                ignore
-                                 (Ojs.call x375 "push"
+                                 (Ojs.call x326 "push"
                                     [|(Ojs.fun_to_js 2
-                                         (fun (x377 : Ojs.t) ->
-                                            fun (x378 : Ojs.t) ->
-                                              x376 ~msg:(Buffer.t_of_js x377)
+                                         (fun (x328 : Ojs.t) ->
+                                            fun (x329 : Ojs.t) ->
+                                              x327 ~msg:(Buffer.t_of_js x328)
                                                 ~rinfo:(RemoteInfo.t_of_js
-                                                          x378)))|])
+                                                          x329)))|])
                            | None -> ());
-                          x375))|])
+                          x326))|])
     let (create_socket :
       options:SocketOptions.t ->
         ?callback:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) ->
           unit -> Socket.t)
       =
-      fun ~options:(x380 : SocketOptions.t) ->
+      fun ~options:(x331 : SocketOptions.t) ->
         fun
-          ?callback:(x381 :
+          ?callback:(x332 :
                       (msg:Buffer.t -> rinfo:RemoteInfo.t -> unit) option)
           ->
           fun () ->
             Socket.t_of_js
-              (let x386 = Import.dgram in
-               Ojs.call (Ojs.get_prop_ascii x386 "createSocket") "apply"
-                 [|x386;((let x382 =
+              (let x337 = Import.dgram in
+               Ojs.call (Ojs.get_prop_ascii x337 "createSocket") "apply"
+                 [|x337;((let x333 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x382 "push"
-                               [|(SocketOptions.t_to_js x380)|]);
-                          (match x381 with
-                           | Some x383 ->
+                            (Ojs.call x333 "push"
+                               [|(SocketOptions.t_to_js x331)|]);
+                          (match x332 with
+                           | Some x334 ->
                                ignore
-                                 (Ojs.call x382 "push"
+                                 (Ojs.call x333 "push"
                                     [|(Ojs.fun_to_js 2
-                                         (fun (x384 : Ojs.t) ->
-                                            fun (x385 : Ojs.t) ->
-                                              x383 ~msg:(Buffer.t_of_js x384)
+                                         (fun (x335 : Ojs.t) ->
+                                            fun (x336 : Ojs.t) ->
+                                              x334 ~msg:(Buffer.t_of_js x335)
                                                 ~rinfo:(RemoteInfo.t_of_js
-                                                          x385)))|])
+                                                          x336)))|])
                            | None -> ());
-                          x382))|])
+                          x333))|])
   end

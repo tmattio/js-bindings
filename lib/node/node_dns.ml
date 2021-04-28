@@ -67,62 +67,54 @@ module Dns =
       end
     module LookupOneOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x24 : Ojs.t) -> x24
-        and t_to_js : t -> Ojs.t = fun (x23 : Ojs.t) -> x23
+        include struct include LookupOptions end
         let (get_all : t -> [ `L_b_false ]) =
-          fun (x25 : t) ->
-            let x26 = Ojs.get_prop_ascii (t_to_js x25) "all" in
-            match Ojs.bool_of_js x26 with
+          fun (x23 : t) ->
+            let x24 = Ojs.get_prop_ascii (t_to_js x23) "all" in
+            match Ojs.bool_of_js x24 with
             | false -> `L_b_false
             | _ -> assert false
         let (set_all : t -> [ `L_b_false ] -> unit) =
-          fun (x27 : t) ->
-            fun (x28 : [ `L_b_false ]) ->
-              Ojs.set_prop_ascii (t_to_js x27) "all"
-                (match x28 with | `L_b_false -> Ojs.string_to_js "LBFalse")
-        let (cast : t -> LookupOptions.t) =
-          fun (x29 : t) -> LookupOptions.t_of_js (t_to_js x29)
+          fun (x25 : t) ->
+            fun (x26 : [ `L_b_false ]) ->
+              Ojs.set_prop_ascii (t_to_js x25) "all"
+                (match x26 with | `L_b_false -> Ojs.string_to_js "LBFalse")
       end
     module LookupAllOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x31 : Ojs.t) -> x31
-        and t_to_js : t -> Ojs.t = fun (x30 : Ojs.t) -> x30
+        include struct include LookupOptions end
         let (get_all : t -> [ `L_b_true ]) =
-          fun (x32 : t) ->
-            let x33 = Ojs.get_prop_ascii (t_to_js x32) "all" in
-            match Ojs.bool_of_js x33 with
+          fun (x27 : t) ->
+            let x28 = Ojs.get_prop_ascii (t_to_js x27) "all" in
+            match Ojs.bool_of_js x28 with
             | true -> `L_b_true
             | _ -> assert false
         let (set_all : t -> [ `L_b_true ] -> unit) =
-          fun (x34 : t) ->
-            fun (x35 : [ `L_b_true ]) ->
-              Ojs.set_prop_ascii (t_to_js x34) "all"
-                (match x35 with | `L_b_true -> Ojs.string_to_js "LBTrue")
-        let (cast : t -> LookupOptions.t) =
-          fun (x36 : t) -> LookupOptions.t_of_js (t_to_js x36)
+          fun (x29 : t) ->
+            fun (x30 : [ `L_b_true ]) ->
+              Ojs.set_prop_ascii (t_to_js x29) "all"
+                (match x30 with | `L_b_true -> Ojs.string_to_js "LBTrue")
       end
     module LookupAddress =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x38 : Ojs.t) -> x38
-        and t_to_js : t -> Ojs.t = fun (x37 : Ojs.t) -> x37
+        let rec t_of_js : Ojs.t -> t = fun (x32 : Ojs.t) -> x32
+        and t_to_js : t -> Ojs.t = fun (x31 : Ojs.t) -> x31
         let (get_address : t -> string) =
-          fun (x39 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x39) "address")
+          fun (x33 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x33) "address")
         let (set_address : t -> string -> unit) =
-          fun (x40 : t) ->
-            fun (x41 : string) ->
-              Ojs.set_prop_ascii (t_to_js x40) "address"
-                (Ojs.string_to_js x41)
+          fun (x34 : t) ->
+            fun (x35 : string) ->
+              Ojs.set_prop_ascii (t_to_js x34) "address"
+                (Ojs.string_to_js x35)
         let (get_family : t -> int) =
-          fun (x42 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x42) "family")
+          fun (x36 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x36) "family")
         let (set_family : t -> int -> unit) =
-          fun (x43 : t) ->
-            fun (x44 : int) ->
-              Ojs.set_prop_ascii (t_to_js x43) "family" (Ojs.int_to_js x44)
+          fun (x37 : t) ->
+            fun (x38 : int) ->
+              Ojs.set_prop_ascii (t_to_js x37) "family" (Ojs.int_to_js x38)
       end
     let (lookup :
       hostname:string ->
@@ -131,37 +123,37 @@ module Dns =
                       address:string -> family:int -> unit)
             -> unit)
       =
-      fun ~hostname:(x45 : string) ->
-        fun ~family:(x46 : int) ->
+      fun ~hostname:(x39 : string) ->
+        fun ~family:(x40 : int) ->
           fun
-            ~callback:(x47 :
+            ~callback:(x41 :
                         err:ErrnoException.t or_null ->
                           address:string -> family:int -> unit)
             ->
             ignore
               (Ojs.call Import.dns "lookup"
-                 [|(Ojs.string_to_js x45);(Ojs.int_to_js x46);(Ojs.fun_to_js
+                 [|(Ojs.string_to_js x39);(Ojs.int_to_js x40);(Ojs.fun_to_js
                                                                  3
                                                                  (fun
-                                                                    (x48 :
+                                                                    (x42 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x50 :
+                                                                    (x44 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x51 :
+                                                                    (x45 :
                                                                     Ojs.t) ->
-                                                                    x47
+                                                                    x41
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x48)
+                                                                    x42)
                                                                     ~address:(
                                                                     Ojs.string_of_js
-                                                                    x50)
+                                                                    x44)
                                                                     ~family:(
                                                                     Ojs.int_of_js
-                                                                    x51)))|])
+                                                                    x45)))|])
     let (lookup :
       hostname:string ->
         options:LookupOneOptions.t ->
@@ -169,24 +161,24 @@ module Dns =
                       address:string -> family:int -> unit)
             -> unit)
       =
-      fun ~hostname:(x52 : string) ->
-        fun ~options:(x53 : LookupOneOptions.t) ->
+      fun ~hostname:(x46 : string) ->
+        fun ~options:(x47 : LookupOneOptions.t) ->
           fun
-            ~callback:(x54 :
+            ~callback:(x48 :
                         err:ErrnoException.t or_null ->
                           address:string -> family:int -> unit)
             ->
             ignore
               (Ojs.call Import.dns "lookup"
-                 [|(Ojs.string_to_js x52);(LookupOneOptions.t_to_js x53);(
+                 [|(Ojs.string_to_js x46);(LookupOneOptions.t_to_js x47);(
                    Ojs.fun_to_js 3
-                     (fun (x55 : Ojs.t) ->
-                        fun (x57 : Ojs.t) ->
-                          fun (x58 : Ojs.t) ->
-                            x54
-                              ~err:(or_null_of_js ErrnoException.t_of_js x55)
-                              ~address:(Ojs.string_of_js x57)
-                              ~family:(Ojs.int_of_js x58)))|])
+                     (fun (x49 : Ojs.t) ->
+                        fun (x51 : Ojs.t) ->
+                          fun (x52 : Ojs.t) ->
+                            x48
+                              ~err:(or_null_of_js ErrnoException.t_of_js x49)
+                              ~address:(Ojs.string_of_js x51)
+                              ~family:(Ojs.int_of_js x52)))|])
     let (lookup :
       hostname:string ->
         options:LookupAllOptions.t ->
@@ -194,22 +186,22 @@ module Dns =
                       addresses:LookupAddress.t list -> unit)
             -> unit)
       =
-      fun ~hostname:(x59 : string) ->
-        fun ~options:(x60 : LookupAllOptions.t) ->
+      fun ~hostname:(x53 : string) ->
+        fun ~options:(x54 : LookupAllOptions.t) ->
           fun
-            ~callback:(x61 :
+            ~callback:(x55 :
                         err:ErrnoException.t or_null ->
                           addresses:LookupAddress.t list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "lookup"
-                 [|(Ojs.string_to_js x59);(LookupAllOptions.t_to_js x60);(
+                 [|(Ojs.string_to_js x53);(LookupAllOptions.t_to_js x54);(
                    Ojs.fun_to_js 2
-                     (fun (x62 : Ojs.t) ->
-                        fun (x64 : Ojs.t) ->
-                          x61 ~err:(or_null_of_js ErrnoException.t_of_js x62)
+                     (fun (x56 : Ojs.t) ->
+                        fun (x58 : Ojs.t) ->
+                          x55 ~err:(or_null_of_js ErrnoException.t_of_js x56)
                             ~addresses:(Ojs.list_of_js LookupAddress.t_of_js
-                                          x64)))|])
+                                          x58)))|])
     let (lookup :
       hostname:string ->
         options:LookupOptions.t ->
@@ -218,108 +210,108 @@ module Dns =
                         family:int -> unit)
             -> unit)
       =
-      fun ~hostname:(x66 : string) ->
-        fun ~options:(x67 : LookupOptions.t) ->
+      fun ~hostname:(x60 : string) ->
+        fun ~options:(x61 : LookupOptions.t) ->
           fun
-            ~callback:(x68 :
+            ~callback:(x62 :
                         err:ErrnoException.t or_null ->
                           address:LookupAddress.t list or_string ->
                             family:int -> unit)
             ->
             ignore
               (Ojs.call Import.dns "lookup"
-                 [|(Ojs.string_to_js x66);(LookupOptions.t_to_js x67);(
+                 [|(Ojs.string_to_js x60);(LookupOptions.t_to_js x61);(
                    Ojs.fun_to_js 3
-                     (fun (x69 : Ojs.t) ->
-                        fun (x71 : Ojs.t) ->
-                          fun (x74 : Ojs.t) ->
-                            x68
-                              ~err:(or_null_of_js ErrnoException.t_of_js x69)
+                     (fun (x63 : Ojs.t) ->
+                        fun (x65 : Ojs.t) ->
+                          fun (x68 : Ojs.t) ->
+                            x62
+                              ~err:(or_null_of_js ErrnoException.t_of_js x63)
                               ~address:(or_string_of_js
-                                          (fun (x72 : Ojs.t) ->
+                                          (fun (x66 : Ojs.t) ->
                                              Ojs.list_of_js
-                                               LookupAddress.t_of_js x72) x71)
-                              ~family:(Ojs.int_of_js x74)))|])
+                                               LookupAddress.t_of_js x66) x65)
+                              ~family:(Ojs.int_of_js x68)))|])
     let (lookup :
       hostname:string ->
         callback:(err:ErrnoException.t or_null ->
                     address:string -> family:int -> unit)
           -> unit)
       =
-      fun ~hostname:(x75 : string) ->
+      fun ~hostname:(x69 : string) ->
         fun
-          ~callback:(x76 :
+          ~callback:(x70 :
                       err:ErrnoException.t or_null ->
                         address:string -> family:int -> unit)
           ->
           ignore
             (Ojs.call Import.dns "lookup"
-               [|(Ojs.string_to_js x75);(Ojs.fun_to_js 3
-                                           (fun (x77 : Ojs.t) ->
-                                              fun (x79 : Ojs.t) ->
-                                                fun (x80 : Ojs.t) ->
-                                                  x76
+               [|(Ojs.string_to_js x69);(Ojs.fun_to_js 3
+                                           (fun (x71 : Ojs.t) ->
+                                              fun (x73 : Ojs.t) ->
+                                                fun (x74 : Ojs.t) ->
+                                                  x70
                                                     ~err:(or_null_of_js
                                                             ErrnoException.t_of_js
-                                                            x77)
+                                                            x71)
                                                     ~address:(Ojs.string_of_js
-                                                                x79)
+                                                                x73)
                                                     ~family:(Ojs.int_of_js
-                                                               x80)))|])
+                                                               x74)))|])
     module Lookup =
       struct
         let (__promisify__ :
           hostname:string ->
             options:LookupAllOptions.t -> LookupAddress.t list Promise.t)
           =
-          fun ~hostname:(x81 : string) ->
-            fun ~options:(x82 : LookupAllOptions.t) ->
+          fun ~hostname:(x75 : string) ->
+            fun ~options:(x76 : LookupAllOptions.t) ->
               Promise.t_of_js
-                (fun (x83 : Ojs.t) ->
-                   Ojs.list_of_js LookupAddress.t_of_js x83)
+                (fun (x77 : Ojs.t) ->
+                   Ojs.list_of_js LookupAddress.t_of_js x77)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "lookup")
                    "__promisify__"
-                   [|(Ojs.string_to_js x81);(LookupAllOptions.t_to_js x82)|])
+                   [|(Ojs.string_to_js x75);(LookupAllOptions.t_to_js x76)|])
         let (__promisify__ :
           hostname:string ->
             ?options:LookupOneOptions.t or_number ->
               unit -> LookupAddress.t Promise.t)
           =
-          fun ~hostname:(x85 : string) ->
-            fun ?options:(x86 : LookupOneOptions.t or_number option) ->
+          fun ~hostname:(x79 : string) ->
+            fun ?options:(x80 : LookupOneOptions.t or_number option) ->
               fun () ->
                 Promise.t_of_js LookupAddress.t_of_js
-                  (let x90 = Ojs.get_prop_ascii Import.dns "lookup" in
-                   Ojs.call (Ojs.get_prop_ascii x90 "__promisify__") "apply"
-                     [|x90;((let x87 =
+                  (let x84 = Ojs.get_prop_ascii Import.dns "lookup" in
+                   Ojs.call (Ojs.get_prop_ascii x84 "__promisify__") "apply"
+                     [|x84;((let x81 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x87 "push"
-                                  [|(Ojs.string_to_js x85)|]);
-                             (match x86 with
-                              | Some x88 ->
+                               (Ojs.call x81 "push"
+                                  [|(Ojs.string_to_js x79)|]);
+                             (match x80 with
+                              | Some x82 ->
                                   ignore
-                                    (Ojs.call x87 "push"
+                                    (Ojs.call x81 "push"
                                        [|(or_number_to_js
-                                            LookupOneOptions.t_to_js x88)|])
+                                            LookupOneOptions.t_to_js x82)|])
                               | None -> ());
-                             x87))|])
+                             x81))|])
         let (__promisify__ :
           hostname:string ->
             options:LookupOptions.t ->
               (LookupAddress.t, LookupAddress.t) or_array Promise.t)
           =
-          fun ~hostname:(x92 : string) ->
-            fun ~options:(x93 : LookupOptions.t) ->
+          fun ~hostname:(x86 : string) ->
+            fun ~options:(x87 : LookupOptions.t) ->
               Promise.t_of_js
-                (fun (x94 : Ojs.t) ->
+                (fun (x88 : Ojs.t) ->
                    or_array_of_js LookupAddress.t_of_js LookupAddress.t_of_js
-                     x94)
+                     x88)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "lookup")
                    "__promisify__"
-                   [|(Ojs.string_to_js x92);(LookupOptions.t_to_js x93)|])
+                   [|(Ojs.string_to_js x86);(LookupOptions.t_to_js x87)|])
       end
     let (lookup_service :
       address:string ->
@@ -328,502 +320,474 @@ module Dns =
                       hostname:string -> service:string -> unit)
             -> unit)
       =
-      fun ~address:(x97 : string) ->
-        fun ~port:(x98 : int) ->
+      fun ~address:(x91 : string) ->
+        fun ~port:(x92 : int) ->
           fun
-            ~callback:(x99 :
+            ~callback:(x93 :
                         err:ErrnoException.t or_null ->
                           hostname:string -> service:string -> unit)
             ->
             ignore
               (Ojs.call Import.dns "lookupService"
-                 [|(Ojs.string_to_js x97);(Ojs.int_to_js x98);(Ojs.fun_to_js
+                 [|(Ojs.string_to_js x91);(Ojs.int_to_js x92);(Ojs.fun_to_js
                                                                  3
                                                                  (fun
-                                                                    (x100 :
+                                                                    (x94 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x102 :
+                                                                    (x96 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x103 :
+                                                                    (x97 :
                                                                     Ojs.t) ->
-                                                                    x99
+                                                                    x93
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x100)
+                                                                    x94)
                                                                     ~hostname:(
                                                                     Ojs.string_of_js
-                                                                    x102)
+                                                                    x96)
                                                                     ~service:(
                                                                     Ojs.string_of_js
-                                                                    x103)))|])
+                                                                    x97)))|])
     module LookupService =
       struct
         let (__promisify__ :
           address:string -> port:int -> AnonymousInterface0.t Promise.t) =
-          fun ~address:(x104 : string) ->
-            fun ~port:(x105 : int) ->
+          fun ~address:(x98 : string) ->
+            fun ~port:(x99 : int) ->
               Promise.t_of_js AnonymousInterface0.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "lookupService")
                    "__promisify__"
-                   [|(Ojs.string_to_js x104);(Ojs.int_to_js x105)|])
+                   [|(Ojs.string_to_js x98);(Ojs.int_to_js x99)|])
       end
     module ResolveOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x108 : Ojs.t) -> x108
-        and t_to_js : t -> Ojs.t = fun (x107 : Ojs.t) -> x107
+        let rec t_of_js : Ojs.t -> t = fun (x102 : Ojs.t) -> x102
+        and t_to_js : t -> Ojs.t = fun (x101 : Ojs.t) -> x101
         let (get_ttl : t -> bool) =
-          fun (x109 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x109) "ttl")
+          fun (x103 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x103) "ttl")
         let (set_ttl : t -> bool -> unit) =
-          fun (x110 : t) ->
-            fun (x111 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x110) "ttl" (Ojs.bool_to_js x111)
+          fun (x104 : t) ->
+            fun (x105 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x104) "ttl" (Ojs.bool_to_js x105)
       end
     module ResolveWithTtlOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x113 : Ojs.t) -> x113
-        and t_to_js : t -> Ojs.t = fun (x112 : Ojs.t) -> x112
+        include struct include ResolveOptions end
         let (get_ttl : t -> [ `L_b_true ]) =
-          fun (x114 : t) ->
-            let x115 = Ojs.get_prop_ascii (t_to_js x114) "ttl" in
-            match Ojs.bool_of_js x115 with
+          fun (x106 : t) ->
+            let x107 = Ojs.get_prop_ascii (t_to_js x106) "ttl" in
+            match Ojs.bool_of_js x107 with
             | true -> `L_b_true
             | _ -> assert false
         let (set_ttl : t -> [ `L_b_true ] -> unit) =
-          fun (x116 : t) ->
-            fun (x117 : [ `L_b_true ]) ->
-              Ojs.set_prop_ascii (t_to_js x116) "ttl"
-                (match x117 with | `L_b_true -> Ojs.string_to_js "LBTrue")
-        let (cast : t -> ResolveOptions.t) =
-          fun (x118 : t) -> ResolveOptions.t_of_js (t_to_js x118)
+          fun (x108 : t) ->
+            fun (x109 : [ `L_b_true ]) ->
+              Ojs.set_prop_ascii (t_to_js x108) "ttl"
+                (match x109 with | `L_b_true -> Ojs.string_to_js "LBTrue")
       end
     module RecordWithTtl =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x120 : Ojs.t) -> x120
-        and t_to_js : t -> Ojs.t = fun (x119 : Ojs.t) -> x119
+        let rec t_of_js : Ojs.t -> t = fun (x111 : Ojs.t) -> x111
+        and t_to_js : t -> Ojs.t = fun (x110 : Ojs.t) -> x110
         let (get_address : t -> string) =
-          fun (x121 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x121) "address")
+          fun (x112 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x112) "address")
         let (set_address : t -> string -> unit) =
-          fun (x122 : t) ->
-            fun (x123 : string) ->
-              Ojs.set_prop_ascii (t_to_js x122) "address"
-                (Ojs.string_to_js x123)
+          fun (x113 : t) ->
+            fun (x114 : string) ->
+              Ojs.set_prop_ascii (t_to_js x113) "address"
+                (Ojs.string_to_js x114)
         let (get_ttl : t -> int) =
-          fun (x124 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x124) "ttl")
+          fun (x115 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x115) "ttl")
         let (set_ttl : t -> int -> unit) =
-          fun (x125 : t) ->
-            fun (x126 : int) ->
-              Ojs.set_prop_ascii (t_to_js x125) "ttl" (Ojs.int_to_js x126)
+          fun (x116 : t) ->
+            fun (x117 : int) ->
+              Ojs.set_prop_ascii (t_to_js x116) "ttl" (Ojs.int_to_js x117)
       end
     module AnyARecord =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x128 : Ojs.t) -> x128
-        and t_to_js : t -> Ojs.t = fun (x127 : Ojs.t) -> x127
+        include struct include RecordWithTtl end
         let (get_type : t -> [ `A ]) =
-          fun (x129 : t) ->
-            let x130 = Ojs.get_prop_ascii (t_to_js x129) "type" in
-            match Ojs.string_of_js x130 with | "A" -> `A | _ -> assert false
+          fun (x118 : t) ->
+            let x119 = Ojs.get_prop_ascii (t_to_js x118) "type" in
+            match Ojs.string_of_js x119 with | "A" -> `A | _ -> assert false
         let (set_type : t -> [ `A ] -> unit) =
-          fun (x131 : t) ->
-            fun (x132 : [ `A ]) ->
-              Ojs.set_prop_ascii (t_to_js x131) "type"
-                (match x132 with | `A -> Ojs.string_to_js "A")
-        let (cast : t -> RecordWithTtl.t) =
-          fun (x133 : t) -> RecordWithTtl.t_of_js (t_to_js x133)
+          fun (x120 : t) ->
+            fun (x121 : [ `A ]) ->
+              Ojs.set_prop_ascii (t_to_js x120) "type"
+                (match x121 with | `A -> Ojs.string_to_js "A")
       end
     module AnyAaaaRecord =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x135 : Ojs.t) -> x135
-        and t_to_js : t -> Ojs.t = fun (x134 : Ojs.t) -> x134
+        include struct include RecordWithTtl end
         let (get_type : t -> [ `AAAA ]) =
-          fun (x136 : t) ->
-            let x137 = Ojs.get_prop_ascii (t_to_js x136) "type" in
-            match Ojs.string_of_js x137 with
+          fun (x122 : t) ->
+            let x123 = Ojs.get_prop_ascii (t_to_js x122) "type" in
+            match Ojs.string_of_js x123 with
             | "AAAA" -> `AAAA
             | _ -> assert false
         let (set_type : t -> [ `AAAA ] -> unit) =
-          fun (x138 : t) ->
-            fun (x139 : [ `AAAA ]) ->
-              Ojs.set_prop_ascii (t_to_js x138) "type"
-                (match x139 with | `AAAA -> Ojs.string_to_js "AAAA")
-        let (cast : t -> RecordWithTtl.t) =
-          fun (x140 : t) -> RecordWithTtl.t_of_js (t_to_js x140)
+          fun (x124 : t) ->
+            fun (x125 : [ `AAAA ]) ->
+              Ojs.set_prop_ascii (t_to_js x124) "type"
+                (match x125 with | `AAAA -> Ojs.string_to_js "AAAA")
       end
     module AnyRecordWithTtl =
       struct
         type t = [ `U_s0_A of AnyARecord.t  | `U_s1_AAAA of AnyAaaaRecord.t ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x144 : Ojs.t) ->
-            let x145 = x144 in
-            match Ojs.string_of_js (Ojs.get_prop_ascii x145 "type") with
-            | "A" -> `U_s0_A (AnyARecord.t_of_js x145)
-            | "AAAA" -> `U_s1_AAAA (AnyAaaaRecord.t_of_js x145)
+          fun (x129 : Ojs.t) ->
+            let x130 = x129 in
+            match Ojs.string_of_js (Ojs.get_prop_ascii x130 "type") with
+            | "A" -> `U_s0_A (AnyARecord.t_of_js x130)
+            | "AAAA" -> `U_s1_AAAA (AnyAaaaRecord.t_of_js x130)
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x141 :
+            (x126 :
               [ `U_s0_A of AnyARecord.t  | `U_s1_AAAA of AnyAaaaRecord.t ])
             ->
-            match x141 with
-            | `U_s0_A x142 -> AnyARecord.t_to_js x142
-            | `U_s1_AAAA x143 -> AnyAaaaRecord.t_to_js x143
+            match x126 with
+            | `U_s0_A x127 -> AnyARecord.t_to_js x127
+            | `U_s1_AAAA x128 -> AnyAaaaRecord.t_to_js x128
       end
     module MxRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x147 : Ojs.t) -> x147
-        and t_to_js : t -> Ojs.t = fun (x146 : Ojs.t) -> x146
+        let rec t_of_js : Ojs.t -> t = fun (x132 : Ojs.t) -> x132
+        and t_to_js : t -> Ojs.t = fun (x131 : Ojs.t) -> x131
         let (get_priority : t -> int) =
-          fun (x148 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x148) "priority")
+          fun (x133 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x133) "priority")
         let (set_priority : t -> int -> unit) =
-          fun (x149 : t) ->
-            fun (x150 : int) ->
-              Ojs.set_prop_ascii (t_to_js x149) "priority"
-                (Ojs.int_to_js x150)
+          fun (x134 : t) ->
+            fun (x135 : int) ->
+              Ojs.set_prop_ascii (t_to_js x134) "priority"
+                (Ojs.int_to_js x135)
         let (get_exchange : t -> string) =
-          fun (x151 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x151) "exchange")
+          fun (x136 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x136) "exchange")
         let (set_exchange : t -> string -> unit) =
-          fun (x152 : t) ->
-            fun (x153 : string) ->
-              Ojs.set_prop_ascii (t_to_js x152) "exchange"
-                (Ojs.string_to_js x153)
+          fun (x137 : t) ->
+            fun (x138 : string) ->
+              Ojs.set_prop_ascii (t_to_js x137) "exchange"
+                (Ojs.string_to_js x138)
       end
     module AnyMxRecord =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x155 : Ojs.t) -> x155
-        and t_to_js : t -> Ojs.t = fun (x154 : Ojs.t) -> x154
+        include struct include MxRecord end
         let (get_type : t -> [ `MX ]) =
-          fun (x156 : t) ->
-            let x157 = Ojs.get_prop_ascii (t_to_js x156) "type" in
-            match Ojs.string_of_js x157 with
+          fun (x139 : t) ->
+            let x140 = Ojs.get_prop_ascii (t_to_js x139) "type" in
+            match Ojs.string_of_js x140 with
             | "MX" -> `MX
             | _ -> assert false
         let (set_type : t -> [ `MX ] -> unit) =
-          fun (x158 : t) ->
-            fun (x159 : [ `MX ]) ->
-              Ojs.set_prop_ascii (t_to_js x158) "type"
-                (match x159 with | `MX -> Ojs.string_to_js "MX")
-        let (cast : t -> MxRecord.t) =
-          fun (x160 : t) -> MxRecord.t_of_js (t_to_js x160)
+          fun (x141 : t) ->
+            fun (x142 : [ `MX ]) ->
+              Ojs.set_prop_ascii (t_to_js x141) "type"
+                (match x142 with | `MX -> Ojs.string_to_js "MX")
       end
     module NaptrRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x162 : Ojs.t) -> x162
-        and t_to_js : t -> Ojs.t = fun (x161 : Ojs.t) -> x161
+        let rec t_of_js : Ojs.t -> t = fun (x144 : Ojs.t) -> x144
+        and t_to_js : t -> Ojs.t = fun (x143 : Ojs.t) -> x143
         let (get_flags : t -> string) =
-          fun (x163 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x163) "flags")
+          fun (x145 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x145) "flags")
         let (set_flags : t -> string -> unit) =
-          fun (x164 : t) ->
-            fun (x165 : string) ->
-              Ojs.set_prop_ascii (t_to_js x164) "flags"
-                (Ojs.string_to_js x165)
+          fun (x146 : t) ->
+            fun (x147 : string) ->
+              Ojs.set_prop_ascii (t_to_js x146) "flags"
+                (Ojs.string_to_js x147)
         let (get_service : t -> string) =
-          fun (x166 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x166) "service")
+          fun (x148 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x148) "service")
         let (set_service : t -> string -> unit) =
-          fun (x167 : t) ->
-            fun (x168 : string) ->
-              Ojs.set_prop_ascii (t_to_js x167) "service"
-                (Ojs.string_to_js x168)
+          fun (x149 : t) ->
+            fun (x150 : string) ->
+              Ojs.set_prop_ascii (t_to_js x149) "service"
+                (Ojs.string_to_js x150)
         let (get_regexp : t -> string) =
-          fun (x169 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x169) "regexp")
+          fun (x151 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x151) "regexp")
         let (set_regexp : t -> string -> unit) =
-          fun (x170 : t) ->
-            fun (x171 : string) ->
-              Ojs.set_prop_ascii (t_to_js x170) "regexp"
-                (Ojs.string_to_js x171)
+          fun (x152 : t) ->
+            fun (x153 : string) ->
+              Ojs.set_prop_ascii (t_to_js x152) "regexp"
+                (Ojs.string_to_js x153)
         let (get_replacement : t -> string) =
-          fun (x172 : t) ->
+          fun (x154 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x172) "replacement")
+              (Ojs.get_prop_ascii (t_to_js x154) "replacement")
         let (set_replacement : t -> string -> unit) =
-          fun (x173 : t) ->
-            fun (x174 : string) ->
-              Ojs.set_prop_ascii (t_to_js x173) "replacement"
-                (Ojs.string_to_js x174)
+          fun (x155 : t) ->
+            fun (x156 : string) ->
+              Ojs.set_prop_ascii (t_to_js x155) "replacement"
+                (Ojs.string_to_js x156)
         let (get_order : t -> int) =
-          fun (x175 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x175) "order")
+          fun (x157 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x157) "order")
         let (set_order : t -> int -> unit) =
-          fun (x176 : t) ->
-            fun (x177 : int) ->
-              Ojs.set_prop_ascii (t_to_js x176) "order" (Ojs.int_to_js x177)
+          fun (x158 : t) ->
+            fun (x159 : int) ->
+              Ojs.set_prop_ascii (t_to_js x158) "order" (Ojs.int_to_js x159)
         let (get_preference : t -> int) =
-          fun (x178 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x178) "preference")
+          fun (x160 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x160) "preference")
         let (set_preference : t -> int -> unit) =
-          fun (x179 : t) ->
-            fun (x180 : int) ->
-              Ojs.set_prop_ascii (t_to_js x179) "preference"
-                (Ojs.int_to_js x180)
+          fun (x161 : t) ->
+            fun (x162 : int) ->
+              Ojs.set_prop_ascii (t_to_js x161) "preference"
+                (Ojs.int_to_js x162)
       end
     module AnyNaptrRecord =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x182 : Ojs.t) -> x182
-        and t_to_js : t -> Ojs.t = fun (x181 : Ojs.t) -> x181
+        include struct include NaptrRecord end
         let (get_type : t -> [ `NAPTR ]) =
-          fun (x183 : t) ->
-            let x184 = Ojs.get_prop_ascii (t_to_js x183) "type" in
-            match Ojs.string_of_js x184 with
+          fun (x163 : t) ->
+            let x164 = Ojs.get_prop_ascii (t_to_js x163) "type" in
+            match Ojs.string_of_js x164 with
             | "NAPTR" -> `NAPTR
             | _ -> assert false
         let (set_type : t -> [ `NAPTR ] -> unit) =
-          fun (x185 : t) ->
-            fun (x186 : [ `NAPTR ]) ->
-              Ojs.set_prop_ascii (t_to_js x185) "type"
-                (match x186 with | `NAPTR -> Ojs.string_to_js "NAPTR")
-        let (cast : t -> NaptrRecord.t) =
-          fun (x187 : t) -> NaptrRecord.t_of_js (t_to_js x187)
+          fun (x165 : t) ->
+            fun (x166 : [ `NAPTR ]) ->
+              Ojs.set_prop_ascii (t_to_js x165) "type"
+                (match x166 with | `NAPTR -> Ojs.string_to_js "NAPTR")
       end
     module SoaRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x189 : Ojs.t) -> x189
-        and t_to_js : t -> Ojs.t = fun (x188 : Ojs.t) -> x188
+        let rec t_of_js : Ojs.t -> t = fun (x168 : Ojs.t) -> x168
+        and t_to_js : t -> Ojs.t = fun (x167 : Ojs.t) -> x167
         let (get_nsname : t -> string) =
-          fun (x190 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x190) "nsname")
+          fun (x169 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x169) "nsname")
         let (set_nsname : t -> string -> unit) =
-          fun (x191 : t) ->
-            fun (x192 : string) ->
-              Ojs.set_prop_ascii (t_to_js x191) "nsname"
-                (Ojs.string_to_js x192)
+          fun (x170 : t) ->
+            fun (x171 : string) ->
+              Ojs.set_prop_ascii (t_to_js x170) "nsname"
+                (Ojs.string_to_js x171)
         let (get_hostmaster : t -> string) =
-          fun (x193 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x193) "hostmaster")
+          fun (x172 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x172) "hostmaster")
         let (set_hostmaster : t -> string -> unit) =
-          fun (x194 : t) ->
-            fun (x195 : string) ->
-              Ojs.set_prop_ascii (t_to_js x194) "hostmaster"
-                (Ojs.string_to_js x195)
+          fun (x173 : t) ->
+            fun (x174 : string) ->
+              Ojs.set_prop_ascii (t_to_js x173) "hostmaster"
+                (Ojs.string_to_js x174)
         let (get_serial : t -> int) =
-          fun (x196 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x196) "serial")
+          fun (x175 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x175) "serial")
         let (set_serial : t -> int -> unit) =
-          fun (x197 : t) ->
-            fun (x198 : int) ->
-              Ojs.set_prop_ascii (t_to_js x197) "serial" (Ojs.int_to_js x198)
+          fun (x176 : t) ->
+            fun (x177 : int) ->
+              Ojs.set_prop_ascii (t_to_js x176) "serial" (Ojs.int_to_js x177)
         let (get_refresh : t -> int) =
-          fun (x199 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x199) "refresh")
+          fun (x178 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x178) "refresh")
         let (set_refresh : t -> int -> unit) =
-          fun (x200 : t) ->
-            fun (x201 : int) ->
-              Ojs.set_prop_ascii (t_to_js x200) "refresh"
-                (Ojs.int_to_js x201)
+          fun (x179 : t) ->
+            fun (x180 : int) ->
+              Ojs.set_prop_ascii (t_to_js x179) "refresh"
+                (Ojs.int_to_js x180)
         let (get_retry : t -> int) =
-          fun (x202 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x202) "retry")
+          fun (x181 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x181) "retry")
         let (set_retry : t -> int -> unit) =
-          fun (x203 : t) ->
-            fun (x204 : int) ->
-              Ojs.set_prop_ascii (t_to_js x203) "retry" (Ojs.int_to_js x204)
+          fun (x182 : t) ->
+            fun (x183 : int) ->
+              Ojs.set_prop_ascii (t_to_js x182) "retry" (Ojs.int_to_js x183)
         let (get_expire : t -> int) =
-          fun (x205 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x205) "expire")
+          fun (x184 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x184) "expire")
         let (set_expire : t -> int -> unit) =
-          fun (x206 : t) ->
-            fun (x207 : int) ->
-              Ojs.set_prop_ascii (t_to_js x206) "expire" (Ojs.int_to_js x207)
+          fun (x185 : t) ->
+            fun (x186 : int) ->
+              Ojs.set_prop_ascii (t_to_js x185) "expire" (Ojs.int_to_js x186)
         let (get_minttl : t -> int) =
-          fun (x208 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x208) "minttl")
+          fun (x187 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x187) "minttl")
         let (set_minttl : t -> int -> unit) =
-          fun (x209 : t) ->
-            fun (x210 : int) ->
-              Ojs.set_prop_ascii (t_to_js x209) "minttl" (Ojs.int_to_js x210)
+          fun (x188 : t) ->
+            fun (x189 : int) ->
+              Ojs.set_prop_ascii (t_to_js x188) "minttl" (Ojs.int_to_js x189)
       end
     module AnySoaRecord =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x212 : Ojs.t) -> x212
-        and t_to_js : t -> Ojs.t = fun (x211 : Ojs.t) -> x211
+        include struct include SoaRecord end
         let (get_type : t -> [ `SOA ]) =
-          fun (x213 : t) ->
-            let x214 = Ojs.get_prop_ascii (t_to_js x213) "type" in
-            match Ojs.string_of_js x214 with
+          fun (x190 : t) ->
+            let x191 = Ojs.get_prop_ascii (t_to_js x190) "type" in
+            match Ojs.string_of_js x191 with
             | "SOA" -> `SOA
             | _ -> assert false
         let (set_type : t -> [ `SOA ] -> unit) =
-          fun (x215 : t) ->
-            fun (x216 : [ `SOA ]) ->
-              Ojs.set_prop_ascii (t_to_js x215) "type"
-                (match x216 with | `SOA -> Ojs.string_to_js "SOA")
-        let (cast : t -> SoaRecord.t) =
-          fun (x217 : t) -> SoaRecord.t_of_js (t_to_js x217)
+          fun (x192 : t) ->
+            fun (x193 : [ `SOA ]) ->
+              Ojs.set_prop_ascii (t_to_js x192) "type"
+                (match x193 with | `SOA -> Ojs.string_to_js "SOA")
       end
     module SrvRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x219 : Ojs.t) -> x219
-        and t_to_js : t -> Ojs.t = fun (x218 : Ojs.t) -> x218
+        let rec t_of_js : Ojs.t -> t = fun (x195 : Ojs.t) -> x195
+        and t_to_js : t -> Ojs.t = fun (x194 : Ojs.t) -> x194
         let (get_priority : t -> int) =
-          fun (x220 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x220) "priority")
+          fun (x196 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x196) "priority")
         let (set_priority : t -> int -> unit) =
-          fun (x221 : t) ->
-            fun (x222 : int) ->
-              Ojs.set_prop_ascii (t_to_js x221) "priority"
-                (Ojs.int_to_js x222)
+          fun (x197 : t) ->
+            fun (x198 : int) ->
+              Ojs.set_prop_ascii (t_to_js x197) "priority"
+                (Ojs.int_to_js x198)
         let (get_weight : t -> int) =
-          fun (x223 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x223) "weight")
+          fun (x199 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x199) "weight")
         let (set_weight : t -> int -> unit) =
-          fun (x224 : t) ->
-            fun (x225 : int) ->
-              Ojs.set_prop_ascii (t_to_js x224) "weight" (Ojs.int_to_js x225)
+          fun (x200 : t) ->
+            fun (x201 : int) ->
+              Ojs.set_prop_ascii (t_to_js x200) "weight" (Ojs.int_to_js x201)
         let (get_port : t -> int) =
-          fun (x226 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x226) "port")
+          fun (x202 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x202) "port")
         let (set_port : t -> int -> unit) =
-          fun (x227 : t) ->
-            fun (x228 : int) ->
-              Ojs.set_prop_ascii (t_to_js x227) "port" (Ojs.int_to_js x228)
+          fun (x203 : t) ->
+            fun (x204 : int) ->
+              Ojs.set_prop_ascii (t_to_js x203) "port" (Ojs.int_to_js x204)
         let (get_name : t -> string) =
-          fun (x229 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x229) "name")
+          fun (x205 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x205) "name")
         let (set_name : t -> string -> unit) =
-          fun (x230 : t) ->
-            fun (x231 : string) ->
-              Ojs.set_prop_ascii (t_to_js x230) "name"
-                (Ojs.string_to_js x231)
+          fun (x206 : t) ->
+            fun (x207 : string) ->
+              Ojs.set_prop_ascii (t_to_js x206) "name"
+                (Ojs.string_to_js x207)
       end
     module AnySrvRecord =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x233 : Ojs.t) -> x233
-        and t_to_js : t -> Ojs.t = fun (x232 : Ojs.t) -> x232
+        include struct include SrvRecord end
         let (get_type : t -> [ `SRV ]) =
-          fun (x234 : t) ->
-            let x235 = Ojs.get_prop_ascii (t_to_js x234) "type" in
-            match Ojs.string_of_js x235 with
+          fun (x208 : t) ->
+            let x209 = Ojs.get_prop_ascii (t_to_js x208) "type" in
+            match Ojs.string_of_js x209 with
             | "SRV" -> `SRV
             | _ -> assert false
         let (set_type : t -> [ `SRV ] -> unit) =
-          fun (x236 : t) ->
-            fun (x237 : [ `SRV ]) ->
-              Ojs.set_prop_ascii (t_to_js x236) "type"
-                (match x237 with | `SRV -> Ojs.string_to_js "SRV")
-        let (cast : t -> SrvRecord.t) =
-          fun (x238 : t) -> SrvRecord.t_of_js (t_to_js x238)
+          fun (x210 : t) ->
+            fun (x211 : [ `SRV ]) ->
+              Ojs.set_prop_ascii (t_to_js x210) "type"
+                (match x211 with | `SRV -> Ojs.string_to_js "SRV")
       end
     module AnyTxtRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x240 : Ojs.t) -> x240
-        and t_to_js : t -> Ojs.t = fun (x239 : Ojs.t) -> x239
+        let rec t_of_js : Ojs.t -> t = fun (x213 : Ojs.t) -> x213
+        and t_to_js : t -> Ojs.t = fun (x212 : Ojs.t) -> x212
         let (get_type : t -> [ `TXT ]) =
-          fun (x241 : t) ->
-            let x242 = Ojs.get_prop_ascii (t_to_js x241) "type" in
-            match Ojs.string_of_js x242 with
+          fun (x214 : t) ->
+            let x215 = Ojs.get_prop_ascii (t_to_js x214) "type" in
+            match Ojs.string_of_js x215 with
             | "TXT" -> `TXT
             | _ -> assert false
         let (set_type : t -> [ `TXT ] -> unit) =
-          fun (x243 : t) ->
-            fun (x244 : [ `TXT ]) ->
-              Ojs.set_prop_ascii (t_to_js x243) "type"
-                (match x244 with | `TXT -> Ojs.string_to_js "TXT")
+          fun (x216 : t) ->
+            fun (x217 : [ `TXT ]) ->
+              Ojs.set_prop_ascii (t_to_js x216) "type"
+                (match x217 with | `TXT -> Ojs.string_to_js "TXT")
         let (get_entries : t -> string list) =
-          fun (x245 : t) ->
+          fun (x218 : t) ->
             Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x245) "entries")
+              (Ojs.get_prop_ascii (t_to_js x218) "entries")
         let (set_entries : t -> string list -> unit) =
-          fun (x247 : t) ->
-            fun (x248 : string list) ->
-              Ojs.set_prop_ascii (t_to_js x247) "entries"
-                (Ojs.list_to_js Ojs.string_to_js x248)
+          fun (x220 : t) ->
+            fun (x221 : string list) ->
+              Ojs.set_prop_ascii (t_to_js x220) "entries"
+                (Ojs.list_to_js Ojs.string_to_js x221)
       end
     module AnyNsRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x251 : Ojs.t) -> x251
-        and t_to_js : t -> Ojs.t = fun (x250 : Ojs.t) -> x250
+        let rec t_of_js : Ojs.t -> t = fun (x224 : Ojs.t) -> x224
+        and t_to_js : t -> Ojs.t = fun (x223 : Ojs.t) -> x223
         let (get_type : t -> [ `NS ]) =
-          fun (x252 : t) ->
-            let x253 = Ojs.get_prop_ascii (t_to_js x252) "type" in
-            match Ojs.string_of_js x253 with
+          fun (x225 : t) ->
+            let x226 = Ojs.get_prop_ascii (t_to_js x225) "type" in
+            match Ojs.string_of_js x226 with
             | "NS" -> `NS
             | _ -> assert false
         let (set_type : t -> [ `NS ] -> unit) =
-          fun (x254 : t) ->
-            fun (x255 : [ `NS ]) ->
-              Ojs.set_prop_ascii (t_to_js x254) "type"
-                (match x255 with | `NS -> Ojs.string_to_js "NS")
+          fun (x227 : t) ->
+            fun (x228 : [ `NS ]) ->
+              Ojs.set_prop_ascii (t_to_js x227) "type"
+                (match x228 with | `NS -> Ojs.string_to_js "NS")
         let (get_value : t -> string) =
-          fun (x256 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x256) "value")
+          fun (x229 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x229) "value")
         let (set_value : t -> string -> unit) =
-          fun (x257 : t) ->
-            fun (x258 : string) ->
-              Ojs.set_prop_ascii (t_to_js x257) "value"
-                (Ojs.string_to_js x258)
+          fun (x230 : t) ->
+            fun (x231 : string) ->
+              Ojs.set_prop_ascii (t_to_js x230) "value"
+                (Ojs.string_to_js x231)
       end
     module AnyPtrRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x260 : Ojs.t) -> x260
-        and t_to_js : t -> Ojs.t = fun (x259 : Ojs.t) -> x259
+        let rec t_of_js : Ojs.t -> t = fun (x233 : Ojs.t) -> x233
+        and t_to_js : t -> Ojs.t = fun (x232 : Ojs.t) -> x232
         let (get_type : t -> [ `PTR ]) =
-          fun (x261 : t) ->
-            let x262 = Ojs.get_prop_ascii (t_to_js x261) "type" in
-            match Ojs.string_of_js x262 with
+          fun (x234 : t) ->
+            let x235 = Ojs.get_prop_ascii (t_to_js x234) "type" in
+            match Ojs.string_of_js x235 with
             | "PTR" -> `PTR
             | _ -> assert false
         let (set_type : t -> [ `PTR ] -> unit) =
-          fun (x263 : t) ->
-            fun (x264 : [ `PTR ]) ->
-              Ojs.set_prop_ascii (t_to_js x263) "type"
-                (match x264 with | `PTR -> Ojs.string_to_js "PTR")
+          fun (x236 : t) ->
+            fun (x237 : [ `PTR ]) ->
+              Ojs.set_prop_ascii (t_to_js x236) "type"
+                (match x237 with | `PTR -> Ojs.string_to_js "PTR")
         let (get_value : t -> string) =
-          fun (x265 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x265) "value")
+          fun (x238 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x238) "value")
         let (set_value : t -> string -> unit) =
-          fun (x266 : t) ->
-            fun (x267 : string) ->
-              Ojs.set_prop_ascii (t_to_js x266) "value"
-                (Ojs.string_to_js x267)
+          fun (x239 : t) ->
+            fun (x240 : string) ->
+              Ojs.set_prop_ascii (t_to_js x239) "value"
+                (Ojs.string_to_js x240)
       end
     module AnyCnameRecord =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x269 : Ojs.t) -> x269
-        and t_to_js : t -> Ojs.t = fun (x268 : Ojs.t) -> x268
+        let rec t_of_js : Ojs.t -> t = fun (x242 : Ojs.t) -> x242
+        and t_to_js : t -> Ojs.t = fun (x241 : Ojs.t) -> x241
         let (get_type : t -> [ `CNAME ]) =
-          fun (x270 : t) ->
-            let x271 = Ojs.get_prop_ascii (t_to_js x270) "type" in
-            match Ojs.string_of_js x271 with
+          fun (x243 : t) ->
+            let x244 = Ojs.get_prop_ascii (t_to_js x243) "type" in
+            match Ojs.string_of_js x244 with
             | "CNAME" -> `CNAME
             | _ -> assert false
         let (set_type : t -> [ `CNAME ] -> unit) =
-          fun (x272 : t) ->
-            fun (x273 : [ `CNAME ]) ->
-              Ojs.set_prop_ascii (t_to_js x272) "type"
-                (match x273 with | `CNAME -> Ojs.string_to_js "CNAME")
+          fun (x245 : t) ->
+            fun (x246 : [ `CNAME ]) ->
+              Ojs.set_prop_ascii (t_to_js x245) "type"
+                (match x246 with | `CNAME -> Ojs.string_to_js "CNAME")
         let (get_value : t -> string) =
-          fun (x274 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x274) "value")
+          fun (x247 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x247) "value")
         let (set_value : t -> string -> unit) =
-          fun (x275 : t) ->
-            fun (x276 : string) ->
-              Ojs.set_prop_ascii (t_to_js x275) "value"
-                (Ojs.string_to_js x276)
+          fun (x248 : t) ->
+            fun (x249 : string) ->
+              Ojs.set_prop_ascii (t_to_js x248) "value"
+                (Ojs.string_to_js x249)
       end
     module AnyRecord =
       struct
@@ -834,40 +798,40 @@ module Dns =
           | `U_s7_PTR of AnyPtrRecord.t  | `U_s8_SOA of AnySoaRecord.t 
           | `U_s9_SRV of AnySrvRecord.t  | `U_s10_TXT of AnyTxtRecord.t ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x288 : Ojs.t) ->
-            let x289 = x288 in
-            match Ojs.string_of_js (Ojs.get_prop_ascii x289 "type") with
-            | "A" -> `U_s0_A (AnyARecord.t_of_js x289)
-            | "AAAA" -> `U_s1_AAAA (AnyAaaaRecord.t_of_js x289)
-            | "CNAME" -> `U_s3_CNAME (AnyCnameRecord.t_of_js x289)
-            | "MX" -> `U_s4_MX (AnyMxRecord.t_of_js x289)
-            | "NAPTR" -> `U_s5_NAPTR (AnyNaptrRecord.t_of_js x289)
-            | "NS" -> `U_s6_NS (AnyNsRecord.t_of_js x289)
-            | "PTR" -> `U_s7_PTR (AnyPtrRecord.t_of_js x289)
-            | "SOA" -> `U_s8_SOA (AnySoaRecord.t_of_js x289)
-            | "SRV" -> `U_s9_SRV (AnySrvRecord.t_of_js x289)
-            | "TXT" -> `U_s10_TXT (AnyTxtRecord.t_of_js x289)
+          fun (x261 : Ojs.t) ->
+            let x262 = x261 in
+            match Ojs.string_of_js (Ojs.get_prop_ascii x262 "type") with
+            | "A" -> `U_s0_A (AnyARecord.t_of_js x262)
+            | "AAAA" -> `U_s1_AAAA (AnyAaaaRecord.t_of_js x262)
+            | "CNAME" -> `U_s3_CNAME (AnyCnameRecord.t_of_js x262)
+            | "MX" -> `U_s4_MX (AnyMxRecord.t_of_js x262)
+            | "NAPTR" -> `U_s5_NAPTR (AnyNaptrRecord.t_of_js x262)
+            | "NS" -> `U_s6_NS (AnyNsRecord.t_of_js x262)
+            | "PTR" -> `U_s7_PTR (AnyPtrRecord.t_of_js x262)
+            | "SOA" -> `U_s8_SOA (AnySoaRecord.t_of_js x262)
+            | "SRV" -> `U_s9_SRV (AnySrvRecord.t_of_js x262)
+            | "TXT" -> `U_s10_TXT (AnyTxtRecord.t_of_js x262)
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x277 :
+            (x250 :
               [ `U_s0_A of AnyARecord.t  | `U_s1_AAAA of AnyAaaaRecord.t 
               | `U_s3_CNAME of AnyCnameRecord.t  | `U_s4_MX of AnyMxRecord.t 
               | `U_s5_NAPTR of AnyNaptrRecord.t  | `U_s6_NS of AnyNsRecord.t 
               | `U_s7_PTR of AnyPtrRecord.t  | `U_s8_SOA of AnySoaRecord.t 
               | `U_s9_SRV of AnySrvRecord.t  | `U_s10_TXT of AnyTxtRecord.t ])
             ->
-            match x277 with
-            | `U_s0_A x278 -> AnyARecord.t_to_js x278
-            | `U_s1_AAAA x279 -> AnyAaaaRecord.t_to_js x279
-            | `U_s3_CNAME x280 -> AnyCnameRecord.t_to_js x280
-            | `U_s4_MX x281 -> AnyMxRecord.t_to_js x281
-            | `U_s5_NAPTR x282 -> AnyNaptrRecord.t_to_js x282
-            | `U_s6_NS x283 -> AnyNsRecord.t_to_js x283
-            | `U_s7_PTR x284 -> AnyPtrRecord.t_to_js x284
-            | `U_s8_SOA x285 -> AnySoaRecord.t_to_js x285
-            | `U_s9_SRV x286 -> AnySrvRecord.t_to_js x286
-            | `U_s10_TXT x287 -> AnyTxtRecord.t_to_js x287
+            match x250 with
+            | `U_s0_A x251 -> AnyARecord.t_to_js x251
+            | `U_s1_AAAA x252 -> AnyAaaaRecord.t_to_js x252
+            | `U_s3_CNAME x253 -> AnyCnameRecord.t_to_js x253
+            | `U_s4_MX x254 -> AnyMxRecord.t_to_js x254
+            | `U_s5_NAPTR x255 -> AnyNaptrRecord.t_to_js x255
+            | `U_s6_NS x256 -> AnyNsRecord.t_to_js x256
+            | `U_s7_PTR x257 -> AnyPtrRecord.t_to_js x257
+            | `U_s8_SOA x258 -> AnySoaRecord.t_to_js x258
+            | `U_s9_SRV x259 -> AnySrvRecord.t_to_js x259
+            | `U_s10_TXT x260 -> AnyTxtRecord.t_to_js x260
       end
     let (resolve :
       hostname:string ->
@@ -875,24 +839,24 @@ module Dns =
                     addresses:string list -> unit)
           -> unit)
       =
-      fun ~hostname:(x290 : string) ->
+      fun ~hostname:(x263 : string) ->
         fun
-          ~callback:(x291 :
+          ~callback:(x264 :
                       err:ErrnoException.t or_null ->
                         addresses:string list -> unit)
           ->
           ignore
             (Ojs.call Import.dns "resolve"
-               [|(Ojs.string_to_js x290);(Ojs.fun_to_js 2
-                                            (fun (x292 : Ojs.t) ->
-                                               fun (x294 : Ojs.t) ->
-                                                 x291
+               [|(Ojs.string_to_js x263);(Ojs.fun_to_js 2
+                                            (fun (x265 : Ojs.t) ->
+                                               fun (x267 : Ojs.t) ->
+                                                 x264
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
-                                                           x292)
+                                                           x265)
                                                    ~addresses:(Ojs.list_of_js
                                                                  Ojs.string_of_js
-                                                                 x294)))|])
+                                                                 x267)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `A ] ->
@@ -900,23 +864,23 @@ module Dns =
                       addresses:string list -> unit)
             -> unit)
       =
-      fun ~hostname:(x296 : string) ->
-        fun ~rrtype:(x297 : [ `A ]) ->
+      fun ~hostname:(x269 : string) ->
+        fun ~rrtype:(x270 : [ `A ]) ->
           fun
-            ~callback:(x298 :
+            ~callback:(x271 :
                         err:ErrnoException.t or_null ->
                           addresses:string list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x296);((match x297 with
+                 [|(Ojs.string_to_js x269);((match x270 with
                                              | `A -> Ojs.string_to_js "A"));(
                    Ojs.fun_to_js 2
-                     (fun (x299 : Ojs.t) ->
-                        fun (x301 : Ojs.t) ->
-                          x298
-                            ~err:(or_null_of_js ErrnoException.t_of_js x299)
-                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x301)))|])
+                     (fun (x272 : Ojs.t) ->
+                        fun (x274 : Ojs.t) ->
+                          x271
+                            ~err:(or_null_of_js ErrnoException.t_of_js x272)
+                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x274)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `AAAA ] ->
@@ -924,24 +888,24 @@ module Dns =
                       addresses:string list -> unit)
             -> unit)
       =
-      fun ~hostname:(x303 : string) ->
-        fun ~rrtype:(x304 : [ `AAAA ]) ->
+      fun ~hostname:(x276 : string) ->
+        fun ~rrtype:(x277 : [ `AAAA ]) ->
           fun
-            ~callback:(x305 :
+            ~callback:(x278 :
                         err:ErrnoException.t or_null ->
                           addresses:string list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x303);((match x304 with
+                 [|(Ojs.string_to_js x276);((match x277 with
                                              | `AAAA ->
                                                  Ojs.string_to_js "AAAA"));(
                    Ojs.fun_to_js 2
-                     (fun (x306 : Ojs.t) ->
-                        fun (x308 : Ojs.t) ->
-                          x305
-                            ~err:(or_null_of_js ErrnoException.t_of_js x306)
-                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x308)))|])
+                     (fun (x279 : Ojs.t) ->
+                        fun (x281 : Ojs.t) ->
+                          x278
+                            ~err:(or_null_of_js ErrnoException.t_of_js x279)
+                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x281)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `ANY ] ->
@@ -949,23 +913,23 @@ module Dns =
                       addresses:AnyRecord.t list -> unit)
             -> unit)
       =
-      fun ~hostname:(x310 : string) ->
-        fun ~rrtype:(x311 : [ `ANY ]) ->
+      fun ~hostname:(x283 : string) ->
+        fun ~rrtype:(x284 : [ `ANY ]) ->
           fun
-            ~callback:(x312 :
+            ~callback:(x285 :
                         err:ErrnoException.t or_null ->
                           addresses:AnyRecord.t list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x310);((match x311 with
+                 [|(Ojs.string_to_js x283);((match x284 with
                                              | `ANY -> Ojs.string_to_js "ANY"));(
                    Ojs.fun_to_js 2
-                     (fun (x313 : Ojs.t) ->
-                        fun (x315 : Ojs.t) ->
-                          x312
-                            ~err:(or_null_of_js ErrnoException.t_of_js x313)
-                            ~addresses:(Ojs.list_of_js AnyRecord.t_of_js x315)))|])
+                     (fun (x286 : Ojs.t) ->
+                        fun (x288 : Ojs.t) ->
+                          x285
+                            ~err:(or_null_of_js ErrnoException.t_of_js x286)
+                            ~addresses:(Ojs.list_of_js AnyRecord.t_of_js x288)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `CNAME ] ->
@@ -973,24 +937,24 @@ module Dns =
                       addresses:string list -> unit)
             -> unit)
       =
-      fun ~hostname:(x317 : string) ->
-        fun ~rrtype:(x318 : [ `CNAME ]) ->
+      fun ~hostname:(x290 : string) ->
+        fun ~rrtype:(x291 : [ `CNAME ]) ->
           fun
-            ~callback:(x319 :
+            ~callback:(x292 :
                         err:ErrnoException.t or_null ->
                           addresses:string list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x317);((match x318 with
+                 [|(Ojs.string_to_js x290);((match x291 with
                                              | `CNAME ->
                                                  Ojs.string_to_js "CNAME"));(
                    Ojs.fun_to_js 2
-                     (fun (x320 : Ojs.t) ->
-                        fun (x322 : Ojs.t) ->
-                          x319
-                            ~err:(or_null_of_js ErrnoException.t_of_js x320)
-                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x322)))|])
+                     (fun (x293 : Ojs.t) ->
+                        fun (x295 : Ojs.t) ->
+                          x292
+                            ~err:(or_null_of_js ErrnoException.t_of_js x293)
+                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x295)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `MX ] ->
@@ -998,23 +962,23 @@ module Dns =
                       addresses:MxRecord.t list -> unit)
             -> unit)
       =
-      fun ~hostname:(x324 : string) ->
-        fun ~rrtype:(x325 : [ `MX ]) ->
+      fun ~hostname:(x297 : string) ->
+        fun ~rrtype:(x298 : [ `MX ]) ->
           fun
-            ~callback:(x326 :
+            ~callback:(x299 :
                         err:ErrnoException.t or_null ->
                           addresses:MxRecord.t list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x324);((match x325 with
+                 [|(Ojs.string_to_js x297);((match x298 with
                                              | `MX -> Ojs.string_to_js "MX"));(
                    Ojs.fun_to_js 2
-                     (fun (x327 : Ojs.t) ->
-                        fun (x329 : Ojs.t) ->
-                          x326
-                            ~err:(or_null_of_js ErrnoException.t_of_js x327)
-                            ~addresses:(Ojs.list_of_js MxRecord.t_of_js x329)))|])
+                     (fun (x300 : Ojs.t) ->
+                        fun (x302 : Ojs.t) ->
+                          x299
+                            ~err:(or_null_of_js ErrnoException.t_of_js x300)
+                            ~addresses:(Ojs.list_of_js MxRecord.t_of_js x302)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `NAPTR ] ->
@@ -1022,25 +986,25 @@ module Dns =
                       addresses:NaptrRecord.t list -> unit)
             -> unit)
       =
-      fun ~hostname:(x331 : string) ->
-        fun ~rrtype:(x332 : [ `NAPTR ]) ->
+      fun ~hostname:(x304 : string) ->
+        fun ~rrtype:(x305 : [ `NAPTR ]) ->
           fun
-            ~callback:(x333 :
+            ~callback:(x306 :
                         err:ErrnoException.t or_null ->
                           addresses:NaptrRecord.t list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x331);((match x332 with
+                 [|(Ojs.string_to_js x304);((match x305 with
                                              | `NAPTR ->
                                                  Ojs.string_to_js "NAPTR"));(
                    Ojs.fun_to_js 2
-                     (fun (x334 : Ojs.t) ->
-                        fun (x336 : Ojs.t) ->
-                          x333
-                            ~err:(or_null_of_js ErrnoException.t_of_js x334)
+                     (fun (x307 : Ojs.t) ->
+                        fun (x309 : Ojs.t) ->
+                          x306
+                            ~err:(or_null_of_js ErrnoException.t_of_js x307)
                             ~addresses:(Ojs.list_of_js NaptrRecord.t_of_js
-                                          x336)))|])
+                                          x309)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `NS ] ->
@@ -1048,23 +1012,23 @@ module Dns =
                       addresses:string list -> unit)
             -> unit)
       =
-      fun ~hostname:(x338 : string) ->
-        fun ~rrtype:(x339 : [ `NS ]) ->
+      fun ~hostname:(x311 : string) ->
+        fun ~rrtype:(x312 : [ `NS ]) ->
           fun
-            ~callback:(x340 :
+            ~callback:(x313 :
                         err:ErrnoException.t or_null ->
                           addresses:string list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x338);((match x339 with
+                 [|(Ojs.string_to_js x311);((match x312 with
                                              | `NS -> Ojs.string_to_js "NS"));(
                    Ojs.fun_to_js 2
-                     (fun (x341 : Ojs.t) ->
-                        fun (x343 : Ojs.t) ->
-                          x340
-                            ~err:(or_null_of_js ErrnoException.t_of_js x341)
-                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x343)))|])
+                     (fun (x314 : Ojs.t) ->
+                        fun (x316 : Ojs.t) ->
+                          x313
+                            ~err:(or_null_of_js ErrnoException.t_of_js x314)
+                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x316)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `PTR ] ->
@@ -1072,23 +1036,23 @@ module Dns =
                       addresses:string list -> unit)
             -> unit)
       =
-      fun ~hostname:(x345 : string) ->
-        fun ~rrtype:(x346 : [ `PTR ]) ->
+      fun ~hostname:(x318 : string) ->
+        fun ~rrtype:(x319 : [ `PTR ]) ->
           fun
-            ~callback:(x347 :
+            ~callback:(x320 :
                         err:ErrnoException.t or_null ->
                           addresses:string list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x345);((match x346 with
+                 [|(Ojs.string_to_js x318);((match x319 with
                                              | `PTR -> Ojs.string_to_js "PTR"));(
                    Ojs.fun_to_js 2
-                     (fun (x348 : Ojs.t) ->
-                        fun (x350 : Ojs.t) ->
-                          x347
-                            ~err:(or_null_of_js ErrnoException.t_of_js x348)
-                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x350)))|])
+                     (fun (x321 : Ojs.t) ->
+                        fun (x323 : Ojs.t) ->
+                          x320
+                            ~err:(or_null_of_js ErrnoException.t_of_js x321)
+                            ~addresses:(Ojs.list_of_js Ojs.string_of_js x323)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `SOA ] ->
@@ -1096,23 +1060,23 @@ module Dns =
                       addresses:SoaRecord.t -> unit)
             -> unit)
       =
-      fun ~hostname:(x352 : string) ->
-        fun ~rrtype:(x353 : [ `SOA ]) ->
+      fun ~hostname:(x325 : string) ->
+        fun ~rrtype:(x326 : [ `SOA ]) ->
           fun
-            ~callback:(x354 :
+            ~callback:(x327 :
                         err:ErrnoException.t or_null ->
                           addresses:SoaRecord.t -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x352);((match x353 with
+                 [|(Ojs.string_to_js x325);((match x326 with
                                              | `SOA -> Ojs.string_to_js "SOA"));(
                    Ojs.fun_to_js 2
-                     (fun (x355 : Ojs.t) ->
-                        fun (x357 : Ojs.t) ->
-                          x354
-                            ~err:(or_null_of_js ErrnoException.t_of_js x355)
-                            ~addresses:(SoaRecord.t_of_js x357)))|])
+                     (fun (x328 : Ojs.t) ->
+                        fun (x330 : Ojs.t) ->
+                          x327
+                            ~err:(or_null_of_js ErrnoException.t_of_js x328)
+                            ~addresses:(SoaRecord.t_of_js x330)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `SRV ] ->
@@ -1120,23 +1084,23 @@ module Dns =
                       addresses:SrvRecord.t list -> unit)
             -> unit)
       =
-      fun ~hostname:(x358 : string) ->
-        fun ~rrtype:(x359 : [ `SRV ]) ->
+      fun ~hostname:(x331 : string) ->
+        fun ~rrtype:(x332 : [ `SRV ]) ->
           fun
-            ~callback:(x360 :
+            ~callback:(x333 :
                         err:ErrnoException.t or_null ->
                           addresses:SrvRecord.t list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x358);((match x359 with
+                 [|(Ojs.string_to_js x331);((match x332 with
                                              | `SRV -> Ojs.string_to_js "SRV"));(
                    Ojs.fun_to_js 2
-                     (fun (x361 : Ojs.t) ->
-                        fun (x363 : Ojs.t) ->
-                          x360
-                            ~err:(or_null_of_js ErrnoException.t_of_js x361)
-                            ~addresses:(Ojs.list_of_js SrvRecord.t_of_js x363)))|])
+                     (fun (x334 : Ojs.t) ->
+                        fun (x336 : Ojs.t) ->
+                          x333
+                            ~err:(or_null_of_js ErrnoException.t_of_js x334)
+                            ~addresses:(Ojs.list_of_js SrvRecord.t_of_js x336)))|])
     let (resolve :
       hostname:string ->
         rrtype:[ `TXT ] ->
@@ -1144,26 +1108,26 @@ module Dns =
                       addresses:string list list -> unit)
             -> unit)
       =
-      fun ~hostname:(x365 : string) ->
-        fun ~rrtype:(x366 : [ `TXT ]) ->
+      fun ~hostname:(x338 : string) ->
+        fun ~rrtype:(x339 : [ `TXT ]) ->
           fun
-            ~callback:(x367 :
+            ~callback:(x340 :
                         err:ErrnoException.t or_null ->
                           addresses:string list list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x365);((match x366 with
+                 [|(Ojs.string_to_js x338);((match x339 with
                                              | `TXT -> Ojs.string_to_js "TXT"));(
                    Ojs.fun_to_js 2
-                     (fun (x368 : Ojs.t) ->
-                        fun (x370 : Ojs.t) ->
-                          x367
-                            ~err:(or_null_of_js ErrnoException.t_of_js x368)
+                     (fun (x341 : Ojs.t) ->
+                        fun (x343 : Ojs.t) ->
+                          x340
+                            ~err:(or_null_of_js ErrnoException.t_of_js x341)
                             ~addresses:(Ojs.list_of_js
-                                          (fun (x371 : Ojs.t) ->
+                                          (fun (x344 : Ojs.t) ->
                                              Ojs.list_of_js Ojs.string_of_js
-                                               x371) x370)))|])
+                                               x344) x343)))|])
     let (resolve :
       hostname:string ->
         rrtype:string ->
@@ -1175,10 +1139,10 @@ module Dns =
                         or_array -> unit)
             -> unit)
       =
-      fun ~hostname:(x373 : string) ->
-        fun ~rrtype:(x374 : string) ->
+      fun ~hostname:(x346 : string) ->
+        fun ~rrtype:(x347 : string) ->
           fun
-            ~callback:(x375 :
+            ~callback:(x348 :
                         err:ErrnoException.t or_null ->
                           addresses:(SoaRecord.t,
                             ((AnyRecord.t, MxRecord.t, NaptrRecord.t,
@@ -1188,43 +1152,43 @@ module Dns =
             ->
             ignore
               (Ojs.call Import.dns "resolve"
-                 [|(Ojs.string_to_js x373);(Ojs.string_to_js x374);(Ojs.fun_to_js
+                 [|(Ojs.string_to_js x346);(Ojs.string_to_js x347);(Ojs.fun_to_js
                                                                     2
                                                                     (fun
-                                                                    (x376 :
+                                                                    (x349 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x378 :
+                                                                    (x351 :
                                                                     Ojs.t) ->
-                                                                    x375
+                                                                    x348
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x376)
+                                                                    x349)
                                                                     ~addresses:(
                                                                     or_array_of_js
                                                                     SoaRecord.t_of_js
                                                                     (fun
-                                                                    (x380 :
+                                                                    (x353 :
                                                                     Ojs.t) ->
                                                                     or_string_of_js
                                                                     (fun
-                                                                    (x381 :
+                                                                    (x354 :
                                                                     Ojs.t) ->
                                                                     or_array_of_js
                                                                     (fun
-                                                                    (x382 :
+                                                                    (x355 :
                                                                     Ojs.t) ->
                                                                     union4_of_js
                                                                     AnyRecord.t_of_js
                                                                     MxRecord.t_of_js
                                                                     NaptrRecord.t_of_js
                                                                     SrvRecord.t_of_js
-                                                                    x382)
+                                                                    x355)
                                                                     Ojs.string_of_js
-                                                                    x381)
-                                                                    x380)
-                                                                    x378)))|])
+                                                                    x354)
+                                                                    x353)
+                                                                    x351)))|])
     module Resolve =
       struct
         let (__promisify__ :
@@ -1232,28 +1196,28 @@ module Dns =
             ?rrtype:[ `A  | `AAAA  | `CNAME  | `NS  | `PTR ] ->
               unit -> string list Promise.t)
           =
-          fun ~hostname:(x388 : string) ->
+          fun ~hostname:(x361 : string) ->
             fun
-              ?rrtype:(x389 :
+              ?rrtype:(x362 :
                         [ `A  | `AAAA  | `CNAME  | `NS  | `PTR ] option)
               ->
               fun () ->
                 Promise.t_of_js
-                  (fun (x393 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x393)
-                  (let x392 = Ojs.get_prop_ascii Import.dns "resolve" in
-                   Ojs.call (Ojs.get_prop_ascii x392 "__promisify__") "apply"
-                     [|x392;((let x390 =
+                  (fun (x366 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x366)
+                  (let x365 = Ojs.get_prop_ascii Import.dns "resolve" in
+                   Ojs.call (Ojs.get_prop_ascii x365 "__promisify__") "apply"
+                     [|x365;((let x363 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x390 "push"
-                                   [|(Ojs.string_to_js x388)|]);
-                              (match x389 with
-                               | Some x391 ->
+                                (Ojs.call x363 "push"
+                                   [|(Ojs.string_to_js x361)|]);
+                              (match x362 with
+                               | Some x364 ->
                                    ignore
-                                     (Ojs.call x390 "push"
-                                        [|((match x391 with
+                                     (Ojs.call x363 "push"
+                                        [|((match x364 with
                                             | `A -> Ojs.string_to_js "A"
                                             | `AAAA ->
                                                 Ojs.string_to_js "AAAA"
@@ -1262,75 +1226,75 @@ module Dns =
                                             | `NS -> Ojs.string_to_js "NS"
                                             | `PTR -> Ojs.string_to_js "PTR"))|])
                                | None -> ());
-                              x390))|])
+                              x363))|])
         let (__promisify__ :
           hostname:string -> rrtype:[ `ANY ] -> AnyRecord.t list Promise.t) =
-          fun ~hostname:(x395 : string) ->
-            fun ~rrtype:(x396 : [ `ANY ]) ->
+          fun ~hostname:(x368 : string) ->
+            fun ~rrtype:(x369 : [ `ANY ]) ->
               Promise.t_of_js
-                (fun (x397 : Ojs.t) -> Ojs.list_of_js AnyRecord.t_of_js x397)
+                (fun (x370 : Ojs.t) -> Ojs.list_of_js AnyRecord.t_of_js x370)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve")
                    "__promisify__"
-                   [|(Ojs.string_to_js x395);((match x396 with
+                   [|(Ojs.string_to_js x368);((match x369 with
                                                | `ANY ->
                                                    Ojs.string_to_js "ANY"))|])
         let (__promisify__ :
           hostname:string -> rrtype:[ `MX ] -> MxRecord.t list Promise.t) =
-          fun ~hostname:(x399 : string) ->
-            fun ~rrtype:(x400 : [ `MX ]) ->
+          fun ~hostname:(x372 : string) ->
+            fun ~rrtype:(x373 : [ `MX ]) ->
               Promise.t_of_js
-                (fun (x401 : Ojs.t) -> Ojs.list_of_js MxRecord.t_of_js x401)
+                (fun (x374 : Ojs.t) -> Ojs.list_of_js MxRecord.t_of_js x374)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve")
                    "__promisify__"
-                   [|(Ojs.string_to_js x399);((match x400 with
+                   [|(Ojs.string_to_js x372);((match x373 with
                                                | `MX -> Ojs.string_to_js "MX"))|])
         let (__promisify__ :
           hostname:string ->
             rrtype:[ `NAPTR ] -> NaptrRecord.t list Promise.t)
           =
-          fun ~hostname:(x403 : string) ->
-            fun ~rrtype:(x404 : [ `NAPTR ]) ->
+          fun ~hostname:(x376 : string) ->
+            fun ~rrtype:(x377 : [ `NAPTR ]) ->
               Promise.t_of_js
-                (fun (x405 : Ojs.t) ->
-                   Ojs.list_of_js NaptrRecord.t_of_js x405)
+                (fun (x378 : Ojs.t) ->
+                   Ojs.list_of_js NaptrRecord.t_of_js x378)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve")
                    "__promisify__"
-                   [|(Ojs.string_to_js x403);((match x404 with
+                   [|(Ojs.string_to_js x376);((match x377 with
                                                | `NAPTR ->
                                                    Ojs.string_to_js "NAPTR"))|])
         let (__promisify__ :
           hostname:string -> rrtype:[ `SOA ] -> SoaRecord.t Promise.t) =
-          fun ~hostname:(x407 : string) ->
-            fun ~rrtype:(x408 : [ `SOA ]) ->
+          fun ~hostname:(x380 : string) ->
+            fun ~rrtype:(x381 : [ `SOA ]) ->
               Promise.t_of_js SoaRecord.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve")
                    "__promisify__"
-                   [|(Ojs.string_to_js x407);((match x408 with
+                   [|(Ojs.string_to_js x380);((match x381 with
                                                | `SOA ->
                                                    Ojs.string_to_js "SOA"))|])
         let (__promisify__ :
           hostname:string -> rrtype:[ `SRV ] -> SrvRecord.t list Promise.t) =
-          fun ~hostname:(x410 : string) ->
-            fun ~rrtype:(x411 : [ `SRV ]) ->
+          fun ~hostname:(x383 : string) ->
+            fun ~rrtype:(x384 : [ `SRV ]) ->
               Promise.t_of_js
-                (fun (x412 : Ojs.t) -> Ojs.list_of_js SrvRecord.t_of_js x412)
+                (fun (x385 : Ojs.t) -> Ojs.list_of_js SrvRecord.t_of_js x385)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve")
                    "__promisify__"
-                   [|(Ojs.string_to_js x410);((match x411 with
+                   [|(Ojs.string_to_js x383);((match x384 with
                                                | `SRV ->
                                                    Ojs.string_to_js "SRV"))|])
         let (__promisify__ :
           hostname:string -> rrtype:[ `TXT ] -> string list list Promise.t) =
-          fun ~hostname:(x414 : string) ->
-            fun ~rrtype:(x415 : [ `TXT ]) ->
+          fun ~hostname:(x387 : string) ->
+            fun ~rrtype:(x388 : [ `TXT ]) ->
               Promise.t_of_js
-                (fun (x416 : Ojs.t) ->
+                (fun (x389 : Ojs.t) ->
                    Ojs.list_of_js
-                     (fun (x417 : Ojs.t) ->
-                        Ojs.list_of_js Ojs.string_of_js x417) x416)
+                     (fun (x390 : Ojs.t) ->
+                        Ojs.list_of_js Ojs.string_of_js x390) x389)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve")
                    "__promisify__"
-                   [|(Ojs.string_to_js x414);((match x415 with
+                   [|(Ojs.string_to_js x387);((match x388 with
                                                | `TXT ->
                                                    Ojs.string_to_js "TXT"))|])
         let (__promisify__ :
@@ -1341,23 +1305,23 @@ module Dns =
                   string) or_array or_string)
                 or_array Promise.t)
           =
-          fun ~hostname:(x419 : string) ->
-            fun ~rrtype:(x420 : string) ->
+          fun ~hostname:(x392 : string) ->
+            fun ~rrtype:(x393 : string) ->
               Promise.t_of_js
-                (fun (x421 : Ojs.t) ->
+                (fun (x394 : Ojs.t) ->
                    or_array_of_js SoaRecord.t_of_js
-                     (fun (x423 : Ojs.t) ->
+                     (fun (x396 : Ojs.t) ->
                         or_string_of_js
-                          (fun (x424 : Ojs.t) ->
+                          (fun (x397 : Ojs.t) ->
                              or_array_of_js
-                               (fun (x425 : Ojs.t) ->
+                               (fun (x398 : Ojs.t) ->
                                   union4_of_js AnyRecord.t_of_js
                                     MxRecord.t_of_js NaptrRecord.t_of_js
-                                    SrvRecord.t_of_js x425) Ojs.string_of_js
-                               x424) x423) x421)
+                                    SrvRecord.t_of_js x398) Ojs.string_of_js
+                               x397) x396) x394)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve")
                    "__promisify__"
-                   [|(Ojs.string_to_js x419);(Ojs.string_to_js x420)|])
+                   [|(Ojs.string_to_js x392);(Ojs.string_to_js x393)|])
       end
     let (resolve4 :
       hostname:string ->
@@ -1365,24 +1329,24 @@ module Dns =
                     addresses:string list -> unit)
           -> unit)
       =
-      fun ~hostname:(x431 : string) ->
+      fun ~hostname:(x404 : string) ->
         fun
-          ~callback:(x432 :
+          ~callback:(x405 :
                       err:ErrnoException.t or_null ->
                         addresses:string list -> unit)
           ->
           ignore
             (Ojs.call Import.dns "resolve4"
-               [|(Ojs.string_to_js x431);(Ojs.fun_to_js 2
-                                            (fun (x433 : Ojs.t) ->
-                                               fun (x435 : Ojs.t) ->
-                                                 x432
+               [|(Ojs.string_to_js x404);(Ojs.fun_to_js 2
+                                            (fun (x406 : Ojs.t) ->
+                                               fun (x408 : Ojs.t) ->
+                                                 x405
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
-                                                           x433)
+                                                           x406)
                                                    ~addresses:(Ojs.list_of_js
                                                                  Ojs.string_of_js
-                                                                 x435)))|])
+                                                                 x408)))|])
     let (resolve4 :
       hostname:string ->
         options:ResolveWithTtlOptions.t ->
@@ -1390,28 +1354,28 @@ module Dns =
                       addresses:RecordWithTtl.t list -> unit)
             -> unit)
       =
-      fun ~hostname:(x437 : string) ->
-        fun ~options:(x438 : ResolveWithTtlOptions.t) ->
+      fun ~hostname:(x410 : string) ->
+        fun ~options:(x411 : ResolveWithTtlOptions.t) ->
           fun
-            ~callback:(x439 :
+            ~callback:(x412 :
                         err:ErrnoException.t or_null ->
                           addresses:RecordWithTtl.t list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve4"
-                 [|(Ojs.string_to_js x437);(ResolveWithTtlOptions.t_to_js
-                                              x438);(Ojs.fun_to_js 2
-                                                       (fun (x440 : Ojs.t) ->
-                                                          fun (x442 : Ojs.t)
+                 [|(Ojs.string_to_js x410);(ResolveWithTtlOptions.t_to_js
+                                              x411);(Ojs.fun_to_js 2
+                                                       (fun (x413 : Ojs.t) ->
+                                                          fun (x415 : Ojs.t)
                                                             ->
-                                                            x439
+                                                            x412
                                                               ~err:(or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x440)
+                                                                    x413)
                                                               ~addresses:(
                                                               Ojs.list_of_js
                                                                 RecordWithTtl.t_of_js
-                                                                x442)))|])
+                                                                x415)))|])
     let (resolve4 :
       hostname:string ->
         options:ResolveOptions.t ->
@@ -1419,76 +1383,76 @@ module Dns =
                       addresses:RecordWithTtl.t or_string list -> unit)
             -> unit)
       =
-      fun ~hostname:(x444 : string) ->
-        fun ~options:(x445 : ResolveOptions.t) ->
+      fun ~hostname:(x417 : string) ->
+        fun ~options:(x418 : ResolveOptions.t) ->
           fun
-            ~callback:(x446 :
+            ~callback:(x419 :
                         err:ErrnoException.t or_null ->
                           addresses:RecordWithTtl.t or_string list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve4"
-                 [|(Ojs.string_to_js x444);(ResolveOptions.t_to_js x445);(
+                 [|(Ojs.string_to_js x417);(ResolveOptions.t_to_js x418);(
                    Ojs.fun_to_js 2
-                     (fun (x447 : Ojs.t) ->
-                        fun (x449 : Ojs.t) ->
-                          x446
-                            ~err:(or_null_of_js ErrnoException.t_of_js x447)
+                     (fun (x420 : Ojs.t) ->
+                        fun (x422 : Ojs.t) ->
+                          x419
+                            ~err:(or_null_of_js ErrnoException.t_of_js x420)
                             ~addresses:(Ojs.list_of_js
-                                          (fun (x450 : Ojs.t) ->
+                                          (fun (x423 : Ojs.t) ->
                                              or_string_of_js
-                                               RecordWithTtl.t_of_js x450)
-                                          x449)))|])
+                                               RecordWithTtl.t_of_js x423)
+                                          x422)))|])
     module Resolve4 =
       struct
         let (__promisify__ : hostname:string -> string list Promise.t) =
-          fun ~hostname:(x452 : string) ->
+          fun ~hostname:(x425 : string) ->
             Promise.t_of_js
-              (fun (x453 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x453)
+              (fun (x426 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x426)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve4")
-                 "__promisify__" [|(Ojs.string_to_js x452)|])
+                 "__promisify__" [|(Ojs.string_to_js x425)|])
         let (__promisify__ :
           hostname:string ->
             options:ResolveWithTtlOptions.t -> RecordWithTtl.t list Promise.t)
           =
-          fun ~hostname:(x455 : string) ->
-            fun ~options:(x456 : ResolveWithTtlOptions.t) ->
+          fun ~hostname:(x428 : string) ->
+            fun ~options:(x429 : ResolveWithTtlOptions.t) ->
               Promise.t_of_js
-                (fun (x457 : Ojs.t) ->
-                   Ojs.list_of_js RecordWithTtl.t_of_js x457)
+                (fun (x430 : Ojs.t) ->
+                   Ojs.list_of_js RecordWithTtl.t_of_js x430)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve4")
                    "__promisify__"
-                   [|(Ojs.string_to_js x455);(ResolveWithTtlOptions.t_to_js
-                                                x456)|])
+                   [|(Ojs.string_to_js x428);(ResolveWithTtlOptions.t_to_js
+                                                x429)|])
         let (__promisify__ :
           hostname:string ->
             ?options:ResolveOptions.t ->
               unit -> RecordWithTtl.t or_string list Promise.t)
           =
-          fun ~hostname:(x459 : string) ->
-            fun ?options:(x460 : ResolveOptions.t option) ->
+          fun ~hostname:(x432 : string) ->
+            fun ?options:(x433 : ResolveOptions.t option) ->
               fun () ->
                 Promise.t_of_js
-                  (fun (x464 : Ojs.t) ->
+                  (fun (x437 : Ojs.t) ->
                      Ojs.list_of_js
-                       (fun (x465 : Ojs.t) ->
-                          or_string_of_js RecordWithTtl.t_of_js x465) x464)
-                  (let x463 = Ojs.get_prop_ascii Import.dns "resolve4" in
-                   Ojs.call (Ojs.get_prop_ascii x463 "__promisify__") "apply"
-                     [|x463;((let x461 =
+                       (fun (x438 : Ojs.t) ->
+                          or_string_of_js RecordWithTtl.t_of_js x438) x437)
+                  (let x436 = Ojs.get_prop_ascii Import.dns "resolve4" in
+                   Ojs.call (Ojs.get_prop_ascii x436 "__promisify__") "apply"
+                     [|x436;((let x434 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x461 "push"
-                                   [|(Ojs.string_to_js x459)|]);
-                              (match x460 with
-                               | Some x462 ->
+                                (Ojs.call x434 "push"
+                                   [|(Ojs.string_to_js x432)|]);
+                              (match x433 with
+                               | Some x435 ->
                                    ignore
-                                     (Ojs.call x461 "push"
-                                        [|(ResolveOptions.t_to_js x462)|])
+                                     (Ojs.call x434 "push"
+                                        [|(ResolveOptions.t_to_js x435)|])
                                | None -> ());
-                              x461))|])
+                              x434))|])
       end
     let (resolve6 :
       hostname:string ->
@@ -1496,24 +1460,24 @@ module Dns =
                     addresses:string list -> unit)
           -> unit)
       =
-      fun ~hostname:(x467 : string) ->
+      fun ~hostname:(x440 : string) ->
         fun
-          ~callback:(x468 :
+          ~callback:(x441 :
                       err:ErrnoException.t or_null ->
                         addresses:string list -> unit)
           ->
           ignore
             (Ojs.call Import.dns "resolve6"
-               [|(Ojs.string_to_js x467);(Ojs.fun_to_js 2
-                                            (fun (x469 : Ojs.t) ->
-                                               fun (x471 : Ojs.t) ->
-                                                 x468
+               [|(Ojs.string_to_js x440);(Ojs.fun_to_js 2
+                                            (fun (x442 : Ojs.t) ->
+                                               fun (x444 : Ojs.t) ->
+                                                 x441
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
-                                                           x469)
+                                                           x442)
                                                    ~addresses:(Ojs.list_of_js
                                                                  Ojs.string_of_js
-                                                                 x471)))|])
+                                                                 x444)))|])
     let (resolve6 :
       hostname:string ->
         options:ResolveWithTtlOptions.t ->
@@ -1521,28 +1485,28 @@ module Dns =
                       addresses:RecordWithTtl.t list -> unit)
             -> unit)
       =
-      fun ~hostname:(x473 : string) ->
-        fun ~options:(x474 : ResolveWithTtlOptions.t) ->
+      fun ~hostname:(x446 : string) ->
+        fun ~options:(x447 : ResolveWithTtlOptions.t) ->
           fun
-            ~callback:(x475 :
+            ~callback:(x448 :
                         err:ErrnoException.t or_null ->
                           addresses:RecordWithTtl.t list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve6"
-                 [|(Ojs.string_to_js x473);(ResolveWithTtlOptions.t_to_js
-                                              x474);(Ojs.fun_to_js 2
-                                                       (fun (x476 : Ojs.t) ->
-                                                          fun (x478 : Ojs.t)
+                 [|(Ojs.string_to_js x446);(ResolveWithTtlOptions.t_to_js
+                                              x447);(Ojs.fun_to_js 2
+                                                       (fun (x449 : Ojs.t) ->
+                                                          fun (x451 : Ojs.t)
                                                             ->
-                                                            x475
+                                                            x448
                                                               ~err:(or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x476)
+                                                                    x449)
                                                               ~addresses:(
                                                               Ojs.list_of_js
                                                                 RecordWithTtl.t_of_js
-                                                                x478)))|])
+                                                                x451)))|])
     let (resolve6 :
       hostname:string ->
         options:ResolveOptions.t ->
@@ -1550,78 +1514,178 @@ module Dns =
                       addresses:RecordWithTtl.t or_string list -> unit)
             -> unit)
       =
-      fun ~hostname:(x480 : string) ->
-        fun ~options:(x481 : ResolveOptions.t) ->
+      fun ~hostname:(x453 : string) ->
+        fun ~options:(x454 : ResolveOptions.t) ->
           fun
-            ~callback:(x482 :
+            ~callback:(x455 :
                         err:ErrnoException.t or_null ->
                           addresses:RecordWithTtl.t or_string list -> unit)
             ->
             ignore
               (Ojs.call Import.dns "resolve6"
-                 [|(Ojs.string_to_js x480);(ResolveOptions.t_to_js x481);(
+                 [|(Ojs.string_to_js x453);(ResolveOptions.t_to_js x454);(
                    Ojs.fun_to_js 2
-                     (fun (x483 : Ojs.t) ->
-                        fun (x485 : Ojs.t) ->
-                          x482
-                            ~err:(or_null_of_js ErrnoException.t_of_js x483)
+                     (fun (x456 : Ojs.t) ->
+                        fun (x458 : Ojs.t) ->
+                          x455
+                            ~err:(or_null_of_js ErrnoException.t_of_js x456)
                             ~addresses:(Ojs.list_of_js
-                                          (fun (x486 : Ojs.t) ->
+                                          (fun (x459 : Ojs.t) ->
                                              or_string_of_js
-                                               RecordWithTtl.t_of_js x486)
-                                          x485)))|])
+                                               RecordWithTtl.t_of_js x459)
+                                          x458)))|])
     module Resolve6 =
       struct
         let (__promisify__ : hostname:string -> string list Promise.t) =
-          fun ~hostname:(x488 : string) ->
+          fun ~hostname:(x461 : string) ->
             Promise.t_of_js
-              (fun (x489 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x489)
+              (fun (x462 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x462)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve6")
-                 "__promisify__" [|(Ojs.string_to_js x488)|])
+                 "__promisify__" [|(Ojs.string_to_js x461)|])
         let (__promisify__ :
           hostname:string ->
             options:ResolveWithTtlOptions.t -> RecordWithTtl.t list Promise.t)
           =
-          fun ~hostname:(x491 : string) ->
-            fun ~options:(x492 : ResolveWithTtlOptions.t) ->
+          fun ~hostname:(x464 : string) ->
+            fun ~options:(x465 : ResolveWithTtlOptions.t) ->
               Promise.t_of_js
-                (fun (x493 : Ojs.t) ->
-                   Ojs.list_of_js RecordWithTtl.t_of_js x493)
+                (fun (x466 : Ojs.t) ->
+                   Ojs.list_of_js RecordWithTtl.t_of_js x466)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "resolve6")
                    "__promisify__"
-                   [|(Ojs.string_to_js x491);(ResolveWithTtlOptions.t_to_js
-                                                x492)|])
+                   [|(Ojs.string_to_js x464);(ResolveWithTtlOptions.t_to_js
+                                                x465)|])
         let (__promisify__ :
           hostname:string ->
             ?options:ResolveOptions.t ->
               unit -> RecordWithTtl.t or_string list Promise.t)
           =
-          fun ~hostname:(x495 : string) ->
-            fun ?options:(x496 : ResolveOptions.t option) ->
+          fun ~hostname:(x468 : string) ->
+            fun ?options:(x469 : ResolveOptions.t option) ->
               fun () ->
                 Promise.t_of_js
-                  (fun (x500 : Ojs.t) ->
+                  (fun (x473 : Ojs.t) ->
                      Ojs.list_of_js
-                       (fun (x501 : Ojs.t) ->
-                          or_string_of_js RecordWithTtl.t_of_js x501) x500)
-                  (let x499 = Ojs.get_prop_ascii Import.dns "resolve6" in
-                   Ojs.call (Ojs.get_prop_ascii x499 "__promisify__") "apply"
-                     [|x499;((let x497 =
+                       (fun (x474 : Ojs.t) ->
+                          or_string_of_js RecordWithTtl.t_of_js x474) x473)
+                  (let x472 = Ojs.get_prop_ascii Import.dns "resolve6" in
+                   Ojs.call (Ojs.get_prop_ascii x472 "__promisify__") "apply"
+                     [|x472;((let x470 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x497 "push"
-                                   [|(Ojs.string_to_js x495)|]);
-                              (match x496 with
-                               | Some x498 ->
+                                (Ojs.call x470 "push"
+                                   [|(Ojs.string_to_js x468)|]);
+                              (match x469 with
+                               | Some x471 ->
                                    ignore
-                                     (Ojs.call x497 "push"
-                                        [|(ResolveOptions.t_to_js x498)|])
+                                     (Ojs.call x470 "push"
+                                        [|(ResolveOptions.t_to_js x471)|])
                                | None -> ());
-                              x497))|])
+                              x470))|])
       end
     let (resolve_cname :
+      hostname:string ->
+        callback:(err:ErrnoException.t or_null ->
+                    addresses:string list -> unit)
+          -> unit)
+      =
+      fun ~hostname:(x476 : string) ->
+        fun
+          ~callback:(x477 :
+                      err:ErrnoException.t or_null ->
+                        addresses:string list -> unit)
+          ->
+          ignore
+            (Ojs.call Import.dns "resolveCname"
+               [|(Ojs.string_to_js x476);(Ojs.fun_to_js 2
+                                            (fun (x478 : Ojs.t) ->
+                                               fun (x480 : Ojs.t) ->
+                                                 x477
+                                                   ~err:(or_null_of_js
+                                                           ErrnoException.t_of_js
+                                                           x478)
+                                                   ~addresses:(Ojs.list_of_js
+                                                                 Ojs.string_of_js
+                                                                 x480)))|])
+    module ResolveCname =
+      struct
+        let (__promisify__ : hostname:string -> string list Promise.t) =
+          fun ~hostname:(x482 : string) ->
+            Promise.t_of_js
+              (fun (x483 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x483)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveCname")
+                 "__promisify__" [|(Ojs.string_to_js x482)|])
+      end
+    let (resolve_mx :
+      hostname:string ->
+        callback:(err:ErrnoException.t or_null ->
+                    addresses:MxRecord.t list -> unit)
+          -> unit)
+      =
+      fun ~hostname:(x485 : string) ->
+        fun
+          ~callback:(x486 :
+                      err:ErrnoException.t or_null ->
+                        addresses:MxRecord.t list -> unit)
+          ->
+          ignore
+            (Ojs.call Import.dns "resolveMx"
+               [|(Ojs.string_to_js x485);(Ojs.fun_to_js 2
+                                            (fun (x487 : Ojs.t) ->
+                                               fun (x489 : Ojs.t) ->
+                                                 x486
+                                                   ~err:(or_null_of_js
+                                                           ErrnoException.t_of_js
+                                                           x487)
+                                                   ~addresses:(Ojs.list_of_js
+                                                                 MxRecord.t_of_js
+                                                                 x489)))|])
+    module ResolveMx =
+      struct
+        let (__promisify__ : hostname:string -> MxRecord.t list Promise.t) =
+          fun ~hostname:(x491 : string) ->
+            Promise.t_of_js
+              (fun (x492 : Ojs.t) -> Ojs.list_of_js MxRecord.t_of_js x492)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveMx")
+                 "__promisify__" [|(Ojs.string_to_js x491)|])
+      end
+    let (resolve_naptr :
+      hostname:string ->
+        callback:(err:ErrnoException.t or_null ->
+                    addresses:NaptrRecord.t list -> unit)
+          -> unit)
+      =
+      fun ~hostname:(x494 : string) ->
+        fun
+          ~callback:(x495 :
+                      err:ErrnoException.t or_null ->
+                        addresses:NaptrRecord.t list -> unit)
+          ->
+          ignore
+            (Ojs.call Import.dns "resolveNaptr"
+               [|(Ojs.string_to_js x494);(Ojs.fun_to_js 2
+                                            (fun (x496 : Ojs.t) ->
+                                               fun (x498 : Ojs.t) ->
+                                                 x495
+                                                   ~err:(or_null_of_js
+                                                           ErrnoException.t_of_js
+                                                           x496)
+                                                   ~addresses:(Ojs.list_of_js
+                                                                 NaptrRecord.t_of_js
+                                                                 x498)))|])
+    module ResolveNaptr =
+      struct
+        let (__promisify__ : hostname:string -> NaptrRecord.t list Promise.t)
+          =
+          fun ~hostname:(x500 : string) ->
+            Promise.t_of_js
+              (fun (x501 : Ojs.t) -> Ojs.list_of_js NaptrRecord.t_of_js x501)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveNaptr")
+                 "__promisify__" [|(Ojs.string_to_js x500)|])
+      end
+    let (resolve_ns :
       hostname:string ->
         callback:(err:ErrnoException.t or_null ->
                     addresses:string list -> unit)
@@ -1634,7 +1698,7 @@ module Dns =
                         addresses:string list -> unit)
           ->
           ignore
-            (Ojs.call Import.dns "resolveCname"
+            (Ojs.call Import.dns "resolveNs"
                [|(Ojs.string_to_js x503);(Ojs.fun_to_js 2
                                             (fun (x505 : Ojs.t) ->
                                                fun (x507 : Ojs.t) ->
@@ -1645,29 +1709,29 @@ module Dns =
                                                    ~addresses:(Ojs.list_of_js
                                                                  Ojs.string_of_js
                                                                  x507)))|])
-    module ResolveCname =
+    module ResolveNs =
       struct
         let (__promisify__ : hostname:string -> string list Promise.t) =
           fun ~hostname:(x509 : string) ->
             Promise.t_of_js
               (fun (x510 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x510)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveCname")
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveNs")
                  "__promisify__" [|(Ojs.string_to_js x509)|])
       end
-    let (resolve_mx :
+    let (resolve_ptr :
       hostname:string ->
         callback:(err:ErrnoException.t or_null ->
-                    addresses:MxRecord.t list -> unit)
+                    addresses:string list -> unit)
           -> unit)
       =
       fun ~hostname:(x512 : string) ->
         fun
           ~callback:(x513 :
                       err:ErrnoException.t or_null ->
-                        addresses:MxRecord.t list -> unit)
+                        addresses:string list -> unit)
           ->
           ignore
-            (Ojs.call Import.dns "resolveMx"
+            (Ojs.call Import.dns "resolvePtr"
                [|(Ojs.string_to_js x512);(Ojs.fun_to_js 2
                                             (fun (x514 : Ojs.t) ->
                                                fun (x516 : Ojs.t) ->
@@ -1676,31 +1740,30 @@ module Dns =
                                                            ErrnoException.t_of_js
                                                            x514)
                                                    ~addresses:(Ojs.list_of_js
-                                                                 MxRecord.t_of_js
+                                                                 Ojs.string_of_js
                                                                  x516)))|])
-    module ResolveMx =
+    module ResolvePtr =
       struct
-        let (__promisify__ : hostname:string -> MxRecord.t list Promise.t) =
+        let (__promisify__ : hostname:string -> string list Promise.t) =
           fun ~hostname:(x518 : string) ->
             Promise.t_of_js
-              (fun (x519 : Ojs.t) -> Ojs.list_of_js MxRecord.t_of_js x519)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveMx")
+              (fun (x519 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x519)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolvePtr")
                  "__promisify__" [|(Ojs.string_to_js x518)|])
       end
-    let (resolve_naptr :
+    let (resolve_soa :
       hostname:string ->
-        callback:(err:ErrnoException.t or_null ->
-                    addresses:NaptrRecord.t list -> unit)
+        callback:(err:ErrnoException.t or_null -> address:SoaRecord.t -> unit)
           -> unit)
       =
       fun ~hostname:(x521 : string) ->
         fun
           ~callback:(x522 :
                       err:ErrnoException.t or_null ->
-                        addresses:NaptrRecord.t list -> unit)
+                        address:SoaRecord.t -> unit)
           ->
           ignore
-            (Ojs.call Import.dns "resolveNaptr"
+            (Ojs.call Import.dns "resolveSoa"
                [|(Ojs.string_to_js x521);(Ojs.fun_to_js 2
                                             (fun (x523 : Ojs.t) ->
                                                fun (x525 : Ojs.t) ->
@@ -1708,114 +1771,15 @@ module Dns =
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
                                                            x523)
-                                                   ~addresses:(Ojs.list_of_js
-                                                                 NaptrRecord.t_of_js
-                                                                 x525)))|])
-    module ResolveNaptr =
-      struct
-        let (__promisify__ : hostname:string -> NaptrRecord.t list Promise.t)
-          =
-          fun ~hostname:(x527 : string) ->
-            Promise.t_of_js
-              (fun (x528 : Ojs.t) -> Ojs.list_of_js NaptrRecord.t_of_js x528)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveNaptr")
-                 "__promisify__" [|(Ojs.string_to_js x527)|])
-      end
-    let (resolve_ns :
-      hostname:string ->
-        callback:(err:ErrnoException.t or_null ->
-                    addresses:string list -> unit)
-          -> unit)
-      =
-      fun ~hostname:(x530 : string) ->
-        fun
-          ~callback:(x531 :
-                      err:ErrnoException.t or_null ->
-                        addresses:string list -> unit)
-          ->
-          ignore
-            (Ojs.call Import.dns "resolveNs"
-               [|(Ojs.string_to_js x530);(Ojs.fun_to_js 2
-                                            (fun (x532 : Ojs.t) ->
-                                               fun (x534 : Ojs.t) ->
-                                                 x531
-                                                   ~err:(or_null_of_js
-                                                           ErrnoException.t_of_js
-                                                           x532)
-                                                   ~addresses:(Ojs.list_of_js
-                                                                 Ojs.string_of_js
-                                                                 x534)))|])
-    module ResolveNs =
-      struct
-        let (__promisify__ : hostname:string -> string list Promise.t) =
-          fun ~hostname:(x536 : string) ->
-            Promise.t_of_js
-              (fun (x537 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x537)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveNs")
-                 "__promisify__" [|(Ojs.string_to_js x536)|])
-      end
-    let (resolve_ptr :
-      hostname:string ->
-        callback:(err:ErrnoException.t or_null ->
-                    addresses:string list -> unit)
-          -> unit)
-      =
-      fun ~hostname:(x539 : string) ->
-        fun
-          ~callback:(x540 :
-                      err:ErrnoException.t or_null ->
-                        addresses:string list -> unit)
-          ->
-          ignore
-            (Ojs.call Import.dns "resolvePtr"
-               [|(Ojs.string_to_js x539);(Ojs.fun_to_js 2
-                                            (fun (x541 : Ojs.t) ->
-                                               fun (x543 : Ojs.t) ->
-                                                 x540
-                                                   ~err:(or_null_of_js
-                                                           ErrnoException.t_of_js
-                                                           x541)
-                                                   ~addresses:(Ojs.list_of_js
-                                                                 Ojs.string_of_js
-                                                                 x543)))|])
-    module ResolvePtr =
-      struct
-        let (__promisify__ : hostname:string -> string list Promise.t) =
-          fun ~hostname:(x545 : string) ->
-            Promise.t_of_js
-              (fun (x546 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x546)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "resolvePtr")
-                 "__promisify__" [|(Ojs.string_to_js x545)|])
-      end
-    let (resolve_soa :
-      hostname:string ->
-        callback:(err:ErrnoException.t or_null -> address:SoaRecord.t -> unit)
-          -> unit)
-      =
-      fun ~hostname:(x548 : string) ->
-        fun
-          ~callback:(x549 :
-                      err:ErrnoException.t or_null ->
-                        address:SoaRecord.t -> unit)
-          ->
-          ignore
-            (Ojs.call Import.dns "resolveSoa"
-               [|(Ojs.string_to_js x548);(Ojs.fun_to_js 2
-                                            (fun (x550 : Ojs.t) ->
-                                               fun (x552 : Ojs.t) ->
-                                                 x549
-                                                   ~err:(or_null_of_js
-                                                           ErrnoException.t_of_js
-                                                           x550)
                                                    ~address:(SoaRecord.t_of_js
-                                                               x552)))|])
+                                                               x525)))|])
     module ResolveSoa =
       struct
         let (__promisify__ : hostname:string -> SoaRecord.t Promise.t) =
-          fun ~hostname:(x553 : string) ->
+          fun ~hostname:(x526 : string) ->
             Promise.t_of_js SoaRecord.t_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveSoa")
-                 "__promisify__" [|(Ojs.string_to_js x553)|])
+                 "__promisify__" [|(Ojs.string_to_js x526)|])
       end
     let (resolve_srv :
       hostname:string ->
@@ -1823,32 +1787,32 @@ module Dns =
                     addresses:SrvRecord.t list -> unit)
           -> unit)
       =
-      fun ~hostname:(x555 : string) ->
+      fun ~hostname:(x528 : string) ->
         fun
-          ~callback:(x556 :
+          ~callback:(x529 :
                       err:ErrnoException.t or_null ->
                         addresses:SrvRecord.t list -> unit)
           ->
           ignore
             (Ojs.call Import.dns "resolveSrv"
-               [|(Ojs.string_to_js x555);(Ojs.fun_to_js 2
-                                            (fun (x557 : Ojs.t) ->
-                                               fun (x559 : Ojs.t) ->
-                                                 x556
+               [|(Ojs.string_to_js x528);(Ojs.fun_to_js 2
+                                            (fun (x530 : Ojs.t) ->
+                                               fun (x532 : Ojs.t) ->
+                                                 x529
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
-                                                           x557)
+                                                           x530)
                                                    ~addresses:(Ojs.list_of_js
                                                                  SrvRecord.t_of_js
-                                                                 x559)))|])
+                                                                 x532)))|])
     module ResolveSrv =
       struct
         let (__promisify__ : hostname:string -> SrvRecord.t list Promise.t) =
-          fun ~hostname:(x561 : string) ->
+          fun ~hostname:(x534 : string) ->
             Promise.t_of_js
-              (fun (x562 : Ojs.t) -> Ojs.list_of_js SrvRecord.t_of_js x562)
+              (fun (x535 : Ojs.t) -> Ojs.list_of_js SrvRecord.t_of_js x535)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveSrv")
-                 "__promisify__" [|(Ojs.string_to_js x561)|])
+                 "__promisify__" [|(Ojs.string_to_js x534)|])
       end
     let (resolve_txt :
       hostname:string ->
@@ -1856,40 +1820,40 @@ module Dns =
                     addresses:string list list -> unit)
           -> unit)
       =
-      fun ~hostname:(x564 : string) ->
+      fun ~hostname:(x537 : string) ->
         fun
-          ~callback:(x565 :
+          ~callback:(x538 :
                       err:ErrnoException.t or_null ->
                         addresses:string list list -> unit)
           ->
           ignore
             (Ojs.call Import.dns "resolveTxt"
-               [|(Ojs.string_to_js x564);(Ojs.fun_to_js 2
-                                            (fun (x566 : Ojs.t) ->
-                                               fun (x568 : Ojs.t) ->
-                                                 x565
+               [|(Ojs.string_to_js x537);(Ojs.fun_to_js 2
+                                            (fun (x539 : Ojs.t) ->
+                                               fun (x541 : Ojs.t) ->
+                                                 x538
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
-                                                           x566)
+                                                           x539)
                                                    ~addresses:(Ojs.list_of_js
                                                                  (fun
-                                                                    (x569 :
+                                                                    (x542 :
                                                                     Ojs.t) ->
                                                                     Ojs.list_of_js
                                                                     Ojs.string_of_js
-                                                                    x569)
-                                                                 x568)))|])
+                                                                    x542)
+                                                                 x541)))|])
     module ResolveTxt =
       struct
         let (__promisify__ : hostname:string -> string list list Promise.t) =
-          fun ~hostname:(x571 : string) ->
+          fun ~hostname:(x544 : string) ->
             Promise.t_of_js
-              (fun (x572 : Ojs.t) ->
+              (fun (x545 : Ojs.t) ->
                  Ojs.list_of_js
-                   (fun (x573 : Ojs.t) ->
-                      Ojs.list_of_js Ojs.string_of_js x573) x572)
+                   (fun (x546 : Ojs.t) ->
+                      Ojs.list_of_js Ojs.string_of_js x546) x545)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveTxt")
-                 "__promisify__" [|(Ojs.string_to_js x571)|])
+                 "__promisify__" [|(Ojs.string_to_js x544)|])
       end
     let (resolve_any :
       hostname:string ->
@@ -1897,32 +1861,32 @@ module Dns =
                     addresses:AnyRecord.t list -> unit)
           -> unit)
       =
-      fun ~hostname:(x575 : string) ->
+      fun ~hostname:(x548 : string) ->
         fun
-          ~callback:(x576 :
+          ~callback:(x549 :
                       err:ErrnoException.t or_null ->
                         addresses:AnyRecord.t list -> unit)
           ->
           ignore
             (Ojs.call Import.dns "resolveAny"
-               [|(Ojs.string_to_js x575);(Ojs.fun_to_js 2
-                                            (fun (x577 : Ojs.t) ->
-                                               fun (x579 : Ojs.t) ->
-                                                 x576
+               [|(Ojs.string_to_js x548);(Ojs.fun_to_js 2
+                                            (fun (x550 : Ojs.t) ->
+                                               fun (x552 : Ojs.t) ->
+                                                 x549
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
-                                                           x577)
+                                                           x550)
                                                    ~addresses:(Ojs.list_of_js
                                                                  AnyRecord.t_of_js
-                                                                 x579)))|])
+                                                                 x552)))|])
     module ResolveAny =
       struct
         let (__promisify__ : hostname:string -> AnyRecord.t list Promise.t) =
-          fun ~hostname:(x581 : string) ->
+          fun ~hostname:(x554 : string) ->
             Promise.t_of_js
-              (fun (x582 : Ojs.t) -> Ojs.list_of_js AnyRecord.t_of_js x582)
+              (fun (x555 : Ojs.t) -> Ojs.list_of_js AnyRecord.t_of_js x555)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "resolveAny")
-                 "__promisify__" [|(Ojs.string_to_js x581)|])
+                 "__promisify__" [|(Ojs.string_to_js x554)|])
       end
     let (reverse :
       ip:string ->
@@ -1930,29 +1894,29 @@ module Dns =
                     hostnames:string list -> unit)
           -> unit)
       =
-      fun ~ip:(x584 : string) ->
+      fun ~ip:(x557 : string) ->
         fun
-          ~callback:(x585 :
+          ~callback:(x558 :
                       err:ErrnoException.t or_null ->
                         hostnames:string list -> unit)
           ->
           ignore
             (Ojs.call Import.dns "reverse"
-               [|(Ojs.string_to_js x584);(Ojs.fun_to_js 2
-                                            (fun (x586 : Ojs.t) ->
-                                               fun (x588 : Ojs.t) ->
-                                                 x585
+               [|(Ojs.string_to_js x557);(Ojs.fun_to_js 2
+                                            (fun (x559 : Ojs.t) ->
+                                               fun (x561 : Ojs.t) ->
+                                                 x558
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
-                                                           x586)
+                                                           x559)
                                                    ~hostnames:(Ojs.list_of_js
                                                                  Ojs.string_of_js
-                                                                 x588)))|])
+                                                                 x561)))|])
     let (set_servers : servers:string list -> unit) =
-      fun ~servers:(x590 : string list) ->
+      fun ~servers:(x563 : string list) ->
         ignore
           (Ojs.call Import.dns "setServers"
-             [|(Ojs.list_to_js Ojs.string_to_js x590)|])
+             [|(Ojs.list_to_js Ojs.string_to_js x563)|])
     let (get_servers : unit -> string list) =
       fun () ->
         Ojs.list_of_js Ojs.string_of_js
@@ -2008,43 +1972,43 @@ module Dns =
     module ResolverOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x594 : Ojs.t) -> x594
-        and t_to_js : t -> Ojs.t = fun (x593 : Ojs.t) -> x593
+        let rec t_of_js : Ojs.t -> t = fun (x567 : Ojs.t) -> x567
+        and t_to_js : t -> Ojs.t = fun (x566 : Ojs.t) -> x566
         let (get_timeout : t -> int) =
-          fun (x595 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x595) "timeout")
+          fun (x568 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x568) "timeout")
         let (set_timeout : t -> int -> unit) =
-          fun (x596 : t) ->
-            fun (x597 : int) ->
-              Ojs.set_prop_ascii (t_to_js x596) "timeout"
-                (Ojs.int_to_js x597)
+          fun (x569 : t) ->
+            fun (x570 : int) ->
+              Ojs.set_prop_ascii (t_to_js x569) "timeout"
+                (Ojs.int_to_js x570)
       end
     module Resolver =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x599 : Ojs.t) -> x599
-        and t_to_js : t -> Ojs.t = fun (x598 : Ojs.t) -> x598
+        let rec t_of_js : Ojs.t -> t = fun (x572 : Ojs.t) -> x572
+        and t_to_js : t -> Ojs.t = fun (x571 : Ojs.t) -> x571
         let (create : ?options:ResolverOptions.t -> unit -> t) =
-          fun ?options:(x600 : ResolverOptions.t option) ->
+          fun ?options:(x573 : ResolverOptions.t option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.dns "Resolver")
-                   (let x601 =
+                   (let x574 =
                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                         [||] in
-                    (match x600 with
-                     | Some x602 ->
+                    (match x573 with
+                     | Some x575 ->
                          ignore
-                           (Ojs.call x601 "push"
-                              [|(ResolverOptions.t_to_js x602)|])
+                           (Ojs.call x574 "push"
+                              [|(ResolverOptions.t_to_js x575)|])
                      | None -> ());
-                    x601))
+                    x574))
         let (cancel : t -> unit) =
-          fun (x603 : t) -> ignore (Ojs.call (t_to_js x603) "cancel" [||])
+          fun (x576 : t) -> ignore (Ojs.call (t_to_js x576) "cancel" [||])
         let (get_servers : t -> string list) =
-          fun (x604 : t) ->
+          fun (x577 : t) ->
             Ojs.list_of_js Ojs.string_of_js
-              (Ojs.call (t_to_js x604) "getServers" [||])
+              (Ojs.call (t_to_js x577) "getServers" [||])
         let (resolve :
           t ->
             hostname:string ->
@@ -2052,26 +2016,26 @@ module Dns =
                           addresses:string list -> unit)
                 -> unit)
           =
-          fun (x612 : t) ->
-            fun ~hostname:(x606 : string) ->
+          fun (x585 : t) ->
+            fun ~hostname:(x579 : string) ->
               fun
-                ~callback:(x607 :
+                ~callback:(x580 :
                             err:ErrnoException.t or_null ->
                               addresses:string list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x612) "resolve"
-                     [|(Ojs.string_to_js x606);(Ojs.fun_to_js 2
-                                                  (fun (x608 : Ojs.t) ->
-                                                     fun (x610 : Ojs.t) ->
-                                                       x607
+                  (Ojs.call (t_to_js x585) "resolve"
+                     [|(Ojs.string_to_js x579);(Ojs.fun_to_js 2
+                                                  (fun (x581 : Ojs.t) ->
+                                                     fun (x583 : Ojs.t) ->
+                                                       x580
                                                          ~err:(or_null_of_js
                                                                  ErrnoException.t_of_js
-                                                                 x608)
+                                                                 x581)
                                                          ~addresses:(
                                                          Ojs.list_of_js
                                                            Ojs.string_of_js
-                                                           x610)))|])
+                                                           x583)))|])
         let (resolve4 :
           t ->
             hostname:string ->
@@ -2079,26 +2043,26 @@ module Dns =
                           addresses:string list -> unit)
                 -> unit)
           =
-          fun (x619 : t) ->
-            fun ~hostname:(x613 : string) ->
+          fun (x592 : t) ->
+            fun ~hostname:(x586 : string) ->
               fun
-                ~callback:(x614 :
+                ~callback:(x587 :
                             err:ErrnoException.t or_null ->
                               addresses:string list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x619) "resolve4"
-                     [|(Ojs.string_to_js x613);(Ojs.fun_to_js 2
-                                                  (fun (x615 : Ojs.t) ->
-                                                     fun (x617 : Ojs.t) ->
-                                                       x614
+                  (Ojs.call (t_to_js x592) "resolve4"
+                     [|(Ojs.string_to_js x586);(Ojs.fun_to_js 2
+                                                  (fun (x588 : Ojs.t) ->
+                                                     fun (x590 : Ojs.t) ->
+                                                       x587
                                                          ~err:(or_null_of_js
                                                                  ErrnoException.t_of_js
-                                                                 x615)
+                                                                 x588)
                                                          ~addresses:(
                                                          Ojs.list_of_js
                                                            Ojs.string_of_js
-                                                           x617)))|])
+                                                           x590)))|])
         let (resolve6 :
           t ->
             hostname:string ->
@@ -2106,26 +2070,26 @@ module Dns =
                           addresses:string list -> unit)
                 -> unit)
           =
-          fun (x626 : t) ->
-            fun ~hostname:(x620 : string) ->
+          fun (x599 : t) ->
+            fun ~hostname:(x593 : string) ->
               fun
-                ~callback:(x621 :
+                ~callback:(x594 :
                             err:ErrnoException.t or_null ->
                               addresses:string list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x626) "resolve6"
-                     [|(Ojs.string_to_js x620);(Ojs.fun_to_js 2
-                                                  (fun (x622 : Ojs.t) ->
-                                                     fun (x624 : Ojs.t) ->
-                                                       x621
+                  (Ojs.call (t_to_js x599) "resolve6"
+                     [|(Ojs.string_to_js x593);(Ojs.fun_to_js 2
+                                                  (fun (x595 : Ojs.t) ->
+                                                     fun (x597 : Ojs.t) ->
+                                                       x594
                                                          ~err:(or_null_of_js
                                                                  ErrnoException.t_of_js
-                                                                 x622)
+                                                                 x595)
                                                          ~addresses:(
                                                          Ojs.list_of_js
                                                            Ojs.string_of_js
-                                                           x624)))|])
+                                                           x597)))|])
         let (resolve_any :
           t ->
             hostname:string ->
@@ -2133,26 +2097,26 @@ module Dns =
                           addresses:AnyRecord.t list -> unit)
                 -> unit)
           =
-          fun (x633 : t) ->
-            fun ~hostname:(x627 : string) ->
+          fun (x606 : t) ->
+            fun ~hostname:(x600 : string) ->
               fun
-                ~callback:(x628 :
+                ~callback:(x601 :
                             err:ErrnoException.t or_null ->
                               addresses:AnyRecord.t list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x633) "resolveAny"
-                     [|(Ojs.string_to_js x627);(Ojs.fun_to_js 2
-                                                  (fun (x629 : Ojs.t) ->
-                                                     fun (x631 : Ojs.t) ->
-                                                       x628
+                  (Ojs.call (t_to_js x606) "resolveAny"
+                     [|(Ojs.string_to_js x600);(Ojs.fun_to_js 2
+                                                  (fun (x602 : Ojs.t) ->
+                                                     fun (x604 : Ojs.t) ->
+                                                       x601
                                                          ~err:(or_null_of_js
                                                                  ErrnoException.t_of_js
-                                                                 x629)
+                                                                 x602)
                                                          ~addresses:(
                                                          Ojs.list_of_js
                                                            AnyRecord.t_of_js
-                                                           x631)))|])
+                                                           x604)))|])
         let (resolve_cname :
           t ->
             hostname:string ->
@@ -2160,26 +2124,26 @@ module Dns =
                           addresses:string list -> unit)
                 -> unit)
           =
-          fun (x640 : t) ->
-            fun ~hostname:(x634 : string) ->
+          fun (x613 : t) ->
+            fun ~hostname:(x607 : string) ->
               fun
-                ~callback:(x635 :
+                ~callback:(x608 :
                             err:ErrnoException.t or_null ->
                               addresses:string list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x640) "resolveCname"
-                     [|(Ojs.string_to_js x634);(Ojs.fun_to_js 2
-                                                  (fun (x636 : Ojs.t) ->
-                                                     fun (x638 : Ojs.t) ->
-                                                       x635
+                  (Ojs.call (t_to_js x613) "resolveCname"
+                     [|(Ojs.string_to_js x607);(Ojs.fun_to_js 2
+                                                  (fun (x609 : Ojs.t) ->
+                                                     fun (x611 : Ojs.t) ->
+                                                       x608
                                                          ~err:(or_null_of_js
                                                                  ErrnoException.t_of_js
-                                                                 x636)
+                                                                 x609)
                                                          ~addresses:(
                                                          Ojs.list_of_js
                                                            Ojs.string_of_js
-                                                           x638)))|])
+                                                           x611)))|])
         let (resolve_mx :
           t ->
             hostname:string ->
@@ -2187,26 +2151,26 @@ module Dns =
                           addresses:MxRecord.t list -> unit)
                 -> unit)
           =
-          fun (x647 : t) ->
-            fun ~hostname:(x641 : string) ->
+          fun (x620 : t) ->
+            fun ~hostname:(x614 : string) ->
               fun
-                ~callback:(x642 :
+                ~callback:(x615 :
                             err:ErrnoException.t or_null ->
                               addresses:MxRecord.t list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x647) "resolveMx"
-                     [|(Ojs.string_to_js x641);(Ojs.fun_to_js 2
-                                                  (fun (x643 : Ojs.t) ->
-                                                     fun (x645 : Ojs.t) ->
-                                                       x642
+                  (Ojs.call (t_to_js x620) "resolveMx"
+                     [|(Ojs.string_to_js x614);(Ojs.fun_to_js 2
+                                                  (fun (x616 : Ojs.t) ->
+                                                     fun (x618 : Ojs.t) ->
+                                                       x615
                                                          ~err:(or_null_of_js
                                                                  ErrnoException.t_of_js
-                                                                 x643)
+                                                                 x616)
                                                          ~addresses:(
                                                          Ojs.list_of_js
                                                            MxRecord.t_of_js
-                                                           x645)))|])
+                                                           x618)))|])
         let (resolve_naptr :
           t ->
             hostname:string ->
@@ -2214,15 +2178,121 @@ module Dns =
                           addresses:NaptrRecord.t list -> unit)
                 -> unit)
           =
+          fun (x627 : t) ->
+            fun ~hostname:(x621 : string) ->
+              fun
+                ~callback:(x622 :
+                            err:ErrnoException.t or_null ->
+                              addresses:NaptrRecord.t list -> unit)
+                ->
+                ignore
+                  (Ojs.call (t_to_js x627) "resolveNaptr"
+                     [|(Ojs.string_to_js x621);(Ojs.fun_to_js 2
+                                                  (fun (x623 : Ojs.t) ->
+                                                     fun (x625 : Ojs.t) ->
+                                                       x622
+                                                         ~err:(or_null_of_js
+                                                                 ErrnoException.t_of_js
+                                                                 x623)
+                                                         ~addresses:(
+                                                         Ojs.list_of_js
+                                                           NaptrRecord.t_of_js
+                                                           x625)))|])
+        let (resolve_ns :
+          t ->
+            hostname:string ->
+              callback:(err:ErrnoException.t or_null ->
+                          addresses:string list -> unit)
+                -> unit)
+          =
+          fun (x634 : t) ->
+            fun ~hostname:(x628 : string) ->
+              fun
+                ~callback:(x629 :
+                            err:ErrnoException.t or_null ->
+                              addresses:string list -> unit)
+                ->
+                ignore
+                  (Ojs.call (t_to_js x634) "resolveNs"
+                     [|(Ojs.string_to_js x628);(Ojs.fun_to_js 2
+                                                  (fun (x630 : Ojs.t) ->
+                                                     fun (x632 : Ojs.t) ->
+                                                       x629
+                                                         ~err:(or_null_of_js
+                                                                 ErrnoException.t_of_js
+                                                                 x630)
+                                                         ~addresses:(
+                                                         Ojs.list_of_js
+                                                           Ojs.string_of_js
+                                                           x632)))|])
+        let (resolve_ptr :
+          t ->
+            hostname:string ->
+              callback:(err:ErrnoException.t or_null ->
+                          addresses:string list -> unit)
+                -> unit)
+          =
+          fun (x641 : t) ->
+            fun ~hostname:(x635 : string) ->
+              fun
+                ~callback:(x636 :
+                            err:ErrnoException.t or_null ->
+                              addresses:string list -> unit)
+                ->
+                ignore
+                  (Ojs.call (t_to_js x641) "resolvePtr"
+                     [|(Ojs.string_to_js x635);(Ojs.fun_to_js 2
+                                                  (fun (x637 : Ojs.t) ->
+                                                     fun (x639 : Ojs.t) ->
+                                                       x636
+                                                         ~err:(or_null_of_js
+                                                                 ErrnoException.t_of_js
+                                                                 x637)
+                                                         ~addresses:(
+                                                         Ojs.list_of_js
+                                                           Ojs.string_of_js
+                                                           x639)))|])
+        let (resolve_soa :
+          t ->
+            hostname:string ->
+              callback:(err:ErrnoException.t or_null ->
+                          address:SoaRecord.t -> unit)
+                -> unit)
+          =
+          fun (x647 : t) ->
+            fun ~hostname:(x642 : string) ->
+              fun
+                ~callback:(x643 :
+                            err:ErrnoException.t or_null ->
+                              address:SoaRecord.t -> unit)
+                ->
+                ignore
+                  (Ojs.call (t_to_js x647) "resolveSoa"
+                     [|(Ojs.string_to_js x642);(Ojs.fun_to_js 2
+                                                  (fun (x644 : Ojs.t) ->
+                                                     fun (x646 : Ojs.t) ->
+                                                       x643
+                                                         ~err:(or_null_of_js
+                                                                 ErrnoException.t_of_js
+                                                                 x644)
+                                                         ~address:(SoaRecord.t_of_js
+                                                                    x646)))|])
+        let (resolve_srv :
+          t ->
+            hostname:string ->
+              callback:(err:ErrnoException.t or_null ->
+                          addresses:SrvRecord.t list -> unit)
+                -> unit)
+          =
           fun (x654 : t) ->
             fun ~hostname:(x648 : string) ->
               fun
                 ~callback:(x649 :
                             err:ErrnoException.t or_null ->
-                              addresses:NaptrRecord.t list -> unit)
+                              addresses:SrvRecord.t list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x654) "resolveNaptr"
+                  (Ojs.call (t_to_js x654) "resolveSrv"
                      [|(Ojs.string_to_js x648);(Ojs.fun_to_js 2
                                                   (fun (x650 : Ojs.t) ->
                                                      fun (x652 : Ojs.t) ->
@@ -2232,24 +2302,24 @@ module Dns =
                                                                  x650)
                                                          ~addresses:(
                                                          Ojs.list_of_js
-                                                           NaptrRecord.t_of_js
+                                                           SrvRecord.t_of_js
                                                            x652)))|])
-        let (resolve_ns :
+        let (resolve_txt :
           t ->
             hostname:string ->
               callback:(err:ErrnoException.t or_null ->
-                          addresses:string list -> unit)
+                          addresses:string list list -> unit)
                 -> unit)
           =
-          fun (x661 : t) ->
+          fun (x662 : t) ->
             fun ~hostname:(x655 : string) ->
               fun
                 ~callback:(x656 :
                             err:ErrnoException.t or_null ->
-                              addresses:string list -> unit)
+                              addresses:string list list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x661) "resolveNs"
+                  (Ojs.call (t_to_js x662) "resolveTxt"
                      [|(Ojs.string_to_js x655);(Ojs.fun_to_js 2
                                                   (fun (x657 : Ojs.t) ->
                                                      fun (x659 : Ojs.t) ->
@@ -2259,118 +2329,12 @@ module Dns =
                                                                  x657)
                                                          ~addresses:(
                                                          Ojs.list_of_js
-                                                           Ojs.string_of_js
-                                                           x659)))|])
-        let (resolve_ptr :
-          t ->
-            hostname:string ->
-              callback:(err:ErrnoException.t or_null ->
-                          addresses:string list -> unit)
-                -> unit)
-          =
-          fun (x668 : t) ->
-            fun ~hostname:(x662 : string) ->
-              fun
-                ~callback:(x663 :
-                            err:ErrnoException.t or_null ->
-                              addresses:string list -> unit)
-                ->
-                ignore
-                  (Ojs.call (t_to_js x668) "resolvePtr"
-                     [|(Ojs.string_to_js x662);(Ojs.fun_to_js 2
-                                                  (fun (x664 : Ojs.t) ->
-                                                     fun (x666 : Ojs.t) ->
-                                                       x663
-                                                         ~err:(or_null_of_js
-                                                                 ErrnoException.t_of_js
-                                                                 x664)
-                                                         ~addresses:(
-                                                         Ojs.list_of_js
-                                                           Ojs.string_of_js
-                                                           x666)))|])
-        let (resolve_soa :
-          t ->
-            hostname:string ->
-              callback:(err:ErrnoException.t or_null ->
-                          address:SoaRecord.t -> unit)
-                -> unit)
-          =
-          fun (x674 : t) ->
-            fun ~hostname:(x669 : string) ->
-              fun
-                ~callback:(x670 :
-                            err:ErrnoException.t or_null ->
-                              address:SoaRecord.t -> unit)
-                ->
-                ignore
-                  (Ojs.call (t_to_js x674) "resolveSoa"
-                     [|(Ojs.string_to_js x669);(Ojs.fun_to_js 2
-                                                  (fun (x671 : Ojs.t) ->
-                                                     fun (x673 : Ojs.t) ->
-                                                       x670
-                                                         ~err:(or_null_of_js
-                                                                 ErrnoException.t_of_js
-                                                                 x671)
-                                                         ~address:(SoaRecord.t_of_js
-                                                                    x673)))|])
-        let (resolve_srv :
-          t ->
-            hostname:string ->
-              callback:(err:ErrnoException.t or_null ->
-                          addresses:SrvRecord.t list -> unit)
-                -> unit)
-          =
-          fun (x681 : t) ->
-            fun ~hostname:(x675 : string) ->
-              fun
-                ~callback:(x676 :
-                            err:ErrnoException.t or_null ->
-                              addresses:SrvRecord.t list -> unit)
-                ->
-                ignore
-                  (Ojs.call (t_to_js x681) "resolveSrv"
-                     [|(Ojs.string_to_js x675);(Ojs.fun_to_js 2
-                                                  (fun (x677 : Ojs.t) ->
-                                                     fun (x679 : Ojs.t) ->
-                                                       x676
-                                                         ~err:(or_null_of_js
-                                                                 ErrnoException.t_of_js
-                                                                 x677)
-                                                         ~addresses:(
-                                                         Ojs.list_of_js
-                                                           SrvRecord.t_of_js
-                                                           x679)))|])
-        let (resolve_txt :
-          t ->
-            hostname:string ->
-              callback:(err:ErrnoException.t or_null ->
-                          addresses:string list list -> unit)
-                -> unit)
-          =
-          fun (x689 : t) ->
-            fun ~hostname:(x682 : string) ->
-              fun
-                ~callback:(x683 :
-                            err:ErrnoException.t or_null ->
-                              addresses:string list list -> unit)
-                ->
-                ignore
-                  (Ojs.call (t_to_js x689) "resolveTxt"
-                     [|(Ojs.string_to_js x682);(Ojs.fun_to_js 2
-                                                  (fun (x684 : Ojs.t) ->
-                                                     fun (x686 : Ojs.t) ->
-                                                       x683
-                                                         ~err:(or_null_of_js
-                                                                 ErrnoException.t_of_js
-                                                                 x684)
-                                                         ~addresses:(
-                                                         Ojs.list_of_js
                                                            (fun
-                                                              (x687 : Ojs.t)
+                                                              (x660 : Ojs.t)
                                                               ->
                                                               Ojs.list_of_js
                                                                 Ojs.string_of_js
-                                                                x687) x686)))|])
+                                                                x660) x659)))|])
         let (reverse :
           t ->
             ip:string ->
@@ -2378,59 +2342,59 @@ module Dns =
                           hostnames:string list -> unit)
                 -> unit)
           =
-          fun (x696 : t) ->
-            fun ~ip:(x690 : string) ->
+          fun (x669 : t) ->
+            fun ~ip:(x663 : string) ->
               fun
-                ~callback:(x691 :
+                ~callback:(x664 :
                             err:ErrnoException.t or_null ->
                               hostnames:string list -> unit)
                 ->
                 ignore
-                  (Ojs.call (t_to_js x696) "reverse"
-                     [|(Ojs.string_to_js x690);(Ojs.fun_to_js 2
-                                                  (fun (x692 : Ojs.t) ->
-                                                     fun (x694 : Ojs.t) ->
-                                                       x691
+                  (Ojs.call (t_to_js x669) "reverse"
+                     [|(Ojs.string_to_js x663);(Ojs.fun_to_js 2
+                                                  (fun (x665 : Ojs.t) ->
+                                                     fun (x667 : Ojs.t) ->
+                                                       x664
                                                          ~err:(or_null_of_js
                                                                  ErrnoException.t_of_js
-                                                                 x692)
+                                                                 x665)
                                                          ~hostnames:(
                                                          Ojs.list_of_js
                                                            Ojs.string_of_js
-                                                           x694)))|])
+                                                           x667)))|])
         let (set_local_address :
           t -> ?ipv4:string -> ?ipv6:string -> unit -> unit) =
-          fun (x702 : t) ->
-            fun ?ipv4:(x697 : string option) ->
-              fun ?ipv6:(x698 : string option) ->
+          fun (x675 : t) ->
+            fun ?ipv4:(x670 : string option) ->
+              fun ?ipv6:(x671 : string option) ->
                 fun () ->
                   ignore
-                    (let x703 = t_to_js x702 in
-                     Ojs.call (Ojs.get_prop_ascii x703 "setLocalAddress")
+                    (let x676 = t_to_js x675 in
+                     Ojs.call (Ojs.get_prop_ascii x676 "setLocalAddress")
                        "apply"
-                       [|x703;((let x699 =
+                       [|x676;((let x672 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x697 with
-                                 | Some x701 ->
+                                (match x670 with
+                                 | Some x674 ->
                                      ignore
-                                       (Ojs.call x699 "push"
-                                          [|(Ojs.string_to_js x701)|])
+                                       (Ojs.call x672 "push"
+                                          [|(Ojs.string_to_js x674)|])
                                  | None -> ());
-                                (match x698 with
-                                 | Some x700 ->
+                                (match x671 with
+                                 | Some x673 ->
                                      ignore
-                                       (Ojs.call x699 "push"
-                                          [|(Ojs.string_to_js x700)|])
+                                       (Ojs.call x672 "push"
+                                          [|(Ojs.string_to_js x673)|])
                                  | None -> ());
-                                x699))|])
+                                x672))|])
         let (set_servers : t -> servers:string list -> unit) =
-          fun (x706 : t) ->
-            fun ~servers:(x704 : string list) ->
+          fun (x679 : t) ->
+            fun ~servers:(x677 : string list) ->
               ignore
-                (Ojs.call (t_to_js x706) "setServers"
-                   [|(Ojs.list_to_js Ojs.string_to_js x704)|])
+                (Ojs.call (t_to_js x679) "setServers"
+                   [|(Ojs.list_to_js Ojs.string_to_js x677)|])
       end
     module Promises =
       struct
@@ -2441,184 +2405,184 @@ module Dns =
                  "getServers" [||])
         let (lookup :
           hostname:string -> family:int -> LookupAddress.t Promise.t) =
-          fun ~hostname:(x708 : string) ->
-            fun ~family:(x709 : int) ->
+          fun ~hostname:(x681 : string) ->
+            fun ~family:(x682 : int) ->
               Promise.t_of_js LookupAddress.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "lookup"
-                   [|(Ojs.string_to_js x708);(Ojs.int_to_js x709)|])
+                   [|(Ojs.string_to_js x681);(Ojs.int_to_js x682)|])
         let (lookup :
           hostname:string ->
             options:LookupOneOptions.t -> LookupAddress.t Promise.t)
           =
-          fun ~hostname:(x711 : string) ->
-            fun ~options:(x712 : LookupOneOptions.t) ->
+          fun ~hostname:(x684 : string) ->
+            fun ~options:(x685 : LookupOneOptions.t) ->
               Promise.t_of_js LookupAddress.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "lookup"
-                   [|(Ojs.string_to_js x711);(LookupOneOptions.t_to_js x712)|])
+                   [|(Ojs.string_to_js x684);(LookupOneOptions.t_to_js x685)|])
         let (lookup :
           hostname:string ->
             options:LookupAllOptions.t -> LookupAddress.t list Promise.t)
           =
-          fun ~hostname:(x714 : string) ->
-            fun ~options:(x715 : LookupAllOptions.t) ->
+          fun ~hostname:(x687 : string) ->
+            fun ~options:(x688 : LookupAllOptions.t) ->
               Promise.t_of_js
-                (fun (x716 : Ojs.t) ->
-                   Ojs.list_of_js LookupAddress.t_of_js x716)
+                (fun (x689 : Ojs.t) ->
+                   Ojs.list_of_js LookupAddress.t_of_js x689)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "lookup"
-                   [|(Ojs.string_to_js x714);(LookupAllOptions.t_to_js x715)|])
+                   [|(Ojs.string_to_js x687);(LookupAllOptions.t_to_js x688)|])
         let (lookup :
           hostname:string ->
             options:LookupOptions.t ->
               (LookupAddress.t, LookupAddress.t) or_array Promise.t)
           =
-          fun ~hostname:(x718 : string) ->
-            fun ~options:(x719 : LookupOptions.t) ->
+          fun ~hostname:(x691 : string) ->
+            fun ~options:(x692 : LookupOptions.t) ->
               Promise.t_of_js
-                (fun (x720 : Ojs.t) ->
+                (fun (x693 : Ojs.t) ->
                    or_array_of_js LookupAddress.t_of_js LookupAddress.t_of_js
-                     x720)
+                     x693)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "lookup"
-                   [|(Ojs.string_to_js x718);(LookupOptions.t_to_js x719)|])
+                   [|(Ojs.string_to_js x691);(LookupOptions.t_to_js x692)|])
         let (lookup : hostname:string -> LookupAddress.t Promise.t) =
-          fun ~hostname:(x723 : string) ->
+          fun ~hostname:(x696 : string) ->
             Promise.t_of_js LookupAddress.t_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "lookup"
-                 [|(Ojs.string_to_js x723)|])
+                 [|(Ojs.string_to_js x696)|])
         let (lookup_service :
           address:string -> port:int -> AnonymousInterface0.t Promise.t) =
-          fun ~address:(x725 : string) ->
-            fun ~port:(x726 : int) ->
+          fun ~address:(x698 : string) ->
+            fun ~port:(x699 : int) ->
               Promise.t_of_js AnonymousInterface0.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "lookupService"
-                   [|(Ojs.string_to_js x725);(Ojs.int_to_js x726)|])
+                   [|(Ojs.string_to_js x698);(Ojs.int_to_js x699)|])
         let (resolve : hostname:string -> string list Promise.t) =
-          fun ~hostname:(x728 : string) ->
+          fun ~hostname:(x701 : string) ->
             Promise.t_of_js
-              (fun (x729 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x729)
+              (fun (x702 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x702)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "resolve"
-                 [|(Ojs.string_to_js x728)|])
+                 [|(Ojs.string_to_js x701)|])
         let (resolve :
           hostname:string -> rrtype:[ `A ] -> string list Promise.t) =
-          fun ~hostname:(x731 : string) ->
-            fun ~rrtype:(x732 : [ `A ]) ->
+          fun ~hostname:(x704 : string) ->
+            fun ~rrtype:(x705 : [ `A ]) ->
               Promise.t_of_js
-                (fun (x733 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x733)
+                (fun (x706 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x706)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x731);((match x732 with
+                   [|(Ojs.string_to_js x704);((match x705 with
                                                | `A -> Ojs.string_to_js "A"))|])
         let (resolve :
           hostname:string -> rrtype:[ `AAAA ] -> string list Promise.t) =
-          fun ~hostname:(x735 : string) ->
-            fun ~rrtype:(x736 : [ `AAAA ]) ->
+          fun ~hostname:(x708 : string) ->
+            fun ~rrtype:(x709 : [ `AAAA ]) ->
               Promise.t_of_js
-                (fun (x737 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x737)
+                (fun (x710 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x710)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x735);((match x736 with
+                   [|(Ojs.string_to_js x708);((match x709 with
                                                | `AAAA ->
                                                    Ojs.string_to_js "AAAA"))|])
         let (resolve :
           hostname:string -> rrtype:[ `ANY ] -> AnyRecord.t list Promise.t) =
-          fun ~hostname:(x739 : string) ->
-            fun ~rrtype:(x740 : [ `ANY ]) ->
+          fun ~hostname:(x712 : string) ->
+            fun ~rrtype:(x713 : [ `ANY ]) ->
               Promise.t_of_js
-                (fun (x741 : Ojs.t) -> Ojs.list_of_js AnyRecord.t_of_js x741)
+                (fun (x714 : Ojs.t) -> Ojs.list_of_js AnyRecord.t_of_js x714)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x739);((match x740 with
+                   [|(Ojs.string_to_js x712);((match x713 with
                                                | `ANY ->
                                                    Ojs.string_to_js "ANY"))|])
         let (resolve :
           hostname:string -> rrtype:[ `CNAME ] -> string list Promise.t) =
-          fun ~hostname:(x743 : string) ->
-            fun ~rrtype:(x744 : [ `CNAME ]) ->
+          fun ~hostname:(x716 : string) ->
+            fun ~rrtype:(x717 : [ `CNAME ]) ->
               Promise.t_of_js
-                (fun (x745 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x745)
+                (fun (x718 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x718)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x743);((match x744 with
+                   [|(Ojs.string_to_js x716);((match x717 with
                                                | `CNAME ->
                                                    Ojs.string_to_js "CNAME"))|])
         let (resolve :
           hostname:string -> rrtype:[ `MX ] -> MxRecord.t list Promise.t) =
-          fun ~hostname:(x747 : string) ->
-            fun ~rrtype:(x748 : [ `MX ]) ->
+          fun ~hostname:(x720 : string) ->
+            fun ~rrtype:(x721 : [ `MX ]) ->
               Promise.t_of_js
-                (fun (x749 : Ojs.t) -> Ojs.list_of_js MxRecord.t_of_js x749)
+                (fun (x722 : Ojs.t) -> Ojs.list_of_js MxRecord.t_of_js x722)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x747);((match x748 with
+                   [|(Ojs.string_to_js x720);((match x721 with
                                                | `MX -> Ojs.string_to_js "MX"))|])
         let (resolve :
           hostname:string ->
             rrtype:[ `NAPTR ] -> NaptrRecord.t list Promise.t)
           =
-          fun ~hostname:(x751 : string) ->
-            fun ~rrtype:(x752 : [ `NAPTR ]) ->
+          fun ~hostname:(x724 : string) ->
+            fun ~rrtype:(x725 : [ `NAPTR ]) ->
               Promise.t_of_js
-                (fun (x753 : Ojs.t) ->
-                   Ojs.list_of_js NaptrRecord.t_of_js x753)
+                (fun (x726 : Ojs.t) ->
+                   Ojs.list_of_js NaptrRecord.t_of_js x726)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x751);((match x752 with
+                   [|(Ojs.string_to_js x724);((match x725 with
                                                | `NAPTR ->
                                                    Ojs.string_to_js "NAPTR"))|])
         let (resolve :
           hostname:string -> rrtype:[ `NS ] -> string list Promise.t) =
-          fun ~hostname:(x755 : string) ->
-            fun ~rrtype:(x756 : [ `NS ]) ->
+          fun ~hostname:(x728 : string) ->
+            fun ~rrtype:(x729 : [ `NS ]) ->
               Promise.t_of_js
-                (fun (x757 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x757)
+                (fun (x730 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x730)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x755);((match x756 with
+                   [|(Ojs.string_to_js x728);((match x729 with
                                                | `NS -> Ojs.string_to_js "NS"))|])
         let (resolve :
           hostname:string -> rrtype:[ `PTR ] -> string list Promise.t) =
-          fun ~hostname:(x759 : string) ->
-            fun ~rrtype:(x760 : [ `PTR ]) ->
+          fun ~hostname:(x732 : string) ->
+            fun ~rrtype:(x733 : [ `PTR ]) ->
               Promise.t_of_js
-                (fun (x761 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x761)
+                (fun (x734 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x734)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x759);((match x760 with
+                   [|(Ojs.string_to_js x732);((match x733 with
                                                | `PTR ->
                                                    Ojs.string_to_js "PTR"))|])
         let (resolve :
           hostname:string -> rrtype:[ `SOA ] -> SoaRecord.t Promise.t) =
-          fun ~hostname:(x763 : string) ->
-            fun ~rrtype:(x764 : [ `SOA ]) ->
+          fun ~hostname:(x736 : string) ->
+            fun ~rrtype:(x737 : [ `SOA ]) ->
               Promise.t_of_js SoaRecord.t_of_js
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x763);((match x764 with
+                   [|(Ojs.string_to_js x736);((match x737 with
                                                | `SOA ->
                                                    Ojs.string_to_js "SOA"))|])
         let (resolve :
           hostname:string -> rrtype:[ `SRV ] -> SrvRecord.t list Promise.t) =
-          fun ~hostname:(x766 : string) ->
-            fun ~rrtype:(x767 : [ `SRV ]) ->
+          fun ~hostname:(x739 : string) ->
+            fun ~rrtype:(x740 : [ `SRV ]) ->
               Promise.t_of_js
-                (fun (x768 : Ojs.t) -> Ojs.list_of_js SrvRecord.t_of_js x768)
+                (fun (x741 : Ojs.t) -> Ojs.list_of_js SrvRecord.t_of_js x741)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x766);((match x767 with
+                   [|(Ojs.string_to_js x739);((match x740 with
                                                | `SRV ->
                                                    Ojs.string_to_js "SRV"))|])
         let (resolve :
           hostname:string -> rrtype:[ `TXT ] -> string list list Promise.t) =
-          fun ~hostname:(x770 : string) ->
-            fun ~rrtype:(x771 : [ `TXT ]) ->
+          fun ~hostname:(x743 : string) ->
+            fun ~rrtype:(x744 : [ `TXT ]) ->
               Promise.t_of_js
-                (fun (x772 : Ojs.t) ->
+                (fun (x745 : Ojs.t) ->
                    Ojs.list_of_js
-                     (fun (x773 : Ojs.t) ->
-                        Ojs.list_of_js Ojs.string_of_js x773) x772)
+                     (fun (x746 : Ojs.t) ->
+                        Ojs.list_of_js Ojs.string_of_js x746) x745)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x770);((match x771 with
+                   [|(Ojs.string_to_js x743);((match x744 with
                                                | `TXT ->
                                                    Ojs.string_to_js "TXT"))|])
         let (resolve :
@@ -2629,335 +2593,335 @@ module Dns =
                   string) or_array or_string)
                 or_array Promise.t)
           =
-          fun ~hostname:(x775 : string) ->
-            fun ~rrtype:(x776 : string) ->
+          fun ~hostname:(x748 : string) ->
+            fun ~rrtype:(x749 : string) ->
               Promise.t_of_js
-                (fun (x777 : Ojs.t) ->
+                (fun (x750 : Ojs.t) ->
                    or_array_of_js SoaRecord.t_of_js
-                     (fun (x779 : Ojs.t) ->
+                     (fun (x752 : Ojs.t) ->
                         or_string_of_js
-                          (fun (x780 : Ojs.t) ->
+                          (fun (x753 : Ojs.t) ->
                              or_array_of_js
-                               (fun (x781 : Ojs.t) ->
+                               (fun (x754 : Ojs.t) ->
                                   union4_of_js AnyRecord.t_of_js
                                     MxRecord.t_of_js NaptrRecord.t_of_js
-                                    SrvRecord.t_of_js x781) Ojs.string_of_js
-                               x780) x779) x777)
+                                    SrvRecord.t_of_js x754) Ojs.string_of_js
+                               x753) x752) x750)
                 (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
                    "resolve"
-                   [|(Ojs.string_to_js x775);(Ojs.string_to_js x776)|])
+                   [|(Ojs.string_to_js x748);(Ojs.string_to_js x749)|])
         let (resolve4 : hostname:string -> string list Promise.t) =
+          fun ~hostname:(x760 : string) ->
+            Promise.t_of_js
+              (fun (x761 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x761)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "resolve4"
+                 [|(Ojs.string_to_js x760)|])
+        let (resolve4 :
+          hostname:string ->
+            options:ResolveWithTtlOptions.t -> RecordWithTtl.t list Promise.t)
+          =
+          fun ~hostname:(x763 : string) ->
+            fun ~options:(x764 : ResolveWithTtlOptions.t) ->
+              Promise.t_of_js
+                (fun (x765 : Ojs.t) ->
+                   Ojs.list_of_js RecordWithTtl.t_of_js x765)
+                (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                   "resolve4"
+                   [|(Ojs.string_to_js x763);(ResolveWithTtlOptions.t_to_js
+                                                x764)|])
+        let (resolve4 :
+          hostname:string ->
+            options:ResolveOptions.t ->
+              RecordWithTtl.t or_string list Promise.t)
+          =
+          fun ~hostname:(x767 : string) ->
+            fun ~options:(x768 : ResolveOptions.t) ->
+              Promise.t_of_js
+                (fun (x769 : Ojs.t) ->
+                   Ojs.list_of_js
+                     (fun (x770 : Ojs.t) ->
+                        or_string_of_js RecordWithTtl.t_of_js x770) x769)
+                (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                   "resolve4"
+                   [|(Ojs.string_to_js x767);(ResolveOptions.t_to_js x768)|])
+        let (resolve6 : hostname:string -> string list Promise.t) =
+          fun ~hostname:(x772 : string) ->
+            Promise.t_of_js
+              (fun (x773 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x773)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "resolve6"
+                 [|(Ojs.string_to_js x772)|])
+        let (resolve6 :
+          hostname:string ->
+            options:ResolveWithTtlOptions.t -> RecordWithTtl.t list Promise.t)
+          =
+          fun ~hostname:(x775 : string) ->
+            fun ~options:(x776 : ResolveWithTtlOptions.t) ->
+              Promise.t_of_js
+                (fun (x777 : Ojs.t) ->
+                   Ojs.list_of_js RecordWithTtl.t_of_js x777)
+                (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                   "resolve6"
+                   [|(Ojs.string_to_js x775);(ResolveWithTtlOptions.t_to_js
+                                                x776)|])
+        let (resolve6 :
+          hostname:string ->
+            options:ResolveOptions.t ->
+              RecordWithTtl.t or_string list Promise.t)
+          =
+          fun ~hostname:(x779 : string) ->
+            fun ~options:(x780 : ResolveOptions.t) ->
+              Promise.t_of_js
+                (fun (x781 : Ojs.t) ->
+                   Ojs.list_of_js
+                     (fun (x782 : Ojs.t) ->
+                        or_string_of_js RecordWithTtl.t_of_js x782) x781)
+                (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                   "resolve6"
+                   [|(Ojs.string_to_js x779);(ResolveOptions.t_to_js x780)|])
+        let (resolve_any : hostname:string -> AnyRecord.t list Promise.t) =
+          fun ~hostname:(x784 : string) ->
+            Promise.t_of_js
+              (fun (x785 : Ojs.t) -> Ojs.list_of_js AnyRecord.t_of_js x785)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                 "resolveAny" [|(Ojs.string_to_js x784)|])
+        let (resolve_cname : hostname:string -> string list Promise.t) =
           fun ~hostname:(x787 : string) ->
             Promise.t_of_js
               (fun (x788 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x788)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "resolve4"
-                 [|(Ojs.string_to_js x787)|])
-        let (resolve4 :
-          hostname:string ->
-            options:ResolveWithTtlOptions.t -> RecordWithTtl.t list Promise.t)
-          =
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                 "resolveCname" [|(Ojs.string_to_js x787)|])
+        let (resolve_mx : hostname:string -> MxRecord.t list Promise.t) =
           fun ~hostname:(x790 : string) ->
-            fun ~options:(x791 : ResolveWithTtlOptions.t) ->
-              Promise.t_of_js
-                (fun (x792 : Ojs.t) ->
-                   Ojs.list_of_js RecordWithTtl.t_of_js x792)
-                (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                   "resolve4"
-                   [|(Ojs.string_to_js x790);(ResolveWithTtlOptions.t_to_js
-                                                x791)|])
-        let (resolve4 :
-          hostname:string ->
-            options:ResolveOptions.t ->
-              RecordWithTtl.t or_string list Promise.t)
+            Promise.t_of_js
+              (fun (x791 : Ojs.t) -> Ojs.list_of_js MxRecord.t_of_js x791)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                 "resolveMx" [|(Ojs.string_to_js x790)|])
+        let (resolve_naptr : hostname:string -> NaptrRecord.t list Promise.t)
           =
-          fun ~hostname:(x794 : string) ->
-            fun ~options:(x795 : ResolveOptions.t) ->
-              Promise.t_of_js
-                (fun (x796 : Ojs.t) ->
-                   Ojs.list_of_js
-                     (fun (x797 : Ojs.t) ->
-                        or_string_of_js RecordWithTtl.t_of_js x797) x796)
-                (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                   "resolve4"
-                   [|(Ojs.string_to_js x794);(ResolveOptions.t_to_js x795)|])
-        let (resolve6 : hostname:string -> string list Promise.t) =
+          fun ~hostname:(x793 : string) ->
+            Promise.t_of_js
+              (fun (x794 : Ojs.t) -> Ojs.list_of_js NaptrRecord.t_of_js x794)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                 "resolveNaptr" [|(Ojs.string_to_js x793)|])
+        let (resolve_ns : hostname:string -> string list Promise.t) =
+          fun ~hostname:(x796 : string) ->
+            Promise.t_of_js
+              (fun (x797 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x797)
+              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
+                 "resolveNs" [|(Ojs.string_to_js x796)|])
+        let (resolve_ptr : hostname:string -> string list Promise.t) =
           fun ~hostname:(x799 : string) ->
             Promise.t_of_js
               (fun (x800 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x800)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "resolve6"
-                 [|(Ojs.string_to_js x799)|])
-        let (resolve6 :
-          hostname:string ->
-            options:ResolveWithTtlOptions.t -> RecordWithTtl.t list Promise.t)
-          =
-          fun ~hostname:(x802 : string) ->
-            fun ~options:(x803 : ResolveWithTtlOptions.t) ->
-              Promise.t_of_js
-                (fun (x804 : Ojs.t) ->
-                   Ojs.list_of_js RecordWithTtl.t_of_js x804)
-                (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                   "resolve6"
-                   [|(Ojs.string_to_js x802);(ResolveWithTtlOptions.t_to_js
-                                                x803)|])
-        let (resolve6 :
-          hostname:string ->
-            options:ResolveOptions.t ->
-              RecordWithTtl.t or_string list Promise.t)
-          =
-          fun ~hostname:(x806 : string) ->
-            fun ~options:(x807 : ResolveOptions.t) ->
-              Promise.t_of_js
-                (fun (x808 : Ojs.t) ->
-                   Ojs.list_of_js
-                     (fun (x809 : Ojs.t) ->
-                        or_string_of_js RecordWithTtl.t_of_js x809) x808)
-                (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                   "resolve6"
-                   [|(Ojs.string_to_js x806);(ResolveOptions.t_to_js x807)|])
-        let (resolve_any : hostname:string -> AnyRecord.t list Promise.t) =
-          fun ~hostname:(x811 : string) ->
-            Promise.t_of_js
-              (fun (x812 : Ojs.t) -> Ojs.list_of_js AnyRecord.t_of_js x812)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolveAny" [|(Ojs.string_to_js x811)|])
-        let (resolve_cname : hostname:string -> string list Promise.t) =
-          fun ~hostname:(x814 : string) ->
-            Promise.t_of_js
-              (fun (x815 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x815)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolveCname" [|(Ojs.string_to_js x814)|])
-        let (resolve_mx : hostname:string -> MxRecord.t list Promise.t) =
-          fun ~hostname:(x817 : string) ->
-            Promise.t_of_js
-              (fun (x818 : Ojs.t) -> Ojs.list_of_js MxRecord.t_of_js x818)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolveMx" [|(Ojs.string_to_js x817)|])
-        let (resolve_naptr : hostname:string -> NaptrRecord.t list Promise.t)
-          =
-          fun ~hostname:(x820 : string) ->
-            Promise.t_of_js
-              (fun (x821 : Ojs.t) -> Ojs.list_of_js NaptrRecord.t_of_js x821)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolveNaptr" [|(Ojs.string_to_js x820)|])
-        let (resolve_ns : hostname:string -> string list Promise.t) =
-          fun ~hostname:(x823 : string) ->
-            Promise.t_of_js
-              (fun (x824 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x824)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolveNs" [|(Ojs.string_to_js x823)|])
-        let (resolve_ptr : hostname:string -> string list Promise.t) =
-          fun ~hostname:(x826 : string) ->
-            Promise.t_of_js
-              (fun (x827 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x827)
-              (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolvePtr" [|(Ojs.string_to_js x826)|])
+                 "resolvePtr" [|(Ojs.string_to_js x799)|])
         let (resolve_soa : hostname:string -> SoaRecord.t Promise.t) =
-          fun ~hostname:(x829 : string) ->
+          fun ~hostname:(x802 : string) ->
             Promise.t_of_js SoaRecord.t_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolveSoa" [|(Ojs.string_to_js x829)|])
+                 "resolveSoa" [|(Ojs.string_to_js x802)|])
         let (resolve_srv : hostname:string -> SrvRecord.t list Promise.t) =
-          fun ~hostname:(x831 : string) ->
+          fun ~hostname:(x804 : string) ->
             Promise.t_of_js
-              (fun (x832 : Ojs.t) -> Ojs.list_of_js SrvRecord.t_of_js x832)
+              (fun (x805 : Ojs.t) -> Ojs.list_of_js SrvRecord.t_of_js x805)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolveSrv" [|(Ojs.string_to_js x831)|])
+                 "resolveSrv" [|(Ojs.string_to_js x804)|])
         let (resolve_txt : hostname:string -> string list list Promise.t) =
-          fun ~hostname:(x834 : string) ->
+          fun ~hostname:(x807 : string) ->
             Promise.t_of_js
-              (fun (x835 : Ojs.t) ->
+              (fun (x808 : Ojs.t) ->
                  Ojs.list_of_js
-                   (fun (x836 : Ojs.t) ->
-                      Ojs.list_of_js Ojs.string_of_js x836) x835)
+                   (fun (x809 : Ojs.t) ->
+                      Ojs.list_of_js Ojs.string_of_js x809) x808)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "resolveTxt" [|(Ojs.string_to_js x834)|])
+                 "resolveTxt" [|(Ojs.string_to_js x807)|])
         let (reverse : ip:string -> string list Promise.t) =
-          fun ~ip:(x838 : string) ->
+          fun ~ip:(x811 : string) ->
             Promise.t_of_js
-              (fun (x839 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x839)
+              (fun (x812 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x812)
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises") "reverse"
-                 [|(Ojs.string_to_js x838)|])
+                 [|(Ojs.string_to_js x811)|])
         let (set_servers : servers:string list -> unit) =
-          fun ~servers:(x841 : string list) ->
+          fun ~servers:(x814 : string list) ->
             ignore
               (Ojs.call (Ojs.get_prop_ascii Import.dns "promises")
-                 "setServers" [|(Ojs.list_to_js Ojs.string_to_js x841)|])
+                 "setServers" [|(Ojs.list_to_js Ojs.string_to_js x814)|])
         module Resolver =
           struct
             type t = Ojs.t
-            let rec t_of_js : Ojs.t -> t = fun (x844 : Ojs.t) -> x844
-            and t_to_js : t -> Ojs.t = fun (x843 : Ojs.t) -> x843
+            let rec t_of_js : Ojs.t -> t = fun (x817 : Ojs.t) -> x817
+            and t_to_js : t -> Ojs.t = fun (x816 : Ojs.t) -> x816
             let (create : ?options:ResolverOptions.t -> unit -> t) =
-              fun ?options:(x845 : ResolverOptions.t option) ->
+              fun ?options:(x818 : ResolverOptions.t option) ->
                 fun () ->
                   t_of_js
                     (Ojs.new_obj_arr
                        (Ojs.get_prop_ascii
                           (Ojs.get_prop_ascii Import.dns "promises")
                           "Resolver")
-                       (let x846 =
+                       (let x819 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x845 with
-                         | Some x847 ->
+                        (match x818 with
+                         | Some x820 ->
                              ignore
-                               (Ojs.call x846 "push"
-                                  [|(ResolverOptions.t_to_js x847)|])
+                               (Ojs.call x819 "push"
+                                  [|(ResolverOptions.t_to_js x820)|])
                          | None -> ());
-                        x846))
+                        x819))
             let (cancel : t -> unit) =
-              fun (x848 : t) ->
-                ignore (Ojs.call (t_to_js x848) "cancel" [||])
+              fun (x821 : t) ->
+                ignore (Ojs.call (t_to_js x821) "cancel" [||])
             let (get_servers : t -> string list) =
-              fun (x849 : t) ->
+              fun (x822 : t) ->
                 Ojs.list_of_js Ojs.string_of_js
-                  (Ojs.call (t_to_js x849) "getServers" [||])
+                  (Ojs.call (t_to_js x822) "getServers" [||])
             let (resolve : t -> hostname:string -> string list Promise.t) =
-              fun (x852 : t) ->
-                fun ~hostname:(x851 : string) ->
+              fun (x825 : t) ->
+                fun ~hostname:(x824 : string) ->
                   Promise.t_of_js
-                    (fun (x853 : Ojs.t) ->
-                       Ojs.list_of_js Ojs.string_of_js x853)
-                    (Ojs.call (t_to_js x852) "resolve"
-                       [|(Ojs.string_to_js x851)|])
+                    (fun (x826 : Ojs.t) ->
+                       Ojs.list_of_js Ojs.string_of_js x826)
+                    (Ojs.call (t_to_js x825) "resolve"
+                       [|(Ojs.string_to_js x824)|])
             let (resolve4 : t -> hostname:string -> string list Promise.t) =
-              fun (x856 : t) ->
-                fun ~hostname:(x855 : string) ->
+              fun (x829 : t) ->
+                fun ~hostname:(x828 : string) ->
                   Promise.t_of_js
-                    (fun (x857 : Ojs.t) ->
-                       Ojs.list_of_js Ojs.string_of_js x857)
-                    (Ojs.call (t_to_js x856) "resolve4"
-                       [|(Ojs.string_to_js x855)|])
+                    (fun (x830 : Ojs.t) ->
+                       Ojs.list_of_js Ojs.string_of_js x830)
+                    (Ojs.call (t_to_js x829) "resolve4"
+                       [|(Ojs.string_to_js x828)|])
             let (resolve6 : t -> hostname:string -> string list Promise.t) =
-              fun (x860 : t) ->
-                fun ~hostname:(x859 : string) ->
+              fun (x833 : t) ->
+                fun ~hostname:(x832 : string) ->
                   Promise.t_of_js
-                    (fun (x861 : Ojs.t) ->
-                       Ojs.list_of_js Ojs.string_of_js x861)
-                    (Ojs.call (t_to_js x860) "resolve6"
-                       [|(Ojs.string_to_js x859)|])
+                    (fun (x834 : Ojs.t) ->
+                       Ojs.list_of_js Ojs.string_of_js x834)
+                    (Ojs.call (t_to_js x833) "resolve6"
+                       [|(Ojs.string_to_js x832)|])
             let (resolve_any :
               t -> hostname:string -> AnyRecord.t list Promise.t) =
+              fun (x837 : t) ->
+                fun ~hostname:(x836 : string) ->
+                  Promise.t_of_js
+                    (fun (x838 : Ojs.t) ->
+                       Ojs.list_of_js AnyRecord.t_of_js x838)
+                    (Ojs.call (t_to_js x837) "resolveAny"
+                       [|(Ojs.string_to_js x836)|])
+            let (resolve_cname :
+              t -> hostname:string -> string list Promise.t) =
+              fun (x841 : t) ->
+                fun ~hostname:(x840 : string) ->
+                  Promise.t_of_js
+                    (fun (x842 : Ojs.t) ->
+                       Ojs.list_of_js Ojs.string_of_js x842)
+                    (Ojs.call (t_to_js x841) "resolveCname"
+                       [|(Ojs.string_to_js x840)|])
+            let (resolve_mx :
+              t -> hostname:string -> MxRecord.t list Promise.t) =
+              fun (x845 : t) ->
+                fun ~hostname:(x844 : string) ->
+                  Promise.t_of_js
+                    (fun (x846 : Ojs.t) ->
+                       Ojs.list_of_js MxRecord.t_of_js x846)
+                    (Ojs.call (t_to_js x845) "resolveMx"
+                       [|(Ojs.string_to_js x844)|])
+            let (resolve_naptr :
+              t -> hostname:string -> NaptrRecord.t list Promise.t) =
+              fun (x849 : t) ->
+                fun ~hostname:(x848 : string) ->
+                  Promise.t_of_js
+                    (fun (x850 : Ojs.t) ->
+                       Ojs.list_of_js NaptrRecord.t_of_js x850)
+                    (Ojs.call (t_to_js x849) "resolveNaptr"
+                       [|(Ojs.string_to_js x848)|])
+            let (resolve_ns : t -> hostname:string -> string list Promise.t)
+              =
+              fun (x853 : t) ->
+                fun ~hostname:(x852 : string) ->
+                  Promise.t_of_js
+                    (fun (x854 : Ojs.t) ->
+                       Ojs.list_of_js Ojs.string_of_js x854)
+                    (Ojs.call (t_to_js x853) "resolveNs"
+                       [|(Ojs.string_to_js x852)|])
+            let (resolve_ptr : t -> hostname:string -> string list Promise.t)
+              =
+              fun (x857 : t) ->
+                fun ~hostname:(x856 : string) ->
+                  Promise.t_of_js
+                    (fun (x858 : Ojs.t) ->
+                       Ojs.list_of_js Ojs.string_of_js x858)
+                    (Ojs.call (t_to_js x857) "resolvePtr"
+                       [|(Ojs.string_to_js x856)|])
+            let (resolve_soa : t -> hostname:string -> SoaRecord.t Promise.t)
+              =
+              fun (x861 : t) ->
+                fun ~hostname:(x860 : string) ->
+                  Promise.t_of_js SoaRecord.t_of_js
+                    (Ojs.call (t_to_js x861) "resolveSoa"
+                       [|(Ojs.string_to_js x860)|])
+            let (resolve_srv :
+              t -> hostname:string -> SrvRecord.t list Promise.t) =
               fun (x864 : t) ->
                 fun ~hostname:(x863 : string) ->
                   Promise.t_of_js
                     (fun (x865 : Ojs.t) ->
-                       Ojs.list_of_js AnyRecord.t_of_js x865)
-                    (Ojs.call (t_to_js x864) "resolveAny"
+                       Ojs.list_of_js SrvRecord.t_of_js x865)
+                    (Ojs.call (t_to_js x864) "resolveSrv"
                        [|(Ojs.string_to_js x863)|])
-            let (resolve_cname :
-              t -> hostname:string -> string list Promise.t) =
+            let (resolve_txt :
+              t -> hostname:string -> string list list Promise.t) =
               fun (x868 : t) ->
                 fun ~hostname:(x867 : string) ->
                   Promise.t_of_js
                     (fun (x869 : Ojs.t) ->
-                       Ojs.list_of_js Ojs.string_of_js x869)
-                    (Ojs.call (t_to_js x868) "resolveCname"
-                       [|(Ojs.string_to_js x867)|])
-            let (resolve_mx :
-              t -> hostname:string -> MxRecord.t list Promise.t) =
-              fun (x872 : t) ->
-                fun ~hostname:(x871 : string) ->
-                  Promise.t_of_js
-                    (fun (x873 : Ojs.t) ->
-                       Ojs.list_of_js MxRecord.t_of_js x873)
-                    (Ojs.call (t_to_js x872) "resolveMx"
-                       [|(Ojs.string_to_js x871)|])
-            let (resolve_naptr :
-              t -> hostname:string -> NaptrRecord.t list Promise.t) =
-              fun (x876 : t) ->
-                fun ~hostname:(x875 : string) ->
-                  Promise.t_of_js
-                    (fun (x877 : Ojs.t) ->
-                       Ojs.list_of_js NaptrRecord.t_of_js x877)
-                    (Ojs.call (t_to_js x876) "resolveNaptr"
-                       [|(Ojs.string_to_js x875)|])
-            let (resolve_ns : t -> hostname:string -> string list Promise.t)
-              =
-              fun (x880 : t) ->
-                fun ~hostname:(x879 : string) ->
-                  Promise.t_of_js
-                    (fun (x881 : Ojs.t) ->
-                       Ojs.list_of_js Ojs.string_of_js x881)
-                    (Ojs.call (t_to_js x880) "resolveNs"
-                       [|(Ojs.string_to_js x879)|])
-            let (resolve_ptr : t -> hostname:string -> string list Promise.t)
-              =
-              fun (x884 : t) ->
-                fun ~hostname:(x883 : string) ->
-                  Promise.t_of_js
-                    (fun (x885 : Ojs.t) ->
-                       Ojs.list_of_js Ojs.string_of_js x885)
-                    (Ojs.call (t_to_js x884) "resolvePtr"
-                       [|(Ojs.string_to_js x883)|])
-            let (resolve_soa : t -> hostname:string -> SoaRecord.t Promise.t)
-              =
-              fun (x888 : t) ->
-                fun ~hostname:(x887 : string) ->
-                  Promise.t_of_js SoaRecord.t_of_js
-                    (Ojs.call (t_to_js x888) "resolveSoa"
-                       [|(Ojs.string_to_js x887)|])
-            let (resolve_srv :
-              t -> hostname:string -> SrvRecord.t list Promise.t) =
-              fun (x891 : t) ->
-                fun ~hostname:(x890 : string) ->
-                  Promise.t_of_js
-                    (fun (x892 : Ojs.t) ->
-                       Ojs.list_of_js SrvRecord.t_of_js x892)
-                    (Ojs.call (t_to_js x891) "resolveSrv"
-                       [|(Ojs.string_to_js x890)|])
-            let (resolve_txt :
-              t -> hostname:string -> string list list Promise.t) =
-              fun (x895 : t) ->
-                fun ~hostname:(x894 : string) ->
-                  Promise.t_of_js
-                    (fun (x896 : Ojs.t) ->
                        Ojs.list_of_js
-                         (fun (x897 : Ojs.t) ->
-                            Ojs.list_of_js Ojs.string_of_js x897) x896)
-                    (Ojs.call (t_to_js x895) "resolveTxt"
-                       [|(Ojs.string_to_js x894)|])
+                         (fun (x870 : Ojs.t) ->
+                            Ojs.list_of_js Ojs.string_of_js x870) x869)
+                    (Ojs.call (t_to_js x868) "resolveTxt"
+                       [|(Ojs.string_to_js x867)|])
             let (reverse : t -> ip:string -> string list Promise.t) =
-              fun (x900 : t) ->
-                fun ~ip:(x899 : string) ->
+              fun (x873 : t) ->
+                fun ~ip:(x872 : string) ->
                   Promise.t_of_js
-                    (fun (x901 : Ojs.t) ->
-                       Ojs.list_of_js Ojs.string_of_js x901)
-                    (Ojs.call (t_to_js x900) "reverse"
-                       [|(Ojs.string_to_js x899)|])
+                    (fun (x874 : Ojs.t) ->
+                       Ojs.list_of_js Ojs.string_of_js x874)
+                    (Ojs.call (t_to_js x873) "reverse"
+                       [|(Ojs.string_to_js x872)|])
             let (set_local_address :
               t -> ?ipv4:string -> ?ipv6:string -> unit -> unit) =
-              fun (x908 : t) ->
-                fun ?ipv4:(x903 : string option) ->
-                  fun ?ipv6:(x904 : string option) ->
+              fun (x881 : t) ->
+                fun ?ipv4:(x876 : string option) ->
+                  fun ?ipv6:(x877 : string option) ->
                     fun () ->
                       ignore
-                        (let x909 = t_to_js x908 in
-                         Ojs.call (Ojs.get_prop_ascii x909 "setLocalAddress")
+                        (let x882 = t_to_js x881 in
+                         Ojs.call (Ojs.get_prop_ascii x882 "setLocalAddress")
                            "apply"
-                           [|x909;((let x905 =
+                           [|x882;((let x878 =
                                       Ojs.new_obj
                                         (Ojs.get_prop_ascii Ojs.global
                                            "Array") [||] in
-                                    (match x903 with
-                                     | Some x907 ->
+                                    (match x876 with
+                                     | Some x880 ->
                                          ignore
-                                           (Ojs.call x905 "push"
-                                              [|(Ojs.string_to_js x907)|])
+                                           (Ojs.call x878 "push"
+                                              [|(Ojs.string_to_js x880)|])
                                      | None -> ());
-                                    (match x904 with
-                                     | Some x906 ->
+                                    (match x877 with
+                                     | Some x879 ->
                                          ignore
-                                           (Ojs.call x905 "push"
-                                              [|(Ojs.string_to_js x906)|])
+                                           (Ojs.call x878 "push"
+                                              [|(Ojs.string_to_js x879)|])
                                      | None -> ());
-                                    x905))|])
+                                    x878))|])
             let (set_servers : t -> servers:string list -> unit) =
-              fun (x912 : t) ->
-                fun ~servers:(x910 : string list) ->
+              fun (x885 : t) ->
+                fun ~servers:(x883 : string list) ->
                   ignore
-                    (Ojs.call (t_to_js x912) "setServers"
-                       [|(Ojs.list_to_js Ojs.string_to_js x910)|])
+                    (Ojs.call (t_to_js x885) "setServers"
+                       [|(Ojs.list_to_js Ojs.string_to_js x883)|])
           end
       end
   end

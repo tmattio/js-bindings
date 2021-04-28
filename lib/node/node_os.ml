@@ -152,96 +152,88 @@ module Os =
       end
     module NetworkInterfaceInfoIPv4 =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x60 : Ojs.t) -> x60
-        and t_to_js : t -> Ojs.t = fun (x59 : Ojs.t) -> x59
+        include struct include NetworkInterfaceBase end
         let (get_family : t -> [ `IPv4 ]) =
-          fun (x61 : t) ->
-            let x62 = Ojs.get_prop_ascii (t_to_js x61) "family" in
-            match Ojs.string_of_js x62 with
+          fun (x59 : t) ->
+            let x60 = Ojs.get_prop_ascii (t_to_js x59) "family" in
+            match Ojs.string_of_js x60 with
             | "IPv4" -> `IPv4
             | _ -> assert false
         let (set_family : t -> [ `IPv4 ] -> unit) =
-          fun (x63 : t) ->
-            fun (x64 : [ `IPv4 ]) ->
-              Ojs.set_prop_ascii (t_to_js x63) "family"
-                (match x64 with | `IPv4 -> Ojs.string_to_js "IPv4")
-        let (cast : t -> NetworkInterfaceBase.t) =
-          fun (x65 : t) -> NetworkInterfaceBase.t_of_js (t_to_js x65)
+          fun (x61 : t) ->
+            fun (x62 : [ `IPv4 ]) ->
+              Ojs.set_prop_ascii (t_to_js x61) "family"
+                (match x62 with | `IPv4 -> Ojs.string_to_js "IPv4")
       end
     module NetworkInterfaceInfoIPv6 =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x67 : Ojs.t) -> x67
-        and t_to_js : t -> Ojs.t = fun (x66 : Ojs.t) -> x66
+        include struct include NetworkInterfaceBase end
         let (get_family : t -> [ `IPv6 ]) =
-          fun (x68 : t) ->
-            let x69 = Ojs.get_prop_ascii (t_to_js x68) "family" in
-            match Ojs.string_of_js x69 with
+          fun (x63 : t) ->
+            let x64 = Ojs.get_prop_ascii (t_to_js x63) "family" in
+            match Ojs.string_of_js x64 with
             | "IPv6" -> `IPv6
             | _ -> assert false
         let (set_family : t -> [ `IPv6 ] -> unit) =
-          fun (x70 : t) ->
-            fun (x71 : [ `IPv6 ]) ->
-              Ojs.set_prop_ascii (t_to_js x70) "family"
-                (match x71 with | `IPv6 -> Ojs.string_to_js "IPv6")
+          fun (x65 : t) ->
+            fun (x66 : [ `IPv6 ]) ->
+              Ojs.set_prop_ascii (t_to_js x65) "family"
+                (match x66 with | `IPv6 -> Ojs.string_to_js "IPv6")
         let (get_scopeid : t -> int) =
-          fun (x72 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x72) "scopeid")
+          fun (x67 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x67) "scopeid")
         let (set_scopeid : t -> int -> unit) =
-          fun (x73 : t) ->
-            fun (x74 : int) ->
-              Ojs.set_prop_ascii (t_to_js x73) "scopeid" (Ojs.int_to_js x74)
-        let (cast : t -> NetworkInterfaceBase.t) =
-          fun (x75 : t) -> NetworkInterfaceBase.t_of_js (t_to_js x75)
+          fun (x68 : t) ->
+            fun (x69 : int) ->
+              Ojs.set_prop_ascii (t_to_js x68) "scopeid" (Ojs.int_to_js x69)
       end
     module UserInfo =
       struct
         type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
-          __T) -> fun (__T_of_js : Ojs.t -> __T) -> fun (x77 : Ojs.t) -> x77
+          __T) -> fun (__T_of_js : Ojs.t -> __T) -> fun (x71 : Ojs.t) -> x71
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) -> fun (x76 : Ojs.t) -> x76
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x70 : Ojs.t) -> x70
         let (get_username : 'T t -> 'T) =
-          fun (x78 : 'T t) ->
-            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x78) "username")
+          fun (x72 : 'T t) ->
+            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x72) "username")
         let (set_username : 'T t -> 'T -> unit) =
-          fun (x80 : 'T t) ->
-            fun (x81 : 'T) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x80) "username"
-                (Obj.magic x81)
+          fun (x74 : 'T t) ->
+            fun (x75 : 'T) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x74) "username"
+                (Obj.magic x75)
         let (get_uid : 'T t -> int) =
-          fun (x83 : 'T t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x83) "uid")
+          fun (x77 : 'T t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x77) "uid")
         let (set_uid : 'T t -> int -> unit) =
-          fun (x85 : 'T t) ->
-            fun (x86 : int) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x85) "uid"
-                (Ojs.int_to_js x86)
+          fun (x79 : 'T t) ->
+            fun (x80 : int) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x79) "uid"
+                (Ojs.int_to_js x80)
         let (get_gid : 'T t -> int) =
-          fun (x88 : 'T t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x88) "gid")
+          fun (x82 : 'T t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x82) "gid")
         let (set_gid : 'T t -> int -> unit) =
-          fun (x90 : 'T t) ->
-            fun (x91 : int) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x90) "gid"
-                (Ojs.int_to_js x91)
+          fun (x84 : 'T t) ->
+            fun (x85 : int) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x84) "gid"
+                (Ojs.int_to_js x85)
         let (get_shell : 'T t -> 'T) =
-          fun (x93 : 'T t) ->
-            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x93) "shell")
+          fun (x87 : 'T t) ->
+            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x87) "shell")
         let (set_shell : 'T t -> 'T -> unit) =
-          fun (x95 : 'T t) ->
-            fun (x96 : 'T) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x95) "shell"
-                (Obj.magic x96)
+          fun (x89 : 'T t) ->
+            fun (x90 : 'T) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x89) "shell"
+                (Obj.magic x90)
         let (get_homedir : 'T t -> 'T) =
-          fun (x98 : 'T t) ->
-            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x98) "homedir")
+          fun (x92 : 'T t) ->
+            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x92) "homedir")
         let (set_homedir : 'T t -> 'T -> unit) =
-          fun (x100 : 'T t) ->
-            fun (x101 : 'T) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x100) "homedir"
-                (Obj.magic x101)
+          fun (x94 : 'T t) ->
+            fun (x95 : 'T) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x94) "homedir"
+                (Obj.magic x95)
       end
     module NetworkInterfaceInfo =
       struct
@@ -249,21 +241,21 @@ module Os =
           [ `U_s1_IPv4 of NetworkInterfaceInfoIPv4.t 
           | `U_s2_IPv6 of NetworkInterfaceInfoIPv6.t ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x106 : Ojs.t) ->
-            let x107 = x106 in
-            match Ojs.string_of_js (Ojs.get_prop_ascii x107 "family") with
-            | "IPv4" -> `U_s1_IPv4 (NetworkInterfaceInfoIPv4.t_of_js x107)
-            | "IPv6" -> `U_s2_IPv6 (NetworkInterfaceInfoIPv6.t_of_js x107)
+          fun (x100 : Ojs.t) ->
+            let x101 = x100 in
+            match Ojs.string_of_js (Ojs.get_prop_ascii x101 "family") with
+            | "IPv4" -> `U_s1_IPv4 (NetworkInterfaceInfoIPv4.t_of_js x101)
+            | "IPv6" -> `U_s2_IPv6 (NetworkInterfaceInfoIPv6.t_of_js x101)
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x103 :
+            (x97 :
               [ `U_s1_IPv4 of NetworkInterfaceInfoIPv4.t 
               | `U_s2_IPv6 of NetworkInterfaceInfoIPv6.t ])
             ->
-            match x103 with
-            | `U_s1_IPv4 x104 -> NetworkInterfaceInfoIPv4.t_to_js x104
-            | `U_s2_IPv6 x105 -> NetworkInterfaceInfoIPv6.t_to_js x105
+            match x97 with
+            | `U_s1_IPv4 x98 -> NetworkInterfaceInfoIPv4.t_to_js x98
+            | `U_s2_IPv6 x99 -> NetworkInterfaceInfoIPv6.t_to_js x99
       end
     let (hostname : unit -> string) =
       fun () -> Ojs.string_of_js (Ojs.call Import.os "hostname" [||])
@@ -286,38 +278,38 @@ module Os =
     let (network_interfaces : unit -> NetworkInterfaceInfo.t list Dict.t) =
       fun () ->
         Dict.t_of_js
-          (fun (x110 : Ojs.t) ->
-             Ojs.list_of_js NetworkInterfaceInfo.t_of_js x110)
+          (fun (x104 : Ojs.t) ->
+             Ojs.list_of_js NetworkInterfaceInfo.t_of_js x104)
           (Ojs.call Import.os "networkInterfaces" [||])
     let (homedir : unit -> string) =
       fun () -> Ojs.string_of_js (Ojs.call Import.os "homedir" [||])
     let (user_info : options:AnonymousInterface1.t -> Buffer.t UserInfo.t) =
-      fun ~options:(x112 : AnonymousInterface1.t) ->
+      fun ~options:(x106 : AnonymousInterface1.t) ->
         UserInfo.t_of_js Buffer.t_of_js
           (Ojs.call Import.os "userInfo"
-             [|(AnonymousInterface1.t_to_js x112)|])
+             [|(AnonymousInterface1.t_to_js x106)|])
     let (user_info :
       ?options:AnonymousInterface0.t -> unit -> string UserInfo.t) =
-      fun ?options:(x114 : AnonymousInterface0.t option) ->
+      fun ?options:(x108 : AnonymousInterface0.t option) ->
         fun () ->
           UserInfo.t_of_js Ojs.string_of_js
-            (let x117 = Import.os in
-             Ojs.call (Ojs.get_prop_ascii x117 "userInfo") "apply"
-               [|x117;((let x115 =
+            (let x111 = Import.os in
+             Ojs.call (Ojs.get_prop_ascii x111 "userInfo") "apply"
+               [|x111;((let x109 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x114 with
-                         | Some x116 ->
+                        (match x108 with
+                         | Some x110 ->
                              ignore
-                               (Ojs.call x115 "push"
-                                  [|(AnonymousInterface0.t_to_js x116)|])
+                               (Ojs.call x109 "push"
+                                  [|(AnonymousInterface0.t_to_js x110)|])
                          | None -> ());
-                        x115))|])
+                        x109))|])
     module SignalConstants =
       struct
         type t = any
-        let rec t_of_js : Ojs.t -> t = fun (x120 : Ojs.t) -> any_of_js x120
-        and t_to_js : t -> Ojs.t = fun (x119 : any) -> any_to_js x119
+        let rec t_of_js : Ojs.t -> t = fun (x114 : Ojs.t) -> any_of_js x114
+        and t_to_js : t -> Ojs.t = fun (x113 : any) -> any_to_js x113
       end
     module Constants =
       struct
@@ -1208,33 +1200,33 @@ module Os =
       Ojs.string_of_js (Ojs.get_prop_ascii Import.os "EOL")
     let (endianness : unit -> [ `BE  | `LE ]) =
       fun () ->
-        let x121 = Ojs.call Import.os "endianness" [||] in
-        match Ojs.string_of_js x121 with
+        let x115 = Ojs.call Import.os "endianness" [||] in
+        match Ojs.string_of_js x115 with
         | "BE" -> `BE
         | "LE" -> `LE
         | _ -> assert false
     let (get_priority : ?pid:int -> unit -> int) =
-      fun ?pid:(x122 : int option) ->
+      fun ?pid:(x116 : int option) ->
         fun () ->
           Ojs.int_of_js
-            (let x125 = Import.os in
-             Ojs.call (Ojs.get_prop_ascii x125 "getPriority") "apply"
-               [|x125;((let x123 =
+            (let x119 = Import.os in
+             Ojs.call (Ojs.get_prop_ascii x119 "getPriority") "apply"
+               [|x119;((let x117 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x122 with
-                         | Some x124 ->
+                        (match x116 with
+                         | Some x118 ->
                              ignore
-                               (Ojs.call x123 "push" [|(Ojs.int_to_js x124)|])
+                               (Ojs.call x117 "push" [|(Ojs.int_to_js x118)|])
                          | None -> ());
-                        x123))|])
+                        x117))|])
     let (set_priority : priority:int -> unit) =
-      fun ~priority:(x126 : int) ->
-        ignore (Ojs.call Import.os "setPriority" [|(Ojs.int_to_js x126)|])
+      fun ~priority:(x120 : int) ->
+        ignore (Ojs.call Import.os "setPriority" [|(Ojs.int_to_js x120)|])
     let (set_priority : pid:int -> priority:int -> unit) =
-      fun ~pid:(x127 : int) ->
-        fun ~priority:(x128 : int) ->
+      fun ~pid:(x121 : int) ->
+        fun ~priority:(x122 : int) ->
           ignore
             (Ojs.call Import.os "setPriority"
-               [|(Ojs.int_to_js x127);(Ojs.int_to_js x128)|])
+               [|(Ojs.int_to_js x121);(Ojs.int_to_js x122)|])
   end

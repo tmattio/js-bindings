@@ -24,7 +24,7 @@ module Never : sig
       let absurd _ = raise Ts_Never]
 end
 
-type any = private Ojs.t
+type any = Ojs.t
 
 val any_to_js : any -> Ojs.t
 

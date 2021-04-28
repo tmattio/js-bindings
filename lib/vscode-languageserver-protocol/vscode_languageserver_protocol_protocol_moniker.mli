@@ -3,11 +3,9 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
+open Vscode_languageserver_protocol_messages
+open Vscode_languageserver_protocol_protocol
 
-(* import { ProtocolRequestType } from './messages'; *)
-(* import { WorkDoneProgressOptions, WorkDoneProgressParams,
-   PartialResultParams, TextDocumentRegistrationOptions,
-   TextDocumentPositionParams } from './protocol'; *)
 module UniquenessLevel : sig
   type t =
     ([ `document [@js "document"]
@@ -90,7 +88,10 @@ module MonikerOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "MonikerOptions"]
 
@@ -101,7 +102,10 @@ module MonikerRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> MonikerOptions.t [@@js.cast]
 end
@@ -114,7 +118,10 @@ module MonikerParams : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 

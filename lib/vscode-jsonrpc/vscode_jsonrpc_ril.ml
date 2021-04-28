@@ -30,19 +30,23 @@ module AnonymousInterface0 =
   end
 module RIL =
   struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x8 : Ojs.t) -> x8
-    and t_to_js : t -> Ojs.t = fun (x7 : Ojs.t) -> x7
+    include struct include Vscode_jsonrpc_ral.RAL end
     let (get_stream : t -> AnonymousInterface0.t) =
-      fun (x9 : t) ->
+      fun (x7 : t) ->
         AnonymousInterface0.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x9) "stream")
-    let (cast : t -> Vscode_jsonrpc_ral.RAL.t) =
-      fun (x10 : t) -> Vscode_jsonrpc_ral.RAL.t_of_js (t_to_js x10)
+          (Ojs.get_prop_ascii (t_to_js x7) "stream")
     let (install : unit -> unit) =
       fun () ->
         ignore
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "RIL") "install" [||])
+          (Ojs.call
+             (Ojs.get_prop_ascii
+                (Ojs.get_prop_ascii Ojs.global
+                   "__LIB__VSCODE_JSONRPC__IMPORTS") "RIL") "install" 
+             [||])
   end
 let (ril : unit -> RIL.t) =
-  fun () -> RIL.t_of_js (Ojs.call Ojs.global "RIL" [||])
+  fun () ->
+    RIL.t_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "RIL" [||])

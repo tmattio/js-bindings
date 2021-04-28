@@ -70,212 +70,199 @@ module Https =
       end
     module AgentOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x26 : Ojs.t) -> x26
-        and t_to_js : t -> Ojs.t = fun (x25 : Ojs.t) -> x25
+        include struct include Http.AgentOptions end
         let (get_reject_unauthorized : t -> bool) =
-          fun (x27 : t) ->
+          fun (x25 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x27) "rejectUnauthorized")
+              (Ojs.get_prop_ascii (t_to_js x25) "rejectUnauthorized")
         let (set_reject_unauthorized : t -> bool -> unit) =
-          fun (x28 : t) ->
-            fun (x29 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x28) "rejectUnauthorized"
-                (Ojs.bool_to_js x29)
+          fun (x26 : t) ->
+            fun (x27 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x26) "rejectUnauthorized"
+                (Ojs.bool_to_js x27)
         let (get_max_cached_sessions : t -> int) =
-          fun (x30 : t) ->
+          fun (x28 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x30) "maxCachedSessions")
+              (Ojs.get_prop_ascii (t_to_js x28) "maxCachedSessions")
         let (set_max_cached_sessions : t -> int -> unit) =
-          fun (x31 : t) ->
-            fun (x32 : int) ->
-              Ojs.set_prop_ascii (t_to_js x31) "maxCachedSessions"
-                (Ojs.int_to_js x32)
-        let (cast : t -> Http.AgentOptions.t) =
-          fun (x33 : t) -> Http.AgentOptions.t_of_js (t_to_js x33)
+          fun (x29 : t) ->
+            fun (x30 : int) ->
+              Ojs.set_prop_ascii (t_to_js x29) "maxCachedSessions"
+                (Ojs.int_to_js x30)
         let (cast' : t -> Tls.ConnectionOptions.t) =
-          fun (x34 : t) -> Tls.ConnectionOptions.t_of_js (t_to_js x34)
+          fun (x31 : t) -> Tls.ConnectionOptions.t_of_js (t_to_js x31)
       end
     module Agent =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x36 : Ojs.t) -> x36
-        and t_to_js : t -> Ojs.t = fun (x35 : Ojs.t) -> x35
+        include struct include Http.Agent end
         let (create : ?options:AgentOptions.t -> unit -> t) =
-          fun ?options:(x37 : AgentOptions.t option) ->
+          fun ?options:(x32 : AgentOptions.t option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.https "Agent")
-                   (let x38 =
+                   (let x33 =
                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                         [||] in
-                    (match x37 with
-                     | Some x39 ->
+                    (match x32 with
+                     | Some x34 ->
                          ignore
-                           (Ojs.call x38 "push"
-                              [|(AgentOptions.t_to_js x39)|])
+                           (Ojs.call x33 "push"
+                              [|(AgentOptions.t_to_js x34)|])
                      | None -> ());
-                    x38))
+                    x33))
         let (get_options : t -> AgentOptions.t) =
-          fun (x40 : t) ->
-            AgentOptions.t_of_js (Ojs.get_prop_ascii (t_to_js x40) "options")
+          fun (x35 : t) ->
+            AgentOptions.t_of_js (Ojs.get_prop_ascii (t_to_js x35) "options")
         let (set_options : t -> AgentOptions.t -> unit) =
-          fun (x41 : t) ->
-            fun (x42 : AgentOptions.t) ->
-              Ojs.set_prop_ascii (t_to_js x41) "options"
-                (AgentOptions.t_to_js x42)
-        let (cast : t -> Http.Agent.t) =
-          fun (x43 : t) -> Http.Agent.t_of_js (t_to_js x43)
+          fun (x36 : t) ->
+            fun (x37 : AgentOptions.t) ->
+              Ojs.set_prop_ascii (t_to_js x36) "options"
+                (AgentOptions.t_to_js x37)
       end
     module Server =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x45 : Ojs.t) -> x45
-        and t_to_js : t -> Ojs.t = fun (x44 : Ojs.t) -> x44
-        let (cast : t -> Http.HttpBase.t) =
-          fun (x46 : t) -> Http.HttpBase.t_of_js (t_to_js x46)
+        include struct include Http.HttpBase end
+        include struct include Tls.Server end
         let (create : ?request_listener:Http.RequestListener.t -> unit -> t)
           =
-          fun ?request_listener:(x47 : Http.RequestListener.t option) ->
+          fun ?request_listener:(x38 : Http.RequestListener.t option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.https "Server")
-                   (let x48 =
+                   (let x39 =
                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                         [||] in
-                    (match x47 with
-                     | Some x49 ->
+                    (match x38 with
+                     | Some x40 ->
                          ignore
-                           (Ojs.call x48 "push"
-                              [|(Http.RequestListener.t_to_js x49)|])
+                           (Ojs.call x39 "push"
+                              [|(Http.RequestListener.t_to_js x40)|])
                      | None -> ());
-                    x48))
+                    x39))
         let (create' :
           options:ServerOptions.t ->
             ?request_listener:Http.RequestListener.t -> unit -> t)
           =
-          fun ~options:(x50 : ServerOptions.t) ->
-            fun ?request_listener:(x51 : Http.RequestListener.t option) ->
+          fun ~options:(x41 : ServerOptions.t) ->
+            fun ?request_listener:(x42 : Http.RequestListener.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr (Ojs.get_prop_ascii Import.https "Server")
-                     (let x52 =
+                     (let x43 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x52 "push" [|(ServerOptions.t_to_js x50)|]);
-                      (match x51 with
-                       | Some x53 ->
+                        (Ojs.call x43 "push" [|(ServerOptions.t_to_js x41)|]);
+                      (match x42 with
+                       | Some x44 ->
                            ignore
-                             (Ojs.call x52 "push"
-                                [|(Http.RequestListener.t_to_js x53)|])
+                             (Ojs.call x43 "push"
+                                [|(Http.RequestListener.t_to_js x44)|])
                        | None -> ());
-                      x52))
-        let (cast : t -> Tls.Server.t) =
-          fun (x54 : t) -> Tls.Server.t_of_js (t_to_js x54)
+                      x43))
       end
     let (create_server :
       options:ServerOptions.t ->
         ?request_listener:Http.RequestListener.t -> unit -> Server.t)
       =
-      fun ~options:(x55 : ServerOptions.t) ->
-        fun ?request_listener:(x56 : Http.RequestListener.t option) ->
+      fun ~options:(x45 : ServerOptions.t) ->
+        fun ?request_listener:(x46 : Http.RequestListener.t option) ->
           fun () ->
             Server.t_of_js
-              (let x59 = Import.https in
-               Ojs.call (Ojs.get_prop_ascii x59 "createServer") "apply"
-                 [|x59;((let x57 =
+              (let x49 = Import.https in
+               Ojs.call (Ojs.get_prop_ascii x49 "createServer") "apply"
+                 [|x49;((let x47 =
                            Ojs.new_obj
                              (Ojs.get_prop_ascii Ojs.global "Array") 
                              [||] in
                          ignore
-                           (Ojs.call x57 "push"
-                              [|(ServerOptions.t_to_js x55)|]);
-                         (match x56 with
-                          | Some x58 ->
+                           (Ojs.call x47 "push"
+                              [|(ServerOptions.t_to_js x45)|]);
+                         (match x46 with
+                          | Some x48 ->
                               ignore
-                                (Ojs.call x57 "push"
-                                   [|(Http.RequestListener.t_to_js x58)|])
+                                (Ojs.call x47 "push"
+                                   [|(Http.RequestListener.t_to_js x48)|])
                           | None -> ());
-                         x57))|])
+                         x47))|])
     let (request :
       url:Node_url.Url.Url.t or_string ->
         ?options:RequestOptions.t ->
           ?callback:(res:Http.IncomingMessage.t -> unit) ->
             unit -> Http.ClientRequest.t)
       =
-      fun ~url:(x60 : Node_url.Url.Url.t or_string) ->
-        fun ?options:(x61 : RequestOptions.t option) ->
-          fun ?callback:(x62 : (res:Http.IncomingMessage.t -> unit) option)
+      fun ~url:(x50 : Node_url.Url.Url.t or_string) ->
+        fun ?options:(x51 : RequestOptions.t option) ->
+          fun ?callback:(x52 : (res:Http.IncomingMessage.t -> unit) option)
             ->
             fun () ->
               Http.ClientRequest.t_of_js
-                (let x68 = Import.https in
-                 Ojs.call (Ojs.get_prop_ascii x68 "request") "apply"
-                   [|x68;((let x63 =
+                (let x58 = Import.https in
+                 Ojs.call (Ojs.get_prop_ascii x58 "request") "apply"
+                   [|x58;((let x53 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x63 "push"
+                             (Ojs.call x53 "push"
                                 [|(or_string_to_js Node_url.Url.Url.t_to_js
-                                     x60)|]);
-                           (match x61 with
-                            | Some x66 ->
+                                     x50)|]);
+                           (match x51 with
+                            | Some x56 ->
                                 ignore
-                                  (Ojs.call x63 "push"
-                                     [|(RequestOptions.t_to_js x66)|])
+                                  (Ojs.call x53 "push"
+                                     [|(RequestOptions.t_to_js x56)|])
                             | None -> ());
-                           (match x62 with
-                            | Some x64 ->
+                           (match x52 with
+                            | Some x54 ->
                                 ignore
-                                  (Ojs.call x63 "push"
+                                  (Ojs.call x53 "push"
                                      [|(Ojs.fun_to_js 1
-                                          (fun (x65 : Ojs.t) ->
-                                             x64
+                                          (fun (x55 : Ojs.t) ->
+                                             x54
                                                ~res:(Http.IncomingMessage.t_of_js
-                                                       x65)))|])
+                                                       x55)))|])
                             | None -> ());
-                           x63))|])
+                           x53))|])
     let (get :
       url:Node_url.Url.Url.t or_string ->
         ?options:RequestOptions.t ->
           ?callback:(res:Http.IncomingMessage.t -> unit) ->
             unit -> Http.ClientRequest.t)
       =
-      fun ~url:(x69 : Node_url.Url.Url.t or_string) ->
-        fun ?options:(x70 : RequestOptions.t option) ->
-          fun ?callback:(x71 : (res:Http.IncomingMessage.t -> unit) option)
+      fun ~url:(x59 : Node_url.Url.Url.t or_string) ->
+        fun ?options:(x60 : RequestOptions.t option) ->
+          fun ?callback:(x61 : (res:Http.IncomingMessage.t -> unit) option)
             ->
             fun () ->
               Http.ClientRequest.t_of_js
-                (let x77 = Import.https in
-                 Ojs.call (Ojs.get_prop_ascii x77 "get") "apply"
-                   [|x77;((let x72 =
+                (let x67 = Import.https in
+                 Ojs.call (Ojs.get_prop_ascii x67 "get") "apply"
+                   [|x67;((let x62 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x72 "push"
+                             (Ojs.call x62 "push"
                                 [|(or_string_to_js Node_url.Url.Url.t_to_js
-                                     x69)|]);
-                           (match x70 with
-                            | Some x75 ->
+                                     x59)|]);
+                           (match x60 with
+                            | Some x65 ->
                                 ignore
-                                  (Ojs.call x72 "push"
-                                     [|(RequestOptions.t_to_js x75)|])
+                                  (Ojs.call x62 "push"
+                                     [|(RequestOptions.t_to_js x65)|])
                             | None -> ());
-                           (match x71 with
-                            | Some x73 ->
+                           (match x61 with
+                            | Some x63 ->
                                 ignore
-                                  (Ojs.call x72 "push"
+                                  (Ojs.call x62 "push"
                                      [|(Ojs.fun_to_js 1
-                                          (fun (x74 : Ojs.t) ->
-                                             x73
+                                          (fun (x64 : Ojs.t) ->
+                                             x63
                                                ~res:(Http.IncomingMessage.t_of_js
-                                                       x74)))|])
+                                                       x64)))|])
                             | None -> ());
-                           x72))|])
+                           x62))|])
     let (global_agent : Agent.t) =
       Agent.t_of_js (Ojs.get_prop_ascii Import.https "globalAgent")
   end

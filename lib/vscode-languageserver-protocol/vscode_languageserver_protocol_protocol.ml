@@ -2,6 +2,8 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
+open Vscode_jsonrpc
+open Vscode_languageserver_types
 module AnonymousInterface0 =
   struct
     type t = Ojs.t
@@ -484,6 +486,22 @@ module AnonymousInterface22 =
           Ojs.set_prop_ascii (t_to_js x189) "valueSet"
             (Ojs.list_to_js SymbolTag.t_to_js x190)
   end
+open Vscode_languageserver_protocol_messages
+open Vscode_languageserver_protocol_protocol_implementation
+open Vscode_languageserver_protocol_protocol_type_definition
+open Vscode_languageserver_protocol_protocol_workspace_folders
+open Vscode_languageserver_protocol_protocol_configuration
+open Vscode_languageserver_protocol_protocol_color_provider
+open Vscode_languageserver_protocol_protocol_folding_range
+open Vscode_languageserver_protocol_protocol_declaration
+open Vscode_languageserver_protocol_protocol_selection_range
+open Vscode_languageserver_protocol_protocol_progress
+open Vscode_languageserver_protocol_protocol_call_hierarchy
+open Vscode_languageserver_protocol_protocol_semantic_tokens
+open Vscode_languageserver_protocol_protocol_show_document
+open Vscode_languageserver_protocol_protocol_linked_editing_range
+open Vscode_languageserver_protocol_protocol_file_operations
+open Vscode_languageserver_protocol_protocol_moniker
 module DocumentFilter =
   struct
     type t = AnonymousInterface9.t

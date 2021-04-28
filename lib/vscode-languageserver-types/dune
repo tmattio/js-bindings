@@ -5,8 +5,8 @@
  (modes byte))
 
 (rule
- (targets vscode_languageserver_types_main.ml)
- (deps vscode_languageserver_types_main.mli)
+ (targets vscode_languageserver_types.ml)
+ (deps vscode_languageserver_types.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

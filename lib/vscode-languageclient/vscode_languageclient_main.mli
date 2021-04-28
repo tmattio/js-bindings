@@ -348,7 +348,10 @@ module LanguageClient : sig
 
   val get_locale : t -> string [@@js.call "getLocale"]
 
-  val cast : t -> CommonLanguageClient.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include CommonLanguageClient
+  end
 end
 [@@js.scope "LanguageClient"]
 

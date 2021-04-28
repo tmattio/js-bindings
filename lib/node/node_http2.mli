@@ -47,11 +47,9 @@ module Http2 : sig
   [@@js.scope "IncomingHttpStatusHeader"]
 
   module IncomingHttpHeaders : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Node_http.Http.IncomingHttpHeaders
+    end
 
     val get__path : t -> string [@@js.get ":path"]
 
@@ -68,8 +66,6 @@ module Http2 : sig
     val get__scheme : t -> string [@@js.get ":scheme"]
 
     val set__scheme : t -> string -> unit [@@js.set ":scheme"]
-
-    val cast : t -> Node_http.Http.IncomingHttpHeaders.t [@@js.cast]
   end
   [@@js.scope "IncomingHttpHeaders"]
 
@@ -429,417 +425,202 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val on : t -> event:([ `aborted ][@js.enum]) -> listener:(unit -> unit) -> t
-      [@@js.call "on"]
+    module AbortedListener : sig
+      type t = unit -> unit
 
-    val on' : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> listener:(chunk:Buffer.t or_string -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on'''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+    module CloseListener : sig
+      type t = unit -> unit
 
-    val on''''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on'''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+    module DataListener : sig
+      type t = chunk:Buffer.t or_string -> unit
 
-    val on'''''''
-      :  t
-      -> event:([ `frameError ][@js.enum])
-      -> listener:(frameType:int -> error_code:int -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on'''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "on"]
+    module DrainListener : sig
+      type t = unit -> unit
 
-    val on''''''''''
-      :  t
-      -> event:([ `streamClosed ][@js.enum])
-      -> listener:(code:int -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on'''''''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on''''''''''''
-      :  t
-      -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
-      -> t
-      [@@js.call "on"]
+    module EndListener : sig
+      type t = unit -> unit
 
-    val on'''''''''''''
-      :  t
-      -> event:([ `wantTrailers ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once
-      :  t
-      -> event:([ `aborted ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+    module ErrorListener : sig
+      type t = err:Error.t -> unit
 
-    val once'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> listener:(chunk:Buffer.t or_string -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once'''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+    module FinishListener : sig
+      type t = unit -> unit
 
-    val once''''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once'''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+    module FrameerrorListener : sig
+      type t = frameType:int -> error_code:int -> unit
 
-    val once'''''''
-      :  t
-      -> event:([ `frameError ][@js.enum])
-      -> listener:(frameType:int -> error_code:int -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once'''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "once"]
+    module PipeListener : sig
+      type t = src:Stream.Readable.t -> unit
 
-    val once''''''''''
-      :  t
-      -> event:([ `streamClosed ][@js.enum])
-      -> listener:(code:int -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once'''''''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once''''''''''''
-      :  t
-      -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
-      -> t
-      [@@js.call "once"]
+    module UnpipeListener : sig
+      type t = src:Stream.Readable.t -> unit
 
-    val once'''''''''''''
-      :  t
-      -> event:([ `wantTrailers ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val prepend_listener
-      :  t
-      -> event:([ `aborted ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    module StreamclosedListener : sig
+      type t = code:int -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module TimeoutListener : sig
+      type t = unit -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module TrailersListener : sig
+      type t = trailers:IncomingHttpHeaders.t -> flags:int -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module WanttrailersListener : sig
+      type t = unit -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    type listener =
+      ([ `Aborted of AbortedListener.t
+       | `Close of CloseListener.t
+       | `Data of DataListener.t
+       | `Drain of DrainListener.t
+       | `End_ of EndListener.t
+       | `Error of ErrorListener.t
+       | `Finish of FinishListener.t
+       | `Frameerror of FrameerrorListener.t
+       | `Pipe of PipeListener.t
+       | `Unpipe of UnpipeListener.t
+       | `Streamclosed of StreamclosedListener.t
+       | `Timeout of TimeoutListener.t
+       | `Trailers of TrailersListener.t
+       | `Wanttrailers of WanttrailersListener.t
+       ]
+      [@js.union])
+
+    [@@@js.stop]
+
+    val on : t -> listener -> unit
+
+    val add_listener : t -> listener -> unit
+
+    val once : t -> listener -> unit
+
+    val prepend_listener : t -> listener -> unit
+
+    val prepend_once_listener : t -> listener -> unit
+
+    [@@@js.start]
+
+    [@@@js.implem
+    val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+    val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+    val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+    val prepend_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependListener"]
 
-    val prepend_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> listener:(chunk:Buffer.t or_string -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''
-      :  t
-      -> event:([ `frameError ][@js.enum])
-      -> listener:(frameType:int -> error_code:int -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''''
-      :  t
-      -> event:([ `streamClosed ][@js.enum])
-      -> listener:(code:int -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''''''
-      :  t
-      -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''''''''
-      :  t
-      -> event:([ `wantTrailers ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:([ `aborted ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val prepend_once_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependOnceListener"]
 
-    val prepend_once_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let with_listener_fn fn t = function
+      | `Aborted f ->
+        fn t "aborted" @@ [%js.of: AbortedListener.t] f
+      | `Close f ->
+        fn t "close" @@ [%js.of: CloseListener.t] f
+      | `Data f ->
+        fn t "data" @@ [%js.of: DataListener.t] f
+      | `Drain f ->
+        fn t "drain" @@ [%js.of: DrainListener.t] f
+      | `End_ f ->
+        fn t "end_" @@ [%js.of: EndListener.t] f
+      | `Error f ->
+        fn t "error" @@ [%js.of: ErrorListener.t] f
+      | `Finish f ->
+        fn t "finish" @@ [%js.of: FinishListener.t] f
+      | `Frameerror f ->
+        fn t "frameError" @@ [%js.of: FrameerrorListener.t] f
+      | `Pipe f ->
+        fn t "pipe" @@ [%js.of: PipeListener.t] f
+      | `Unpipe f ->
+        fn t "unpipe" @@ [%js.of: UnpipeListener.t] f
+      | `Streamclosed f ->
+        fn t "streamClosed" @@ [%js.of: StreamclosedListener.t] f
+      | `Timeout f ->
+        fn t "timeout" @@ [%js.of: TimeoutListener.t] f
+      | `Trailers f ->
+        fn t "trailers" @@ [%js.of: TrailersListener.t] f
+      | `Wanttrailers f ->
+        fn t "wantTrailers" @@ [%js.of: WanttrailersListener.t] f
 
-    val prepend_once_listener''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> listener:(chunk:Buffer.t or_string -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let on = with_listener_fn on
 
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let add_listener = with_listener_fn add_listener
 
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let once = with_listener_fn once
 
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let prepend_listener = with_listener_fn prepend_listener
 
-    val prepend_once_listener''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''
-      :  t
-      -> event:([ `frameError ][@js.enum])
-      -> listener:(frameType:int -> error_code:int -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''''
-      :  t
-      -> event:([ `streamClosed ][@js.enum])
-      -> listener:(code:int -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''''''
-      :  t
-      -> event:([ `trailers ][@js.enum])
-      -> listener:(trailers:IncomingHttpHeaders.t -> flags:int -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''''''''
-      :  t
-      -> event:([ `wantTrailers ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let prepend_once_listener = with_listener_fn prepend_once_listener]
   end
   [@@js.scope "Http2Stream"]
 
@@ -926,177 +707,100 @@ module Http2 : sig
       -> bool
       [@@js.call "emit"]
 
-    val on
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> AnonymousInterface0.t)
-      -> t
-      [@@js.call "on"]
+    module ContinueListener : sig
+      type t = unit -> AnonymousInterface0.t
 
-    val on'
-      :  t
-      -> event:([ `headers ][@js.enum])
-      -> listener:
-           (headers:
-              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''
-      :  t
-      -> event:([ `push ][@js.enum])
-      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on'''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:
-           (headers:
-              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "on"]
+    module HeadersListener : sig
+      type t =
+        headers:
+          (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
+        -> flags:int
+        -> unit
 
-    val on''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val once
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> AnonymousInterface0.t)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once'
-      :  t
-      -> event:([ `headers ][@js.enum])
-      -> listener:
-           (headers:
-              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "once"]
+    module PushListener : sig
+      type t = headers:IncomingHttpHeaders.t -> flags:int -> unit
 
-    val once''
-      :  t
-      -> event:([ `push ][@js.enum])
-      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once'''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:
-           (headers:
-              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
+    module ResponseListener : sig
+      type t =
+        headers:
+          (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
+        -> flags:int
+        -> unit
 
-    val prepend_listener
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> AnonymousInterface0.t)
-      -> t
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    type listener =
+      ([ `Continue of ContinueListener.t
+       | `Headers of HeadersListener.t
+       | `Push of PushListener.t
+       | `Response of ResponseListener.t
+       ]
+      [@js.union])
+
+    [@@@js.stop]
+
+    val on : t -> listener -> unit
+
+    val add_listener : t -> listener -> unit
+
+    val once : t -> listener -> unit
+
+    val prepend_listener : t -> listener -> unit
+
+    val prepend_once_listener : t -> listener -> unit
+
+    [@@@js.start]
+
+    [@@@js.implem
+    val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+    val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+    val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+    val prepend_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependListener"]
 
-    val prepend_listener'
-      :  t
-      -> event:([ `headers ][@js.enum])
-      -> listener:
-           (headers:
-              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `push ][@js.enum])
-      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:
-           (headers:
-              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> AnonymousInterface0.t)
-      -> t
+    val prepend_once_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependOnceListener"]
 
-    val prepend_once_listener'
-      :  t
-      -> event:([ `headers ][@js.enum])
-      -> listener:
-           (headers:
-              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let with_listener_fn fn t = function
+      | `Continue f ->
+        fn t "continue" @@ [%js.of: ContinueListener.t] f
+      | `Headers f ->
+        fn t "headers" @@ [%js.of: HeadersListener.t] f
+      | `Push f ->
+        fn t "push" @@ [%js.of: PushListener.t] f
+      | `Response f ->
+        fn t "response" @@ [%js.of: ResponseListener.t] f
 
-    val prepend_once_listener''
-      :  t
-      -> event:([ `push ][@js.enum])
-      -> listener:(headers:IncomingHttpHeaders.t -> flags:int -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let on = with_listener_fn on
 
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:
-           (headers:
-              (IncomingHttpHeaders.t, IncomingHttpStatusHeader.t) intersection2
-            -> flags:int
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let add_listener = with_listener_fn add_listener
 
-    val prepend_once_listener''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let once = with_listener_fn once
+
+    let prepend_listener = with_listener_fn prepend_listener
+
+    let prepend_once_listener = with_listener_fn prepend_once_listener]
   end
   [@@js.scope "ClientHttp2Stream"]
 
@@ -1294,9 +998,11 @@ module Http2 : sig
   [@@js.scope "SessionState"]
 
   module Http2Session : sig
-    include module type of struct
-      include Node_events.Events.EventEmitter
-    end
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
 
     val get_alpn_protocol : t -> string [@@js.get "alpnProtocol"]
 
@@ -1729,11 +1435,9 @@ module Http2 : sig
   [@@js.scope "Http2Session"]
 
   module ClientHttp2Session : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Http2Session
+    end
 
     val request
       :  t
@@ -1998,8 +1702,6 @@ module Http2 : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Http2Session.t [@@js.cast]
   end
   [@@js.scope "ClientHttp2Session"]
 
@@ -2077,11 +1779,9 @@ module Http2 : sig
   [@@js.scope "SessionOptions"]
 
   module ClientSessionOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SessionOptions
+    end
 
     val get_max_reserved_remote_streams : t -> int
       [@@js.get "maxReservedRemoteStreams"]
@@ -2103,17 +1803,13 @@ module Http2 : sig
 
     val set_protocol : t -> ([ `http_ | `https_ ][@js.enum]) -> unit
       [@@js.set "protocol"]
-
-    val cast : t -> SessionOptions.t [@@js.cast]
   end
   [@@js.scope "ClientSessionOptions"]
 
   module ServerSessionOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SessionOptions
+    end
 
     val get_http1IncomingMessage
       :  t
@@ -2158,54 +1854,35 @@ module Http2 : sig
       -> (* FIXME: unknown type 'typeof Http2ServerResponse' *) any
       -> unit
       [@@js.set "Http2ServerResponse"]
-
-    val cast : t -> SessionOptions.t [@@js.cast]
   end
   [@@js.scope "ServerSessionOptions"]
 
   module SecureClientSessionOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> ClientSessionOptions.t [@@js.cast]
+    include module type of struct
+      include ClientSessionOptions
+    end
 
     val cast' : t -> Tls.ConnectionOptions.t [@@js.cast]
   end
-  [@@js.scope "SecureClientSessionOptions"]
 
   module SecureServerSessionOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> ServerSessionOptions.t [@@js.cast]
+    include module type of struct
+      include ServerSessionOptions
+    end
 
     val cast' : t -> Tls.TlsOptions.t [@@js.cast]
   end
-  [@@js.scope "SecureServerSessionOptions"]
 
   module ServerOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> ServerSessionOptions.t [@@js.cast]
+    include module type of struct
+      include ServerSessionOptions
+    end
   end
-  [@@js.scope "ServerOptions"]
 
   module SecureServerOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SecureServerSessionOptions
+    end
 
     val get_allow_http1 : t -> bool [@@js.get "allowHTTP1"]
 
@@ -2214,17 +1891,13 @@ module Http2 : sig
     val get_origins : t -> string list [@@js.get "origins"]
 
     val set_origins : t -> string list -> unit [@@js.set "origins"]
-
-    val cast : t -> SecureServerSessionOptions.t [@@js.cast]
   end
   [@@js.scope "SecureServerOptions"]
 
   module Http2ServerRequest : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Readable
+    end
 
     val create
       :  stream:ServerHttp2Stream.t
@@ -2542,17 +2215,13 @@ module Http2 : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Stream.Readable.t [@@js.cast]
   end
   [@@js.scope "Http2ServerRequest"]
 
   module Http2ServerResponse : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Writable
+    end
 
     val create : stream:ServerHttp2Stream.t -> t [@@js.create]
 
@@ -2933,17 +2602,13 @@ module Http2 : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Stream.Writable.t [@@js.cast]
   end
   [@@js.scope "Http2ServerResponse"]
 
   module ServerHttp2Session : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Http2Session
+    end
 
     (* val get_server : t -> (Http2SecureServer.t, Http2Server.t) union2
        [@@js.get "server"] *)
@@ -3117,17 +2782,13 @@ module Http2 : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Http2Session.t [@@js.cast]
   end
   [@@js.scope "ServerHttp2Session"]
 
   module Http2Server : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Net.Server
+    end
 
     val add_listener
       :  t
@@ -3475,17 +3136,13 @@ module Http2 : sig
 
     val set_timeout : t -> ?msec:int -> ?callback:(unit -> unit) -> unit -> t
       [@@js.call "setTimeout"]
-
-    val cast : t -> Net.Server.t [@@js.cast]
   end
   [@@js.scope "Http2Server"]
 
   module Http2SecureServer : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Tls.Server
+    end
 
     val add_listener
       :  t
@@ -3875,8 +3532,6 @@ module Http2 : sig
 
     val set_timeout : t -> ?msec:int -> ?callback:(unit -> unit) -> unit -> t
       [@@js.call "setTimeout"]
-
-    val cast : t -> Tls.Server.t [@@js.cast]
   end
   [@@js.scope "Http2SecureServer"]
 

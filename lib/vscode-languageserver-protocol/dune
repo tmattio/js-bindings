@@ -54,15 +54,15 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_callHierarchy.ml)
- (deps vscode_languageserver_protocol_protocol_callHierarchy.mli)
+ (targets vscode_languageserver_protocol_protocol_call_hierarchy.ml)
+ (deps vscode_languageserver_protocol_protocol_call_hierarchy.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_colorProvider.ml)
- (deps vscode_languageserver_protocol_protocol_colorProvider.mli)
+ (targets vscode_languageserver_protocol_protocol_color_provider.ml)
+ (deps vscode_languageserver_protocol_protocol_color_provider.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -82,15 +82,15 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_fileOperations.ml)
- (deps vscode_languageserver_protocol_protocol_fileOperations.mli)
+ (targets vscode_languageserver_protocol_protocol_file_operations.ml)
+ (deps vscode_languageserver_protocol_protocol_file_operations.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_foldingRange.ml)
- (deps vscode_languageserver_protocol_protocol_foldingRange.mli)
+ (targets vscode_languageserver_protocol_protocol_folding_range.ml)
+ (deps vscode_languageserver_protocol_protocol_folding_range.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -103,8 +103,8 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_linkedEditingRange.ml)
- (deps vscode_languageserver_protocol_protocol_linkedEditingRange.mli)
+ (targets vscode_languageserver_protocol_protocol_linked_editing_range.ml)
+ (deps vscode_languageserver_protocol_protocol_linked_editing_range.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -124,36 +124,36 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_selectionRange.ml)
- (deps vscode_languageserver_protocol_protocol_selectionRange.mli)
+ (targets vscode_languageserver_protocol_protocol_selection_range.ml)
+ (deps vscode_languageserver_protocol_protocol_selection_range.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_semanticTokens.ml)
- (deps vscode_languageserver_protocol_protocol_semanticTokens.mli)
+ (targets vscode_languageserver_protocol_protocol_semantic_tokens.ml)
+ (deps vscode_languageserver_protocol_protocol_semantic_tokens.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_showDocument.ml)
- (deps vscode_languageserver_protocol_protocol_showDocument.mli)
+ (targets vscode_languageserver_protocol_protocol_show_document.ml)
+ (deps vscode_languageserver_protocol_protocol_show_document.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_typeDefinition.ml)
- (deps vscode_languageserver_protocol_protocol_typeDefinition.mli)
+ (targets vscode_languageserver_protocol_protocol_type_definition.ml)
+ (deps vscode_languageserver_protocol_protocol_type_definition.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageserver_protocol_protocol_workspaceFolders.ml)
- (deps vscode_languageserver_protocol_protocol_workspaceFolders.mli)
+ (targets vscode_languageserver_protocol_protocol_workspace_folders.ml)
+ (deps vscode_languageserver_protocol_protocol_workspace_folders.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

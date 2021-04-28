@@ -53,11 +53,9 @@ module Https : sig
   end
 
   module AgentOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Http.AgentOptions
+    end
 
     val get_reject_unauthorized : t -> bool [@@js.get "rejectUnauthorized"]
 
@@ -69,37 +67,31 @@ module Https : sig
     val set_max_cached_sessions : t -> int -> unit
       [@@js.set "maxCachedSessions"]
 
-    val cast : t -> Http.AgentOptions.t [@@js.cast]
-
     val cast' : t -> Tls.ConnectionOptions.t [@@js.cast]
   end
   [@@js.scope "AgentOptions"]
 
   module Agent : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Http.Agent
+    end
 
     val create : ?options:AgentOptions.t -> unit -> t [@@js.create]
 
     val get_options : t -> AgentOptions.t [@@js.get "options"]
 
     val set_options : t -> AgentOptions.t -> unit [@@js.set "options"]
-
-    val cast : t -> Http.Agent.t [@@js.cast]
   end
   [@@js.scope "Agent"]
 
   module Server : sig
-    type t
+    include module type of struct
+      include Http.HttpBase
+    end
 
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> Http.HttpBase.t [@@js.cast]
+    include module type of struct
+      include Tls.Server
+    end
 
     val create : ?request_listener:Http.RequestListener.t -> unit -> t
       [@@js.create]
@@ -110,8 +102,6 @@ module Https : sig
       -> unit
       -> t
       [@@js.create]
-
-    val cast : t -> Tls.Server.t [@@js.cast]
   end
   [@@js.scope "Server"]
 

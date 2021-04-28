@@ -2,7 +2,9 @@
  (name vscode_jsonrpc)
  (public_name vscode-jsonrpc)
  (libraries js_of_ocaml ojs node)
- (modes byte))
+ (modes byte)
+ (js_of_ocaml
+  (javascript_files stub.js)))
 
 (rule
  (targets vscode_jsonrpc_api.ml)
@@ -54,36 +56,29 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_jsonrpc_linkedMap.ml)
- (deps vscode_jsonrpc_linkedMap.mli)
+ (targets vscode_jsonrpc.ml)
+ (deps vscode_jsonrpc.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_jsonrpc_main.ml)
- (deps vscode_jsonrpc_main.mli)
+ (targets vscode_jsonrpc_message_buffer.ml)
+ (deps vscode_jsonrpc_message_buffer.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_jsonrpc_messageBuffer.ml)
- (deps vscode_jsonrpc_messageBuffer.mli)
+ (targets vscode_jsonrpc_message_reader.ml)
+ (deps vscode_jsonrpc_message_reader.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_jsonrpc_messageReader.ml)
- (deps vscode_jsonrpc_messageReader.mli)
- (mode promote)
- (action
-  (run %{bin:gen_js_api} %{deps} -o %{targets})))
-
-(rule
- (targets vscode_jsonrpc_messageWriter.ml)
- (deps vscode_jsonrpc_messageWriter.mli)
+ (targets vscode_jsonrpc_message_writer.ml)
+ (deps vscode_jsonrpc_message_writer.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

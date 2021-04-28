@@ -125,17 +125,13 @@ module Tls : sig
   [@@js.scope "PeerCertificate"]
 
   module DetailedPeerCertificate : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include PeerCertificate
+    end
 
     val get_issuer_certificate : t -> t [@@js.get "issuerCertificate"]
 
     val set_issuer_certificate : t -> t -> unit [@@js.set "issuerCertificate"]
-
-    val cast : t -> PeerCertificate.t [@@js.cast]
   end
   [@@js.scope "DetailedPeerCertificate"]
 
@@ -474,11 +470,9 @@ module Tls : sig
   [@@js.scope "TLSSocketOptions"]
 
   module TLSSocket : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Net.Socket
+    end
 
     val create : socket:Net.Socket.t -> ?options:TLSSocketOptions.t -> unit -> t
       [@@js.create]
@@ -770,8 +764,6 @@ module Tls : sig
       -> listener:(line:Buffer.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Net.Socket.t [@@js.cast]
   end
   [@@js.scope "TLSSocket"]
 
@@ -793,11 +785,9 @@ module Tls : sig
   [@@js.scope "SecurePair"]
 
   module TlsOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SecureContextOptions
+    end
 
     val get_handshake_timeout : t -> int [@@js.get "handshakeTimeout"]
 
@@ -821,8 +811,6 @@ module Tls : sig
     val get_psk_identity_hint : t -> string [@@js.get "pskIdentityHint"]
 
     val set_psk_identity_hint : t -> string -> unit [@@js.set "pskIdentityHint"]
-
-    val cast : t -> SecureContextOptions.t [@@js.cast]
 
     val cast' : t -> CommonConnectionOptions.t [@@js.cast]
 
@@ -849,11 +837,9 @@ module Tls : sig
   [@@js.scope "PSKCallbackNegotation"]
 
   module ConnectionOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SecureContextOptions
+    end
 
     val get_host : t -> string [@@js.get "host"]
 
@@ -904,18 +890,14 @@ module Tls : sig
       -> PSKCallbackNegotation.t or_null
       [@@js.call "pskCallback"]
 
-    val cast : t -> SecureContextOptions.t [@@js.cast]
-
     val cast' : t -> CommonConnectionOptions.t [@@js.cast]
   end
   [@@js.scope "ConnectionOptions"]
 
   module Server : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Net.Server
+    end
 
     val create
       :  ?secure_connection_listener:(socket:TLSSocket.t -> unit)
@@ -1299,8 +1281,6 @@ module Tls : sig
       -> listener:(line:Buffer.t -> tls_socket:TLSSocket.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Net.Server.t [@@js.cast]
   end
   [@@js.scope "Server"]
 

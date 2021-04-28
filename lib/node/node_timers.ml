@@ -7,34 +7,36 @@ module Timers =
   struct
     let (set_timeout :
       callback:(args:any list -> unit) ->
-        ?ms:int -> args:any list -> Timeout.t)
+        ?ms:int -> args:any list -> unit -> Timeout.t)
       =
       fun ~callback:(x1 : args:any list -> unit) ->
         fun ?ms:(x2 : int option) ->
           fun ~args:(x3 : any list) ->
-            Timeout.t_of_js
-              (let x9 = Import.timers in
-               Ojs.call (Ojs.get_prop_ascii x9 "setTimeout") "apply"
-                 [|x9;((let x4 =
-                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                            [||] in
-                        ignore
-                          (Ojs.call x4 "push"
-                             [|(Ojs.fun_to_js_args
-                                  (fun (x7 : _) ->
-                                     x1
-                                       ~args:(Ojs.list_of_js_from any_of_js
-                                                x7 0)))|]);
-                        (match x2 with
-                         | Some x6 ->
-                             ignore
-                               (Ojs.call x4 "push" [|(Ojs.int_to_js x6)|])
-                         | None -> ());
-                        List.iter
-                          (fun (x5 : any) ->
-                             ignore (Ojs.call x4 "push" [|(any_to_js x5)|]))
-                          x3;
-                        x4))|])
+            fun () ->
+              Timeout.t_of_js
+                (let x9 = Import.timers in
+                 Ojs.call (Ojs.get_prop_ascii x9 "setTimeout") "apply"
+                   [|x9;((let x4 =
+                            Ojs.new_obj
+                              (Ojs.get_prop_ascii Ojs.global "Array") 
+                              [||] in
+                          ignore
+                            (Ojs.call x4 "push"
+                               [|(Ojs.fun_to_js_args
+                                    (fun (x7 : _) ->
+                                       x1
+                                         ~args:(Ojs.list_of_js_from any_of_js
+                                                  x7 0)))|]);
+                          (match x2 with
+                           | Some x6 ->
+                               ignore
+                                 (Ojs.call x4 "push" [|(Ojs.int_to_js x6)|])
+                           | None -> ());
+                          List.iter
+                            (fun (x5 : any) ->
+                               ignore (Ojs.call x4 "push" [|(any_to_js x5)|]))
+                            x3;
+                          x4))|])
     module SetTimeout =
       struct
         let (__promisify__ : ms:int -> unit Promise.t) =
@@ -55,36 +57,38 @@ module Timers =
           (Ojs.call Import.timers "clearTimeout" [|(Timeout.t_to_js x15)|])
     let (set_interval :
       callback:(args:any list -> unit) ->
-        ?ms:int -> args:any list -> Timeout.t)
+        ?ms:int -> args:any list -> unit -> Timeout.t)
       =
       fun ~callback:(x16 : args:any list -> unit) ->
         fun ?ms:(x17 : int option) ->
           fun ~args:(x18 : any list) ->
-            Timeout.t_of_js
-              (let x24 = Import.timers in
-               Ojs.call (Ojs.get_prop_ascii x24 "setInterval") "apply"
-                 [|x24;((let x19 =
-                           Ojs.new_obj
-                             (Ojs.get_prop_ascii Ojs.global "Array") 
-                             [||] in
-                         ignore
-                           (Ojs.call x19 "push"
-                              [|(Ojs.fun_to_js_args
-                                   (fun (x22 : _) ->
-                                      x16
-                                        ~args:(Ojs.list_of_js_from any_of_js
-                                                 x22 0)))|]);
-                         (match x17 with
-                          | Some x21 ->
-                              ignore
-                                (Ojs.call x19 "push" [|(Ojs.int_to_js x21)|])
-                          | None -> ());
-                         List.iter
-                           (fun (x20 : any) ->
-                              ignore
-                                (Ojs.call x19 "push" [|(any_to_js x20)|]))
-                           x18;
-                         x19))|])
+            fun () ->
+              Timeout.t_of_js
+                (let x24 = Import.timers in
+                 Ojs.call (Ojs.get_prop_ascii x24 "setInterval") "apply"
+                   [|x24;((let x19 =
+                             Ojs.new_obj
+                               (Ojs.get_prop_ascii Ojs.global "Array") 
+                               [||] in
+                           ignore
+                             (Ojs.call x19 "push"
+                                [|(Ojs.fun_to_js_args
+                                     (fun (x22 : _) ->
+                                        x16
+                                          ~args:(Ojs.list_of_js_from
+                                                   any_of_js x22 0)))|]);
+                           (match x17 with
+                            | Some x21 ->
+                                ignore
+                                  (Ojs.call x19 "push"
+                                     [|(Ojs.int_to_js x21)|])
+                            | None -> ());
+                           List.iter
+                             (fun (x20 : any) ->
+                                ignore
+                                  (Ojs.call x19 "push" [|(any_to_js x20)|]))
+                             x18;
+                           x19))|])
     let (clear_interval : interval_id:Timeout.t -> unit) =
       fun ~interval_id:(x25 : Timeout.t) ->
         ignore

@@ -43,15 +43,10 @@ end
 
 module Util : sig
   module InspectOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> InspectOptions.t [@@js.cast]
+    include module type of struct
+      include InspectOptions
+    end
   end
-  [@@js.scope "InspectOptions"]
 
   module Style : sig
     type t =
@@ -75,16 +70,12 @@ module Util : sig
   end
 
   module InspectOptionsStylized : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include InspectOptions
+    end
 
     val stylize : t -> text:string -> style_type:Style.t -> string
       [@@js.call "stylize"]
-
-    val cast : t -> InspectOptions.t [@@js.cast]
   end
   [@@js.scope "InspectOptionsStylized"]
 
@@ -100,13 +91,14 @@ module Util : sig
   end
   [@@js.scope "CustomInspectFunction"]
 
-  val format : ?format:any -> param:(any list[@js.variadic]) -> string
+  val format : ?format:any -> param:(any list[@js.variadic]) -> unit -> string
     [@@js.global "format"]
 
   val format_with_options
     :  inspect_options:InspectOptions.t
     -> ?format:any
     -> param:(any list[@js.variadic])
+    -> unit
     -> string
     [@@js.global "formatWithOptions"]
 

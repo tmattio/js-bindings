@@ -205,54 +205,6 @@ module Child_process : sig
 
     val ref : t -> unit [@@js.call "ref"]
 
-    val add_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener''''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
-
-    val add_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
-      -> t
-      [@@js.call "addListener"]
-
     val emit
       :  t
       -> event:symbol or_string
@@ -290,208 +242,120 @@ module Child_process : sig
       -> bool
       [@@js.call "emit"]
 
-    val on
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
+    module CloseListener : sig
+      type t =
+        code:int or_null
+        -> signal:Node_process.Process.Signals.t or_null
+        -> unit
 
-    val on'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "on"]
+    module DisconnectListener : sig
+      type t = unit -> unit
 
-    val on''''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
+    module ErrorListener : sig
+      type t = err:Error.t -> unit
 
-    val once'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once''
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "once"]
+    module ExitListener : sig
+      type t =
+        code:int or_null
+        -> signal:Node_process.Process.Signals.t or_null
+        -> unit
 
-    val once''''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val prepend_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
+    module MessageListener : sig
+      type t = message:Serializable.t -> send_handle:SendHandle.t -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module SpawnListener : sig
+      type t = unit -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    type listener =
+      ([ `Close of CloseListener.t
+       | `Disconnect of DisconnectListener.t
+       | `Error of ErrorListener.t
+       | `Exit of ExitListener.t
+       | `Message of MessageListener.t
+       | `Spawn of SpawnListener.t
+       ]
+      [@js.union])
+
+    [@@@js.stop]
+
+    val on : t -> listener -> unit
+
+    val add_listener : t -> listener -> unit
+
+    val once : t -> listener -> unit
+
+    val prepend_listener : t -> listener -> unit
+
+    [@@@js.start]
+
+    [@@@js.implem
+    val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+    val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+    val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+    val prepend_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependListener"]
 
-    val prepend_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
+    let with_listener_fn fn t = function
+      | `Close f ->
+        fn t "close" @@ [%js.of: CloseListener.t] f
+      | `Disconnect f ->
+        fn t "disconnect" @@ [%js.of: DisconnectListener.t] f
+      | `Error f ->
+        fn t "error" @@ [%js.of: ErrorListener.t] f
+      | `Exit f ->
+        fn t "exit" @@ [%js.of: ExitListener.t] f
+      | `Message f ->
+        fn t "message" @@ [%js.of: MessageListener.t] f
+      | `Spawn f ->
+        fn t "spawn" @@ [%js.of: SpawnListener.t] f
 
-    val prepend_listener''
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
+    let on = with_listener_fn on
 
-    val prepend_listener'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
+    let add_listener = with_listener_fn add_listener
 
-    val prepend_listener''''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
+    let once = with_listener_fn once
 
-    val prepend_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:
-           (code:int or_null
-            -> signal:Node_process.Process.Signals.t or_null
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(message:Serializable.t -> send_handle:SendHandle.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val cast : t -> Events.EventEmitter.t [@@js.cast]
+    let prepend_listener = with_listener_fn prepend_listener]
   end
   [@@js.scope "ChildProcess"]
 
   module ChildProcessWithoutNullStreams : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ChildProcess
+    end
 
     val get_stdin : t -> Node_stream.Stream.Writable.t [@@js.get "stdin"]
 
@@ -518,8 +382,6 @@ module Child_process : sig
          * (Node_stream.Stream.Readable.t, Node_stream.Stream.Writable.t) union2
            or_null_or_undefined
       [@@js.get "stdio"]
-
-    val cast : t -> ChildProcess.t [@@js.cast]
   end
   [@@js.scope "ChildProcessWithoutNullStreams"]
 
@@ -645,11 +507,9 @@ module Child_process : sig
   [@@js.scope "ProcessEnvOptions"]
 
   module CommonOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ProcessEnvOptions
+    end
 
     val get_windows_hide : t -> bool [@@js.get "windowsHide"]
 
@@ -658,17 +518,13 @@ module Child_process : sig
     val get_timeout : t -> int [@@js.get "timeout"]
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
-
-    val cast : t -> ProcessEnvOptions.t [@@js.cast]
   end
   [@@js.scope "CommonOptions"]
 
   module CommonSpawnOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include CommonOptions
+    end
 
     val get_argv0 : t -> string [@@js.get "argv0"]
 
@@ -688,33 +544,25 @@ module Child_process : sig
     val set_windows_verbatim_arguments : t -> bool -> unit
       [@@js.set "windowsVerbatimArguments"]
 
-    val cast : t -> CommonOptions.t [@@js.cast]
-
     val cast' : t -> MessagingOptions.t [@@js.cast]
   end
   [@@js.scope "CommonSpawnOptions"]
 
   module SpawnOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include CommonSpawnOptions
+    end
 
     val get_detached : t -> bool [@@js.get "detached"]
 
     val set_detached : t -> bool -> unit [@@js.set "detached"]
-
-    val cast : t -> CommonSpawnOptions.t [@@js.cast]
   end
   [@@js.scope "SpawnOptions"]
 
   module SpawnOptionsWithoutStdio : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SpawnOptions
+    end
 
     val get_stdio
       :  t
@@ -730,8 +578,6 @@ module Child_process : sig
          or_enum
       -> unit
       [@@js.set "stdio"]
-
-    val cast : t -> SpawnOptions.t [@@js.cast]
   end
   [@@js.scope "SpawnOptionsWithoutStdio"]
 
@@ -973,11 +819,9 @@ module Child_process : sig
     [@@js.global "spawn"]
 
   module ExecOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include CommonOptions
+    end
 
     val get_shell : t -> string [@@js.get "shell"]
 
@@ -992,48 +836,36 @@ module Child_process : sig
 
     val set_kill_signal : t -> Node_process.Process.Signals.t or_number -> unit
       [@@js.set "killSignal"]
-
-    val cast : t -> CommonOptions.t [@@js.cast]
   end
   [@@js.scope "ExecOptions"]
 
   module ExecOptionsWithStringEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecOptions
+    end
 
     val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
     val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
-
-    val cast : t -> ExecOptions.t [@@js.cast]
   end
   [@@js.scope "ExecOptionsWithStringEncoding"]
 
   module ExecOptionsWithBufferEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecOptions
+    end
 
     val get_encoding : t -> BufferEncoding.t or_null [@@js.get "encoding"]
 
     val set_encoding : t -> BufferEncoding.t or_null -> unit
       [@@js.set "encoding"]
-
-    val cast : t -> ExecOptions.t [@@js.cast]
   end
   [@@js.scope "ExecOptionsWithBufferEncoding"]
 
   module ExecException : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Error
+    end
 
     val get_cmd : t -> string [@@js.get "cmd"]
 
@@ -1051,8 +883,6 @@ module Child_process : sig
 
     val set_signal : t -> Node_process.Process.Signals.t -> unit
       [@@js.set "signal"]
-
-    val cast : t -> Error.t [@@js.cast]
   end
   [@@js.scope "ExecException"]
 
@@ -1180,11 +1010,9 @@ module Child_process : sig
   [@@js.scope "exec"]
 
   module ExecFileOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include CommonOptions
+    end
 
     val get_max_buffer : t -> int [@@js.get "maxBuffer"]
 
@@ -1205,55 +1033,41 @@ module Child_process : sig
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
     val set_shell : t -> bool or_string -> unit [@@js.set "shell"]
-
-    val cast : t -> CommonOptions.t [@@js.cast]
   end
   [@@js.scope "ExecFileOptions"]
 
   module ExecFileOptionsWithStringEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecFileOptions
+    end
 
     val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
     val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
-
-    val cast : t -> ExecFileOptions.t [@@js.cast]
   end
   [@@js.scope "ExecFileOptionsWithStringEncoding"]
 
   module ExecFileOptionsWithBufferEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecFileOptions
+    end
 
     val get_encoding : t -> ([ `buffer [@js "buffer"] ][@js.enum]) or_null
       [@@js.get "encoding"]
 
     val set_encoding : t -> ([ `buffer ][@js.enum]) or_null -> unit
       [@@js.set "encoding"]
-
-    val cast : t -> ExecFileOptions.t [@@js.cast]
   end
   [@@js.scope "ExecFileOptionsWithBufferEncoding"]
 
   module ExecFileOptionsWithOtherEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecFileOptions
+    end
 
     val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
     val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
-
-    val cast : t -> ExecFileOptions.t [@@js.cast]
   end
   [@@js.scope "ExecFileOptionsWithOtherEncoding"]
 
@@ -1515,11 +1329,9 @@ module Child_process : sig
   [@@js.scope "execFile"]
 
   module ForkOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ProcessEnvOptions
+    end
 
     val get_exec_path : t -> string [@@js.get "execPath"]
 
@@ -1547,8 +1359,6 @@ module Child_process : sig
     val set_windows_verbatim_arguments : t -> bool -> unit
       [@@js.set "windowsVerbatimArguments"]
 
-    val cast : t -> ProcessEnvOptions.t [@@js.cast]
-
     val cast' : t -> MessagingOptions.t [@@js.cast]
   end
   [@@js.scope "ForkOptions"]
@@ -1569,11 +1379,9 @@ module Child_process : sig
     [@@js.global "fork"]
 
   module SpawnSyncOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include CommonSpawnOptions
+    end
 
     val get_input : t -> ArrayBufferView.t or_string [@@js.get "input"]
 
@@ -1600,40 +1408,30 @@ module Child_process : sig
       -> (BufferEncoding.t, ([ `buffer ][@js.enum])) or_enum or_null
       -> unit
       [@@js.set "encoding"]
-
-    val cast : t -> CommonSpawnOptions.t [@@js.cast]
   end
   [@@js.scope "SpawnSyncOptions"]
 
   module SpawnSyncOptionsWithStringEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SpawnSyncOptions
+    end
 
     val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
     val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
-
-    val cast : t -> SpawnSyncOptions.t [@@js.cast]
   end
   [@@js.scope "SpawnSyncOptionsWithStringEncoding"]
 
   module SpawnSyncOptionsWithBufferEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SpawnSyncOptions
+    end
 
     val get_encoding : t -> ([ `buffer [@js "buffer"] ][@js.enum]) or_null
       [@@js.get "encoding"]
 
     val set_encoding : t -> ([ `buffer ][@js.enum]) or_null -> unit
       [@@js.set "encoding"]
-
-    val cast : t -> SpawnSyncOptions.t [@@js.cast]
   end
   [@@js.scope "SpawnSyncOptionsWithBufferEncoding"]
 
@@ -1725,11 +1523,9 @@ module Child_process : sig
     [@@js.global "spawnSync"]
 
   module ExecSyncOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include CommonOptions
+    end
 
     val get_input : t -> Uint8Array.t or_string [@@js.get "input"]
 
@@ -1764,40 +1560,30 @@ module Child_process : sig
       -> (BufferEncoding.t, ([ `buffer ][@js.enum])) or_enum or_null
       -> unit
       [@@js.set "encoding"]
-
-    val cast : t -> CommonOptions.t [@@js.cast]
   end
   [@@js.scope "ExecSyncOptions"]
 
   module ExecSyncOptionsWithStringEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecSyncOptions
+    end
 
     val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
     val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
-
-    val cast : t -> ExecSyncOptions.t [@@js.cast]
   end
   [@@js.scope "ExecSyncOptionsWithStringEncoding"]
 
   module ExecSyncOptionsWithBufferEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecSyncOptions
+    end
 
     val get_encoding : t -> ([ `buffer [@js "buffer"] ][@js.enum]) or_null
       [@@js.get "encoding"]
 
     val set_encoding : t -> ([ `buffer ][@js.enum]) or_null -> unit
       [@@js.set "encoding"]
-
-    val cast : t -> ExecSyncOptions.t [@@js.cast]
   end
   [@@js.scope "ExecSyncOptionsWithBufferEncoding"]
 
@@ -1825,11 +1611,9 @@ module Child_process : sig
     [@@js.global "execSync"]
 
   module ExecFileSyncOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include CommonOptions
+    end
 
     val get_input : t -> ArrayBufferView.t or_string [@@js.get "input"]
 
@@ -1856,38 +1640,28 @@ module Child_process : sig
     val get_shell : t -> bool or_string [@@js.get "shell"]
 
     val set_shell : t -> bool or_string -> unit [@@js.set "shell"]
-
-    val cast : t -> CommonOptions.t [@@js.cast]
   end
   [@@js.scope "ExecFileSyncOptions"]
 
   module ExecFileSyncOptionsWithStringEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecFileSyncOptions
+    end
 
     val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
     val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
-
-    val cast : t -> ExecFileSyncOptions.t [@@js.cast]
   end
   [@@js.scope "ExecFileSyncOptionsWithStringEncoding"]
 
   module ExecFileSyncOptionsWithBufferEncoding : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ExecFileSyncOptions
+    end
 
     val get_encoding : t -> BufferEncoding.t [@@js.get "encoding"]
 
     val set_encoding : t -> BufferEncoding.t -> unit [@@js.set "encoding"]
-
-    val cast : t -> ExecFileSyncOptions.t [@@js.cast]
   end
   [@@js.scope "ExecFileSyncOptionsWithBufferEncoding"]
 

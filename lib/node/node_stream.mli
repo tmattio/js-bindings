@@ -35,13 +35,12 @@ end
 
 module Stream : sig
   module Internal : sig
-    type stream = Node_events.Events.EventEmitter.t
-
     module Base : sig
-      include module type of struct
-          include Node_events.Events.EventEmitter
-        end
-        with type t = stream
+      type t = stream
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
 
       val pipe : t -> 'T -> ?options:AnonymousInterface1.t -> unit -> 'T
         [@@js.call "pipe"]
@@ -84,9 +83,8 @@ module Stream : sig
 
     module Stream : sig
       include module type of struct
-          include Base
-        end
-        with type t = stream
+        include Base
+      end
 
       val create : ?opts:ReadableOptions.t -> unit -> t [@@js.create]
     end
@@ -94,9 +92,8 @@ module Stream : sig
 
     module Readable : sig
       include module type of struct
-          include Stream
-        end
-        with type t = stream
+        include Stream
+      end
 
       val from
         :  iterable:(any AsyncIterable.t, any Iterable.t) union2
@@ -162,365 +159,130 @@ module Stream : sig
 
       val destroy : t -> ?error:Error.t -> unit -> unit [@@js.call "destroy"]
 
-      val add_listener
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "addListener"]
+      module CloseListener : sig
+        type t = unit -> unit
 
-      val add_listener'
-        :  t
-        -> event:([ `data ][@js.enum])
-        -> listener:(chunk:any -> unit)
-        -> t
-        [@@js.call "addListener"]
+        val t_to_js : t -> Ojs.t
 
-      val add_listener''
-        :  t
-        -> event:([ `end_ ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "addListener"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val add_listener'''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "addListener"]
+      module DataListener : sig
+        type t = chunk:any -> unit
 
-      val add_listener''''
-        :  t
-        -> event:([ `pause ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "addListener"]
+        val t_to_js : t -> Ojs.t
 
-      val add_listener'''''
-        :  t
-        -> event:([ `readable ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "addListener"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val add_listener''''''
-        :  t
-        -> event:([ `resume ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "addListener"]
+      module EndListener : sig
+        type t = unit -> unit
 
-      val add_listener'''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "addListener"]
+        val t_to_js : t -> Ojs.t
 
-      val emit : t -> event:([ `close ][@js.enum]) -> bool [@@js.call "emit"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val emit' : t -> event:([ `data ][@js.enum]) -> chunk:any -> bool
-        [@@js.call "emit"]
+      module ErrorListener : sig
+        type t = err:Error.t -> unit
 
-      val emit'' : t -> event:([ `end_ ][@js.enum]) -> bool [@@js.call "emit"]
+        val t_to_js : t -> Ojs.t
 
-      val emit''' : t -> event:([ `error ][@js.enum]) -> err:Error.t -> bool
-        [@@js.call "emit"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val emit'''' : t -> event:([ `pause ][@js.enum]) -> bool
-        [@@js.call "emit"]
+      module PauseListener : sig
+        type t = unit -> unit
 
-      val emit''''' : t -> event:([ `readable ][@js.enum]) -> bool
-        [@@js.call "emit"]
+        val t_to_js : t -> Ojs.t
 
-      val emit'''''' : t -> event:([ `resume ][@js.enum]) -> bool
-        [@@js.call "emit"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val emit'''''''
-        :  t
-        -> event:symbol or_string
-        -> args:(any list[@js.variadic])
-        -> bool
-        [@@js.call "emit"]
+      module ReadableListener : sig
+        type t = unit -> unit
 
-      val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
-        [@@js.call "on"]
+        val t_to_js : t -> Ojs.t
 
-      val on'
-        :  t
-        -> event:([ `data ][@js.enum])
-        -> listener:(chunk:any -> unit)
-        -> t
-        [@@js.call "on"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val on''
-        :  t
-        -> event:([ `end_ ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "on"]
+      module ResumeListener : sig
+        type t = unit -> unit
 
-      val on'''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "on"]
+        val t_to_js : t -> Ojs.t
 
-      val on''''
-        :  t
-        -> event:([ `pause ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "on"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val on'''''
-        :  t
-        -> event:([ `readable ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "on"]
+      type listener =
+        ([ `Close of CloseListener.t
+         | `Data of DataListener.t
+         | `End of EndListener.t
+         | `Error of ErrorListener.t
+         | `Pause of PauseListener.t
+         | `Readable of ReadableListener.t
+         | `Resume of ResumeListener.t
+         ]
+        [@js.union])
 
-      val on''''''
-        :  t
-        -> event:([ `resume ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "on"]
+      [@@@js.stop]
 
-      val on'''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "on"]
+      val on : t -> listener -> unit
 
-      val once
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "once"]
+      val add_listener : t -> listener -> unit
 
-      val once'
-        :  t
-        -> event:([ `data ][@js.enum])
-        -> listener:(chunk:any -> unit)
-        -> t
-        [@@js.call "once"]
+      val once : t -> listener -> unit
 
-      val once''
-        :  t
-        -> event:([ `end_ ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "once"]
+      val prepend_listener : t -> listener -> unit
 
-      val once'''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "once"]
+      val prepend_once_listener : t -> listener -> unit
 
-      val once''''
-        :  t
-        -> event:([ `pause ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "once"]
+      [@@@js.start]
 
-      val once'''''
-        :  t
-        -> event:([ `readable ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "once"]
+      [@@@js.implem
+      val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
 
-      val once''''''
-        :  t
-        -> event:([ `resume ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "once"]
+      val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
 
-      val once'''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "once"]
+      val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
 
-      val prepend_listener
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
+      val prepend_listener : t -> string -> Ojs.t -> unit
         [@@js.call "prependListener"]
 
-      val prepend_listener'
-        :  t
-        -> event:([ `data ][@js.enum])
-        -> listener:(chunk:any -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener''
-        :  t
-        -> event:([ `end_ ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener'''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener''''
-        :  t
-        -> event:([ `pause ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener'''''
-        :  t
-        -> event:([ `readable ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener''''''
-        :  t
-        -> event:([ `resume ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener'''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_once_listener
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
+      val prepend_once_listener : t -> string -> Ojs.t -> unit
         [@@js.call "prependOnceListener"]
 
-      val prepend_once_listener'
-        :  t
-        -> event:([ `data ][@js.enum])
-        -> listener:(chunk:any -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener''
-        :  t
-        -> event:([ `end_ ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener'''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener''''
-        :  t
-        -> event:([ `pause ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener'''''
-        :  t
-        -> event:([ `readable ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener''''''
-        :  t
-        -> event:([ `resume ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener'''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val remove_listener
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
+      val remove_listener : t -> string -> Ojs.t -> unit
         [@@js.call "removeListener"]
 
-      val remove_listener'
-        :  t
-        -> event:([ `data ][@js.enum])
-        -> listener:(chunk:any -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let with_listener_fn fn t = function
+        | `Close f ->
+          fn t "close" @@ [%js.of: CloseListener.t] f
+        | `Data f ->
+          fn t "data" @@ [%js.of: DataListener.t] f
+        | `End f ->
+          fn t "end" @@ [%js.of: EndListener.t] f
+        | `Error f ->
+          fn t "error" @@ [%js.of: ErrorListener.t] f
+        | `Pause f ->
+          fn t "pause" @@ [%js.of: PauseListener.t] f
+        | `Readable f ->
+          fn t "readable" @@ [%js.of: ReadableListener.t] f
+        | `Resume f ->
+          fn t "resume" @@ [%js.of: ResumeListener.t] f
 
-      val remove_listener''
-        :  t
-        -> event:([ `end_ ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let on = with_listener_fn on
 
-      val remove_listener'''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let add_listener = with_listener_fn add_listener
 
-      val remove_listener''''
-        :  t
-        -> event:([ `pause ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let once = with_listener_fn once
 
-      val remove_listener'''''
-        :  t
-        -> event:([ `readable ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let prepend_listener = with_listener_fn prepend_listener
 
-      val remove_listener''''''
-        :  t
-        -> event:([ `resume ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let prepend_once_listener = with_listener_fn prepend_once_listener
 
-      val remove_listener'''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "removeListener"]
-
-      val cast : t -> Stream.t [@@js.cast]
+      let remove_listener = with_listener_fn remove_listener]
 
       val cast' : t -> ReadableStream.t [@@js.cast]
     end
@@ -763,259 +525,128 @@ module Stream : sig
         -> bool
         [@@js.call "emit"]
 
-      val on : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
-        [@@js.call "on"]
+      module CloseListener : sig
+        type t = unit -> unit
 
-      val on'
-        :  t
-        -> event:([ `drain ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "on"]
+        val t_to_js : t -> Ojs.t
 
-      val on''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "on"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val on'''
-        :  t
-        -> event:([ `finish ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "on"]
+      module DrainListener : sig
+        type t = unit -> unit
 
-      val on''''
-        :  t
-        -> event:([ `pipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "on"]
+        val t_to_js : t -> Ojs.t
 
-      val on'''''
-        :  t
-        -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "on"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val on''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "on"]
+      module ErrorListener : sig
+        type t = err:Error.t -> unit
 
-      val once
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "once"]
+        val t_to_js : t -> Ojs.t
 
-      val once'
-        :  t
-        -> event:([ `drain ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "once"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val once''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "once"]
+      module FinishListener : sig
+        type t = unit -> unit
 
-      val once'''
-        :  t
-        -> event:([ `finish ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "once"]
+        val t_to_js : t -> Ojs.t
 
-      val once''''
-        :  t
-        -> event:([ `pipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "once"]
+        val t_of_js : Ojs.t -> t
+      end
 
-      val once'''''
-        :  t
-        -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "once"]
+      module PipeListener : sig
+        type t = src:Readable.t -> unit
 
-      val once''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "once"]
+        val t_to_js : t -> Ojs.t
 
-      val prepend_listener
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
+        val t_of_js : Ojs.t -> t
+      end
+
+      module UnpipeListener : sig
+        type t = src:Readable.t -> unit
+
+        val t_to_js : t -> Ojs.t
+
+        val t_of_js : Ojs.t -> t
+      end
+
+      type listener =
+        ([ `Close of CloseListener.t
+         | `Drain of DrainListener.t
+         | `Error of ErrorListener.t
+         | `Finish of FinishListener.t
+         | `Pipe of PipeListener.t
+         | `Unpipe of UnpipeListener.t
+         ]
+        [@js.union])
+
+      [@@@js.stop]
+
+      val on : t -> listener -> unit
+
+      val add_listener : t -> listener -> unit
+
+      val once : t -> listener -> unit
+
+      val prepend_listener : t -> listener -> unit
+
+      val prepend_once_listener : t -> listener -> unit
+
+      [@@@js.start]
+
+      [@@@js.implem
+      val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+      val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+      val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+      val prepend_listener : t -> string -> Ojs.t -> unit
         [@@js.call "prependListener"]
 
-      val prepend_listener'
-        :  t
-        -> event:([ `drain ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener'''
-        :  t
-        -> event:([ `finish ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener''''
-        :  t
-        -> event:([ `pipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener'''''
-        :  t
-        -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_listener''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "prependListener"]
-
-      val prepend_once_listener
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
+      val prepend_once_listener : t -> string -> Ojs.t -> unit
         [@@js.call "prependOnceListener"]
 
-      val prepend_once_listener'
-        :  t
-        -> event:([ `drain ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener'''
-        :  t
-        -> event:([ `finish ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener''''
-        :  t
-        -> event:([ `pipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener'''''
-        :  t
-        -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val prepend_once_listener''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "prependOnceListener"]
-
-      val remove_listener
-        :  t
-        -> event:([ `close ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
+      val remove_listener : t -> string -> Ojs.t -> unit
         [@@js.call "removeListener"]
 
-      val remove_listener'
-        :  t
-        -> event:([ `drain ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let with_listener_fn fn t = function
+        | `Close f ->
+          fn t "close" @@ [%js.of: CloseListener.t] f
+        | `Drain f ->
+          fn t "drain" @@ [%js.of: DrainListener.t] f
+        | `Error f ->
+          fn t "error" @@ [%js.of: ErrorListener.t] f
+        | `Finish f ->
+          fn t "finish" @@ [%js.of: FinishListener.t] f
+        | `Pipe f ->
+          fn t "pipe" @@ [%js.of: PipeListener.t] f
+        | `Unpipe f ->
+          fn t "unpipe" @@ [%js.of: UnpipeListener.t] f
 
-      val remove_listener''
-        :  t
-        -> event:([ `error ][@js.enum])
-        -> listener:(err:Error.t -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let on = with_listener_fn on
 
-      val remove_listener'''
-        :  t
-        -> event:([ `finish ][@js.enum])
-        -> listener:(unit -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let add_listener = with_listener_fn add_listener
 
-      val remove_listener''''
-        :  t
-        -> event:([ `pipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let once = with_listener_fn once
 
-      val remove_listener'''''
-        :  t
-        -> event:([ `unpipe ][@js.enum])
-        -> listener:(src:Readable.t -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let prepend_listener = with_listener_fn prepend_listener
 
-      val remove_listener''''''
-        :  t
-        -> event:symbol or_string
-        -> listener:(args:(any list[@js.variadic]) -> unit)
-        -> t
-        [@@js.call "removeListener"]
+      let prepend_once_listener = with_listener_fn prepend_once_listener
 
-      val cast : t -> Stream.t [@@js.cast]
+      let remove_listener = with_listener_fn remove_listener]
 
       val cast' : t -> WritableStream.t [@@js.cast]
     end
     [@@js.scope "Writable"]
 
     module DuplexOptions : sig
-      type t
-
-      val t_to_js : t -> Ojs.t
-
-      val t_of_js : Ojs.t -> t
+      include module type of struct
+        include ReadableOptions
+      end
 
       val get_allow_half_open : t -> bool [@@js.get "allowHalfOpen"]
 
@@ -1080,8 +711,6 @@ module Stream : sig
         -> callback:(error:Error.t or_null -> unit)
         -> unit
         [@@js.call "destroy"]
-
-      val cast : t -> ReadableOptions.t [@@js.cast]
 
       val cast' : t -> WritableOptions.t [@@js.cast]
     end
@@ -1174,8 +803,6 @@ module Stream : sig
       val cork : t -> unit [@@js.call "cork"]
 
       val uncork : t -> unit [@@js.call "uncork"]
-
-      val cast : t -> Readable.t [@@js.cast]
 
       val cast' : t -> Writable.t [@@js.cast]
     end

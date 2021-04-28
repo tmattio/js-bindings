@@ -2,6 +2,8 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
+[@@@js.scope "__LIB__VSCODE_JSONRPC__IMPORTS"]
+
 open Es2020
 
 module AnonymousInterface0 : sig
@@ -25,15 +27,11 @@ module AnonymousInterface0 : sig
 end
 
 module RIL : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Vscode_jsonrpc_ral.RAL
+  end
 
   val get_stream : t -> AnonymousInterface0.t [@@js.get "stream"]
-
-  val cast : t -> Vscode_jsonrpc_ral.RAL.t [@@js.cast]
 
   val install : unit -> unit [@@js.global "install"]
 end

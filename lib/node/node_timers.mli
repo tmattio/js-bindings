@@ -10,6 +10,7 @@ module Timers : sig
     :  callback:(args:(any list[@js.variadic]) -> unit)
     -> ?ms:int
     -> args:(any list[@js.variadic])
+    -> unit
     -> Timeout.t
     [@@js.global "setTimeout"]
 
@@ -27,6 +28,7 @@ module Timers : sig
     :  callback:(args:(any list[@js.variadic]) -> unit)
     -> ?ms:int
     -> args:(any list[@js.variadic])
+    -> unit
     -> Timeout.t
     [@@js.global "setInterval"]
 

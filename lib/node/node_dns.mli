@@ -54,32 +54,24 @@ module Dns : sig
   [@@js.scope "LookupOptions"]
 
   module LookupOneOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include LookupOptions
+    end
 
     val get_all : t -> ([ `L_b_false [@js false] ][@js.enum]) [@@js.get "all"]
 
     val set_all : t -> ([ `L_b_false ][@js.enum]) -> unit [@@js.set "all"]
-
-    val cast : t -> LookupOptions.t [@@js.cast]
   end
   [@@js.scope "LookupOneOptions"]
 
   module LookupAllOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include LookupOptions
+    end
 
     val get_all : t -> ([ `L_b_true [@js true] ][@js.enum]) [@@js.get "all"]
 
     val set_all : t -> ([ `L_b_true ][@js.enum]) -> unit [@@js.set "all"]
-
-    val cast : t -> LookupOptions.t [@@js.cast]
   end
   [@@js.scope "LookupAllOptions"]
 
@@ -200,17 +192,13 @@ module Dns : sig
   [@@js.scope "ResolveOptions"]
 
   module ResolveWithTtlOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ResolveOptions
+    end
 
     val get_ttl : t -> ([ `L_b_true [@js true] ][@js.enum]) [@@js.get "ttl"]
 
     val set_ttl : t -> ([ `L_b_true ][@js.enum]) -> unit [@@js.set "ttl"]
-
-    val cast : t -> ResolveOptions.t [@@js.cast]
   end
   [@@js.scope "ResolveWithTtlOptions"]
 
@@ -232,32 +220,24 @@ module Dns : sig
   [@@js.scope "RecordWithTtl"]
 
   module AnyARecord : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include RecordWithTtl
+    end
 
     val get_type : t -> ([ `A [@js "A"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `A ][@js.enum]) -> unit [@@js.set "type"]
-
-    val cast : t -> RecordWithTtl.t [@@js.cast]
   end
   [@@js.scope "AnyARecord"]
 
   module AnyAaaaRecord : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include RecordWithTtl
+    end
 
     val get_type : t -> ([ `AAAA [@js "AAAA"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `AAAA ][@js.enum]) -> unit [@@js.set "type"]
-
-    val cast : t -> RecordWithTtl.t [@@js.cast]
   end
   [@@js.scope "AnyAaaaRecord"]
 
@@ -291,17 +271,13 @@ module Dns : sig
   [@@js.scope "MxRecord"]
 
   module AnyMxRecord : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include MxRecord
+    end
 
     val get_type : t -> ([ `MX [@js "MX"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `MX ][@js.enum]) -> unit [@@js.set "type"]
-
-    val cast : t -> MxRecord.t [@@js.cast]
   end
   [@@js.scope "AnyMxRecord"]
 
@@ -339,17 +315,13 @@ module Dns : sig
   [@@js.scope "NaptrRecord"]
 
   module AnyNaptrRecord : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include NaptrRecord
+    end
 
     val get_type : t -> ([ `NAPTR [@js "NAPTR"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `NAPTR ][@js.enum]) -> unit [@@js.set "type"]
-
-    val cast : t -> NaptrRecord.t [@@js.cast]
   end
   [@@js.scope "AnyNaptrRecord"]
 
@@ -391,17 +363,13 @@ module Dns : sig
   [@@js.scope "SoaRecord"]
 
   module AnySoaRecord : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SoaRecord
+    end
 
     val get_type : t -> ([ `SOA [@js "SOA"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `SOA ][@js.enum]) -> unit [@@js.set "type"]
-
-    val cast : t -> SoaRecord.t [@@js.cast]
   end
   [@@js.scope "AnySoaRecord"]
 
@@ -431,17 +399,13 @@ module Dns : sig
   [@@js.scope "SrvRecord"]
 
   module AnySrvRecord : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SrvRecord
+    end
 
     val get_type : t -> ([ `SRV [@js "SRV"] ][@js.enum]) [@@js.get "type"]
 
     val set_type : t -> ([ `SRV ][@js.enum]) -> unit [@@js.set "type"]
-
-    val cast : t -> SrvRecord.t [@@js.cast]
   end
   [@@js.scope "AnySrvRecord"]
 

@@ -17,347 +17,358 @@ module Tty =
         Ojs.bool_of_js (Ojs.call Import.tty "isatty" [|(Ojs.int_to_js x3)|])
     module ReadStream =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x5 : Ojs.t) -> x5
-        and t_to_js : t -> Ojs.t = fun (x4 : Ojs.t) -> x4
+        include struct include Net.Socket end
         let (create :
           fd:int -> ?options:Net.SocketConstructorOpts.t -> unit -> t) =
-          fun ~fd:(x6 : int) ->
-            fun ?options:(x7 : Net.SocketConstructorOpts.t option) ->
+          fun ~fd:(x4 : int) ->
+            fun ?options:(x5 : Net.SocketConstructorOpts.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii Import.tty "ReadStream")
-                     (let x8 =
+                     (let x6 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
-                      ignore (Ojs.call x8 "push" [|(Ojs.int_to_js x6)|]);
-                      (match x7 with
-                       | Some x9 ->
+                      ignore (Ojs.call x6 "push" [|(Ojs.int_to_js x4)|]);
+                      (match x5 with
+                       | Some x7 ->
                            ignore
-                             (Ojs.call x8 "push"
-                                [|(Net.SocketConstructorOpts.t_to_js x9)|])
+                             (Ojs.call x6 "push"
+                                [|(Net.SocketConstructorOpts.t_to_js x7)|])
                        | None -> ());
-                      x8))
+                      x6))
         let (get_is_raw : t -> bool) =
-          fun (x10 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x10) "isRaw")
+          fun (x8 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x8) "isRaw")
         let (set_is_raw : t -> bool -> unit) =
-          fun (x11 : t) ->
-            fun (x12 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x11) "isRaw" (Ojs.bool_to_js x12)
+          fun (x9 : t) ->
+            fun (x10 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x9) "isRaw" (Ojs.bool_to_js x10)
         let (set_raw_mode : t -> mode:bool -> t) =
-          fun (x14 : t) ->
-            fun ~mode:(x13 : bool) ->
+          fun (x12 : t) ->
+            fun ~mode:(x11 : bool) ->
               t_of_js
-                (Ojs.call (t_to_js x14) "setRawMode" [|(Ojs.bool_to_js x13)|])
+                (Ojs.call (t_to_js x12) "setRawMode" [|(Ojs.bool_to_js x11)|])
         let (get_is_tty : t -> bool) =
-          fun (x15 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x15) "isTTY")
+          fun (x13 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x13) "isTTY")
         let (set_is_tty : t -> bool -> unit) =
-          fun (x16 : t) ->
-            fun (x17 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x16) "isTTY" (Ojs.bool_to_js x17)
-        let (cast : t -> Net.Socket.t) =
-          fun (x18 : t) -> Net.Socket.t_of_js (t_to_js x18)
+          fun (x14 : t) ->
+            fun (x15 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x14) "isTTY" (Ojs.bool_to_js x15)
       end
     module Direction =
       struct
         type t = [ `L_n_minus1  | `L_n_0  | `L_n_1 ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x20 : Ojs.t) ->
-            let x21 = x20 in
-            match Ojs.int_of_js x21 with
+          fun (x17 : Ojs.t) ->
+            let x18 = x17 in
+            match Ojs.int_of_js x18 with
             | (-1) -> `L_n_minus1
             | 0 -> `L_n_0
             | 1 -> `L_n_1
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x19 : [ `L_n_minus1  | `L_n_0  | `L_n_1 ]) ->
-            match x19 with
+          fun (x16 : [ `L_n_minus1  | `L_n_0  | `L_n_1 ]) ->
+            match x16 with
             | `L_n_minus1 -> Ojs.int_to_js (-1)
             | `L_n_0 -> Ojs.int_to_js 0
             | `L_n_1 -> Ojs.int_to_js 1
       end
     module WriteStream =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
-        and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
+        include struct include Net.Socket end
         let (create : fd:int -> t) =
-          fun ~fd:(x24 : int) ->
+          fun ~fd:(x19 : int) ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.tty "WriteStream")
-                 [|(Ojs.int_to_js x24)|])
+                 [|(Ojs.int_to_js x19)|])
         let (add_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x29 : t) ->
-            fun ~event:(x25 : string) ->
-              fun ~listener:(x26 : args:any list -> unit) ->
+          fun (x24 : t) ->
+            fun ~event:(x20 : string) ->
+              fun ~listener:(x21 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x29) "addListener"
-                     [|(Ojs.string_to_js x25);(Ojs.fun_to_js_args
-                                                 (fun (x27 : _) ->
-                                                    x26
+                  (Ojs.call (t_to_js x24) "addListener"
+                     [|(Ojs.string_to_js x20);(Ojs.fun_to_js_args
+                                                 (fun (x22 : _) ->
+                                                    x21
                                                       ~args:(Ojs.list_of_js_from
-                                                               any_of_js x27
+                                                               any_of_js x22
                                                                0)))|])
         let (add_listener' :
           t -> event:[ `resize ] -> listener:(unit -> unit) -> t) =
-          fun (x32 : t) ->
-            fun ~event:(x30 : [ `resize ]) ->
-              fun ~listener:(x31 : unit -> unit) ->
+          fun (x27 : t) ->
+            fun ~event:(x25 : [ `resize ]) ->
+              fun ~listener:(x26 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x32) "addListener"
-                     [|((match x30 with
+                  (Ojs.call (t_to_js x27) "addListener"
+                     [|((match x25 with
                          | `resize -> Ojs.string_to_js "resize"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x31 ()))|])
+                                                                    x26 ()))|])
         let (emit : t -> event:symbol or_string -> args:any list -> bool) =
-          fun (x38 : t) ->
-            fun ~event:(x33 : symbol or_string) ->
-              fun ~args:(x34 : any list) ->
+          fun (x33 : t) ->
+            fun ~event:(x28 : symbol or_string) ->
+              fun ~args:(x29 : any list) ->
                 Ojs.bool_of_js
-                  (let x39 = t_to_js x38 in
-                   Ojs.call (Ojs.get_prop_ascii x39 "emit") "apply"
-                     [|x39;((let x35 =
+                  (let x34 = t_to_js x33 in
+                   Ojs.call (Ojs.get_prop_ascii x34 "emit") "apply"
+                     [|x34;((let x30 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
                              ignore
-                               (Ojs.call x35 "push"
-                                  [|(or_string_to_js symbol_to_js x33)|]);
+                               (Ojs.call x30 "push"
+                                  [|(or_string_to_js symbol_to_js x28)|]);
                              List.iter
-                               (fun (x36 : any) ->
+                               (fun (x31 : any) ->
                                   ignore
-                                    (Ojs.call x35 "push" [|(any_to_js x36)|]))
-                               x34;
-                             x35))|])
+                                    (Ojs.call x30 "push" [|(any_to_js x31)|]))
+                               x29;
+                             x30))|])
         let (emit' : t -> event:[ `resize ] -> bool) =
-          fun (x41 : t) ->
-            fun ~event:(x40 : [ `resize ]) ->
+          fun (x36 : t) ->
+            fun ~event:(x35 : [ `resize ]) ->
               Ojs.bool_of_js
-                (Ojs.call (t_to_js x41) "emit"
-                   [|((match x40 with | `resize -> Ojs.string_to_js "resize"))|])
+                (Ojs.call (t_to_js x36) "emit"
+                   [|((match x35 with | `resize -> Ojs.string_to_js "resize"))|])
         let (on : t -> event:string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x46 : t) ->
-            fun ~event:(x42 : string) ->
-              fun ~listener:(x43 : args:any list -> unit) ->
+          fun (x41 : t) ->
+            fun ~event:(x37 : string) ->
+              fun ~listener:(x38 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x46) "on"
-                     [|(Ojs.string_to_js x42);(Ojs.fun_to_js_args
-                                                 (fun (x44 : _) ->
-                                                    x43
+                  (Ojs.call (t_to_js x41) "on"
+                     [|(Ojs.string_to_js x37);(Ojs.fun_to_js_args
+                                                 (fun (x39 : _) ->
+                                                    x38
                                                       ~args:(Ojs.list_of_js_from
-                                                               any_of_js x44
+                                                               any_of_js x39
                                                                0)))|])
         let (on' : t -> event:[ `resize ] -> listener:(unit -> unit) -> t) =
-          fun (x49 : t) ->
-            fun ~event:(x47 : [ `resize ]) ->
-              fun ~listener:(x48 : unit -> unit) ->
+          fun (x44 : t) ->
+            fun ~event:(x42 : [ `resize ]) ->
+              fun ~listener:(x43 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x49) "on"
-                     [|((match x47 with
+                  (Ojs.call (t_to_js x44) "on"
+                     [|((match x42 with
                          | `resize -> Ojs.string_to_js "resize"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x48 ()))|])
+                                                                    x43 ()))|])
         let (once :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x54 : t) ->
-            fun ~event:(x50 : string) ->
-              fun ~listener:(x51 : args:any list -> unit) ->
+          fun (x49 : t) ->
+            fun ~event:(x45 : string) ->
+              fun ~listener:(x46 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x54) "once"
-                     [|(Ojs.string_to_js x50);(Ojs.fun_to_js_args
-                                                 (fun (x52 : _) ->
-                                                    x51
+                  (Ojs.call (t_to_js x49) "once"
+                     [|(Ojs.string_to_js x45);(Ojs.fun_to_js_args
+                                                 (fun (x47 : _) ->
+                                                    x46
                                                       ~args:(Ojs.list_of_js_from
-                                                               any_of_js x52
+                                                               any_of_js x47
                                                                0)))|])
         let (once' : t -> event:[ `resize ] -> listener:(unit -> unit) -> t)
           =
-          fun (x57 : t) ->
-            fun ~event:(x55 : [ `resize ]) ->
-              fun ~listener:(x56 : unit -> unit) ->
+          fun (x52 : t) ->
+            fun ~event:(x50 : [ `resize ]) ->
+              fun ~listener:(x51 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x57) "once"
-                     [|((match x55 with
+                  (Ojs.call (t_to_js x52) "once"
+                     [|((match x50 with
                          | `resize -> Ojs.string_to_js "resize"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x56 ()))|])
+                                                                    x51 ()))|])
         let (prepend_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x62 : t) ->
-            fun ~event:(x58 : string) ->
-              fun ~listener:(x59 : args:any list -> unit) ->
+          fun (x57 : t) ->
+            fun ~event:(x53 : string) ->
+              fun ~listener:(x54 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x62) "prependListener"
-                     [|(Ojs.string_to_js x58);(Ojs.fun_to_js_args
-                                                 (fun (x60 : _) ->
-                                                    x59
+                  (Ojs.call (t_to_js x57) "prependListener"
+                     [|(Ojs.string_to_js x53);(Ojs.fun_to_js_args
+                                                 (fun (x55 : _) ->
+                                                    x54
                                                       ~args:(Ojs.list_of_js_from
-                                                               any_of_js x60
+                                                               any_of_js x55
                                                                0)))|])
         let (prepend_listener' :
           t -> event:[ `resize ] -> listener:(unit -> unit) -> t) =
-          fun (x65 : t) ->
-            fun ~event:(x63 : [ `resize ]) ->
-              fun ~listener:(x64 : unit -> unit) ->
+          fun (x60 : t) ->
+            fun ~event:(x58 : [ `resize ]) ->
+              fun ~listener:(x59 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x65) "prependListener"
-                     [|((match x63 with
+                  (Ojs.call (t_to_js x60) "prependListener"
+                     [|((match x58 with
                          | `resize -> Ojs.string_to_js "resize"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x64 ()))|])
+                                                                    x59 ()))|])
         let (prepend_once_listener :
           t -> event:string -> listener:(args:any list -> unit) -> t) =
-          fun (x70 : t) ->
-            fun ~event:(x66 : string) ->
-              fun ~listener:(x67 : args:any list -> unit) ->
+          fun (x65 : t) ->
+            fun ~event:(x61 : string) ->
+              fun ~listener:(x62 : args:any list -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x70) "prependOnceListener"
-                     [|(Ojs.string_to_js x66);(Ojs.fun_to_js_args
-                                                 (fun (x68 : _) ->
-                                                    x67
+                  (Ojs.call (t_to_js x65) "prependOnceListener"
+                     [|(Ojs.string_to_js x61);(Ojs.fun_to_js_args
+                                                 (fun (x63 : _) ->
+                                                    x62
                                                       ~args:(Ojs.list_of_js_from
-                                                               any_of_js x68
+                                                               any_of_js x63
                                                                0)))|])
         let (prepend_once_listener' :
           t -> event:[ `resize ] -> listener:(unit -> unit) -> t) =
-          fun (x73 : t) ->
-            fun ~event:(x71 : [ `resize ]) ->
-              fun ~listener:(x72 : unit -> unit) ->
+          fun (x68 : t) ->
+            fun ~event:(x66 : [ `resize ]) ->
+              fun ~listener:(x67 : unit -> unit) ->
                 t_of_js
-                  (Ojs.call (t_to_js x73) "prependOnceListener"
-                     [|((match x71 with
+                  (Ojs.call (t_to_js x68) "prependOnceListener"
+                     [|((match x66 with
                          | `resize -> Ojs.string_to_js "resize"));(Ojs.fun_to_js
                                                                     1
                                                                     (fun _ ->
-                                                                    x72 ()))|])
+                                                                    x67 ()))|])
         let (clear_line :
           t -> dir:Direction.t -> ?callback:(unit -> unit) -> unit -> bool) =
-          fun (x78 : t) ->
-            fun ~dir:(x74 : Direction.t) ->
-              fun ?callback:(x75 : (unit -> unit) option) ->
+          fun (x73 : t) ->
+            fun ~dir:(x69 : Direction.t) ->
+              fun ?callback:(x70 : (unit -> unit) option) ->
                 fun () ->
                   Ojs.bool_of_js
-                    (let x79 = t_to_js x78 in
-                     Ojs.call (Ojs.get_prop_ascii x79 "clearLine") "apply"
-                       [|x79;((let x76 =
+                    (let x74 = t_to_js x73 in
+                     Ojs.call (Ojs.get_prop_ascii x74 "clearLine") "apply"
+                       [|x74;((let x71 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x76 "push"
-                                    [|(Direction.t_to_js x74)|]);
-                               (match x75 with
-                                | Some x77 ->
+                                 (Ojs.call x71 "push"
+                                    [|(Direction.t_to_js x69)|]);
+                               (match x70 with
+                                | Some x72 ->
                                     ignore
-                                      (Ojs.call x76 "push"
-                                         [|(Ojs.fun_to_js 1 (fun _ -> x77 ()))|])
+                                      (Ojs.call x71 "push"
+                                         [|(Ojs.fun_to_js 1 (fun _ -> x72 ()))|])
                                 | None -> ());
-                               x76))|])
+                               x71))|])
         let (clear_screen_down :
           t -> ?callback:(unit -> unit) -> unit -> bool) =
-          fun (x83 : t) ->
-            fun ?callback:(x80 : (unit -> unit) option) ->
+          fun (x78 : t) ->
+            fun ?callback:(x75 : (unit -> unit) option) ->
               fun () ->
                 Ojs.bool_of_js
-                  (let x84 = t_to_js x83 in
-                   Ojs.call (Ojs.get_prop_ascii x84 "clearScreenDown")
+                  (let x79 = t_to_js x78 in
+                   Ojs.call (Ojs.get_prop_ascii x79 "clearScreenDown")
                      "apply"
-                     [|x84;((let x81 =
+                     [|x79;((let x76 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x80 with
-                              | Some x82 ->
+                             (match x75 with
+                              | Some x77 ->
                                   ignore
-                                    (Ojs.call x81 "push"
-                                       [|(Ojs.fun_to_js 1 (fun _ -> x82 ()))|])
+                                    (Ojs.call x76 "push"
+                                       [|(Ojs.fun_to_js 1 (fun _ -> x77 ()))|])
                               | None -> ());
-                             x81))|])
+                             x76))|])
         let (cursor_to :
           t -> x:int -> ?y:int -> ?callback:(unit -> unit) -> unit -> bool) =
-          fun (x91 : t) ->
-            fun ~x:(x85 : int) ->
-              fun ?y:(x86 : int option) ->
-                fun ?callback:(x87 : (unit -> unit) option) ->
+          fun (x86 : t) ->
+            fun ~x:(x80 : int) ->
+              fun ?y:(x81 : int option) ->
+                fun ?callback:(x82 : (unit -> unit) option) ->
                   fun () ->
                     Ojs.bool_of_js
-                      (let x92 = t_to_js x91 in
-                       Ojs.call (Ojs.get_prop_ascii x92 "cursorTo") "apply"
-                         [|x92;((let x88 =
+                      (let x87 = t_to_js x86 in
+                       Ojs.call (Ojs.get_prop_ascii x87 "cursorTo") "apply"
+                         [|x87;((let x83 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x88 "push"
-                                      [|(Ojs.int_to_js x85)|]);
-                                 (match x86 with
-                                  | Some x90 ->
+                                   (Ojs.call x83 "push"
+                                      [|(Ojs.int_to_js x80)|]);
+                                 (match x81 with
+                                  | Some x85 ->
                                       ignore
-                                        (Ojs.call x88 "push"
-                                           [|(Ojs.int_to_js x90)|])
+                                        (Ojs.call x83 "push"
+                                           [|(Ojs.int_to_js x85)|])
                                   | None -> ());
-                                 (match x87 with
-                                  | Some x89 ->
+                                 (match x82 with
+                                  | Some x84 ->
                                       ignore
-                                        (Ojs.call x88 "push"
+                                        (Ojs.call x83 "push"
                                            [|(Ojs.fun_to_js 1
-                                                (fun _ -> x89 ()))|])
+                                                (fun _ -> x84 ()))|])
                                   | None -> ());
-                                 x88))|])
+                                 x83))|])
         let (cursor_to' : t -> x:int -> callback:(unit -> unit) -> bool) =
-          fun (x95 : t) ->
-            fun ~x:(x93 : int) ->
-              fun ~callback:(x94 : unit -> unit) ->
+          fun (x90 : t) ->
+            fun ~x:(x88 : int) ->
+              fun ~callback:(x89 : unit -> unit) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x95) "cursorTo"
-                     [|(Ojs.int_to_js x93);(Ojs.fun_to_js 1 (fun _ -> x94 ()))|])
+                  (Ojs.call (t_to_js x90) "cursorTo"
+                     [|(Ojs.int_to_js x88);(Ojs.fun_to_js 1 (fun _ -> x89 ()))|])
         let (move_cursor :
           t -> dx:int -> dy:int -> ?callback:(unit -> unit) -> unit -> bool)
           =
-          fun (x101 : t) ->
-            fun ~dx:(x96 : int) ->
-              fun ~dy:(x97 : int) ->
-                fun ?callback:(x98 : (unit -> unit) option) ->
+          fun (x96 : t) ->
+            fun ~dx:(x91 : int) ->
+              fun ~dy:(x92 : int) ->
+                fun ?callback:(x93 : (unit -> unit) option) ->
                   fun () ->
                     Ojs.bool_of_js
-                      (let x102 = t_to_js x101 in
-                       Ojs.call (Ojs.get_prop_ascii x102 "moveCursor")
-                         "apply"
-                         [|x102;((let x99 =
-                                    Ojs.new_obj
-                                      (Ojs.get_prop_ascii Ojs.global "Array")
-                                      [||] in
-                                  ignore
-                                    (Ojs.call x99 "push"
-                                       [|(Ojs.int_to_js x96)|]);
-                                  ignore
-                                    (Ojs.call x99 "push"
-                                       [|(Ojs.int_to_js x97)|]);
-                                  (match x98 with
-                                   | Some x100 ->
-                                       ignore
-                                         (Ojs.call x99 "push"
-                                            [|(Ojs.fun_to_js 1
-                                                 (fun _ -> x100 ()))|])
-                                   | None -> ());
-                                  x99))|])
+                      (let x97 = t_to_js x96 in
+                       Ojs.call (Ojs.get_prop_ascii x97 "moveCursor") "apply"
+                         [|x97;((let x94 =
+                                   Ojs.new_obj
+                                     (Ojs.get_prop_ascii Ojs.global "Array")
+                                     [||] in
+                                 ignore
+                                   (Ojs.call x94 "push"
+                                      [|(Ojs.int_to_js x91)|]);
+                                 ignore
+                                   (Ojs.call x94 "push"
+                                      [|(Ojs.int_to_js x92)|]);
+                                 (match x93 with
+                                  | Some x95 ->
+                                      ignore
+                                        (Ojs.call x94 "push"
+                                           [|(Ojs.fun_to_js 1
+                                                (fun _ -> x95 ()))|])
+                                  | None -> ());
+                                 x94))|])
         let (get_color_depth :
           t -> ?env:AnonymousInterface0.t -> unit -> int) =
-          fun (x106 : t) ->
-            fun ?env:(x103 : AnonymousInterface0.t option) ->
+          fun (x101 : t) ->
+            fun ?env:(x98 : AnonymousInterface0.t option) ->
               fun () ->
                 Ojs.int_of_js
+                  (let x102 = t_to_js x101 in
+                   Ojs.call (Ojs.get_prop_ascii x102 "getColorDepth") "apply"
+                     [|x102;((let x99 =
+                                Ojs.new_obj
+                                  (Ojs.get_prop_ascii Ojs.global "Array")
+                                  [||] in
+                              (match x98 with
+                               | Some x100 ->
+                                   ignore
+                                     (Ojs.call x99 "push"
+                                        [|(AnonymousInterface0.t_to_js x100)|])
+                               | None -> ());
+                              x99))|])
+        let (has_colors : t -> ?depth:int -> unit -> bool) =
+          fun (x106 : t) ->
+            fun ?depth:(x103 : int option) ->
+              fun () ->
+                Ojs.bool_of_js
                   (let x107 = t_to_js x106 in
-                   Ojs.call (Ojs.get_prop_ascii x107 "getColorDepth") "apply"
+                   Ojs.call (Ojs.get_prop_ascii x107 "hasColors") "apply"
                      [|x107;((let x104 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
@@ -366,12 +377,12 @@ module Tty =
                                | Some x105 ->
                                    ignore
                                      (Ojs.call x104 "push"
-                                        [|(AnonymousInterface0.t_to_js x105)|])
+                                        [|(Ojs.int_to_js x105)|])
                                | None -> ());
                               x104))|])
-        let (has_colors : t -> ?depth:int -> unit -> bool) =
+        let (has_colors' : t -> ?env:AnonymousInterface0.t -> unit -> bool) =
           fun (x111 : t) ->
-            fun ?depth:(x108 : int option) ->
+            fun ?env:(x108 : AnonymousInterface0.t option) ->
               fun () ->
                 Ojs.bool_of_js
                   (let x112 = t_to_js x111 in
@@ -384,78 +395,58 @@ module Tty =
                                | Some x110 ->
                                    ignore
                                      (Ojs.call x109 "push"
-                                        [|(Ojs.int_to_js x110)|])
+                                        [|(AnonymousInterface0.t_to_js x110)|])
                                | None -> ());
                               x109))|])
-        let (has_colors' : t -> ?env:AnonymousInterface0.t -> unit -> bool) =
-          fun (x116 : t) ->
-            fun ?env:(x113 : AnonymousInterface0.t option) ->
-              fun () ->
-                Ojs.bool_of_js
-                  (let x117 = t_to_js x116 in
-                   Ojs.call (Ojs.get_prop_ascii x117 "hasColors") "apply"
-                     [|x117;((let x114 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              (match x113 with
-                               | Some x115 ->
-                                   ignore
-                                     (Ojs.call x114 "push"
-                                        [|(AnonymousInterface0.t_to_js x115)|])
-                               | None -> ());
-                              x114))|])
         let (has_colors'' :
           t -> depth:int -> ?env:AnonymousInterface0.t -> unit -> bool) =
-          fun (x122 : t) ->
-            fun ~depth:(x118 : int) ->
-              fun ?env:(x119 : AnonymousInterface0.t option) ->
+          fun (x117 : t) ->
+            fun ~depth:(x113 : int) ->
+              fun ?env:(x114 : AnonymousInterface0.t option) ->
                 fun () ->
                   Ojs.bool_of_js
-                    (let x123 = t_to_js x122 in
-                     Ojs.call (Ojs.get_prop_ascii x123 "hasColors") "apply"
-                       [|x123;((let x120 =
+                    (let x118 = t_to_js x117 in
+                     Ojs.call (Ojs.get_prop_ascii x118 "hasColors") "apply"
+                       [|x118;((let x115 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x120 "push"
-                                     [|(Ojs.int_to_js x118)|]);
-                                (match x119 with
-                                 | Some x121 ->
+                                  (Ojs.call x115 "push"
+                                     [|(Ojs.int_to_js x113)|]);
+                                (match x114 with
+                                 | Some x116 ->
                                      ignore
-                                       (Ojs.call x120 "push"
-                                          [|(AnonymousInterface0.t_to_js x121)|])
+                                       (Ojs.call x115 "push"
+                                          [|(AnonymousInterface0.t_to_js x116)|])
                                  | None -> ());
-                                x120))|])
+                                x115))|])
         let (get_window_size : t -> (int * int)) =
-          fun (x124 : t) ->
-            let x125 = Ojs.call (t_to_js x124) "getWindowSize" [||] in
-            ((Ojs.int_of_js (Ojs.array_get x125 0)),
-              (Ojs.int_of_js (Ojs.array_get x125 1)))
+          fun (x119 : t) ->
+            let x120 = Ojs.call (t_to_js x119) "getWindowSize" [||] in
+            ((Ojs.int_of_js (Ojs.array_get x120 0)),
+              (Ojs.int_of_js (Ojs.array_get x120 1)))
         let (get_columns : t -> int) =
-          fun (x126 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x126) "columns")
+          fun (x121 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x121) "columns")
         let (set_columns : t -> int -> unit) =
-          fun (x127 : t) ->
-            fun (x128 : int) ->
-              Ojs.set_prop_ascii (t_to_js x127) "columns"
-                (Ojs.int_to_js x128)
+          fun (x122 : t) ->
+            fun (x123 : int) ->
+              Ojs.set_prop_ascii (t_to_js x122) "columns"
+                (Ojs.int_to_js x123)
         let (get_rows : t -> int) =
-          fun (x129 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x129) "rows")
+          fun (x124 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x124) "rows")
         let (set_rows : t -> int -> unit) =
-          fun (x130 : t) ->
-            fun (x131 : int) ->
-              Ojs.set_prop_ascii (t_to_js x130) "rows" (Ojs.int_to_js x131)
+          fun (x125 : t) ->
+            fun (x126 : int) ->
+              Ojs.set_prop_ascii (t_to_js x125) "rows" (Ojs.int_to_js x126)
         let (get_is_tty : t -> bool) =
-          fun (x132 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x132) "isTTY")
+          fun (x127 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x127) "isTTY")
         let (set_is_tty : t -> bool -> unit) =
-          fun (x133 : t) ->
-            fun (x134 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x133) "isTTY" (Ojs.bool_to_js x134)
-        let (cast : t -> Net.Socket.t) =
-          fun (x135 : t) -> Net.Socket.t_of_js (t_to_js x135)
+          fun (x128 : t) ->
+            fun (x129 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x128) "isTTY" (Ojs.bool_to_js x129)
       end
   end

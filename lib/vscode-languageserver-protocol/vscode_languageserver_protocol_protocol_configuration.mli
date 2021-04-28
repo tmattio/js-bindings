@@ -3,6 +3,9 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
+open Vscode_jsonrpc
+open Vscode_languageserver_protocol_messages
+open Vscode_languageserver_protocol_protocol
 
 module AnonymousInterface0 : sig
   type t
@@ -16,10 +19,6 @@ module AnonymousInterface0 : sig
   val set_configuration : t -> bool -> unit [@@js.set "configuration"]
 end
 
-(* import { RequestHandler, HandlerResult, CancellationToken } from
-   'vscode-jsonrpc'; *)
-(* import { ProtocolRequestType } from './messages'; *)
-(* import { PartialResultParams } from './protocol'; *)
 module ConfigurationClientCapabilities : sig
   type t
 

@@ -3,6 +3,10 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
+open Vscode_jsonrpc
+open Vscode_languageserver_types
+open Vscode_languageserver_protocol_messages
+open Vscode_languageserver_protocol_protocol
 
 module AnonymousInterface0 : sig
   type t
@@ -88,13 +92,6 @@ module AnonymousInterface4 : sig
   val set_version : t -> Integer.t or_null -> unit [@@js.set "version"]
 end
 
-(* import { RequestHandler0, RequestHandler } from 'vscode-jsonrpc'; *)
-(* import { TextDocumentIdentifier, Diagnostic, DocumentUri, integer } from
-   'vscode-languageserver-types'; *)
-(* import { ProtocolRequestType0, ProtocolRequestType } from './messages'; *)
-(* import { PartialResultParams, StaticRegistrationOptions,
-   WorkDoneProgressParams, TextDocumentRegistrationOptions,
-   WorkDoneProgressOptions, TextDocumentClientCapabilities } from './protocol'; *)
 module DiagnosticClientCapabilities : sig
   type t
 
@@ -149,7 +146,10 @@ module DiagnosticOptions : sig
 
   val set_workspace_provider : t -> bool -> unit [@@js.set "workspaceProvider"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "DiagnosticOptions"]
 
@@ -160,7 +160,10 @@ module DiagnosticRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> DiagnosticOptions.t [@@js.cast]
 
@@ -222,7 +225,10 @@ module DocumentDiagnosticParams : sig
 
   val set_previous_result_id : t -> string -> unit [@@js.set "previousResultId"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 
   val cast' : t -> PartialResultParams.t [@@js.cast]
 end
@@ -311,7 +317,10 @@ module WorkspaceDiagnosticParams : sig
   val set_previous_result_ids : t -> AnonymousInterface3.t list -> unit
     [@@js.set "previousResultIds"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 
   val cast' : t -> PartialResultParams.t [@@js.cast]
 end

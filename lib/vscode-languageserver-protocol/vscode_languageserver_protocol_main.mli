@@ -4,10 +4,14 @@
 
 open Es5
 
-(* import { MessageReader, MessageWriter, Logger, ConnectionStrategy,
-   ConnectionOptions, ProtocolConnection } from '../common/api'; *)
-(* export * from 'vscode-jsonrpc/node'; *)
-(* export * from '../common/api'; *)
+include module type of struct
+  include Vscode_jsonrpc
+end
+
+include module type of struct
+  include Vscode_languageserver_protocol_api
+end
+
 val create_protocol_connection
   :  input:MessageReader.t
   -> output:MessageWriter.t

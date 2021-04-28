@@ -3,14 +3,11 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
+open Vscode_jsonrpc
+open Vscode_languageserver_types
+open Vscode_languageserver_protocol_messages
+open Vscode_languageserver_protocol_protocol
 
-(* import { RequestHandler } from 'vscode-jsonrpc'; *)
-(* import { Declaration, DeclarationLink, Location, LocationLink } from
-   'vscode-languageserver-types'; *)
-(* import { ProtocolRequestType } from './messages'; *)
-(* import { TextDocumentRegistrationOptions, StaticRegistrationOptions,
-   TextDocumentPositionParams, PartialResultParams, WorkDoneProgressParams,
-   WorkDoneProgressOptions } from './protocol'; *)
 module DeclarationClientCapabilities : sig
   type t
 
@@ -36,7 +33,10 @@ module DeclarationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "DeclarationOptions"]
 
@@ -47,7 +47,10 @@ module DeclarationRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> DeclarationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include DeclarationOptions
+  end
 
   val cast' : t -> TextDocumentRegistrationOptions.t [@@js.cast]
 
@@ -62,7 +65,10 @@ module DeclarationParams : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 

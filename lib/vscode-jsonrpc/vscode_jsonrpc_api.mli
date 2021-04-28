@@ -46,26 +46,26 @@ include module type of struct
   module CancellationTokenSource =
     Vscode_jsonrpc_cancellation.CancellationTokenSource
   module CancellationToken = Vscode_jsonrpc_cancellation.CancellationToken
-  module MessageReader = Vscode_jsonrpc_messageReader.MessageReader
+  module MessageReader = Vscode_jsonrpc_message_reader.MessageReader
   module AbstractMessageReader =
-    Vscode_jsonrpc_messageReader.AbstractMessageReader
+    Vscode_jsonrpc_message_reader.AbstractMessageReader
 
   module ReadableStreamMessageReader =
-    Vscode_jsonrpc_messageReader.ReadableStreamMessageReader
+    Vscode_jsonrpc_message_reader.ReadableStreamMessageReader
 
-  module DataCallback = Vscode_jsonrpc_messageReader.DataCallback
+  module DataCallback = Vscode_jsonrpc_message_reader.DataCallback
   module MessageReaderOptions =
-    Vscode_jsonrpc_messageReader.MessageReaderOptions
-  module PartialMessageInfo = Vscode_jsonrpc_messageReader.PartialMessageInfo
-  module MessageWriter = Vscode_jsonrpc_messageWriter.MessageWriter
+    Vscode_jsonrpc_message_reader.MessageReaderOptions
+  module PartialMessageInfo = Vscode_jsonrpc_message_reader.PartialMessageInfo
+  module MessageWriter = Vscode_jsonrpc_message_writer.MessageWriter
   module AbstractMessageWriter =
-    Vscode_jsonrpc_messageWriter.AbstractMessageWriter
+    Vscode_jsonrpc_message_writer.AbstractMessageWriter
 
   module WriteableStreamMessageWriter =
-    Vscode_jsonrpc_messageWriter.WriteableStreamMessageWriter
+    Vscode_jsonrpc_message_writer.WriteableStreamMessageWriter
 
   module MessageWriterOptions =
-    Vscode_jsonrpc_messageWriter.MessageWriterOptions
+    Vscode_jsonrpc_message_writer.MessageWriterOptions
   module Logger = Vscode_jsonrpc_connection.Logger
   module ConnectionStrategy = Vscode_jsonrpc_connection.ConnectionStrategy
   module ConnectionOptions = Vscode_jsonrpc_connection.ConnectionOptions
@@ -81,32 +81,10 @@ include module type of struct
   module HandlerResult = Vscode_jsonrpc_connection.HandlerResult
   module StarRequestHandler = Vscode_jsonrpc_connection.StarRequestHandler
   module GenericRequestHandler = Vscode_jsonrpc_connection.GenericRequestHandler
-  module RequestHandler0 = Vscode_jsonrpc_connection.RequestHandler0
-  module RequestHandler = Vscode_jsonrpc_connection.RequestHandler
-  module RequestHandler1 = Vscode_jsonrpc_connection.RequestHandler1
-  module RequestHandler2 = Vscode_jsonrpc_connection.RequestHandler2
-  module RequestHandler3 = Vscode_jsonrpc_connection.RequestHandler3
-  module RequestHandler4 = Vscode_jsonrpc_connection.RequestHandler4
-  module RequestHandler5 = Vscode_jsonrpc_connection.RequestHandler5
-  module RequestHandler6 = Vscode_jsonrpc_connection.RequestHandler6
-  module RequestHandler7 = Vscode_jsonrpc_connection.RequestHandler7
-  module RequestHandler8 = Vscode_jsonrpc_connection.RequestHandler8
-  module RequestHandler9 = Vscode_jsonrpc_connection.RequestHandler9
   module StarNotificationHandler =
     Vscode_jsonrpc_connection.StarNotificationHandler
   module GenericNotificationHandler =
     Vscode_jsonrpc_connection.GenericNotificationHandler
-  module NotificationHandler0 = Vscode_jsonrpc_connection.NotificationHandler0
-  module NotificationHandler = Vscode_jsonrpc_connection.NotificationHandler
-  module NotificationHandler1 = Vscode_jsonrpc_connection.NotificationHandler1
-  module NotificationHandler2 = Vscode_jsonrpc_connection.NotificationHandler2
-  module NotificationHandler3 = Vscode_jsonrpc_connection.NotificationHandler3
-  module NotificationHandler4 = Vscode_jsonrpc_connection.NotificationHandler4
-  module NotificationHandler5 = Vscode_jsonrpc_connection.NotificationHandler5
-  module NotificationHandler6 = Vscode_jsonrpc_connection.NotificationHandler6
-  module NotificationHandler7 = Vscode_jsonrpc_connection.NotificationHandler7
-  module NotificationHandler8 = Vscode_jsonrpc_connection.NotificationHandler8
-  module NotificationHandler9 = Vscode_jsonrpc_connection.NotificationHandler9
   module Trace = Vscode_jsonrpc_connection.Trace
   module TraceValues = Vscode_jsonrpc_connection.TraceValues
   module TraceFormat = Vscode_jsonrpc_connection.TraceFormat

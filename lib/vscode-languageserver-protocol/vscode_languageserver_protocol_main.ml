@@ -2,6 +2,8 @@
 [@@@ocaml.warning "-7-32-39"]
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
+include struct include Vscode_jsonrpc end
+include struct include Vscode_languageserver_protocol_api end
 let (create_protocol_connection :
   input:MessageReader.t ->
     output:MessageWriter.t ->

@@ -14,7 +14,7 @@ module AnonymousInterface1 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x4 : Ojs.t) -> x4
     and t_to_js : t -> Ojs.t = fun (x3 : Ojs.t) -> x3
-    let (get_cflags : t -> any list) =
+    let (cflags : t -> any list) =
       fun (x5 : t) ->
         Ojs.list_of_js any_of_js (Ojs.get_prop_ascii (t_to_js x5) "cflags")
     let (set_cflags : t -> any list -> unit) =
@@ -22,7 +22,7 @@ module AnonymousInterface1 =
         fun (x8 : any list) ->
           Ojs.set_prop_ascii (t_to_js x7) "cflags"
             (Ojs.list_to_js any_to_js x8)
-    let (get_default_configuration : t -> string) =
+    let (default_configuration : t -> string) =
       fun (x10 : t) ->
         Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x10) "default_configuration")
@@ -31,7 +31,7 @@ module AnonymousInterface1 =
         fun (x12 : string) ->
           Ojs.set_prop_ascii (t_to_js x11) "default_configuration"
             (Ojs.string_to_js x12)
-    let (get_defines : t -> string list) =
+    let (defines : t -> string list) =
       fun (x13 : t) ->
         Ojs.list_of_js Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x13) "defines")
@@ -40,7 +40,7 @@ module AnonymousInterface1 =
         fun (x16 : string list) ->
           Ojs.set_prop_ascii (t_to_js x15) "defines"
             (Ojs.list_to_js Ojs.string_to_js x16)
-    let (get_include_dirs : t -> string list) =
+    let (include_dirs : t -> string list) =
       fun (x18 : t) ->
         Ojs.list_of_js Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x18) "include_dirs")
@@ -49,7 +49,7 @@ module AnonymousInterface1 =
         fun (x21 : string list) ->
           Ojs.set_prop_ascii (t_to_js x20) "include_dirs"
             (Ojs.list_to_js Ojs.string_to_js x21)
-    let (get_libraries : t -> string list) =
+    let (libraries : t -> string list) =
       fun (x23 : t) ->
         Ojs.list_of_js Ojs.string_of_js
           (Ojs.get_prop_ascii (t_to_js x23) "libraries")
@@ -64,21 +64,21 @@ module AnonymousInterface2 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x29 : Ojs.t) -> x29
     and t_to_js : t -> Ojs.t = fun (x28 : Ojs.t) -> x28
-    let (get_clang : t -> int) =
+    let (clang : t -> int) =
       fun (x30 : t) ->
         Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x30) "clang")
     let (set_clang : t -> int -> unit) =
       fun (x31 : t) ->
         fun (x32 : int) ->
           Ojs.set_prop_ascii (t_to_js x31) "clang" (Ojs.int_to_js x32)
-    let (get_host_arch : t -> string) =
+    let (host_arch : t -> string) =
       fun (x33 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x33) "host_arch")
     let (set_host_arch : t -> string -> unit) =
       fun (x34 : t) ->
         fun (x35 : string) ->
           Ojs.set_prop_ascii (t_to_js x34) "host_arch" (Ojs.string_to_js x35)
-    let (get_node_install_npm : t -> bool) =
+    let (node_install_npm : t -> bool) =
       fun (x36 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x36) "node_install_npm")
     let (set_node_install_npm : t -> bool -> unit) =
@@ -86,7 +86,7 @@ module AnonymousInterface2 =
         fun (x38 : bool) ->
           Ojs.set_prop_ascii (t_to_js x37) "node_install_npm"
             (Ojs.bool_to_js x38)
-    let (get_node_install_waf : t -> bool) =
+    let (node_install_waf : t -> bool) =
       fun (x39 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x39) "node_install_waf")
     let (set_node_install_waf : t -> bool -> unit) =
@@ -94,7 +94,7 @@ module AnonymousInterface2 =
         fun (x41 : bool) ->
           Ojs.set_prop_ascii (t_to_js x40) "node_install_waf"
             (Ojs.bool_to_js x41)
-    let (get_node_prefix : t -> string) =
+    let (node_prefix : t -> string) =
       fun (x42 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x42) "node_prefix")
     let (set_node_prefix : t -> string -> unit) =
@@ -102,7 +102,7 @@ module AnonymousInterface2 =
         fun (x44 : string) ->
           Ojs.set_prop_ascii (t_to_js x43) "node_prefix"
             (Ojs.string_to_js x44)
-    let (get_node_shared_openssl : t -> bool) =
+    let (node_shared_openssl : t -> bool) =
       fun (x45 : t) ->
         Ojs.bool_of_js
           (Ojs.get_prop_ascii (t_to_js x45) "node_shared_openssl")
@@ -111,7 +111,7 @@ module AnonymousInterface2 =
         fun (x47 : bool) ->
           Ojs.set_prop_ascii (t_to_js x46) "node_shared_openssl"
             (Ojs.bool_to_js x47)
-    let (get_node_shared_v8 : t -> bool) =
+    let (node_shared_v8 : t -> bool) =
       fun (x48 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x48) "node_shared_v8")
     let (set_node_shared_v8 : t -> bool -> unit) =
@@ -119,7 +119,7 @@ module AnonymousInterface2 =
         fun (x50 : bool) ->
           Ojs.set_prop_ascii (t_to_js x49) "node_shared_v8"
             (Ojs.bool_to_js x50)
-    let (get_node_shared_zlib : t -> bool) =
+    let (node_shared_zlib : t -> bool) =
       fun (x51 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x51) "node_shared_zlib")
     let (set_node_shared_zlib : t -> bool -> unit) =
@@ -127,7 +127,7 @@ module AnonymousInterface2 =
         fun (x53 : bool) ->
           Ojs.set_prop_ascii (t_to_js x52) "node_shared_zlib"
             (Ojs.bool_to_js x53)
-    let (get_node_use_dtrace : t -> bool) =
+    let (node_use_dtrace : t -> bool) =
       fun (x54 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x54) "node_use_dtrace")
     let (set_node_use_dtrace : t -> bool -> unit) =
@@ -135,7 +135,7 @@ module AnonymousInterface2 =
         fun (x56 : bool) ->
           Ojs.set_prop_ascii (t_to_js x55) "node_use_dtrace"
             (Ojs.bool_to_js x56)
-    let (get_node_use_etw : t -> bool) =
+    let (node_use_etw : t -> bool) =
       fun (x57 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x57) "node_use_etw")
     let (set_node_use_etw : t -> bool -> unit) =
@@ -143,7 +143,7 @@ module AnonymousInterface2 =
         fun (x59 : bool) ->
           Ojs.set_prop_ascii (t_to_js x58) "node_use_etw"
             (Ojs.bool_to_js x59)
-    let (get_node_use_openssl : t -> bool) =
+    let (node_use_openssl : t -> bool) =
       fun (x60 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x60) "node_use_openssl")
     let (set_node_use_openssl : t -> bool -> unit) =
@@ -151,15 +151,14 @@ module AnonymousInterface2 =
         fun (x62 : bool) ->
           Ojs.set_prop_ascii (t_to_js x61) "node_use_openssl"
             (Ojs.bool_to_js x62)
-    let (get_target_arch : t -> string) =
+    let (tararch : t -> string) =
       fun (x63 : t) ->
-        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x63) "target_arch")
-    let (set_target_arch : t -> string -> unit) =
+        Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x63) "tararch")
+    let (set_tararch : t -> string -> unit) =
       fun (x64 : t) ->
         fun (x65 : string) ->
-          Ojs.set_prop_ascii (t_to_js x64) "target_arch"
-            (Ojs.string_to_js x65)
-    let (get_v8_no_strict_aliasing : t -> int) =
+          Ojs.set_prop_ascii (t_to_js x64) "tararch" (Ojs.string_to_js x65)
+    let (v8_no_strict_aliasing : t -> int) =
       fun (x66 : t) ->
         Ojs.int_of_js
           (Ojs.get_prop_ascii (t_to_js x66) "v8_no_strict_aliasing")
@@ -168,7 +167,7 @@ module AnonymousInterface2 =
         fun (x68 : int) ->
           Ojs.set_prop_ascii (t_to_js x67) "v8_no_strict_aliasing"
             (Ojs.int_to_js x68)
-    let (get_v8_use_snapshot : t -> bool) =
+    let (v8_use_snapshot : t -> bool) =
       fun (x69 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x69) "v8_use_snapshot")
     let (set_v8_use_snapshot : t -> bool -> unit) =
@@ -176,7 +175,7 @@ module AnonymousInterface2 =
         fun (x71 : bool) ->
           Ojs.set_prop_ascii (t_to_js x70) "v8_use_snapshot"
             (Ojs.bool_to_js x71)
-    let (get_visibility : t -> string) =
+    let (visibility : t -> string) =
       fun (x72 : t) ->
         Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x72) "visibility")
     let (set_visibility : t -> string -> unit) =
@@ -190,7 +189,7 @@ module AnonymousInterface3 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x76 : Ojs.t) -> x76
     and t_to_js : t -> Ojs.t = fun (x75 : Ojs.t) -> x75
-    let (get_fd : t -> [ `L_n_0 ]) =
+    let (fd : t -> [ `L_n_0 ]) =
       fun (x77 : t) ->
         let x78 = Ojs.get_prop_ascii (t_to_js x77) "fd" in
         match Ojs.int_of_js x78 with | 0 -> `L_n_0 | _ -> assert false
@@ -205,7 +204,7 @@ module AnonymousInterface4 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x82 : Ojs.t) -> x82
     and t_to_js : t -> Ojs.t = fun (x81 : Ojs.t) -> x81
-    let (get_fd : t -> [ `L_n_1 ]) =
+    let (fd : t -> [ `L_n_1 ]) =
       fun (x83 : t) ->
         let x84 = Ojs.get_prop_ascii (t_to_js x83) "fd" in
         match Ojs.int_of_js x84 with | 1 -> `L_n_1 | _ -> assert false
@@ -220,7 +219,7 @@ module AnonymousInterface5 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x88 : Ojs.t) -> x88
     and t_to_js : t -> Ojs.t = fun (x87 : Ojs.t) -> x87
-    let (get_fd : t -> [ `L_n_2 ]) =
+    let (fd : t -> [ `L_n_2 ]) =
       fun (x89 : t) ->
         let x90 = Ojs.get_prop_ascii (t_to_js x89) "fd" in
         match Ojs.int_of_js x90 with | 2 -> `L_n_2 | _ -> assert false
@@ -235,56 +234,56 @@ module AnonymousInterface6 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x94 : Ojs.t) -> x94
     and t_to_js : t -> Ojs.t = fun (x93 : Ojs.t) -> x93
-    let (get_inspector : t -> bool) =
+    let (inspector : t -> bool) =
       fun (x95 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x95) "inspector")
     let (set_inspector : t -> bool -> unit) =
       fun (x96 : t) ->
         fun (x97 : bool) ->
           Ojs.set_prop_ascii (t_to_js x96) "inspector" (Ojs.bool_to_js x97)
-    let (get_debug : t -> bool) =
+    let (debug : t -> bool) =
       fun (x98 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x98) "debug")
     let (set_debug : t -> bool -> unit) =
       fun (x99 : t) ->
         fun (x100 : bool) ->
           Ojs.set_prop_ascii (t_to_js x99) "debug" (Ojs.bool_to_js x100)
-    let (get_uv : t -> bool) =
+    let (uv : t -> bool) =
       fun (x101 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x101) "uv")
     let (set_uv : t -> bool -> unit) =
       fun (x102 : t) ->
         fun (x103 : bool) ->
           Ojs.set_prop_ascii (t_to_js x102) "uv" (Ojs.bool_to_js x103)
-    let (get_ipv6 : t -> bool) =
+    let (ipv6 : t -> bool) =
       fun (x104 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x104) "ipv6")
     let (set_ipv6 : t -> bool -> unit) =
       fun (x105 : t) ->
         fun (x106 : bool) ->
           Ojs.set_prop_ascii (t_to_js x105) "ipv6" (Ojs.bool_to_js x106)
-    let (get_tls_alpn : t -> bool) =
+    let (tls_alpn : t -> bool) =
       fun (x107 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x107) "tls_alpn")
     let (set_tls_alpn : t -> bool -> unit) =
       fun (x108 : t) ->
         fun (x109 : bool) ->
           Ojs.set_prop_ascii (t_to_js x108) "tls_alpn" (Ojs.bool_to_js x109)
-    let (get_tls_sni : t -> bool) =
+    let (tls_sni : t -> bool) =
       fun (x110 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x110) "tls_sni")
     let (set_tls_sni : t -> bool -> unit) =
       fun (x111 : t) ->
         fun (x112 : bool) ->
           Ojs.set_prop_ascii (t_to_js x111) "tls_sni" (Ojs.bool_to_js x112)
-    let (get_tls_ocsp : t -> bool) =
+    let (tls_ocsp : t -> bool) =
       fun (x113 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x113) "tls_ocsp")
     let (set_tls_ocsp : t -> bool -> unit) =
       fun (x114 : t) ->
         fun (x115 : bool) ->
           Ojs.set_prop_ascii (t_to_js x114) "tls_ocsp" (Ojs.bool_to_js x115)
-    let (get_tls : t -> bool) =
+    let (tls : t -> bool) =
       fun (x116 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x116) "tls")
     let (set_tls : t -> bool -> unit) =
@@ -297,7 +296,7 @@ module AnonymousInterface7 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x120 : Ojs.t) -> x120
     and t_to_js : t -> Ojs.t = fun (x119 : Ojs.t) -> x119
-    let (get_swallow_errors : t -> bool) =
+    let (swallow_errors : t -> bool) =
       fun (x121 : t) ->
         Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x121) "swallowErrors")
     let (set_swallow_errors : t -> bool -> unit) =
@@ -311,16 +310,16 @@ module AnonymousInterface8 =
     type t = Ojs.t
     let rec t_of_js : Ojs.t -> t = fun (x125 : Ojs.t) -> x125
     and t_to_js : t -> Ojs.t = fun (x124 : Ojs.t) -> x124
-    let (get_target_defaults : t -> AnonymousInterface1.t) =
+    let (tardefaults : t -> AnonymousInterface1.t) =
       fun (x126 : t) ->
         AnonymousInterface1.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x126) "target_defaults")
-    let (set_target_defaults : t -> AnonymousInterface1.t -> unit) =
+          (Ojs.get_prop_ascii (t_to_js x126) "tardefaults")
+    let (set_tardefaults : t -> AnonymousInterface1.t -> unit) =
       fun (x127 : t) ->
         fun (x128 : AnonymousInterface1.t) ->
-          Ojs.set_prop_ascii (t_to_js x127) "target_defaults"
+          Ojs.set_prop_ascii (t_to_js x127) "tardefaults"
             (AnonymousInterface1.t_to_js x128)
-    let (get_variables : t -> AnonymousInterface2.t) =
+    let (variables : t -> AnonymousInterface2.t) =
       fun (x129 : t) ->
         AnonymousInterface2.t_of_js
           (Ojs.get_prop_ascii (t_to_js x129) "variables")
@@ -341,14 +340,14 @@ module Process =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x133 : Ojs.t) -> x133
         and t_to_js : t -> Ojs.t = fun (x132 : Ojs.t) -> x132
-        let (get_rss : t -> int) =
+        let (rss : t -> int) =
           fun (x134 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x134) "rss")
         let (set_rss : t -> int -> unit) =
           fun (x135 : t) ->
             fun (x136 : int) ->
               Ojs.set_prop_ascii (t_to_js x135) "rss" (Ojs.int_to_js x136)
-        let (get_heap_total : t -> int) =
+        let (heap_total : t -> int) =
           fun (x137 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x137) "heapTotal")
         let (set_heap_total : t -> int -> unit) =
@@ -356,7 +355,7 @@ module Process =
             fun (x139 : int) ->
               Ojs.set_prop_ascii (t_to_js x138) "heapTotal"
                 (Ojs.int_to_js x139)
-        let (get_heap_used : t -> int) =
+        let (heap_used : t -> int) =
           fun (x140 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x140) "heapUsed")
         let (set_heap_used : t -> int -> unit) =
@@ -364,7 +363,7 @@ module Process =
             fun (x142 : int) ->
               Ojs.set_prop_ascii (t_to_js x141) "heapUsed"
                 (Ojs.int_to_js x142)
-        let (get_external : t -> int) =
+        let (external_ : t -> int) =
           fun (x143 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x143) "external")
         let (set_external : t -> int -> unit) =
@@ -372,7 +371,7 @@ module Process =
             fun (x145 : int) ->
               Ojs.set_prop_ascii (t_to_js x144) "external"
                 (Ojs.int_to_js x145)
-        let (get_array_buffers : t -> int) =
+        let (array_buffers : t -> int) =
           fun (x146 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x146) "arrayBuffers")
         let (set_array_buffers : t -> int -> unit) =
@@ -386,14 +385,14 @@ module Process =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x150 : Ojs.t) -> x150
         and t_to_js : t -> Ojs.t = fun (x149 : Ojs.t) -> x149
-        let (get_user : t -> int) =
+        let (user : t -> int) =
           fun (x151 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x151) "user")
         let (set_user : t -> int -> unit) =
           fun (x152 : t) ->
             fun (x153 : int) ->
               Ojs.set_prop_ascii (t_to_js x152) "user" (Ojs.int_to_js x153)
-        let (get_system : t -> int) =
+        let (system : t -> int) =
           fun (x154 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x154) "system")
         let (set_system : t -> int -> unit) =
@@ -406,7 +405,7 @@ module Process =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x158 : Ojs.t) -> x158
         and t_to_js : t -> Ojs.t = fun (x157 : Ojs.t) -> x157
-        let (get_name : t -> string) =
+        let (name : t -> string) =
           fun (x159 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x159) "name")
         let (set_name : t -> string -> unit) =
@@ -414,7 +413,7 @@ module Process =
             fun (x161 : string) ->
               Ojs.set_prop_ascii (t_to_js x160) "name"
                 (Ojs.string_to_js x161)
-        let (get_source_url : t -> string) =
+        let (source_url : t -> string) =
           fun (x162 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x162) "sourceUrl")
         let (set_source_url : t -> string -> unit) =
@@ -422,7 +421,7 @@ module Process =
             fun (x164 : string) ->
               Ojs.set_prop_ascii (t_to_js x163) "sourceUrl"
                 (Ojs.string_to_js x164)
-        let (get_headers_url : t -> string) =
+        let (headers_url : t -> string) =
           fun (x165 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x165) "headersUrl")
         let (set_headers_url : t -> string -> unit) =
@@ -430,7 +429,7 @@ module Process =
             fun (x167 : string) ->
               Ojs.set_prop_ascii (t_to_js x166) "headersUrl"
                 (Ojs.string_to_js x167)
-        let (get_lib_url : t -> string) =
+        let (lib_url : t -> string) =
           fun (x168 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x168) "libUrl")
         let (set_lib_url : t -> string -> unit) =
@@ -438,7 +437,7 @@ module Process =
             fun (x170 : string) ->
               Ojs.set_prop_ascii (t_to_js x169) "libUrl"
                 (Ojs.string_to_js x170)
-        let (get_lts : t -> string) =
+        let (lts : t -> string) =
           fun (x171 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x171) "lts")
         let (set_lts : t -> string -> unit) =
@@ -448,74 +447,74 @@ module Process =
       end
     module ProcessVersions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x175 : Ojs.t) -> x175
-        and t_to_js : t -> Ojs.t = fun (x174 : Ojs.t) -> x174
-        let (get_http_parser : t -> string) =
-          fun (x176 : t) ->
+        type t = string Dict.t
+        let rec t_of_js : Ojs.t -> t =
+          fun (x176 : Ojs.t) -> Dict.t_of_js Ojs.string_of_js x176
+        and t_to_js : t -> Ojs.t =
+          fun (x174 : string Dict.t) -> Dict.t_to_js Ojs.string_to_js x174
+        let (http_parser : t -> string) =
+          fun (x178 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x176) "http_parser")
+              (Ojs.get_prop_ascii (t_to_js x178) "http_parser")
         let (set_http_parser : t -> string -> unit) =
-          fun (x177 : t) ->
-            fun (x178 : string) ->
-              Ojs.set_prop_ascii (t_to_js x177) "http_parser"
-                (Ojs.string_to_js x178)
-        let (get_node : t -> string) =
           fun (x179 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x179) "node")
+            fun (x180 : string) ->
+              Ojs.set_prop_ascii (t_to_js x179) "http_parser"
+                (Ojs.string_to_js x180)
+        let (node : t -> string) =
+          fun (x181 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x181) "node")
         let (set_node : t -> string -> unit) =
-          fun (x180 : t) ->
-            fun (x181 : string) ->
-              Ojs.set_prop_ascii (t_to_js x180) "node"
-                (Ojs.string_to_js x181)
-        let (get_v8 : t -> string) =
           fun (x182 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x182) "v8")
+            fun (x183 : string) ->
+              Ojs.set_prop_ascii (t_to_js x182) "node"
+                (Ojs.string_to_js x183)
+        let (v8 : t -> string) =
+          fun (x184 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x184) "v8")
         let (set_v8 : t -> string -> unit) =
-          fun (x183 : t) ->
-            fun (x184 : string) ->
-              Ojs.set_prop_ascii (t_to_js x183) "v8" (Ojs.string_to_js x184)
-        let (get_ares : t -> string) =
           fun (x185 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x185) "ares")
+            fun (x186 : string) ->
+              Ojs.set_prop_ascii (t_to_js x185) "v8" (Ojs.string_to_js x186)
+        let (ares : t -> string) =
+          fun (x187 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x187) "ares")
         let (set_ares : t -> string -> unit) =
-          fun (x186 : t) ->
-            fun (x187 : string) ->
-              Ojs.set_prop_ascii (t_to_js x186) "ares"
-                (Ojs.string_to_js x187)
-        let (get_uv : t -> string) =
           fun (x188 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x188) "uv")
+            fun (x189 : string) ->
+              Ojs.set_prop_ascii (t_to_js x188) "ares"
+                (Ojs.string_to_js x189)
+        let (uv : t -> string) =
+          fun (x190 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x190) "uv")
         let (set_uv : t -> string -> unit) =
-          fun (x189 : t) ->
-            fun (x190 : string) ->
-              Ojs.set_prop_ascii (t_to_js x189) "uv" (Ojs.string_to_js x190)
-        let (get_zlib : t -> string) =
           fun (x191 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x191) "zlib")
+            fun (x192 : string) ->
+              Ojs.set_prop_ascii (t_to_js x191) "uv" (Ojs.string_to_js x192)
+        let (zlib : t -> string) =
+          fun (x193 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x193) "zlib")
         let (set_zlib : t -> string -> unit) =
-          fun (x192 : t) ->
-            fun (x193 : string) ->
-              Ojs.set_prop_ascii (t_to_js x192) "zlib"
-                (Ojs.string_to_js x193)
-        let (get_modules : t -> string) =
           fun (x194 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x194) "modules")
+            fun (x195 : string) ->
+              Ojs.set_prop_ascii (t_to_js x194) "zlib"
+                (Ojs.string_to_js x195)
+        let (modules : t -> string) =
+          fun (x196 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x196) "modules")
         let (set_modules : t -> string -> unit) =
-          fun (x195 : t) ->
-            fun (x196 : string) ->
-              Ojs.set_prop_ascii (t_to_js x195) "modules"
-                (Ojs.string_to_js x196)
-        let (get_openssl : t -> string) =
           fun (x197 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x197) "openssl")
+            fun (x198 : string) ->
+              Ojs.set_prop_ascii (t_to_js x197) "modules"
+                (Ojs.string_to_js x198)
+        let (openssl : t -> string) =
+          fun (x199 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x199) "openssl")
         let (set_openssl : t -> string -> unit) =
-          fun (x198 : t) ->
-            fun (x199 : string) ->
-              Ojs.set_prop_ascii (t_to_js x198) "openssl"
-                (Ojs.string_to_js x199)
-        let (cast : t -> string Dict.t) =
-          fun (x200 : t) -> Dict.t_of_js Ojs.string_of_js (t_to_js x200)
+          fun (x200 : t) ->
+            fun (x201 : string) ->
+              Ojs.set_prop_ascii (t_to_js x200) "openssl"
+                (Ojs.string_to_js x201)
       end
     module Platform =
       struct
@@ -661,7 +660,7 @@ module Process =
             | `SIGXCPU -> Ojs.string_to_js "SIGXCPU"
             | `SIGXFSZ -> Ojs.string_to_js "SIGXFSZ"
       end
-    module MultipleResolveType =
+    module MultipleResolvesType =
       struct
         type t = [ `reject  | `resolve ]
         let rec t_of_js : Ojs.t -> t =
@@ -679,940 +678,1036 @@ module Process =
       end
     module BeforeExitListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x212 : Ojs.t) -> x212
-        and t_to_js : t -> Ojs.t = fun (x211 : Ojs.t) -> x211
-        let (apply : t -> code:int -> unit) =
-          fun (x214 : t) ->
-            fun ~code:(x213 : int) ->
-              ignore (Ojs.apply (t_to_js x214) [|(Ojs.int_to_js x213)|])
+        type t = code:int -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x213 : Ojs.t) ->
+            fun ~code:(x214 : int) ->
+              ignore (Ojs.apply x213 [|(Ojs.int_to_js x214)|])
+        and t_to_js : t -> Ojs.t =
+          fun (x211 : code:int -> unit) ->
+            Ojs.fun_to_js 1
+              (fun (x212 : Ojs.t) -> x211 ~code:(Ojs.int_of_js x212))
       end
     module DisconnectListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x216 : Ojs.t) -> x216
-        and t_to_js : t -> Ojs.t = fun (x215 : Ojs.t) -> x215
-        let (apply : t -> unit) =
-          fun (x217 : t) -> ignore (Ojs.apply (t_to_js x217) [||])
+        type t = unit -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x216 : Ojs.t) -> fun () -> ignore (Ojs.apply x216 [||])
+        and t_to_js : t -> Ojs.t =
+          fun (x215 : unit -> unit) -> Ojs.fun_to_js 1 (fun _ -> x215 ())
       end
     module ExitListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x219 : Ojs.t) -> x219
-        and t_to_js : t -> Ojs.t = fun (x218 : Ojs.t) -> x218
-        let (apply : t -> code:int -> unit) =
-          fun (x221 : t) ->
+        type t = code:int -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x219 : Ojs.t) ->
             fun ~code:(x220 : int) ->
-              ignore (Ojs.apply (t_to_js x221) [|(Ojs.int_to_js x220)|])
+              ignore (Ojs.apply x219 [|(Ojs.int_to_js x220)|])
+        and t_to_js : t -> Ojs.t =
+          fun (x217 : code:int -> unit) ->
+            Ojs.fun_to_js 1
+              (fun (x218 : Ojs.t) -> x217 ~code:(Ojs.int_of_js x218))
       end
     module RejectionHandledListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x223 : Ojs.t) -> x223
-        and t_to_js : t -> Ojs.t = fun (x222 : Ojs.t) -> x222
-        let (apply : t -> promise:any Promise.t -> unit) =
-          fun (x226 : t) ->
-            fun ~promise:(x224 : any Promise.t) ->
-              ignore
-                (Ojs.apply (t_to_js x226)
-                   [|(Promise.t_to_js any_to_js x224)|])
+        type t = promise:any Promise.t -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x224 : Ojs.t) ->
+            fun ~promise:(x225 : any Promise.t) ->
+              ignore (Ojs.apply x224 [|(Promise.t_to_js any_to_js x225)|])
+        and t_to_js : t -> Ojs.t =
+          fun (x221 : promise:any Promise.t -> unit) ->
+            Ojs.fun_to_js 1
+              (fun (x222 : Ojs.t) ->
+                 x221 ~promise:(Promise.t_of_js any_of_js x222))
       end
     module UncaughtExceptionListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x228 : Ojs.t) -> x228
-        and t_to_js : t -> Ojs.t = fun (x227 : Ojs.t) -> x227
-        let (apply : t -> error:Error.t -> unit) =
-          fun (x230 : t) ->
-            fun ~error:(x229 : Error.t) ->
-              ignore (Ojs.apply (t_to_js x230) [|(Error.t_to_js x229)|])
+        type t = error:Error.t -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x229 : Ojs.t) ->
+            fun ~error:(x230 : Error.t) ->
+              ignore (Ojs.apply x229 [|(Error.t_to_js x230)|])
+        and t_to_js : t -> Ojs.t =
+          fun (x227 : error:Error.t -> unit) ->
+            Ojs.fun_to_js 1
+              (fun (x228 : Ojs.t) -> x227 ~error:(Error.t_of_js x228))
       end
     module UnhandledRejectionListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x232 : Ojs.t) -> x232
-        and t_to_js : t -> Ojs.t = fun (x231 : Ojs.t) -> x231
-        let (apply :
-          t ->
-            reason:AnonymousInterface0.t or_null_or_undefined ->
-              promise:any Promise.t -> unit)
-          =
-          fun (x237 : t) ->
-            fun ~reason:(x233 : AnonymousInterface0.t or_null_or_undefined)
+        type t =
+          reason:AnonymousInterface0.t or_null_or_undefined ->
+            promise:any Promise.t -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x236 : Ojs.t) ->
+            fun ~reason:(x237 : AnonymousInterface0.t or_null_or_undefined)
               ->
-              fun ~promise:(x235 : any Promise.t) ->
+              fun ~promise:(x239 : any Promise.t) ->
                 ignore
-                  (Ojs.apply (t_to_js x237)
+                  (Ojs.apply x236
                      [|(or_null_or_undefined_to_js
-                          AnonymousInterface0.t_to_js x233);(Promise.t_to_js
-                                                               any_to_js x235)|])
+                          AnonymousInterface0.t_to_js x237);(Promise.t_to_js
+                                                               any_to_js x239)|])
+        and t_to_js : t -> Ojs.t =
+          fun
+            (x231 :
+              reason:AnonymousInterface0.t or_null_or_undefined ->
+                promise:any Promise.t -> unit)
+            ->
+            Ojs.fun_to_js 2
+              (fun (x232 : Ojs.t) ->
+                 fun (x234 : Ojs.t) ->
+                   x231
+                     ~reason:(or_null_or_undefined_of_js
+                                AnonymousInterface0.t_of_js x232)
+                     ~promise:(Promise.t_of_js any_of_js x234))
       end
     module WarningListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x239 : Ojs.t) -> x239
-        and t_to_js : t -> Ojs.t = fun (x238 : Ojs.t) -> x238
-        let (apply : t -> warning:Error.t -> unit) =
-          fun (x241 : t) ->
-            fun ~warning:(x240 : Error.t) ->
-              ignore (Ojs.apply (t_to_js x241) [|(Error.t_to_js x240)|])
+        type t = warning:Error.t -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x243 : Ojs.t) ->
+            fun ~warning:(x244 : Error.t) ->
+              ignore (Ojs.apply x243 [|(Error.t_to_js x244)|])
+        and t_to_js : t -> Ojs.t =
+          fun (x241 : warning:Error.t -> unit) ->
+            Ojs.fun_to_js 1
+              (fun (x242 : Ojs.t) -> x241 ~warning:(Error.t_of_js x242))
       end
     module MessageListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x243 : Ojs.t) -> x243
-        and t_to_js : t -> Ojs.t = fun (x242 : Ojs.t) -> x242
-        let (apply : t -> message:any -> send_handle:any -> unit) =
-          fun (x246 : t) ->
-            fun ~message:(x244 : any) ->
-              fun ~send_handle:(x245 : any) ->
-                ignore
-                  (Ojs.apply (t_to_js x246)
-                     [|(any_to_js x244);(any_to_js x245)|])
+        type t = message:any -> send_handle:any -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x248 : Ojs.t) ->
+            fun ~message:(x249 : any) ->
+              fun ~send_handle:(x250 : any) ->
+                ignore (Ojs.apply x248 [|(any_to_js x249);(any_to_js x250)|])
+        and t_to_js : t -> Ojs.t =
+          fun (x245 : message:any -> send_handle:any -> unit) ->
+            Ojs.fun_to_js 2
+              (fun (x246 : Ojs.t) ->
+                 fun (x247 : Ojs.t) ->
+                   x245 ~message:(any_of_js x246)
+                     ~send_handle:(any_of_js x247))
       end
     module SignalsListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x248 : Ojs.t) -> x248
-        and t_to_js : t -> Ojs.t = fun (x247 : Ojs.t) -> x247
-        let (apply : t -> signal:Signals.t -> unit) =
-          fun (x250 : t) ->
-            fun ~signal:(x249 : Signals.t) ->
-              ignore (Ojs.apply (t_to_js x250) [|(Signals.t_to_js x249)|])
+        type t = signal:Signals.t -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x253 : Ojs.t) ->
+            fun ~signal:(x254 : Signals.t) ->
+              ignore (Ojs.apply x253 [|(Signals.t_to_js x254)|])
+        and t_to_js : t -> Ojs.t =
+          fun (x251 : signal:Signals.t -> unit) ->
+            Ojs.fun_to_js 1
+              (fun (x252 : Ojs.t) -> x251 ~signal:(Signals.t_of_js x252))
       end
     module NewListenerListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x252 : Ojs.t) -> x252
-        and t_to_js : t -> Ojs.t = fun (x251 : Ojs.t) -> x251
-        let (apply :
-          t ->
-            type_:symbol or_string ->
-              listener:(args:any list -> unit) -> unit)
-          =
-          fun (x258 : t) ->
-            fun ~type_:(x253 : symbol or_string) ->
-              fun ~listener:(x255 : args:any list -> unit) ->
+        type t =
+          type_:symbol or_string -> listener:(args:any list -> unit) -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x262 : Ojs.t) ->
+            fun ~type_:(x263 : symbol or_string) ->
+              fun ~listener:(x265 : args:any list -> unit) ->
                 ignore
-                  (Ojs.apply (t_to_js x258)
-                     [|(or_string_to_js symbol_to_js x253);(Ojs.fun_to_js_args
-                                                              (fun (x256 : _)
+                  (Ojs.apply x262
+                     [|(or_string_to_js symbol_to_js x263);(Ojs.fun_to_js_args
+                                                              (fun (x266 : _)
                                                                  ->
-                                                                 x255
+                                                                 x265
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x256 0)))|])
+                                                                    x266 0)))|])
+        and t_to_js : t -> Ojs.t =
+          fun
+            (x255 :
+              type_:symbol or_string ->
+                listener:(args:any list -> unit) -> unit)
+            ->
+            Ojs.fun_to_js 2
+              (fun (x256 : Ojs.t) ->
+                 fun (x258 : Ojs.t) ->
+                   x255 ~type_:(or_string_of_js symbol_of_js x256)
+                     ~listener:(fun ~args:(x259 : any list) ->
+                                  ignore
+                                    (Ojs.call x258 "apply"
+                                       [|Ojs.null;((let x260 =
+                                                      Ojs.new_obj
+                                                        (Ojs.get_prop_ascii
+                                                           Ojs.global "Array")
+                                                        [||] in
+                                                    List.iter
+                                                      (fun (x261 : any) ->
+                                                         ignore
+                                                           (Ojs.call x260
+                                                              "push"
+                                                              [|(any_to_js
+                                                                   x261)|]))
+                                                      x259;
+                                                    x260))|])))
       end
     module RemoveListenerListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x260 : Ojs.t) -> x260
-        and t_to_js : t -> Ojs.t = fun (x259 : Ojs.t) -> x259
-        let (apply :
-          t ->
-            type_:symbol or_string ->
-              listener:(args:any list -> unit) -> unit)
-          =
-          fun (x266 : t) ->
-            fun ~type_:(x261 : symbol or_string) ->
-              fun ~listener:(x263 : args:any list -> unit) ->
+        type t =
+          type_:symbol or_string -> listener:(args:any list -> unit) -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x275 : Ojs.t) ->
+            fun ~type_:(x276 : symbol or_string) ->
+              fun ~listener:(x278 : args:any list -> unit) ->
                 ignore
-                  (Ojs.apply (t_to_js x266)
-                     [|(or_string_to_js symbol_to_js x261);(Ojs.fun_to_js_args
-                                                              (fun (x264 : _)
+                  (Ojs.apply x275
+                     [|(or_string_to_js symbol_to_js x276);(Ojs.fun_to_js_args
+                                                              (fun (x279 : _)
                                                                  ->
-                                                                 x263
+                                                                 x278
                                                                    ~args:(
                                                                    Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x264 0)))|])
+                                                                    x279 0)))|])
+        and t_to_js : t -> Ojs.t =
+          fun
+            (x268 :
+              type_:symbol or_string ->
+                listener:(args:any list -> unit) -> unit)
+            ->
+            Ojs.fun_to_js 2
+              (fun (x269 : Ojs.t) ->
+                 fun (x271 : Ojs.t) ->
+                   x268 ~type_:(or_string_of_js symbol_of_js x269)
+                     ~listener:(fun ~args:(x272 : any list) ->
+                                  ignore
+                                    (Ojs.call x271 "apply"
+                                       [|Ojs.null;((let x273 =
+                                                      Ojs.new_obj
+                                                        (Ojs.get_prop_ascii
+                                                           Ojs.global "Array")
+                                                        [||] in
+                                                    List.iter
+                                                      (fun (x274 : any) ->
+                                                         ignore
+                                                           (Ojs.call x273
+                                                              "push"
+                                                              [|(any_to_js
+                                                                   x274)|]))
+                                                      x272;
+                                                    x273))|])))
       end
-    module MultipleResolveListener =
+    module MultipleResolvesListener =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x268 : Ojs.t) -> x268
-        and t_to_js : t -> Ojs.t = fun (x267 : Ojs.t) -> x267
-        let (apply :
-          t ->
-            type_:MultipleResolveType.t ->
-              promise:any Promise.t -> value:any -> unit)
-          =
-          fun (x273 : t) ->
-            fun ~type_:(x269 : MultipleResolveType.t) ->
-              fun ~promise:(x270 : any Promise.t) ->
-                fun ~value:(x272 : any) ->
+        type t =
+          type_:MultipleResolvesType.t ->
+            promise:any Promise.t -> value:any -> unit
+        let rec t_of_js : Ojs.t -> t =
+          fun (x286 : Ojs.t) ->
+            fun ~type_:(x287 : MultipleResolvesType.t) ->
+              fun ~promise:(x288 : any Promise.t) ->
+                fun ~value:(x290 : any) ->
                   ignore
-                    (Ojs.apply (t_to_js x273)
-                       [|(MultipleResolveType.t_to_js x269);(Promise.t_to_js
-                                                               any_to_js x270);(
-                         any_to_js x272)|])
+                    (Ojs.apply x286
+                       [|(MultipleResolvesType.t_to_js x287);(Promise.t_to_js
+                                                                any_to_js
+                                                                x288);(
+                         any_to_js x290)|])
+        and t_to_js : t -> Ojs.t =
+          fun
+            (x281 :
+              type_:MultipleResolvesType.t ->
+                promise:any Promise.t -> value:any -> unit)
+            ->
+            Ojs.fun_to_js 3
+              (fun (x282 : Ojs.t) ->
+                 fun (x283 : Ojs.t) ->
+                   fun (x285 : Ojs.t) ->
+                     x281 ~type_:(MultipleResolvesType.t_of_js x282)
+                       ~promise:(Promise.t_of_js any_of_js x283)
+                       ~value:(any_of_js x285))
       end
+    type listener =
+      [ `BeforeExit of BeforeExitListener.t 
+      | `Disconnect of DisconnectListener.t  | `Exit of ExitListener.t 
+      | `RejectionHandled of RejectionHandledListener.t 
+      | `UncaughtException of UncaughtExceptionListener.t 
+      | `UnhandledRejection of UnhandledRejectionListener.t 
+      | `Warning of WarningListener.t  | `Message of MessageListener.t 
+      | `NewListener of NewListenerListener.t 
+      | `RemoveListener of RemoveListenerListener.t 
+      | `MultipleResolves of MultipleResolvesListener.t ]
+    let rec listener_to_js : listener -> Ojs.t =
+      fun
+        (x291 :
+          [ `BeforeExit of BeforeExitListener.t 
+          | `Disconnect of DisconnectListener.t  | `Exit of ExitListener.t 
+          | `RejectionHandled of RejectionHandledListener.t 
+          | `UncaughtException of UncaughtExceptionListener.t 
+          | `UnhandledRejection of UnhandledRejectionListener.t 
+          | `Warning of WarningListener.t  | `Message of MessageListener.t 
+          | `NewListener of NewListenerListener.t 
+          | `RemoveListener of RemoveListenerListener.t 
+          | `MultipleResolves of MultipleResolvesListener.t ])
+        ->
+        match x291 with
+        | `BeforeExit x292 -> BeforeExitListener.t_to_js x292
+        | `Disconnect x293 -> DisconnectListener.t_to_js x293
+        | `Exit x294 -> ExitListener.t_to_js x294
+        | `RejectionHandled x295 -> RejectionHandledListener.t_to_js x295
+        | `UncaughtException x296 -> UncaughtExceptionListener.t_to_js x296
+        | `UnhandledRejection x297 -> UnhandledRejectionListener.t_to_js x297
+        | `Warning x298 -> WarningListener.t_to_js x298
+        | `Message x299 -> MessageListener.t_to_js x299
+        | `NewListener x300 -> NewListenerListener.t_to_js x300
+        | `RemoveListener x301 -> RemoveListenerListener.t_to_js x301
+        | `MultipleResolves x302 -> MultipleResolvesListener.t_to_js x302
     module Socket =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x275 : Ojs.t) -> x275
-        and t_to_js : t -> Ojs.t = fun (x274 : Ojs.t) -> x274
-        let (get_is_tty : t -> [ `L_b_true ]) =
-          fun (x276 : t) ->
-            let x277 = Ojs.get_prop_ascii (t_to_js x276) "isTTY" in
-            match Ojs.bool_of_js x277 with
+        include struct include ReadWriteStream end
+        let (is_tty : t -> [ `L_b_true ]) =
+          fun (x305 : t) ->
+            let x306 = Ojs.get_prop_ascii (t_to_js x305) "isTTY" in
+            match Ojs.bool_of_js x306 with
             | true -> `L_b_true
             | _ -> assert false
         let (set_is_tty : t -> [ `L_b_true ] -> unit) =
-          fun (x278 : t) ->
-            fun (x279 : [ `L_b_true ]) ->
-              Ojs.set_prop_ascii (t_to_js x278) "isTTY"
-                (match x279 with | `L_b_true -> Ojs.string_to_js "LBTrue")
-        let (cast : t -> ReadWriteStream.t) =
-          fun (x280 : t) -> ReadWriteStream.t_of_js (t_to_js x280)
+          fun (x307 : t) ->
+            fun (x308 : [ `L_b_true ]) ->
+              Ojs.set_prop_ascii (t_to_js x307) "isTTY"
+                (match x308 with | `L_b_true -> Ojs.string_to_js "LBTrue")
       end
     module ProcessEnv =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x282 : Ojs.t) -> x282
-        and t_to_js : t -> Ojs.t = fun (x281 : Ojs.t) -> x281
-        let (cast : t -> string Dict.t) =
-          fun (x283 : t) -> Dict.t_of_js Ojs.string_of_js (t_to_js x283)
+        type t = string Dict.t
+        let rec t_of_js : Ojs.t -> t =
+          fun (x311 : Ojs.t) -> Dict.t_of_js Ojs.string_of_js x311
+        and t_to_js : t -> Ojs.t =
+          fun (x309 : string Dict.t) -> Dict.t_to_js Ojs.string_to_js x309
       end
     module HRTime =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x286 : Ojs.t) -> x286
-        and t_to_js : t -> Ojs.t = fun (x285 : Ojs.t) -> x285
+        let rec t_of_js : Ojs.t -> t = fun (x314 : Ojs.t) -> x314
+        and t_to_js : t -> Ojs.t = fun (x313 : Ojs.t) -> x313
         let (apply : t -> ?time:(int * int) -> unit -> (int * int)) =
-          fun (x293 : t) ->
-            fun ?time:(x287 : (int * int) option) ->
+          fun (x321 : t) ->
+            fun ?time:(x315 : (int * int) option) ->
               fun () ->
-                let x294 =
-                  Ojs.call (t_to_js x293) "apply"
-                    [|Ojs.null;((let x288 =
+                let x322 =
+                  Ojs.call (t_to_js x321) "apply"
+                    [|Ojs.null;((let x316 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
-                                 (match x287 with
-                                  | Some x289 ->
+                                 (match x315 with
+                                  | Some x317 ->
                                       ignore
-                                        (Ojs.call x288 "push"
-                                           [|((let (x290, x291) = x289 in
-                                               let x292 = Ojs.array_make 2 in
-                                               Ojs.array_set x292 0
-                                                 (Ojs.int_to_js x290);
-                                               Ojs.array_set x292 1
-                                                 (Ojs.int_to_js x291);
-                                               x292))|])
+                                        (Ojs.call x316 "push"
+                                           [|((let (x318, x319) = x317 in
+                                               let x320 = Ojs.array_make 2 in
+                                               Ojs.array_set x320 0
+                                                 (Ojs.int_to_js x318);
+                                               Ojs.array_set x320 1
+                                                 (Ojs.int_to_js x319);
+                                               x320))|])
                                   | None -> ());
-                                 x288))|] in
-                ((Ojs.int_of_js (Ojs.array_get x294 0)),
-                  (Ojs.int_of_js (Ojs.array_get x294 1)))
+                                 x316))|] in
+                ((Ojs.int_of_js (Ojs.array_get x322 0)),
+                  (Ojs.int_of_js (Ojs.array_get x322 1)))
         let (bigint : t -> bigint) =
-          fun (x295 : t) ->
-            bigint_of_js (Ojs.call (t_to_js x295) "bigint" [||])
+          fun (x323 : t) ->
+            bigint_of_js (Ojs.call (t_to_js x323) "bigint" [||])
       end
     module ProcessReport =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x297 : Ojs.t) -> x297
-        and t_to_js : t -> Ojs.t = fun (x296 : Ojs.t) -> x296
-        let (get_directory : t -> string) =
-          fun (x298 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x298) "directory")
+        let rec t_of_js : Ojs.t -> t = fun (x325 : Ojs.t) -> x325
+        and t_to_js : t -> Ojs.t = fun (x324 : Ojs.t) -> x324
+        let (directory : t -> string) =
+          fun (x326 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x326) "directory")
         let (set_directory : t -> string -> unit) =
-          fun (x299 : t) ->
-            fun (x300 : string) ->
-              Ojs.set_prop_ascii (t_to_js x299) "directory"
-                (Ojs.string_to_js x300)
-        let (get_filename : t -> string) =
-          fun (x301 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x301) "filename")
-        let (set_filename : t -> string -> unit) =
-          fun (x302 : t) ->
-            fun (x303 : string) ->
-              Ojs.set_prop_ascii (t_to_js x302) "filename"
-                (Ojs.string_to_js x303)
-        let (get_report : t -> ?err:Error.t -> unit -> string) =
-          fun (x307 : t) ->
-            fun ?err:(x304 : Error.t option) ->
-              fun () ->
-                Ojs.string_of_js
-                  (let x308 = t_to_js x307 in
-                   Ojs.call (Ojs.get_prop_ascii x308 "getReport") "apply"
-                     [|x308;((let x305 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              (match x304 with
-                               | Some x306 ->
-                                   ignore
-                                     (Ojs.call x305 "push"
-                                        [|(Error.t_to_js x306)|])
-                               | None -> ());
-                              x305))|])
-        let (get_report_on_fatal_error : t -> bool) =
-          fun (x309 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x309) "reportOnFatalError")
-        let (set_report_on_fatal_error : t -> bool -> unit) =
-          fun (x310 : t) ->
-            fun (x311 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x310) "reportOnFatalError"
-                (Ojs.bool_to_js x311)
-        let (get_report_on_signal : t -> bool) =
-          fun (x312 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x312) "reportOnSignal")
-        let (set_report_on_signal : t -> bool -> unit) =
-          fun (x313 : t) ->
-            fun (x314 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x313) "reportOnSignal"
-                (Ojs.bool_to_js x314)
-        let (get_report_on_uncaught_exception : t -> bool) =
-          fun (x315 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x315) "reportOnUncaughtException")
-        let (set_report_on_uncaught_exception : t -> bool -> unit) =
-          fun (x316 : t) ->
-            fun (x317 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x316) "reportOnUncaughtException"
-                (Ojs.bool_to_js x317)
-        let (get_signal : t -> Signals.t) =
-          fun (x318 : t) ->
-            Signals.t_of_js (Ojs.get_prop_ascii (t_to_js x318) "signal")
-        let (set_signal : t -> Signals.t -> unit) =
-          fun (x319 : t) ->
-            fun (x320 : Signals.t) ->
-              Ojs.set_prop_ascii (t_to_js x319) "signal"
-                (Signals.t_to_js x320)
-        let (write_report : t -> ?file_name:string -> unit -> string) =
-          fun (x324 : t) ->
-            fun ?file_name:(x321 : string option) ->
-              fun () ->
-                Ojs.string_of_js
-                  (let x325 = t_to_js x324 in
-                   Ojs.call (Ojs.get_prop_ascii x325 "writeReport") "apply"
-                     [|x325;((let x322 =
-                                Ojs.new_obj
-                                  (Ojs.get_prop_ascii Ojs.global "Array")
-                                  [||] in
-                              (match x321 with
-                               | Some x323 ->
-                                   ignore
-                                     (Ojs.call x322 "push"
-                                        [|(Ojs.string_to_js x323)|])
-                               | None -> ());
-                              x322))|])
-        let (write_report' : t -> ?error:Error.t -> unit -> string) =
+          fun (x327 : t) ->
+            fun (x328 : string) ->
+              Ojs.set_prop_ascii (t_to_js x327) "directory"
+                (Ojs.string_to_js x328)
+        let (filename : t -> string) =
           fun (x329 : t) ->
-            fun ?error:(x326 : Error.t option) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x329) "filename")
+        let (set_filename : t -> string -> unit) =
+          fun (x330 : t) ->
+            fun (x331 : string) ->
+              Ojs.set_prop_ascii (t_to_js x330) "filename"
+                (Ojs.string_to_js x331)
+        let (get_report : t -> ?err:Error.t -> unit -> string) =
+          fun (x335 : t) ->
+            fun ?err:(x332 : Error.t option) ->
               fun () ->
                 Ojs.string_of_js
-                  (let x330 = t_to_js x329 in
-                   Ojs.call (Ojs.get_prop_ascii x330 "writeReport") "apply"
-                     [|x330;((let x327 =
+                  (let x336 = t_to_js x335 in
+                   Ojs.call (Ojs.get_prop_ascii x336 "getReport") "apply"
+                     [|x336;((let x333 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x326 with
-                               | Some x328 ->
+                              (match x332 with
+                               | Some x334 ->
                                    ignore
-                                     (Ojs.call x327 "push"
-                                        [|(Error.t_to_js x328)|])
+                                     (Ojs.call x333 "push"
+                                        [|(Error.t_to_js x334)|])
                                | None -> ());
-                              x327))|])
+                              x333))|])
+        let (report_on_fatal_error : t -> bool) =
+          fun (x337 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x337) "reportOnFatalError")
+        let (set_report_on_fatal_error : t -> bool -> unit) =
+          fun (x338 : t) ->
+            fun (x339 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x338) "reportOnFatalError"
+                (Ojs.bool_to_js x339)
+        let (report_on_signal : t -> bool) =
+          fun (x340 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x340) "reportOnSignal")
+        let (set_report_on_signal : t -> bool -> unit) =
+          fun (x341 : t) ->
+            fun (x342 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x341) "reportOnSignal"
+                (Ojs.bool_to_js x342)
+        let (report_on_uncaught_exception : t -> bool) =
+          fun (x343 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x343) "reportOnUncaughtException")
+        let (set_report_on_uncaught_exception : t -> bool -> unit) =
+          fun (x344 : t) ->
+            fun (x345 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x344) "reportOnUncaughtException"
+                (Ojs.bool_to_js x345)
+        let (signal : t -> Signals.t) =
+          fun (x346 : t) ->
+            Signals.t_of_js (Ojs.get_prop_ascii (t_to_js x346) "signal")
+        let (set_signal : t -> Signals.t -> unit) =
+          fun (x347 : t) ->
+            fun (x348 : Signals.t) ->
+              Ojs.set_prop_ascii (t_to_js x347) "signal"
+                (Signals.t_to_js x348)
+        let (write_report : t -> ?file_name:string -> unit -> string) =
+          fun (x352 : t) ->
+            fun ?file_name:(x349 : string option) ->
+              fun () ->
+                Ojs.string_of_js
+                  (let x353 = t_to_js x352 in
+                   Ojs.call (Ojs.get_prop_ascii x353 "writeReport") "apply"
+                     [|x353;((let x350 =
+                                Ojs.new_obj
+                                  (Ojs.get_prop_ascii Ojs.global "Array")
+                                  [||] in
+                              (match x349 with
+                               | Some x351 ->
+                                   ignore
+                                     (Ojs.call x350 "push"
+                                        [|(Ojs.string_to_js x351)|])
+                               | None -> ());
+                              x350))|])
+        let (write_report' : t -> ?error:Error.t -> unit -> string) =
+          fun (x357 : t) ->
+            fun ?error:(x354 : Error.t option) ->
+              fun () ->
+                Ojs.string_of_js
+                  (let x358 = t_to_js x357 in
+                   Ojs.call (Ojs.get_prop_ascii x358 "writeReport") "apply"
+                     [|x358;((let x355 =
+                                Ojs.new_obj
+                                  (Ojs.get_prop_ascii Ojs.global "Array")
+                                  [||] in
+                              (match x354 with
+                               | Some x356 ->
+                                   ignore
+                                     (Ojs.call x355 "push"
+                                        [|(Error.t_to_js x356)|])
+                               | None -> ());
+                              x355))|])
         let (write_report'' :
           t -> ?file_name:string -> ?err:Error.t -> unit -> string) =
-          fun (x336 : t) ->
-            fun ?file_name:(x331 : string option) ->
-              fun ?err:(x332 : Error.t option) ->
+          fun (x364 : t) ->
+            fun ?file_name:(x359 : string option) ->
+              fun ?err:(x360 : Error.t option) ->
                 fun () ->
                   Ojs.string_of_js
-                    (let x337 = t_to_js x336 in
-                     Ojs.call (Ojs.get_prop_ascii x337 "writeReport") "apply"
-                       [|x337;((let x333 =
+                    (let x365 = t_to_js x364 in
+                     Ojs.call (Ojs.get_prop_ascii x365 "writeReport") "apply"
+                       [|x365;((let x361 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x331 with
-                                 | Some x335 ->
+                                (match x359 with
+                                 | Some x363 ->
                                      ignore
-                                       (Ojs.call x333 "push"
-                                          [|(Ojs.string_to_js x335)|])
+                                       (Ojs.call x361 "push"
+                                          [|(Ojs.string_to_js x363)|])
                                  | None -> ());
-                                (match x332 with
-                                 | Some x334 ->
+                                (match x360 with
+                                 | Some x362 ->
                                      ignore
-                                       (Ojs.call x333 "push"
-                                          [|(Error.t_to_js x334)|])
+                                       (Ojs.call x361 "push"
+                                          [|(Error.t_to_js x362)|])
                                  | None -> ());
-                                x333))|])
+                                x361))|])
       end
     module ResourceUsage =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x339 : Ojs.t) -> x339
-        and t_to_js : t -> Ojs.t = fun (x338 : Ojs.t) -> x338
-        let (get_fs_read : t -> int) =
-          fun (x340 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x340) "fsRead")
-        let (set_fs_read : t -> int -> unit) =
-          fun (x341 : t) ->
-            fun (x342 : int) ->
-              Ojs.set_prop_ascii (t_to_js x341) "fsRead" (Ojs.int_to_js x342)
-        let (get_fs_write : t -> int) =
-          fun (x343 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x343) "fsWrite")
-        let (set_fs_write : t -> int -> unit) =
-          fun (x344 : t) ->
-            fun (x345 : int) ->
-              Ojs.set_prop_ascii (t_to_js x344) "fsWrite"
-                (Ojs.int_to_js x345)
-        let (get_involuntary_context_switches : t -> int) =
-          fun (x346 : t) ->
-            Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x346) "involuntaryContextSwitches")
-        let (set_involuntary_context_switches : t -> int -> unit) =
-          fun (x347 : t) ->
-            fun (x348 : int) ->
-              Ojs.set_prop_ascii (t_to_js x347) "involuntaryContextSwitches"
-                (Ojs.int_to_js x348)
-        let (get_ipc_received : t -> int) =
-          fun (x349 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x349) "ipcReceived")
-        let (set_ipc_received : t -> int -> unit) =
-          fun (x350 : t) ->
-            fun (x351 : int) ->
-              Ojs.set_prop_ascii (t_to_js x350) "ipcReceived"
-                (Ojs.int_to_js x351)
-        let (get_ipc_sent : t -> int) =
-          fun (x352 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x352) "ipcSent")
-        let (set_ipc_sent : t -> int -> unit) =
-          fun (x353 : t) ->
-            fun (x354 : int) ->
-              Ojs.set_prop_ascii (t_to_js x353) "ipcSent"
-                (Ojs.int_to_js x354)
-        let (get_major_page_fault : t -> int) =
-          fun (x355 : t) ->
-            Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x355) "majorPageFault")
-        let (set_major_page_fault : t -> int -> unit) =
-          fun (x356 : t) ->
-            fun (x357 : int) ->
-              Ojs.set_prop_ascii (t_to_js x356) "majorPageFault"
-                (Ojs.int_to_js x357)
-        let (get_max_rss : t -> int) =
-          fun (x358 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x358) "maxRSS")
-        let (set_max_rss : t -> int -> unit) =
-          fun (x359 : t) ->
-            fun (x360 : int) ->
-              Ojs.set_prop_ascii (t_to_js x359) "maxRSS" (Ojs.int_to_js x360)
-        let (get_minor_page_fault : t -> int) =
-          fun (x361 : t) ->
-            Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x361) "minorPageFault")
-        let (set_minor_page_fault : t -> int -> unit) =
-          fun (x362 : t) ->
-            fun (x363 : int) ->
-              Ojs.set_prop_ascii (t_to_js x362) "minorPageFault"
-                (Ojs.int_to_js x363)
-        let (get_shared_memory_size : t -> int) =
-          fun (x364 : t) ->
-            Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x364) "sharedMemorySize")
-        let (set_shared_memory_size : t -> int -> unit) =
-          fun (x365 : t) ->
-            fun (x366 : int) ->
-              Ojs.set_prop_ascii (t_to_js x365) "sharedMemorySize"
-                (Ojs.int_to_js x366)
-        let (get_signals_count : t -> int) =
-          fun (x367 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x367) "signalsCount")
-        let (set_signals_count : t -> int -> unit) =
+        let rec t_of_js : Ojs.t -> t = fun (x367 : Ojs.t) -> x367
+        and t_to_js : t -> Ojs.t = fun (x366 : Ojs.t) -> x366
+        let (fs_read : t -> int) =
           fun (x368 : t) ->
-            fun (x369 : int) ->
-              Ojs.set_prop_ascii (t_to_js x368) "signalsCount"
-                (Ojs.int_to_js x369)
-        let (get_swapped_out : t -> int) =
-          fun (x370 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x370) "swappedOut")
-        let (set_swapped_out : t -> int -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x368) "fsRead")
+        let (set_fs_read : t -> int -> unit) =
+          fun (x369 : t) ->
+            fun (x370 : int) ->
+              Ojs.set_prop_ascii (t_to_js x369) "fsRead" (Ojs.int_to_js x370)
+        let (fs_write : t -> int) =
           fun (x371 : t) ->
-            fun (x372 : int) ->
-              Ojs.set_prop_ascii (t_to_js x371) "swappedOut"
-                (Ojs.int_to_js x372)
-        let (get_system_cpu_time : t -> int) =
-          fun (x373 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x373) "systemCPUTime")
-        let (set_system_cpu_time : t -> int -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x371) "fsWrite")
+        let (set_fs_write : t -> int -> unit) =
+          fun (x372 : t) ->
+            fun (x373 : int) ->
+              Ojs.set_prop_ascii (t_to_js x372) "fsWrite"
+                (Ojs.int_to_js x373)
+        let (involuntary_context_switches : t -> int) =
           fun (x374 : t) ->
-            fun (x375 : int) ->
-              Ojs.set_prop_ascii (t_to_js x374) "systemCPUTime"
-                (Ojs.int_to_js x375)
-        let (get_unshared_data_size : t -> int) =
-          fun (x376 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x376) "unsharedDataSize")
-        let (set_unshared_data_size : t -> int -> unit) =
+              (Ojs.get_prop_ascii (t_to_js x374) "involuntaryContextSwitches")
+        let (set_involuntary_context_switches : t -> int -> unit) =
+          fun (x375 : t) ->
+            fun (x376 : int) ->
+              Ojs.set_prop_ascii (t_to_js x375) "involuntaryContextSwitches"
+                (Ojs.int_to_js x376)
+        let (ipc_received : t -> int) =
           fun (x377 : t) ->
-            fun (x378 : int) ->
-              Ojs.set_prop_ascii (t_to_js x377) "unsharedDataSize"
-                (Ojs.int_to_js x378)
-        let (get_unshared_stack_size : t -> int) =
-          fun (x379 : t) ->
-            Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x379) "unsharedStackSize")
-        let (set_unshared_stack_size : t -> int -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x377) "ipcReceived")
+        let (set_ipc_received : t -> int -> unit) =
+          fun (x378 : t) ->
+            fun (x379 : int) ->
+              Ojs.set_prop_ascii (t_to_js x378) "ipcReceived"
+                (Ojs.int_to_js x379)
+        let (ipc_sent : t -> int) =
           fun (x380 : t) ->
-            fun (x381 : int) ->
-              Ojs.set_prop_ascii (t_to_js x380) "unsharedStackSize"
-                (Ojs.int_to_js x381)
-        let (get_user_cpu_time : t -> int) =
-          fun (x382 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x382) "userCPUTime")
-        let (set_user_cpu_time : t -> int -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x380) "ipcSent")
+        let (set_ipc_sent : t -> int -> unit) =
+          fun (x381 : t) ->
+            fun (x382 : int) ->
+              Ojs.set_prop_ascii (t_to_js x381) "ipcSent"
+                (Ojs.int_to_js x382)
+        let (major_page_fault : t -> int) =
           fun (x383 : t) ->
-            fun (x384 : int) ->
-              Ojs.set_prop_ascii (t_to_js x383) "userCPUTime"
-                (Ojs.int_to_js x384)
-        let (get_voluntary_context_switches : t -> int) =
-          fun (x385 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x385) "voluntaryContextSwitches")
-        let (set_voluntary_context_switches : t -> int -> unit) =
+              (Ojs.get_prop_ascii (t_to_js x383) "majorPageFault")
+        let (set_major_page_fault : t -> int -> unit) =
+          fun (x384 : t) ->
+            fun (x385 : int) ->
+              Ojs.set_prop_ascii (t_to_js x384) "majorPageFault"
+                (Ojs.int_to_js x385)
+        let (max_rss : t -> int) =
           fun (x386 : t) ->
-            fun (x387 : int) ->
-              Ojs.set_prop_ascii (t_to_js x386) "voluntaryContextSwitches"
-                (Ojs.int_to_js x387)
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x386) "maxRSS")
+        let (set_max_rss : t -> int -> unit) =
+          fun (x387 : t) ->
+            fun (x388 : int) ->
+              Ojs.set_prop_ascii (t_to_js x387) "maxRSS" (Ojs.int_to_js x388)
+        let (minor_page_fault : t -> int) =
+          fun (x389 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x389) "minorPageFault")
+        let (set_minor_page_fault : t -> int -> unit) =
+          fun (x390 : t) ->
+            fun (x391 : int) ->
+              Ojs.set_prop_ascii (t_to_js x390) "minorPageFault"
+                (Ojs.int_to_js x391)
+        let (shared_memory_size : t -> int) =
+          fun (x392 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x392) "sharedMemorySize")
+        let (set_shared_memory_size : t -> int -> unit) =
+          fun (x393 : t) ->
+            fun (x394 : int) ->
+              Ojs.set_prop_ascii (t_to_js x393) "sharedMemorySize"
+                (Ojs.int_to_js x394)
+        let (signals_count : t -> int) =
+          fun (x395 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x395) "signalsCount")
+        let (set_signals_count : t -> int -> unit) =
+          fun (x396 : t) ->
+            fun (x397 : int) ->
+              Ojs.set_prop_ascii (t_to_js x396) "signalsCount"
+                (Ojs.int_to_js x397)
+        let (swapped_out : t -> int) =
+          fun (x398 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x398) "swappedOut")
+        let (set_swapped_out : t -> int -> unit) =
+          fun (x399 : t) ->
+            fun (x400 : int) ->
+              Ojs.set_prop_ascii (t_to_js x399) "swappedOut"
+                (Ojs.int_to_js x400)
+        let (system_cpu_time : t -> int) =
+          fun (x401 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x401) "systemCPUTime")
+        let (set_system_cpu_time : t -> int -> unit) =
+          fun (x402 : t) ->
+            fun (x403 : int) ->
+              Ojs.set_prop_ascii (t_to_js x402) "systemCPUTime"
+                (Ojs.int_to_js x403)
+        let (unshared_data_size : t -> int) =
+          fun (x404 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x404) "unsharedDataSize")
+        let (set_unshared_data_size : t -> int -> unit) =
+          fun (x405 : t) ->
+            fun (x406 : int) ->
+              Ojs.set_prop_ascii (t_to_js x405) "unsharedDataSize"
+                (Ojs.int_to_js x406)
+        let (unshared_stack_size : t -> int) =
+          fun (x407 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x407) "unsharedStackSize")
+        let (set_unshared_stack_size : t -> int -> unit) =
+          fun (x408 : t) ->
+            fun (x409 : int) ->
+              Ojs.set_prop_ascii (t_to_js x408) "unsharedStackSize"
+                (Ojs.int_to_js x409)
+        let (user_cpu_time : t -> int) =
+          fun (x410 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x410) "userCPUTime")
+        let (set_user_cpu_time : t -> int -> unit) =
+          fun (x411 : t) ->
+            fun (x412 : int) ->
+              Ojs.set_prop_ascii (t_to_js x411) "userCPUTime"
+                (Ojs.int_to_js x412)
+        let (voluntary_context_switches : t -> int) =
+          fun (x413 : t) ->
+            Ojs.int_of_js
+              (Ojs.get_prop_ascii (t_to_js x413) "voluntaryContextSwitches")
+        let (set_voluntary_context_switches : t -> int -> unit) =
+          fun (x414 : t) ->
+            fun (x415 : int) ->
+              Ojs.set_prop_ascii (t_to_js x414) "voluntaryContextSwitches"
+                (Ojs.int_to_js x415)
       end
     module Process =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x389 : Ojs.t) -> x389
-        and t_to_js : t -> Ojs.t = fun (x388 : Ojs.t) -> x388
-        let (get_stdout :
-          t -> (WriteStream.t, AnonymousInterface4.t) intersection2) =
-          fun (x390 : t) ->
-            intersection2_of_js WriteStream.t_of_js
-              AnonymousInterface4.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x390) "stdout")
-        let (set_stdout :
-          t -> (WriteStream.t, AnonymousInterface4.t) intersection2 -> unit)
-          =
-          fun (x393 : t) ->
-            fun (x394 : (WriteStream.t, AnonymousInterface4.t) intersection2)
-              ->
-              Ojs.set_prop_ascii (t_to_js x393) "stdout"
-                (intersection2_to_js WriteStream.t_to_js
-                   AnonymousInterface4.t_to_js x394)
-        let (get_stderr :
-          t -> (WriteStream.t, AnonymousInterface5.t) intersection2) =
-          fun (x397 : t) ->
-            intersection2_of_js WriteStream.t_of_js
-              AnonymousInterface5.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x397) "stderr")
-        let (set_stderr :
-          t -> (WriteStream.t, AnonymousInterface5.t) intersection2 -> unit)
-          =
-          fun (x400 : t) ->
-            fun (x401 : (WriteStream.t, AnonymousInterface5.t) intersection2)
-              ->
-              Ojs.set_prop_ascii (t_to_js x400) "stderr"
-                (intersection2_to_js WriteStream.t_to_js
-                   AnonymousInterface5.t_to_js x401)
-        let (get_stdin :
-          t -> (ReadStream.t, AnonymousInterface3.t) intersection2) =
-          fun (x404 : t) ->
-            intersection2_of_js ReadStream.t_of_js
-              AnonymousInterface3.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x404) "stdin")
-        let (set_stdin :
-          t -> (ReadStream.t, AnonymousInterface3.t) intersection2 -> unit) =
-          fun (x407 : t) ->
-            fun (x408 : (ReadStream.t, AnonymousInterface3.t) intersection2)
-              ->
-              Ojs.set_prop_ascii (t_to_js x407) "stdin"
-                (intersection2_to_js ReadStream.t_to_js
-                   AnonymousInterface3.t_to_js x408)
-        let (open_stdin : t -> Socket.t) =
-          fun (x411 : t) ->
-            Socket.t_of_js (Ojs.call (t_to_js x411) "openStdin" [||])
-        let (get_argv : t -> string list) =
-          fun (x412 : t) ->
-            Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x412) "argv")
-        let (set_argv : t -> string list -> unit) =
-          fun (x414 : t) ->
-            fun (x415 : string list) ->
-              Ojs.set_prop_ascii (t_to_js x414) "argv"
-                (Ojs.list_to_js Ojs.string_to_js x415)
-        let (get_argv0 : t -> string) =
-          fun (x417 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x417) "argv0")
-        let (set_argv0 : t -> string -> unit) =
+        let rec t_of_js : Ojs.t -> t = fun (x417 : Ojs.t) -> x417
+        and t_to_js : t -> Ojs.t = fun (x416 : Ojs.t) -> x416
+        let (stdout : t -> WriteStream.t) =
           fun (x418 : t) ->
-            fun (x419 : string) ->
-              Ojs.set_prop_ascii (t_to_js x418) "argv0"
-                (Ojs.string_to_js x419)
-        let (get_exec_argv : t -> string list) =
-          fun (x420 : t) ->
-            Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x420) "execArgv")
-        let (set_exec_argv : t -> string list -> unit) =
+            WriteStream.t_of_js (Ojs.get_prop_ascii (t_to_js x418) "stdout")
+        let (set_stdout : t -> WriteStream.t -> unit) =
+          fun (x419 : t) ->
+            fun (x420 : WriteStream.t) ->
+              Ojs.set_prop_ascii (t_to_js x419) "stdout"
+                (WriteStream.t_to_js x420)
+        let (stderr : t -> WriteStream.t) =
+          fun (x421 : t) ->
+            WriteStream.t_of_js (Ojs.get_prop_ascii (t_to_js x421) "stderr")
+        let (set_stderr : t -> WriteStream.t -> unit) =
           fun (x422 : t) ->
-            fun (x423 : string list) ->
-              Ojs.set_prop_ascii (t_to_js x422) "execArgv"
-                (Ojs.list_to_js Ojs.string_to_js x423)
-        let (get_exec_path : t -> string) =
+            fun (x423 : WriteStream.t) ->
+              Ojs.set_prop_ascii (t_to_js x422) "stderr"
+                (WriteStream.t_to_js x423)
+        let (stdin : t -> ReadStream.t) =
+          fun (x424 : t) ->
+            ReadStream.t_of_js (Ojs.get_prop_ascii (t_to_js x424) "stdin")
+        let (set_stdin : t -> ReadStream.t -> unit) =
           fun (x425 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x425) "execPath")
-        let (set_exec_path : t -> string -> unit) =
-          fun (x426 : t) ->
-            fun (x427 : string) ->
-              Ojs.set_prop_ascii (t_to_js x426) "execPath"
-                (Ojs.string_to_js x427)
-        let (abort : t -> never) =
+            fun (x426 : ReadStream.t) ->
+              Ojs.set_prop_ascii (t_to_js x425) "stdin"
+                (ReadStream.t_to_js x426)
+        let (open_stdin : t -> Socket.t) =
+          fun (x427 : t) ->
+            Socket.t_of_js (Ojs.call (t_to_js x427) "openStdin" [||])
+        let (argv : t -> string list) =
           fun (x428 : t) ->
-            never_of_js (Ojs.call (t_to_js x428) "abort" [||])
-        let (chdir : t -> directory:string -> unit) =
+            Ojs.list_of_js Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x428) "argv")
+        let (set_argv : t -> string list -> unit) =
           fun (x430 : t) ->
-            fun ~directory:(x429 : string) ->
-              ignore
-                (Ojs.call (t_to_js x430) "chdir" [|(Ojs.string_to_js x429)|])
-        let (cwd : t -> string) =
-          fun (x431 : t) ->
-            Ojs.string_of_js (Ojs.call (t_to_js x431) "cwd" [||])
-        let (get_debug_port : t -> int) =
-          fun (x432 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x432) "debugPort")
-        let (set_debug_port : t -> int -> unit) =
+            fun (x431 : string list) ->
+              Ojs.set_prop_ascii (t_to_js x430) "argv"
+                (Ojs.list_to_js Ojs.string_to_js x431)
+        let (argv0 : t -> string) =
           fun (x433 : t) ->
-            fun (x434 : int) ->
-              Ojs.set_prop_ascii (t_to_js x433) "debugPort"
-                (Ojs.int_to_js x434)
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x433) "argv0")
+        let (set_argv0 : t -> string -> unit) =
+          fun (x434 : t) ->
+            fun (x435 : string) ->
+              Ojs.set_prop_ascii (t_to_js x434) "argv0"
+                (Ojs.string_to_js x435)
+        let (exec_argv : t -> string list) =
+          fun (x436 : t) ->
+            Ojs.list_of_js Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x436) "execArgv")
+        let (set_exec_argv : t -> string list -> unit) =
+          fun (x438 : t) ->
+            fun (x439 : string list) ->
+              Ojs.set_prop_ascii (t_to_js x438) "execArgv"
+                (Ojs.list_to_js Ojs.string_to_js x439)
+        let (exec_path : t -> string) =
+          fun (x441 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x441) "execPath")
+        let (set_exec_path : t -> string -> unit) =
+          fun (x442 : t) ->
+            fun (x443 : string) ->
+              Ojs.set_prop_ascii (t_to_js x442) "execPath"
+                (Ojs.string_to_js x443)
+        let (abort : t -> never) =
+          fun (x444 : t) ->
+            never_of_js (Ojs.call (t_to_js x444) "abort" [||])
+        let (chdir : t -> directory:string -> unit) =
+          fun (x446 : t) ->
+            fun ~directory:(x445 : string) ->
+              ignore
+                (Ojs.call (t_to_js x446) "chdir" [|(Ojs.string_to_js x445)|])
+        let (cwd : t -> string) =
+          fun (x447 : t) ->
+            Ojs.string_of_js (Ojs.call (t_to_js x447) "cwd" [||])
+        let (debug_port : t -> int) =
+          fun (x448 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x448) "debugPort")
+        let (set_debug_port : t -> int -> unit) =
+          fun (x449 : t) ->
+            fun (x450 : int) ->
+              Ojs.set_prop_ascii (t_to_js x449) "debugPort"
+                (Ojs.int_to_js x450)
         let (emit_warning :
           t ->
-            warning:Error.t or_string ->
-              ?name:string -> ?ctor:untyped_function -> unit -> unit)
+            event:[ `warning ] ->
+              warning:Error.t or_string ->
+                ?name:string -> ?ctor:untyped_function -> unit -> unit)
           =
-          fun (x442 : t) ->
-            fun ~warning:(x435 : Error.t or_string) ->
-              fun ?name:(x436 : string option) ->
-                fun ?ctor:(x437 : untyped_function option) ->
-                  fun () ->
-                    ignore
-                      (let x443 = t_to_js x442 in
-                       Ojs.call (Ojs.get_prop_ascii x443 "emitWarning")
-                         "apply"
-                         [|x443;((let x438 =
-                                    Ojs.new_obj
-                                      (Ojs.get_prop_ascii Ojs.global "Array")
-                                      [||] in
-                                  ignore
-                                    (Ojs.call x438 "push"
-                                       [|(or_string_to_js Error.t_to_js x435)|]);
-                                  (match x436 with
-                                   | Some x440 ->
-                                       ignore
-                                         (Ojs.call x438 "push"
-                                            [|(Ojs.string_to_js x440)|])
-                                   | None -> ());
-                                  (match x437 with
-                                   | Some x439 ->
-                                       ignore
-                                         (Ojs.call x438 "push"
-                                            [|(untyped_function_to_js x439)|])
-                                   | None -> ());
-                                  x438))|])
-        let (get_env : t -> ProcessEnv.t) =
-          fun (x444 : t) ->
-            ProcessEnv.t_of_js (Ojs.get_prop_ascii (t_to_js x444) "env")
+          fun (x459 : t) ->
+            fun ~event:(x451 : [ `warning ]) ->
+              fun ~warning:(x452 : Error.t or_string) ->
+                fun ?name:(x453 : string option) ->
+                  fun ?ctor:(x454 : untyped_function option) ->
+                    fun () ->
+                      ignore
+                        (let x460 = t_to_js x459 in
+                         Ojs.call (Ojs.get_prop_ascii x460 "emitWarning")
+                           "apply"
+                           [|x460;((let x455 =
+                                      Ojs.new_obj
+                                        (Ojs.get_prop_ascii Ojs.global
+                                           "Array") [||] in
+                                    ignore
+                                      (Ojs.call x455 "push"
+                                         [|((match x451 with
+                                             | `warning ->
+                                                 Ojs.string_to_js "warning"))|]);
+                                    ignore
+                                      (Ojs.call x455 "push"
+                                         [|(or_string_to_js Error.t_to_js
+                                              x452)|]);
+                                    (match x453 with
+                                     | Some x457 ->
+                                         ignore
+                                           (Ojs.call x455 "push"
+                                              [|(Ojs.string_to_js x457)|])
+                                     | None -> ());
+                                    (match x454 with
+                                     | Some x456 ->
+                                         ignore
+                                           (Ojs.call x455 "push"
+                                              [|(untyped_function_to_js x456)|])
+                                     | None -> ());
+                                    x455))|])
+        let (env : t -> ProcessEnv.t) =
+          fun (x461 : t) ->
+            ProcessEnv.t_of_js (Ojs.get_prop_ascii (t_to_js x461) "env")
         let (set_env : t -> ProcessEnv.t -> unit) =
-          fun (x445 : t) ->
-            fun (x446 : ProcessEnv.t) ->
-              Ojs.set_prop_ascii (t_to_js x445) "env"
-                (ProcessEnv.t_to_js x446)
+          fun (x462 : t) ->
+            fun (x463 : ProcessEnv.t) ->
+              Ojs.set_prop_ascii (t_to_js x462) "env"
+                (ProcessEnv.t_to_js x463)
         let (exit : t -> ?code:int -> unit -> never) =
-          fun (x450 : t) ->
-            fun ?code:(x447 : int option) ->
+          fun (x467 : t) ->
+            fun ?code:(x464 : int option) ->
               fun () ->
                 never_of_js
-                  (let x451 = t_to_js x450 in
-                   Ojs.call (Ojs.get_prop_ascii x451 "exit") "apply"
-                     [|x451;((let x448 =
+                  (let x468 = t_to_js x467 in
+                   Ojs.call (Ojs.get_prop_ascii x468 "exit") "apply"
+                     [|x468;((let x465 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x447 with
-                               | Some x449 ->
+                              (match x464 with
+                               | Some x466 ->
                                    ignore
-                                     (Ojs.call x448 "push"
-                                        [|(Ojs.int_to_js x449)|])
+                                     (Ojs.call x465 "push"
+                                        [|(Ojs.int_to_js x466)|])
                                | None -> ());
-                              x448))|])
-        let (get_exit_code : t -> int) =
-          fun (x452 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x452) "exitCode")
+                              x465))|])
+        let (exit_code : t -> int) =
+          fun (x469 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x469) "exitCode")
         let (set_exit_code : t -> int -> unit) =
-          fun (x453 : t) ->
-            fun (x454 : int) ->
-              Ojs.set_prop_ascii (t_to_js x453) "exitCode"
-                (Ojs.int_to_js x454)
-        let (getgid : t -> int) =
-          fun (x455 : t) ->
-            Ojs.int_of_js (Ojs.call (t_to_js x455) "getgid" [||])
-        let (setgid : t -> id:string or_number -> unit) =
-          fun (x458 : t) ->
-            fun ~id:(x456 : string or_number) ->
-              ignore
-                (Ojs.call (t_to_js x458) "setgid"
-                   [|(or_number_to_js Ojs.string_to_js x456)|])
-        let (getuid : t -> int) =
-          fun (x459 : t) ->
-            Ojs.int_of_js (Ojs.call (t_to_js x459) "getuid" [||])
-        let (setuid : t -> id:string or_number -> unit) =
-          fun (x462 : t) ->
-            fun ~id:(x460 : string or_number) ->
-              ignore
-                (Ojs.call (t_to_js x462) "setuid"
-                   [|(or_number_to_js Ojs.string_to_js x460)|])
-        let (geteuid : t -> int) =
-          fun (x463 : t) ->
-            Ojs.int_of_js (Ojs.call (t_to_js x463) "geteuid" [||])
-        let (seteuid : t -> id:string or_number -> unit) =
-          fun (x466 : t) ->
-            fun ~id:(x464 : string or_number) ->
-              ignore
-                (Ojs.call (t_to_js x466) "seteuid"
-                   [|(or_number_to_js Ojs.string_to_js x464)|])
-        let (getegid : t -> int) =
-          fun (x467 : t) ->
-            Ojs.int_of_js (Ojs.call (t_to_js x467) "getegid" [||])
-        let (setegid : t -> id:string or_number -> unit) =
           fun (x470 : t) ->
-            fun ~id:(x468 : string or_number) ->
+            fun (x471 : int) ->
+              Ojs.set_prop_ascii (t_to_js x470) "exitCode"
+                (Ojs.int_to_js x471)
+        let (getgid : t -> int) =
+          fun (x472 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x472) "getgid" [||])
+        let (setgid : t -> id:string or_number -> unit) =
+          fun (x475 : t) ->
+            fun ~id:(x473 : string or_number) ->
               ignore
-                (Ojs.call (t_to_js x470) "setegid"
-                   [|(or_number_to_js Ojs.string_to_js x468)|])
-        let (getgroups : t -> int list) =
-          fun (x471 : t) ->
-            Ojs.list_of_js Ojs.int_of_js
-              (Ojs.call (t_to_js x471) "getgroups" [||])
-        let (setgroups : t -> groups:string or_number list -> unit) =
+                (Ojs.call (t_to_js x475) "setgid"
+                   [|(or_number_to_js Ojs.string_to_js x473)|])
+        let (getuid : t -> int) =
           fun (x476 : t) ->
-            fun ~groups:(x473 : string or_number list) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x476) "getuid" [||])
+        let (setuid : t -> id:string or_number -> unit) =
+          fun (x479 : t) ->
+            fun ~id:(x477 : string or_number) ->
               ignore
-                (Ojs.call (t_to_js x476) "setgroups"
+                (Ojs.call (t_to_js x479) "setuid"
+                   [|(or_number_to_js Ojs.string_to_js x477)|])
+        let (geteuid : t -> int) =
+          fun (x480 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x480) "geteuid" [||])
+        let (seteuid : t -> id:string or_number -> unit) =
+          fun (x483 : t) ->
+            fun ~id:(x481 : string or_number) ->
+              ignore
+                (Ojs.call (t_to_js x483) "seteuid"
+                   [|(or_number_to_js Ojs.string_to_js x481)|])
+        let (getegid : t -> int) =
+          fun (x484 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x484) "getegid" [||])
+        let (setegid : t -> id:string or_number -> unit) =
+          fun (x487 : t) ->
+            fun ~id:(x485 : string or_number) ->
+              ignore
+                (Ojs.call (t_to_js x487) "setegid"
+                   [|(or_number_to_js Ojs.string_to_js x485)|])
+        let (getgroups : t -> int list) =
+          fun (x488 : t) ->
+            Ojs.list_of_js Ojs.int_of_js
+              (Ojs.call (t_to_js x488) "getgroups" [||])
+        let (setgroups : t -> groups:string or_number list -> unit) =
+          fun (x493 : t) ->
+            fun ~groups:(x490 : string or_number list) ->
+              ignore
+                (Ojs.call (t_to_js x493) "setgroups"
                    [|(Ojs.list_to_js
-                        (fun (x474 : string or_number) ->
-                           or_number_to_js Ojs.string_to_js x474) x473)|])
+                        (fun (x491 : string or_number) ->
+                           or_number_to_js Ojs.string_to_js x491) x490)|])
         let (set_uncaught_exception_capture_callback :
           t -> cb:(err:Error.t -> unit) or_null -> unit) =
-          fun (x480 : t) ->
-            fun ~cb:(x477 : (err:Error.t -> unit) or_null) ->
+          fun (x497 : t) ->
+            fun ~cb:(x494 : (err:Error.t -> unit) or_null) ->
               ignore
-                (Ojs.call (t_to_js x480)
+                (Ojs.call (t_to_js x497)
                    "setUncaughtExceptionCaptureCallback"
                    [|(or_null_to_js
-                        (fun (x478 : err:Error.t -> unit) ->
+                        (fun (x495 : err:Error.t -> unit) ->
                            Ojs.fun_to_js 1
-                             (fun (x479 : Ojs.t) ->
-                                x478 ~err:(Error.t_of_js x479))) x477)|])
+                             (fun (x496 : Ojs.t) ->
+                                x495 ~err:(Error.t_of_js x496))) x494)|])
         let (has_uncaught_exception_capture_callback : t -> bool) =
-          fun (x481 : t) ->
+          fun (x498 : t) ->
             Ojs.bool_of_js
-              (Ojs.call (t_to_js x481) "hasUncaughtExceptionCaptureCallback"
+              (Ojs.call (t_to_js x498) "hasUncaughtExceptionCaptureCallback"
                  [||])
-        let (get_version : t -> string) =
-          fun (x482 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x482) "version")
+        let (version : t -> string) =
+          fun (x499 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x499) "version")
         let (set_version : t -> string -> unit) =
-          fun (x483 : t) ->
-            fun (x484 : string) ->
-              Ojs.set_prop_ascii (t_to_js x483) "version"
-                (Ojs.string_to_js x484)
-        let (get_versions : t -> ProcessVersions.t) =
-          fun (x485 : t) ->
+          fun (x500 : t) ->
+            fun (x501 : string) ->
+              Ojs.set_prop_ascii (t_to_js x500) "version"
+                (Ojs.string_to_js x501)
+        let (versions : t -> ProcessVersions.t) =
+          fun (x502 : t) ->
             ProcessVersions.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x485) "versions")
+              (Ojs.get_prop_ascii (t_to_js x502) "versions")
         let (set_versions : t -> ProcessVersions.t -> unit) =
-          fun (x486 : t) ->
-            fun (x487 : ProcessVersions.t) ->
-              Ojs.set_prop_ascii (t_to_js x486) "versions"
-                (ProcessVersions.t_to_js x487)
-        let (get_config : t -> AnonymousInterface8.t) =
-          fun (x488 : t) ->
+          fun (x503 : t) ->
+            fun (x504 : ProcessVersions.t) ->
+              Ojs.set_prop_ascii (t_to_js x503) "versions"
+                (ProcessVersions.t_to_js x504)
+        let (config : t -> AnonymousInterface8.t) =
+          fun (x505 : t) ->
             AnonymousInterface8.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x488) "config")
+              (Ojs.get_prop_ascii (t_to_js x505) "config")
         let (set_config : t -> AnonymousInterface8.t -> unit) =
-          fun (x489 : t) ->
-            fun (x490 : AnonymousInterface8.t) ->
-              Ojs.set_prop_ascii (t_to_js x489) "config"
-                (AnonymousInterface8.t_to_js x490)
+          fun (x506 : t) ->
+            fun (x507 : AnonymousInterface8.t) ->
+              Ojs.set_prop_ascii (t_to_js x506) "config"
+                (AnonymousInterface8.t_to_js x507)
         let (kill :
           t -> pid:int -> ?signal:string or_number -> unit -> [ `L_b_true ])
           =
-          fun (x496 : t) ->
-            fun ~pid:(x491 : int) ->
-              fun ?signal:(x492 : string or_number option) ->
+          fun (x513 : t) ->
+            fun ~pid:(x508 : int) ->
+              fun ?signal:(x509 : string or_number option) ->
                 fun () ->
-                  let x498 =
-                    let x497 = t_to_js x496 in
-                    Ojs.call (Ojs.get_prop_ascii x497 "kill") "apply"
-                      [|x497;((let x493 =
+                  let x515 =
+                    let x514 = t_to_js x513 in
+                    Ojs.call (Ojs.get_prop_ascii x514 "kill") "apply"
+                      [|x514;((let x510 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x493 "push"
-                                    [|(Ojs.int_to_js x491)|]);
-                               (match x492 with
-                                | Some x494 ->
+                                 (Ojs.call x510 "push"
+                                    [|(Ojs.int_to_js x508)|]);
+                               (match x509 with
+                                | Some x511 ->
                                     ignore
-                                      (Ojs.call x493 "push"
+                                      (Ojs.call x510 "push"
                                          [|(or_number_to_js Ojs.string_to_js
-                                              x494)|])
+                                              x511)|])
                                 | None -> ());
-                               x493))|] in
-                  match Ojs.bool_of_js x498 with
+                               x510))|] in
+                  match Ojs.bool_of_js x515 with
                   | true -> `L_b_true
                   | _ -> assert false
-        let (get_pid : t -> int) =
-          fun (x499 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x499) "pid")
+        let (pid : t -> int) =
+          fun (x516 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x516) "pid")
         let (set_pid : t -> int -> unit) =
-          fun (x500 : t) ->
-            fun (x501 : int) ->
-              Ojs.set_prop_ascii (t_to_js x500) "pid" (Ojs.int_to_js x501)
-        let (get_ppid : t -> int) =
-          fun (x502 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x502) "ppid")
-        let (set_ppid : t -> int -> unit) =
-          fun (x503 : t) ->
-            fun (x504 : int) ->
-              Ojs.set_prop_ascii (t_to_js x503) "ppid" (Ojs.int_to_js x504)
-        let (get_title : t -> string) =
-          fun (x505 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x505) "title")
-        let (set_title : t -> string -> unit) =
-          fun (x506 : t) ->
-            fun (x507 : string) ->
-              Ojs.set_prop_ascii (t_to_js x506) "title"
-                (Ojs.string_to_js x507)
-        let (get_arch : t -> string) =
-          fun (x508 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x508) "arch")
-        let (set_arch : t -> string -> unit) =
-          fun (x509 : t) ->
-            fun (x510 : string) ->
-              Ojs.set_prop_ascii (t_to_js x509) "arch"
-                (Ojs.string_to_js x510)
-        let (get_platform : t -> Platform.t) =
-          fun (x511 : t) ->
-            Platform.t_of_js (Ojs.get_prop_ascii (t_to_js x511) "platform")
-        let (set_platform : t -> Platform.t -> unit) =
-          fun (x512 : t) ->
-            fun (x513 : Platform.t) ->
-              Ojs.set_prop_ascii (t_to_js x512) "platform"
-                (Platform.t_to_js x513)
-        let (get_main_module : t -> Module.t) =
-          fun (x514 : t) ->
-            Module.t_of_js (Ojs.get_prop_ascii (t_to_js x514) "mainModule")
-        let (set_main_module : t -> Module.t -> unit) =
-          fun (x515 : t) ->
-            fun (x516 : Module.t) ->
-              Ojs.set_prop_ascii (t_to_js x515) "mainModule"
-                (Module.t_to_js x516)
-        let (memory_usage : t -> MemoryUsage.t) =
           fun (x517 : t) ->
-            MemoryUsage.t_of_js (Ojs.call (t_to_js x517) "memoryUsage" [||])
+            fun (x518 : int) ->
+              Ojs.set_prop_ascii (t_to_js x517) "pid" (Ojs.int_to_js x518)
+        let (ppid : t -> int) =
+          fun (x519 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x519) "ppid")
+        let (set_ppid : t -> int -> unit) =
+          fun (x520 : t) ->
+            fun (x521 : int) ->
+              Ojs.set_prop_ascii (t_to_js x520) "ppid" (Ojs.int_to_js x521)
+        let (title : t -> string) =
+          fun (x522 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x522) "title")
+        let (set_title : t -> string -> unit) =
+          fun (x523 : t) ->
+            fun (x524 : string) ->
+              Ojs.set_prop_ascii (t_to_js x523) "title"
+                (Ojs.string_to_js x524)
+        let (arch : t -> string) =
+          fun (x525 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x525) "arch")
+        let (set_arch : t -> string -> unit) =
+          fun (x526 : t) ->
+            fun (x527 : string) ->
+              Ojs.set_prop_ascii (t_to_js x526) "arch"
+                (Ojs.string_to_js x527)
+        let (platform : t -> Platform.t) =
+          fun (x528 : t) ->
+            Platform.t_of_js (Ojs.get_prop_ascii (t_to_js x528) "platform")
+        let (set_platform : t -> Platform.t -> unit) =
+          fun (x529 : t) ->
+            fun (x530 : Platform.t) ->
+              Ojs.set_prop_ascii (t_to_js x529) "platform"
+                (Platform.t_to_js x530)
+        let (main_module : t -> Module.t) =
+          fun (x531 : t) ->
+            Module.t_of_js (Ojs.get_prop_ascii (t_to_js x531) "mainModule")
+        let (set_main_module : t -> Module.t -> unit) =
+          fun (x532 : t) ->
+            fun (x533 : Module.t) ->
+              Ojs.set_prop_ascii (t_to_js x532) "mainModule"
+                (Module.t_to_js x533)
+        let (memory_usage : t -> MemoryUsage.t) =
+          fun (x534 : t) ->
+            MemoryUsage.t_of_js (Ojs.call (t_to_js x534) "memoryUsage" [||])
         let (cpu_usage :
           t -> ?previous_value:CpuUsage.t -> unit -> CpuUsage.t) =
-          fun (x521 : t) ->
-            fun ?previous_value:(x518 : CpuUsage.t option) ->
+          fun (x538 : t) ->
+            fun ?previous_value:(x535 : CpuUsage.t option) ->
               fun () ->
                 CpuUsage.t_of_js
-                  (let x522 = t_to_js x521 in
-                   Ojs.call (Ojs.get_prop_ascii x522 "cpuUsage") "apply"
-                     [|x522;((let x519 =
+                  (let x539 = t_to_js x538 in
+                   Ojs.call (Ojs.get_prop_ascii x539 "cpuUsage") "apply"
+                     [|x539;((let x536 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x518 with
-                               | Some x520 ->
+                              (match x535 with
+                               | Some x537 ->
                                    ignore
-                                     (Ojs.call x519 "push"
-                                        [|(CpuUsage.t_to_js x520)|])
+                                     (Ojs.call x536 "push"
+                                        [|(CpuUsage.t_to_js x537)|])
                                | None -> ());
-                              x519))|])
+                              x536))|])
         let (next_tick :
           t -> callback:untyped_function -> args:any list -> unit) =
-          fun (x527 : t) ->
-            fun ~callback:(x523 : untyped_function) ->
-              fun ~args:(x524 : any list) ->
+          fun (x544 : t) ->
+            fun ~callback:(x540 : untyped_function) ->
+              fun ~args:(x541 : any list) ->
                 ignore
-                  (let x528 = t_to_js x527 in
-                   Ojs.call (Ojs.get_prop_ascii x528 "nextTick") "apply"
-                     [|x528;((let x525 =
+                  (let x545 = t_to_js x544 in
+                   Ojs.call (Ojs.get_prop_ascii x545 "nextTick") "apply"
+                     [|x545;((let x542 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x525 "push"
-                                   [|(untyped_function_to_js x523)|]);
+                                (Ojs.call x542 "push"
+                                   [|(untyped_function_to_js x540)|]);
                               List.iter
-                                (fun (x526 : any) ->
+                                (fun (x543 : any) ->
                                    ignore
-                                     (Ojs.call x525 "push"
-                                        [|(any_to_js x526)|])) x524;
-                              x525))|])
-        let (get_release : t -> ProcessRelease.t) =
-          fun (x529 : t) ->
+                                     (Ojs.call x542 "push"
+                                        [|(any_to_js x543)|])) x541;
+                              x542))|])
+        let (release : t -> ProcessRelease.t) =
+          fun (x546 : t) ->
             ProcessRelease.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x529) "release")
+              (Ojs.get_prop_ascii (t_to_js x546) "release")
         let (set_release : t -> ProcessRelease.t -> unit) =
-          fun (x530 : t) ->
-            fun (x531 : ProcessRelease.t) ->
-              Ojs.set_prop_ascii (t_to_js x530) "release"
-                (ProcessRelease.t_to_js x531)
-        let (get_features : t -> AnonymousInterface6.t) =
-          fun (x532 : t) ->
+          fun (x547 : t) ->
+            fun (x548 : ProcessRelease.t) ->
+              Ojs.set_prop_ascii (t_to_js x547) "release"
+                (ProcessRelease.t_to_js x548)
+        let (features : t -> AnonymousInterface6.t) =
+          fun (x549 : t) ->
             AnonymousInterface6.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x532) "features")
+              (Ojs.get_prop_ascii (t_to_js x549) "features")
         let (set_features : t -> AnonymousInterface6.t -> unit) =
-          fun (x533 : t) ->
-            fun (x534 : AnonymousInterface6.t) ->
-              Ojs.set_prop_ascii (t_to_js x533) "features"
-                (AnonymousInterface6.t_to_js x534)
+          fun (x550 : t) ->
+            fun (x551 : AnonymousInterface6.t) ->
+              Ojs.set_prop_ascii (t_to_js x550) "features"
+                (AnonymousInterface6.t_to_js x551)
         let (umask : t -> int) =
-          fun (x535 : t) ->
-            Ojs.int_of_js (Ojs.call (t_to_js x535) "umask" [||])
+          fun (x552 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x552) "umask" [||])
         let (umask' : t -> mask:string or_number -> int) =
-          fun (x538 : t) ->
-            fun ~mask:(x536 : string or_number) ->
+          fun (x555 : t) ->
+            fun ~mask:(x553 : string or_number) ->
               Ojs.int_of_js
-                (Ojs.call (t_to_js x538) "umask"
-                   [|(or_number_to_js Ojs.string_to_js x536)|])
+                (Ojs.call (t_to_js x555) "umask"
+                   [|(or_number_to_js Ojs.string_to_js x553)|])
         let (uptime : t -> int) =
-          fun (x539 : t) ->
-            Ojs.int_of_js (Ojs.call (t_to_js x539) "uptime" [||])
-        let (get_hrtime : t -> HRTime.t) =
-          fun (x540 : t) ->
-            HRTime.t_of_js (Ojs.get_prop_ascii (t_to_js x540) "hrtime")
+          fun (x556 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x556) "uptime" [||])
+        let (hrtime : t -> HRTime.t) =
+          fun (x557 : t) ->
+            HRTime.t_of_js (Ojs.get_prop_ascii (t_to_js x557) "hrtime")
         let (set_hrtime : t -> HRTime.t -> unit) =
-          fun (x541 : t) ->
-            fun (x542 : HRTime.t) ->
-              Ojs.set_prop_ascii (t_to_js x541) "hrtime"
-                (HRTime.t_to_js x542)
-        let (get_domain : t -> Node_domain.Domain.Domain.t) =
-          fun (x543 : t) ->
+          fun (x558 : t) ->
+            fun (x559 : HRTime.t) ->
+              Ojs.set_prop_ascii (t_to_js x558) "hrtime"
+                (HRTime.t_to_js x559)
+        let (domain : t -> Node_domain.Domain.Domain.t) =
+          fun (x560 : t) ->
             Node_domain.Domain.Domain.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x543) "domain")
+              (Ojs.get_prop_ascii (t_to_js x560) "domain")
         let (set_domain : t -> Node_domain.Domain.Domain.t -> unit) =
-          fun (x544 : t) ->
-            fun (x545 : Node_domain.Domain.Domain.t) ->
-              Ojs.set_prop_ascii (t_to_js x544) "domain"
-                (Node_domain.Domain.Domain.t_to_js x545)
+          fun (x561 : t) ->
+            fun (x562 : Node_domain.Domain.Domain.t) ->
+              Ojs.set_prop_ascii (t_to_js x561) "domain"
+                (Node_domain.Domain.Domain.t_to_js x562)
         let (send :
           t ->
             message:any ->
@@ -1620,1149 +1715,920 @@ module Process =
                 ?options:AnonymousInterface7.t ->
                   ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
           =
-          fun (x556 : t) ->
-            fun ~message:(x546 : any) ->
-              fun ?send_handle:(x547 : any option) ->
-                fun ?options:(x548 : AnonymousInterface7.t option) ->
+          fun (x573 : t) ->
+            fun ~message:(x563 : any) ->
+              fun ?send_handle:(x564 : any option) ->
+                fun ?options:(x565 : AnonymousInterface7.t option) ->
                   fun
-                    ?callback:(x549 : (error:Error.t or_null -> unit) option)
+                    ?callback:(x566 : (error:Error.t or_null -> unit) option)
                     ->
                     fun () ->
                       Ojs.bool_of_js
-                        (let x557 = t_to_js x556 in
-                         Ojs.call (Ojs.get_prop_ascii x557 "send") "apply"
-                           [|x557;((let x550 =
+                        (let x574 = t_to_js x573 in
+                         Ojs.call (Ojs.get_prop_ascii x574 "send") "apply"
+                           [|x574;((let x567 =
                                       Ojs.new_obj
                                         (Ojs.get_prop_ascii Ojs.global
                                            "Array") [||] in
                                     ignore
-                                      (Ojs.call x550 "push"
-                                         [|(any_to_js x546)|]);
-                                    (match x547 with
-                                     | Some x555 ->
+                                      (Ojs.call x567 "push"
+                                         [|(any_to_js x563)|]);
+                                    (match x564 with
+                                     | Some x572 ->
                                          ignore
-                                           (Ojs.call x550 "push"
-                                              [|(any_to_js x555)|])
+                                           (Ojs.call x567 "push"
+                                              [|(any_to_js x572)|])
                                      | None -> ());
-                                    (match x548 with
-                                     | Some x554 ->
+                                    (match x565 with
+                                     | Some x571 ->
                                          ignore
-                                           (Ojs.call x550 "push"
+                                           (Ojs.call x567 "push"
                                               [|(AnonymousInterface7.t_to_js
-                                                   x554)|])
+                                                   x571)|])
                                      | None -> ());
-                                    (match x549 with
-                                     | Some x551 ->
+                                    (match x566 with
+                                     | Some x568 ->
                                          ignore
-                                           (Ojs.call x550 "push"
+                                           (Ojs.call x567 "push"
                                               [|(Ojs.fun_to_js 1
-                                                   (fun (x552 : Ojs.t) ->
-                                                      x551
+                                                   (fun (x569 : Ojs.t) ->
+                                                      x568
                                                         ~error:(or_null_of_js
                                                                   Error.t_of_js
-                                                                  x552)))|])
+                                                                  x569)))|])
                                      | None -> ());
-                                    x550))|])
+                                    x567))|])
         let (disconnect : t -> unit) =
-          fun (x558 : t) ->
-            ignore (Ojs.call (t_to_js x558) "disconnect" [||])
-        let (get_connected : t -> bool) =
-          fun (x559 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x559) "connected")
+          fun (x575 : t) ->
+            ignore (Ojs.call (t_to_js x575) "disconnect" [||])
+        let (connected : t -> bool) =
+          fun (x576 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x576) "connected")
         let (set_connected : t -> bool -> unit) =
-          fun (x560 : t) ->
-            fun (x561 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x560) "connected"
-                (Ojs.bool_to_js x561)
-        let (get_allowed_node_environment_flags : t -> string ReadonlySet.t)
-          =
-          fun (x562 : t) ->
+          fun (x577 : t) ->
+            fun (x578 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x577) "connected"
+                (Ojs.bool_to_js x578)
+        let (allowed_node_environment_flags : t -> string ReadonlySet.t) =
+          fun (x579 : t) ->
             ReadonlySet.t_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x562)
+              (Ojs.get_prop_ascii (t_to_js x579)
                  "allowedNodeEnvironmentFlags")
         let (set_allowed_node_environment_flags :
           t -> string ReadonlySet.t -> unit) =
-          fun (x564 : t) ->
-            fun (x565 : string ReadonlySet.t) ->
-              Ojs.set_prop_ascii (t_to_js x564) "allowedNodeEnvironmentFlags"
-                (ReadonlySet.t_to_js Ojs.string_to_js x565)
-        let (get_report : t -> ProcessReport.t) =
-          fun (x567 : t) ->
+          fun (x581 : t) ->
+            fun (x582 : string ReadonlySet.t) ->
+              Ojs.set_prop_ascii (t_to_js x581) "allowedNodeEnvironmentFlags"
+                (ReadonlySet.t_to_js Ojs.string_to_js x582)
+        let (report : t -> ProcessReport.t) =
+          fun (x584 : t) ->
             ProcessReport.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x567) "report")
+              (Ojs.get_prop_ascii (t_to_js x584) "report")
         let (set_report : t -> ProcessReport.t -> unit) =
-          fun (x568 : t) ->
-            fun (x569 : ProcessReport.t) ->
-              Ojs.set_prop_ascii (t_to_js x568) "report"
-                (ProcessReport.t_to_js x569)
-        let (resource_usage : t -> ResourceUsage.t) =
-          fun (x570 : t) ->
-            ResourceUsage.t_of_js
-              (Ojs.call (t_to_js x570) "resourceUsage" [||])
-        let (get_trace_deprecation : t -> bool) =
-          fun (x571 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x571) "traceDeprecation")
-        let (set_trace_deprecation : t -> bool -> unit) =
-          fun (x572 : t) ->
-            fun (x573 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x572) "traceDeprecation"
-                (Ojs.bool_to_js x573)
-        let (add_listener :
-          t -> event:[ `beforeExit ] -> listener:BeforeExitListener.t -> t) =
-          fun (x576 : t) ->
-            fun ~event:(x574 : [ `beforeExit ]) ->
-              fun ~listener:(x575 : BeforeExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x576) "addListener"
-                     [|((match x574 with
-                         | `beforeExit -> Ojs.string_to_js "beforeExit"));(
-                       BeforeExitListener.t_to_js x575)|])
-        let (add_listener' :
-          t -> event:[ `disconnect ] -> listener:DisconnectListener.t -> t) =
-          fun (x579 : t) ->
-            fun ~event:(x577 : [ `disconnect ]) ->
-              fun ~listener:(x578 : DisconnectListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x579) "addListener"
-                     [|((match x577 with
-                         | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       DisconnectListener.t_to_js x578)|])
-        let (add_listener'' :
-          t -> event:[ `exit ] -> listener:ExitListener.t -> t) =
-          fun (x582 : t) ->
-            fun ~event:(x580 : [ `exit ]) ->
-              fun ~listener:(x581 : ExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x582) "addListener"
-                     [|((match x580 with | `exit -> Ojs.string_to_js "exit"));(
-                       ExitListener.t_to_js x581)|])
-        let (add_listener''' :
-          t ->
-            event:[ `rejectionHandled ] ->
-              listener:RejectionHandledListener.t -> t)
-          =
           fun (x585 : t) ->
-            fun ~event:(x583 : [ `rejectionHandled ]) ->
-              fun ~listener:(x584 : RejectionHandledListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x585) "addListener"
-                     [|((match x583 with
-                         | `rejectionHandled ->
-                             Ojs.string_to_js "rejectionHandled"));(RejectionHandledListener.t_to_js
-                                                                    x584)|])
-        let (add_listener'''' :
-          t ->
-            event:[ `uncaughtException ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
+            fun (x586 : ProcessReport.t) ->
+              Ojs.set_prop_ascii (t_to_js x585) "report"
+                (ProcessReport.t_to_js x586)
+        let (resource_usage : t -> ResourceUsage.t) =
+          fun (x587 : t) ->
+            ResourceUsage.t_of_js
+              (Ojs.call (t_to_js x587) "resourceUsage" [||])
+        let (trace_deprecation : t -> bool) =
           fun (x588 : t) ->
-            fun ~event:(x586 : [ `uncaughtException ]) ->
-              fun ~listener:(x587 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x588) "addListener"
-                     [|((match x586 with
-                         | `uncaughtException ->
-                             Ojs.string_to_js "uncaughtException"));(
-                       UncaughtExceptionListener.t_to_js x587)|])
-        let (add_listener''''' :
-          t ->
-            event:[ `uncaughtExceptionMonitor ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x591 : t) ->
-            fun ~event:(x589 : [ `uncaughtExceptionMonitor ]) ->
-              fun ~listener:(x590 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x591) "addListener"
-                     [|((match x589 with
-                         | `uncaughtExceptionMonitor ->
-                             Ojs.string_to_js "uncaughtExceptionMonitor"));(
-                       UncaughtExceptionListener.t_to_js x590)|])
-        let (add_listener'''''' :
-          t ->
-            event:[ `unhandledRejection ] ->
-              listener:UnhandledRejectionListener.t -> t)
-          =
-          fun (x594 : t) ->
-            fun ~event:(x592 : [ `unhandledRejection ]) ->
-              fun ~listener:(x593 : UnhandledRejectionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x594) "addListener"
-                     [|((match x592 with
-                         | `unhandledRejection ->
-                             Ojs.string_to_js "unhandledRejection"));(
-                       UnhandledRejectionListener.t_to_js x593)|])
-        let (add_listener''''''' :
-          t -> event:[ `warning ] -> listener:WarningListener.t -> t) =
-          fun (x597 : t) ->
-            fun ~event:(x595 : [ `warning ]) ->
-              fun ~listener:(x596 : WarningListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x597) "addListener"
-                     [|((match x595 with
-                         | `warning -> Ojs.string_to_js "warning"));(
-                       WarningListener.t_to_js x596)|])
-        let (add_listener'''''''' :
-          t -> event:[ `message ] -> listener:MessageListener.t -> t) =
-          fun (x600 : t) ->
-            fun ~event:(x598 : [ `message ]) ->
-              fun ~listener:(x599 : MessageListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x600) "addListener"
-                     [|((match x598 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       MessageListener.t_to_js x599)|])
-        let (add_listener''''''''' :
-          t -> event:Signals.t -> listener:SignalsListener.t -> t) =
-          fun (x603 : t) ->
-            fun ~event:(x601 : Signals.t) ->
-              fun ~listener:(x602 : SignalsListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x603) "addListener"
-                     [|(Signals.t_to_js x601);(SignalsListener.t_to_js x602)|])
-        let (add_listener'''''''''' :
-          t -> event:[ `newListener ] -> listener:NewListenerListener.t -> t)
-          =
-          fun (x606 : t) ->
-            fun ~event:(x604 : [ `newListener ]) ->
-              fun ~listener:(x605 : NewListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x606) "addListener"
-                     [|((match x604 with
-                         | `newListener -> Ojs.string_to_js "newListener"));(
-                       NewListenerListener.t_to_js x605)|])
-        let (add_listener''''''''''' :
-          t ->
-            event:[ `removeListener ] ->
-              listener:RemoveListenerListener.t -> t)
-          =
-          fun (x609 : t) ->
-            fun ~event:(x607 : [ `removeListener ]) ->
-              fun ~listener:(x608 : RemoveListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x609) "addListener"
-                     [|((match x607 with
-                         | `removeListener ->
-                             Ojs.string_to_js "removeListener"));(RemoveListenerListener.t_to_js
-                                                                    x608)|])
-        let (add_listener'''''''''''' :
-          t ->
-            event:[ `multipleResolves ] ->
-              listener:MultipleResolveListener.t -> t)
-          =
-          fun (x612 : t) ->
-            fun ~event:(x610 : [ `multipleResolves ]) ->
-              fun ~listener:(x611 : MultipleResolveListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x612) "addListener"
-                     [|((match x610 with
-                         | `multipleResolves ->
-                             Ojs.string_to_js "multipleResolves"));(MultipleResolveListener.t_to_js
-                                                                    x611)|])
-        let (emit : t -> event:[ `beforeExit ] -> code:int -> bool) =
-          fun (x615 : t) ->
-            fun ~event:(x613 : [ `beforeExit ]) ->
-              fun ~code:(x614 : int) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x588) "traceDeprecation")
+        let (set_trace_deprecation : t -> bool -> unit) =
+          fun (x589 : t) ->
+            fun (x590 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x589) "traceDeprecation"
+                (Ojs.bool_to_js x590)
+        let (on : t -> string -> Ojs.t -> unit) =
+          fun (x593 : t) ->
+            fun (x591 : string) ->
+              fun (x592 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x593) "on"
+                     [|(Ojs.string_to_js x591);x592|])
+        let (add_listener : t -> string -> Ojs.t -> unit) =
+          fun (x596 : t) ->
+            fun (x594 : string) ->
+              fun (x595 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x596) "addListener"
+                     [|(Ojs.string_to_js x594);x595|])
+        let (once : t -> string -> Ojs.t -> unit) =
+          fun (x599 : t) ->
+            fun (x597 : string) ->
+              fun (x598 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x599) "once"
+                     [|(Ojs.string_to_js x597);x598|])
+        let (prepend_listener : t -> string -> Ojs.t -> unit) =
+          fun (x602 : t) ->
+            fun (x600 : string) ->
+              fun (x601 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x602) "prependListener"
+                     [|(Ojs.string_to_js x600);x601|])
+        let (prepend_once_listener : t -> string -> Ojs.t -> unit) =
+          fun (x605 : t) ->
+            fun (x603 : string) ->
+              fun (x604 : Ojs.t) ->
+                ignore
+                  (Ojs.call (t_to_js x605) "prependOnceListener"
+                     [|(Ojs.string_to_js x603);x604|])
+        let (listeners : t -> string -> Ojs.t list) =
+          fun (x607 : t) ->
+            fun (x606 : string) ->
+              Ojs.list_of_js (fun (x608 : Ojs.t) -> x608)
+                (Ojs.call (t_to_js x607) "listeners"
+                   [|(Ojs.string_to_js x606)|])
+        let with_listener_fn fn t =
+          function
+          | `BeforeExit f ->
+              (fn t "beforeExit") @@ (BeforeExitListener.t_to_js f)
+          | `Disconnect f ->
+              (fn t "disconnect") @@ (DisconnectListener.t_to_js f)
+          | `Exit f -> (fn t "exit") @@ (ExitListener.t_to_js f)
+          | `RejectionHandled f ->
+              (fn t "rejectionHandled") @@
+                (RejectionHandledListener.t_to_js f)
+          | `UncaughtException f ->
+              (fn t "uncaughtException") @@
+                (UncaughtExceptionListener.t_to_js f)
+          | `UnhandledRejection f ->
+              (fn t "unhandledRejection") @@
+                (UnhandledRejectionListener.t_to_js f)
+          | `Warning f -> (fn t "warning") @@ (WarningListener.t_to_js f)
+          | `Message f -> (fn t "message") @@ (MessageListener.t_to_js f)
+          | `NewListener f ->
+              (fn t "newListener") @@ (NewListenerListener.t_to_js f)
+          | `RemoveListener f ->
+              (fn t "removeListener") @@ (RemoveListenerListener.t_to_js f)
+          | `MultipleResolves f ->
+              (fn t "multipleResolves") @@
+                (MultipleResolvesListener.t_to_js f)
+        let on = with_listener_fn on
+        let add_listener = with_listener_fn add_listener
+        let once = with_listener_fn once
+        let prepend_listener = with_listener_fn prepend_listener
+        let prepend_once_listener = with_listener_fn prepend_once_listener
+        let listeners_before_exit t =
+          (listeners t "beforeExit") |> (List.map BeforeExitListener.t_of_js)
+        let listeners_disconnect t =
+          (listeners t "disconnect") |> (List.map DisconnectListener.t_of_js)
+        let listeners_exit t =
+          (listeners t "exit") |> (List.map ExitListener.t_of_js)
+        let listeners_rejection_handled t =
+          (listeners t "rejectionHandled") |>
+            (List.map RejectionHandledListener.t_of_js)
+        let listeners_uncaught_exception t =
+          (listeners t "uncaughtException") |>
+            (List.map UncaughtExceptionListener.t_of_js)
+        let listeners_uncaught_exception t =
+          (listeners t "uncaughtException") |>
+            (List.map UncaughtExceptionListener.t_of_js)
+        let listeners_unhandled_rejection t =
+          (listeners t "unhandledRejection") |>
+            (List.map UnhandledRejectionListener.t_of_js)
+        let listeners_warning t =
+          (listeners t "warning") |> (List.map WarningListener.t_of_js)
+        let listeners_message t =
+          (listeners t "message") |> (List.map MessageListener.t_of_js)
+        let listeners_signals t =
+          (listeners t "signals") |> (List.map SignalsListener.t_of_js)
+        let listeners_new_listener t =
+          (listeners t "newListener") |>
+            (List.map NewListenerListener.t_of_js)
+        let listeners_remove_listener t =
+          (listeners t "removeListener") |>
+            (List.map RemoveListenerListener.t_of_js)
+        let listeners_multiple_resolves t =
+          (listeners t "multipleResolves") |>
+            (List.map MultipleResolvesListener.t_of_js)
+        let (emit_before_exit :
+          t -> event:[ `beforeExit ] -> code:int -> bool) =
+          fun (x622 : t) ->
+            fun ~event:(x620 : [ `beforeExit ]) ->
+              fun ~code:(x621 : int) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x615) "emit"
-                     [|((match x613 with
+                  (Ojs.call (t_to_js x622) "emit"
+                     [|((match x620 with
                          | `beforeExit -> Ojs.string_to_js "beforeExit"));(
-                       Ojs.int_to_js x614)|])
-        let (emit' : t -> event:[ `disconnect ] -> bool) =
-          fun (x617 : t) ->
-            fun ~event:(x616 : [ `disconnect ]) ->
+                       Ojs.int_to_js x621)|])
+        let (emit_disconnect : t -> event:[ `disconnect ] -> bool) =
+          fun (x624 : t) ->
+            fun ~event:(x623 : [ `disconnect ]) ->
               Ojs.bool_of_js
-                (Ojs.call (t_to_js x617) "emit"
-                   [|((match x616 with
+                (Ojs.call (t_to_js x624) "emit"
+                   [|((match x623 with
                        | `disconnect -> Ojs.string_to_js "disconnect"))|])
-        let (emit'' : t -> event:[ `exit ] -> code:int -> bool) =
-          fun (x620 : t) ->
-            fun ~event:(x618 : [ `exit ]) ->
-              fun ~code:(x619 : int) ->
+        let (emit_exit : t -> event:[ `exit ] -> code:int -> bool) =
+          fun (x627 : t) ->
+            fun ~event:(x625 : [ `exit ]) ->
+              fun ~code:(x626 : int) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x620) "emit"
-                     [|((match x618 with | `exit -> Ojs.string_to_js "exit"));(
-                       Ojs.int_to_js x619)|])
-        let (emit''' :
+                  (Ojs.call (t_to_js x627) "emit"
+                     [|((match x625 with | `exit -> Ojs.string_to_js "exit"));(
+                       Ojs.int_to_js x626)|])
+        let (emit_rejection_handled :
           t -> event:[ `rejectionHandled ] -> promise:any Promise.t -> bool)
           =
-          fun (x624 : t) ->
-            fun ~event:(x621 : [ `rejectionHandled ]) ->
-              fun ~promise:(x622 : any Promise.t) ->
+          fun (x631 : t) ->
+            fun ~event:(x628 : [ `rejectionHandled ]) ->
+              fun ~promise:(x629 : any Promise.t) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x624) "emit"
-                     [|((match x621 with
+                  (Ojs.call (t_to_js x631) "emit"
+                     [|((match x628 with
                          | `rejectionHandled ->
                              Ojs.string_to_js "rejectionHandled"));(Promise.t_to_js
                                                                     any_to_js
-                                                                    x622)|])
-        let (emit'''' :
+                                                                    x629)|])
+        let (emit_uncaught_exception :
           t -> event:[ `uncaughtException ] -> error:Error.t -> bool) =
-          fun (x627 : t) ->
-            fun ~event:(x625 : [ `uncaughtException ]) ->
-              fun ~error:(x626 : Error.t) ->
+          fun (x634 : t) ->
+            fun ~event:(x632 : [ `uncaughtException ]) ->
+              fun ~error:(x633 : Error.t) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x627) "emit"
-                     [|((match x625 with
+                  (Ojs.call (t_to_js x634) "emit"
+                     [|((match x632 with
                          | `uncaughtException ->
                              Ojs.string_to_js "uncaughtException"));(
-                       Error.t_to_js x626)|])
-        let (emit''''' :
+                       Error.t_to_js x633)|])
+        let (emit_uncaught_exception_monitor :
           t -> event:[ `uncaughtExceptionMonitor ] -> error:Error.t -> bool)
           =
-          fun (x630 : t) ->
-            fun ~event:(x628 : [ `uncaughtExceptionMonitor ]) ->
-              fun ~error:(x629 : Error.t) ->
+          fun (x637 : t) ->
+            fun ~event:(x635 : [ `uncaughtExceptionMonitor ]) ->
+              fun ~error:(x636 : Error.t) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x630) "emit"
-                     [|((match x628 with
+                  (Ojs.call (t_to_js x637) "emit"
+                     [|((match x635 with
                          | `uncaughtExceptionMonitor ->
                              Ojs.string_to_js "uncaughtExceptionMonitor"));(
-                       Error.t_to_js x629)|])
-        let (emit'''''' :
+                       Error.t_to_js x636)|])
+        let (emit_unhandled_rejection :
           t ->
             event:[ `unhandledRejection ] ->
               reason:any -> promise:any Promise.t -> bool)
           =
-          fun (x635 : t) ->
-            fun ~event:(x631 : [ `unhandledRejection ]) ->
-              fun ~reason:(x632 : any) ->
-                fun ~promise:(x633 : any Promise.t) ->
+          fun (x642 : t) ->
+            fun ~event:(x638 : [ `unhandledRejection ]) ->
+              fun ~reason:(x639 : any) ->
+                fun ~promise:(x640 : any Promise.t) ->
                   Ojs.bool_of_js
-                    (Ojs.call (t_to_js x635) "emit"
-                       [|((match x631 with
+                    (Ojs.call (t_to_js x642) "emit"
+                       [|((match x638 with
                            | `unhandledRejection ->
                                Ojs.string_to_js "unhandledRejection"));(
-                         any_to_js x632);(Promise.t_to_js any_to_js x633)|])
-        let (emit''''''' :
+                         any_to_js x639);(Promise.t_to_js any_to_js x640)|])
+        let (emit_warning :
           t -> event:[ `warning ] -> warning:Error.t -> bool) =
-          fun (x638 : t) ->
-            fun ~event:(x636 : [ `warning ]) ->
-              fun ~warning:(x637 : Error.t) ->
-                Ojs.bool_of_js
-                  (Ojs.call (t_to_js x638) "emit"
-                     [|((match x636 with
-                         | `warning -> Ojs.string_to_js "warning"));(
-                       Error.t_to_js x637)|])
-        let (emit'''''''' :
-          t -> event:[ `message ] -> message:any -> send_handle:any -> t) =
-          fun (x642 : t) ->
-            fun ~event:(x639 : [ `message ]) ->
-              fun ~message:(x640 : any) ->
-                fun ~send_handle:(x641 : any) ->
-                  t_of_js
-                    (Ojs.call (t_to_js x642) "emit"
-                       [|((match x639 with
-                           | `message -> Ojs.string_to_js "message"));(
-                         any_to_js x640);(any_to_js x641)|])
-        let (emit''''''''' :
-          t -> event:Signals.t -> signal:Signals.t -> bool) =
           fun (x645 : t) ->
-            fun ~event:(x643 : Signals.t) ->
-              fun ~signal:(x644 : Signals.t) ->
+            fun ~event:(x643 : [ `warning ]) ->
+              fun ~warning:(x644 : Error.t) ->
                 Ojs.bool_of_js
                   (Ojs.call (t_to_js x645) "emit"
-                     [|(Signals.t_to_js x643);(Signals.t_to_js x644)|])
-        let (emit'''''''''' :
+                     [|((match x643 with
+                         | `warning -> Ojs.string_to_js "warning"));(
+                       Error.t_to_js x644)|])
+        let (emit_message :
+          t -> event:[ `message ] -> message:any -> send_handle:any -> t) =
+          fun (x649 : t) ->
+            fun ~event:(x646 : [ `message ]) ->
+              fun ~message:(x647 : any) ->
+                fun ~send_handle:(x648 : any) ->
+                  t_of_js
+                    (Ojs.call (t_to_js x649) "emit"
+                       [|((match x646 with
+                           | `message -> Ojs.string_to_js "message"));(
+                         any_to_js x647);(any_to_js x648)|])
+        let (emit_new_listener :
           t ->
             event:[ `newListener ] ->
               event_name:symbol or_string ->
                 listener:(args:any list -> unit) -> t)
           =
-          fun (x652 : t) ->
-            fun ~event:(x646 : [ `newListener ]) ->
-              fun ~event_name:(x647 : symbol or_string) ->
-                fun ~listener:(x649 : args:any list -> unit) ->
+          fun (x656 : t) ->
+            fun ~event:(x650 : [ `newListener ]) ->
+              fun ~event_name:(x651 : symbol or_string) ->
+                fun ~listener:(x653 : args:any list -> unit) ->
                   t_of_js
-                    (Ojs.call (t_to_js x652) "emit"
-                       [|((match x646 with
+                    (Ojs.call (t_to_js x656) "emit"
+                       [|((match x650 with
                            | `newListener -> Ojs.string_to_js "newListener"));(
-                         or_string_to_js symbol_to_js x647);(Ojs.fun_to_js_args
+                         or_string_to_js symbol_to_js x651);(Ojs.fun_to_js_args
                                                                (fun
-                                                                  (x650 : _)
+                                                                  (x654 : _)
                                                                   ->
-                                                                  x649
+                                                                  x653
                                                                     ~args:(
                                                                     Ojs.list_of_js_from
                                                                     any_of_js
-                                                                    x650 0)))|])
-        let (emit''''''''''' :
+                                                                    x654 0)))|])
+        let (emit_remove_listener :
           t ->
             event:[ `removeListener ] ->
               event_name:string -> listener:(args:any list -> unit) -> t)
           =
-          fun (x658 : t) ->
-            fun ~event:(x653 : [ `removeListener ]) ->
-              fun ~event_name:(x654 : string) ->
-                fun ~listener:(x655 : args:any list -> unit) ->
+          fun (x662 : t) ->
+            fun ~event:(x657 : [ `removeListener ]) ->
+              fun ~event_name:(x658 : string) ->
+                fun ~listener:(x659 : args:any list -> unit) ->
                   t_of_js
-                    (Ojs.call (t_to_js x658) "emit"
-                       [|((match x653 with
+                    (Ojs.call (t_to_js x662) "emit"
+                       [|((match x657 with
                            | `removeListener ->
                                Ojs.string_to_js "removeListener"));(Ojs.string_to_js
-                                                                    x654);(
+                                                                    x658);(
                          Ojs.fun_to_js_args
-                           (fun (x656 : _) ->
-                              x655
-                                ~args:(Ojs.list_of_js_from any_of_js x656 0)))|])
-        let (emit'''''''''''' :
+                           (fun (x660 : _) ->
+                              x659
+                                ~args:(Ojs.list_of_js_from any_of_js x660 0)))|])
+        let (emit_multiple_resolves :
           t ->
             event:[ `multipleResolves ] ->
-              listener:MultipleResolveListener.t -> t)
+              listener:MultipleResolvesListener.t -> t)
           =
-          fun (x661 : t) ->
-            fun ~event:(x659 : [ `multipleResolves ]) ->
-              fun ~listener:(x660 : MultipleResolveListener.t) ->
+          fun (x665 : t) ->
+            fun ~event:(x663 : [ `multipleResolves ]) ->
+              fun ~listener:(x664 : MultipleResolvesListener.t) ->
                 t_of_js
-                  (Ojs.call (t_to_js x661) "emit"
-                     [|((match x659 with
+                  (Ojs.call (t_to_js x665) "emit"
+                     [|((match x663 with
                          | `multipleResolves ->
-                             Ojs.string_to_js "multipleResolves"));(MultipleResolveListener.t_to_js
-                                                                    x660)|])
-        let (on :
-          t -> event:[ `beforeExit ] -> listener:BeforeExitListener.t -> t) =
-          fun (x664 : t) ->
-            fun ~event:(x662 : [ `beforeExit ]) ->
-              fun ~listener:(x663 : BeforeExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x664) "on"
-                     [|((match x662 with
-                         | `beforeExit -> Ojs.string_to_js "beforeExit"));(
-                       BeforeExitListener.t_to_js x663)|])
-        let (on' :
-          t -> event:[ `disconnect ] -> listener:DisconnectListener.t -> t) =
-          fun (x667 : t) ->
-            fun ~event:(x665 : [ `disconnect ]) ->
-              fun ~listener:(x666 : DisconnectListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x667) "on"
-                     [|((match x665 with
-                         | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       DisconnectListener.t_to_js x666)|])
-        let (on'' : t -> event:[ `exit ] -> listener:ExitListener.t -> t) =
-          fun (x670 : t) ->
-            fun ~event:(x668 : [ `exit ]) ->
-              fun ~listener:(x669 : ExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x670) "on"
-                     [|((match x668 with | `exit -> Ojs.string_to_js "exit"));(
-                       ExitListener.t_to_js x669)|])
-        let (on''' :
-          t ->
-            event:[ `rejectionHandled ] ->
-              listener:RejectionHandledListener.t -> t)
-          =
-          fun (x673 : t) ->
-            fun ~event:(x671 : [ `rejectionHandled ]) ->
-              fun ~listener:(x672 : RejectionHandledListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x673) "on"
-                     [|((match x671 with
-                         | `rejectionHandled ->
-                             Ojs.string_to_js "rejectionHandled"));(RejectionHandledListener.t_to_js
-                                                                    x672)|])
-        let (on'''' :
-          t ->
-            event:[ `uncaughtException ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x676 : t) ->
-            fun ~event:(x674 : [ `uncaughtException ]) ->
-              fun ~listener:(x675 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x676) "on"
-                     [|((match x674 with
-                         | `uncaughtException ->
-                             Ojs.string_to_js "uncaughtException"));(
-                       UncaughtExceptionListener.t_to_js x675)|])
-        let (on''''' :
-          t ->
-            event:[ `uncaughtExceptionMonitor ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x679 : t) ->
-            fun ~event:(x677 : [ `uncaughtExceptionMonitor ]) ->
-              fun ~listener:(x678 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x679) "on"
-                     [|((match x677 with
-                         | `uncaughtExceptionMonitor ->
-                             Ojs.string_to_js "uncaughtExceptionMonitor"));(
-                       UncaughtExceptionListener.t_to_js x678)|])
-        let (on'''''' :
-          t ->
-            event:[ `unhandledRejection ] ->
-              listener:UnhandledRejectionListener.t -> t)
-          =
-          fun (x682 : t) ->
-            fun ~event:(x680 : [ `unhandledRejection ]) ->
-              fun ~listener:(x681 : UnhandledRejectionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x682) "on"
-                     [|((match x680 with
-                         | `unhandledRejection ->
-                             Ojs.string_to_js "unhandledRejection"));(
-                       UnhandledRejectionListener.t_to_js x681)|])
-        let (on''''''' :
-          t -> event:[ `warning ] -> listener:WarningListener.t -> t) =
-          fun (x685 : t) ->
-            fun ~event:(x683 : [ `warning ]) ->
-              fun ~listener:(x684 : WarningListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x685) "on"
-                     [|((match x683 with
-                         | `warning -> Ojs.string_to_js "warning"));(
-                       WarningListener.t_to_js x684)|])
-        let (on'''''''' :
-          t -> event:[ `message ] -> listener:MessageListener.t -> t) =
-          fun (x688 : t) ->
-            fun ~event:(x686 : [ `message ]) ->
-              fun ~listener:(x687 : MessageListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x688) "on"
-                     [|((match x686 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       MessageListener.t_to_js x687)|])
-        let (on''''''''' :
-          t -> event:Signals.t -> listener:SignalsListener.t -> t) =
-          fun (x691 : t) ->
-            fun ~event:(x689 : Signals.t) ->
-              fun ~listener:(x690 : SignalsListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x691) "on"
-                     [|(Signals.t_to_js x689);(SignalsListener.t_to_js x690)|])
-        let (on'''''''''' :
-          t -> event:[ `newListener ] -> listener:NewListenerListener.t -> t)
-          =
-          fun (x694 : t) ->
-            fun ~event:(x692 : [ `newListener ]) ->
-              fun ~listener:(x693 : NewListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x694) "on"
-                     [|((match x692 with
-                         | `newListener -> Ojs.string_to_js "newListener"));(
-                       NewListenerListener.t_to_js x693)|])
-        let (on''''''''''' :
-          t ->
-            event:[ `removeListener ] ->
-              listener:RemoveListenerListener.t -> t)
-          =
-          fun (x697 : t) ->
-            fun ~event:(x695 : [ `removeListener ]) ->
-              fun ~listener:(x696 : RemoveListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x697) "on"
-                     [|((match x695 with
-                         | `removeListener ->
-                             Ojs.string_to_js "removeListener"));(RemoveListenerListener.t_to_js
-                                                                    x696)|])
-        let (on'''''''''''' :
-          t ->
-            event:[ `multipleResolves ] ->
-              listener:MultipleResolveListener.t -> t)
-          =
-          fun (x700 : t) ->
-            fun ~event:(x698 : [ `multipleResolves ]) ->
-              fun ~listener:(x699 : MultipleResolveListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x700) "on"
-                     [|((match x698 with
-                         | `multipleResolves ->
-                             Ojs.string_to_js "multipleResolves"));(MultipleResolveListener.t_to_js
-                                                                    x699)|])
-        let (on''''''''''''' :
-          t ->
-            event:symbol or_string -> listener:(args:any list -> unit) -> t)
-          =
-          fun (x706 : t) ->
-            fun ~event:(x701 : symbol or_string) ->
-              fun ~listener:(x703 : args:any list -> unit) ->
-                t_of_js
-                  (Ojs.call (t_to_js x706) "on"
-                     [|(or_string_to_js symbol_to_js x701);(Ojs.fun_to_js_args
-                                                              (fun (x704 : _)
-                                                                 ->
-                                                                 x703
-                                                                   ~args:(
-                                                                   Ojs.list_of_js_from
-                                                                    any_of_js
-                                                                    x704 0)))|])
-        let (once :
-          t -> event:[ `beforeExit ] -> listener:BeforeExitListener.t -> t) =
-          fun (x709 : t) ->
-            fun ~event:(x707 : [ `beforeExit ]) ->
-              fun ~listener:(x708 : BeforeExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x709) "once"
-                     [|((match x707 with
-                         | `beforeExit -> Ojs.string_to_js "beforeExit"));(
-                       BeforeExitListener.t_to_js x708)|])
-        let (once' :
-          t -> event:[ `disconnect ] -> listener:DisconnectListener.t -> t) =
-          fun (x712 : t) ->
-            fun ~event:(x710 : [ `disconnect ]) ->
-              fun ~listener:(x711 : DisconnectListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x712) "once"
-                     [|((match x710 with
-                         | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       DisconnectListener.t_to_js x711)|])
-        let (once'' : t -> event:[ `exit ] -> listener:ExitListener.t -> t) =
-          fun (x715 : t) ->
-            fun ~event:(x713 : [ `exit ]) ->
-              fun ~listener:(x714 : ExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x715) "once"
-                     [|((match x713 with | `exit -> Ojs.string_to_js "exit"));(
-                       ExitListener.t_to_js x714)|])
-        let (once''' :
-          t ->
-            event:[ `rejectionHandled ] ->
-              listener:RejectionHandledListener.t -> t)
-          =
-          fun (x718 : t) ->
-            fun ~event:(x716 : [ `rejectionHandled ]) ->
-              fun ~listener:(x717 : RejectionHandledListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x718) "once"
-                     [|((match x716 with
-                         | `rejectionHandled ->
-                             Ojs.string_to_js "rejectionHandled"));(RejectionHandledListener.t_to_js
-                                                                    x717)|])
-        let (once'''' :
-          t ->
-            event:[ `uncaughtException ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x721 : t) ->
-            fun ~event:(x719 : [ `uncaughtException ]) ->
-              fun ~listener:(x720 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x721) "once"
-                     [|((match x719 with
-                         | `uncaughtException ->
-                             Ojs.string_to_js "uncaughtException"));(
-                       UncaughtExceptionListener.t_to_js x720)|])
-        let (once''''' :
-          t ->
-            event:[ `uncaughtExceptionMonitor ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x724 : t) ->
-            fun ~event:(x722 : [ `uncaughtExceptionMonitor ]) ->
-              fun ~listener:(x723 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x724) "once"
-                     [|((match x722 with
-                         | `uncaughtExceptionMonitor ->
-                             Ojs.string_to_js "uncaughtExceptionMonitor"));(
-                       UncaughtExceptionListener.t_to_js x723)|])
-        let (once'''''' :
-          t ->
-            event:[ `unhandledRejection ] ->
-              listener:UnhandledRejectionListener.t -> t)
-          =
-          fun (x727 : t) ->
-            fun ~event:(x725 : [ `unhandledRejection ]) ->
-              fun ~listener:(x726 : UnhandledRejectionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x727) "once"
-                     [|((match x725 with
-                         | `unhandledRejection ->
-                             Ojs.string_to_js "unhandledRejection"));(
-                       UnhandledRejectionListener.t_to_js x726)|])
-        let (once''''''' :
-          t -> event:[ `warning ] -> listener:WarningListener.t -> t) =
-          fun (x730 : t) ->
-            fun ~event:(x728 : [ `warning ]) ->
-              fun ~listener:(x729 : WarningListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x730) "once"
-                     [|((match x728 with
-                         | `warning -> Ojs.string_to_js "warning"));(
-                       WarningListener.t_to_js x729)|])
-        let (once'''''''' :
-          t -> event:[ `message ] -> listener:MessageListener.t -> t) =
-          fun (x733 : t) ->
-            fun ~event:(x731 : [ `message ]) ->
-              fun ~listener:(x732 : MessageListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x733) "once"
-                     [|((match x731 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       MessageListener.t_to_js x732)|])
-        let (once''''''''' :
-          t -> event:Signals.t -> listener:SignalsListener.t -> t) =
-          fun (x736 : t) ->
-            fun ~event:(x734 : Signals.t) ->
-              fun ~listener:(x735 : SignalsListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x736) "once"
-                     [|(Signals.t_to_js x734);(SignalsListener.t_to_js x735)|])
-        let (once'''''''''' :
-          t -> event:[ `newListener ] -> listener:NewListenerListener.t -> t)
-          =
-          fun (x739 : t) ->
-            fun ~event:(x737 : [ `newListener ]) ->
-              fun ~listener:(x738 : NewListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x739) "once"
-                     [|((match x737 with
-                         | `newListener -> Ojs.string_to_js "newListener"));(
-                       NewListenerListener.t_to_js x738)|])
-        let (once''''''''''' :
-          t ->
-            event:[ `removeListener ] ->
-              listener:RemoveListenerListener.t -> t)
-          =
-          fun (x742 : t) ->
-            fun ~event:(x740 : [ `removeListener ]) ->
-              fun ~listener:(x741 : RemoveListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x742) "once"
-                     [|((match x740 with
-                         | `removeListener ->
-                             Ojs.string_to_js "removeListener"));(RemoveListenerListener.t_to_js
-                                                                    x741)|])
-        let (once'''''''''''' :
-          t ->
-            event:[ `multipleResolves ] ->
-              listener:MultipleResolveListener.t -> t)
-          =
-          fun (x745 : t) ->
-            fun ~event:(x743 : [ `multipleResolves ]) ->
-              fun ~listener:(x744 : MultipleResolveListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x745) "once"
-                     [|((match x743 with
-                         | `multipleResolves ->
-                             Ojs.string_to_js "multipleResolves"));(MultipleResolveListener.t_to_js
-                                                                    x744)|])
-        let (prepend_listener :
-          t -> event:[ `beforeExit ] -> listener:BeforeExitListener.t -> t) =
-          fun (x748 : t) ->
-            fun ~event:(x746 : [ `beforeExit ]) ->
-              fun ~listener:(x747 : BeforeExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x748) "prependListener"
-                     [|((match x746 with
-                         | `beforeExit -> Ojs.string_to_js "beforeExit"));(
-                       BeforeExitListener.t_to_js x747)|])
-        let (prepend_listener' :
-          t -> event:[ `disconnect ] -> listener:DisconnectListener.t -> t) =
-          fun (x751 : t) ->
-            fun ~event:(x749 : [ `disconnect ]) ->
-              fun ~listener:(x750 : DisconnectListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x751) "prependListener"
-                     [|((match x749 with
-                         | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       DisconnectListener.t_to_js x750)|])
-        let (prepend_listener'' :
-          t -> event:[ `exit ] -> listener:ExitListener.t -> t) =
-          fun (x754 : t) ->
-            fun ~event:(x752 : [ `exit ]) ->
-              fun ~listener:(x753 : ExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x754) "prependListener"
-                     [|((match x752 with | `exit -> Ojs.string_to_js "exit"));(
-                       ExitListener.t_to_js x753)|])
-        let (prepend_listener''' :
-          t ->
-            event:[ `rejectionHandled ] ->
-              listener:RejectionHandledListener.t -> t)
-          =
-          fun (x757 : t) ->
-            fun ~event:(x755 : [ `rejectionHandled ]) ->
-              fun ~listener:(x756 : RejectionHandledListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x757) "prependListener"
-                     [|((match x755 with
-                         | `rejectionHandled ->
-                             Ojs.string_to_js "rejectionHandled"));(RejectionHandledListener.t_to_js
-                                                                    x756)|])
-        let (prepend_listener'''' :
-          t ->
-            event:[ `uncaughtException ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x760 : t) ->
-            fun ~event:(x758 : [ `uncaughtException ]) ->
-              fun ~listener:(x759 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x760) "prependListener"
-                     [|((match x758 with
-                         | `uncaughtException ->
-                             Ojs.string_to_js "uncaughtException"));(
-                       UncaughtExceptionListener.t_to_js x759)|])
-        let (prepend_listener''''' :
-          t ->
-            event:[ `uncaughtExceptionMonitor ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x763 : t) ->
-            fun ~event:(x761 : [ `uncaughtExceptionMonitor ]) ->
-              fun ~listener:(x762 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x763) "prependListener"
-                     [|((match x761 with
-                         | `uncaughtExceptionMonitor ->
-                             Ojs.string_to_js "uncaughtExceptionMonitor"));(
-                       UncaughtExceptionListener.t_to_js x762)|])
-        let (prepend_listener'''''' :
-          t ->
-            event:[ `unhandledRejection ] ->
-              listener:UnhandledRejectionListener.t -> t)
-          =
-          fun (x766 : t) ->
-            fun ~event:(x764 : [ `unhandledRejection ]) ->
-              fun ~listener:(x765 : UnhandledRejectionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x766) "prependListener"
-                     [|((match x764 with
-                         | `unhandledRejection ->
-                             Ojs.string_to_js "unhandledRejection"));(
-                       UnhandledRejectionListener.t_to_js x765)|])
-        let (prepend_listener''''''' :
-          t -> event:[ `warning ] -> listener:WarningListener.t -> t) =
-          fun (x769 : t) ->
-            fun ~event:(x767 : [ `warning ]) ->
-              fun ~listener:(x768 : WarningListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x769) "prependListener"
-                     [|((match x767 with
-                         | `warning -> Ojs.string_to_js "warning"));(
-                       WarningListener.t_to_js x768)|])
-        let (prepend_listener'''''''' :
-          t -> event:[ `message ] -> listener:MessageListener.t -> t) =
-          fun (x772 : t) ->
-            fun ~event:(x770 : [ `message ]) ->
-              fun ~listener:(x771 : MessageListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x772) "prependListener"
-                     [|((match x770 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       MessageListener.t_to_js x771)|])
-        let (prepend_listener''''''''' :
-          t -> event:Signals.t -> listener:SignalsListener.t -> t) =
-          fun (x775 : t) ->
-            fun ~event:(x773 : Signals.t) ->
-              fun ~listener:(x774 : SignalsListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x775) "prependListener"
-                     [|(Signals.t_to_js x773);(SignalsListener.t_to_js x774)|])
-        let (prepend_listener'''''''''' :
-          t -> event:[ `newListener ] -> listener:NewListenerListener.t -> t)
-          =
-          fun (x778 : t) ->
-            fun ~event:(x776 : [ `newListener ]) ->
-              fun ~listener:(x777 : NewListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x778) "prependListener"
-                     [|((match x776 with
-                         | `newListener -> Ojs.string_to_js "newListener"));(
-                       NewListenerListener.t_to_js x777)|])
-        let (prepend_listener''''''''''' :
-          t ->
-            event:[ `removeListener ] ->
-              listener:RemoveListenerListener.t -> t)
-          =
-          fun (x781 : t) ->
-            fun ~event:(x779 : [ `removeListener ]) ->
-              fun ~listener:(x780 : RemoveListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x781) "prependListener"
-                     [|((match x779 with
-                         | `removeListener ->
-                             Ojs.string_to_js "removeListener"));(RemoveListenerListener.t_to_js
-                                                                    x780)|])
-        let (prepend_listener'''''''''''' :
-          t ->
-            event:[ `multipleResolves ] ->
-              listener:MultipleResolveListener.t -> t)
-          =
-          fun (x784 : t) ->
-            fun ~event:(x782 : [ `multipleResolves ]) ->
-              fun ~listener:(x783 : MultipleResolveListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x784) "prependListener"
-                     [|((match x782 with
-                         | `multipleResolves ->
-                             Ojs.string_to_js "multipleResolves"));(MultipleResolveListener.t_to_js
-                                                                    x783)|])
-        let (prepend_once_listener :
-          t -> event:[ `beforeExit ] -> listener:BeforeExitListener.t -> t) =
-          fun (x787 : t) ->
-            fun ~event:(x785 : [ `beforeExit ]) ->
-              fun ~listener:(x786 : BeforeExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x787) "prependOnceListener"
-                     [|((match x785 with
-                         | `beforeExit -> Ojs.string_to_js "beforeExit"));(
-                       BeforeExitListener.t_to_js x786)|])
-        let (prepend_once_listener' :
-          t -> event:[ `disconnect ] -> listener:DisconnectListener.t -> t) =
-          fun (x790 : t) ->
-            fun ~event:(x788 : [ `disconnect ]) ->
-              fun ~listener:(x789 : DisconnectListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x790) "prependOnceListener"
-                     [|((match x788 with
-                         | `disconnect -> Ojs.string_to_js "disconnect"));(
-                       DisconnectListener.t_to_js x789)|])
-        let (prepend_once_listener'' :
-          t -> event:[ `exit ] -> listener:ExitListener.t -> t) =
-          fun (x793 : t) ->
-            fun ~event:(x791 : [ `exit ]) ->
-              fun ~listener:(x792 : ExitListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x793) "prependOnceListener"
-                     [|((match x791 with | `exit -> Ojs.string_to_js "exit"));(
-                       ExitListener.t_to_js x792)|])
-        let (prepend_once_listener''' :
-          t ->
-            event:[ `rejectionHandled ] ->
-              listener:RejectionHandledListener.t -> t)
-          =
-          fun (x796 : t) ->
-            fun ~event:(x794 : [ `rejectionHandled ]) ->
-              fun ~listener:(x795 : RejectionHandledListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x796) "prependOnceListener"
-                     [|((match x794 with
-                         | `rejectionHandled ->
-                             Ojs.string_to_js "rejectionHandled"));(RejectionHandledListener.t_to_js
-                                                                    x795)|])
-        let (prepend_once_listener'''' :
-          t ->
-            event:[ `uncaughtException ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x799 : t) ->
-            fun ~event:(x797 : [ `uncaughtException ]) ->
-              fun ~listener:(x798 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x799) "prependOnceListener"
-                     [|((match x797 with
-                         | `uncaughtException ->
-                             Ojs.string_to_js "uncaughtException"));(
-                       UncaughtExceptionListener.t_to_js x798)|])
-        let (prepend_once_listener''''' :
-          t ->
-            event:[ `uncaughtExceptionMonitor ] ->
-              listener:UncaughtExceptionListener.t -> t)
-          =
-          fun (x802 : t) ->
-            fun ~event:(x800 : [ `uncaughtExceptionMonitor ]) ->
-              fun ~listener:(x801 : UncaughtExceptionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x802) "prependOnceListener"
-                     [|((match x800 with
-                         | `uncaughtExceptionMonitor ->
-                             Ojs.string_to_js "uncaughtExceptionMonitor"));(
-                       UncaughtExceptionListener.t_to_js x801)|])
-        let (prepend_once_listener'''''' :
-          t ->
-            event:[ `unhandledRejection ] ->
-              listener:UnhandledRejectionListener.t -> t)
-          =
-          fun (x805 : t) ->
-            fun ~event:(x803 : [ `unhandledRejection ]) ->
-              fun ~listener:(x804 : UnhandledRejectionListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x805) "prependOnceListener"
-                     [|((match x803 with
-                         | `unhandledRejection ->
-                             Ojs.string_to_js "unhandledRejection"));(
-                       UnhandledRejectionListener.t_to_js x804)|])
-        let (prepend_once_listener''''''' :
-          t -> event:[ `warning ] -> listener:WarningListener.t -> t) =
-          fun (x808 : t) ->
-            fun ~event:(x806 : [ `warning ]) ->
-              fun ~listener:(x807 : WarningListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x808) "prependOnceListener"
-                     [|((match x806 with
-                         | `warning -> Ojs.string_to_js "warning"));(
-                       WarningListener.t_to_js x807)|])
-        let (prepend_once_listener'''''''' :
-          t -> event:[ `message ] -> listener:MessageListener.t -> t) =
-          fun (x811 : t) ->
-            fun ~event:(x809 : [ `message ]) ->
-              fun ~listener:(x810 : MessageListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x811) "prependOnceListener"
-                     [|((match x809 with
-                         | `message -> Ojs.string_to_js "message"));(
-                       MessageListener.t_to_js x810)|])
-        let (prepend_once_listener''''''''' :
-          t -> event:Signals.t -> listener:SignalsListener.t -> t) =
-          fun (x814 : t) ->
-            fun ~event:(x812 : Signals.t) ->
-              fun ~listener:(x813 : SignalsListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x814) "prependOnceListener"
-                     [|(Signals.t_to_js x812);(SignalsListener.t_to_js x813)|])
-        let (prepend_once_listener'''''''''' :
-          t -> event:[ `newListener ] -> listener:NewListenerListener.t -> t)
-          =
-          fun (x817 : t) ->
-            fun ~event:(x815 : [ `newListener ]) ->
-              fun ~listener:(x816 : NewListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x817) "prependOnceListener"
-                     [|((match x815 with
-                         | `newListener -> Ojs.string_to_js "newListener"));(
-                       NewListenerListener.t_to_js x816)|])
-        let (prepend_once_listener''''''''''' :
-          t ->
-            event:[ `removeListener ] ->
-              listener:RemoveListenerListener.t -> t)
-          =
-          fun (x820 : t) ->
-            fun ~event:(x818 : [ `removeListener ]) ->
-              fun ~listener:(x819 : RemoveListenerListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x820) "prependOnceListener"
-                     [|((match x818 with
-                         | `removeListener ->
-                             Ojs.string_to_js "removeListener"));(RemoveListenerListener.t_to_js
-                                                                    x819)|])
-        let (prepend_once_listener'''''''''''' :
-          t ->
-            event:[ `multipleResolves ] ->
-              listener:MultipleResolveListener.t -> t)
-          =
-          fun (x823 : t) ->
-            fun ~event:(x821 : [ `multipleResolves ]) ->
-              fun ~listener:(x822 : MultipleResolveListener.t) ->
-                t_of_js
-                  (Ojs.call (t_to_js x823) "prependOnceListener"
-                     [|((match x821 with
-                         | `multipleResolves ->
-                             Ojs.string_to_js "multipleResolves"));(MultipleResolveListener.t_to_js
-                                                                    x822)|])
-        let (listeners :
-          t -> event:[ `beforeExit ] -> BeforeExitListener.t list) =
-          fun (x825 : t) ->
-            fun ~event:(x824 : [ `beforeExit ]) ->
-              Ojs.list_of_js BeforeExitListener.t_of_js
-                (Ojs.call (t_to_js x825) "listeners"
-                   [|((match x824 with
-                       | `beforeExit -> Ojs.string_to_js "beforeExit"))|])
-        let (listeners' :
-          t -> event:[ `disconnect ] -> DisconnectListener.t list) =
-          fun (x828 : t) ->
-            fun ~event:(x827 : [ `disconnect ]) ->
-              Ojs.list_of_js DisconnectListener.t_of_js
-                (Ojs.call (t_to_js x828) "listeners"
-                   [|((match x827 with
-                       | `disconnect -> Ojs.string_to_js "disconnect"))|])
-        let (listeners'' : t -> event:[ `exit ] -> ExitListener.t list) =
-          fun (x831 : t) ->
-            fun ~event:(x830 : [ `exit ]) ->
-              Ojs.list_of_js ExitListener.t_of_js
-                (Ojs.call (t_to_js x831) "listeners"
-                   [|((match x830 with | `exit -> Ojs.string_to_js "exit"))|])
-        let (listeners''' :
-          t -> event:[ `rejectionHandled ] -> RejectionHandledListener.t list)
-          =
-          fun (x834 : t) ->
-            fun ~event:(x833 : [ `rejectionHandled ]) ->
-              Ojs.list_of_js RejectionHandledListener.t_of_js
-                (Ojs.call (t_to_js x834) "listeners"
-                   [|((match x833 with
-                       | `rejectionHandled ->
-                           Ojs.string_to_js "rejectionHandled"))|])
-        let (listeners'''' :
-          t ->
-            event:[ `uncaughtException ] -> UncaughtExceptionListener.t list)
-          =
-          fun (x837 : t) ->
-            fun ~event:(x836 : [ `uncaughtException ]) ->
-              Ojs.list_of_js UncaughtExceptionListener.t_of_js
-                (Ojs.call (t_to_js x837) "listeners"
-                   [|((match x836 with
-                       | `uncaughtException ->
-                           Ojs.string_to_js "uncaughtException"))|])
-        let (listeners''''' :
-          t ->
-            event:[ `uncaughtExceptionMonitor ] ->
-              UncaughtExceptionListener.t list)
-          =
-          fun (x840 : t) ->
-            fun ~event:(x839 : [ `uncaughtExceptionMonitor ]) ->
-              Ojs.list_of_js UncaughtExceptionListener.t_of_js
-                (Ojs.call (t_to_js x840) "listeners"
-                   [|((match x839 with
-                       | `uncaughtExceptionMonitor ->
-                           Ojs.string_to_js "uncaughtExceptionMonitor"))|])
-        let (listeners'''''' :
-          t ->
-            event:[ `unhandledRejection ] ->
-              UnhandledRejectionListener.t list)
-          =
-          fun (x843 : t) ->
-            fun ~event:(x842 : [ `unhandledRejection ]) ->
-              Ojs.list_of_js UnhandledRejectionListener.t_of_js
-                (Ojs.call (t_to_js x843) "listeners"
-                   [|((match x842 with
-                       | `unhandledRejection ->
-                           Ojs.string_to_js "unhandledRejection"))|])
-        let (listeners''''''' :
-          t -> event:[ `warning ] -> WarningListener.t list) =
-          fun (x846 : t) ->
-            fun ~event:(x845 : [ `warning ]) ->
-              Ojs.list_of_js WarningListener.t_of_js
-                (Ojs.call (t_to_js x846) "listeners"
-                   [|((match x845 with
-                       | `warning -> Ojs.string_to_js "warning"))|])
-        let (listeners'''''''' :
-          t -> event:[ `message ] -> MessageListener.t list) =
-          fun (x849 : t) ->
-            fun ~event:(x848 : [ `message ]) ->
-              Ojs.list_of_js MessageListener.t_of_js
-                (Ojs.call (t_to_js x849) "listeners"
-                   [|((match x848 with
-                       | `message -> Ojs.string_to_js "message"))|])
-        let (listeners''''''''' :
-          t -> event:Signals.t -> SignalsListener.t list) =
-          fun (x852 : t) ->
-            fun ~event:(x851 : Signals.t) ->
-              Ojs.list_of_js SignalsListener.t_of_js
-                (Ojs.call (t_to_js x852) "listeners"
-                   [|(Signals.t_to_js x851)|])
-        let (listeners'''''''''' :
-          t -> event:[ `newListener ] -> NewListenerListener.t list) =
-          fun (x855 : t) ->
-            fun ~event:(x854 : [ `newListener ]) ->
-              Ojs.list_of_js NewListenerListener.t_of_js
-                (Ojs.call (t_to_js x855) "listeners"
-                   [|((match x854 with
-                       | `newListener -> Ojs.string_to_js "newListener"))|])
-        let (listeners''''''''''' :
-          t -> event:[ `removeListener ] -> RemoveListenerListener.t list) =
-          fun (x858 : t) ->
-            fun ~event:(x857 : [ `removeListener ]) ->
-              Ojs.list_of_js RemoveListenerListener.t_of_js
-                (Ojs.call (t_to_js x858) "listeners"
-                   [|((match x857 with
-                       | `removeListener -> Ojs.string_to_js "removeListener"))|])
-        let (listeners'''''''''''' :
-          t -> event:[ `multipleResolves ] -> MultipleResolveListener.t list)
-          =
-          fun (x861 : t) ->
-            fun ~event:(x860 : [ `multipleResolves ]) ->
-              Ojs.list_of_js MultipleResolveListener.t_of_js
-                (Ojs.call (t_to_js x861) "listeners"
-                   [|((match x860 with
-                       | `multipleResolves ->
-                           Ojs.string_to_js "multipleResolves"))|])
-        let (cast : t -> Node_events.Events.EventEmitter.t) =
-          fun (x863 : t) ->
-            Node_events.Events.EventEmitter.t_of_js (t_to_js x863)
+                             Ojs.string_to_js "multipleResolves"));(MultipleResolvesListener.t_to_js
+                                                                    x664)|])
       end
+    let (stdout : WriteStream.t) =
+      WriteStream.t_of_js (Ojs.get_prop_ascii Import.process "stdout")
+    let (set_stdout : WriteStream.t -> unit) =
+      fun (x666 : WriteStream.t) ->
+        ignore
+          (Ojs.call Import.process "stdout" [|(WriteStream.t_to_js x666)|])
+    let (stderr : WriteStream.t) =
+      WriteStream.t_of_js (Ojs.get_prop_ascii Import.process "stderr")
+    let (set_stderr : WriteStream.t -> unit) =
+      fun (x667 : WriteStream.t) ->
+        ignore
+          (Ojs.call Import.process "stderr" [|(WriteStream.t_to_js x667)|])
+    let (stdin : ReadStream.t) =
+      ReadStream.t_of_js (Ojs.get_prop_ascii Import.process "stdin")
+    let (set_stdin : ReadStream.t -> unit) =
+      fun (x668 : ReadStream.t) ->
+        ignore
+          (Ojs.call Import.process "stdin" [|(ReadStream.t_to_js x668)|])
+    let (open_stdin : Socket.t) =
+      Socket.t_of_js (Ojs.get_prop_ascii Import.process "openStdin")
+    let (argv : string list) =
+      Ojs.list_of_js Ojs.string_of_js
+        (Ojs.get_prop_ascii Import.process "argv")
+    let (set_argv : string list -> unit) =
+      fun (x670 : string list) ->
+        ignore
+          (Ojs.call Import.process "argv"
+             [|(Ojs.list_to_js Ojs.string_to_js x670)|])
+    let (argv0 : string) =
+      Ojs.string_of_js (Ojs.get_prop_ascii Import.process "argv0")
+    let (set_argv0 : string -> unit) =
+      fun (x672 : string) ->
+        ignore (Ojs.call Import.process "argv0" [|(Ojs.string_to_js x672)|])
+    let (exec_argv : string list) =
+      Ojs.list_of_js Ojs.string_of_js
+        (Ojs.get_prop_ascii Import.process "execArgv")
+    let (set_exec_argv : string list -> unit) =
+      fun (x674 : string list) ->
+        ignore
+          (Ojs.call Import.process "execArgv"
+             [|(Ojs.list_to_js Ojs.string_to_js x674)|])
+    let (exec_path : string) =
+      Ojs.string_of_js (Ojs.get_prop_ascii Import.process "execPath")
+    let (set_exec_path : string -> unit) =
+      fun (x676 : string) ->
+        ignore
+          (Ojs.call Import.process "execPath" [|(Ojs.string_to_js x676)|])
+    let (abort : never) =
+      never_of_js (Ojs.get_prop_ascii Import.process "abort")
+    let (chdir : directory:string -> unit) =
+      fun ~directory:(x677 : string) ->
+        ignore (Ojs.call Import.process "chdir" [|(Ojs.string_to_js x677)|])
+    let (cwd : string) =
+      Ojs.string_of_js (Ojs.get_prop_ascii Import.process "cwd")
+    let (debug_port : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "debugPort")
+    let (set_debug_port : int -> unit) =
+      fun (x678 : int) ->
+        ignore (Ojs.call Import.process "debugPort" [|(Ojs.int_to_js x678)|])
+    let (emit_warning :
+      warning:Error.t or_string ->
+        ?name:string -> ?ctor:untyped_function -> unit -> unit)
+      =
+      fun ~warning:(x679 : Error.t or_string) ->
+        fun ?name:(x680 : string option) ->
+          fun ?ctor:(x681 : untyped_function option) ->
+            fun () ->
+              ignore
+                (let x686 = Import.process in
+                 Ojs.call (Ojs.get_prop_ascii x686 "emitWarning") "apply"
+                   [|x686;((let x682 =
+                              Ojs.new_obj
+                                (Ojs.get_prop_ascii Ojs.global "Array") 
+                                [||] in
+                            ignore
+                              (Ojs.call x682 "push"
+                                 [|(or_string_to_js Error.t_to_js x679)|]);
+                            (match x680 with
+                             | Some x684 ->
+                                 ignore
+                                   (Ojs.call x682 "push"
+                                      [|(Ojs.string_to_js x684)|])
+                             | None -> ());
+                            (match x681 with
+                             | Some x683 ->
+                                 ignore
+                                   (Ojs.call x682 "push"
+                                      [|(untyped_function_to_js x683)|])
+                             | None -> ());
+                            x682))|])
+    let (env : ProcessEnv.t) =
+      ProcessEnv.t_of_js (Ojs.get_prop_ascii Import.process "env")
+    let (set_env : ProcessEnv.t -> unit) =
+      fun (x687 : ProcessEnv.t) ->
+        ignore (Ojs.call Import.process "env" [|(ProcessEnv.t_to_js x687)|])
+    let (exit : ?code:int -> unit -> never) =
+      fun ?code:(x688 : int option) ->
+        fun () ->
+          never_of_js
+            (let x691 = Import.process in
+             Ojs.call (Ojs.get_prop_ascii x691 "exit") "apply"
+               [|x691;((let x689 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x688 with
+                         | Some x690 ->
+                             ignore
+                               (Ojs.call x689 "push" [|(Ojs.int_to_js x690)|])
+                         | None -> ());
+                        x689))|])
+    let (exit_code : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "exitCode")
+    let (set_exit_code : int -> unit) =
+      fun (x692 : int) ->
+        ignore (Ojs.call Import.process "exitCode" [|(Ojs.int_to_js x692)|])
+    let (getgid : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "getgid")
+    let (setgid : id:string or_number -> unit) =
+      fun ~id:(x693 : string or_number) ->
+        ignore
+          (Ojs.call Import.process "setgid"
+             [|(or_number_to_js Ojs.string_to_js x693)|])
+    let (getuid : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "getuid")
+    let (setuid : id:string or_number -> unit) =
+      fun ~id:(x695 : string or_number) ->
+        ignore
+          (Ojs.call Import.process "setuid"
+             [|(or_number_to_js Ojs.string_to_js x695)|])
+    let (geteuid : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "geteuid")
+    let (seteuid : id:string or_number -> unit) =
+      fun ~id:(x697 : string or_number) ->
+        ignore
+          (Ojs.call Import.process "seteuid"
+             [|(or_number_to_js Ojs.string_to_js x697)|])
+    let (getegid : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "getegid")
+    let (setegid : id:string or_number -> unit) =
+      fun ~id:(x699 : string or_number) ->
+        ignore
+          (Ojs.call Import.process "setegid"
+             [|(or_number_to_js Ojs.string_to_js x699)|])
+    let (getgroups : int list) =
+      Ojs.list_of_js Ojs.int_of_js
+        (Ojs.get_prop_ascii Import.process "getgroups")
+    let (setgroups : groups:string or_number list -> unit) =
+      fun ~groups:(x702 : string or_number list) ->
+        ignore
+          (Ojs.call Import.process "setgroups"
+             [|(Ojs.list_to_js
+                  (fun (x703 : string or_number) ->
+                     or_number_to_js Ojs.string_to_js x703) x702)|])
+    let (set_uncaught_exception_capture_callback :
+      cb:(err:Error.t -> unit) or_null -> unit) =
+      fun ~cb:(x705 : (err:Error.t -> unit) or_null) ->
+        ignore
+          (Ojs.call Import.process "setUncaughtExceptionCaptureCallback"
+             [|(or_null_to_js
+                  (fun (x706 : err:Error.t -> unit) ->
+                     Ojs.fun_to_js 1
+                       (fun (x707 : Ojs.t) -> x706 ~err:(Error.t_of_js x707)))
+                  x705)|])
+    let (has_uncaught_exception_capture_callback : bool) =
+      Ojs.bool_of_js
+        (Ojs.get_prop_ascii Import.process
+           "hasUncaughtExceptionCaptureCallback")
+    let (version : string) =
+      Ojs.string_of_js (Ojs.get_prop_ascii Import.process "version")
+    let (set_version : string -> unit) =
+      fun (x708 : string) ->
+        ignore
+          (Ojs.call Import.process "version" [|(Ojs.string_to_js x708)|])
+    let (versions : ProcessVersions.t) =
+      ProcessVersions.t_of_js (Ojs.get_prop_ascii Import.process "versions")
+    let (set_versions : ProcessVersions.t -> unit) =
+      fun (x709 : ProcessVersions.t) ->
+        ignore
+          (Ojs.call Import.process "versions"
+             [|(ProcessVersions.t_to_js x709)|])
+    let (config : AnonymousInterface8.t) =
+      AnonymousInterface8.t_of_js
+        (Ojs.get_prop_ascii Import.process "config")
+    let (set_config : AnonymousInterface8.t -> unit) =
+      fun (x710 : AnonymousInterface8.t) ->
+        ignore
+          (Ojs.call Import.process "config"
+             [|(AnonymousInterface8.t_to_js x710)|])
+    let (kill : pid:int -> ?signal:string or_number -> unit -> [ `L_b_true ])
+      =
+      fun ~pid:(x711 : int) ->
+        fun ?signal:(x712 : string or_number option) ->
+          fun () ->
+            let x717 =
+              let x716 = Import.process in
+              Ojs.call (Ojs.get_prop_ascii x716 "kill") "apply"
+                [|x716;((let x713 =
+                           Ojs.new_obj
+                             (Ojs.get_prop_ascii Ojs.global "Array") 
+                             [||] in
+                         ignore
+                           (Ojs.call x713 "push" [|(Ojs.int_to_js x711)|]);
+                         (match x712 with
+                          | Some x714 ->
+                              ignore
+                                (Ojs.call x713 "push"
+                                   [|(or_number_to_js Ojs.string_to_js x714)|])
+                          | None -> ());
+                         x713))|] in
+            match Ojs.bool_of_js x717 with
+            | true -> `L_b_true
+            | _ -> assert false
+    let (pid : int) = Ojs.int_of_js (Ojs.get_prop_ascii Import.process "pid")
+    let (set_pid : int -> unit) =
+      fun (x718 : int) ->
+        ignore (Ojs.call Import.process "pid" [|(Ojs.int_to_js x718)|])
+    let (ppid : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "ppid")
+    let (set_ppid : int -> unit) =
+      fun (x719 : int) ->
+        ignore (Ojs.call Import.process "ppid" [|(Ojs.int_to_js x719)|])
+    let (title : string) =
+      Ojs.string_of_js (Ojs.get_prop_ascii Import.process "title")
+    let (set_title : string -> unit) =
+      fun (x720 : string) ->
+        ignore (Ojs.call Import.process "title" [|(Ojs.string_to_js x720)|])
+    let (arch : string) =
+      Ojs.string_of_js (Ojs.get_prop_ascii Import.process "arch")
+    let (set_arch : string -> unit) =
+      fun (x721 : string) ->
+        ignore (Ojs.call Import.process "arch" [|(Ojs.string_to_js x721)|])
+    let (platform : Platform.t) =
+      Platform.t_of_js (Ojs.get_prop_ascii Import.process "platform")
+    let (set_platform : Platform.t -> unit) =
+      fun (x722 : Platform.t) ->
+        ignore
+          (Ojs.call Import.process "platform" [|(Platform.t_to_js x722)|])
+    let (main_module : Module.t) =
+      Module.t_of_js (Ojs.get_prop_ascii Import.process "mainModule")
+    let (set_main_module : Module.t -> unit) =
+      fun (x723 : Module.t) ->
+        ignore
+          (Ojs.call Import.process "mainModule" [|(Module.t_to_js x723)|])
+    let (memory_usage : MemoryUsage.t) =
+      MemoryUsage.t_of_js (Ojs.get_prop_ascii Import.process "memoryUsage")
+    let (cpu_usage : ?previous_value:CpuUsage.t -> unit -> CpuUsage.t) =
+      fun ?previous_value:(x724 : CpuUsage.t option) ->
+        fun () ->
+          CpuUsage.t_of_js
+            (let x727 = Import.process in
+             Ojs.call (Ojs.get_prop_ascii x727 "cpuUsage") "apply"
+               [|x727;((let x725 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        (match x724 with
+                         | Some x726 ->
+                             ignore
+                               (Ojs.call x725 "push"
+                                  [|(CpuUsage.t_to_js x726)|])
+                         | None -> ());
+                        x725))|])
+    let (next_tick : callback:untyped_function -> args:any list -> unit) =
+      fun ~callback:(x728 : untyped_function) ->
+        fun ~args:(x729 : any list) ->
+          ignore
+            (let x732 = Import.process in
+             Ojs.call (Ojs.get_prop_ascii x732 "nextTick") "apply"
+               [|x732;((let x730 =
+                          Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
+                            [||] in
+                        ignore
+                          (Ojs.call x730 "push"
+                             [|(untyped_function_to_js x728)|]);
+                        List.iter
+                          (fun (x731 : any) ->
+                             ignore
+                               (Ojs.call x730 "push" [|(any_to_js x731)|]))
+                          x729;
+                        x730))|])
+    let (release : ProcessRelease.t) =
+      ProcessRelease.t_of_js (Ojs.get_prop_ascii Import.process "release")
+    let (set_release : ProcessRelease.t -> unit) =
+      fun (x733 : ProcessRelease.t) ->
+        ignore
+          (Ojs.call Import.process "release"
+             [|(ProcessRelease.t_to_js x733)|])
+    let (features : AnonymousInterface6.t) =
+      AnonymousInterface6.t_of_js
+        (Ojs.get_prop_ascii Import.process "features")
+    let (set_features : AnonymousInterface6.t -> unit) =
+      fun (x734 : AnonymousInterface6.t) ->
+        ignore
+          (Ojs.call Import.process "features"
+             [|(AnonymousInterface6.t_to_js x734)|])
+    let (umask : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "umask")
+    let (umask' : mask:string or_number -> int) =
+      fun ~mask:(x735 : string or_number) ->
+        Ojs.int_of_js
+          (Ojs.call Import.process "umask"
+             [|(or_number_to_js Ojs.string_to_js x735)|])
+    let (uptime : int) =
+      Ojs.int_of_js (Ojs.get_prop_ascii Import.process "uptime")
+    let (hrtime : HRTime.t) =
+      HRTime.t_of_js (Ojs.get_prop_ascii Import.process "hrtime")
+    let (set_hrtime : HRTime.t -> unit) =
+      fun (x737 : HRTime.t) ->
+        ignore (Ojs.call Import.process "hrtime" [|(HRTime.t_to_js x737)|])
+    let (domain : Node_domain.Domain.Domain.t) =
+      Node_domain.Domain.Domain.t_of_js
+        (Ojs.get_prop_ascii Import.process "domain")
+    let (set_domain : Node_domain.Domain.Domain.t -> unit) =
+      fun (x738 : Node_domain.Domain.Domain.t) ->
+        ignore
+          (Ojs.call Import.process "domain"
+             [|(Node_domain.Domain.Domain.t_to_js x738)|])
+    let (send :
+      message:any ->
+        ?send_handle:any ->
+          ?options:AnonymousInterface7.t ->
+            ?callback:(error:Error.t or_null -> unit) -> unit -> bool)
+      =
+      fun ~message:(x739 : any) ->
+        fun ?send_handle:(x740 : any option) ->
+          fun ?options:(x741 : AnonymousInterface7.t option) ->
+            fun ?callback:(x742 : (error:Error.t or_null -> unit) option) ->
+              fun () ->
+                Ojs.bool_of_js
+                  (let x749 = Import.process in
+                   Ojs.call (Ojs.get_prop_ascii x749 "send") "apply"
+                     [|x749;((let x743 =
+                                Ojs.new_obj
+                                  (Ojs.get_prop_ascii Ojs.global "Array")
+                                  [||] in
+                              ignore
+                                (Ojs.call x743 "push" [|(any_to_js x739)|]);
+                              (match x740 with
+                               | Some x748 ->
+                                   ignore
+                                     (Ojs.call x743 "push"
+                                        [|(any_to_js x748)|])
+                               | None -> ());
+                              (match x741 with
+                               | Some x747 ->
+                                   ignore
+                                     (Ojs.call x743 "push"
+                                        [|(AnonymousInterface7.t_to_js x747)|])
+                               | None -> ());
+                              (match x742 with
+                               | Some x744 ->
+                                   ignore
+                                     (Ojs.call x743 "push"
+                                        [|(Ojs.fun_to_js 1
+                                             (fun (x745 : Ojs.t) ->
+                                                x744
+                                                  ~error:(or_null_of_js
+                                                            Error.t_of_js
+                                                            x745)))|])
+                               | None -> ());
+                              x743))|])
+    let (disconnect : unit) =
+      Ojs.unit_of_js (Ojs.get_prop_ascii Import.process "disconnect")
+    let (connected : bool) =
+      Ojs.bool_of_js (Ojs.get_prop_ascii Import.process "connected")
+    let (set_connected : bool -> unit) =
+      fun (x750 : bool) ->
+        ignore
+          (Ojs.call Import.process "connected" [|(Ojs.bool_to_js x750)|])
+    let (allowed_node_environment_flags : string ReadonlySet.t) =
+      ReadonlySet.t_of_js Ojs.string_of_js
+        (Ojs.get_prop_ascii Import.process "allowedNodeEnvironmentFlags")
+    let (set_allowed_node_environment_flags : string ReadonlySet.t -> unit) =
+      fun (x752 : string ReadonlySet.t) ->
+        ignore
+          (Ojs.call Import.process "allowedNodeEnvironmentFlags"
+             [|(ReadonlySet.t_to_js Ojs.string_to_js x752)|])
+    let (report : ProcessReport.t) =
+      ProcessReport.t_of_js (Ojs.get_prop_ascii Import.process "report")
+    let (set_report : ProcessReport.t -> unit) =
+      fun (x754 : ProcessReport.t) ->
+        ignore
+          (Ojs.call Import.process "report" [|(ProcessReport.t_to_js x754)|])
+    let (resource_usage : ResourceUsage.t) =
+      ResourceUsage.t_of_js
+        (Ojs.get_prop_ascii Import.process "resourceUsage")
+    let (trace_deprecation : bool) =
+      Ojs.bool_of_js (Ojs.get_prop_ascii Import.process "traceDeprecation")
+    let (set_trace_deprecation : bool -> unit) =
+      fun (x755 : bool) ->
+        ignore
+          (Ojs.call Import.process "traceDeprecation"
+             [|(Ojs.bool_to_js x755)|])
+    let (on : string -> Ojs.t -> unit) =
+      fun (x756 : string) ->
+        fun (x757 : Ojs.t) ->
+          ignore (Ojs.call Ojs.global "on" [|(Ojs.string_to_js x756);x757|])
+    let (add_listener : string -> Ojs.t -> unit) =
+      fun (x758 : string) ->
+        fun (x759 : Ojs.t) ->
+          ignore
+            (Ojs.call Ojs.global "addListener"
+               [|(Ojs.string_to_js x758);x759|])
+    let (once : string -> Ojs.t -> unit) =
+      fun (x760 : string) ->
+        fun (x761 : Ojs.t) ->
+          ignore
+            (Ojs.call Ojs.global "once" [|(Ojs.string_to_js x760);x761|])
+    let (prepend_listener : string -> Ojs.t -> unit) =
+      fun (x762 : string) ->
+        fun (x763 : Ojs.t) ->
+          ignore
+            (Ojs.call Ojs.global "prependListener"
+               [|(Ojs.string_to_js x762);x763|])
+    let (prepend_once_listener : string -> Ojs.t -> unit) =
+      fun (x764 : string) ->
+        fun (x765 : Ojs.t) ->
+          ignore
+            (Ojs.call Ojs.global "prependOnceListener"
+               [|(Ojs.string_to_js x764);x765|])
+    let with_listener_fn fn =
+      function
+      | `BeforeExit f -> (fn "beforeExit") @@ (BeforeExitListener.t_to_js f)
+      | `Disconnect f -> (fn "disconnect") @@ (DisconnectListener.t_to_js f)
+      | `Exit f -> (fn "exit") @@ (ExitListener.t_to_js f)
+      | `RejectionHandled f ->
+          (fn "rejectionHandled") @@ (RejectionHandledListener.t_to_js f)
+      | `UncaughtException f ->
+          (fn "uncaughtException") @@ (UncaughtExceptionListener.t_to_js f)
+      | `UnhandledRejection f ->
+          (fn "unhandledRejection") @@ (UnhandledRejectionListener.t_to_js f)
+      | `Warning f -> (fn "warning") @@ (WarningListener.t_to_js f)
+      | `Message f -> (fn "message") @@ (MessageListener.t_to_js f)
+      | `NewListener f ->
+          (fn "newListener") @@ (NewListenerListener.t_to_js f)
+      | `RemoveListener f ->
+          (fn "removeListener") @@ (RemoveListenerListener.t_to_js f)
+      | `MultipleResolves f ->
+          (fn "multipleResolves") @@ (MultipleResolvesListener.t_to_js f)
+    let on = with_listener_fn on
+    let add_listener = with_listener_fn add_listener
+    let once = with_listener_fn once
+    let prepend_listener = with_listener_fn prepend_listener
+    let prepend_once_listener = with_listener_fn prepend_once_listener
+    let (emit_before_exit : event:[ `beforeExit ] -> code:int -> bool) =
+      fun ~event:(x777 : [ `beforeExit ]) ->
+        fun ~code:(x778 : int) ->
+          Ojs.bool_of_js
+            (Ojs.call Import.process "emit"
+               [|((match x777 with
+                   | `beforeExit -> Ojs.string_to_js "beforeExit"));(
+                 Ojs.int_to_js x778)|])
+    let (emit_disconnect : event:[ `disconnect ] -> bool) =
+      fun ~event:(x779 : [ `disconnect ]) ->
+        Ojs.bool_of_js
+          (Ojs.call Import.process "emit"
+             [|((match x779 with
+                 | `disconnect -> Ojs.string_to_js "disconnect"))|])
+    let (emit_exit : event:[ `exit ] -> code:int -> bool) =
+      fun ~event:(x780 : [ `exit ]) ->
+        fun ~code:(x781 : int) ->
+          Ojs.bool_of_js
+            (Ojs.call Import.process "emit"
+               [|((match x780 with | `exit -> Ojs.string_to_js "exit"));(
+                 Ojs.int_to_js x781)|])
+    let (emit_rejection_handled :
+      event:[ `rejectionHandled ] -> promise:any Promise.t -> bool) =
+      fun ~event:(x782 : [ `rejectionHandled ]) ->
+        fun ~promise:(x783 : any Promise.t) ->
+          Ojs.bool_of_js
+            (Ojs.call Import.process "emit"
+               [|((match x782 with
+                   | `rejectionHandled -> Ojs.string_to_js "rejectionHandled"));(
+                 Promise.t_to_js any_to_js x783)|])
+    let (emit_uncaught_exception :
+      event:[ `uncaughtException ] -> error:Error.t -> bool) =
+      fun ~event:(x785 : [ `uncaughtException ]) ->
+        fun ~error:(x786 : Error.t) ->
+          Ojs.bool_of_js
+            (Ojs.call Import.process "emit"
+               [|((match x785 with
+                   | `uncaughtException ->
+                       Ojs.string_to_js "uncaughtException"));(Error.t_to_js
+                                                                 x786)|])
+    let (emit_uncaught_exception_monitor :
+      event:[ `uncaughtExceptionMonitor ] -> error:Error.t -> bool) =
+      fun ~event:(x787 : [ `uncaughtExceptionMonitor ]) ->
+        fun ~error:(x788 : Error.t) ->
+          Ojs.bool_of_js
+            (Ojs.call Import.process "emit"
+               [|((match x787 with
+                   | `uncaughtExceptionMonitor ->
+                       Ojs.string_to_js "uncaughtExceptionMonitor"));(
+                 Error.t_to_js x788)|])
+    let (emit_unhandled_rejection :
+      event:[ `unhandledRejection ] ->
+        reason:any -> promise:any Promise.t -> bool)
+      =
+      fun ~event:(x789 : [ `unhandledRejection ]) ->
+        fun ~reason:(x790 : any) ->
+          fun ~promise:(x791 : any Promise.t) ->
+            Ojs.bool_of_js
+              (Ojs.call Import.process "emit"
+                 [|((match x789 with
+                     | `unhandledRejection ->
+                         Ojs.string_to_js "unhandledRejection"));(any_to_js
+                                                                    x790);(
+                   Promise.t_to_js any_to_js x791)|])
+    let (emit_warning : event:[ `warning ] -> warning:Error.t -> bool) =
+      fun ~event:(x793 : [ `warning ]) ->
+        fun ~warning:(x794 : Error.t) ->
+          Ojs.bool_of_js
+            (Ojs.call Import.process "emit"
+               [|((match x793 with | `warning -> Ojs.string_to_js "warning"));(
+                 Error.t_to_js x794)|])
+    let (emit_message :
+      event:[ `message ] -> message:any -> send_handle:any -> Process.t) =
+      fun ~event:(x795 : [ `message ]) ->
+        fun ~message:(x796 : any) ->
+          fun ~send_handle:(x797 : any) ->
+            Process.t_of_js
+              (Ojs.call Import.process "emit"
+                 [|((match x795 with | `message -> Ojs.string_to_js "message"));(
+                   any_to_js x796);(any_to_js x797)|])
+    let (emit_new_listener :
+      event:[ `newListener ] ->
+        event_name:symbol or_string ->
+          listener:(args:any list -> unit) -> Process.t)
+      =
+      fun ~event:(x798 : [ `newListener ]) ->
+        fun ~event_name:(x799 : symbol or_string) ->
+          fun ~listener:(x801 : args:any list -> unit) ->
+            Process.t_of_js
+              (Ojs.call Import.process "emit"
+                 [|((match x798 with
+                     | `newListener -> Ojs.string_to_js "newListener"));(
+                   or_string_to_js symbol_to_js x799);(Ojs.fun_to_js_args
+                                                         (fun (x802 : _) ->
+                                                            x801
+                                                              ~args:(
+                                                              Ojs.list_of_js_from
+                                                                any_of_js
+                                                                x802 0)))|])
+    let (emit_remove_listener :
+      event:[ `removeListener ] ->
+        event_name:string -> listener:(args:any list -> unit) -> Process.t)
+      =
+      fun ~event:(x804 : [ `removeListener ]) ->
+        fun ~event_name:(x805 : string) ->
+          fun ~listener:(x806 : args:any list -> unit) ->
+            Process.t_of_js
+              (Ojs.call Import.process "emit"
+                 [|((match x804 with
+                     | `removeListener -> Ojs.string_to_js "removeListener"));(
+                   Ojs.string_to_js x805);(Ojs.fun_to_js_args
+                                             (fun (x807 : _) ->
+                                                x806
+                                                  ~args:(Ojs.list_of_js_from
+                                                           any_of_js x807 0)))|])
+    let (emit_multiple_resolves :
+      event:[ `multipleResolves ] ->
+        listener:MultipleResolvesListener.t -> Process.t)
+      =
+      fun ~event:(x809 : [ `multipleResolves ]) ->
+        fun ~listener:(x810 : MultipleResolvesListener.t) ->
+          Process.t_of_js
+            (Ojs.call Import.process "emit"
+               [|((match x809 with
+                   | `multipleResolves -> Ojs.string_to_js "multipleResolves"));(
+                 MultipleResolvesListener.t_to_js x810)|])
   end
 let (process : Process.Process.t) =
   Process.Process.t_of_js (Ojs.get_prop_ascii Ojs.global "process")

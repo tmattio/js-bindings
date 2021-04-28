@@ -4,22 +4,43 @@
 open Es5
 let (boolean : value:any -> bool) =
   fun ~value:(x1 : any) ->
-    Ojs.bool_of_js (Ojs.call Ojs.global "boolean" [|(any_to_js x1)|])
+    Ojs.bool_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "boolean" [|(any_to_js x1)|])
 let (string : value:any -> bool) =
   fun ~value:(x2 : any) ->
-    Ojs.bool_of_js (Ojs.call Ojs.global "string" [|(any_to_js x2)|])
+    Ojs.bool_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "string" [|(any_to_js x2)|])
 let (number : value:any -> bool) =
   fun ~value:(x3 : any) ->
-    Ojs.bool_of_js (Ojs.call Ojs.global "number" [|(any_to_js x3)|])
+    Ojs.bool_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "number" [|(any_to_js x3)|])
 let (error : value:any -> bool) =
   fun ~value:(x4 : any) ->
-    Ojs.bool_of_js (Ojs.call Ojs.global "error" [|(any_to_js x4)|])
+    Ojs.bool_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "error" [|(any_to_js x4)|])
 let (func : value:any -> bool) =
   fun ~value:(x5 : any) ->
-    Ojs.bool_of_js (Ojs.call Ojs.global "func" [|(any_to_js x5)|])
+    Ojs.bool_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "func" [|(any_to_js x5)|])
 let (array : value:any -> bool) =
   fun ~value:(x6 : any) ->
-    Ojs.bool_of_js (Ojs.call Ojs.global "array" [|(any_to_js x6)|])
+    Ojs.bool_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "array" [|(any_to_js x6)|])
 let (string_array : value:any -> bool) =
   fun ~value:(x7 : any) ->
-    Ojs.bool_of_js (Ojs.call Ojs.global "stringArray" [|(any_to_js x7)|])
+    Ojs.bool_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "stringArray" [|(any_to_js x7)|])

@@ -2,7 +2,7 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
-[@@@js.scope "__LIB__VSCODE_JSONRPC__IMPORTS.cancellation"]
+[@@@js.scope "__LIB__VSCODE_JSONRPC__IMPORTS"]
 
 open Es2020
 
@@ -28,28 +28,22 @@ end
 [@@js.scope "CancellationToken"]
 
 module AbstractCancellationTokenSource : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include Vscode_jsonrpc_disposable.Disposable
+  end
 
   val get_token : t -> CancellationToken.t [@@js.get "token"]
 
   val set_token : t -> CancellationToken.t -> unit [@@js.set "token"]
 
   val cancel : t -> unit [@@js.call "cancel"]
-
-  val cast : t -> Vscode_jsonrpc_disposable.Disposable.t [@@js.cast]
 end
 [@@js.scope "AbstractCancellationTokenSource"]
 
 module CancellationTokenSource : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
+  include module type of struct
+    include AbstractCancellationTokenSource
+  end
 
   val get__token : t -> (* FIXME: unknown type *) any [@@js.get "_token"]
 
@@ -61,7 +55,5 @@ module CancellationTokenSource : sig
   val cancel : t -> unit [@@js.call "cancel"]
 
   val dispose : t -> unit [@@js.call "dispose"]
-
-  val cast : t -> AbstractCancellationTokenSource.t [@@js.cast]
 end
 [@@js.scope "CancellationTokenSource"]

@@ -19,8 +19,8 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_callHierarchy.ml)
- (deps vscode_languageclient_callHierarchy.mli)
+ (targets vscode_languageclient_call_hierarchy.ml)
+ (deps vscode_languageclient_call_hierarchy.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -33,22 +33,22 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_codeConverter.ml)
- (deps vscode_languageclient_codeConverter.mli)
+ (targets vscode_languageclient_code_converter.ml)
+ (deps vscode_languageclient_code_converter.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_colorProvider.ml)
- (deps vscode_languageclient_colorProvider.mli)
+ (targets vscode_languageclient_color_provider.ml)
+ (deps vscode_languageclient_color_provider.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_commonClient.ml)
- (deps vscode_languageclient_commonClient.mli)
+ (targets vscode_languageclient_common_client.ml)
+ (deps vscode_languageclient_common_client.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -68,15 +68,15 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_fileOperations.ml)
- (deps vscode_languageclient_fileOperations.mli)
+ (targets vscode_languageclient_file_operations.ml)
+ (deps vscode_languageclient_file_operations.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_foldingRange.ml)
- (deps vscode_languageclient_foldingRange.mli)
+ (targets vscode_languageclient_folding_range.ml)
+ (deps vscode_languageclient_folding_range.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -96,8 +96,8 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_linkedEditingRange.ml)
- (deps vscode_languageclient_linkedEditingRange.mli)
+ (targets vscode_languageclient_linked_editing_range.ml)
+ (deps vscode_languageclient_linked_editing_range.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -124,8 +124,8 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_progressPart.ml)
- (deps vscode_languageclient_progressPart.mli)
+ (targets vscode_languageclient_progress_part.ml)
+ (deps vscode_languageclient_progress_part.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -138,71 +138,71 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_protocolCallHierarchyItem.ml)
- (deps vscode_languageclient_protocolCallHierarchyItem.mli)
+ (targets vscode_languageclient_protocol_call_hierarchy_item.ml)
+ (deps vscode_languageclient_protocol_call_hierarchy_item.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_protocolCodeAction.ml)
- (deps vscode_languageclient_protocolCodeAction.mli)
+ (targets vscode_languageclient_protocol_code_action.ml)
+ (deps vscode_languageclient_protocol_code_action.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_protocolCodeLens.ml)
- (deps vscode_languageclient_protocolCodeLens.mli)
+ (targets vscode_languageclient_protocol_code_lens.ml)
+ (deps vscode_languageclient_protocol_code_lens.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_protocolCompletionItem.ml)
- (deps vscode_languageclient_protocolCompletionItem.mli)
+ (targets vscode_languageclient_protocol_completion_item.ml)
+ (deps vscode_languageclient_protocol_completion_item.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_protocolConverter.ml)
- (deps vscode_languageclient_protocolConverter.mli)
+ (targets vscode_languageclient_protocol_converter.ml)
+ (deps vscode_languageclient_protocol_converter.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_protocolDiagnostic.ml)
- (deps vscode_languageclient_protocolDiagnostic.mli)
+ (targets vscode_languageclient_protocol_diagnostic.ml)
+ (deps vscode_languageclient_protocol_diagnostic.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_protocolDocumentLink.ml)
- (deps vscode_languageclient_protocolDocumentLink.mli)
+ (targets vscode_languageclient_protocol_document_link.ml)
+ (deps vscode_languageclient_protocol_document_link.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_selectionRange.ml)
- (deps vscode_languageclient_selectionRange.mli)
+ (targets vscode_languageclient_selection_range.ml)
+ (deps vscode_languageclient_selection_range.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_semanticTokens.ml)
- (deps vscode_languageclient_semanticTokens.mli)
+ (targets vscode_languageclient_semantic_tokens.ml)
+ (deps vscode_languageclient_semantic_tokens.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_typeDefinition.ml)
- (deps vscode_languageclient_typeDefinition.mli)
+ (targets vscode_languageclient_type_definition.ml)
+ (deps vscode_languageclient_type_definition.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
@@ -215,8 +215,8 @@
   (run %{bin:gen_js_api} %{deps} -o %{targets})))
 
 (rule
- (targets vscode_languageclient_workspaceFolders.ml)
- (deps vscode_languageclient_workspaceFolders.mli)
+ (targets vscode_languageclient_workspace_folders.ml)
+ (deps vscode_languageclient_workspace_folders.mli)
  (mode promote)
  (action
   (run %{bin:gen_js_api} %{deps} -o %{targets})))

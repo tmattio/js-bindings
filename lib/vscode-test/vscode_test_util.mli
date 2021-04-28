@@ -4,7 +4,7 @@
 
 open Es5
 open Node
-open Download
+open Vscode_test_download
 
 module AnonymousInterface0 : sig
   type t

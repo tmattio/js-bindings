@@ -2,6 +2,8 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
+[@@@js.scope "__LIB__VSCODE_JSONRPC__IMPORTS"]
+
 open Es2020
 
 module AnonymousInterface0 : sig
@@ -155,13 +157,9 @@ end
 [@@js.scope "_WritableStream"]
 
 module DuplexStream : sig
-  type t
-
-  val t_to_js : t -> Ojs.t
-
-  val t_of_js : Ojs.t -> t
-
-  val cast : t -> ReadableStream.t [@@js.cast]
+  include module type of struct
+    include ReadableStream
+  end
 
   val cast' : t -> WritableStream.t [@@js.cast]
 end

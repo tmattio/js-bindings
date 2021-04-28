@@ -497,8 +497,6 @@ module Readline : sig
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Interface"]
 

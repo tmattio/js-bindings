@@ -25,7 +25,7 @@ module Http : sig
   open Node_stream
 
   module IncomingHttpHeaders : sig
-    type t
+    type t = string list or_string Dict.t
 
     val t_to_js : t -> Ojs.t
 
@@ -310,8 +310,6 @@ module Http : sig
     val get_www_authenticate : t -> string [@@js.get "www-authenticate"]
 
     val set_www_authenticate : t -> string -> unit [@@js.set "www-authenticate"]
-
-    val cast : t -> string list or_string Dict.t [@@js.cast]
   end
   [@@js.scope "IncomingHttpHeaders"]
 
@@ -324,15 +322,12 @@ module Http : sig
   end
 
   module OutgoingHttpHeaders : sig
-    type t
+    type t = OutgoingHttpHeader.t Dict.t
 
     val t_to_js : t -> Ojs.t
 
     val t_of_js : Ojs.t -> t
-
-    val cast : t -> OutgoingHttpHeader.t Dict.t [@@js.cast]
   end
-  [@@js.scope "OutgoingHttpHeaders"]
 
   module IncomingMessage : sig
     include module type of struct
@@ -486,11 +481,9 @@ module Http : sig
   [@@js.scope "HttpBase"]
 
   module OutgoingMessage : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Writable
+    end
 
     val get_upgrading : t -> bool [@@js.get "upgrading"]
 
@@ -566,17 +559,13 @@ module Http : sig
       [@@js.call "addTrailers"]
 
     val flush_headers : t -> unit [@@js.call "flushHeaders"]
-
-    val cast : t -> Stream.Writable.t [@@js.cast]
   end
   [@@js.scope "OutgoingMessage"]
 
   module ServerResponse : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include OutgoingMessage
+    end
 
     val get_status_code : t -> int [@@js.get "statusCode"]
 
@@ -615,8 +604,6 @@ module Http : sig
       [@@js.call "writeHead"]
 
     val write_processing : t -> unit [@@js.call "writeProcessing"]
-
-    val cast : t -> OutgoingMessage.t [@@js.cast]
   end
   [@@js.scope "ServerResponse"]
 
@@ -633,13 +620,13 @@ module Http : sig
   [@@js.scope "RequestListener"]
 
   module Server : sig
-    type t
+    include module type of struct
+      include HttpBase
+    end
 
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> HttpBase.t [@@js.cast]
+    include module type of struct
+      include Node_net.Net.Server
+    end
 
     val create : ?request_listener:RequestListener.t -> unit -> t [@@js.create]
 
@@ -649,8 +636,6 @@ module Http : sig
       -> unit
       -> t
       [@@js.create]
-
-    val cast : t -> Node_net.Net.Server.t [@@js.cast]
   end
   [@@js.scope "Server"]
 
@@ -866,22 +851,15 @@ module Http : sig
     [@@js.global "createServer"]
 
   module RequestOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val cast : t -> ClientRequestArgs.t [@@js.cast]
+    include module type of struct
+      include ClientRequestArgs
+    end
   end
-  [@@js.scope "RequestOptions"]
 
   module ClientRequest : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include OutgoingMessage
+    end
 
     val get_aborted : t -> bool [@@js.get "aborted"]
 
@@ -929,564 +907,210 @@ module Http : sig
       -> unit
       [@@js.call "setSocketKeepAlive"]
 
-    val add_listener
-      :  t
-      -> event:([ `abort ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module AbortListener : sig
+      type t = unit -> unit
 
-    val add_listener'
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener''
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val add_listener'''
-      :  t
-      -> event:([ `information ][@js.enum])
-      -> listener:(info:InformationEvent.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module ConnectListener : sig
+      type t =
+        response:IncomingMessage.t
+        -> socket:Node_net.Net.Socket.t
+        -> head:Buffer.t
+        -> unit
 
-    val add_listener''''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:(response:IncomingMessage.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener'''''
-      :  t
-      -> event:([ `socket ][@js.enum])
-      -> listener:(socket:Node_net.Net.Socket.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val add_listener''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module ContinueListener : sig
+      type t = unit -> unit
 
-    val add_listener'''''''
-      :  t
-      -> event:([ `upgrade ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener''''''''
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val add_listener'''''''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module InformationListener : sig
+      type t = info:InformationEvent.t -> unit
 
-    val add_listener''''''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener'''''''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val add_listener''''''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module ResponseListener : sig
+      type t = response:IncomingMessage.t -> unit
 
-    val add_listener'''''''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on : t -> event:([ `abort ][@js.enum]) -> listener:(unit -> unit) -> t
-      [@@js.call "on"]
+    module SocketListener : sig
+      type t = socket:Node_net.Net.Socket.t -> unit
 
-    val on'
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on'''
-      :  t
-      -> event:([ `information ][@js.enum])
-      -> listener:(info:InformationEvent.t -> unit)
-      -> t
-      [@@js.call "on"]
+    module TimeoutListener : sig
+      type t = unit -> unit
 
-    val on''''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:(response:IncomingMessage.t -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on'''''
-      :  t
-      -> event:([ `socket ][@js.enum])
-      -> listener:(socket:Node_net.Net.Socket.t -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+    module UpgradeListener : sig
+      type t =
+        response:IncomingMessage.t
+        -> socket:Node_net.Net.Socket.t
+        -> head:Buffer.t
+        -> unit
 
-    val on'''''''
-      :  t
-      -> event:([ `upgrade ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''''''''
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on'''''''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+    module CloseListener : sig
+      type t = unit -> unit
 
-    val on''''''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on'''''''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on''''''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "on"]
+    module DrainListener : sig
+      type t = unit -> unit
 
-    val on'''''''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once : t -> event:([ `abort ][@js.enum]) -> listener:(unit -> unit) -> t
-      [@@js.call "once"]
+    module ErrorListener : sig
+      type t = err:Error.t -> unit
 
-    val once'
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once''
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once'''
-      :  t
-      -> event:([ `information ][@js.enum])
-      -> listener:(info:InformationEvent.t -> unit)
-      -> t
-      [@@js.call "once"]
+    module FinishListener : sig
+      type t = unit -> unit
 
-    val once''''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:(response:IncomingMessage.t -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once'''''
-      :  t
-      -> event:([ `socket ][@js.enum])
-      -> listener:(socket:Node_net.Net.Socket.t -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+    module PipeListener : sig
+      type t = src:Stream.Readable.t -> unit
 
-    val once'''''''
-      :  t
-      -> event:([ `upgrade ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once''''''''
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once'''''''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+    module UnpipeListener : sig
+      type t = src:Stream.Readable.t -> unit
 
-    val once''''''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once'''''''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once''''''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "once"]
+    type listener =
+      ([ `Abort of AbortListener.t
+       | `Connect of ConnectListener.t
+       | `Continue of ContinueListener.t
+       | `Information of InformationListener.t
+       | `Response of ResponseListener.t
+       | `Socket of SocketListener.t
+       | `Timeout of TimeoutListener.t
+       | `Upgrade of UpgradeListener.t
+       | `Close of CloseListener.t
+       | `Drain of DrainListener.t
+       | `Error of ErrorListener.t
+       | `Finish of FinishListener.t
+       | `Pipe of PipeListener.t
+       | `Unpipe of UnpipeListener.t
+       ]
+      [@js.union])
 
-    val once'''''''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "once"]
+    [@@@js.stop]
 
-    val once''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
+    val on : t -> listener -> unit
 
-    val prepend_listener
-      :  t
-      -> event:([ `abort ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val add_listener : t -> listener -> unit
+
+    val once : t -> listener -> unit
+
+    val prepend_listener : t -> listener -> unit
+
+    val prepend_once_listener : t -> listener -> unit
+
+    [@@@js.start]
+
+    [@@@js.implem
+    val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+    val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+    val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+    val prepend_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependListener"]
 
-    val prepend_listener'
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `information ][@js.enum])
-      -> listener:(info:InformationEvent.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:(response:IncomingMessage.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''
-      :  t
-      -> event:([ `socket ][@js.enum])
-      -> listener:(socket:Node_net.Net.Socket.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''
-      :  t
-      -> event:([ `upgrade ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:([ `abort ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
+    val prepend_once_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependOnceListener"]
 
-    val prepend_once_listener'
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let with_listener_fn fn t = function
+      | `Abort f ->
+        fn t "abort" @@ [%js.of: AbortListener.t] f
+      | `Connect f ->
+        fn t "connect" @@ [%js.of: ConnectListener.t] f
+      | `Continue f ->
+        fn t "continue" @@ [%js.of: ContinueListener.t] f
+      | `Information f ->
+        fn t "information" @@ [%js.of: InformationListener.t] f
+      | `Response f ->
+        fn t "response" @@ [%js.of: ResponseListener.t] f
+      | `Socket f ->
+        fn t "socket" @@ [%js.of: SocketListener.t] f
+      | `Timeout f ->
+        fn t "timeout" @@ [%js.of: TimeoutListener.t] f
+      | `Upgrade f ->
+        fn t "upgrade" @@ [%js.of: UpgradeListener.t] f
+      | `Close f ->
+        fn t "close" @@ [%js.of: CloseListener.t] f
+      | `Drain f ->
+        fn t "drain" @@ [%js.of: DrainListener.t] f
+      | `Error f ->
+        fn t "error" @@ [%js.of: ErrorListener.t] f
+      | `Finish f ->
+        fn t "finish" @@ [%js.of: FinishListener.t] f
+      | `Pipe f ->
+        fn t "pipe" @@ [%js.of: PipeListener.t] f
+      | `Unpipe f ->
+        fn t "unpipe" @@ [%js.of: UnpipeListener.t] f
 
-    val prepend_once_listener''
-      :  t
-      -> event:([ `continue ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let on = with_listener_fn on
 
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `information ][@js.enum])
-      -> listener:(info:InformationEvent.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let add_listener = with_listener_fn add_listener
 
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `response ][@js.enum])
-      -> listener:(response:IncomingMessage.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let once = with_listener_fn once
 
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `socket ][@js.enum])
-      -> listener:(socket:Node_net.Net.Socket.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let prepend_listener = with_listener_fn prepend_listener
 
-    val prepend_once_listener''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''
-      :  t
-      -> event:([ `upgrade ][@js.enum])
-      -> listener:
-           (response:IncomingMessage.t
-            -> socket:Node_net.Net.Socket.t
-            -> head:Buffer.t
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''''''
-      :  t
-      -> event:([ `finish ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''''''
-      :  t
-      -> event:([ `pipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''''''''
-      :  t
-      -> event:([ `unpipe ][@js.enum])
-      -> listener:(src:Stream.Readable.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''''''''
-      :  t
-      -> event:symbol or_string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val cast : t -> OutgoingMessage.t [@@js.cast]
+    let prepend_once_listener = with_listener_fn prepend_once_listener]
   end
   [@@js.scope "ClientRequest"]
 

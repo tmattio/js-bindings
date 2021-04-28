@@ -213,11 +213,9 @@ end
 
 module Assert : sig
   module AssertionError : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Error
+    end
 
     val get_actual : t -> any [@@js.get "actual"]
 
@@ -244,8 +242,6 @@ module Assert : sig
       [@@js.set "code"]
 
     val create : ?options:AnonymousInterface0.t -> unit -> t [@@js.create]
-
-    val cast : t -> Error.t [@@js.cast]
   end
   [@@js.scope "AssertionError"]
 

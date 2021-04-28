@@ -276,65 +276,58 @@ module Promise =
                  Ojs.array_set x151 0 (Promise.t_to_js Obj.magic x149);
                  Ojs.array_set x151 1 (Promise.t_to_js Obj.magic x150);
                  x151))|])
-    let (all1 : 'T Promise.t list -> 'T list Promise.t) =
-      fun (x156 : 'T Promise.t list) ->
-        Promise.t_of_js (fun (x159 : Ojs.t) -> Ojs.list_of_js Obj.magic x159)
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "all"
-             [|(Ojs.list_to_js
-                  (fun (x157 : 'T Promise.t) ->
-                     Promise.t_to_js Obj.magic x157) x156)|])
     let (race : 'T list -> any Promise.t) =
-      fun (x161 : 'T list) ->
+      fun (x156 : 'T list) ->
         Promise.t_of_js any_of_js
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "race"
-             [|(Ojs.list_to_js Obj.magic x161)|])
+             [|(Ojs.list_to_js Obj.magic x156)|])
     let (reject : 'E -> 'T Promise.t) =
-      fun (x164 : 'E) ->
+      fun (x159 : 'E) ->
         Promise.t_of_js Obj.magic
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "reject"
-             [|(Obj.magic x164)|])
+             [|(Obj.magic x159)|])
     let (resolve : 'T -> 'T Promise.t) =
-      fun (x166 : 'T) ->
+      fun (x161 : 'T) ->
         Promise.t_of_js Obj.magic
           (Ojs.call (Ojs.get_prop_ascii Ojs.global "Promise") "resolve"
-             [|(Obj.magic x166)|])
+             [|(Obj.magic x161)|])
   end
 module PromiseConstructor =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x169 : Ojs.t) -> x169
-    and t_to_js : t -> Ojs.t = fun (x168 : Ojs.t) -> x168
+    let rec t_of_js : Ojs.t -> t = fun (x164 : Ojs.t) -> x164
+    and t_to_js : t -> Ojs.t = fun (x163 : Ojs.t) -> x163
     let (get_prototype : t -> any Promise.t) =
-      fun (x170 : t) ->
+      fun (x165 : t) ->
         Promise.t_of_js any_of_js
-          (Ojs.get_prop_ascii (t_to_js x170) "prototype")
+          (Ojs.get_prop_ascii (t_to_js x165) "prototype")
     let (create :
       t ->
         (resolve:('T -> unit) -> reject:('E -> unit) -> unit) -> 'T Promise.t)
       =
-      fun (x177 : t) ->
-        fun (x172 : resolve:('T -> unit) -> reject:('E -> unit) -> unit) ->
+      fun (x172 : t) ->
+        fun (x167 : resolve:('T -> unit) -> reject:('E -> unit) -> unit) ->
           Promise.t_of_js Obj.magic
-            (Ojs.new_obj (t_to_js x177)
+            (Ojs.new_obj (t_to_js x172)
                [|(Ojs.fun_to_js 2
-                    (fun (x173 : Ojs.t) ->
-                       fun (x175 : Ojs.t) ->
-                         x172
-                           ~resolve:(fun (x174 : 'T) ->
+                    (fun (x168 : Ojs.t) ->
+                       fun (x170 : Ojs.t) ->
+                         x167
+                           ~resolve:(fun (x169 : 'T) ->
                                        ignore
-                                         (Ojs.apply x173 [|(Obj.magic x174)|]))
-                           ~reject:(fun (x176 : 'E) ->
+                                         (Ojs.apply x168 [|(Obj.magic x169)|]))
+                           ~reject:(fun (x171 : 'E) ->
                                       ignore
-                                        (Ojs.apply x175 [|(Obj.magic x176)|]))))|])
+                                        (Ojs.apply x170 [|(Obj.magic x171)|]))))|])
     let (all : t -> 'T1 Promise.t list -> 'T1 list Promise.t) =
-      fun (x182 : t) ->
-        fun (x179 : 'T1 Promise.t list) ->
+      fun (x177 : t) ->
+        fun (x174 : 'T1 Promise.t list) ->
           Promise.t_of_js
-            (fun (x183 : Ojs.t) -> Ojs.list_of_js Obj.magic x183)
-            (Ojs.call (t_to_js x182) "all"
+            (fun (x178 : Ojs.t) -> Ojs.list_of_js Obj.magic x178)
+            (Ojs.call (t_to_js x177) "all"
                [|(Ojs.list_to_js
-                    (fun (x180 : 'T1 Promise.t) ->
-                       Promise.t_to_js Obj.magic x180) x179)|])
+                    (fun (x175 : 'T1 Promise.t) ->
+                       Promise.t_to_js Obj.magic x175) x174)|])
     let (all10 :
       t ->
         ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t * 'T5
@@ -343,42 +336,42 @@ module PromiseConstructor =
           ('T1 * 'T2 * 'T3 * 'T4 * 'T5 * 'T6 * 'T7 * 'T8 * 'T9 * 'T10)
             Promise.t)
       =
-      fun (x207 : t) ->
+      fun (x202 : t) ->
         fun
-          (x185 :
+          (x180 :
             ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t *
               'T5 Promise.t * 'T6 Promise.t * 'T7 Promise.t * 'T8 Promise.t *
               'T9 Promise.t * 'T10 Promise.t))
           ->
           Promise.t_of_js
-            (fun (x208 : Ojs.t) ->
-               let x209 = x208 in
-               ((Obj.magic (Ojs.array_get x209 0)),
-                 (Obj.magic (Ojs.array_get x209 1)),
-                 (Obj.magic (Ojs.array_get x209 2)),
-                 (Obj.magic (Ojs.array_get x209 3)),
-                 (Obj.magic (Ojs.array_get x209 4)),
-                 (Obj.magic (Ojs.array_get x209 5)),
-                 (Obj.magic (Ojs.array_get x209 6)),
-                 (Obj.magic (Ojs.array_get x209 7)),
-                 (Obj.magic (Ojs.array_get x209 8)),
-                 (Obj.magic (Ojs.array_get x209 9))))
-            (Ojs.call (t_to_js x207) "all"
-               [|((let (x186, x187, x188, x189, x190, x191, x192, x193, x194,
-                        x195)
-                     = x185 in
-                   let x196 = Ojs.array_make 10 in
-                   Ojs.array_set x196 0 (Promise.t_to_js Obj.magic x186);
-                   Ojs.array_set x196 1 (Promise.t_to_js Obj.magic x187);
-                   Ojs.array_set x196 2 (Promise.t_to_js Obj.magic x188);
-                   Ojs.array_set x196 3 (Promise.t_to_js Obj.magic x189);
-                   Ojs.array_set x196 4 (Promise.t_to_js Obj.magic x190);
-                   Ojs.array_set x196 5 (Promise.t_to_js Obj.magic x191);
-                   Ojs.array_set x196 6 (Promise.t_to_js Obj.magic x192);
-                   Ojs.array_set x196 7 (Promise.t_to_js Obj.magic x193);
-                   Ojs.array_set x196 8 (Promise.t_to_js Obj.magic x194);
-                   Ojs.array_set x196 9 (Promise.t_to_js Obj.magic x195);
-                   x196))|])
+            (fun (x203 : Ojs.t) ->
+               let x204 = x203 in
+               ((Obj.magic (Ojs.array_get x204 0)),
+                 (Obj.magic (Ojs.array_get x204 1)),
+                 (Obj.magic (Ojs.array_get x204 2)),
+                 (Obj.magic (Ojs.array_get x204 3)),
+                 (Obj.magic (Ojs.array_get x204 4)),
+                 (Obj.magic (Ojs.array_get x204 5)),
+                 (Obj.magic (Ojs.array_get x204 6)),
+                 (Obj.magic (Ojs.array_get x204 7)),
+                 (Obj.magic (Ojs.array_get x204 8)),
+                 (Obj.magic (Ojs.array_get x204 9))))
+            (Ojs.call (t_to_js x202) "all"
+               [|((let (x181, x182, x183, x184, x185, x186, x187, x188, x189,
+                        x190)
+                     = x180 in
+                   let x191 = Ojs.array_make 10 in
+                   Ojs.array_set x191 0 (Promise.t_to_js Obj.magic x181);
+                   Ojs.array_set x191 1 (Promise.t_to_js Obj.magic x182);
+                   Ojs.array_set x191 2 (Promise.t_to_js Obj.magic x183);
+                   Ojs.array_set x191 3 (Promise.t_to_js Obj.magic x184);
+                   Ojs.array_set x191 4 (Promise.t_to_js Obj.magic x185);
+                   Ojs.array_set x191 5 (Promise.t_to_js Obj.magic x186);
+                   Ojs.array_set x191 6 (Promise.t_to_js Obj.magic x187);
+                   Ojs.array_set x191 7 (Promise.t_to_js Obj.magic x188);
+                   Ojs.array_set x191 8 (Promise.t_to_js Obj.magic x189);
+                   Ojs.array_set x191 9 (Promise.t_to_js Obj.magic x190);
+                   x191))|])
     let (all9 :
       t ->
         ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t * 'T5
@@ -386,256 +379,256 @@ module PromiseConstructor =
           Promise.t) ->
           ('T1 * 'T2 * 'T3 * 'T4 * 'T5 * 'T6 * 'T7 * 'T8 * 'T9) Promise.t)
       =
-      fun (x230 : t) ->
+      fun (x225 : t) ->
         fun
-          (x210 :
+          (x205 :
             ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t *
               'T5 Promise.t * 'T6 Promise.t * 'T7 Promise.t * 'T8 Promise.t *
               'T9 Promise.t))
           ->
           Promise.t_of_js
-            (fun (x231 : Ojs.t) ->
-               let x232 = x231 in
-               ((Obj.magic (Ojs.array_get x232 0)),
-                 (Obj.magic (Ojs.array_get x232 1)),
-                 (Obj.magic (Ojs.array_get x232 2)),
-                 (Obj.magic (Ojs.array_get x232 3)),
-                 (Obj.magic (Ojs.array_get x232 4)),
-                 (Obj.magic (Ojs.array_get x232 5)),
-                 (Obj.magic (Ojs.array_get x232 6)),
-                 (Obj.magic (Ojs.array_get x232 7)),
-                 (Obj.magic (Ojs.array_get x232 8))))
-            (Ojs.call (t_to_js x230) "all"
-               [|((let (x211, x212, x213, x214, x215, x216, x217, x218, x219)
-                     = x210 in
-                   let x220 = Ojs.array_make 9 in
-                   Ojs.array_set x220 0 (Promise.t_to_js Obj.magic x211);
-                   Ojs.array_set x220 1 (Promise.t_to_js Obj.magic x212);
-                   Ojs.array_set x220 2 (Promise.t_to_js Obj.magic x213);
-                   Ojs.array_set x220 3 (Promise.t_to_js Obj.magic x214);
-                   Ojs.array_set x220 4 (Promise.t_to_js Obj.magic x215);
-                   Ojs.array_set x220 5 (Promise.t_to_js Obj.magic x216);
-                   Ojs.array_set x220 6 (Promise.t_to_js Obj.magic x217);
-                   Ojs.array_set x220 7 (Promise.t_to_js Obj.magic x218);
-                   Ojs.array_set x220 8 (Promise.t_to_js Obj.magic x219);
-                   x220))|])
+            (fun (x226 : Ojs.t) ->
+               let x227 = x226 in
+               ((Obj.magic (Ojs.array_get x227 0)),
+                 (Obj.magic (Ojs.array_get x227 1)),
+                 (Obj.magic (Ojs.array_get x227 2)),
+                 (Obj.magic (Ojs.array_get x227 3)),
+                 (Obj.magic (Ojs.array_get x227 4)),
+                 (Obj.magic (Ojs.array_get x227 5)),
+                 (Obj.magic (Ojs.array_get x227 6)),
+                 (Obj.magic (Ojs.array_get x227 7)),
+                 (Obj.magic (Ojs.array_get x227 8))))
+            (Ojs.call (t_to_js x225) "all"
+               [|((let (x206, x207, x208, x209, x210, x211, x212, x213, x214)
+                     = x205 in
+                   let x215 = Ojs.array_make 9 in
+                   Ojs.array_set x215 0 (Promise.t_to_js Obj.magic x206);
+                   Ojs.array_set x215 1 (Promise.t_to_js Obj.magic x207);
+                   Ojs.array_set x215 2 (Promise.t_to_js Obj.magic x208);
+                   Ojs.array_set x215 3 (Promise.t_to_js Obj.magic x209);
+                   Ojs.array_set x215 4 (Promise.t_to_js Obj.magic x210);
+                   Ojs.array_set x215 5 (Promise.t_to_js Obj.magic x211);
+                   Ojs.array_set x215 6 (Promise.t_to_js Obj.magic x212);
+                   Ojs.array_set x215 7 (Promise.t_to_js Obj.magic x213);
+                   Ojs.array_set x215 8 (Promise.t_to_js Obj.magic x214);
+                   x215))|])
     let (all8 :
       t ->
         ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t * 'T5
           Promise.t * 'T6 Promise.t * 'T7 Promise.t * 'T8 Promise.t) ->
           ('T1 * 'T2 * 'T3 * 'T4 * 'T5 * 'T6 * 'T7 * 'T8) Promise.t)
       =
-      fun (x251 : t) ->
+      fun (x246 : t) ->
         fun
-          (x233 :
+          (x228 :
             ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t *
               'T5 Promise.t * 'T6 Promise.t * 'T7 Promise.t * 'T8 Promise.t))
           ->
           Promise.t_of_js
-            (fun (x252 : Ojs.t) ->
-               let x253 = x252 in
-               ((Obj.magic (Ojs.array_get x253 0)),
-                 (Obj.magic (Ojs.array_get x253 1)),
-                 (Obj.magic (Ojs.array_get x253 2)),
-                 (Obj.magic (Ojs.array_get x253 3)),
-                 (Obj.magic (Ojs.array_get x253 4)),
-                 (Obj.magic (Ojs.array_get x253 5)),
-                 (Obj.magic (Ojs.array_get x253 6)),
-                 (Obj.magic (Ojs.array_get x253 7))))
-            (Ojs.call (t_to_js x251) "all"
-               [|((let (x234, x235, x236, x237, x238, x239, x240, x241) =
-                     x233 in
-                   let x242 = Ojs.array_make 8 in
-                   Ojs.array_set x242 0 (Promise.t_to_js Obj.magic x234);
-                   Ojs.array_set x242 1 (Promise.t_to_js Obj.magic x235);
-                   Ojs.array_set x242 2 (Promise.t_to_js Obj.magic x236);
-                   Ojs.array_set x242 3 (Promise.t_to_js Obj.magic x237);
-                   Ojs.array_set x242 4 (Promise.t_to_js Obj.magic x238);
-                   Ojs.array_set x242 5 (Promise.t_to_js Obj.magic x239);
-                   Ojs.array_set x242 6 (Promise.t_to_js Obj.magic x240);
-                   Ojs.array_set x242 7 (Promise.t_to_js Obj.magic x241);
-                   x242))|])
+            (fun (x247 : Ojs.t) ->
+               let x248 = x247 in
+               ((Obj.magic (Ojs.array_get x248 0)),
+                 (Obj.magic (Ojs.array_get x248 1)),
+                 (Obj.magic (Ojs.array_get x248 2)),
+                 (Obj.magic (Ojs.array_get x248 3)),
+                 (Obj.magic (Ojs.array_get x248 4)),
+                 (Obj.magic (Ojs.array_get x248 5)),
+                 (Obj.magic (Ojs.array_get x248 6)),
+                 (Obj.magic (Ojs.array_get x248 7))))
+            (Ojs.call (t_to_js x246) "all"
+               [|((let (x229, x230, x231, x232, x233, x234, x235, x236) =
+                     x228 in
+                   let x237 = Ojs.array_make 8 in
+                   Ojs.array_set x237 0 (Promise.t_to_js Obj.magic x229);
+                   Ojs.array_set x237 1 (Promise.t_to_js Obj.magic x230);
+                   Ojs.array_set x237 2 (Promise.t_to_js Obj.magic x231);
+                   Ojs.array_set x237 3 (Promise.t_to_js Obj.magic x232);
+                   Ojs.array_set x237 4 (Promise.t_to_js Obj.magic x233);
+                   Ojs.array_set x237 5 (Promise.t_to_js Obj.magic x234);
+                   Ojs.array_set x237 6 (Promise.t_to_js Obj.magic x235);
+                   Ojs.array_set x237 7 (Promise.t_to_js Obj.magic x236);
+                   x237))|])
     let (all7 :
       t ->
         ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t * 'T5
           Promise.t * 'T6 Promise.t * 'T7 Promise.t) ->
           ('T1 * 'T2 * 'T3 * 'T4 * 'T5 * 'T6 * 'T7) Promise.t)
       =
-      fun (x270 : t) ->
+      fun (x265 : t) ->
         fun
-          (x254 :
+          (x249 :
             ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t *
               'T5 Promise.t * 'T6 Promise.t * 'T7 Promise.t))
           ->
           Promise.t_of_js
-            (fun (x271 : Ojs.t) ->
-               let x272 = x271 in
-               ((Obj.magic (Ojs.array_get x272 0)),
-                 (Obj.magic (Ojs.array_get x272 1)),
-                 (Obj.magic (Ojs.array_get x272 2)),
-                 (Obj.magic (Ojs.array_get x272 3)),
-                 (Obj.magic (Ojs.array_get x272 4)),
-                 (Obj.magic (Ojs.array_get x272 5)),
-                 (Obj.magic (Ojs.array_get x272 6))))
-            (Ojs.call (t_to_js x270) "all"
-               [|((let (x255, x256, x257, x258, x259, x260, x261) = x254 in
-                   let x262 = Ojs.array_make 7 in
-                   Ojs.array_set x262 0 (Promise.t_to_js Obj.magic x255);
-                   Ojs.array_set x262 1 (Promise.t_to_js Obj.magic x256);
-                   Ojs.array_set x262 2 (Promise.t_to_js Obj.magic x257);
-                   Ojs.array_set x262 3 (Promise.t_to_js Obj.magic x258);
-                   Ojs.array_set x262 4 (Promise.t_to_js Obj.magic x259);
-                   Ojs.array_set x262 5 (Promise.t_to_js Obj.magic x260);
-                   Ojs.array_set x262 6 (Promise.t_to_js Obj.magic x261);
-                   x262))|])
+            (fun (x266 : Ojs.t) ->
+               let x267 = x266 in
+               ((Obj.magic (Ojs.array_get x267 0)),
+                 (Obj.magic (Ojs.array_get x267 1)),
+                 (Obj.magic (Ojs.array_get x267 2)),
+                 (Obj.magic (Ojs.array_get x267 3)),
+                 (Obj.magic (Ojs.array_get x267 4)),
+                 (Obj.magic (Ojs.array_get x267 5)),
+                 (Obj.magic (Ojs.array_get x267 6))))
+            (Ojs.call (t_to_js x265) "all"
+               [|((let (x250, x251, x252, x253, x254, x255, x256) = x249 in
+                   let x257 = Ojs.array_make 7 in
+                   Ojs.array_set x257 0 (Promise.t_to_js Obj.magic x250);
+                   Ojs.array_set x257 1 (Promise.t_to_js Obj.magic x251);
+                   Ojs.array_set x257 2 (Promise.t_to_js Obj.magic x252);
+                   Ojs.array_set x257 3 (Promise.t_to_js Obj.magic x253);
+                   Ojs.array_set x257 4 (Promise.t_to_js Obj.magic x254);
+                   Ojs.array_set x257 5 (Promise.t_to_js Obj.magic x255);
+                   Ojs.array_set x257 6 (Promise.t_to_js Obj.magic x256);
+                   x257))|])
     let (all6 :
       t ->
         ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t * 'T5
           Promise.t * 'T6 Promise.t) ->
           ('T1 * 'T2 * 'T3 * 'T4 * 'T5 * 'T6) Promise.t)
       =
-      fun (x287 : t) ->
+      fun (x282 : t) ->
         fun
-          (x273 :
+          (x268 :
             ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t *
               'T5 Promise.t * 'T6 Promise.t))
           ->
           Promise.t_of_js
-            (fun (x288 : Ojs.t) ->
-               let x289 = x288 in
-               ((Obj.magic (Ojs.array_get x289 0)),
-                 (Obj.magic (Ojs.array_get x289 1)),
-                 (Obj.magic (Ojs.array_get x289 2)),
-                 (Obj.magic (Ojs.array_get x289 3)),
-                 (Obj.magic (Ojs.array_get x289 4)),
-                 (Obj.magic (Ojs.array_get x289 5))))
-            (Ojs.call (t_to_js x287) "all"
-               [|((let (x274, x275, x276, x277, x278, x279) = x273 in
-                   let x280 = Ojs.array_make 6 in
-                   Ojs.array_set x280 0 (Promise.t_to_js Obj.magic x274);
-                   Ojs.array_set x280 1 (Promise.t_to_js Obj.magic x275);
-                   Ojs.array_set x280 2 (Promise.t_to_js Obj.magic x276);
-                   Ojs.array_set x280 3 (Promise.t_to_js Obj.magic x277);
-                   Ojs.array_set x280 4 (Promise.t_to_js Obj.magic x278);
-                   Ojs.array_set x280 5 (Promise.t_to_js Obj.magic x279);
-                   x280))|])
+            (fun (x283 : Ojs.t) ->
+               let x284 = x283 in
+               ((Obj.magic (Ojs.array_get x284 0)),
+                 (Obj.magic (Ojs.array_get x284 1)),
+                 (Obj.magic (Ojs.array_get x284 2)),
+                 (Obj.magic (Ojs.array_get x284 3)),
+                 (Obj.magic (Ojs.array_get x284 4)),
+                 (Obj.magic (Ojs.array_get x284 5))))
+            (Ojs.call (t_to_js x282) "all"
+               [|((let (x269, x270, x271, x272, x273, x274) = x268 in
+                   let x275 = Ojs.array_make 6 in
+                   Ojs.array_set x275 0 (Promise.t_to_js Obj.magic x269);
+                   Ojs.array_set x275 1 (Promise.t_to_js Obj.magic x270);
+                   Ojs.array_set x275 2 (Promise.t_to_js Obj.magic x271);
+                   Ojs.array_set x275 3 (Promise.t_to_js Obj.magic x272);
+                   Ojs.array_set x275 4 (Promise.t_to_js Obj.magic x273);
+                   Ojs.array_set x275 5 (Promise.t_to_js Obj.magic x274);
+                   x275))|])
     let (all5 :
       t ->
         ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t * 'T5
           Promise.t) -> ('T1 * 'T2 * 'T3 * 'T4 * 'T5) Promise.t)
       =
-      fun (x302 : t) ->
+      fun (x297 : t) ->
         fun
-          (x290 :
+          (x285 :
             ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t *
               'T5 Promise.t))
           ->
           Promise.t_of_js
-            (fun (x303 : Ojs.t) ->
-               let x304 = x303 in
-               ((Obj.magic (Ojs.array_get x304 0)),
-                 (Obj.magic (Ojs.array_get x304 1)),
-                 (Obj.magic (Ojs.array_get x304 2)),
-                 (Obj.magic (Ojs.array_get x304 3)),
-                 (Obj.magic (Ojs.array_get x304 4))))
-            (Ojs.call (t_to_js x302) "all"
-               [|((let (x291, x292, x293, x294, x295) = x290 in
-                   let x296 = Ojs.array_make 5 in
-                   Ojs.array_set x296 0 (Promise.t_to_js Obj.magic x291);
-                   Ojs.array_set x296 1 (Promise.t_to_js Obj.magic x292);
-                   Ojs.array_set x296 2 (Promise.t_to_js Obj.magic x293);
-                   Ojs.array_set x296 3 (Promise.t_to_js Obj.magic x294);
-                   Ojs.array_set x296 4 (Promise.t_to_js Obj.magic x295);
-                   x296))|])
+            (fun (x298 : Ojs.t) ->
+               let x299 = x298 in
+               ((Obj.magic (Ojs.array_get x299 0)),
+                 (Obj.magic (Ojs.array_get x299 1)),
+                 (Obj.magic (Ojs.array_get x299 2)),
+                 (Obj.magic (Ojs.array_get x299 3)),
+                 (Obj.magic (Ojs.array_get x299 4))))
+            (Ojs.call (t_to_js x297) "all"
+               [|((let (x286, x287, x288, x289, x290) = x285 in
+                   let x291 = Ojs.array_make 5 in
+                   Ojs.array_set x291 0 (Promise.t_to_js Obj.magic x286);
+                   Ojs.array_set x291 1 (Promise.t_to_js Obj.magic x287);
+                   Ojs.array_set x291 2 (Promise.t_to_js Obj.magic x288);
+                   Ojs.array_set x291 3 (Promise.t_to_js Obj.magic x289);
+                   Ojs.array_set x291 4 (Promise.t_to_js Obj.magic x290);
+                   x291))|])
     let (all4 :
       t ->
         ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t) ->
           ('T1 * 'T2 * 'T3 * 'T4) Promise.t)
       =
-      fun (x315 : t) ->
+      fun (x310 : t) ->
         fun
-          (x305 :
+          (x300 :
             ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t * 'T4 Promise.t))
           ->
           Promise.t_of_js
-            (fun (x316 : Ojs.t) ->
-               let x317 = x316 in
-               ((Obj.magic (Ojs.array_get x317 0)),
-                 (Obj.magic (Ojs.array_get x317 1)),
-                 (Obj.magic (Ojs.array_get x317 2)),
-                 (Obj.magic (Ojs.array_get x317 3))))
-            (Ojs.call (t_to_js x315) "all"
-               [|((let (x306, x307, x308, x309) = x305 in
-                   let x310 = Ojs.array_make 4 in
-                   Ojs.array_set x310 0 (Promise.t_to_js Obj.magic x306);
-                   Ojs.array_set x310 1 (Promise.t_to_js Obj.magic x307);
-                   Ojs.array_set x310 2 (Promise.t_to_js Obj.magic x308);
-                   Ojs.array_set x310 3 (Promise.t_to_js Obj.magic x309);
-                   x310))|])
+            (fun (x311 : Ojs.t) ->
+               let x312 = x311 in
+               ((Obj.magic (Ojs.array_get x312 0)),
+                 (Obj.magic (Ojs.array_get x312 1)),
+                 (Obj.magic (Ojs.array_get x312 2)),
+                 (Obj.magic (Ojs.array_get x312 3))))
+            (Ojs.call (t_to_js x310) "all"
+               [|((let (x301, x302, x303, x304) = x300 in
+                   let x305 = Ojs.array_make 4 in
+                   Ojs.array_set x305 0 (Promise.t_to_js Obj.magic x301);
+                   Ojs.array_set x305 1 (Promise.t_to_js Obj.magic x302);
+                   Ojs.array_set x305 2 (Promise.t_to_js Obj.magic x303);
+                   Ojs.array_set x305 3 (Promise.t_to_js Obj.magic x304);
+                   x305))|])
     let (all3 :
       t ->
         ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t) ->
           ('T1 * 'T2 * 'T3) Promise.t)
       =
-      fun (x326 : t) ->
-        fun (x318 : ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t)) ->
+      fun (x321 : t) ->
+        fun (x313 : ('T1 Promise.t * 'T2 Promise.t * 'T3 Promise.t)) ->
           Promise.t_of_js
-            (fun (x327 : Ojs.t) ->
-               let x328 = x327 in
-               ((Obj.magic (Ojs.array_get x328 0)),
-                 (Obj.magic (Ojs.array_get x328 1)),
-                 (Obj.magic (Ojs.array_get x328 2))))
-            (Ojs.call (t_to_js x326) "all"
-               [|((let (x319, x320, x321) = x318 in
-                   let x322 = Ojs.array_make 3 in
-                   Ojs.array_set x322 0 (Promise.t_to_js Obj.magic x319);
-                   Ojs.array_set x322 1 (Promise.t_to_js Obj.magic x320);
-                   Ojs.array_set x322 2 (Promise.t_to_js Obj.magic x321);
-                   x322))|])
+            (fun (x322 : Ojs.t) ->
+               let x323 = x322 in
+               ((Obj.magic (Ojs.array_get x323 0)),
+                 (Obj.magic (Ojs.array_get x323 1)),
+                 (Obj.magic (Ojs.array_get x323 2))))
+            (Ojs.call (t_to_js x321) "all"
+               [|((let (x314, x315, x316) = x313 in
+                   let x317 = Ojs.array_make 3 in
+                   Ojs.array_set x317 0 (Promise.t_to_js Obj.magic x314);
+                   Ojs.array_set x317 1 (Promise.t_to_js Obj.magic x315);
+                   Ojs.array_set x317 2 (Promise.t_to_js Obj.magic x316);
+                   x317))|])
     let (all2 :
       t -> ('T1 Promise.t * 'T2 Promise.t) -> ('T1 * 'T2) Promise.t) =
-      fun (x335 : t) ->
-        fun (x329 : ('T1 Promise.t * 'T2 Promise.t)) ->
+      fun (x330 : t) ->
+        fun (x324 : ('T1 Promise.t * 'T2 Promise.t)) ->
           Promise.t_of_js
-            (fun (x336 : Ojs.t) ->
-               let x337 = x336 in
-               ((Obj.magic (Ojs.array_get x337 0)),
-                 (Obj.magic (Ojs.array_get x337 1))))
-            (Ojs.call (t_to_js x335) "all"
-               [|((let (x330, x331) = x329 in
-                   let x332 = Ojs.array_make 2 in
-                   Ojs.array_set x332 0 (Promise.t_to_js Obj.magic x330);
-                   Ojs.array_set x332 1 (Promise.t_to_js Obj.magic x331);
-                   x332))|])
+            (fun (x331 : Ojs.t) ->
+               let x332 = x331 in
+               ((Obj.magic (Ojs.array_get x332 0)),
+                 (Obj.magic (Ojs.array_get x332 1))))
+            (Ojs.call (t_to_js x330) "all"
+               [|((let (x325, x326) = x324 in
+                   let x327 = Ojs.array_make 2 in
+                   Ojs.array_set x327 0 (Promise.t_to_js Obj.magic x325);
+                   Ojs.array_set x327 1 (Promise.t_to_js Obj.magic x326);
+                   x327))|])
     let (all1 : t -> 'T Promise.t list -> 'T list Promise.t) =
-      fun (x341 : t) ->
-        fun (x338 : 'T Promise.t list) ->
+      fun (x336 : t) ->
+        fun (x333 : 'T Promise.t list) ->
           Promise.t_of_js
-            (fun (x342 : Ojs.t) -> Ojs.list_of_js Obj.magic x342)
-            (Ojs.call (t_to_js x341) "all"
+            (fun (x337 : Ojs.t) -> Ojs.list_of_js Obj.magic x337)
+            (Ojs.call (t_to_js x336) "all"
                [|(Ojs.list_to_js
-                    (fun (x339 : 'T Promise.t) ->
-                       Promise.t_to_js Obj.magic x339) x338)|])
+                    (fun (x334 : 'T Promise.t) ->
+                       Promise.t_to_js Obj.magic x334) x333)|])
     let (race : t -> 'T list -> any Promise.t) =
-      fun (x346 : t) ->
-        fun (x344 : 'T list) ->
+      fun (x341 : t) ->
+        fun (x339 : 'T list) ->
           Promise.t_of_js any_of_js
-            (Ojs.call (t_to_js x346) "race"
-               [|(Ojs.list_to_js Obj.magic x344)|])
+            (Ojs.call (t_to_js x341) "race"
+               [|(Ojs.list_to_js Obj.magic x339)|])
     let (reject : t -> 'E -> 'T Promise.t) =
-      fun (x349 : t) ->
-        fun (x348 : 'E) ->
+      fun (x344 : t) ->
+        fun (x343 : 'E) ->
           Promise.t_of_js Obj.magic
-            (Ojs.call (t_to_js x349) "reject" [|(Obj.magic x348)|])
+            (Ojs.call (t_to_js x344) "reject" [|(Obj.magic x343)|])
     let (resolve : t -> unit Promise.t) =
-      fun (x351 : t) ->
+      fun (x346 : t) ->
         Promise.t_of_js Ojs.unit_of_js
-          (Ojs.call (t_to_js x351) "resolve" [||])
+          (Ojs.call (t_to_js x346) "resolve" [||])
     let (resolve' : t -> 'T -> 'T Promise.t) =
-      fun (x354 : t) ->
-        fun (x353 : 'T) ->
+      fun (x349 : t) ->
+        fun (x348 : 'T) ->
           Promise.t_of_js Obj.magic
-            (Ojs.call (t_to_js x354) "resolve" [|(Obj.magic x353)|])
+            (Ojs.call (t_to_js x349) "resolve" [|(Obj.magic x348)|])
   end
 let (promise : PromiseConstructor.t) =
   PromiseConstructor.t_of_js (Ojs.get_prop_ascii Ojs.global "Promise")

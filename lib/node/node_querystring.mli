@@ -43,7 +43,6 @@ module Querystring : sig
 
     val cast : t -> string list or_string Dict.t [@@js.cast]
   end
-  [@@js.scope "ParsedUrlQuery"]
 
   module ParsedUrlQueryInput : sig
     type t

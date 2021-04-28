@@ -9,35 +9,35 @@ module Path =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x2 : Ojs.t) -> x2
         and t_to_js : t -> Ojs.t = fun (x1 : Ojs.t) -> x1
-        let (get_root : t -> string) =
+        let (root : t -> string) =
           fun (x3 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x3) "root")
         let (set_root : t -> string -> unit) =
           fun (x4 : t) ->
             fun (x5 : string) ->
               Ojs.set_prop_ascii (t_to_js x4) "root" (Ojs.string_to_js x5)
-        let (get_dir : t -> string) =
+        let (dir : t -> string) =
           fun (x6 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x6) "dir")
         let (set_dir : t -> string -> unit) =
           fun (x7 : t) ->
             fun (x8 : string) ->
               Ojs.set_prop_ascii (t_to_js x7) "dir" (Ojs.string_to_js x8)
-        let (get_base : t -> string) =
+        let (base : t -> string) =
           fun (x9 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x9) "base")
         let (set_base : t -> string -> unit) =
           fun (x10 : t) ->
             fun (x11 : string) ->
               Ojs.set_prop_ascii (t_to_js x10) "base" (Ojs.string_to_js x11)
-        let (get_ext : t -> string) =
+        let (ext : t -> string) =
           fun (x12 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x12) "ext")
         let (set_ext : t -> string -> unit) =
           fun (x13 : t) ->
             fun (x14 : string) ->
               Ojs.set_prop_ascii (t_to_js x13) "ext" (Ojs.string_to_js x14)
-        let (get_name : t -> string) =
+        let (name : t -> string) =
           fun (x15 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x15) "name")
         let (set_name : t -> string -> unit) =
@@ -50,35 +50,35 @@ module Path =
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x19 : Ojs.t) -> x19
         and t_to_js : t -> Ojs.t = fun (x18 : Ojs.t) -> x18
-        let (get_root : t -> string) =
+        let (root : t -> string) =
           fun (x20 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x20) "root")
         let (set_root : t -> string -> unit) =
           fun (x21 : t) ->
             fun (x22 : string) ->
               Ojs.set_prop_ascii (t_to_js x21) "root" (Ojs.string_to_js x22)
-        let (get_dir : t -> string) =
+        let (dir : t -> string) =
           fun (x23 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x23) "dir")
         let (set_dir : t -> string -> unit) =
           fun (x24 : t) ->
             fun (x25 : string) ->
               Ojs.set_prop_ascii (t_to_js x24) "dir" (Ojs.string_to_js x25)
-        let (get_base : t -> string) =
+        let (base : t -> string) =
           fun (x26 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x26) "base")
         let (set_base : t -> string -> unit) =
           fun (x27 : t) ->
             fun (x28 : string) ->
               Ojs.set_prop_ascii (t_to_js x27) "base" (Ojs.string_to_js x28)
-        let (get_ext : t -> string) =
+        let (ext : t -> string) =
           fun (x29 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x29) "ext")
         let (set_ext : t -> string -> unit) =
           fun (x30 : t) ->
             fun (x31 : string) ->
               Ojs.set_prop_ascii (t_to_js x30) "ext" (Ojs.string_to_js x31)
-        let (get_name : t -> string) =
+        let (name : t -> string) =
           fun (x32 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x32) "name")
         let (set_name : t -> string -> unit) =
@@ -174,10 +174,10 @@ module Path =
             fun (x62 : string) ->
               Ojs.string_of_js
                 (Ojs.call (t_to_js x63) "extname" [|(Ojs.string_to_js x62)|])
-        let (get_sep : t -> string) =
+        let (sep : t -> string) =
           fun (x64 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x64) "sep")
-        let (get_delimiter : t -> string) =
+        let (delimiter : t -> string) =
           fun (x65 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x65) "delimiter")
         let (parse : t -> string -> ParsedPath.t) =
@@ -197,9 +197,9 @@ module Path =
               Ojs.string_of_js
                 (Ojs.call (t_to_js x71) "toNamespacedPath"
                    [|(Ojs.string_to_js x70)|])
-        let (get_posix : t -> t) =
+        let (posix : t -> t) =
           fun (x72 : t) -> t_of_js (Ojs.get_prop_ascii (t_to_js x72) "posix")
-        let (get_win32 : t -> t) =
+        let (win32 : t -> t) =
           fun (x73 : t) -> t_of_js (Ojs.get_prop_ascii (t_to_js x73) "win32")
       end
     let (normalize : string -> string) =
@@ -272,9 +272,9 @@ module Path =
       fun (x92 : string) ->
         Ojs.string_of_js
           (Ojs.call Import.path "extname" [|(Ojs.string_to_js x92)|])
-    let (get_sep : string) =
+    let (sep : string) =
       Ojs.string_of_js (Ojs.get_prop_ascii Import.path "sep")
-    let (get_delimiter : string) =
+    let (delimiter : string) =
       Ojs.string_of_js (Ojs.get_prop_ascii Import.path "delimiter")
     let (parse : string -> ParsedPath.t) =
       fun (x93 : string) ->

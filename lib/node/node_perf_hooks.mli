@@ -61,11 +61,9 @@ module Perf_hooks : sig
   [@@js.scope "PerformanceEntry"]
 
   module PerformanceNodeTiming : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include PerformanceEntry
+    end
 
     val get_bootstrap_complete : t -> int [@@js.get "bootstrapComplete"]
 
@@ -78,8 +76,6 @@ module Perf_hooks : sig
     val get_loop_start : t -> int [@@js.get "loopStart"]
 
     val get_v8Start : t -> int [@@js.get "v8Start"]
-
-    val cast : t -> PerformanceEntry.t [@@js.cast]
   end
   [@@js.scope "PerformanceNodeTiming"]
 
@@ -176,11 +172,9 @@ module Perf_hooks : sig
   (* [@@js.scope "PerformanceObserverCallback"] *)
 
   module PerformanceObserver : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Node_async_hooks.Async_hooks.AsyncResource
+    end
 
     val create : callback:PerformanceObserverCallback.t -> t [@@js.create]
 
@@ -188,8 +182,6 @@ module Perf_hooks : sig
 
     val observe : t -> options:AnonymousInterface0.t -> unit
       [@@js.call "observe"]
-
-    val cast : t -> Node_async_hooks.Async_hooks.AsyncResource.t [@@js.cast]
   end
   [@@js.scope "PerformanceObserver"]
 

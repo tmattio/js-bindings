@@ -256,11 +256,17 @@ module Encodings =
       encodings:Named.t list -> string or_undefined) =
       fun ~encodings:(x84 : Named.t list) ->
         or_undefined_of_js Ojs.string_of_js
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "Encodings")
+          (Ojs.call
+             (Ojs.get_prop_ascii
+                (Ojs.get_prop_ascii Ojs.global
+                   "__LIB__VSCODE_JSONRPC__IMPORTS") "Encodings")
              "getEncodingHeaderValue" [|(Ojs.list_to_js Named.t_to_js x84)|])
     let (parse_encoding_header_value : value:string -> string list) =
       fun ~value:(x87 : string) ->
         Ojs.list_of_js Ojs.string_of_js
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "Encodings")
+          (Ojs.call
+             (Ojs.get_prop_ascii
+                (Ojs.get_prop_ascii Ojs.global
+                   "__LIB__VSCODE_JSONRPC__IMPORTS") "Encodings")
              "parseEncodingHeaderValue" [|(Ojs.string_to_js x87)|])
   end

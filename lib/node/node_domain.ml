@@ -72,48 +72,42 @@ module Domain =
             fun ~cb:(x21 : 'T) ->
               Obj.magic
                 (Ojs.call (t_to_js x22) "intercept" [|(Obj.magic x21)|])
-        let (cast : t -> Node_events.Events.EventEmitter.t) =
-          fun (x23 : t) ->
-            Node_events.Events.EventEmitter.t_of_js (t_to_js x23)
       end
     include struct include Global end
     module Domain =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x25 : Ojs.t) -> x25
-        and t_to_js : t -> Ojs.t = fun (x24 : Ojs.t) -> x24
+        let rec t_of_js : Ojs.t -> t = fun (x24 : Ojs.t) -> x24
+        and t_to_js : t -> Ojs.t = fun (x23 : Ojs.t) -> x23
         let (get_members :
           t -> (Node_events.Events.EventEmitter.t, Timer.t) union2 list) =
-          fun (x26 : t) ->
+          fun (x25 : t) ->
             Ojs.list_of_js
-              (fun (x27 : Ojs.t) ->
+              (fun (x26 : Ojs.t) ->
                  union2_of_js Node_events.Events.EventEmitter.t_of_js
-                   Timer.t_of_js x27)
-              (Ojs.get_prop_ascii (t_to_js x26) "members")
+                   Timer.t_of_js x26)
+              (Ojs.get_prop_ascii (t_to_js x25) "members")
         let (set_members :
           t ->
             (Node_events.Events.EventEmitter.t, Timer.t) union2 list -> unit)
           =
-          fun (x30 : t) ->
+          fun (x29 : t) ->
             fun
-              (x31 :
+              (x30 :
                 (Node_events.Events.EventEmitter.t, Timer.t) union2 list)
               ->
-              Ojs.set_prop_ascii (t_to_js x30) "members"
+              Ojs.set_prop_ascii (t_to_js x29) "members"
                 (Ojs.list_to_js
                    (fun
-                      (x32 :
+                      (x31 :
                         (Node_events.Events.EventEmitter.t, Timer.t) union2)
                       ->
                       union2_to_js Node_events.Events.EventEmitter.t_to_js
-                        Timer.t_to_js x32) x31)
+                        Timer.t_to_js x31) x30)
         let (enter : t -> unit) =
-          fun (x35 : t) -> ignore (Ojs.call (t_to_js x35) "enter" [||])
+          fun (x34 : t) -> ignore (Ojs.call (t_to_js x34) "enter" [||])
         let (exit : t -> unit) =
-          fun (x36 : t) -> ignore (Ojs.call (t_to_js x36) "exit" [||])
-        let (cast : t -> Node_events.Events.EventEmitter.t) =
-          fun (x37 : t) ->
-            Node_events.Events.EventEmitter.t_of_js (t_to_js x37)
+          fun (x35 : t) -> ignore (Ojs.call (t_to_js x35) "exit" [||])
       end
     let (create_ : unit -> Domain.t) =
       fun () -> Domain.t_of_js (Ojs.call Import.domain "create" [||])

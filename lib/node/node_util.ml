@@ -45,22 +45,16 @@ module AnonymousInterface2 =
 module Util =
   struct
     module InspectOptions =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x17 : Ojs.t) -> x17
-        and t_to_js : t -> Ojs.t = fun (x16 : Ojs.t) -> x16
-        let (cast : t -> InspectOptions.t) =
-          fun (x18 : t) -> InspectOptions.t_of_js (t_to_js x18)
-      end
+      struct include struct include InspectOptions end end
     module Style =
       struct
         type t =
           [ `bigint  | `boolean  | `date  | `module_  | `null  | `number 
           | `regexp  | `special  | `string  | `symbol  | `undefined ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x20 : Ojs.t) ->
-            let x21 = x20 in
-            match Ojs.string_of_js x21 with
+          fun (x17 : Ojs.t) ->
+            let x18 = x17 in
+            match Ojs.string_of_js x18 with
             | "bigint" -> `bigint
             | "boolean" -> `boolean
             | "date" -> `date
@@ -75,12 +69,12 @@ module Util =
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x19 :
+            (x16 :
               [ `bigint  | `boolean  | `date  | `module_  | `null  | 
                 `number 
               | `regexp  | `special  | `string  | `symbol  | `undefined ])
             ->
-            match x19 with
+            match x16 with
             | `bigint -> Ojs.string_to_js "bigint"
             | `boolean -> Ojs.string_to_js "boolean"
             | `date -> Ojs.string_to_js "date"
@@ -95,134 +89,136 @@ module Util =
       end
     module InspectOptionsStylized =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
-        and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
+        include struct include InspectOptions end
         let (stylize : t -> text:string -> style_type:Style.t -> string) =
-          fun (x26 : t) ->
-            fun ~text:(x24 : string) ->
-              fun ~style_type:(x25 : Style.t) ->
+          fun (x21 : t) ->
+            fun ~text:(x19 : string) ->
+              fun ~style_type:(x20 : Style.t) ->
                 Ojs.string_of_js
-                  (Ojs.call (t_to_js x26) "stylize"
-                     [|(Ojs.string_to_js x24);(Style.t_to_js x25)|])
-        let (cast : t -> InspectOptions.t) =
-          fun (x27 : t) -> InspectOptions.t_of_js (t_to_js x27)
+                  (Ojs.call (t_to_js x21) "stylize"
+                     [|(Ojs.string_to_js x19);(Style.t_to_js x20)|])
       end
     module CustomInspectFunction =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x29 : Ojs.t) -> x29
-        and t_to_js : t -> Ojs.t = fun (x28 : Ojs.t) -> x28
+        let rec t_of_js : Ojs.t -> t = fun (x23 : Ojs.t) -> x23
+        and t_to_js : t -> Ojs.t = fun (x22 : Ojs.t) -> x22
         let (apply :
           t -> depth:int -> options:InspectOptionsStylized.t -> string) =
-          fun (x32 : t) ->
-            fun ~depth:(x30 : int) ->
-              fun ~options:(x31 : InspectOptionsStylized.t) ->
+          fun (x26 : t) ->
+            fun ~depth:(x24 : int) ->
+              fun ~options:(x25 : InspectOptionsStylized.t) ->
                 Ojs.string_of_js
-                  (Ojs.apply (t_to_js x32)
-                     [|(Ojs.int_to_js x30);(InspectOptionsStylized.t_to_js
-                                              x31)|])
+                  (Ojs.apply (t_to_js x26)
+                     [|(Ojs.int_to_js x24);(InspectOptionsStylized.t_to_js
+                                              x25)|])
       end
-    let (format : ?format:any -> param:any list -> string) =
-      fun ?format:(x33 : any option) ->
-        fun ~param:(x34 : any list) ->
-          Ojs.string_of_js
-            (let x38 = Import.util in
-             Ojs.call (Ojs.get_prop_ascii x38 "format") "apply"
-               [|x38;((let x35 =
-                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
-                           [||] in
-                       (match x33 with
-                        | Some x37 ->
-                            ignore (Ojs.call x35 "push" [|(any_to_js x37)|])
-                        | None -> ());
-                       List.iter
-                         (fun (x36 : any) ->
-                            ignore (Ojs.call x35 "push" [|(any_to_js x36)|]))
-                         x34;
-                       x35))|])
-    let (format_with_options :
-      inspect_options:InspectOptions.t ->
-        ?format:any -> param:any list -> string)
-      =
-      fun ~inspect_options:(x39 : InspectOptions.t) ->
-        fun ?format:(x40 : any option) ->
-          fun ~param:(x41 : any list) ->
+    let (format : ?format:any -> param:any list -> unit -> string) =
+      fun ?format:(x27 : any option) ->
+        fun ~param:(x28 : any list) ->
+          fun () ->
             Ojs.string_of_js
-              (let x45 = Import.util in
-               Ojs.call (Ojs.get_prop_ascii x45 "formatWithOptions") "apply"
-                 [|x45;((let x42 =
+              (let x32 = Import.util in
+               Ojs.call (Ojs.get_prop_ascii x32 "format") "apply"
+                 [|x32;((let x29 =
                            Ojs.new_obj
                              (Ojs.get_prop_ascii Ojs.global "Array") 
                              [||] in
-                         ignore
-                           (Ojs.call x42 "push"
-                              [|(InspectOptions.t_to_js x39)|]);
-                         (match x40 with
-                          | Some x44 ->
+                         (match x27 with
+                          | Some x31 ->
                               ignore
-                                (Ojs.call x42 "push" [|(any_to_js x44)|])
+                                (Ojs.call x29 "push" [|(any_to_js x31)|])
                           | None -> ());
                          List.iter
-                           (fun (x43 : any) ->
+                           (fun (x30 : any) ->
                               ignore
-                                (Ojs.call x42 "push" [|(any_to_js x43)|]))
-                           x41;
-                         x42))|])
+                                (Ojs.call x29 "push" [|(any_to_js x30)|]))
+                           x28;
+                         x29))|])
+    let (format_with_options :
+      inspect_options:InspectOptions.t ->
+        ?format:any -> param:any list -> unit -> string)
+      =
+      fun ~inspect_options:(x33 : InspectOptions.t) ->
+        fun ?format:(x34 : any option) ->
+          fun ~param:(x35 : any list) ->
+            fun () ->
+              Ojs.string_of_js
+                (let x39 = Import.util in
+                 Ojs.call (Ojs.get_prop_ascii x39 "formatWithOptions")
+                   "apply"
+                   [|x39;((let x36 =
+                             Ojs.new_obj
+                               (Ojs.get_prop_ascii Ojs.global "Array") 
+                               [||] in
+                           ignore
+                             (Ojs.call x36 "push"
+                                [|(InspectOptions.t_to_js x33)|]);
+                           (match x34 with
+                            | Some x38 ->
+                                ignore
+                                  (Ojs.call x36 "push" [|(any_to_js x38)|])
+                            | None -> ());
+                           List.iter
+                             (fun (x37 : any) ->
+                                ignore
+                                  (Ojs.call x36 "push" [|(any_to_js x37)|]))
+                             x35;
+                           x36))|])
     let (log : string:string -> unit) =
-      fun ~string:(x46 : string) ->
-        ignore (Ojs.call Import.util "log" [|(Ojs.string_to_js x46)|])
+      fun ~string:(x40 : string) ->
+        ignore (Ojs.call Import.util "log" [|(Ojs.string_to_js x40)|])
     let (inspect :
       object_:any ->
         ?show_hidden:bool ->
           ?depth:int or_null -> ?color:bool -> unit -> string)
       =
-      fun ~object_:(x47 : any) ->
-        fun ?show_hidden:(x48 : bool option) ->
-          fun ?depth:(x49 : int or_null option) ->
-            fun ?color:(x50 : bool option) ->
+      fun ~object_:(x41 : any) ->
+        fun ?show_hidden:(x42 : bool option) ->
+          fun ?depth:(x43 : int or_null option) ->
+            fun ?color:(x44 : bool option) ->
               fun () ->
                 Ojs.string_of_js
-                  (let x56 = Import.util in
-                   Ojs.call (Ojs.get_prop_ascii x56 "inspect") "apply"
-                     [|x56;((let x51 =
+                  (let x50 = Import.util in
+                   Ojs.call (Ojs.get_prop_ascii x50 "inspect") "apply"
+                     [|x50;((let x45 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             ignore (Ojs.call x51 "push" [|(any_to_js x47)|]);
-                             (match x48 with
-                              | Some x55 ->
+                             ignore (Ojs.call x45 "push" [|(any_to_js x41)|]);
+                             (match x42 with
+                              | Some x49 ->
                                   ignore
-                                    (Ojs.call x51 "push"
-                                       [|(Ojs.bool_to_js x55)|])
+                                    (Ojs.call x45 "push"
+                                       [|(Ojs.bool_to_js x49)|])
                               | None -> ());
-                             (match x49 with
-                              | Some x53 ->
+                             (match x43 with
+                              | Some x47 ->
                                   ignore
-                                    (Ojs.call x51 "push"
-                                       [|(or_null_to_js Ojs.int_to_js x53)|])
+                                    (Ojs.call x45 "push"
+                                       [|(or_null_to_js Ojs.int_to_js x47)|])
                               | None -> ());
-                             (match x50 with
-                              | Some x52 ->
+                             (match x44 with
+                              | Some x46 ->
                                   ignore
-                                    (Ojs.call x51 "push"
-                                       [|(Ojs.bool_to_js x52)|])
+                                    (Ojs.call x45 "push"
+                                       [|(Ojs.bool_to_js x46)|])
                               | None -> ());
-                             x51))|])
+                             x45))|])
     let (inspect : object_:any -> options:InspectOptions.t -> string) =
-      fun ~object_:(x57 : any) ->
-        fun ~options:(x58 : InspectOptions.t) ->
+      fun ~object_:(x51 : any) ->
+        fun ~options:(x52 : InspectOptions.t) ->
           Ojs.string_of_js
             (Ojs.call Import.util "inspect"
-               [|(any_to_js x57);(InspectOptions.t_to_js x58)|])
+               [|(any_to_js x51);(InspectOptions.t_to_js x52)|])
     module Inspect =
       struct
         let (colors : (int * int) Dict.t) =
           Dict.t_of_js
-            (fun (x59 : Ojs.t) ->
-               let x60 = x59 in
-               ((Ojs.int_of_js (Ojs.array_get x60 0)),
-                 (Ojs.int_of_js (Ojs.array_get x60 1))))
+            (fun (x53 : Ojs.t) ->
+               let x54 = x53 in
+               ((Ojs.int_of_js (Ojs.array_get x54 0)),
+                 (Ojs.int_of_js (Ojs.array_get x54 1))))
             (Ojs.get_prop_ascii (Ojs.get_prop_ascii Import.util "inspect")
                "colors")
         let (styles : any) =
@@ -243,208 +239,208 @@ module Util =
                "custom")
       end
     let (is_array : object_:any -> bool) =
-      fun ~object_:(x61 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isArray" [|(any_to_js x61)|])
+      fun ~object_:(x55 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isArray" [|(any_to_js x55)|])
     let (is_reg_exp : object_:any -> bool) =
-      fun ~object_:(x62 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isRegExp" [|(any_to_js x62)|])
+      fun ~object_:(x56 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isRegExp" [|(any_to_js x56)|])
     let (is_date : object_:any -> bool) =
-      fun ~object_:(x63 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isDate" [|(any_to_js x63)|])
+      fun ~object_:(x57 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isDate" [|(any_to_js x57)|])
     let (is_error : object_:any -> bool) =
-      fun ~object_:(x64 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isError" [|(any_to_js x64)|])
+      fun ~object_:(x58 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isError" [|(any_to_js x58)|])
     let (inherits : constructor:any -> super_constructor:any -> unit) =
-      fun ~constructor:(x65 : any) ->
-        fun ~super_constructor:(x66 : any) ->
+      fun ~constructor:(x59 : any) ->
+        fun ~super_constructor:(x60 : any) ->
           ignore
             (Ojs.call Import.util "inherits"
-               [|(any_to_js x65);(any_to_js x66)|])
+               [|(any_to_js x59);(any_to_js x60)|])
     let (debuglog : key:string -> msg:string -> param:any list -> unit) =
-      fun ~key:(x67 : string) ->
-        fun ~msg:(x68 : string) ->
-          fun ~param:(x69 : any list) ->
+      fun ~key:(x61 : string) ->
+        fun ~msg:(x62 : string) ->
+          fun ~param:(x63 : any list) ->
             ignore
               (Ojs.call
-                 (Ojs.call Import.util "debuglog" [|(Ojs.string_to_js x67)|])
+                 (Ojs.call Import.util "debuglog" [|(Ojs.string_to_js x61)|])
                  "apply"
-                 [|Ojs.null;((let x70 =
+                 [|Ojs.null;((let x64 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x70 "push"
-                                   [|(Ojs.string_to_js x68)|]);
+                                (Ojs.call x64 "push"
+                                   [|(Ojs.string_to_js x62)|]);
                               List.iter
-                                (fun (x71 : any) ->
+                                (fun (x65 : any) ->
                                    ignore
-                                     (Ojs.call x70 "push" [|(any_to_js x71)|]))
-                                x69;
-                              x70))|])
+                                     (Ojs.call x64 "push" [|(any_to_js x65)|]))
+                                x63;
+                              x64))|])
     let (is_boolean : object_:any -> bool) =
-      fun ~object_:(x72 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isBoolean" [|(any_to_js x72)|])
+      fun ~object_:(x66 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isBoolean" [|(any_to_js x66)|])
     let (is_buffer : object_:any -> bool) =
-      fun ~object_:(x73 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isBuffer" [|(any_to_js x73)|])
+      fun ~object_:(x67 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isBuffer" [|(any_to_js x67)|])
     let (is_function : object_:any -> bool) =
-      fun ~object_:(x74 : any) ->
+      fun ~object_:(x68 : any) ->
         Ojs.bool_of_js
-          (Ojs.call Import.util "isFunction" [|(any_to_js x74)|])
+          (Ojs.call Import.util "isFunction" [|(any_to_js x68)|])
     let (is_null : object_:any -> bool) =
-      fun ~object_:(x75 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isNull" [|(any_to_js x75)|])
+      fun ~object_:(x69 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isNull" [|(any_to_js x69)|])
     let (is_null_or_undefined : object_:any -> bool) =
+      fun ~object_:(x70 : any) ->
+        Ojs.bool_of_js
+          (Ojs.call Import.util "isNullOrUndefined" [|(any_to_js x70)|])
+    let (is_number : object_:any -> bool) =
+      fun ~object_:(x71 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isNumber" [|(any_to_js x71)|])
+    let (is_object : object_:any -> bool) =
+      fun ~object_:(x72 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isObject" [|(any_to_js x72)|])
+    let (is_primitive : object_:any -> bool) =
+      fun ~object_:(x73 : any) ->
+        Ojs.bool_of_js
+          (Ojs.call Import.util "isPrimitive" [|(any_to_js x73)|])
+    let (is_string : object_:any -> bool) =
+      fun ~object_:(x74 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isString" [|(any_to_js x74)|])
+    let (is_symbol : object_:any -> bool) =
+      fun ~object_:(x75 : any) ->
+        Ojs.bool_of_js (Ojs.call Import.util "isSymbol" [|(any_to_js x75)|])
+    let (is_undefined : object_:any -> bool) =
       fun ~object_:(x76 : any) ->
         Ojs.bool_of_js
-          (Ojs.call Import.util "isNullOrUndefined" [|(any_to_js x76)|])
-    let (is_number : object_:any -> bool) =
-      fun ~object_:(x77 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isNumber" [|(any_to_js x77)|])
-    let (is_object : object_:any -> bool) =
-      fun ~object_:(x78 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isObject" [|(any_to_js x78)|])
-    let (is_primitive : object_:any -> bool) =
-      fun ~object_:(x79 : any) ->
-        Ojs.bool_of_js
-          (Ojs.call Import.util "isPrimitive" [|(any_to_js x79)|])
-    let (is_string : object_:any -> bool) =
-      fun ~object_:(x80 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isString" [|(any_to_js x80)|])
-    let (is_symbol : object_:any -> bool) =
-      fun ~object_:(x81 : any) ->
-        Ojs.bool_of_js (Ojs.call Import.util "isSymbol" [|(any_to_js x81)|])
-    let (is_undefined : object_:any -> bool) =
-      fun ~object_:(x82 : any) ->
-        Ojs.bool_of_js
-          (Ojs.call Import.util "isUndefined" [|(any_to_js x82)|])
+          (Ojs.call Import.util "isUndefined" [|(any_to_js x76)|])
     let (deprecate : fn:'T -> message:string -> ?code:string -> unit -> 'T) =
-      fun ~fn:(x83 : 'T) ->
-        fun ~message:(x84 : string) ->
-          fun ?code:(x85 : string option) ->
+      fun ~fn:(x77 : 'T) ->
+        fun ~message:(x78 : string) ->
+          fun ?code:(x79 : string option) ->
             fun () ->
               Obj.magic
-                (let x88 = Import.util in
-                 Ojs.call (Ojs.get_prop_ascii x88 "deprecate") "apply"
-                   [|x88;((let x86 =
+                (let x82 = Import.util in
+                 Ojs.call (Ojs.get_prop_ascii x82 "deprecate") "apply"
+                   [|x82;((let x80 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
-                           ignore (Ojs.call x86 "push" [|(Obj.magic x83)|]);
+                           ignore (Ojs.call x80 "push" [|(Obj.magic x77)|]);
                            ignore
-                             (Ojs.call x86 "push" [|(Ojs.string_to_js x84)|]);
-                           (match x85 with
-                            | Some x87 ->
+                             (Ojs.call x80 "push" [|(Ojs.string_to_js x78)|]);
+                           (match x79 with
+                            | Some x81 ->
                                 ignore
-                                  (Ojs.call x86 "push"
-                                     [|(Ojs.string_to_js x87)|])
+                                  (Ojs.call x80 "push"
+                                     [|(Ojs.string_to_js x81)|])
                             | None -> ());
-                           x86))|])
+                           x80))|])
     let (is_deep_strict_equal : val1:any -> val2:any -> bool) =
-      fun ~val1:(x89 : any) ->
-        fun ~val2:(x90 : any) ->
+      fun ~val1:(x83 : any) ->
+        fun ~val2:(x84 : any) ->
           Ojs.bool_of_js
             (Ojs.call Import.util "isDeepStrictEqual"
-               [|(any_to_js x89);(any_to_js x90)|])
+               [|(any_to_js x83);(any_to_js x84)|])
     let (callbackify :
       fn:(unit -> unit Promise.t) ->
         callback:(err:ErrnoException.t -> unit) -> unit)
       =
-      fun ~fn:(x91 : unit -> unit Promise.t) ->
-        fun ~callback:(x93 : err:ErrnoException.t -> unit) ->
+      fun ~fn:(x85 : unit -> unit Promise.t) ->
+        fun ~callback:(x87 : err:ErrnoException.t -> unit) ->
           ignore
             (Ojs.apply
                (Ojs.call Import.util "callbackify"
                   [|(Ojs.fun_to_js 1
-                       (fun _ -> Promise.t_to_js Ojs.unit_to_js (x91 ())))|])
+                       (fun _ -> Promise.t_to_js Ojs.unit_to_js (x85 ())))|])
                [|(Ojs.fun_to_js 1
-                    (fun (x94 : Ojs.t) ->
-                       x93 ~err:(ErrnoException.t_of_js x94)))|])
+                    (fun (x88 : Ojs.t) ->
+                       x87 ~err:(ErrnoException.t_of_js x88)))|])
     let (callbackify :
       fn:(unit -> 'TResult Promise.t) ->
         callback:(err:ErrnoException.t -> result:'TResult -> unit) -> unit)
       =
-      fun ~fn:(x95 : unit -> 'TResult Promise.t) ->
-        fun ~callback:(x97 : err:ErrnoException.t -> result:'TResult -> unit)
+      fun ~fn:(x89 : unit -> 'TResult Promise.t) ->
+        fun ~callback:(x91 : err:ErrnoException.t -> result:'TResult -> unit)
           ->
           ignore
             (Ojs.apply
                (Ojs.call Import.util "callbackify"
                   [|(Ojs.fun_to_js 1
-                       (fun _ -> Promise.t_to_js Obj.magic (x95 ())))|])
+                       (fun _ -> Promise.t_to_js Obj.magic (x89 ())))|])
                [|(Ojs.fun_to_js 2
-                    (fun (x98 : Ojs.t) ->
-                       fun (x99 : Ojs.t) ->
-                         x97 ~err:(ErrnoException.t_of_js x98)
-                           ~result:(Obj.magic x99)))|])
+                    (fun (x92 : Ojs.t) ->
+                       fun (x93 : Ojs.t) ->
+                         x91 ~err:(ErrnoException.t_of_js x92)
+                           ~result:(Obj.magic x93)))|])
     let (callbackify :
       fn:(arg1:'T1 -> unit Promise.t) ->
         arg1:'T1 -> callback:(err:ErrnoException.t -> unit) -> unit)
       =
-      fun ~fn:(x100 : arg1:'T1 -> unit Promise.t) ->
-        fun ~arg1:(x103 : 'T1) ->
-          fun ~callback:(x104 : err:ErrnoException.t -> unit) ->
+      fun ~fn:(x94 : arg1:'T1 -> unit Promise.t) ->
+        fun ~arg1:(x97 : 'T1) ->
+          fun ~callback:(x98 : err:ErrnoException.t -> unit) ->
             ignore
               (Ojs.apply
                  (Ojs.call Import.util "callbackify"
                     [|(Ojs.fun_to_js 1
-                         (fun (x101 : Ojs.t) ->
+                         (fun (x95 : Ojs.t) ->
                             Promise.t_to_js Ojs.unit_to_js
-                              (x100 ~arg1:(Obj.magic x101))))|])
-                 [|(Obj.magic x103);(Ojs.fun_to_js 1
-                                       (fun (x105 : Ojs.t) ->
-                                          x104
-                                            ~err:(ErrnoException.t_of_js x105)))|])
+                              (x94 ~arg1:(Obj.magic x95))))|])
+                 [|(Obj.magic x97);(Ojs.fun_to_js 1
+                                      (fun (x99 : Ojs.t) ->
+                                         x98
+                                           ~err:(ErrnoException.t_of_js x99)))|])
     let (callbackify :
       fn:(arg1:'T1 -> 'TResult Promise.t) ->
         arg1:'T1 ->
           callback:(err:ErrnoException.t -> result:'TResult -> unit) -> unit)
       =
-      fun ~fn:(x106 : arg1:'T1 -> 'TResult Promise.t) ->
-        fun ~arg1:(x109 : 'T1) ->
+      fun ~fn:(x100 : arg1:'T1 -> 'TResult Promise.t) ->
+        fun ~arg1:(x103 : 'T1) ->
           fun
-            ~callback:(x110 :
+            ~callback:(x104 :
                         err:ErrnoException.t -> result:'TResult -> unit)
             ->
             ignore
               (Ojs.apply
                  (Ojs.call Import.util "callbackify"
                     [|(Ojs.fun_to_js 1
-                         (fun (x107 : Ojs.t) ->
+                         (fun (x101 : Ojs.t) ->
                             Promise.t_to_js Obj.magic
-                              (x106 ~arg1:(Obj.magic x107))))|])
-                 [|(Obj.magic x109);(Ojs.fun_to_js 2
-                                       (fun (x111 : Ojs.t) ->
-                                          fun (x112 : Ojs.t) ->
-                                            x110
+                              (x100 ~arg1:(Obj.magic x101))))|])
+                 [|(Obj.magic x103);(Ojs.fun_to_js 2
+                                       (fun (x105 : Ojs.t) ->
+                                          fun (x106 : Ojs.t) ->
+                                            x104
                                               ~err:(ErrnoException.t_of_js
-                                                      x111)
-                                              ~result:(Obj.magic x112)))|])
+                                                      x105)
+                                              ~result:(Obj.magic x106)))|])
     let (callbackify :
       fn:(arg1:'T1 -> arg2:'T2 -> unit Promise.t) ->
         arg1:'T1 ->
           arg2:'T2 -> callback:(err:ErrnoException.t -> unit) -> unit)
       =
-      fun ~fn:(x113 : arg1:'T1 -> arg2:'T2 -> unit Promise.t) ->
-        fun ~arg1:(x117 : 'T1) ->
-          fun ~arg2:(x118 : 'T2) ->
-            fun ~callback:(x119 : err:ErrnoException.t -> unit) ->
+      fun ~fn:(x107 : arg1:'T1 -> arg2:'T2 -> unit Promise.t) ->
+        fun ~arg1:(x111 : 'T1) ->
+          fun ~arg2:(x112 : 'T2) ->
+            fun ~callback:(x113 : err:ErrnoException.t -> unit) ->
               ignore
                 (Ojs.apply
                    (Ojs.call Import.util "callbackify"
                       [|(Ojs.fun_to_js 2
-                           (fun (x114 : Ojs.t) ->
-                              fun (x115 : Ojs.t) ->
+                           (fun (x108 : Ojs.t) ->
+                              fun (x109 : Ojs.t) ->
                                 Promise.t_to_js Ojs.unit_to_js
-                                  (x113 ~arg1:(Obj.magic x114)
-                                     ~arg2:(Obj.magic x115))))|])
-                   [|(Obj.magic x117);(Obj.magic x118);(Ojs.fun_to_js 1
-                                                          (fun (x120 : Ojs.t)
+                                  (x107 ~arg1:(Obj.magic x108)
+                                     ~arg2:(Obj.magic x109))))|])
+                   [|(Obj.magic x111);(Obj.magic x112);(Ojs.fun_to_js 1
+                                                          (fun (x114 : Ojs.t)
                                                              ->
-                                                             x119
+                                                             x113
                                                                ~err:(
                                                                ErrnoException.t_of_js
-                                                                 x120)))|])
+                                                                 x114)))|])
     let (callbackify :
       fn:(arg1:'T1 -> arg2:'T2 -> 'TResult Promise.t) ->
         arg1:'T1 ->
@@ -452,11 +448,11 @@ module Util =
             callback:(err:ErrnoException.t or_null -> result:'TResult -> unit)
               -> unit)
       =
-      fun ~fn:(x121 : arg1:'T1 -> arg2:'T2 -> 'TResult Promise.t) ->
-        fun ~arg1:(x125 : 'T1) ->
-          fun ~arg2:(x126 : 'T2) ->
+      fun ~fn:(x115 : arg1:'T1 -> arg2:'T2 -> 'TResult Promise.t) ->
+        fun ~arg1:(x119 : 'T1) ->
+          fun ~arg2:(x120 : 'T2) ->
             fun
-              ~callback:(x127 :
+              ~callback:(x121 :
                           err:ErrnoException.t or_null ->
                             result:'TResult -> unit)
               ->
@@ -464,51 +460,51 @@ module Util =
                 (Ojs.apply
                    (Ojs.call Import.util "callbackify"
                       [|(Ojs.fun_to_js 2
-                           (fun (x122 : Ojs.t) ->
-                              fun (x123 : Ojs.t) ->
+                           (fun (x116 : Ojs.t) ->
+                              fun (x117 : Ojs.t) ->
                                 Promise.t_to_js Obj.magic
-                                  (x121 ~arg1:(Obj.magic x122)
-                                     ~arg2:(Obj.magic x123))))|])
-                   [|(Obj.magic x125);(Obj.magic x126);(Ojs.fun_to_js 2
-                                                          (fun (x128 : Ojs.t)
+                                  (x115 ~arg1:(Obj.magic x116)
+                                     ~arg2:(Obj.magic x117))))|])
+                   [|(Obj.magic x119);(Obj.magic x120);(Ojs.fun_to_js 2
+                                                          (fun (x122 : Ojs.t)
                                                              ->
                                                              fun
-                                                               (x130 : Ojs.t)
+                                                               (x124 : Ojs.t)
                                                                ->
-                                                               x127
+                                                               x121
                                                                  ~err:(
                                                                  or_null_of_js
                                                                    ErrnoException.t_of_js
-                                                                   x128)
+                                                                   x122)
                                                                  ~result:(
                                                                  Obj.magic
-                                                                   x130)))|])
+                                                                   x124)))|])
     let (callbackify :
       fn:(arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> unit Promise.t) ->
         arg1:'T1 ->
           arg2:'T2 ->
             arg3:'T3 -> callback:(err:ErrnoException.t -> unit) -> unit)
       =
-      fun ~fn:(x131 : arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> unit Promise.t) ->
-        fun ~arg1:(x136 : 'T1) ->
-          fun ~arg2:(x137 : 'T2) ->
-            fun ~arg3:(x138 : 'T3) ->
-              fun ~callback:(x139 : err:ErrnoException.t -> unit) ->
+      fun ~fn:(x125 : arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> unit Promise.t) ->
+        fun ~arg1:(x130 : 'T1) ->
+          fun ~arg2:(x131 : 'T2) ->
+            fun ~arg3:(x132 : 'T3) ->
+              fun ~callback:(x133 : err:ErrnoException.t -> unit) ->
                 ignore
                   (Ojs.apply
                      (Ojs.call Import.util "callbackify"
                         [|(Ojs.fun_to_js 3
-                             (fun (x132 : Ojs.t) ->
-                                fun (x133 : Ojs.t) ->
-                                  fun (x134 : Ojs.t) ->
+                             (fun (x126 : Ojs.t) ->
+                                fun (x127 : Ojs.t) ->
+                                  fun (x128 : Ojs.t) ->
                                     Promise.t_to_js Ojs.unit_to_js
-                                      (x131 ~arg1:(Obj.magic x132)
-                                         ~arg2:(Obj.magic x133)
-                                         ~arg3:(Obj.magic x134))))|])
-                     [|(Obj.magic x136);(Obj.magic x137);(Obj.magic x138);(
+                                      (x125 ~arg1:(Obj.magic x126)
+                                         ~arg2:(Obj.magic x127)
+                                         ~arg3:(Obj.magic x128))))|])
+                     [|(Obj.magic x130);(Obj.magic x131);(Obj.magic x132);(
                        Ojs.fun_to_js 1
-                         (fun (x140 : Ojs.t) ->
-                            x139 ~err:(ErrnoException.t_of_js x140)))|])
+                         (fun (x134 : Ojs.t) ->
+                            x133 ~err:(ErrnoException.t_of_js x134)))|])
     let (callbackify :
       fn:(arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> 'TResult Promise.t) ->
         arg1:'T1 ->
@@ -518,13 +514,13 @@ module Util =
                           result:'TResult -> unit)
                 -> unit)
       =
-      fun ~fn:(x141 : arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> 'TResult Promise.t)
+      fun ~fn:(x135 : arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> 'TResult Promise.t)
         ->
-        fun ~arg1:(x146 : 'T1) ->
-          fun ~arg2:(x147 : 'T2) ->
-            fun ~arg3:(x148 : 'T3) ->
+        fun ~arg1:(x140 : 'T1) ->
+          fun ~arg2:(x141 : 'T2) ->
+            fun ~arg3:(x142 : 'T3) ->
               fun
-                ~callback:(x149 :
+                ~callback:(x143 :
                             err:ErrnoException.t or_null ->
                               result:'TResult -> unit)
                 ->
@@ -532,20 +528,20 @@ module Util =
                   (Ojs.apply
                      (Ojs.call Import.util "callbackify"
                         [|(Ojs.fun_to_js 3
-                             (fun (x142 : Ojs.t) ->
-                                fun (x143 : Ojs.t) ->
-                                  fun (x144 : Ojs.t) ->
+                             (fun (x136 : Ojs.t) ->
+                                fun (x137 : Ojs.t) ->
+                                  fun (x138 : Ojs.t) ->
                                     Promise.t_to_js Obj.magic
-                                      (x141 ~arg1:(Obj.magic x142)
-                                         ~arg2:(Obj.magic x143)
-                                         ~arg3:(Obj.magic x144))))|])
-                     [|(Obj.magic x146);(Obj.magic x147);(Obj.magic x148);(
+                                      (x135 ~arg1:(Obj.magic x136)
+                                         ~arg2:(Obj.magic x137)
+                                         ~arg3:(Obj.magic x138))))|])
+                     [|(Obj.magic x140);(Obj.magic x141);(Obj.magic x142);(
                        Ojs.fun_to_js 2
-                         (fun (x150 : Ojs.t) ->
-                            fun (x152 : Ojs.t) ->
-                              x149
+                         (fun (x144 : Ojs.t) ->
+                            fun (x146 : Ojs.t) ->
+                              x143
                                 ~err:(or_null_of_js ErrnoException.t_of_js
-                                        x150) ~result:(Obj.magic x152)))|])
+                                        x144) ~result:(Obj.magic x146)))|])
     let (callbackify :
       fn:(arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> unit Promise.t) ->
         arg1:'T1 ->
@@ -554,33 +550,33 @@ module Util =
               arg4:'T4 -> callback:(err:ErrnoException.t -> unit) -> unit)
       =
       fun
-        ~fn:(x153 :
+        ~fn:(x147 :
               arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> unit Promise.t)
         ->
-        fun ~arg1:(x159 : 'T1) ->
-          fun ~arg2:(x160 : 'T2) ->
-            fun ~arg3:(x161 : 'T3) ->
-              fun ~arg4:(x162 : 'T4) ->
-                fun ~callback:(x163 : err:ErrnoException.t -> unit) ->
+        fun ~arg1:(x153 : 'T1) ->
+          fun ~arg2:(x154 : 'T2) ->
+            fun ~arg3:(x155 : 'T3) ->
+              fun ~arg4:(x156 : 'T4) ->
+                fun ~callback:(x157 : err:ErrnoException.t -> unit) ->
                   ignore
                     (Ojs.apply
                        (Ojs.call Import.util "callbackify"
                           [|(Ojs.fun_to_js 4
-                               (fun (x154 : Ojs.t) ->
-                                  fun (x155 : Ojs.t) ->
-                                    fun (x156 : Ojs.t) ->
-                                      fun (x157 : Ojs.t) ->
+                               (fun (x148 : Ojs.t) ->
+                                  fun (x149 : Ojs.t) ->
+                                    fun (x150 : Ojs.t) ->
+                                      fun (x151 : Ojs.t) ->
                                         Promise.t_to_js Ojs.unit_to_js
-                                          (x153 ~arg1:(Obj.magic x154)
-                                             ~arg2:(Obj.magic x155)
-                                             ~arg3:(Obj.magic x156)
-                                             ~arg4:(Obj.magic x157))))|])
-                       [|(Obj.magic x159);(Obj.magic x160);(Obj.magic x161);(
-                         Obj.magic x162);(Ojs.fun_to_js 1
-                                            (fun (x164 : Ojs.t) ->
-                                               x163
+                                          (x147 ~arg1:(Obj.magic x148)
+                                             ~arg2:(Obj.magic x149)
+                                             ~arg3:(Obj.magic x150)
+                                             ~arg4:(Obj.magic x151))))|])
+                       [|(Obj.magic x153);(Obj.magic x154);(Obj.magic x155);(
+                         Obj.magic x156);(Ojs.fun_to_js 1
+                                            (fun (x158 : Ojs.t) ->
+                                               x157
                                                  ~err:(ErrnoException.t_of_js
-                                                         x164)))|])
+                                                         x158)))|])
     let (callbackify :
       fn:(arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> 'TResult Promise.t)
         ->
@@ -593,16 +589,16 @@ module Util =
                   -> unit)
       =
       fun
-        ~fn:(x165 :
+        ~fn:(x159 :
               arg1:'T1 ->
                 arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> 'TResult Promise.t)
         ->
-        fun ~arg1:(x171 : 'T1) ->
-          fun ~arg2:(x172 : 'T2) ->
-            fun ~arg3:(x173 : 'T3) ->
-              fun ~arg4:(x174 : 'T4) ->
+        fun ~arg1:(x165 : 'T1) ->
+          fun ~arg2:(x166 : 'T2) ->
+            fun ~arg3:(x167 : 'T3) ->
+              fun ~arg4:(x168 : 'T4) ->
                 fun
-                  ~callback:(x175 :
+                  ~callback:(x169 :
                               err:ErrnoException.t or_null ->
                                 result:'TResult -> unit)
                   ->
@@ -610,24 +606,24 @@ module Util =
                     (Ojs.apply
                        (Ojs.call Import.util "callbackify"
                           [|(Ojs.fun_to_js 4
-                               (fun (x166 : Ojs.t) ->
-                                  fun (x167 : Ojs.t) ->
-                                    fun (x168 : Ojs.t) ->
-                                      fun (x169 : Ojs.t) ->
+                               (fun (x160 : Ojs.t) ->
+                                  fun (x161 : Ojs.t) ->
+                                    fun (x162 : Ojs.t) ->
+                                      fun (x163 : Ojs.t) ->
                                         Promise.t_to_js Obj.magic
-                                          (x165 ~arg1:(Obj.magic x166)
-                                             ~arg2:(Obj.magic x167)
-                                             ~arg3:(Obj.magic x168)
-                                             ~arg4:(Obj.magic x169))))|])
-                       [|(Obj.magic x171);(Obj.magic x172);(Obj.magic x173);(
-                         Obj.magic x174);(Ojs.fun_to_js 2
-                                            (fun (x176 : Ojs.t) ->
-                                               fun (x178 : Ojs.t) ->
-                                                 x175
+                                          (x159 ~arg1:(Obj.magic x160)
+                                             ~arg2:(Obj.magic x161)
+                                             ~arg3:(Obj.magic x162)
+                                             ~arg4:(Obj.magic x163))))|])
+                       [|(Obj.magic x165);(Obj.magic x166);(Obj.magic x167);(
+                         Obj.magic x168);(Ojs.fun_to_js 2
+                                            (fun (x170 : Ojs.t) ->
+                                               fun (x172 : Ojs.t) ->
+                                                 x169
                                                    ~err:(or_null_of_js
                                                            ErrnoException.t_of_js
-                                                           x176)
-                                                   ~result:(Obj.magic x178)))|])
+                                                           x170)
+                                                   ~result:(Obj.magic x172)))|])
     let (callbackify :
       fn:(arg1:'T1 ->
             arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> arg5:'T5 -> unit Promise.t)
@@ -639,42 +635,42 @@ module Util =
                 arg5:'T5 -> callback:(err:ErrnoException.t -> unit) -> unit)
       =
       fun
-        ~fn:(x179 :
+        ~fn:(x173 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 -> arg4:'T4 -> arg5:'T5 -> unit Promise.t)
         ->
-        fun ~arg1:(x186 : 'T1) ->
-          fun ~arg2:(x187 : 'T2) ->
-            fun ~arg3:(x188 : 'T3) ->
-              fun ~arg4:(x189 : 'T4) ->
-                fun ~arg5:(x190 : 'T5) ->
-                  fun ~callback:(x191 : err:ErrnoException.t -> unit) ->
+        fun ~arg1:(x180 : 'T1) ->
+          fun ~arg2:(x181 : 'T2) ->
+            fun ~arg3:(x182 : 'T3) ->
+              fun ~arg4:(x183 : 'T4) ->
+                fun ~arg5:(x184 : 'T5) ->
+                  fun ~callback:(x185 : err:ErrnoException.t -> unit) ->
                     ignore
                       (Ojs.apply
                          (Ojs.call Import.util "callbackify"
                             [|(Ojs.fun_to_js 5
-                                 (fun (x180 : Ojs.t) ->
-                                    fun (x181 : Ojs.t) ->
-                                      fun (x182 : Ojs.t) ->
-                                        fun (x183 : Ojs.t) ->
-                                          fun (x184 : Ojs.t) ->
+                                 (fun (x174 : Ojs.t) ->
+                                    fun (x175 : Ojs.t) ->
+                                      fun (x176 : Ojs.t) ->
+                                        fun (x177 : Ojs.t) ->
+                                          fun (x178 : Ojs.t) ->
                                             Promise.t_to_js Ojs.unit_to_js
-                                              (x179 ~arg1:(Obj.magic x180)
-                                                 ~arg2:(Obj.magic x181)
-                                                 ~arg3:(Obj.magic x182)
-                                                 ~arg4:(Obj.magic x183)
-                                                 ~arg5:(Obj.magic x184))))|])
-                         [|(Obj.magic x186);(Obj.magic x187);(Obj.magic x188);(
-                           Obj.magic x189);(Obj.magic x190);(Ojs.fun_to_js 1
+                                              (x173 ~arg1:(Obj.magic x174)
+                                                 ~arg2:(Obj.magic x175)
+                                                 ~arg3:(Obj.magic x176)
+                                                 ~arg4:(Obj.magic x177)
+                                                 ~arg5:(Obj.magic x178))))|])
+                         [|(Obj.magic x180);(Obj.magic x181);(Obj.magic x182);(
+                           Obj.magic x183);(Obj.magic x184);(Ojs.fun_to_js 1
                                                                (fun
-                                                                  (x192 :
+                                                                  (x186 :
                                                                     Ojs.t)
                                                                   ->
-                                                                  x191
+                                                                  x185
                                                                     ~err:(
                                                                     ErrnoException.t_of_js
-                                                                    x192)))|])
+                                                                    x186)))|])
     let (callbackify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -690,18 +686,18 @@ module Util =
                     -> unit)
       =
       fun
-        ~fn:(x193 :
+        ~fn:(x187 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 -> arg4:'T4 -> arg5:'T5 -> 'TResult Promise.t)
         ->
-        fun ~arg1:(x200 : 'T1) ->
-          fun ~arg2:(x201 : 'T2) ->
-            fun ~arg3:(x202 : 'T3) ->
-              fun ~arg4:(x203 : 'T4) ->
-                fun ~arg5:(x204 : 'T5) ->
+        fun ~arg1:(x194 : 'T1) ->
+          fun ~arg2:(x195 : 'T2) ->
+            fun ~arg3:(x196 : 'T3) ->
+              fun ~arg4:(x197 : 'T4) ->
+                fun ~arg5:(x198 : 'T5) ->
                   fun
-                    ~callback:(x205 :
+                    ~callback:(x199 :
                                 err:ErrnoException.t or_null ->
                                   result:'TResult -> unit)
                     ->
@@ -709,34 +705,34 @@ module Util =
                       (Ojs.apply
                          (Ojs.call Import.util "callbackify"
                             [|(Ojs.fun_to_js 5
-                                 (fun (x194 : Ojs.t) ->
-                                    fun (x195 : Ojs.t) ->
-                                      fun (x196 : Ojs.t) ->
-                                        fun (x197 : Ojs.t) ->
-                                          fun (x198 : Ojs.t) ->
+                                 (fun (x188 : Ojs.t) ->
+                                    fun (x189 : Ojs.t) ->
+                                      fun (x190 : Ojs.t) ->
+                                        fun (x191 : Ojs.t) ->
+                                          fun (x192 : Ojs.t) ->
                                             Promise.t_to_js Obj.magic
-                                              (x193 ~arg1:(Obj.magic x194)
-                                                 ~arg2:(Obj.magic x195)
-                                                 ~arg3:(Obj.magic x196)
-                                                 ~arg4:(Obj.magic x197)
-                                                 ~arg5:(Obj.magic x198))))|])
-                         [|(Obj.magic x200);(Obj.magic x201);(Obj.magic x202);(
-                           Obj.magic x203);(Obj.magic x204);(Ojs.fun_to_js 2
+                                              (x187 ~arg1:(Obj.magic x188)
+                                                 ~arg2:(Obj.magic x189)
+                                                 ~arg3:(Obj.magic x190)
+                                                 ~arg4:(Obj.magic x191)
+                                                 ~arg5:(Obj.magic x192))))|])
+                         [|(Obj.magic x194);(Obj.magic x195);(Obj.magic x196);(
+                           Obj.magic x197);(Obj.magic x198);(Ojs.fun_to_js 2
                                                                (fun
-                                                                  (x206 :
+                                                                  (x200 :
                                                                     Ojs.t)
                                                                   ->
                                                                   fun
-                                                                    (x208 :
+                                                                    (x202 :
                                                                     Ojs.t) ->
-                                                                    x205
+                                                                    x199
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     ErrnoException.t_of_js
-                                                                    x206)
+                                                                    x200)
                                                                     ~result:(
                                                                     Obj.magic
-                                                                    x208)))|])
+                                                                    x202)))|])
     let (callbackify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -750,44 +746,44 @@ module Util =
                   arg6:'T6 -> callback:(err:ErrnoException.t -> unit) -> unit)
       =
       fun
-        ~fn:(x209 :
+        ~fn:(x203 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 ->
                     arg4:'T4 -> arg5:'T5 -> arg6:'T6 -> unit Promise.t)
         ->
-        fun ~arg1:(x217 : 'T1) ->
-          fun ~arg2:(x218 : 'T2) ->
-            fun ~arg3:(x219 : 'T3) ->
-              fun ~arg4:(x220 : 'T4) ->
-                fun ~arg5:(x221 : 'T5) ->
-                  fun ~arg6:(x222 : 'T6) ->
-                    fun ~callback:(x223 : err:ErrnoException.t -> unit) ->
+        fun ~arg1:(x211 : 'T1) ->
+          fun ~arg2:(x212 : 'T2) ->
+            fun ~arg3:(x213 : 'T3) ->
+              fun ~arg4:(x214 : 'T4) ->
+                fun ~arg5:(x215 : 'T5) ->
+                  fun ~arg6:(x216 : 'T6) ->
+                    fun ~callback:(x217 : err:ErrnoException.t -> unit) ->
                       ignore
                         (Ojs.apply
                            (Ojs.call Import.util "callbackify"
                               [|(Ojs.fun_to_js 6
-                                   (fun (x210 : Ojs.t) ->
-                                      fun (x211 : Ojs.t) ->
-                                        fun (x212 : Ojs.t) ->
-                                          fun (x213 : Ojs.t) ->
-                                            fun (x214 : Ojs.t) ->
-                                              fun (x215 : Ojs.t) ->
+                                   (fun (x204 : Ojs.t) ->
+                                      fun (x205 : Ojs.t) ->
+                                        fun (x206 : Ojs.t) ->
+                                          fun (x207 : Ojs.t) ->
+                                            fun (x208 : Ojs.t) ->
+                                              fun (x209 : Ojs.t) ->
                                                 Promise.t_to_js
                                                   Ojs.unit_to_js
-                                                  (x209
-                                                     ~arg1:(Obj.magic x210)
-                                                     ~arg2:(Obj.magic x211)
-                                                     ~arg3:(Obj.magic x212)
-                                                     ~arg4:(Obj.magic x213)
-                                                     ~arg5:(Obj.magic x214)
-                                                     ~arg6:(Obj.magic x215))))|])
-                           [|(Obj.magic x217);(Obj.magic x218);(Obj.magic
-                                                                  x219);(
-                             Obj.magic x220);(Obj.magic x221);(Obj.magic x222);(
+                                                  (x203
+                                                     ~arg1:(Obj.magic x204)
+                                                     ~arg2:(Obj.magic x205)
+                                                     ~arg3:(Obj.magic x206)
+                                                     ~arg4:(Obj.magic x207)
+                                                     ~arg5:(Obj.magic x208)
+                                                     ~arg6:(Obj.magic x209))))|])
+                           [|(Obj.magic x211);(Obj.magic x212);(Obj.magic
+                                                                  x213);(
+                             Obj.magic x214);(Obj.magic x215);(Obj.magic x216);(
                              Ojs.fun_to_js 1
-                               (fun (x224 : Ojs.t) ->
-                                  x223 ~err:(ErrnoException.t_of_js x224)))|])
+                               (fun (x218 : Ojs.t) ->
+                                  x217 ~err:(ErrnoException.t_of_js x218)))|])
     let (callbackify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -805,20 +801,20 @@ module Util =
                       -> unit)
       =
       fun
-        ~fn:(x225 :
+        ~fn:(x219 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 ->
                     arg4:'T4 -> arg5:'T5 -> arg6:'T6 -> 'TResult Promise.t)
         ->
-        fun ~arg1:(x233 : 'T1) ->
-          fun ~arg2:(x234 : 'T2) ->
-            fun ~arg3:(x235 : 'T3) ->
-              fun ~arg4:(x236 : 'T4) ->
-                fun ~arg5:(x237 : 'T5) ->
-                  fun ~arg6:(x238 : 'T6) ->
+        fun ~arg1:(x227 : 'T1) ->
+          fun ~arg2:(x228 : 'T2) ->
+            fun ~arg3:(x229 : 'T3) ->
+              fun ~arg4:(x230 : 'T4) ->
+                fun ~arg5:(x231 : 'T5) ->
+                  fun ~arg6:(x232 : 'T6) ->
                     fun
-                      ~callback:(x239 :
+                      ~callback:(x233 :
                                   err:ErrnoException.t or_null ->
                                     result:'TResult -> unit)
                       ->
@@ -826,30 +822,30 @@ module Util =
                         (Ojs.apply
                            (Ojs.call Import.util "callbackify"
                               [|(Ojs.fun_to_js 6
-                                   (fun (x226 : Ojs.t) ->
-                                      fun (x227 : Ojs.t) ->
-                                        fun (x228 : Ojs.t) ->
-                                          fun (x229 : Ojs.t) ->
-                                            fun (x230 : Ojs.t) ->
-                                              fun (x231 : Ojs.t) ->
+                                   (fun (x220 : Ojs.t) ->
+                                      fun (x221 : Ojs.t) ->
+                                        fun (x222 : Ojs.t) ->
+                                          fun (x223 : Ojs.t) ->
+                                            fun (x224 : Ojs.t) ->
+                                              fun (x225 : Ojs.t) ->
                                                 Promise.t_to_js Obj.magic
-                                                  (x225
-                                                     ~arg1:(Obj.magic x226)
-                                                     ~arg2:(Obj.magic x227)
-                                                     ~arg3:(Obj.magic x228)
-                                                     ~arg4:(Obj.magic x229)
-                                                     ~arg5:(Obj.magic x230)
-                                                     ~arg6:(Obj.magic x231))))|])
-                           [|(Obj.magic x233);(Obj.magic x234);(Obj.magic
-                                                                  x235);(
-                             Obj.magic x236);(Obj.magic x237);(Obj.magic x238);(
+                                                  (x219
+                                                     ~arg1:(Obj.magic x220)
+                                                     ~arg2:(Obj.magic x221)
+                                                     ~arg3:(Obj.magic x222)
+                                                     ~arg4:(Obj.magic x223)
+                                                     ~arg5:(Obj.magic x224)
+                                                     ~arg6:(Obj.magic x225))))|])
+                           [|(Obj.magic x227);(Obj.magic x228);(Obj.magic
+                                                                  x229);(
+                             Obj.magic x230);(Obj.magic x231);(Obj.magic x232);(
                              Ojs.fun_to_js 2
-                               (fun (x240 : Ojs.t) ->
-                                  fun (x242 : Ojs.t) ->
-                                    x239
+                               (fun (x234 : Ojs.t) ->
+                                  fun (x236 : Ojs.t) ->
+                                    x233
                                       ~err:(or_null_of_js
-                                              ErrnoException.t_of_js x240)
-                                      ~result:(Obj.magic x242)))|])
+                                              ErrnoException.t_of_js x234)
+                                      ~result:(Obj.magic x236)))|])
     module CustomPromisifyLegacy =
       struct
         type 'TCustom t = Ojs.t
@@ -857,23 +853,23 @@ module Util =
           'TCustom . (Ojs.t -> 'TCustom) -> Ojs.t -> 'TCustom t = fun (type
           __TCustom) ->
           fun (__TCustom_of_js : Ojs.t -> __TCustom) ->
-            fun (x244 : Ojs.t) -> x244
+            fun (x238 : Ojs.t) -> x238
         and t_to_js : 'TCustom . ('TCustom -> Ojs.t) -> 'TCustom t -> Ojs.t =
           fun (type __TCustom) ->
           fun (__TCustom_to_js : __TCustom -> Ojs.t) ->
-            fun (x243 : Ojs.t) -> x243
+            fun (x237 : Ojs.t) -> x237
         let (get___promisify__ : 'TCustom t -> 'TCustom) =
-          fun (x245 : 'TCustom t) ->
+          fun (x239 : 'TCustom t) ->
             Obj.magic
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x245) "__promisify__")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x239) "__promisify__")
         let (set___promisify__ : 'TCustom t -> 'TCustom -> unit) =
-          fun (x247 : 'TCustom t) ->
-            fun (x248 : 'TCustom) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x247) "__promisify__"
-                (Obj.magic x248)
+          fun (x241 : 'TCustom t) ->
+            fun (x242 : 'TCustom) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x241) "__promisify__"
+                (Obj.magic x242)
         let (cast : 'TCustom t -> untyped_function) =
-          fun (x250 : 'TCustom t) ->
-            untyped_function_of_js (t_to_js Obj.magic x250)
+          fun (x244 : 'TCustom t) ->
+            untyped_function_of_js (t_to_js Obj.magic x244)
       end
     module CustomPromisifySymbol =
       struct
@@ -882,24 +878,24 @@ module Util =
           'TCustom . (Ojs.t -> 'TCustom) -> Ojs.t -> 'TCustom t = fun (type
           __TCustom) ->
           fun (__TCustom_of_js : Ojs.t -> __TCustom) ->
-            fun (x253 : Ojs.t) -> x253
+            fun (x247 : Ojs.t) -> x247
         and t_to_js : 'TCustom . ('TCustom -> Ojs.t) -> 'TCustom t -> Ojs.t =
           fun (type __TCustom) ->
           fun (__TCustom_to_js : __TCustom -> Ojs.t) ->
-            fun (x252 : Ojs.t) -> x252
+            fun (x246 : Ojs.t) -> x246
         let (get__promisify_custom_ : 'TCustom t -> 'TCustom) =
-          fun (x254 : 'TCustom t) ->
+          fun (x248 : 'TCustom t) ->
             Obj.magic
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x254)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x248)
                  "[promisify.custom]")
         let (set__promisify_custom_ : 'TCustom t -> 'TCustom -> unit) =
-          fun (x256 : 'TCustom t) ->
-            fun (x257 : 'TCustom) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x256)
-                "[promisify.custom]" (Obj.magic x257)
+          fun (x250 : 'TCustom t) ->
+            fun (x251 : 'TCustom) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x250)
+                "[promisify.custom]" (Obj.magic x251)
         let (cast : 'TCustom t -> untyped_function) =
-          fun (x259 : 'TCustom t) ->
-            untyped_function_of_js (t_to_js Obj.magic x259)
+          fun (x253 : 'TCustom t) ->
+            untyped_function_of_js (t_to_js Obj.magic x253)
       end
     module CustomPromisify =
       struct
@@ -910,226 +906,226 @@ module Util =
           'TCustom . (Ojs.t -> 'TCustom) -> Ojs.t -> 'TCustom t = fun (type
           __TCustom) ->
           fun (__TCustom_of_js : Ojs.t -> __TCustom) ->
-            fun (x266 : Ojs.t) ->
+            fun (x260 : Ojs.t) ->
               union2_of_js
-                (fun (x267 : Ojs.t) ->
-                   CustomPromisifyLegacy.t_of_js __TCustom_of_js x267)
-                (fun (x269 : Ojs.t) ->
-                   CustomPromisifySymbol.t_of_js __TCustom_of_js x269) x266
+                (fun (x261 : Ojs.t) ->
+                   CustomPromisifyLegacy.t_of_js __TCustom_of_js x261)
+                (fun (x263 : Ojs.t) ->
+                   CustomPromisifySymbol.t_of_js __TCustom_of_js x263) x260
         and t_to_js : 'TCustom . ('TCustom -> Ojs.t) -> 'TCustom t -> Ojs.t =
           fun (type __TCustom) ->
           fun (__TCustom_to_js : __TCustom -> Ojs.t) ->
             fun
-              (x261 :
+              (x255 :
                 (__TCustom CustomPromisifyLegacy.t,
                   __TCustom CustomPromisifySymbol.t) union2)
               ->
               union2_to_js
-                (fun (x262 : __TCustom CustomPromisifyLegacy.t) ->
-                   CustomPromisifyLegacy.t_to_js __TCustom_to_js x262)
-                (fun (x264 : __TCustom CustomPromisifySymbol.t) ->
-                   CustomPromisifySymbol.t_to_js __TCustom_to_js x264) x261
+                (fun (x256 : __TCustom CustomPromisifyLegacy.t) ->
+                   CustomPromisifyLegacy.t_to_js __TCustom_to_js x256)
+                (fun (x258 : __TCustom CustomPromisifySymbol.t) ->
+                   CustomPromisifySymbol.t_to_js __TCustom_to_js x258) x255
       end
     let (promisify : fn:'TCustom CustomPromisify.t -> 'TCustom) =
-      fun ~fn:(x271 : 'TCustom CustomPromisify.t) ->
+      fun ~fn:(x265 : 'TCustom CustomPromisify.t) ->
         Obj.magic
           (Ojs.call Import.util "promisify"
-             [|(CustomPromisify.t_to_js Obj.magic x271)|])
+             [|(CustomPromisify.t_to_js Obj.magic x265)|])
     let (promisify :
       fn:(callback:(err:any -> result:'TResult -> unit) -> unit) ->
         unit -> 'TResult Promise.t)
       =
-      fun ~fn:(x273 : callback:(err:any -> result:'TResult -> unit) -> unit)
+      fun ~fn:(x267 : callback:(err:any -> result:'TResult -> unit) -> unit)
         ->
         fun () ->
           Promise.t_of_js Obj.magic
             (Ojs.apply
                (Ojs.call Import.util "promisify"
                   [|(Ojs.fun_to_js 1
-                       (fun (x274 : Ojs.t) ->
-                          x273
-                            ~callback:(fun ~err:(x275 : any) ->
-                                         fun ~result:(x276 : 'TResult) ->
+                       (fun (x268 : Ojs.t) ->
+                          x267
+                            ~callback:(fun ~err:(x269 : any) ->
+                                         fun ~result:(x270 : 'TResult) ->
                                            ignore
-                                             (Ojs.apply x274
-                                                [|(any_to_js x275);(Obj.magic
-                                                                    x276)|]))))|])
+                                             (Ojs.apply x268
+                                                [|(any_to_js x269);(Obj.magic
+                                                                    x270)|]))))|])
                [||])
     let (promisify :
       fn:(callback:(?err:any -> unit -> unit) -> unit) ->
         unit -> unit Promise.t)
       =
-      fun ~fn:(x278 : callback:(?err:any -> unit -> unit) -> unit) ->
+      fun ~fn:(x272 : callback:(?err:any -> unit -> unit) -> unit) ->
         fun () ->
           Promise.t_of_js Ojs.unit_of_js
             (Ojs.apply
                (Ojs.call Import.util "promisify"
                   [|(Ojs.fun_to_js 1
-                       (fun (x279 : Ojs.t) ->
-                          x278
-                            ~callback:(fun ?err:(x280 : any option) ->
+                       (fun (x273 : Ojs.t) ->
+                          x272
+                            ~callback:(fun ?err:(x274 : any option) ->
                                          fun () ->
                                            ignore
-                                             (Ojs.call x279 "apply"
-                                                [|Ojs.null;((let x281 =
+                                             (Ojs.call x273 "apply"
+                                                [|Ojs.null;((let x275 =
                                                                Ojs.new_obj
                                                                  (Ojs.get_prop_ascii
                                                                     Ojs.global
                                                                     "Array")
                                                                  [||] in
-                                                             (match x280 with
-                                                              | Some x282 ->
+                                                             (match x274 with
+                                                              | Some x276 ->
                                                                   ignore
                                                                     (
                                                                     Ojs.call
-                                                                    x281
+                                                                    x275
                                                                     "push"
                                                                     [|(
                                                                     any_to_js
-                                                                    x282)|])
+                                                                    x276)|])
                                                               | None -> ());
-                                                             x281))|]))))|])
+                                                             x275))|]))))|])
                [||])
     let (promisify :
       fn:(arg1:'T1 -> callback:(err:any -> result:'TResult -> unit) -> unit)
         -> arg1:'T1 -> 'TResult Promise.t)
       =
       fun
-        ~fn:(x284 :
+        ~fn:(x278 :
               arg1:'T1 ->
                 callback:(err:any -> result:'TResult -> unit) -> unit)
         ->
-        fun ~arg1:(x289 : 'T1) ->
+        fun ~arg1:(x283 : 'T1) ->
           Promise.t_of_js Obj.magic
             (Ojs.apply
                (Ojs.call Import.util "promisify"
                   [|(Ojs.fun_to_js 2
-                       (fun (x285 : Ojs.t) ->
-                          fun (x286 : Ojs.t) ->
-                            x284 ~arg1:(Obj.magic x285)
-                              ~callback:(fun ~err:(x287 : any) ->
-                                           fun ~result:(x288 : 'TResult) ->
+                       (fun (x279 : Ojs.t) ->
+                          fun (x280 : Ojs.t) ->
+                            x278 ~arg1:(Obj.magic x279)
+                              ~callback:(fun ~err:(x281 : any) ->
+                                           fun ~result:(x282 : 'TResult) ->
                                              ignore
-                                               (Ojs.apply x286
-                                                  [|(any_to_js x287);(
-                                                    Obj.magic x288)|]))))|])
-               [|(Obj.magic x289)|])
+                                               (Ojs.apply x280
+                                                  [|(any_to_js x281);(
+                                                    Obj.magic x282)|]))))|])
+               [|(Obj.magic x283)|])
     let (promisify :
       fn:(arg1:'T1 -> callback:(?err:any -> unit -> unit) -> unit) ->
         arg1:'T1 -> unit Promise.t)
       =
       fun
-        ~fn:(x291 : arg1:'T1 -> callback:(?err:any -> unit -> unit) -> unit)
+        ~fn:(x285 : arg1:'T1 -> callback:(?err:any -> unit -> unit) -> unit)
         ->
-        fun ~arg1:(x297 : 'T1) ->
+        fun ~arg1:(x291 : 'T1) ->
           Promise.t_of_js Ojs.unit_of_js
             (Ojs.apply
                (Ojs.call Import.util "promisify"
                   [|(Ojs.fun_to_js 2
-                       (fun (x292 : Ojs.t) ->
-                          fun (x293 : Ojs.t) ->
-                            x291 ~arg1:(Obj.magic x292)
-                              ~callback:(fun ?err:(x294 : any option) ->
+                       (fun (x286 : Ojs.t) ->
+                          fun (x287 : Ojs.t) ->
+                            x285 ~arg1:(Obj.magic x286)
+                              ~callback:(fun ?err:(x288 : any option) ->
                                            fun () ->
                                              ignore
-                                               (Ojs.call x293 "apply"
-                                                  [|Ojs.null;((let x295 =
+                                               (Ojs.call x287 "apply"
+                                                  [|Ojs.null;((let x289 =
                                                                  Ojs.new_obj
                                                                    (Ojs.get_prop_ascii
                                                                     Ojs.global
                                                                     "Array")
                                                                    [||] in
-                                                               (match x294
+                                                               (match x288
                                                                 with
-                                                                | Some x296
+                                                                | Some x290
                                                                     ->
                                                                     ignore
                                                                     (Ojs.call
-                                                                    x295
+                                                                    x289
                                                                     "push"
                                                                     [|(
                                                                     any_to_js
-                                                                    x296)|])
+                                                                    x290)|])
                                                                 | None -> ());
-                                                               x295))|]))))|])
-               [|(Obj.magic x297)|])
+                                                               x289))|]))))|])
+               [|(Obj.magic x291)|])
     let (promisify :
       fn:(arg1:'T1 ->
             arg2:'T2 -> callback:(err:any -> result:'TResult -> unit) -> unit)
         -> arg1:'T1 -> arg2:'T2 -> 'TResult Promise.t)
       =
       fun
-        ~fn:(x299 :
+        ~fn:(x293 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   callback:(err:any -> result:'TResult -> unit) -> unit)
         ->
-        fun ~arg1:(x305 : 'T1) ->
-          fun ~arg2:(x306 : 'T2) ->
+        fun ~arg1:(x299 : 'T1) ->
+          fun ~arg2:(x300 : 'T2) ->
             Promise.t_of_js Obj.magic
               (Ojs.apply
                  (Ojs.call Import.util "promisify"
                     [|(Ojs.fun_to_js 3
-                         (fun (x300 : Ojs.t) ->
-                            fun (x301 : Ojs.t) ->
-                              fun (x302 : Ojs.t) ->
-                                x299 ~arg1:(Obj.magic x300)
-                                  ~arg2:(Obj.magic x301)
-                                  ~callback:(fun ~err:(x303 : any) ->
-                                               fun ~result:(x304 : 'TResult)
+                         (fun (x294 : Ojs.t) ->
+                            fun (x295 : Ojs.t) ->
+                              fun (x296 : Ojs.t) ->
+                                x293 ~arg1:(Obj.magic x294)
+                                  ~arg2:(Obj.magic x295)
+                                  ~callback:(fun ~err:(x297 : any) ->
+                                               fun ~result:(x298 : 'TResult)
                                                  ->
                                                  ignore
-                                                   (Ojs.apply x302
-                                                      [|(any_to_js x303);(
-                                                        Obj.magic x304)|]))))|])
-                 [|(Obj.magic x305);(Obj.magic x306)|])
+                                                   (Ojs.apply x296
+                                                      [|(any_to_js x297);(
+                                                        Obj.magic x298)|]))))|])
+                 [|(Obj.magic x299);(Obj.magic x300)|])
     let (promisify :
       fn:(arg1:'T1 -> arg2:'T2 -> callback:(?err:any -> unit -> unit) -> unit)
         -> arg1:'T1 -> arg2:'T2 -> unit Promise.t)
       =
       fun
-        ~fn:(x308 :
+        ~fn:(x302 :
               arg1:'T1 ->
                 arg2:'T2 -> callback:(?err:any -> unit -> unit) -> unit)
         ->
-        fun ~arg1:(x315 : 'T1) ->
-          fun ~arg2:(x316 : 'T2) ->
+        fun ~arg1:(x309 : 'T1) ->
+          fun ~arg2:(x310 : 'T2) ->
             Promise.t_of_js Ojs.unit_of_js
               (Ojs.apply
                  (Ojs.call Import.util "promisify"
                     [|(Ojs.fun_to_js 3
-                         (fun (x309 : Ojs.t) ->
-                            fun (x310 : Ojs.t) ->
-                              fun (x311 : Ojs.t) ->
-                                x308 ~arg1:(Obj.magic x309)
-                                  ~arg2:(Obj.magic x310)
-                                  ~callback:(fun ?err:(x312 : any option) ->
+                         (fun (x303 : Ojs.t) ->
+                            fun (x304 : Ojs.t) ->
+                              fun (x305 : Ojs.t) ->
+                                x302 ~arg1:(Obj.magic x303)
+                                  ~arg2:(Obj.magic x304)
+                                  ~callback:(fun ?err:(x306 : any option) ->
                                                fun () ->
                                                  ignore
-                                                   (Ojs.call x311 "apply"
-                                                      [|Ojs.null;((let x313 =
+                                                   (Ojs.call x305 "apply"
+                                                      [|Ojs.null;((let x307 =
                                                                     Ojs.new_obj
                                                                     (Ojs.get_prop_ascii
                                                                     Ojs.global
                                                                     "Array")
                                                                     [||] in
-                                                                   (match x312
+                                                                   (match x306
                                                                     with
                                                                     | 
-                                                                    Some x314
+                                                                    Some x308
                                                                     ->
                                                                     ignore
                                                                     (Ojs.call
-                                                                    x313
+                                                                    x307
                                                                     "push"
                                                                     [|(
                                                                     any_to_js
-                                                                    x314)|])
+                                                                    x308)|])
                                                                     | 
                                                                     None ->
                                                                     ());
-                                                                   x313))|]))))|])
-                 [|(Obj.magic x315);(Obj.magic x316)|])
+                                                                   x307))|]))))|])
+                 [|(Obj.magic x309);(Obj.magic x310)|])
     let (promisify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -1138,36 +1134,36 @@ module Util =
         -> arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> 'TResult Promise.t)
       =
       fun
-        ~fn:(x318 :
+        ~fn:(x312 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 ->
                     callback:(err:any -> result:'TResult -> unit) -> unit)
         ->
-        fun ~arg1:(x325 : 'T1) ->
-          fun ~arg2:(x326 : 'T2) ->
-            fun ~arg3:(x327 : 'T3) ->
+        fun ~arg1:(x319 : 'T1) ->
+          fun ~arg2:(x320 : 'T2) ->
+            fun ~arg3:(x321 : 'T3) ->
               Promise.t_of_js Obj.magic
                 (Ojs.apply
                    (Ojs.call Import.util "promisify"
                       [|(Ojs.fun_to_js 4
-                           (fun (x319 : Ojs.t) ->
-                              fun (x320 : Ojs.t) ->
-                                fun (x321 : Ojs.t) ->
-                                  fun (x322 : Ojs.t) ->
-                                    x318 ~arg1:(Obj.magic x319)
-                                      ~arg2:(Obj.magic x320)
-                                      ~arg3:(Obj.magic x321)
-                                      ~callback:(fun ~err:(x323 : any) ->
+                           (fun (x313 : Ojs.t) ->
+                              fun (x314 : Ojs.t) ->
+                                fun (x315 : Ojs.t) ->
+                                  fun (x316 : Ojs.t) ->
+                                    x312 ~arg1:(Obj.magic x313)
+                                      ~arg2:(Obj.magic x314)
+                                      ~arg3:(Obj.magic x315)
+                                      ~callback:(fun ~err:(x317 : any) ->
                                                    fun
-                                                     ~result:(x324 :
+                                                     ~result:(x318 :
                                                                'TResult)
                                                      ->
                                                      ignore
-                                                       (Ojs.apply x322
-                                                          [|(any_to_js x323);(
-                                                            Obj.magic x324)|]))))|])
-                   [|(Obj.magic x325);(Obj.magic x326);(Obj.magic x327)|])
+                                                       (Ojs.apply x316
+                                                          [|(any_to_js x317);(
+                                                            Obj.magic x318)|]))))|])
+                   [|(Obj.magic x319);(Obj.magic x320);(Obj.magic x321)|])
     let (promisify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -1175,49 +1171,49 @@ module Util =
         -> arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> unit Promise.t)
       =
       fun
-        ~fn:(x329 :
+        ~fn:(x323 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 -> callback:(?err:any -> unit -> unit) -> unit)
         ->
-        fun ~arg1:(x337 : 'T1) ->
-          fun ~arg2:(x338 : 'T2) ->
-            fun ~arg3:(x339 : 'T3) ->
+        fun ~arg1:(x331 : 'T1) ->
+          fun ~arg2:(x332 : 'T2) ->
+            fun ~arg3:(x333 : 'T3) ->
               Promise.t_of_js Ojs.unit_of_js
                 (Ojs.apply
                    (Ojs.call Import.util "promisify"
                       [|(Ojs.fun_to_js 4
-                           (fun (x330 : Ojs.t) ->
-                              fun (x331 : Ojs.t) ->
-                                fun (x332 : Ojs.t) ->
-                                  fun (x333 : Ojs.t) ->
-                                    x329 ~arg1:(Obj.magic x330)
-                                      ~arg2:(Obj.magic x331)
-                                      ~arg3:(Obj.magic x332)
-                                      ~callback:(fun ?err:(x334 : any option)
+                           (fun (x324 : Ojs.t) ->
+                              fun (x325 : Ojs.t) ->
+                                fun (x326 : Ojs.t) ->
+                                  fun (x327 : Ojs.t) ->
+                                    x323 ~arg1:(Obj.magic x324)
+                                      ~arg2:(Obj.magic x325)
+                                      ~arg3:(Obj.magic x326)
+                                      ~callback:(fun ?err:(x328 : any option)
                                                    ->
                                                    fun () ->
                                                      ignore
-                                                       (Ojs.call x333 "apply"
+                                                       (Ojs.call x327 "apply"
                                                           [|Ojs.null;((
-                                                            let x335 =
+                                                            let x329 =
                                                               Ojs.new_obj
                                                                 (Ojs.get_prop_ascii
                                                                    Ojs.global
                                                                    "Array")
                                                                 [||] in
-                                                            (match x334 with
-                                                             | Some x336 ->
+                                                            (match x328 with
+                                                             | Some x330 ->
                                                                  ignore
                                                                    (Ojs.call
-                                                                    x335
+                                                                    x329
                                                                     "push"
                                                                     [|(
                                                                     any_to_js
-                                                                    x336)|])
+                                                                    x330)|])
                                                              | None -> ());
-                                                            x335))|]))))|])
-                   [|(Obj.magic x337);(Obj.magic x338);(Obj.magic x339)|])
+                                                            x329))|]))))|])
+                   [|(Obj.magic x331);(Obj.magic x332);(Obj.magic x333)|])
     let (promisify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -1227,43 +1223,43 @@ module Util =
         -> arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> 'TResult Promise.t)
       =
       fun
-        ~fn:(x341 :
+        ~fn:(x335 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 ->
                     arg4:'T4 ->
                       callback:(err:any -> result:'TResult -> unit) -> unit)
         ->
-        fun ~arg1:(x349 : 'T1) ->
-          fun ~arg2:(x350 : 'T2) ->
-            fun ~arg3:(x351 : 'T3) ->
-              fun ~arg4:(x352 : 'T4) ->
+        fun ~arg1:(x343 : 'T1) ->
+          fun ~arg2:(x344 : 'T2) ->
+            fun ~arg3:(x345 : 'T3) ->
+              fun ~arg4:(x346 : 'T4) ->
                 Promise.t_of_js Obj.magic
                   (Ojs.apply
                      (Ojs.call Import.util "promisify"
                         [|(Ojs.fun_to_js 5
-                             (fun (x342 : Ojs.t) ->
-                                fun (x343 : Ojs.t) ->
-                                  fun (x344 : Ojs.t) ->
-                                    fun (x345 : Ojs.t) ->
-                                      fun (x346 : Ojs.t) ->
-                                        x341 ~arg1:(Obj.magic x342)
-                                          ~arg2:(Obj.magic x343)
-                                          ~arg3:(Obj.magic x344)
-                                          ~arg4:(Obj.magic x345)
-                                          ~callback:(fun ~err:(x347 : any) ->
+                             (fun (x336 : Ojs.t) ->
+                                fun (x337 : Ojs.t) ->
+                                  fun (x338 : Ojs.t) ->
+                                    fun (x339 : Ojs.t) ->
+                                      fun (x340 : Ojs.t) ->
+                                        x335 ~arg1:(Obj.magic x336)
+                                          ~arg2:(Obj.magic x337)
+                                          ~arg3:(Obj.magic x338)
+                                          ~arg4:(Obj.magic x339)
+                                          ~callback:(fun ~err:(x341 : any) ->
                                                        fun
-                                                         ~result:(x348 :
+                                                         ~result:(x342 :
                                                                    'TResult)
                                                          ->
                                                          ignore
-                                                           (Ojs.apply x346
+                                                           (Ojs.apply x340
                                                               [|(any_to_js
-                                                                   x347);(
+                                                                   x341);(
                                                                 Obj.magic
-                                                                  x348)|]))))|])
-                     [|(Obj.magic x349);(Obj.magic x350);(Obj.magic x351);(
-                       Obj.magic x352)|])
+                                                                  x342)|]))))|])
+                     [|(Obj.magic x343);(Obj.magic x344);(Obj.magic x345);(
+                       Obj.magic x346)|])
     let (promisify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -1272,60 +1268,60 @@ module Util =
         -> arg1:'T1 -> arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> unit Promise.t)
       =
       fun
-        ~fn:(x354 :
+        ~fn:(x348 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 ->
                     arg4:'T4 -> callback:(?err:any -> unit -> unit) -> unit)
         ->
-        fun ~arg1:(x363 : 'T1) ->
-          fun ~arg2:(x364 : 'T2) ->
-            fun ~arg3:(x365 : 'T3) ->
-              fun ~arg4:(x366 : 'T4) ->
+        fun ~arg1:(x357 : 'T1) ->
+          fun ~arg2:(x358 : 'T2) ->
+            fun ~arg3:(x359 : 'T3) ->
+              fun ~arg4:(x360 : 'T4) ->
                 Promise.t_of_js Ojs.unit_of_js
                   (Ojs.apply
                      (Ojs.call Import.util "promisify"
                         [|(Ojs.fun_to_js 5
-                             (fun (x355 : Ojs.t) ->
-                                fun (x356 : Ojs.t) ->
-                                  fun (x357 : Ojs.t) ->
-                                    fun (x358 : Ojs.t) ->
-                                      fun (x359 : Ojs.t) ->
-                                        x354 ~arg1:(Obj.magic x355)
-                                          ~arg2:(Obj.magic x356)
-                                          ~arg3:(Obj.magic x357)
-                                          ~arg4:(Obj.magic x358)
+                             (fun (x349 : Ojs.t) ->
+                                fun (x350 : Ojs.t) ->
+                                  fun (x351 : Ojs.t) ->
+                                    fun (x352 : Ojs.t) ->
+                                      fun (x353 : Ojs.t) ->
+                                        x348 ~arg1:(Obj.magic x349)
+                                          ~arg2:(Obj.magic x350)
+                                          ~arg3:(Obj.magic x351)
+                                          ~arg4:(Obj.magic x352)
                                           ~callback:(fun
-                                                       ?err:(x360 :
+                                                       ?err:(x354 :
                                                               any option)
                                                        ->
                                                        fun () ->
                                                          ignore
-                                                           (Ojs.call x359
+                                                           (Ojs.call x353
                                                               "apply"
                                                               [|Ojs.null;((
-                                                                let x361 =
+                                                                let x355 =
                                                                   Ojs.new_obj
                                                                     (
                                                                     Ojs.get_prop_ascii
                                                                     Ojs.global
                                                                     "Array")
                                                                     [||] in
-                                                                (match x360
+                                                                (match x354
                                                                  with
-                                                                 | Some x362
+                                                                 | Some x356
                                                                     ->
                                                                     ignore
                                                                     (Ojs.call
-                                                                    x361
+                                                                    x355
                                                                     "push"
                                                                     [|(
                                                                     any_to_js
-                                                                    x362)|])
+                                                                    x356)|])
                                                                  | None -> ());
-                                                                x361))|]))))|])
-                     [|(Obj.magic x363);(Obj.magic x364);(Obj.magic x365);(
-                       Obj.magic x366)|])
+                                                                x355))|]))))|])
+                     [|(Obj.magic x357);(Obj.magic x358);(Obj.magic x359);(
+                       Obj.magic x360)|])
     let (promisify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -1338,7 +1334,7 @@ module Util =
           arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> arg5:'T5 -> 'TResult Promise.t)
       =
       fun
-        ~fn:(x368 :
+        ~fn:(x362 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 ->
@@ -1346,44 +1342,44 @@ module Util =
                       arg5:'T5 ->
                         callback:(err:any -> result:'TResult -> unit) -> unit)
         ->
-        fun ~arg1:(x377 : 'T1) ->
-          fun ~arg2:(x378 : 'T2) ->
-            fun ~arg3:(x379 : 'T3) ->
-              fun ~arg4:(x380 : 'T4) ->
-                fun ~arg5:(x381 : 'T5) ->
+        fun ~arg1:(x371 : 'T1) ->
+          fun ~arg2:(x372 : 'T2) ->
+            fun ~arg3:(x373 : 'T3) ->
+              fun ~arg4:(x374 : 'T4) ->
+                fun ~arg5:(x375 : 'T5) ->
                   Promise.t_of_js Obj.magic
                     (Ojs.apply
                        (Ojs.call Import.util "promisify"
                           [|(Ojs.fun_to_js 6
-                               (fun (x369 : Ojs.t) ->
-                                  fun (x370 : Ojs.t) ->
-                                    fun (x371 : Ojs.t) ->
-                                      fun (x372 : Ojs.t) ->
-                                        fun (x373 : Ojs.t) ->
-                                          fun (x374 : Ojs.t) ->
-                                            x368 ~arg1:(Obj.magic x369)
-                                              ~arg2:(Obj.magic x370)
-                                              ~arg3:(Obj.magic x371)
-                                              ~arg4:(Obj.magic x372)
-                                              ~arg5:(Obj.magic x373)
+                               (fun (x363 : Ojs.t) ->
+                                  fun (x364 : Ojs.t) ->
+                                    fun (x365 : Ojs.t) ->
+                                      fun (x366 : Ojs.t) ->
+                                        fun (x367 : Ojs.t) ->
+                                          fun (x368 : Ojs.t) ->
+                                            x362 ~arg1:(Obj.magic x363)
+                                              ~arg2:(Obj.magic x364)
+                                              ~arg3:(Obj.magic x365)
+                                              ~arg4:(Obj.magic x366)
+                                              ~arg5:(Obj.magic x367)
                                               ~callback:(fun
-                                                           ~err:(x375 : any)
+                                                           ~err:(x369 : any)
                                                            ->
                                                            fun
                                                              ~result:
-                                                             (x376 :
+                                                             (x370 :
                                                                'TResult)
                                                              ->
                                                              ignore
                                                                (Ojs.apply
-                                                                  x374
+                                                                  x368
                                                                   [|(
                                                                     any_to_js
-                                                                    x375);(
+                                                                    x369);(
                                                                     Obj.magic
-                                                                    x376)|]))))|])
-                       [|(Obj.magic x377);(Obj.magic x378);(Obj.magic x379);(
-                         Obj.magic x380);(Obj.magic x381)|])
+                                                                    x370)|]))))|])
+                       [|(Obj.magic x371);(Obj.magic x372);(Obj.magic x373);(
+                         Obj.magic x374);(Obj.magic x375)|])
     let (promisify :
       fn:(arg1:'T1 ->
             arg2:'T2 ->
@@ -1395,43 +1391,43 @@ module Util =
           arg2:'T2 -> arg3:'T3 -> arg4:'T4 -> arg5:'T5 -> unit Promise.t)
       =
       fun
-        ~fn:(x383 :
+        ~fn:(x377 :
               arg1:'T1 ->
                 arg2:'T2 ->
                   arg3:'T3 ->
                     arg4:'T4 ->
                       arg5:'T5 -> callback:(?err:any -> unit -> unit) -> unit)
         ->
-        fun ~arg1:(x393 : 'T1) ->
-          fun ~arg2:(x394 : 'T2) ->
-            fun ~arg3:(x395 : 'T3) ->
-              fun ~arg4:(x396 : 'T4) ->
-                fun ~arg5:(x397 : 'T5) ->
+        fun ~arg1:(x387 : 'T1) ->
+          fun ~arg2:(x388 : 'T2) ->
+            fun ~arg3:(x389 : 'T3) ->
+              fun ~arg4:(x390 : 'T4) ->
+                fun ~arg5:(x391 : 'T5) ->
                   Promise.t_of_js Ojs.unit_of_js
                     (Ojs.apply
                        (Ojs.call Import.util "promisify"
                           [|(Ojs.fun_to_js 6
-                               (fun (x384 : Ojs.t) ->
-                                  fun (x385 : Ojs.t) ->
-                                    fun (x386 : Ojs.t) ->
-                                      fun (x387 : Ojs.t) ->
-                                        fun (x388 : Ojs.t) ->
-                                          fun (x389 : Ojs.t) ->
-                                            x383 ~arg1:(Obj.magic x384)
-                                              ~arg2:(Obj.magic x385)
-                                              ~arg3:(Obj.magic x386)
-                                              ~arg4:(Obj.magic x387)
-                                              ~arg5:(Obj.magic x388)
+                               (fun (x378 : Ojs.t) ->
+                                  fun (x379 : Ojs.t) ->
+                                    fun (x380 : Ojs.t) ->
+                                      fun (x381 : Ojs.t) ->
+                                        fun (x382 : Ojs.t) ->
+                                          fun (x383 : Ojs.t) ->
+                                            x377 ~arg1:(Obj.magic x378)
+                                              ~arg2:(Obj.magic x379)
+                                              ~arg3:(Obj.magic x380)
+                                              ~arg4:(Obj.magic x381)
+                                              ~arg5:(Obj.magic x382)
                                               ~callback:(fun
-                                                           ?err:(x390 :
+                                                           ?err:(x384 :
                                                                   any option)
                                                            ->
                                                            fun () ->
                                                              ignore
-                                                               (Ojs.call x389
+                                                               (Ojs.call x383
                                                                   "apply"
                                                                   [|Ojs.null;((
-                                                                    let x391
+                                                                    let x385
                                                                     =
                                                                     Ojs.new_obj
                                                                     (Ojs.get_prop_ascii
@@ -1439,28 +1435,28 @@ module Util =
                                                                     "Array")
                                                                     [||] in
                                                                     (
-                                                                    match x390
+                                                                    match x384
                                                                     with
                                                                     | 
-                                                                    Some x392
+                                                                    Some x386
                                                                     ->
                                                                     ignore
                                                                     (Ojs.call
-                                                                    x391
+                                                                    x385
                                                                     "push"
                                                                     [|(
                                                                     any_to_js
-                                                                    x392)|])
+                                                                    x386)|])
                                                                     | 
                                                                     None ->
                                                                     ());
-                                                                    x391))|]))))|])
-                       [|(Obj.magic x393);(Obj.magic x394);(Obj.magic x395);(
-                         Obj.magic x396);(Obj.magic x397)|])
+                                                                    x385))|]))))|])
+                       [|(Obj.magic x387);(Obj.magic x388);(Obj.magic x389);(
+                         Obj.magic x390);(Obj.magic x391)|])
     let (promisify : fn:untyped_function -> untyped_function) =
-      fun ~fn:(x399 : untyped_function) ->
+      fun ~fn:(x393 : untyped_function) ->
         untyped_function_of_js
-          (Ojs.call Import.util "promisify" [|(untyped_function_to_js x399)|])
+          (Ojs.call Import.util "promisify" [|(untyped_function_to_js x393)|])
     module Promisify =
       struct
         let (custom : any) =
@@ -1471,266 +1467,266 @@ module Util =
     module Types =
       struct
         let (is_any_array_buffer : object_:any -> bool) =
-          fun ~object_:(x400 : any) ->
+          fun ~object_:(x394 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isAnyArrayBuffer" [|(any_to_js x400)|])
+                 "isAnyArrayBuffer" [|(any_to_js x394)|])
         let (is_arguments_object : object_:any -> bool) =
+          fun ~object_:(x395 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isArgumentsObject" [|(any_to_js x395)|])
+        let (is_array_buffer : object_:any -> bool) =
+          fun ~object_:(x396 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isArrayBuffer" [|(any_to_js x396)|])
+        let (is_array_buffer_view : object_:any -> bool) =
+          fun ~object_:(x397 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isArrayBufferView" [|(any_to_js x397)|])
+        let (is_async_function : object_:any -> bool) =
+          fun ~object_:(x398 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isAsyncFunction" [|(any_to_js x398)|])
+        let (is_big_int64Array : value:any -> bool) =
+          fun ~value:(x399 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isBigInt64Array" [|(any_to_js x399)|])
+        let (is_big_uint64Array : value:any -> bool) =
+          fun ~value:(x400 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isBigUint64Array" [|(any_to_js x400)|])
+        let (is_boolean_object : object_:any -> bool) =
           fun ~object_:(x401 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isArgumentsObject" [|(any_to_js x401)|])
-        let (is_array_buffer : object_:any -> bool) =
+                 "isBooleanObject" [|(any_to_js x401)|])
+        let (is_boxed_primitive : object_:any -> bool) =
           fun ~object_:(x402 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isArrayBuffer" [|(any_to_js x402)|])
-        let (is_array_buffer_view : object_:any -> bool) =
+                 "isBoxedPrimitive" [|(any_to_js x402)|])
+        let (is_data_view : object_:any -> bool) =
           fun ~object_:(x403 : any) ->
             Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isArrayBufferView" [|(any_to_js x403)|])
-        let (is_async_function : object_:any -> bool) =
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isDataView"
+                 [|(any_to_js x403)|])
+        let (is_date : object_:any -> bool) =
           fun ~object_:(x404 : any) ->
             Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isAsyncFunction" [|(any_to_js x404)|])
-        let (is_big_int64Array : value:any -> bool) =
-          fun ~value:(x405 : any) ->
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isDate"
+                 [|(any_to_js x404)|])
+        let (is_external : object_:any -> bool) =
+          fun ~object_:(x405 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isExternal"
+                 [|(any_to_js x405)|])
+        let (is_float32Array : object_:any -> bool) =
+          fun ~object_:(x406 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isBigInt64Array" [|(any_to_js x405)|])
-        let (is_big_uint64Array : value:any -> bool) =
-          fun ~value:(x406 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isBigUint64Array" [|(any_to_js x406)|])
-        let (is_boolean_object : object_:any -> bool) =
+                 "isFloat32Array" [|(any_to_js x406)|])
+        let (is_float64Array : object_:any -> bool) =
           fun ~object_:(x407 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isBooleanObject" [|(any_to_js x407)|])
-        let (is_boxed_primitive : object_:any -> bool) =
+                 "isFloat64Array" [|(any_to_js x407)|])
+        let (is_generator_function : object_:any -> bool) =
           fun ~object_:(x408 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isBoxedPrimitive" [|(any_to_js x408)|])
-        let (is_data_view : object_:any -> bool) =
+                 "isGeneratorFunction" [|(any_to_js x408)|])
+        let (is_generator_object : object_:any -> bool) =
           fun ~object_:(x409 : any) ->
             Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isDataView"
-                 [|(any_to_js x409)|])
-        let (is_date : object_:any -> bool) =
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isGeneratorObject" [|(any_to_js x409)|])
+        let (is_int8Array : object_:any -> bool) =
           fun ~object_:(x410 : any) ->
             Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isDate"
-                 [|(any_to_js x410)|])
-        let (is_external : object_:any -> bool) =
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isInt8Array" [|(any_to_js x410)|])
+        let (is_int16Array : object_:any -> bool) =
           fun ~object_:(x411 : any) ->
             Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isExternal"
-                 [|(any_to_js x411)|])
-        let (is_float32Array : object_:any -> bool) =
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isInt16Array" [|(any_to_js x411)|])
+        let (is_int32Array : object_:any -> bool) =
           fun ~object_:(x412 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isFloat32Array" [|(any_to_js x412)|])
-        let (is_float64Array : object_:any -> bool) =
-          fun ~object_:(x413 : any) ->
+                 "isInt32Array" [|(any_to_js x412)|])
+        let (is_map : object_:('T, AnonymousInterface0.t) union2 -> bool) =
+          fun ~object_:(x413 : ('T, AnonymousInterface0.t) union2) ->
             Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isFloat64Array" [|(any_to_js x413)|])
-        let (is_generator_function : object_:any -> bool) =
-          fun ~object_:(x414 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isGeneratorFunction" [|(any_to_js x414)|])
-        let (is_generator_object : object_:any -> bool) =
-          fun ~object_:(x415 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isGeneratorObject" [|(any_to_js x415)|])
-        let (is_int8Array : object_:any -> bool) =
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isMap"
+                 [|(union2_to_js Obj.magic AnonymousInterface0.t_to_js x413)|])
+        let (is_map_iterator : object_:any -> bool) =
           fun ~object_:(x416 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isInt8Array" [|(any_to_js x416)|])
-        let (is_int16Array : object_:any -> bool) =
-          fun ~object_:(x417 : any) ->
+                 "isMapIterator" [|(any_to_js x416)|])
+        let (is_module_namespace_object : value:any -> bool) =
+          fun ~value:(x417 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isInt16Array" [|(any_to_js x417)|])
-        let (is_int32Array : object_:any -> bool) =
+                 "isModuleNamespaceObject" [|(any_to_js x417)|])
+        let (is_native_error : object_:any -> bool) =
           fun ~object_:(x418 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isInt32Array" [|(any_to_js x418)|])
-        let (is_map : object_:('T, AnonymousInterface0.t) union2 -> bool) =
-          fun ~object_:(x419 : ('T, AnonymousInterface0.t) union2) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isMap"
-                 [|(union2_to_js Obj.magic AnonymousInterface0.t_to_js x419)|])
-        let (is_map_iterator : object_:any -> bool) =
-          fun ~object_:(x422 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isMapIterator" [|(any_to_js x422)|])
-        let (is_module_namespace_object : value:any -> bool) =
-          fun ~value:(x423 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isModuleNamespaceObject" [|(any_to_js x423)|])
-        let (is_native_error : object_:any -> bool) =
-          fun ~object_:(x424 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isNativeError" [|(any_to_js x424)|])
+                 "isNativeError" [|(any_to_js x418)|])
         let (is_number_object : object_:any -> bool) =
-          fun ~object_:(x425 : any) ->
+          fun ~object_:(x419 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isNumberObject" [|(any_to_js x425)|])
+                 "isNumberObject" [|(any_to_js x419)|])
         let (is_promise : object_:any -> bool) =
-          fun ~object_:(x426 : any) ->
+          fun ~object_:(x420 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isPromise"
-                 [|(any_to_js x426)|])
+                 [|(any_to_js x420)|])
         let (is_proxy : object_:any -> bool) =
-          fun ~object_:(x427 : any) ->
+          fun ~object_:(x421 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isProxy"
-                 [|(any_to_js x427)|])
+                 [|(any_to_js x421)|])
         let (is_reg_exp : object_:any -> bool) =
-          fun ~object_:(x428 : any) ->
+          fun ~object_:(x422 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isRegExp"
-                 [|(any_to_js x428)|])
+                 [|(any_to_js x422)|])
         let (is_set : object_:('T, AnonymousInterface0.t) union2 -> bool) =
-          fun ~object_:(x429 : ('T, AnonymousInterface0.t) union2) ->
+          fun ~object_:(x423 : ('T, AnonymousInterface0.t) union2) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isSet"
-                 [|(union2_to_js Obj.magic AnonymousInterface0.t_to_js x429)|])
+                 [|(union2_to_js Obj.magic AnonymousInterface0.t_to_js x423)|])
         let (is_set_iterator : object_:any -> bool) =
+          fun ~object_:(x426 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isSetIterator" [|(any_to_js x426)|])
+        let (is_shared_array_buffer : object_:any -> bool) =
+          fun ~object_:(x427 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isSharedArrayBuffer" [|(any_to_js x427)|])
+        let (is_string_object : object_:any -> bool) =
+          fun ~object_:(x428 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isStringObject" [|(any_to_js x428)|])
+        let (is_symbol_object : object_:any -> bool) =
+          fun ~object_:(x429 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isSymbolObject" [|(any_to_js x429)|])
+        let (is_typed_array : object_:any -> bool) =
+          fun ~object_:(x430 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isTypedArray" [|(any_to_js x430)|])
+        let (is_uint8Array : object_:any -> bool) =
+          fun ~object_:(x431 : any) ->
+            Ojs.bool_of_js
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
+                 "isUint8Array" [|(any_to_js x431)|])
+        let (is_uint8ClampedArray : object_:any -> bool) =
           fun ~object_:(x432 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isSetIterator" [|(any_to_js x432)|])
-        let (is_shared_array_buffer : object_:any -> bool) =
+                 "isUint8ClampedArray" [|(any_to_js x432)|])
+        let (is_uint16Array : object_:any -> bool) =
           fun ~object_:(x433 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isSharedArrayBuffer" [|(any_to_js x433)|])
-        let (is_string_object : object_:any -> bool) =
+                 "isUint16Array" [|(any_to_js x433)|])
+        let (is_uint32Array : object_:any -> bool) =
           fun ~object_:(x434 : any) ->
             Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isStringObject" [|(any_to_js x434)|])
-        let (is_symbol_object : object_:any -> bool) =
+                 "isUint32Array" [|(any_to_js x434)|])
+        let (is_weak_map : object_:any -> bool) =
           fun ~object_:(x435 : any) ->
             Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isSymbolObject" [|(any_to_js x435)|])
-        let (is_typed_array : object_:any -> bool) =
+              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isWeakMap"
+                 [|(any_to_js x435)|])
+        let (is_weak_set : object_:any -> bool) =
           fun ~object_:(x436 : any) ->
             Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isTypedArray" [|(any_to_js x436)|])
-        let (is_uint8Array : object_:any -> bool) =
-          fun ~object_:(x437 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isUint8Array" [|(any_to_js x437)|])
-        let (is_uint8ClampedArray : object_:any -> bool) =
-          fun ~object_:(x438 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isUint8ClampedArray" [|(any_to_js x438)|])
-        let (is_uint16Array : object_:any -> bool) =
-          fun ~object_:(x439 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isUint16Array" [|(any_to_js x439)|])
-        let (is_uint32Array : object_:any -> bool) =
-          fun ~object_:(x440 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types")
-                 "isUint32Array" [|(any_to_js x440)|])
-        let (is_weak_map : object_:any -> bool) =
-          fun ~object_:(x441 : any) ->
-            Ojs.bool_of_js
-              (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isWeakMap"
-                 [|(any_to_js x441)|])
-        let (is_weak_set : object_:any -> bool) =
-          fun ~object_:(x442 : any) ->
-            Ojs.bool_of_js
               (Ojs.call (Ojs.get_prop_ascii Import.util "types") "isWeakSet"
-                 [|(any_to_js x442)|])
+                 [|(any_to_js x436)|])
       end
     module TextDecoder =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x444 : Ojs.t) -> x444
-        and t_to_js : t -> Ojs.t = fun (x443 : Ojs.t) -> x443
+        let rec t_of_js : Ojs.t -> t = fun (x438 : Ojs.t) -> x438
+        and t_to_js : t -> Ojs.t = fun (x437 : Ojs.t) -> x437
         let (get_encoding : t -> string) =
-          fun (x445 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x445) "encoding")
+          fun (x439 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x439) "encoding")
         let (get_fatal : t -> bool) =
-          fun (x446 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x446) "fatal")
+          fun (x440 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x440) "fatal")
         let (get_ignore_bom : t -> bool) =
-          fun (x447 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x447) "ignoreBOM")
+          fun (x441 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x441) "ignoreBOM")
         let (create :
           ?encoding:string -> ?options:AnonymousInterface1.t -> unit -> t) =
-          fun ?encoding:(x448 : string option) ->
-            fun ?options:(x449 : AnonymousInterface1.t option) ->
+          fun ?encoding:(x442 : string option) ->
+            fun ?options:(x443 : AnonymousInterface1.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii Import.util "TextDecoder")
-                     (let x450 =
+                     (let x444 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
-                      (match x448 with
-                       | Some x452 ->
+                      (match x442 with
+                       | Some x446 ->
                            ignore
-                             (Ojs.call x450 "push"
-                                [|(Ojs.string_to_js x452)|])
+                             (Ojs.call x444 "push"
+                                [|(Ojs.string_to_js x446)|])
                        | None -> ());
-                      (match x449 with
-                       | Some x451 ->
+                      (match x443 with
+                       | Some x445 ->
                            ignore
-                             (Ojs.call x450 "push"
-                                [|(AnonymousInterface1.t_to_js x451)|])
+                             (Ojs.call x444 "push"
+                                [|(AnonymousInterface1.t_to_js x445)|])
                        | None -> ());
-                      x450))
+                      x444))
         let (decode :
           t ->
             ?input:(ArrayBuffer.t, ArrayBufferView.t) union2 or_null ->
               ?options:AnonymousInterface2.t -> unit -> string)
           =
-          fun (x461 : t) ->
+          fun (x455 : t) ->
             fun
-              ?input:(x453 :
+              ?input:(x447 :
                        (ArrayBuffer.t, ArrayBufferView.t) union2 or_null
                          option)
               ->
-              fun ?options:(x454 : AnonymousInterface2.t option) ->
+              fun ?options:(x448 : AnonymousInterface2.t option) ->
                 fun () ->
                   Ojs.string_of_js
-                    (let x462 = t_to_js x461 in
-                     Ojs.call (Ojs.get_prop_ascii x462 "decode") "apply"
-                       [|x462;((let x455 =
+                    (let x456 = t_to_js x455 in
+                     Ojs.call (Ojs.get_prop_ascii x456 "decode") "apply"
+                       [|x456;((let x449 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x453 with
-                                 | Some x457 ->
+                                (match x447 with
+                                 | Some x451 ->
                                      ignore
-                                       (Ojs.call x455 "push"
+                                       (Ojs.call x449 "push"
                                           [|(or_null_to_js
                                                (fun
-                                                  (x458 :
+                                                  (x452 :
                                                     (ArrayBuffer.t,
                                                       ArrayBufferView.t)
                                                       union2)
@@ -1738,70 +1734,70 @@ module Util =
                                                   union2_to_js
                                                     ArrayBuffer.t_to_js
                                                     ArrayBufferView.t_to_js
-                                                    x458) x457)|])
+                                                    x452) x451)|])
                                  | None -> ());
-                                (match x454 with
-                                 | Some x456 ->
+                                (match x448 with
+                                 | Some x450 ->
                                      ignore
-                                       (Ojs.call x455 "push"
-                                          [|(AnonymousInterface2.t_to_js x456)|])
+                                       (Ojs.call x449 "push"
+                                          [|(AnonymousInterface2.t_to_js x450)|])
                                  | None -> ());
-                                x455))|])
+                                x449))|])
       end
     module EncodeIntoResult =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x464 : Ojs.t) -> x464
-        and t_to_js : t -> Ojs.t = fun (x463 : Ojs.t) -> x463
+        let rec t_of_js : Ojs.t -> t = fun (x458 : Ojs.t) -> x458
+        and t_to_js : t -> Ojs.t = fun (x457 : Ojs.t) -> x457
         let (get_read : t -> int) =
-          fun (x465 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x465) "read")
+          fun (x459 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x459) "read")
         let (set_read : t -> int -> unit) =
-          fun (x466 : t) ->
-            fun (x467 : int) ->
-              Ojs.set_prop_ascii (t_to_js x466) "read" (Ojs.int_to_js x467)
+          fun (x460 : t) ->
+            fun (x461 : int) ->
+              Ojs.set_prop_ascii (t_to_js x460) "read" (Ojs.int_to_js x461)
         let (get_written : t -> int) =
-          fun (x468 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x468) "written")
+          fun (x462 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x462) "written")
         let (set_written : t -> int -> unit) =
-          fun (x469 : t) ->
-            fun (x470 : int) ->
-              Ojs.set_prop_ascii (t_to_js x469) "written"
-                (Ojs.int_to_js x470)
+          fun (x463 : t) ->
+            fun (x464 : int) ->
+              Ojs.set_prop_ascii (t_to_js x463) "written"
+                (Ojs.int_to_js x464)
       end
     module TextEncoder =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x472 : Ojs.t) -> x472
-        and t_to_js : t -> Ojs.t = fun (x471 : Ojs.t) -> x471
+        let rec t_of_js : Ojs.t -> t = fun (x466 : Ojs.t) -> x466
+        and t_to_js : t -> Ojs.t = fun (x465 : Ojs.t) -> x465
         let (get_encoding : t -> string) =
-          fun (x473 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x473) "encoding")
+          fun (x467 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x467) "encoding")
         let (encode : t -> ?input:string -> unit -> Uint8Array.t) =
-          fun (x477 : t) ->
-            fun ?input:(x474 : string option) ->
+          fun (x471 : t) ->
+            fun ?input:(x468 : string option) ->
               fun () ->
                 Uint8Array.t_of_js
-                  (let x478 = t_to_js x477 in
-                   Ojs.call (Ojs.get_prop_ascii x478 "encode") "apply"
-                     [|x478;((let x475 =
+                  (let x472 = t_to_js x471 in
+                   Ojs.call (Ojs.get_prop_ascii x472 "encode") "apply"
+                     [|x472;((let x469 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x474 with
-                               | Some x476 ->
+                              (match x468 with
+                               | Some x470 ->
                                    ignore
-                                     (Ojs.call x475 "push"
-                                        [|(Ojs.string_to_js x476)|])
+                                     (Ojs.call x469 "push"
+                                        [|(Ojs.string_to_js x470)|])
                                | None -> ());
-                              x475))|])
+                              x469))|])
         let (encode_into :
           t -> input:string -> output:Uint8Array.t -> EncodeIntoResult.t) =
-          fun (x481 : t) ->
-            fun ~input:(x479 : string) ->
-              fun ~output:(x480 : Uint8Array.t) ->
+          fun (x475 : t) ->
+            fun ~input:(x473 : string) ->
+              fun ~output:(x474 : Uint8Array.t) ->
                 EncodeIntoResult.t_of_js
-                  (Ojs.call (t_to_js x481) "encodeInto"
-                     [|(Ojs.string_to_js x479);(Uint8Array.t_to_js x480)|])
+                  (Ojs.call (t_to_js x475) "encodeInto"
+                     [|(Ojs.string_to_js x473);(Uint8Array.t_to_js x474)|])
       end
   end

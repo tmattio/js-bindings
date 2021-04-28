@@ -242,8 +242,6 @@ module Worker_threads : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "off"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "MessagePort"]
 
@@ -725,8 +723,6 @@ module Worker_threads : sig
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "off"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Worker"]
 

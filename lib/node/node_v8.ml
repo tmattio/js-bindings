@@ -290,72 +290,60 @@ module V8 =
                    [|(TypedArray.t_to_js x89)|])
       end
     module DefaultSerializer =
+      struct include struct include Serializer end end
+    module Deserializer =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x92 : Ojs.t) -> x92
         and t_to_js : t -> Ojs.t = fun (x91 : Ojs.t) -> x91
-        let (cast : t -> Serializer.t) =
-          fun (x93 : t) -> Serializer.t_of_js (t_to_js x93)
-      end
-    module Deserializer =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x95 : Ojs.t) -> x95
-        and t_to_js : t -> Ojs.t = fun (x94 : Ojs.t) -> x94
         let (create : data:TypedArray.t -> t) =
-          fun ~data:(x96 : TypedArray.t) ->
+          fun ~data:(x93 : TypedArray.t) ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.v8 "Deserializer")
-                 [|(TypedArray.t_to_js x96)|])
+                 [|(TypedArray.t_to_js x93)|])
         let (read_header : t -> bool) =
-          fun (x97 : t) ->
-            Ojs.bool_of_js (Ojs.call (t_to_js x97) "readHeader" [||])
+          fun (x94 : t) ->
+            Ojs.bool_of_js (Ojs.call (t_to_js x94) "readHeader" [||])
         let (read_value : t -> any) =
-          fun (x98 : t) ->
-            any_of_js (Ojs.call (t_to_js x98) "readValue" [||])
+          fun (x95 : t) ->
+            any_of_js (Ojs.call (t_to_js x95) "readValue" [||])
         let (transfer_array_buffer :
           t -> id:int -> array_buffer:ArrayBuffer.t -> unit) =
-          fun (x101 : t) ->
-            fun ~id:(x99 : int) ->
-              fun ~array_buffer:(x100 : ArrayBuffer.t) ->
+          fun (x98 : t) ->
+            fun ~id:(x96 : int) ->
+              fun ~array_buffer:(x97 : ArrayBuffer.t) ->
                 ignore
-                  (Ojs.call (t_to_js x101) "transferArrayBuffer"
-                     [|(Ojs.int_to_js x99);(ArrayBuffer.t_to_js x100)|])
+                  (Ojs.call (t_to_js x98) "transferArrayBuffer"
+                     [|(Ojs.int_to_js x96);(ArrayBuffer.t_to_js x97)|])
         let (get_wire_format_version : t -> int) =
-          fun (x102 : t) ->
+          fun (x99 : t) ->
             Ojs.int_of_js
-              (Ojs.call (t_to_js x102) "getWireFormatVersion" [||])
+              (Ojs.call (t_to_js x99) "getWireFormatVersion" [||])
         let (read_uint32 : t -> int) =
-          fun (x103 : t) ->
-            Ojs.int_of_js (Ojs.call (t_to_js x103) "readUint32" [||])
+          fun (x100 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x100) "readUint32" [||])
         let (read_uint64 : t -> (int * int)) =
-          fun (x104 : t) ->
-            let x105 = Ojs.call (t_to_js x104) "readUint64" [||] in
-            ((Ojs.int_of_js (Ojs.array_get x105 0)),
-              (Ojs.int_of_js (Ojs.array_get x105 1)))
+          fun (x101 : t) ->
+            let x102 = Ojs.call (t_to_js x101) "readUint64" [||] in
+            ((Ojs.int_of_js (Ojs.array_get x102 0)),
+              (Ojs.int_of_js (Ojs.array_get x102 1)))
         let (read_double : t -> int) =
-          fun (x106 : t) ->
-            Ojs.int_of_js (Ojs.call (t_to_js x106) "readDouble" [||])
+          fun (x103 : t) ->
+            Ojs.int_of_js (Ojs.call (t_to_js x103) "readDouble" [||])
         let (read_raw_bytes : t -> length:int -> Buffer.t) =
-          fun (x108 : t) ->
-            fun ~length:(x107 : int) ->
+          fun (x105 : t) ->
+            fun ~length:(x104 : int) ->
               Buffer.t_of_js
-                (Ojs.call (t_to_js x108) "readRawBytes"
-                   [|(Ojs.int_to_js x107)|])
+                (Ojs.call (t_to_js x105) "readRawBytes"
+                   [|(Ojs.int_to_js x104)|])
       end
     module DefaultDeserializer =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x110 : Ojs.t) -> x110
-        and t_to_js : t -> Ojs.t = fun (x109 : Ojs.t) -> x109
-        let (cast : t -> Deserializer.t) =
-          fun (x111 : t) -> Deserializer.t_of_js (t_to_js x111)
-      end
+      struct include struct include Deserializer end end
     let (serialize : value:any -> Buffer.t) =
-      fun ~value:(x112 : any) ->
-        Buffer.t_of_js (Ojs.call Import.v8 "serialize" [|(any_to_js x112)|])
+      fun ~value:(x106 : any) ->
+        Buffer.t_of_js (Ojs.call Import.v8 "serialize" [|(any_to_js x106)|])
     let (deserialize : data:TypedArray.t -> any) =
-      fun ~data:(x113 : TypedArray.t) ->
+      fun ~data:(x107 : TypedArray.t) ->
         any_of_js
-          (Ojs.call Import.v8 "deserialize" [|(TypedArray.t_to_js x113)|])
+          (Ojs.call Import.v8 "deserialize" [|(TypedArray.t_to_js x107)|])
   end

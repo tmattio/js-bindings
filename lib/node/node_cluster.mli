@@ -120,55 +120,114 @@ module Cluster : sig
     val set_exited_after_disconnect : t -> bool -> unit
       [@@js.set "exitedAfterDisconnect"]
 
-    val add_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module DisconnectListener : sig
+      type t = unit -> unit
 
-    val add_listener'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(error:Error.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val add_listener'''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module ErrorListener : sig
+      type t = error:Error.t -> unit
 
-    val add_listener''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(address:Address.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (message:any -> handle:(Net.Server.t, Net.Socket.t) union2 -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val add_listener''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module ExitListener : sig
+      type t = code:int -> signal:string -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module ListeningListener : sig
+      type t = address:Address.t -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module MessageListener : sig
+      type t = message:any -> handle:(Net.Server.t, Net.Socket.t) union2 -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module OnlineListener : sig
+      type t = unit -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    type listener =
+      ([ `Disconnect of DisconnectListener.t
+       | `Error of ErrorListener.t
+       | `Exit of ExitListener.t
+       | `Listening of ListeningListener.t
+       | `Message of MessageListener.t
+       | `Online of OnlineListener.t
+       ]
+      [@js.union])
+
+    [@@@js.stop]
+
+    val on : t -> listener -> unit
+
+    val add_listener : t -> listener -> unit
+
+    val once : t -> listener -> unit
+
+    val prepend_listener : t -> listener -> unit
+
+    val prepend_once_listener : t -> listener -> unit
+
+    [@@@js.start]
+
+    [@@@js.implem
+    val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+    val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+    val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+    val prepend_listener : t -> string -> Ojs.t -> unit
+      [@@js.call "prependListener"]
+
+    val prepend_once_listener : t -> string -> Ojs.t -> unit
+      [@@js.call "prependOnceListener"]
+
+    let with_listener_fn fn t = function
+      | `Disconnect f ->
+        fn t "disconnect" @@ [%js.of: DisconnectListener.t] f
+      | `Error f ->
+        fn t "error" @@ [%js.of: ErrorListener.t] f
+      | `Exit f ->
+        fn t "exit" @@ [%js.of: ExitListener.t] f
+      | `Listening f ->
+        fn t "listening" @@ [%js.of: ListeningListener.t] f
+      | `Message f ->
+        fn t "message" @@ [%js.of: MessageListener.t] f
+      | `Online f ->
+        fn t "online" @@ [%js.of: OnlineListener.t] f
+
+    let on = with_listener_fn on
+
+    let add_listener = with_listener_fn add_listener
+
+    let once = with_listener_fn once
+
+    let prepend_listener = with_listener_fn prepend_listener
+
+    let prepend_once_listener = with_listener_fn prepend_once_listener]
 
     val emit
       :  t
@@ -177,13 +236,13 @@ module Cluster : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit' : t -> event:([ `disconnect ][@js.enum]) -> bool
+    val emit_disconnect : t -> event:([ `disconnect ][@js.enum]) -> bool
       [@@js.call "emit"]
 
-    val emit'' : t -> event:([ `error ][@js.enum]) -> error:Error.t -> bool
+    val emit_error : t -> event:([ `error ][@js.enum]) -> error:Error.t -> bool
       [@@js.call "emit"]
 
-    val emit'''
+    val emit_exit
       :  t
       -> event:([ `exit ][@js.enum])
       -> code:int
@@ -191,14 +250,14 @@ module Cluster : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit''''
+    val emit_listening
       :  t
       -> event:([ `listening ][@js.enum])
       -> address:Address.t
       -> bool
       [@@js.call "emit"]
 
-    val emit'''''
+    val emit_message
       :  t
       -> event:([ `message ][@js.enum])
       -> message:any
@@ -206,210 +265,8 @@ module Cluster : sig
       -> bool
       [@@js.call "emit"]
 
-    val emit'''''' : t -> event:([ `online ][@js.enum]) -> bool
+    val emit_online : t -> event:([ `online ][@js.enum]) -> bool
       [@@js.call "emit"]
-
-    val on
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(error:Error.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(address:Address.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (message:any -> handle:(Net.Server.t, Net.Socket.t) union2 -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val once
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(error:Error.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(address:Address.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (message:any -> handle:(Net.Server.t, Net.Socket.t) union2 -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val prepend_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(error:Error.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(address:Address.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (message:any -> handle:(Net.Server.t, Net.Socket.t) union2 -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(error:Error.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(address:Address.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (message:any -> handle:(Net.Server.t, Net.Socket.t) union2 -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Worker"]
 
@@ -460,65 +317,129 @@ module Cluster : sig
 
     val get_sched_rr : t -> int [@@js.get "SCHED_RR"]
 
-    val add_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module DisconnectListener : sig
+      type t = worker:Worker.t -> unit
 
-    val add_listener'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val add_listener'''
-      :  t
-      -> event:([ `fork ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module ExitListener : sig
+      type t = worker:Worker.t -> code:int -> signal:string -> unit
 
-    val add_listener''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(worker:Worker.t -> address:Address.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
 
-    val add_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (worker:Worker.t
-            -> message:any
-            -> handle:(Net.Server.t, Net.Socket.t) union2
-            -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val add_listener''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+    module ForkListener : sig
+      type t = worker:Worker.t -> unit
 
-    val add_listener'''''''
-      :  t
-      -> event:([ `setup ][@js.enum])
-      -> listener:(settings:ClusterSettings.t -> unit)
-      -> t
-      [@@js.call "addListener"]
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module ListeningListener : sig
+      type t = worker:Worker.t -> address:Address.t -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module MessageListener : sig
+      type t =
+        worker:Worker.t
+        -> message:any
+        -> handle:(Net.Server.t, Net.Socket.t) union2
+        -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module OnlineListener : sig
+      type t = worker:Worker.t -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module SetupListener : sig
+      type t = settings:ClusterSettings.t -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    type listener =
+      ([ `Disconnect of DisconnectListener.t
+       | `Exit of ExitListener.t
+       | `Fork of ForkListener.t
+       | `Listening of ListeningListener.t
+       | `Message of MessageListener.t
+       | `Online of OnlineListener.t
+       | `Setup of SetupListener.t
+       ]
+      [@js.union])
+
+    [@@@js.stop]
+
+    val on : t -> listener -> unit
+
+    val add_listener : t -> listener -> unit
+
+    val once : t -> listener -> unit
+
+    val prepend_listener : t -> listener -> unit
+
+    val prepend_once_listener : t -> listener -> unit
+
+    [@@@js.start]
+
+    [@@@js.implem
+    val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+    val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+    val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+    val prepend_listener : t -> string -> Ojs.t -> unit
+      [@@js.call "prependListener"]
+
+    val prepend_once_listener : t -> string -> Ojs.t -> unit
+      [@@js.call "prependOnceListener"]
+
+    let with_listener_fn fn t = function
+      | `Disconnect f ->
+        fn t "disconnect" @@ [%js.of: DisconnectListener.t] f
+      | `Exit f ->
+        fn t "exit" @@ [%js.of: ExitListener.t] f
+      | `Fork f ->
+        fn t "fork" @@ [%js.of: ForkListener.t] f
+      | `Listening f ->
+        fn t "listening" @@ [%js.of: ListeningListener.t] f
+      | `Message f ->
+        fn t "message" @@ [%js.of: MessageListener.t] f
+      | `Online f ->
+        fn t "online" @@ [%js.of: OnlineListener.t] f
+      | `Setup f ->
+        fn t "setup" @@ [%js.of: SetupListener.t] f
+
+    let on = with_listener_fn on
+
+    let add_listener = with_listener_fn add_listener
+
+    let once = with_listener_fn once
+
+    let prepend_listener = with_listener_fn prepend_listener
+
+    let prepend_once_listener = with_listener_fn prepend_once_listener]
 
     val emit
       :  t
@@ -576,248 +497,6 @@ module Cluster : sig
       -> settings:ClusterSettings.t
       -> bool
       [@@js.call "emit"]
-
-    val on
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''
-      :  t
-      -> event:([ `fork ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(worker:Worker.t -> address:Address.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (worker:Worker.t
-            -> message:any
-            -> handle:(Net.Server.t, Net.Socket.t) union2
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''''''
-      :  t
-      -> event:([ `setup ][@js.enum])
-      -> listener:(settings:ClusterSettings.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val once
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''
-      :  t
-      -> event:([ `fork ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(worker:Worker.t -> address:Address.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (worker:Worker.t
-            -> message:any
-            -> handle:(Net.Server.t, Net.Socket.t) union2
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''''''
-      :  t
-      -> event:([ `setup ][@js.enum])
-      -> listener:(settings:ClusterSettings.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val prepend_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `fork ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(worker:Worker.t -> address:Address.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (worker:Worker.t
-            -> message:any
-            -> handle:(Net.Server.t, Net.Socket.t) union2
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''
-      :  t
-      -> event:([ `setup ][@js.enum])
-      -> listener:(settings:ClusterSettings.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'
-      :  t
-      -> event:([ `disconnect ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''
-      :  t
-      -> event:([ `exit ][@js.enum])
-      -> listener:(worker:Worker.t -> code:int -> signal:string -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `fork ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(worker:Worker.t -> address:Address.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:
-           (worker:Worker.t
-            -> message:any
-            -> handle:(Net.Server.t, Net.Socket.t) union2
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''
-      :  t
-      -> event:([ `online ][@js.enum])
-      -> listener:(worker:Worker.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''
-      :  t
-      -> event:([ `setup ][@js.enum])
-      -> listener:(settings:ClusterSettings.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Cluster"]
 

@@ -1490,7 +1490,8 @@ module DidOpenTextDocumentFeatureShape : sig
   val set_open_documents : t -> TextDocument.t Iterable.t -> unit
     [@@js.set "openDocuments"]
 
-  val cast : t -> TextDocumentRegistrationOptions.t DynamicFeature.t [@@js.cast]
+  (* TODO: Move me*)
+include module type of struct include TextDocumentRegistrationOptions.t DynamicFeature end
 
   val cast' : t -> (textDocument:TextDocument.t -> unit) NotificationFeature.t
     [@@js.cast]
@@ -1509,7 +1510,8 @@ module DidCloseTextDocumentFeatureShape : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t DynamicFeature.t [@@js.cast]
+  (* TODO: Move me*)
+include module type of struct include TextDocumentRegistrationOptions.t DynamicFeature end
 
   val cast' : t -> (textDocument:TextDocument.t -> unit) NotificationFeature.t
     [@@js.cast]
@@ -1528,7 +1530,8 @@ module DidChangeTextDocumentFeatureShape : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t DynamicFeature.t [@@js.cast]
+  (* TODO: Move me*)
+include module type of struct include TextDocumentRegistrationOptions.t DynamicFeature end
 
   val cast'
     :  t
@@ -1551,7 +1554,8 @@ module DidSaveTextDocumentFeatureShape : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t DynamicFeature.t [@@js.cast]
+  (* TODO: Move me*)
+include module type of struct include TextDocumentRegistrationOptions.t DynamicFeature end
 
   val cast' : t -> (textDocument:TextDocument.t -> unit) NotificationFeature.t
     [@@js.cast]
@@ -1746,7 +1750,8 @@ module LSPCancellationError : sig
 
   val create : data:(untyped_object, untyped_object) union2 -> t [@@js.create]
 
-  val cast : t -> CancellationError.t [@@js.cast]
+  (* TODO: Move me*)
+include module type of struct include CancellationError end
 end
 [@@js.scope "LSPCancellationError"]
 

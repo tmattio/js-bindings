@@ -232,6 +232,16 @@ module Vscode : sig
       val fragment : t -> string [@@js.get "fragment"]
 
       val set_fragment : t -> string -> unit [@@js.set "fragment"]
+
+      val create
+        :  ?scheme:string
+        -> ?authority:string
+        -> ?path:string
+        -> ?query:string
+        -> ?fragment:string
+        -> unit
+        -> t
+        [@@js.builder]
     end
 
     val with_ : t -> WithChange.t -> t [@@js.call "with"]
@@ -263,6 +273,16 @@ module Vscode : sig
       [@@js.get "firstNonWhitespaceCharacterIndex"]
 
     val is_empty_or_whitespace : t -> bool [@@js.get "isEmptyOrWhitespace"]
+
+    val create
+      :  line_number:int
+      -> text:string
+      -> range:Range.t
+      -> range_including_line_break:Range.t
+      -> first_non_whitespace_character_index:int
+      -> is_empty_or_whitespace:bool
+      -> t
+      [@@js.builder]
   end
   [@@js.scope "TextLine"]
 
@@ -456,19 +476,52 @@ module Vscode : sig
 
     val t_of_js : Ojs.t -> t
 
-    val replace
-      :  t
-      -> location:(Position.t, Range.t, Selection.t) union3
-      -> value:string
-      -> unit
+    type replace_location =
+      ([ `Position of Position.t
+       | `Range of Range.t
+       | `Selection of Selection.t
+       ]
+      [@js.union])
+
+    [@@@js.implem
+    let replace_location_of_js js_val =
+      if Ojs.has_property js_val "anchor" then
+        `Position ([%js.to: Position.t] js_val)
+      else if Ojs.has_property js_val "start" then
+        `Range ([%js.to: Range.t] js_val)
+      else
+        `Selection ([%js.to: Selection.t] js_val)]
+
+    type delete_location =
+      ([ `Range of Range.t
+       | `Selection of Selection.t
+       ]
+      [@js.union])
+
+    [@@@js.implem
+    let delete_location_of_js js_val =
+      if Ojs.has_property js_val "anchor" then
+        `Selection ([%js.to: Selection.t] js_val)
+      else
+        `Range ([%js.to: Range.t] js_val)]
+
+    val replace : t -> location:replace_location -> value:string -> unit
       [@@js.call "replace"]
 
     val insert : t -> location:Position.t -> value:string -> unit
       [@@js.call "insert"]
 
-    val delete : t -> (Range.t, Selection.t) union2 -> unit [@@js.call "delete"]
+    val delete : t -> delete_location -> unit [@@js.call "delete"]
 
     val set_end_of_line : t -> EndOfLine.t -> unit [@@js.call "setEndOfLine"]
+
+    val create
+      :  replace:(location:replace_location -> value:string -> unit)
+      -> insert:(location:Position.t -> value:string -> unit)
+      -> delete:(location:delete_location -> unit)
+      -> set_end_of_line:(end_of_line:EndOfLine.t -> t)
+      -> t
+      [@@js.builder]
   end
   [@@js.scope "TextEditorEdit"]
 
@@ -1458,6 +1511,8 @@ module Vscode : sig
     val name : t -> string [@@js.get "name"]
 
     val index : t -> int [@@js.get "index"]
+
+    val create : uri:Uri.t -> name:string -> index:int -> t [@@js.builder]
   end
   [@@js.scope "WorkspaceFolder"]
 
@@ -2451,8 +2506,8 @@ module Vscode : sig
 
     [@@@js.implem
     let t_of_js js_val =
-      let light_js = Ojs.get js_val "light" in
-      let dark_js = Ojs.get js_val "dark" in
+      let light_js = Ojs.get_prop_ascii js_val "light" in
+      let dark_js = Ojs.get_prop_ascii js_val "dark" in
       let light =
         if Ojs.has_property light_js "parse" then
           `Uri ([%js.to: Uri.t] light_js)
@@ -4730,7 +4785,7 @@ module Vscode : sig
 
     [@@@js.implem
     let subscribe t disposable =
-      let subscriptions = Ojs.get ([%js.of: t] t) "subscriptions" in
+      let subscriptions = Ojs.get_prop_ascii ([%js.of: t] t) "subscriptions" in
       let (_ : Ojs.t) =
         Ojs.call subscriptions "push" [| [%js.of: Disposable.t] disposable |]
       in
@@ -6372,6 +6427,9 @@ module Vscode : sig
     val highlights : t -> (int * int) list [@@js.get "highlights"]
 
     val set_highlights : t -> (int * int) list -> unit [@@js.set "highlights"]
+
+    val create : label:string -> ?highlights:(int * int) list -> unit -> t
+      [@@js.builder]
   end
   [@@js.scope "TreeItemLabel"]
 
@@ -6439,11 +6497,12 @@ module Vscode : sig
       [@@js.set "accessibilityInformation"]
 
     val create
-      :  ([ `String of string
-          | `TreeItemLabel of TreeItemLabel.t
-          | `Uri of Uri.t
-          ]
-         [@js.union])
+      :  label:
+           ([ `String of string
+            | `TreeItemLabel of TreeItemLabel.t
+            | `Uri of Uri.t
+            ]
+           [@js.union])
       -> ?collapsible_state:TreeItemCollapsibleState.t
       -> unit
       -> t
@@ -6687,14 +6746,14 @@ module Vscode : sig
       -> TextEditor.t Promise.t
       [@@js.global "showTextDocument"]
 
-    val show_text_document
+    val show_text_document_with_options
       :  TextDocument.t
       -> ?options:TextDocumentShowOptions.t
       -> unit
       -> TextEditor.t Promise.t
       [@@js.global "showTextDocument"]
 
-    val show_text_document
+    val show_text_document_with_uri
       :  Uri.t
       -> ?options:TextDocumentShowOptions.t
       -> unit
@@ -6709,14 +6768,7 @@ module Vscode : sig
     val show_information_message
       :  string
       -> ?options:MessageOptions.t
-      -> unit
-      -> string or_undefined Promise.t
-      [@@js.global "showInformationMessage"]
-
-    val show_information_message'
-      :  string
-      -> ?options:MessageOptions.t
-      -> items:('T list[@js.variadic])
+      -> ?choices:(string * 'T) list
       -> unit
       -> 'T or_undefined Promise.t
       [@@js.global "showInformationMessage"]
@@ -6724,14 +6776,7 @@ module Vscode : sig
     val show_warning_message
       :  string
       -> ?options:MessageOptions.t
-      -> unit
-      -> string or_undefined Promise.t
-      [@@js.global "showWarningMessage"]
-
-    val show_warning_message'
-      :  string
-      -> ?options:MessageOptions.t
-      -> items:('T list[@js.variadic])
+      -> ?choices:(string * 'T) list
       -> unit
       -> 'T or_undefined Promise.t
       [@@js.global "showWarningMessage"]
@@ -6739,14 +6784,7 @@ module Vscode : sig
     val show_error_message
       :  string
       -> ?options:MessageOptions.t
-      -> unit
-      -> string or_undefined Promise.t
-      [@@js.global "showErrorMessage"]
-
-    val show_error_message'
-      :  string
-      -> ?options:MessageOptions.t
-      -> items:('T list[@js.variadic])
+      -> ?choices:(string * 'T) list
       -> unit
       -> 'T or_undefined Promise.t
       [@@js.global "showErrorMessage"]
@@ -7342,15 +7380,12 @@ module Vscode : sig
 
     val text_documents : TextDocument.t list [@@js.global "textDocuments"]
 
-    val open_text_document : Uri.t -> TextDocument.t Promise.t
-      [@@js.global "openTextDocument"]
-
-    val open_text_document : string -> TextDocument.t Promise.t
-      [@@js.global "openTextDocument"]
-
     val open_text_document
-      :  ?options:OpenTextDocumentOptions.t
-      -> unit
+      :  ([ `Uri of Uri.t
+          | `Filename of string
+          | `Interactive of OpenTextDocumentOptions.t option
+          ]
+         [@js.union])
       -> TextDocument.t Promise.t
       [@@js.global "openTextDocument"]
 

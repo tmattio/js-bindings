@@ -3,7 +3,7 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 open Node
-open Download
+open Vscode_test_download
 module AnonymousInterface0 =
   struct
     type t = Ojs.t

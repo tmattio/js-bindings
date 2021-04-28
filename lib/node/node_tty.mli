@@ -19,11 +19,9 @@ module Tty : sig
   val isatty : fd:int -> bool [@@js.global "isatty"]
 
   module ReadStream : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Net.Socket
+    end
 
     val create : fd:int -> ?options:Net.SocketConstructorOpts.t -> unit -> t
       [@@js.create]
@@ -37,8 +35,6 @@ module Tty : sig
     val get_is_tty : t -> bool [@@js.get "isTTY"]
 
     val set_is_tty : t -> bool -> unit [@@js.set "isTTY"]
-
-    val cast : t -> Net.Socket.t [@@js.cast]
   end
   [@@js.scope "ReadStream"]
 
@@ -56,11 +52,9 @@ module Tty : sig
   end
 
   module WriteStream : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Net.Socket
+    end
 
     val create : fd:int -> t [@@js.create]
 
@@ -200,8 +194,6 @@ module Tty : sig
     val get_is_tty : t -> bool [@@js.get "isTTY"]
 
     val set_is_tty : t -> bool -> unit [@@js.set "isTTY"]
-
-    val cast : t -> Net.Socket.t [@@js.cast]
   end
   [@@js.scope "WriteStream"]
 end

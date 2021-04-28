@@ -242,218 +242,221 @@ module WritableStream =
   end
 module DuplexStream =
   struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x81 : Ojs.t) -> x81
-    and t_to_js : t -> Ojs.t = fun (x80 : Ojs.t) -> x80
-    let (cast : t -> ReadableStream.t) =
-      fun (x82 : t) -> ReadableStream.t_of_js (t_to_js x82)
+    include struct include ReadableStream end
     let (cast' : t -> WritableStream.t) =
-      fun (x83 : t) -> WritableStream.t_of_js (t_to_js x83)
+      fun (x80 : t) -> WritableStream.t_of_js (t_to_js x80)
   end
 module TimeoutHandle =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x85 : Ojs.t) -> x85
-    and t_to_js : t -> Ojs.t = fun (x84 : Ojs.t) -> x84
+    let rec t_of_js : Ojs.t -> t = fun (x82 : Ojs.t) -> x82
+    and t_to_js : t -> Ojs.t = fun (x81 : Ojs.t) -> x81
     let (get_timer_brand : t -> never or_undefined) =
-      fun (x86 : t) ->
+      fun (x83 : t) ->
         or_undefined_of_js never_of_js
-          (Ojs.get_prop_ascii (t_to_js x86) "_timerBrand")
+          (Ojs.get_prop_ascii (t_to_js x83) "_timerBrand")
     let (set_timer_brand : t -> never or_undefined -> unit) =
-      fun (x88 : t) ->
-        fun (x89 : never or_undefined) ->
-          Ojs.set_prop_ascii (t_to_js x88) "_timerBrand"
-            (or_undefined_to_js never_to_js x89)
+      fun (x85 : t) ->
+        fun (x86 : never or_undefined) ->
+          Ojs.set_prop_ascii (t_to_js x85) "_timerBrand"
+            (or_undefined_to_js never_to_js x86)
   end
 module ImmediateHandle =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x92 : Ojs.t) -> x92
-    and t_to_js : t -> Ojs.t = fun (x91 : Ojs.t) -> x91
+    let rec t_of_js : Ojs.t -> t = fun (x89 : Ojs.t) -> x89
+    and t_to_js : t -> Ojs.t = fun (x88 : Ojs.t) -> x88
     let (get_immediate_brand : t -> never or_undefined) =
-      fun (x93 : t) ->
+      fun (x90 : t) ->
         or_undefined_of_js never_of_js
-          (Ojs.get_prop_ascii (t_to_js x93) "_immediateBrand")
+          (Ojs.get_prop_ascii (t_to_js x90) "_immediateBrand")
     let (set_immediate_brand : t -> never or_undefined -> unit) =
-      fun (x95 : t) ->
-        fun (x96 : never or_undefined) ->
-          Ojs.set_prop_ascii (t_to_js x95) "_immediateBrand"
-            (or_undefined_to_js never_to_js x96)
+      fun (x92 : t) ->
+        fun (x93 : never or_undefined) ->
+          Ojs.set_prop_ascii (t_to_js x92) "_immediateBrand"
+            (or_undefined_to_js never_to_js x93)
   end
 module RAL =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x99 : Ojs.t) -> x99
-    and t_to_js : t -> Ojs.t = fun (x98 : Ojs.t) -> x98
+    let rec t_of_js : Ojs.t -> t = fun (x96 : Ojs.t) -> x96
+    and t_to_js : t -> Ojs.t = fun (x95 : Ojs.t) -> x95
     module MessageBuffer =
       struct
         type t = MessageBuffer.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x101 : Ojs.t) -> MessageBuffer.t_of_js x101
+          fun (x98 : Ojs.t) -> MessageBuffer.t_of_js x98
         and t_to_js : t -> Ojs.t =
-          fun (x100 : MessageBuffer.t) -> MessageBuffer.t_to_js x100
+          fun (x97 : MessageBuffer.t) -> MessageBuffer.t_to_js x97
       end
     module MessageBufferEncoding =
       struct
         type t = MessageBufferEncoding.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x103 : Ojs.t) -> MessageBufferEncoding.t_of_js x103
+          fun (x100 : Ojs.t) -> MessageBufferEncoding.t_of_js x100
         and t_to_js : t -> Ojs.t =
-          fun (x102 : MessageBufferEncoding.t) ->
-            MessageBufferEncoding.t_to_js x102
+          fun (x99 : MessageBufferEncoding.t) ->
+            MessageBufferEncoding.t_to_js x99
       end
     module ReadableStream =
       struct
         type t = ReadableStream.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x105 : Ojs.t) -> ReadableStream.t_of_js x105
+          fun (x102 : Ojs.t) -> ReadableStream.t_of_js x102
         and t_to_js : t -> Ojs.t =
-          fun (x104 : ReadableStream.t) -> ReadableStream.t_to_js x104
+          fun (x101 : ReadableStream.t) -> ReadableStream.t_to_js x101
       end
     module WritableStream =
       struct
         type t = WritableStream.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x107 : Ojs.t) -> WritableStream.t_of_js x107
+          fun (x104 : Ojs.t) -> WritableStream.t_of_js x104
         and t_to_js : t -> Ojs.t =
-          fun (x106 : WritableStream.t) -> WritableStream.t_to_js x106
+          fun (x103 : WritableStream.t) -> WritableStream.t_to_js x103
       end
     module DuplexStream =
       struct
         type t = DuplexStream.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x109 : Ojs.t) -> DuplexStream.t_of_js x109
+          fun (x106 : Ojs.t) -> DuplexStream.t_of_js x106
         and t_to_js : t -> Ojs.t =
-          fun (x108 : DuplexStream.t) -> DuplexStream.t_to_js x108
+          fun (x105 : DuplexStream.t) -> DuplexStream.t_to_js x105
       end
     module TimeoutHandle =
       struct
         type t = TimeoutHandle.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x111 : Ojs.t) -> TimeoutHandle.t_of_js x111
+          fun (x108 : Ojs.t) -> TimeoutHandle.t_of_js x108
         and t_to_js : t -> Ojs.t =
-          fun (x110 : TimeoutHandle.t) -> TimeoutHandle.t_to_js x110
+          fun (x107 : TimeoutHandle.t) -> TimeoutHandle.t_to_js x107
       end
     module ImmediateHandle =
       struct
         type t = ImmediateHandle.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x113 : Ojs.t) -> ImmediateHandle.t_of_js x113
+          fun (x110 : Ojs.t) -> ImmediateHandle.t_of_js x110
         and t_to_js : t -> Ojs.t =
-          fun (x112 : ImmediateHandle.t) -> ImmediateHandle.t_to_js x112
+          fun (x109 : ImmediateHandle.t) -> ImmediateHandle.t_to_js x109
       end
     let (install : ral:t -> unit) =
-      fun ~ral:(x114 : t) ->
+      fun ~ral:(x111 : t) ->
         ignore
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "RAL") "install"
-             [|(t_to_js x114)|])
+          (Ojs.call
+             (Ojs.get_prop_ascii
+                (Ojs.get_prop_ascii Ojs.global
+                   "__LIB__VSCODE_JSONRPC__IMPORTS") "RAL") "install"
+             [|(t_to_js x111)|])
     module AnonymousInterface1 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x116 : Ojs.t) -> x116
-        and t_to_js : t -> Ojs.t = fun (x115 : Ojs.t) -> x115
+        let rec t_of_js : Ojs.t -> t = fun (x113 : Ojs.t) -> x113
+        and t_to_js : t -> Ojs.t = fun (x112 : Ojs.t) -> x112
         let (create_ :
           t -> encoding:MessageBufferEncoding.t -> MessageBuffer.t) =
-          fun (x118 : t) ->
-            fun ~encoding:(x117 : MessageBufferEncoding.t) ->
+          fun (x115 : t) ->
+            fun ~encoding:(x114 : MessageBufferEncoding.t) ->
               MessageBuffer.t_of_js
-                (Ojs.call (t_to_js x118) "create"
-                   [|(MessageBufferEncoding.t_to_js x117)|])
+                (Ojs.call (t_to_js x115) "create"
+                   [|(MessageBufferEncoding.t_to_js x114)|])
       end
     let (get_application_json : t -> AnonymousInterface0.t) =
-      fun (x119 : t) ->
+      fun (x116 : t) ->
         AnonymousInterface0.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x119) "applicationJson")
+          (Ojs.get_prop_ascii (t_to_js x116) "applicationJson")
     let (get_message_buffer : t -> AnonymousInterface1.t) =
-      fun (x120 : t) ->
+      fun (x117 : t) ->
         AnonymousInterface1.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x120) "messageBuffer")
+          (Ojs.get_prop_ascii (t_to_js x117) "messageBuffer")
     let (get_console : t -> AnonymousInterface2.t) =
-      fun (x121 : t) ->
+      fun (x118 : t) ->
         AnonymousInterface2.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x121) "console")
+          (Ojs.get_prop_ascii (t_to_js x118) "console")
     module AnonymousInterface3 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x123 : Ojs.t) -> x123
-        and t_to_js : t -> Ojs.t = fun (x122 : Ojs.t) -> x122
+        let rec t_of_js : Ojs.t -> t = fun (x120 : Ojs.t) -> x120
+        and t_to_js : t -> Ojs.t = fun (x119 : Ojs.t) -> x119
         let (set_timeout :
           t ->
             callback:(args:any list -> unit) ->
               ms:int -> args:any list -> TimeoutHandle.t)
           =
-          fun (x131 : t) ->
-            fun ~callback:(x124 : args:any list -> unit) ->
-              fun ~ms:(x125 : int) ->
-                fun ~args:(x126 : any list) ->
+          fun (x128 : t) ->
+            fun ~callback:(x121 : args:any list -> unit) ->
+              fun ~ms:(x122 : int) ->
+                fun ~args:(x123 : any list) ->
                   TimeoutHandle.t_of_js
-                    (let x132 = t_to_js x131 in
-                     Ojs.call (Ojs.get_prop_ascii x132 "setTimeout") "apply"
-                       [|x132;((let x127 =
+                    (let x129 = t_to_js x128 in
+                     Ojs.call (Ojs.get_prop_ascii x129 "setTimeout") "apply"
+                       [|x129;((let x124 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x127 "push"
+                                  (Ojs.call x124 "push"
                                      [|(Ojs.fun_to_js_args
-                                          (fun (x129 : _) ->
-                                             x124
+                                          (fun (x126 : _) ->
+                                             x121
                                                ~args:(Ojs.list_of_js_from
-                                                        any_of_js x129 0)))|]);
+                                                        any_of_js x126 0)))|]);
                                 ignore
-                                  (Ojs.call x127 "push"
-                                     [|(Ojs.int_to_js x125)|]);
+                                  (Ojs.call x124 "push"
+                                     [|(Ojs.int_to_js x122)|]);
                                 List.iter
-                                  (fun (x128 : any) ->
+                                  (fun (x125 : any) ->
                                      ignore
-                                       (Ojs.call x127 "push"
-                                          [|(any_to_js x128)|])) x126;
-                                x127))|])
+                                       (Ojs.call x124 "push"
+                                          [|(any_to_js x125)|])) x123;
+                                x124))|])
         let (clear_timeout : t -> handle:TimeoutHandle.t -> unit) =
-          fun (x134 : t) ->
-            fun ~handle:(x133 : TimeoutHandle.t) ->
+          fun (x131 : t) ->
+            fun ~handle:(x130 : TimeoutHandle.t) ->
               ignore
-                (Ojs.call (t_to_js x134) "clearTimeout"
-                   [|(TimeoutHandle.t_to_js x133)|])
+                (Ojs.call (t_to_js x131) "clearTimeout"
+                   [|(TimeoutHandle.t_to_js x130)|])
         let (set_immediate :
           t ->
             callback:(args:any list -> unit) ->
               args:any list -> ImmediateHandle.t)
           =
-          fun (x141 : t) ->
-            fun ~callback:(x135 : args:any list -> unit) ->
-              fun ~args:(x136 : any list) ->
+          fun (x138 : t) ->
+            fun ~callback:(x132 : args:any list -> unit) ->
+              fun ~args:(x133 : any list) ->
                 ImmediateHandle.t_of_js
-                  (let x142 = t_to_js x141 in
-                   Ojs.call (Ojs.get_prop_ascii x142 "setImmediate") "apply"
-                     [|x142;((let x137 =
+                  (let x139 = t_to_js x138 in
+                   Ojs.call (Ojs.get_prop_ascii x139 "setImmediate") "apply"
+                     [|x139;((let x134 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x137 "push"
+                                (Ojs.call x134 "push"
                                    [|(Ojs.fun_to_js_args
-                                        (fun (x139 : _) ->
-                                           x135
+                                        (fun (x136 : _) ->
+                                           x132
                                              ~args:(Ojs.list_of_js_from
-                                                      any_of_js x139 0)))|]);
+                                                      any_of_js x136 0)))|]);
                               List.iter
-                                (fun (x138 : any) ->
+                                (fun (x135 : any) ->
                                    ignore
-                                     (Ojs.call x137 "push"
-                                        [|(any_to_js x138)|])) x136;
-                              x137))|])
+                                     (Ojs.call x134 "push"
+                                        [|(any_to_js x135)|])) x133;
+                              x134))|])
         let (clear_immediate : t -> handle:ImmediateHandle.t -> unit) =
-          fun (x144 : t) ->
-            fun ~handle:(x143 : ImmediateHandle.t) ->
+          fun (x141 : t) ->
+            fun ~handle:(x140 : ImmediateHandle.t) ->
               ignore
-                (Ojs.call (t_to_js x144) "clearImmediate"
-                   [|(ImmediateHandle.t_to_js x143)|])
+                (Ojs.call (t_to_js x141) "clearImmediate"
+                   [|(ImmediateHandle.t_to_js x140)|])
       end
     let (get_timer : t -> AnonymousInterface3.t) =
-      fun (x145 : t) ->
+      fun (x142 : t) ->
         AnonymousInterface3.t_of_js
-          (Ojs.get_prop_ascii (t_to_js x145) "timer")
+          (Ojs.get_prop_ascii (t_to_js x142) "timer")
   end
 let (ral : unit -> RAL.t) =
-  fun () -> RAL.t_of_js (Ojs.call Ojs.global "RAL" [||])
+  fun () ->
+    RAL.t_of_js
+      (Ojs.call
+         (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
+         "RAL" [||])

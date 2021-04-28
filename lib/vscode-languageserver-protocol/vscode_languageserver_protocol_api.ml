@@ -3,11 +3,18 @@
 [@@@ocaml.warning "-7-11-32-33-39"]
 open Es5
 open Vscode_languageserver_protocol_proposed_diagnostic
-open Vscode_jsonrpc
-open Vscode_languageserver_types
-open Vscode_languageserver_protocol_messages
-open Vscode_languageserver_protocol_protocol
 open Vscode_languageserver_protocol_connection
+include struct include Vscode_jsonrpc end
+include struct include Vscode_languageserver_types end
+include struct include Vscode_languageserver_protocol_messages end
+include struct include Vscode_languageserver_protocol_protocol end
+include
+  struct
+    module ProtocolConnection =
+      Vscode_languageserver_protocol_protocol_connection.ProtocolConnection
+    let create_crotocol_connection =
+      Vscode_languageserver_protocol_protocol_connection.create_crotocol_connection
+  end
 module LSPErrorCodes =
   struct
     let (lsp_reserved_error_range_start : Integer.t) =

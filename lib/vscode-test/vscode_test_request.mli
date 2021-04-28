@@ -4,8 +4,7 @@
 
 open Es5
 
-(* import { IncomingMessage } from 'http'; *)
-val get_stream : api:string -> IncomingMessage.t Promise.t
+val get_stream : api:string -> Node.Http.IncomingMessage.t Promise.t
   [@@js.global "getStream"]
 
 val get_json : api:string -> 'T Promise.t [@@js.global "getJSON"]

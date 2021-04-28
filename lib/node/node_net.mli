@@ -116,11 +116,9 @@ module Net : sig
   [@@js.scope "ConnectOpts"]
 
   module TcpSocketConnectOpts : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ConnectOpts
+    end
 
     val get_port : t -> int [@@js.get "port"]
 
@@ -149,23 +147,17 @@ module Net : sig
     val get_lookup : t -> LookupFunction.t [@@js.get "lookup"]
 
     val set_lookup : t -> LookupFunction.t -> unit [@@js.set "lookup"]
-
-    val cast : t -> ConnectOpts.t [@@js.cast]
   end
   [@@js.scope "TcpSocketConnectOpts"]
 
   module IpcSocketConnectOpts : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include ConnectOpts
+    end
 
     val get_path : t -> string [@@js.get "path"]
 
     val set_path : t -> string -> unit [@@js.set "path"]
-
-    val cast : t -> ConnectOpts.t [@@js.cast]
   end
   [@@js.scope "IpcSocketConnectOpts"]
 
@@ -178,11 +170,9 @@ module Net : sig
   end
 
   module Socket : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Stream.Duplex
+    end
 
     val create : ?options:SocketConstructorOpts.t -> unit -> t [@@js.create]
 
@@ -400,279 +390,148 @@ module Net : sig
     val emit'''''''' : t -> event:([ `timeout ][@js.enum]) -> bool
       [@@js.call "emit"]
 
+    module CloseListener : sig
+      type t = had_error:bool -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module ConnectListener : sig
+      type t = unit -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module DataListener : sig
+      type t = data:Buffer.t -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module DrainListener : sig
+      type t = unit -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module EndListener : sig
+      type t = unit -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module ErrorListener : sig
+      type t = err:Error.t -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module LookupListener : sig
+      type t =
+        err:Error.t
+        -> address:string
+        -> family:string or_number
+        -> host:string
+        -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    module TimeoutListener : sig
+      type t = unit -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    type listener =
+      ([ `Close of CloseListener.t
+       | `Connect of ConnectListener.t
+       | `Data of DataListener.t
+       | `Drain of DrainListener.t
+       | `End_ of EndListener.t
+       | `Error of ErrorListener.t
+       | `Lookup of LookupListener.t
+       | `Timeout of TimeoutListener.t
+       ]
+      [@js.union])
+
+    [@@@js.stop]
+
+    val on : t -> listener -> unit
+
+    val add_listener : t -> listener -> unit
+
+    val once : t -> listener -> unit
+
+    val prepend_listener : t -> listener -> unit
+
+    val prepend_once_listener : t -> listener -> unit
+
+    [@@@js.start]
+
+    [@@@js.implem
+    val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+    val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+    val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+    val prepend_listener : t -> string -> Ojs.t -> unit
+      [@@js.call "prependListener"]
+
+    val prepend_once_listener : t -> string -> Ojs.t -> unit
+      [@@js.call "prependOnceListener"]
+
+    let with_listener_fn fn t = function
+      | `Close f ->
+        fn t "close" @@ [%js.of: CloseListener.t] f
+      | `Connect f ->
+        fn t "connect" @@ [%js.of: ConnectListener.t] f
+      | `Data f ->
+        fn t "data" @@ [%js.of: DataListener.t] f
+      | `Drain f ->
+        fn t "drain" @@ [%js.of: DrainListener.t] f
+      | `End_ f ->
+        fn t "end_" @@ [%js.of: EndListener.t] f
+      | `Error f ->
+        fn t "error" @@ [%js.of: ErrorListener.t] f
+      | `Lookup f ->
+        fn t "lookup" @@ [%js.of: LookupListener.t] f
+      | `Timeout f ->
+        fn t "timeout" @@ [%js.of: TimeoutListener.t] f
+
+    let on = with_listener_fn on
+
+    let add_listener = with_listener_fn add_listener
+
+    let once = with_listener_fn once
+
+    let prepend_listener = with_listener_fn prepend_listener
+
+    let prepend_once_listener = with_listener_fn prepend_once_listener]
+
     val on
       :  t
       -> event:string
       -> listener:(args:(any list[@js.variadic]) -> unit)
       -> t
       [@@js.call "on"]
-
-    val on'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(had_error:bool -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> listener:(data:Buffer.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on'''''''
-      :  t
-      -> event:([ `lookup ][@js.enum])
-      -> listener:
-           (err:Error.t
-            -> address:string
-            -> family:string or_number
-            -> host:string
-            -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val on''''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
-
-    val once
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(had_error:bool -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> listener:(data:Buffer.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once'''''''
-      :  t
-      -> event:([ `lookup ][@js.enum])
-      -> listener:
-           (err:Error.t
-            -> address:string
-            -> family:string or_number
-            -> host:string
-            -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val once''''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
-
-    val prepend_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(had_error:bool -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> listener:(data:Buffer.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''''
-      :  t
-      -> event:([ `lookup ][@js.enum])
-      -> listener:
-           (err:Error.t
-            -> address:string
-            -> family:string or_number
-            -> host:string
-            -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(had_error:bool -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `data ][@js.enum])
-      -> listener:(data:Buffer.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `drain ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `end_ ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener'''''''
-      :  t
-      -> event:([ `lookup ][@js.enum])
-      -> listener:
-           (err:Error.t
-            -> address:string
-            -> family:string or_number
-            -> host:string
-            -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val prepend_once_listener''''''''
-      :  t
-      -> event:([ `timeout ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
-
-    val cast : t -> Stream.Duplex.t [@@js.cast]
   end
   [@@js.scope "Socket"]
 
@@ -1048,40 +907,30 @@ module Net : sig
       -> listener:(unit -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
   end
   [@@js.scope "Server"]
 
   module TcpNetConnectOpts : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include TcpSocketConnectOpts
+    end
 
     val get_timeout : t -> int [@@js.get "timeout"]
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
-
-    val cast : t -> TcpSocketConnectOpts.t [@@js.cast]
 
     val cast' : t -> SocketConstructorOpts.t [@@js.cast]
   end
   [@@js.scope "TcpNetConnectOpts"]
 
   module IpcNetConnectOpts : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include IpcSocketConnectOpts
+    end
 
     val get_timeout : t -> int [@@js.get "timeout"]
 
     val set_timeout : t -> int -> unit [@@js.set "timeout"]
-
-    val cast : t -> IpcSocketConnectOpts.t [@@js.cast]
 
     val cast' : t -> SocketConstructorOpts.t [@@js.cast]
   end

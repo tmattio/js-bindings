@@ -72,11 +72,9 @@ module Repl : sig
   (* [@@js.scope "REPLWriter"] *)
 
   module REPLServer : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Node_readline.Readline.Interface
+    end
 
     val get_context : t -> Node_vm.Vm.Context.t [@@js.get "context"]
 
@@ -522,8 +520,6 @@ module Repl : sig
       -> listener:(context:Node_vm.Vm.Context.t -> unit)
       -> t
       [@@js.call "prependOnceListener"]
-
-    val cast : t -> Node_readline.Readline.Interface.t [@@js.cast]
   end
   [@@js.scope "REPLServer"]
 
@@ -618,19 +614,15 @@ module Repl : sig
     [@@js.global "start"]
 
   module Recoverable : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include SyntaxError
+    end
 
     val get_err : t -> Error.t [@@js.get "err"]
 
     val set_err : t -> Error.t -> unit [@@js.set "err"]
 
     val create : err:Error.t -> t [@@js.create]
-
-    val cast : t -> SyntaxError.t [@@js.cast]
   end
   [@@js.scope "Recoverable"]
 end

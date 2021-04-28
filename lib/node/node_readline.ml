@@ -863,17 +863,14 @@ module Readline =
                      [|((match x279 with
                          | `SIGTSTP -> Ojs.string_to_js "SIGTSTP"));(
                        Ojs.fun_to_js 1 (fun _ -> x280 ()))|])
-        let (cast : t -> Node_events.Events.EventEmitter.t) =
-          fun (x282 : t) ->
-            Node_events.Events.EventEmitter.t_of_js (t_to_js x282)
       end
     module ReadLine =
       struct
         type t = Interface.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x284 : Ojs.t) -> Interface.t_of_js x284
+          fun (x283 : Ojs.t) -> Interface.t_of_js x283
         and t_to_js : t -> Ojs.t =
-          fun (x283 : Interface.t) -> Interface.t_to_js x283
+          fun (x282 : Interface.t) -> Interface.t_to_js x282
       end
     let (create_interface :
       input:ReadableStream.t ->
@@ -881,190 +878,190 @@ module Readline =
           ?completer:(AsyncCompleter.t, Completer.t) union2 ->
             ?terminal:bool -> unit -> Interface.t)
       =
-      fun ~input:(x285 : ReadableStream.t) ->
-        fun ?output:(x286 : WritableStream.t option) ->
+      fun ~input:(x284 : ReadableStream.t) ->
+        fun ?output:(x285 : WritableStream.t option) ->
           fun
-            ?completer:(x287 : (AsyncCompleter.t, Completer.t) union2 option)
+            ?completer:(x286 : (AsyncCompleter.t, Completer.t) union2 option)
             ->
-            fun ?terminal:(x288 : bool option) ->
+            fun ?terminal:(x287 : bool option) ->
               fun () ->
                 Interface.t_of_js
-                  (let x295 = Import.readline in
-                   Ojs.call (Ojs.get_prop_ascii x295 "createInterface")
+                  (let x294 = Import.readline in
+                   Ojs.call (Ojs.get_prop_ascii x294 "createInterface")
                      "apply"
-                     [|x295;((let x289 =
+                     [|x294;((let x288 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x289 "push"
-                                   [|(ReadableStream.t_to_js x285)|]);
+                                (Ojs.call x288 "push"
+                                   [|(ReadableStream.t_to_js x284)|]);
+                              (match x285 with
+                               | Some x293 ->
+                                   ignore
+                                     (Ojs.call x288 "push"
+                                        [|(WritableStream.t_to_js x293)|])
+                               | None -> ());
                               (match x286 with
-                               | Some x294 ->
-                                   ignore
-                                     (Ojs.call x289 "push"
-                                        [|(WritableStream.t_to_js x294)|])
-                               | None -> ());
-                              (match x287 with
-                               | Some x291 ->
-                                   ignore
-                                     (Ojs.call x289 "push"
-                                        [|(union2_to_js
-                                             AsyncCompleter.t_to_js
-                                             Completer.t_to_js x291)|])
-                               | None -> ());
-                              (match x288 with
                                | Some x290 ->
                                    ignore
-                                     (Ojs.call x289 "push"
-                                        [|(Ojs.bool_to_js x290)|])
+                                     (Ojs.call x288 "push"
+                                        [|(union2_to_js
+                                             AsyncCompleter.t_to_js
+                                             Completer.t_to_js x290)|])
                                | None -> ());
-                              x289))|])
+                              (match x287 with
+                               | Some x289 ->
+                                   ignore
+                                     (Ojs.call x288 "push"
+                                        [|(Ojs.bool_to_js x289)|])
+                               | None -> ());
+                              x288))|])
     let (create_interface : options:ReadLineOptions.t -> Interface.t) =
-      fun ~options:(x296 : ReadLineOptions.t) ->
+      fun ~options:(x295 : ReadLineOptions.t) ->
         Interface.t_of_js
           (Ojs.call Import.readline "createInterface"
-             [|(ReadLineOptions.t_to_js x296)|])
+             [|(ReadLineOptions.t_to_js x295)|])
     let (emit_keypress_events :
       stream:ReadableStream.t ->
         ?readline_interface:Interface.t -> unit -> unit)
       =
-      fun ~stream:(x297 : ReadableStream.t) ->
-        fun ?readline_interface:(x298 : Interface.t option) ->
+      fun ~stream:(x296 : ReadableStream.t) ->
+        fun ?readline_interface:(x297 : Interface.t option) ->
           fun () ->
             ignore
-              (let x301 = Import.readline in
-               Ojs.call (Ojs.get_prop_ascii x301 "emitKeypressEvents")
+              (let x300 = Import.readline in
+               Ojs.call (Ojs.get_prop_ascii x300 "emitKeypressEvents")
                  "apply"
-                 [|x301;((let x299 =
+                 [|x300;((let x298 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x299 "push"
-                               [|(ReadableStream.t_to_js x297)|]);
-                          (match x298 with
-                           | Some x300 ->
+                            (Ojs.call x298 "push"
+                               [|(ReadableStream.t_to_js x296)|]);
+                          (match x297 with
+                           | Some x299 ->
                                ignore
-                                 (Ojs.call x299 "push"
-                                    [|(Interface.t_to_js x300)|])
+                                 (Ojs.call x298 "push"
+                                    [|(Interface.t_to_js x299)|])
                            | None -> ());
-                          x299))|])
+                          x298))|])
     let (clear_line :
       stream:WritableStream.t ->
         dir:Direction.t -> ?callback:(unit -> unit) -> unit -> bool)
       =
-      fun ~stream:(x302 : WritableStream.t) ->
-        fun ~dir:(x303 : Direction.t) ->
-          fun ?callback:(x304 : (unit -> unit) option) ->
+      fun ~stream:(x301 : WritableStream.t) ->
+        fun ~dir:(x302 : Direction.t) ->
+          fun ?callback:(x303 : (unit -> unit) option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x307 = Import.readline in
-                 Ojs.call (Ojs.get_prop_ascii x307 "clearLine") "apply"
-                   [|x307;((let x305 =
+                (let x306 = Import.readline in
+                 Ojs.call (Ojs.get_prop_ascii x306 "clearLine") "apply"
+                   [|x306;((let x304 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x305 "push"
-                                 [|(WritableStream.t_to_js x302)|]);
+                              (Ojs.call x304 "push"
+                                 [|(WritableStream.t_to_js x301)|]);
                             ignore
-                              (Ojs.call x305 "push"
-                                 [|(Direction.t_to_js x303)|]);
-                            (match x304 with
-                             | Some x306 ->
+                              (Ojs.call x304 "push"
+                                 [|(Direction.t_to_js x302)|]);
+                            (match x303 with
+                             | Some x305 ->
                                  ignore
-                                   (Ojs.call x305 "push"
-                                      [|(Ojs.fun_to_js 1 (fun _ -> x306 ()))|])
+                                   (Ojs.call x304 "push"
+                                      [|(Ojs.fun_to_js 1 (fun _ -> x305 ()))|])
                              | None -> ());
-                            x305))|])
+                            x304))|])
     let (clear_screen_down :
       stream:WritableStream.t -> ?callback:(unit -> unit) -> unit -> bool) =
-      fun ~stream:(x308 : WritableStream.t) ->
-        fun ?callback:(x309 : (unit -> unit) option) ->
+      fun ~stream:(x307 : WritableStream.t) ->
+        fun ?callback:(x308 : (unit -> unit) option) ->
           fun () ->
             Ojs.bool_of_js
-              (let x312 = Import.readline in
-               Ojs.call (Ojs.get_prop_ascii x312 "clearScreenDown") "apply"
-                 [|x312;((let x310 =
+              (let x311 = Import.readline in
+               Ojs.call (Ojs.get_prop_ascii x311 "clearScreenDown") "apply"
+                 [|x311;((let x309 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x310 "push"
-                               [|(WritableStream.t_to_js x308)|]);
-                          (match x309 with
-                           | Some x311 ->
+                            (Ojs.call x309 "push"
+                               [|(WritableStream.t_to_js x307)|]);
+                          (match x308 with
+                           | Some x310 ->
                                ignore
-                                 (Ojs.call x310 "push"
-                                    [|(Ojs.fun_to_js 1 (fun _ -> x311 ()))|])
+                                 (Ojs.call x309 "push"
+                                    [|(Ojs.fun_to_js 1 (fun _ -> x310 ()))|])
                            | None -> ());
-                          x310))|])
+                          x309))|])
     let (cursor_to :
       stream:WritableStream.t ->
         x:int -> ?y:int -> ?callback:(unit -> unit) -> unit -> bool)
       =
-      fun ~stream:(x313 : WritableStream.t) ->
-        fun ~x:(x314 : int) ->
-          fun ?y:(x315 : int option) ->
-            fun ?callback:(x316 : (unit -> unit) option) ->
+      fun ~stream:(x312 : WritableStream.t) ->
+        fun ~x:(x313 : int) ->
+          fun ?y:(x314 : int option) ->
+            fun ?callback:(x315 : (unit -> unit) option) ->
               fun () ->
                 Ojs.bool_of_js
-                  (let x320 = Import.readline in
-                   Ojs.call (Ojs.get_prop_ascii x320 "cursorTo") "apply"
-                     [|x320;((let x317 =
+                  (let x319 = Import.readline in
+                   Ojs.call (Ojs.get_prop_ascii x319 "cursorTo") "apply"
+                     [|x319;((let x316 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x317 "push"
-                                   [|(WritableStream.t_to_js x313)|]);
+                                (Ojs.call x316 "push"
+                                   [|(WritableStream.t_to_js x312)|]);
                               ignore
-                                (Ojs.call x317 "push"
-                                   [|(Ojs.int_to_js x314)|]);
-                              (match x315 with
-                               | Some x319 ->
-                                   ignore
-                                     (Ojs.call x317 "push"
-                                        [|(Ojs.int_to_js x319)|])
-                               | None -> ());
-                              (match x316 with
+                                (Ojs.call x316 "push"
+                                   [|(Ojs.int_to_js x313)|]);
+                              (match x314 with
                                | Some x318 ->
                                    ignore
-                                     (Ojs.call x317 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x318 ()))|])
+                                     (Ojs.call x316 "push"
+                                        [|(Ojs.int_to_js x318)|])
                                | None -> ());
-                              x317))|])
+                              (match x315 with
+                               | Some x317 ->
+                                   ignore
+                                     (Ojs.call x316 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x317 ()))|])
+                               | None -> ());
+                              x316))|])
     let (move_cursor :
       stream:WritableStream.t ->
         dx:int -> dy:int -> ?callback:(unit -> unit) -> unit -> bool)
       =
-      fun ~stream:(x321 : WritableStream.t) ->
-        fun ~dx:(x322 : int) ->
-          fun ~dy:(x323 : int) ->
-            fun ?callback:(x324 : (unit -> unit) option) ->
+      fun ~stream:(x320 : WritableStream.t) ->
+        fun ~dx:(x321 : int) ->
+          fun ~dy:(x322 : int) ->
+            fun ?callback:(x323 : (unit -> unit) option) ->
               fun () ->
                 Ojs.bool_of_js
-                  (let x327 = Import.readline in
-                   Ojs.call (Ojs.get_prop_ascii x327 "moveCursor") "apply"
-                     [|x327;((let x325 =
+                  (let x326 = Import.readline in
+                   Ojs.call (Ojs.get_prop_ascii x326 "moveCursor") "apply"
+                     [|x326;((let x324 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x325 "push"
-                                   [|(WritableStream.t_to_js x321)|]);
+                                (Ojs.call x324 "push"
+                                   [|(WritableStream.t_to_js x320)|]);
                               ignore
-                                (Ojs.call x325 "push"
+                                (Ojs.call x324 "push"
+                                   [|(Ojs.int_to_js x321)|]);
+                              ignore
+                                (Ojs.call x324 "push"
                                    [|(Ojs.int_to_js x322)|]);
-                              ignore
-                                (Ojs.call x325 "push"
-                                   [|(Ojs.int_to_js x323)|]);
-                              (match x324 with
-                               | Some x326 ->
+                              (match x323 with
+                               | Some x325 ->
                                    ignore
-                                     (Ojs.call x325 "push"
-                                        [|(Ojs.fun_to_js 1 (fun _ -> x326 ()))|])
+                                     (Ojs.call x324 "push"
+                                        [|(Ojs.fun_to_js 1 (fun _ -> x325 ()))|])
                                | None -> ());
-                              x325))|])
+                              x324))|])
   end

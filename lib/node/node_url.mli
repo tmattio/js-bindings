@@ -131,34 +131,26 @@ module Url : sig
   [@@js.scope "Url"]
 
   module UrlWithParsedQuery : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Url
+    end
 
     val get_query : t -> Node_querystring.Querystring.ParsedUrlQuery.t
       [@@js.get "query"]
 
     val set_query : t -> Node_querystring.Querystring.ParsedUrlQuery.t -> unit
       [@@js.set "query"]
-
-    val cast : t -> Url.t [@@js.cast]
   end
   [@@js.scope "UrlWithParsedQuery"]
 
   module UrlWithStringQuery : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
+    include module type of struct
+      include Url
+    end
 
     val get_query : t -> string or_null [@@js.get "query"]
 
     val set_query : t -> string or_null -> unit [@@js.set "query"]
-
-    val cast : t -> Url.t [@@js.cast]
   end
   [@@js.scope "UrlWithStringQuery"]
 
@@ -188,7 +180,7 @@ module Url : sig
   [@@js.scope "URLFormatOptions"]
 
   module URLSearchParams : sig
-    type t
+    type t = (string * string) Iterable.t
 
     val t_to_js : t -> Ojs.t
 
@@ -234,8 +226,6 @@ module Url : sig
     val to_string : t -> string [@@js.call "toString"]
 
     val values : t -> string IterableIterator.t [@@js.call "values"]
-
-    val cast : t -> (string * string) Iterable.t [@@js.cast]
   end
   [@@js.scope "URLSearchParams"]
 

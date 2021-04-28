@@ -13452,41 +13452,38 @@ module Inspector =
                                                                     1
                                                                     (fun _ ->
                                                                     x3356 ()))|])
-        let (cast : t -> Node_events.Events.EventEmitter.t) =
-          fun (x3358 : t) ->
-            Node_events.Events.EventEmitter.t_of_js (t_to_js x3358)
       end
     let (open_ : ?port:int -> ?host:string -> ?wait:bool -> unit -> unit) =
-      fun ?port:(x3359 : int option) ->
-        fun ?host:(x3360 : string option) ->
-          fun ?wait:(x3361 : bool option) ->
+      fun ?port:(x3358 : int option) ->
+        fun ?host:(x3359 : string option) ->
+          fun ?wait:(x3360 : bool option) ->
             fun () ->
               ignore
-                (let x3366 = Import.inspector in
-                 Ojs.call (Ojs.get_prop_ascii x3366 "open") "apply"
-                   [|x3366;((let x3362 =
+                (let x3365 = Import.inspector in
+                 Ojs.call (Ojs.get_prop_ascii x3365 "open") "apply"
+                   [|x3365;((let x3361 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x3359 with
-                              | Some x3365 ->
-                                  ignore
-                                    (Ojs.call x3362 "push"
-                                       [|(Ojs.int_to_js x3365)|])
-                              | None -> ());
-                             (match x3360 with
+                             (match x3358 with
                               | Some x3364 ->
                                   ignore
-                                    (Ojs.call x3362 "push"
-                                       [|(Ojs.string_to_js x3364)|])
+                                    (Ojs.call x3361 "push"
+                                       [|(Ojs.int_to_js x3364)|])
                               | None -> ());
-                             (match x3361 with
+                             (match x3359 with
                               | Some x3363 ->
                                   ignore
-                                    (Ojs.call x3362 "push"
-                                       [|(Ojs.bool_to_js x3363)|])
+                                    (Ojs.call x3361 "push"
+                                       [|(Ojs.string_to_js x3363)|])
                               | None -> ());
-                             x3362))|])
+                             (match x3360 with
+                              | Some x3362 ->
+                                  ignore
+                                    (Ojs.call x3361 "push"
+                                       [|(Ojs.bool_to_js x3362)|])
+                              | None -> ());
+                             x3361))|])
     let (close : unit -> unit) =
       fun () -> ignore (Ojs.call Import.inspector "close" [||])
     let (url : unit -> string or_undefined) =

@@ -492,173 +492,169 @@ module Assert =
   struct
     module AssertionError =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x145 : Ojs.t) -> x145
-        and t_to_js : t -> Ojs.t = fun (x144 : Ojs.t) -> x144
+        include struct include Error end
         let (get_actual : t -> any) =
-          fun (x146 : t) ->
-            any_of_js (Ojs.get_prop_ascii (t_to_js x146) "actual")
+          fun (x144 : t) ->
+            any_of_js (Ojs.get_prop_ascii (t_to_js x144) "actual")
         let (set_actual : t -> any -> unit) =
-          fun (x147 : t) ->
-            fun (x148 : any) ->
-              Ojs.set_prop_ascii (t_to_js x147) "actual" (any_to_js x148)
+          fun (x145 : t) ->
+            fun (x146 : any) ->
+              Ojs.set_prop_ascii (t_to_js x145) "actual" (any_to_js x146)
         let (get_expected : t -> any) =
-          fun (x149 : t) ->
-            any_of_js (Ojs.get_prop_ascii (t_to_js x149) "expected")
+          fun (x147 : t) ->
+            any_of_js (Ojs.get_prop_ascii (t_to_js x147) "expected")
         let (set_expected : t -> any -> unit) =
-          fun (x150 : t) ->
-            fun (x151 : any) ->
-              Ojs.set_prop_ascii (t_to_js x150) "expected" (any_to_js x151)
+          fun (x148 : t) ->
+            fun (x149 : any) ->
+              Ojs.set_prop_ascii (t_to_js x148) "expected" (any_to_js x149)
         let (get_operator : t -> string) =
-          fun (x152 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x152) "operator")
+          fun (x150 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x150) "operator")
         let (set_operator : t -> string -> unit) =
-          fun (x153 : t) ->
-            fun (x154 : string) ->
-              Ojs.set_prop_ascii (t_to_js x153) "operator"
-                (Ojs.string_to_js x154)
+          fun (x151 : t) ->
+            fun (x152 : string) ->
+              Ojs.set_prop_ascii (t_to_js x151) "operator"
+                (Ojs.string_to_js x152)
         let (get_generated_message : t -> bool) =
-          fun (x155 : t) ->
+          fun (x153 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x155) "generatedMessage")
+              (Ojs.get_prop_ascii (t_to_js x153) "generatedMessage")
         let (set_generated_message : t -> bool -> unit) =
-          fun (x156 : t) ->
-            fun (x157 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x156) "generatedMessage"
-                (Ojs.bool_to_js x157)
+          fun (x154 : t) ->
+            fun (x155 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x154) "generatedMessage"
+                (Ojs.bool_to_js x155)
         let (get_code : t -> [ `L_s0_ERR_ASSERTION ]) =
-          fun (x158 : t) ->
-            let x159 = Ojs.get_prop_ascii (t_to_js x158) "code" in
-            match Ojs.string_of_js x159 with
+          fun (x156 : t) ->
+            let x157 = Ojs.get_prop_ascii (t_to_js x156) "code" in
+            match Ojs.string_of_js x157 with
             | "ERR_ASSERTION" -> `L_s0_ERR_ASSERTION
             | _ -> assert false
         let (set_code : t -> [ `L_s0_ERR_ASSERTION ] -> unit) =
-          fun (x160 : t) ->
-            fun (x161 : [ `L_s0_ERR_ASSERTION ]) ->
-              Ojs.set_prop_ascii (t_to_js x160) "code"
-                (match x161 with
+          fun (x158 : t) ->
+            fun (x159 : [ `L_s0_ERR_ASSERTION ]) ->
+              Ojs.set_prop_ascii (t_to_js x158) "code"
+                (match x159 with
                  | `L_s0_ERR_ASSERTION -> Ojs.string_to_js "LS0ERRASSERTION")
         let (create : ?options:AnonymousInterface0.t -> unit -> t) =
-          fun ?options:(x162 : AnonymousInterface0.t option) ->
+          fun ?options:(x160 : AnonymousInterface0.t option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr
                    (Ojs.get_prop_ascii Import.assert_ "AssertionError")
-                   (let x163 =
+                   (let x161 =
                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                         [||] in
-                    (match x162 with
-                     | Some x164 ->
+                    (match x160 with
+                     | Some x162 ->
                          ignore
-                           (Ojs.call x163 "push"
-                              [|(AnonymousInterface0.t_to_js x164)|])
+                           (Ojs.call x161 "push"
+                              [|(AnonymousInterface0.t_to_js x162)|])
                      | None -> ());
-                    x163))
-        let (cast : t -> Error.t) =
-          fun (x165 : t) -> Error.t_of_js (t_to_js x165)
+                    x161))
       end
     module CallTrackerReportInformation =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x167 : Ojs.t) -> x167
-        and t_to_js : t -> Ojs.t = fun (x166 : Ojs.t) -> x166
+        let rec t_of_js : Ojs.t -> t = fun (x164 : Ojs.t) -> x164
+        and t_to_js : t -> Ojs.t = fun (x163 : Ojs.t) -> x163
         let (get_message : t -> string) =
-          fun (x168 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x168) "message")
+          fun (x165 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x165) "message")
         let (set_message : t -> string -> unit) =
-          fun (x169 : t) ->
-            fun (x170 : string) ->
-              Ojs.set_prop_ascii (t_to_js x169) "message"
-                (Ojs.string_to_js x170)
+          fun (x166 : t) ->
+            fun (x167 : string) ->
+              Ojs.set_prop_ascii (t_to_js x166) "message"
+                (Ojs.string_to_js x167)
         let (get_actual : t -> float) =
-          fun (x171 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x171) "actual")
+          fun (x168 : t) ->
+            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x168) "actual")
         let (set_actual : t -> float -> unit) =
+          fun (x169 : t) ->
+            fun (x170 : float) ->
+              Ojs.set_prop_ascii (t_to_js x169) "actual"
+                (Ojs.float_to_js x170)
+        let (get_expected : t -> float) =
+          fun (x171 : t) ->
+            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x171) "expected")
+        let (set_expected : t -> float -> unit) =
           fun (x172 : t) ->
             fun (x173 : float) ->
-              Ojs.set_prop_ascii (t_to_js x172) "actual"
+              Ojs.set_prop_ascii (t_to_js x172) "expected"
                 (Ojs.float_to_js x173)
-        let (get_expected : t -> float) =
-          fun (x174 : t) ->
-            Ojs.float_of_js (Ojs.get_prop_ascii (t_to_js x174) "expected")
-        let (set_expected : t -> float -> unit) =
-          fun (x175 : t) ->
-            fun (x176 : float) ->
-              Ojs.set_prop_ascii (t_to_js x175) "expected"
-                (Ojs.float_to_js x176)
         let (get_operator : t -> string) =
-          fun (x177 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x177) "operator")
+          fun (x174 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x174) "operator")
         let (set_operator : t -> string -> unit) =
-          fun (x178 : t) ->
-            fun (x179 : string) ->
-              Ojs.set_prop_ascii (t_to_js x178) "operator"
-                (Ojs.string_to_js x179)
+          fun (x175 : t) ->
+            fun (x176 : string) ->
+              Ojs.set_prop_ascii (t_to_js x175) "operator"
+                (Ojs.string_to_js x176)
         let (get_stack : t -> untyped_object) =
-          fun (x180 : t) ->
-            untyped_object_of_js (Ojs.get_prop_ascii (t_to_js x180) "stack")
+          fun (x177 : t) ->
+            untyped_object_of_js (Ojs.get_prop_ascii (t_to_js x177) "stack")
         let (set_stack : t -> untyped_object -> unit) =
-          fun (x181 : t) ->
-            fun (x182 : untyped_object) ->
-              Ojs.set_prop_ascii (t_to_js x181) "stack"
-                (untyped_object_to_js x182)
+          fun (x178 : t) ->
+            fun (x179 : untyped_object) ->
+              Ojs.set_prop_ascii (t_to_js x178) "stack"
+                (untyped_object_to_js x179)
       end
     module CallTracker =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x184 : Ojs.t) -> x184
-        and t_to_js : t -> Ojs.t = fun (x183 : Ojs.t) -> x183
+        let rec t_of_js : Ojs.t -> t = fun (x181 : Ojs.t) -> x181
+        and t_to_js : t -> Ojs.t = fun (x180 : Ojs.t) -> x180
         let (calls : t -> ?exact:float -> unit -> unit -> unit) =
-          fun (x188 : t) ->
-            fun ?exact:(x185 : float option) ->
+          fun (x185 : t) ->
+            fun ?exact:(x182 : float option) ->
               fun () ->
                 fun () ->
                   ignore
                     (Ojs.apply
-                       (let x189 = t_to_js x188 in
-                        Ojs.call (Ojs.get_prop_ascii x189 "calls") "apply"
-                          [|x189;((let x186 =
+                       (let x186 = t_to_js x185 in
+                        Ojs.call (Ojs.get_prop_ascii x186 "calls") "apply"
+                          [|x186;((let x183 =
                                      Ojs.new_obj
                                        (Ojs.get_prop_ascii Ojs.global "Array")
                                        [||] in
-                                   (match x185 with
-                                    | Some x187 ->
+                                   (match x182 with
+                                    | Some x184 ->
                                         ignore
-                                          (Ojs.call x186 "push"
-                                             [|(Ojs.float_to_js x187)|])
+                                          (Ojs.call x183 "push"
+                                             [|(Ojs.float_to_js x184)|])
                                     | None -> ());
-                                   x186))|]) [||])
+                                   x183))|]) [||])
         let (calls' : t -> ?fn:'Func -> ?exact:float -> unit -> 'Func) =
-          fun (x195 : t) ->
-            fun ?fn:(x190 : 'Func option) ->
-              fun ?exact:(x191 : float option) ->
+          fun (x192 : t) ->
+            fun ?fn:(x187 : 'Func option) ->
+              fun ?exact:(x188 : float option) ->
                 fun () ->
                   Obj.magic
-                    (let x196 = t_to_js x195 in
-                     Ojs.call (Ojs.get_prop_ascii x196 "calls") "apply"
-                       [|x196;((let x192 =
+                    (let x193 = t_to_js x192 in
+                     Ojs.call (Ojs.get_prop_ascii x193 "calls") "apply"
+                       [|x193;((let x189 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x190 with
-                                 | Some x194 ->
+                                (match x187 with
+                                 | Some x191 ->
                                      ignore
-                                       (Ojs.call x192 "push"
-                                          [|(Obj.magic x194)|])
+                                       (Ojs.call x189 "push"
+                                          [|(Obj.magic x191)|])
                                  | None -> ());
-                                (match x191 with
-                                 | Some x193 ->
+                                (match x188 with
+                                 | Some x190 ->
                                      ignore
-                                       (Ojs.call x192 "push"
-                                          [|(Ojs.float_to_js x193)|])
+                                       (Ojs.call x189 "push"
+                                          [|(Ojs.float_to_js x190)|])
                                  | None -> ());
-                                x192))|])
+                                x189))|])
         let (report : t -> CallTrackerReportInformation.t list) =
-          fun (x197 : t) ->
+          fun (x194 : t) ->
             Ojs.list_of_js CallTrackerReportInformation.t_of_js
-              (Ojs.call (t_to_js x197) "report" [||])
+              (Ojs.call (t_to_js x194) "report" [||])
         let (verify : t -> unit) =
-          fun (x199 : t) -> ignore (Ojs.call (t_to_js x199) "verify" [||])
+          fun (x196 : t) -> ignore (Ojs.call (t_to_js x196) "verify" [||])
       end
     module AssertPredicate =
       struct
@@ -666,41 +662,41 @@ module Assert =
           (Error.t, regexp, untyped_object, AnonymousInterface4.t,
             thrown:any -> bool) union5
         let rec t_of_js : Ojs.t -> t =
-          fun (x207 : Ojs.t) ->
+          fun (x204 : Ojs.t) ->
             union5_of_js Error.t_of_js regexp_of_js untyped_object_of_js
               AnonymousInterface4.t_of_js
-              (fun (x212 : Ojs.t) ->
-                 fun ~thrown:(x213 : any) ->
-                   Ojs.bool_of_js (Ojs.apply x212 [|(any_to_js x213)|])) x207
+              (fun (x209 : Ojs.t) ->
+                 fun ~thrown:(x210 : any) ->
+                   Ojs.bool_of_js (Ojs.apply x209 [|(any_to_js x210)|])) x204
         and t_to_js : t -> Ojs.t =
           fun
-            (x200 :
+            (x197 :
               (Error.t, regexp, untyped_object, AnonymousInterface4.t,
                 thrown:any -> bool) union5)
             ->
             union5_to_js Error.t_to_js regexp_to_js untyped_object_to_js
               AnonymousInterface4.t_to_js
-              (fun (x205 : thrown:any -> bool) ->
+              (fun (x202 : thrown:any -> bool) ->
                  Ojs.fun_to_js 1
-                   (fun (x206 : Ojs.t) ->
-                      Ojs.bool_to_js (x205 ~thrown:(any_of_js x206)))) x200
+                   (fun (x203 : Ojs.t) ->
+                      Ojs.bool_to_js (x202 ~thrown:(any_of_js x203)))) x197
       end
     let (fail : ?message:Error.t or_string -> unit -> never) =
-      fun ?message:(x214 : Error.t or_string option) ->
+      fun ?message:(x211 : Error.t or_string option) ->
         fun () ->
           never_of_js
-            (let x218 = Import.assert_ in
-             Ojs.call (Ojs.get_prop_ascii x218 "fail") "apply"
-               [|x218;((let x215 =
+            (let x215 = Import.assert_ in
+             Ojs.call (Ojs.get_prop_ascii x215 "fail") "apply"
+               [|x215;((let x212 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
-                        (match x214 with
-                         | Some x216 ->
+                        (match x211 with
+                         | Some x213 ->
                              ignore
-                               (Ojs.call x215 "push"
-                                  [|(or_string_to_js Error.t_to_js x216)|])
+                               (Ojs.call x212 "push"
+                                  [|(or_string_to_js Error.t_to_js x213)|])
                          | None -> ());
-                        x215))|])
+                        x212))|])
     let (fail :
       actual:any ->
         expected:any ->
@@ -708,565 +704,565 @@ module Assert =
             ?operator:string ->
               ?stack_start_fn:untyped_function -> unit -> never)
       =
-      fun ~actual:(x219 : any) ->
-        fun ~expected:(x220 : any) ->
-          fun ?message:(x221 : Error.t or_string option) ->
-            fun ?operator:(x222 : string option) ->
-              fun ?stack_start_fn:(x223 : untyped_function option) ->
+      fun ~actual:(x216 : any) ->
+        fun ~expected:(x217 : any) ->
+          fun ?message:(x218 : Error.t or_string option) ->
+            fun ?operator:(x219 : string option) ->
+              fun ?stack_start_fn:(x220 : untyped_function option) ->
                 fun () ->
                   never_of_js
-                    (let x229 = Import.assert_ in
-                     Ojs.call (Ojs.get_prop_ascii x229 "fail") "apply"
-                       [|x229;((let x224 =
+                    (let x226 = Import.assert_ in
+                     Ojs.call (Ojs.get_prop_ascii x226 "fail") "apply"
+                       [|x226;((let x221 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x224 "push" [|(any_to_js x219)|]);
+                                  (Ojs.call x221 "push" [|(any_to_js x216)|]);
                                 ignore
-                                  (Ojs.call x224 "push" [|(any_to_js x220)|]);
-                                (match x221 with
-                                 | Some x227 ->
+                                  (Ojs.call x221 "push" [|(any_to_js x217)|]);
+                                (match x218 with
+                                 | Some x224 ->
                                      ignore
-                                       (Ojs.call x224 "push"
+                                       (Ojs.call x221 "push"
                                           [|(or_string_to_js Error.t_to_js
-                                               x227)|])
+                                               x224)|])
                                  | None -> ());
-                                (match x222 with
-                                 | Some x226 ->
+                                (match x219 with
+                                 | Some x223 ->
                                      ignore
-                                       (Ojs.call x224 "push"
-                                          [|(Ojs.string_to_js x226)|])
+                                       (Ojs.call x221 "push"
+                                          [|(Ojs.string_to_js x223)|])
                                  | None -> ());
-                                (match x223 with
-                                 | Some x225 ->
+                                (match x220 with
+                                 | Some x222 ->
                                      ignore
-                                       (Ojs.call x224 "push"
-                                          [|(untyped_function_to_js x225)|])
+                                       (Ojs.call x221 "push"
+                                          [|(untyped_function_to_js x222)|])
                                  | None -> ());
-                                x224))|])
+                                x221))|])
     let (ok : value:any -> ?message:Error.t or_string -> unit -> bool) =
-      fun ~value:(x230 : any) ->
-        fun ?message:(x231 : Error.t or_string option) ->
+      fun ~value:(x227 : any) ->
+        fun ?message:(x228 : Error.t or_string option) ->
           fun () ->
             Ojs.bool_of_js
-              (let x235 = Import.assert_ in
-               Ojs.call (Ojs.get_prop_ascii x235 "ok") "apply"
-                 [|x235;((let x232 =
+              (let x232 = Import.assert_ in
+               Ojs.call (Ojs.get_prop_ascii x232 "ok") "apply"
+                 [|x232;((let x229 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
-                          ignore (Ojs.call x232 "push" [|(any_to_js x230)|]);
-                          (match x231 with
-                           | Some x233 ->
+                          ignore (Ojs.call x229 "push" [|(any_to_js x227)|]);
+                          (match x228 with
+                           | Some x230 ->
                                ignore
-                                 (Ojs.call x232 "push"
-                                    [|(or_string_to_js Error.t_to_js x233)|])
+                                 (Ojs.call x229 "push"
+                                    [|(or_string_to_js Error.t_to_js x230)|])
                            | None -> ());
-                          x232))|])
+                          x229))|])
     let (equal :
       actual:any ->
         expected:any -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~actual:(x236 : any) ->
-        fun ~expected:(x237 : any) ->
-          fun ?message:(x238 : Error.t or_string option) ->
+      fun ~actual:(x233 : any) ->
+        fun ~expected:(x234 : any) ->
+          fun ?message:(x235 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x242 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x242 "equal") "apply"
-                   [|x242;((let x239 =
+                (let x239 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x239 "equal") "apply"
+                   [|x239;((let x236 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x239 "push" [|(any_to_js x236)|]);
+                              (Ojs.call x236 "push" [|(any_to_js x233)|]);
                             ignore
-                              (Ojs.call x239 "push" [|(any_to_js x237)|]);
-                            (match x238 with
-                             | Some x240 ->
+                              (Ojs.call x236 "push" [|(any_to_js x234)|]);
+                            (match x235 with
+                             | Some x237 ->
                                  ignore
-                                   (Ojs.call x239 "push"
-                                      [|(or_string_to_js Error.t_to_js x240)|])
+                                   (Ojs.call x236 "push"
+                                      [|(or_string_to_js Error.t_to_js x237)|])
                              | None -> ());
-                            x239))|])
+                            x236))|])
     let (not_equal :
       actual:any ->
         expected:any -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~actual:(x243 : any) ->
-        fun ~expected:(x244 : any) ->
-          fun ?message:(x245 : Error.t or_string option) ->
+      fun ~actual:(x240 : any) ->
+        fun ~expected:(x241 : any) ->
+          fun ?message:(x242 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x249 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x249 "notEqual") "apply"
-                   [|x249;((let x246 =
+                (let x246 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x246 "notEqual") "apply"
+                   [|x246;((let x243 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x246 "push" [|(any_to_js x243)|]);
+                              (Ojs.call x243 "push" [|(any_to_js x240)|]);
                             ignore
-                              (Ojs.call x246 "push" [|(any_to_js x244)|]);
-                            (match x245 with
-                             | Some x247 ->
+                              (Ojs.call x243 "push" [|(any_to_js x241)|]);
+                            (match x242 with
+                             | Some x244 ->
                                  ignore
-                                   (Ojs.call x246 "push"
-                                      [|(or_string_to_js Error.t_to_js x247)|])
+                                   (Ojs.call x243 "push"
+                                      [|(or_string_to_js Error.t_to_js x244)|])
                              | None -> ());
-                            x246))|])
+                            x243))|])
     let (deep_equal :
       actual:any ->
         expected:any -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~actual:(x250 : any) ->
-        fun ~expected:(x251 : any) ->
-          fun ?message:(x252 : Error.t or_string option) ->
+      fun ~actual:(x247 : any) ->
+        fun ~expected:(x248 : any) ->
+          fun ?message:(x249 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x256 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x256 "deepEqual") "apply"
-                   [|x256;((let x253 =
+                (let x253 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x253 "deepEqual") "apply"
+                   [|x253;((let x250 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x253 "push" [|(any_to_js x250)|]);
+                              (Ojs.call x250 "push" [|(any_to_js x247)|]);
                             ignore
-                              (Ojs.call x253 "push" [|(any_to_js x251)|]);
-                            (match x252 with
-                             | Some x254 ->
+                              (Ojs.call x250 "push" [|(any_to_js x248)|]);
+                            (match x249 with
+                             | Some x251 ->
                                  ignore
-                                   (Ojs.call x253 "push"
-                                      [|(or_string_to_js Error.t_to_js x254)|])
+                                   (Ojs.call x250 "push"
+                                      [|(or_string_to_js Error.t_to_js x251)|])
                              | None -> ());
-                            x253))|])
+                            x250))|])
     let (not_deep_equal :
       actual:any ->
         expected:any -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~actual:(x257 : any) ->
-        fun ~expected:(x258 : any) ->
-          fun ?message:(x259 : Error.t or_string option) ->
+      fun ~actual:(x254 : any) ->
+        fun ~expected:(x255 : any) ->
+          fun ?message:(x256 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x263 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x263 "notDeepEqual") "apply"
-                   [|x263;((let x260 =
+                (let x260 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x260 "notDeepEqual") "apply"
+                   [|x260;((let x257 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x260 "push" [|(any_to_js x257)|]);
+                              (Ojs.call x257 "push" [|(any_to_js x254)|]);
                             ignore
-                              (Ojs.call x260 "push" [|(any_to_js x258)|]);
-                            (match x259 with
-                             | Some x261 ->
+                              (Ojs.call x257 "push" [|(any_to_js x255)|]);
+                            (match x256 with
+                             | Some x258 ->
                                  ignore
-                                   (Ojs.call x260 "push"
-                                      [|(or_string_to_js Error.t_to_js x261)|])
+                                   (Ojs.call x257 "push"
+                                      [|(or_string_to_js Error.t_to_js x258)|])
                              | None -> ());
-                            x260))|])
+                            x257))|])
     let (strict_equal :
       actual:any -> expected:'T -> ?message:Error.t or_string -> unit -> bool)
       =
-      fun ~actual:(x264 : any) ->
-        fun ~expected:(x265 : 'T) ->
-          fun ?message:(x266 : Error.t or_string option) ->
+      fun ~actual:(x261 : any) ->
+        fun ~expected:(x262 : 'T) ->
+          fun ?message:(x263 : Error.t or_string option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x270 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x270 "strictEqual") "apply"
-                   [|x270;((let x267 =
+                (let x267 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x267 "strictEqual") "apply"
+                   [|x267;((let x264 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x267 "push" [|(any_to_js x264)|]);
+                              (Ojs.call x264 "push" [|(any_to_js x261)|]);
                             ignore
-                              (Ojs.call x267 "push" [|(Obj.magic x265)|]);
-                            (match x266 with
-                             | Some x268 ->
+                              (Ojs.call x264 "push" [|(Obj.magic x262)|]);
+                            (match x263 with
+                             | Some x265 ->
                                  ignore
-                                   (Ojs.call x267 "push"
-                                      [|(or_string_to_js Error.t_to_js x268)|])
+                                   (Ojs.call x264 "push"
+                                      [|(or_string_to_js Error.t_to_js x265)|])
                              | None -> ());
-                            x267))|])
+                            x264))|])
     let (not_strict_equal :
       actual:any ->
         expected:any -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~actual:(x271 : any) ->
-        fun ~expected:(x272 : any) ->
-          fun ?message:(x273 : Error.t or_string option) ->
+      fun ~actual:(x268 : any) ->
+        fun ~expected:(x269 : any) ->
+          fun ?message:(x270 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x277 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x277 "notStrictEqual") "apply"
-                   [|x277;((let x274 =
+                (let x274 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x274 "notStrictEqual") "apply"
+                   [|x274;((let x271 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x274 "push" [|(any_to_js x271)|]);
+                              (Ojs.call x271 "push" [|(any_to_js x268)|]);
                             ignore
-                              (Ojs.call x274 "push" [|(any_to_js x272)|]);
-                            (match x273 with
-                             | Some x275 ->
+                              (Ojs.call x271 "push" [|(any_to_js x269)|]);
+                            (match x270 with
+                             | Some x272 ->
                                  ignore
-                                   (Ojs.call x274 "push"
-                                      [|(or_string_to_js Error.t_to_js x275)|])
+                                   (Ojs.call x271 "push"
+                                      [|(or_string_to_js Error.t_to_js x272)|])
                              | None -> ());
-                            x274))|])
+                            x271))|])
     let (deep_strict_equal :
       actual:any -> expected:'T -> ?message:Error.t or_string -> unit -> bool)
       =
-      fun ~actual:(x278 : any) ->
-        fun ~expected:(x279 : 'T) ->
-          fun ?message:(x280 : Error.t or_string option) ->
+      fun ~actual:(x275 : any) ->
+        fun ~expected:(x276 : 'T) ->
+          fun ?message:(x277 : Error.t or_string option) ->
             fun () ->
               Ojs.bool_of_js
-                (let x284 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x284 "deepStrictEqual") "apply"
-                   [|x284;((let x281 =
+                (let x281 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x281 "deepStrictEqual") "apply"
+                   [|x281;((let x278 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x281 "push" [|(any_to_js x278)|]);
+                              (Ojs.call x278 "push" [|(any_to_js x275)|]);
                             ignore
-                              (Ojs.call x281 "push" [|(Obj.magic x279)|]);
-                            (match x280 with
-                             | Some x282 ->
+                              (Ojs.call x278 "push" [|(Obj.magic x276)|]);
+                            (match x277 with
+                             | Some x279 ->
                                  ignore
-                                   (Ojs.call x281 "push"
-                                      [|(or_string_to_js Error.t_to_js x282)|])
+                                   (Ojs.call x278 "push"
+                                      [|(or_string_to_js Error.t_to_js x279)|])
                              | None -> ());
-                            x281))|])
+                            x278))|])
     let (not_deep_strict_equal :
       actual:any ->
         expected:any -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~actual:(x285 : any) ->
-        fun ~expected:(x286 : any) ->
-          fun ?message:(x287 : Error.t or_string option) ->
+      fun ~actual:(x282 : any) ->
+        fun ~expected:(x283 : any) ->
+          fun ?message:(x284 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x291 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x291 "notDeepStrictEqual")
+                (let x288 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x288 "notDeepStrictEqual")
                    "apply"
-                   [|x291;((let x288 =
+                   [|x288;((let x285 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x288 "push" [|(any_to_js x285)|]);
+                              (Ojs.call x285 "push" [|(any_to_js x282)|]);
                             ignore
-                              (Ojs.call x288 "push" [|(any_to_js x286)|]);
-                            (match x287 with
-                             | Some x289 ->
+                              (Ojs.call x285 "push" [|(any_to_js x283)|]);
+                            (match x284 with
+                             | Some x286 ->
                                  ignore
-                                   (Ojs.call x288 "push"
-                                      [|(or_string_to_js Error.t_to_js x289)|])
+                                   (Ojs.call x285 "push"
+                                      [|(or_string_to_js Error.t_to_js x286)|])
                              | None -> ());
-                            x288))|])
+                            x285))|])
     let (throws :
       block:(unit -> any) -> ?message:Error.t or_string -> unit -> unit) =
-      fun ~block:(x292 : unit -> any) ->
-        fun ?message:(x293 : Error.t or_string option) ->
+      fun ~block:(x289 : unit -> any) ->
+        fun ?message:(x290 : Error.t or_string option) ->
           fun () ->
             ignore
-              (let x297 = Import.assert_ in
-               Ojs.call (Ojs.get_prop_ascii x297 "throws") "apply"
-                 [|x297;((let x294 =
+              (let x294 = Import.assert_ in
+               Ojs.call (Ojs.get_prop_ascii x294 "throws") "apply"
+                 [|x294;((let x291 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x294 "push"
+                            (Ojs.call x291 "push"
                                [|(Ojs.fun_to_js 1
-                                    (fun _ -> any_to_js (x292 ())))|]);
-                          (match x293 with
-                           | Some x295 ->
+                                    (fun _ -> any_to_js (x289 ())))|]);
+                          (match x290 with
+                           | Some x292 ->
                                ignore
-                                 (Ojs.call x294 "push"
-                                    [|(or_string_to_js Error.t_to_js x295)|])
+                                 (Ojs.call x291 "push"
+                                    [|(or_string_to_js Error.t_to_js x292)|])
                            | None -> ());
-                          x294))|])
+                          x291))|])
     let (throws :
       block:(unit -> any) ->
         error:AssertPredicate.t -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~block:(x298 : unit -> any) ->
-        fun ~error:(x299 : AssertPredicate.t) ->
-          fun ?message:(x300 : Error.t or_string option) ->
+      fun ~block:(x295 : unit -> any) ->
+        fun ~error:(x296 : AssertPredicate.t) ->
+          fun ?message:(x297 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x304 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x304 "throws") "apply"
-                   [|x304;((let x301 =
+                (let x301 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x301 "throws") "apply"
+                   [|x301;((let x298 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x301 "push"
+                              (Ojs.call x298 "push"
                                  [|(Ojs.fun_to_js 1
-                                      (fun _ -> any_to_js (x298 ())))|]);
+                                      (fun _ -> any_to_js (x295 ())))|]);
                             ignore
-                              (Ojs.call x301 "push"
-                                 [|(AssertPredicate.t_to_js x299)|]);
-                            (match x300 with
-                             | Some x302 ->
+                              (Ojs.call x298 "push"
+                                 [|(AssertPredicate.t_to_js x296)|]);
+                            (match x297 with
+                             | Some x299 ->
                                  ignore
-                                   (Ojs.call x301 "push"
-                                      [|(or_string_to_js Error.t_to_js x302)|])
+                                   (Ojs.call x298 "push"
+                                      [|(or_string_to_js Error.t_to_js x299)|])
                              | None -> ());
-                            x301))|])
+                            x298))|])
     let (does_not_throw :
       block:(unit -> any) -> ?message:Error.t or_string -> unit -> unit) =
-      fun ~block:(x305 : unit -> any) ->
-        fun ?message:(x306 : Error.t or_string option) ->
+      fun ~block:(x302 : unit -> any) ->
+        fun ?message:(x303 : Error.t or_string option) ->
           fun () ->
             ignore
-              (let x310 = Import.assert_ in
-               Ojs.call (Ojs.get_prop_ascii x310 "doesNotThrow") "apply"
-                 [|x310;((let x307 =
+              (let x307 = Import.assert_ in
+               Ojs.call (Ojs.get_prop_ascii x307 "doesNotThrow") "apply"
+                 [|x307;((let x304 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x307 "push"
+                            (Ojs.call x304 "push"
                                [|(Ojs.fun_to_js 1
-                                    (fun _ -> any_to_js (x305 ())))|]);
-                          (match x306 with
-                           | Some x308 ->
+                                    (fun _ -> any_to_js (x302 ())))|]);
+                          (match x303 with
+                           | Some x305 ->
                                ignore
-                                 (Ojs.call x307 "push"
-                                    [|(or_string_to_js Error.t_to_js x308)|])
+                                 (Ojs.call x304 "push"
+                                    [|(or_string_to_js Error.t_to_js x305)|])
                            | None -> ());
-                          x307))|])
+                          x304))|])
     let (does_not_throw :
       block:(unit -> any) ->
         error:AssertPredicate.t -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~block:(x311 : unit -> any) ->
-        fun ~error:(x312 : AssertPredicate.t) ->
-          fun ?message:(x313 : Error.t or_string option) ->
+      fun ~block:(x308 : unit -> any) ->
+        fun ~error:(x309 : AssertPredicate.t) ->
+          fun ?message:(x310 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x317 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x317 "doesNotThrow") "apply"
-                   [|x317;((let x314 =
+                (let x314 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x314 "doesNotThrow") "apply"
+                   [|x314;((let x311 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x314 "push"
+                              (Ojs.call x311 "push"
                                  [|(Ojs.fun_to_js 1
-                                      (fun _ -> any_to_js (x311 ())))|]);
+                                      (fun _ -> any_to_js (x308 ())))|]);
                             ignore
-                              (Ojs.call x314 "push"
-                                 [|(AssertPredicate.t_to_js x312)|]);
-                            (match x313 with
-                             | Some x315 ->
+                              (Ojs.call x311 "push"
+                                 [|(AssertPredicate.t_to_js x309)|]);
+                            (match x310 with
+                             | Some x312 ->
                                  ignore
-                                   (Ojs.call x314 "push"
-                                      [|(or_string_to_js Error.t_to_js x315)|])
+                                   (Ojs.call x311 "push"
+                                      [|(or_string_to_js Error.t_to_js x312)|])
                              | None -> ());
-                            x314))|])
+                            x311))|])
     let (if_error : value:any -> bool) =
-      fun ~value:(x318 : any) ->
+      fun ~value:(x315 : any) ->
         Ojs.bool_of_js
-          (Ojs.call Import.assert_ "ifError" [|(any_to_js x318)|])
+          (Ojs.call Import.assert_ "ifError" [|(any_to_js x315)|])
     let (rejects :
       block:(unit -> any Promise.t, any Promise.t) union2 ->
         ?message:Error.t or_string -> unit -> unit Promise.t)
       =
-      fun ~block:(x319 : (unit -> any Promise.t, any Promise.t) union2) ->
-        fun ?message:(x320 : Error.t or_string option) ->
+      fun ~block:(x316 : (unit -> any Promise.t, any Promise.t) union2) ->
+        fun ?message:(x317 : Error.t or_string option) ->
           fun () ->
             Promise.t_of_js Ojs.unit_of_js
-              (let x328 = Import.assert_ in
-               Ojs.call (Ojs.get_prop_ascii x328 "rejects") "apply"
-                 [|x328;((let x321 =
+              (let x325 = Import.assert_ in
+               Ojs.call (Ojs.get_prop_ascii x325 "rejects") "apply"
+                 [|x325;((let x318 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x321 "push"
+                            (Ojs.call x318 "push"
                                [|(union2_to_js
-                                    (fun (x324 : unit -> any Promise.t) ->
+                                    (fun (x321 : unit -> any Promise.t) ->
                                        Ojs.fun_to_js 1
                                          (fun _ ->
                                             Promise.t_to_js any_to_js
-                                              (x324 ())))
-                                    (fun (x326 : any Promise.t) ->
-                                       Promise.t_to_js any_to_js x326) x319)|]);
-                          (match x320 with
-                           | Some x322 ->
+                                              (x321 ())))
+                                    (fun (x323 : any Promise.t) ->
+                                       Promise.t_to_js any_to_js x323) x316)|]);
+                          (match x317 with
+                           | Some x319 ->
                                ignore
-                                 (Ojs.call x321 "push"
-                                    [|(or_string_to_js Error.t_to_js x322)|])
+                                 (Ojs.call x318 "push"
+                                    [|(or_string_to_js Error.t_to_js x319)|])
                            | None -> ());
-                          x321))|])
+                          x318))|])
     let (rejects :
       block:(unit -> any Promise.t, any Promise.t) union2 ->
         error:AssertPredicate.t ->
           ?message:Error.t or_string -> unit -> unit Promise.t)
       =
-      fun ~block:(x330 : (unit -> any Promise.t, any Promise.t) union2) ->
-        fun ~error:(x331 : AssertPredicate.t) ->
-          fun ?message:(x332 : Error.t or_string option) ->
+      fun ~block:(x327 : (unit -> any Promise.t, any Promise.t) union2) ->
+        fun ~error:(x328 : AssertPredicate.t) ->
+          fun ?message:(x329 : Error.t or_string option) ->
             fun () ->
               Promise.t_of_js Ojs.unit_of_js
-                (let x340 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x340 "rejects") "apply"
-                   [|x340;((let x333 =
+                (let x337 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x337 "rejects") "apply"
+                   [|x337;((let x330 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x333 "push"
+                              (Ojs.call x330 "push"
                                  [|(union2_to_js
-                                      (fun (x336 : unit -> any Promise.t) ->
+                                      (fun (x333 : unit -> any Promise.t) ->
                                          Ojs.fun_to_js 1
                                            (fun _ ->
                                               Promise.t_to_js any_to_js
-                                                (x336 ())))
-                                      (fun (x338 : any Promise.t) ->
-                                         Promise.t_to_js any_to_js x338) x330)|]);
+                                                (x333 ())))
+                                      (fun (x335 : any Promise.t) ->
+                                         Promise.t_to_js any_to_js x335) x327)|]);
                             ignore
-                              (Ojs.call x333 "push"
-                                 [|(AssertPredicate.t_to_js x331)|]);
-                            (match x332 with
-                             | Some x334 ->
+                              (Ojs.call x330 "push"
+                                 [|(AssertPredicate.t_to_js x328)|]);
+                            (match x329 with
+                             | Some x331 ->
                                  ignore
-                                   (Ojs.call x333 "push"
-                                      [|(or_string_to_js Error.t_to_js x334)|])
+                                   (Ojs.call x330 "push"
+                                      [|(or_string_to_js Error.t_to_js x331)|])
                              | None -> ());
-                            x333))|])
+                            x330))|])
     let (does_not_reject :
       block:(unit -> any Promise.t, any Promise.t) union2 ->
         ?message:Error.t or_string -> unit -> unit Promise.t)
       =
-      fun ~block:(x342 : (unit -> any Promise.t, any Promise.t) union2) ->
-        fun ?message:(x343 : Error.t or_string option) ->
+      fun ~block:(x339 : (unit -> any Promise.t, any Promise.t) union2) ->
+        fun ?message:(x340 : Error.t or_string option) ->
           fun () ->
             Promise.t_of_js Ojs.unit_of_js
-              (let x351 = Import.assert_ in
-               Ojs.call (Ojs.get_prop_ascii x351 "doesNotReject") "apply"
-                 [|x351;((let x344 =
+              (let x348 = Import.assert_ in
+               Ojs.call (Ojs.get_prop_ascii x348 "doesNotReject") "apply"
+                 [|x348;((let x341 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x344 "push"
+                            (Ojs.call x341 "push"
                                [|(union2_to_js
-                                    (fun (x347 : unit -> any Promise.t) ->
+                                    (fun (x344 : unit -> any Promise.t) ->
                                        Ojs.fun_to_js 1
                                          (fun _ ->
                                             Promise.t_to_js any_to_js
-                                              (x347 ())))
-                                    (fun (x349 : any Promise.t) ->
-                                       Promise.t_to_js any_to_js x349) x342)|]);
-                          (match x343 with
-                           | Some x345 ->
+                                              (x344 ())))
+                                    (fun (x346 : any Promise.t) ->
+                                       Promise.t_to_js any_to_js x346) x339)|]);
+                          (match x340 with
+                           | Some x342 ->
                                ignore
-                                 (Ojs.call x344 "push"
-                                    [|(or_string_to_js Error.t_to_js x345)|])
+                                 (Ojs.call x341 "push"
+                                    [|(or_string_to_js Error.t_to_js x342)|])
                            | None -> ());
-                          x344))|])
+                          x341))|])
     let (does_not_reject :
       block:(unit -> any Promise.t, any Promise.t) union2 ->
         error:AssertPredicate.t ->
           ?message:Error.t or_string -> unit -> unit Promise.t)
       =
-      fun ~block:(x353 : (unit -> any Promise.t, any Promise.t) union2) ->
-        fun ~error:(x354 : AssertPredicate.t) ->
-          fun ?message:(x355 : Error.t or_string option) ->
+      fun ~block:(x350 : (unit -> any Promise.t, any Promise.t) union2) ->
+        fun ~error:(x351 : AssertPredicate.t) ->
+          fun ?message:(x352 : Error.t or_string option) ->
             fun () ->
               Promise.t_of_js Ojs.unit_of_js
-                (let x363 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x363 "doesNotReject") "apply"
-                   [|x363;((let x356 =
+                (let x360 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x360 "doesNotReject") "apply"
+                   [|x360;((let x353 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x356 "push"
+                              (Ojs.call x353 "push"
                                  [|(union2_to_js
-                                      (fun (x359 : unit -> any Promise.t) ->
+                                      (fun (x356 : unit -> any Promise.t) ->
                                          Ojs.fun_to_js 1
                                            (fun _ ->
                                               Promise.t_to_js any_to_js
-                                                (x359 ())))
-                                      (fun (x361 : any Promise.t) ->
-                                         Promise.t_to_js any_to_js x361) x353)|]);
+                                                (x356 ())))
+                                      (fun (x358 : any Promise.t) ->
+                                         Promise.t_to_js any_to_js x358) x350)|]);
                             ignore
-                              (Ojs.call x356 "push"
-                                 [|(AssertPredicate.t_to_js x354)|]);
-                            (match x355 with
-                             | Some x357 ->
+                              (Ojs.call x353 "push"
+                                 [|(AssertPredicate.t_to_js x351)|]);
+                            (match x352 with
+                             | Some x354 ->
                                  ignore
-                                   (Ojs.call x356 "push"
-                                      [|(or_string_to_js Error.t_to_js x357)|])
+                                   (Ojs.call x353 "push"
+                                      [|(or_string_to_js Error.t_to_js x354)|])
                              | None -> ());
-                            x356))|])
+                            x353))|])
     let (match_ :
       value:string ->
         reg_exp:regexp -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~value:(x365 : string) ->
-        fun ~reg_exp:(x366 : regexp) ->
-          fun ?message:(x367 : Error.t or_string option) ->
+      fun ~value:(x362 : string) ->
+        fun ~reg_exp:(x363 : regexp) ->
+          fun ?message:(x364 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x371 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x371 "match") "apply"
-                   [|x371;((let x368 =
+                (let x368 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x368 "match") "apply"
+                   [|x368;((let x365 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x368 "push"
-                                 [|(Ojs.string_to_js x365)|]);
+                              (Ojs.call x365 "push"
+                                 [|(Ojs.string_to_js x362)|]);
                             ignore
-                              (Ojs.call x368 "push" [|(regexp_to_js x366)|]);
-                            (match x367 with
-                             | Some x369 ->
+                              (Ojs.call x365 "push" [|(regexp_to_js x363)|]);
+                            (match x364 with
+                             | Some x366 ->
                                  ignore
-                                   (Ojs.call x368 "push"
-                                      [|(or_string_to_js Error.t_to_js x369)|])
+                                   (Ojs.call x365 "push"
+                                      [|(or_string_to_js Error.t_to_js x366)|])
                              | None -> ());
-                            x368))|])
+                            x365))|])
     let (does_not_match :
       value:string ->
         reg_exp:regexp -> ?message:Error.t or_string -> unit -> unit)
       =
-      fun ~value:(x372 : string) ->
-        fun ~reg_exp:(x373 : regexp) ->
-          fun ?message:(x374 : Error.t or_string option) ->
+      fun ~value:(x369 : string) ->
+        fun ~reg_exp:(x370 : regexp) ->
+          fun ?message:(x371 : Error.t or_string option) ->
             fun () ->
               ignore
-                (let x378 = Import.assert_ in
-                 Ojs.call (Ojs.get_prop_ascii x378 "doesNotMatch") "apply"
-                   [|x378;((let x375 =
+                (let x375 = Import.assert_ in
+                 Ojs.call (Ojs.get_prop_ascii x375 "doesNotMatch") "apply"
+                   [|x375;((let x372 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x375 "push"
-                                 [|(Ojs.string_to_js x372)|]);
+                              (Ojs.call x372 "push"
+                                 [|(Ojs.string_to_js x369)|]);
                             ignore
-                              (Ojs.call x375 "push" [|(regexp_to_js x373)|]);
-                            (match x374 with
-                             | Some x376 ->
+                              (Ojs.call x372 "push" [|(regexp_to_js x370)|]);
+                            (match x371 with
+                             | Some x373 ->
                                  ignore
-                                   (Ojs.call x375 "push"
-                                      [|(or_string_to_js Error.t_to_js x376)|])
+                                   (Ojs.call x372 "push"
+                                      [|(or_string_to_js Error.t_to_js x373)|])
                              | None -> ());
-                            x375))|])
+                            x372))|])
     let (strict :
       ((value:any -> ?message:Error.t or_string -> unit -> bool,
          [ `L_s1_deepEqual  | `L_s2_deepStrictEqual  | `L_s3_equal 
@@ -1275,32 +1271,32 @@ module Assert =
         AnonymousInterface2.t) intersection2)
       =
       intersection2_of_js
-        (fun (x379 : Ojs.t) ->
+        (fun (x376 : Ojs.t) ->
            Omit.t_of_js
-             (fun (x380 : Ojs.t) ->
-                fun ~value:(x381 : any) ->
-                  fun ?message:(x382 : Error.t or_string option) ->
+             (fun (x377 : Ojs.t) ->
+                fun ~value:(x378 : any) ->
+                  fun ?message:(x379 : Error.t or_string option) ->
                     fun () ->
                       Ojs.bool_of_js
-                        (Ojs.call x380 "apply"
-                           [|Ojs.null;((let x383 =
+                        (Ojs.call x377 "apply"
+                           [|Ojs.null;((let x380 =
                                           Ojs.new_obj
                                             (Ojs.get_prop_ascii Ojs.global
                                                "Array") [||] in
                                         ignore
-                                          (Ojs.call x383 "push"
-                                             [|(any_to_js x381)|]);
-                                        (match x382 with
-                                         | Some x384 ->
+                                          (Ojs.call x380 "push"
+                                             [|(any_to_js x378)|]);
+                                        (match x379 with
+                                         | Some x381 ->
                                              ignore
-                                               (Ojs.call x383 "push"
+                                               (Ojs.call x380 "push"
                                                   [|(or_string_to_js
-                                                       Error.t_to_js x384)|])
+                                                       Error.t_to_js x381)|])
                                          | None -> ());
-                                        x383))|]))
-             (fun (x386 : Ojs.t) ->
-                let x387 = x386 in
-                match Ojs.string_of_js x387 with
+                                        x380))|]))
+             (fun (x383 : Ojs.t) ->
+                let x384 = x383 in
+                match Ojs.string_of_js x384 with
                 | "deepEqual" -> `L_s1_deepEqual
                 | "deepStrictEqual" -> `L_s2_deepStrictEqual
                 | "equal" -> `L_s3_equal
@@ -1310,24 +1306,24 @@ module Assert =
                 | "ok" -> `L_s7_ok
                 | "strict" -> `L_s8_strict
                 | "strictEqual" -> `L_s9_strictEqual
-                | _ -> assert false) x379) AnonymousInterface2.t_of_js
+                | _ -> assert false) x376) AnonymousInterface2.t_of_js
         (Ojs.get_prop_ascii Import.assert_ "strict")
   end
 let (assert_ : bool -> ?message:Error.t or_string -> unit -> bool) =
-  fun (x389 : bool) ->
-    fun ?message:(x390 : Error.t or_string option) ->
+  fun (x386 : bool) ->
+    fun ?message:(x387 : Error.t or_string option) ->
       fun () ->
         Ojs.bool_of_js
-          (let x394 = Ojs.global in
-           Ojs.call (Ojs.get_prop_ascii x394 "assert") "apply"
-             [|x394;((let x391 =
+          (let x391 = Ojs.global in
+           Ojs.call (Ojs.get_prop_ascii x391 "assert") "apply"
+             [|x391;((let x388 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
-                      ignore (Ojs.call x391 "push" [|(Ojs.bool_to_js x389)|]);
-                      (match x390 with
-                       | Some x392 ->
+                      ignore (Ojs.call x388 "push" [|(Ojs.bool_to_js x386)|]);
+                      (match x387 with
+                       | Some x389 ->
                            ignore
-                             (Ojs.call x391 "push"
-                                [|(or_string_to_js Error.t_to_js x392)|])
+                             (Ojs.call x388 "push"
+                                [|(or_string_to_js Error.t_to_js x389)|])
                        | None -> ());
-                      x391))|])
+                      x388))|])

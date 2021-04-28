@@ -529,51 +529,50 @@ module LanguageClient =
     let (get_locale : t -> string) =
       fun (x192 : t) ->
         Ojs.string_of_js (Ojs.call (t_to_js x192) "getLocale" [||])
-    let (cast : t -> CommonLanguageClient.t) =
-      fun (x193 : t) -> CommonLanguageClient.t_of_js (t_to_js x193)
+    include struct include CommonLanguageClient end
   end
 module SettingMonitor =
   struct
     type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x195 : Ojs.t) -> x195
-    and t_to_js : t -> Ojs.t = fun (x194 : Ojs.t) -> x194
+    let rec t_of_js : Ojs.t -> t = fun (x194 : Ojs.t) -> x194
+    and t_to_js : t -> Ojs.t = fun (x193 : Ojs.t) -> x193
     let (get__client : t -> any) =
-      fun (x196 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x196) "_client")
+      fun (x195 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x195) "_client")
     let (set__client : t -> any -> unit) =
-      fun (x197 : t) ->
-        fun (x198 : any) ->
-          Ojs.set_prop_ascii (t_to_js x197) "_client" (any_to_js x198)
+      fun (x196 : t) ->
+        fun (x197 : any) ->
+          Ojs.set_prop_ascii (t_to_js x196) "_client" (any_to_js x197)
     let (get__setting : t -> any) =
-      fun (x199 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x199) "_setting")
+      fun (x198 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x198) "_setting")
     let (set__setting : t -> any -> unit) =
-      fun (x200 : t) ->
-        fun (x201 : any) ->
-          Ojs.set_prop_ascii (t_to_js x200) "_setting" (any_to_js x201)
+      fun (x199 : t) ->
+        fun (x200 : any) ->
+          Ojs.set_prop_ascii (t_to_js x199) "_setting" (any_to_js x200)
     let (get__listeners : t -> any) =
-      fun (x202 : t) ->
-        any_of_js (Ojs.get_prop_ascii (t_to_js x202) "_listeners")
+      fun (x201 : t) ->
+        any_of_js (Ojs.get_prop_ascii (t_to_js x201) "_listeners")
     let (set__listeners : t -> any -> unit) =
-      fun (x203 : t) ->
-        fun (x204 : any) ->
-          Ojs.set_prop_ascii (t_to_js x203) "_listeners" (any_to_js x204)
+      fun (x202 : t) ->
+        fun (x203 : any) ->
+          Ojs.set_prop_ascii (t_to_js x202) "_listeners" (any_to_js x203)
     let (create : _client:LanguageClient.t -> _setting:string -> t) =
-      fun ~_client:(x205 : LanguageClient.t) ->
-        fun ~_setting:(x206 : string) ->
+      fun ~_client:(x204 : LanguageClient.t) ->
+        fun ~_setting:(x205 : string) ->
           t_of_js
             (Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "SettingMonitor")
-               [|(LanguageClient.t_to_js x205);(Ojs.string_to_js x206)|])
+               [|(LanguageClient.t_to_js x204);(Ojs.string_to_js x205)|])
     let (start : t -> Disposable.t) =
-      fun (x207 : t) ->
-        Disposable.t_of_js (Ojs.call (t_to_js x207) "start" [||])
+      fun (x206 : t) ->
+        Disposable.t_of_js (Ojs.call (t_to_js x206) "start" [||])
     let (get_on_did_change_configuration : t -> any) =
-      fun (x208 : t) ->
+      fun (x207 : t) ->
         any_of_js
-          (Ojs.get_prop_ascii (t_to_js x208) "onDidChangeConfiguration")
+          (Ojs.get_prop_ascii (t_to_js x207) "onDidChangeConfiguration")
     let (set_on_did_change_configuration : t -> any -> unit) =
-      fun (x209 : t) ->
-        fun (x210 : any) ->
-          Ojs.set_prop_ascii (t_to_js x209) "onDidChangeConfiguration"
-            (any_to_js x210)
+      fun (x208 : t) ->
+        fun (x209 : any) ->
+          Ojs.set_prop_ascii (t_to_js x208) "onDidChangeConfiguration"
+            (any_to_js x209)
   end

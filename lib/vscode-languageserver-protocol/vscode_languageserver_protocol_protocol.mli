@@ -3,6 +3,8 @@
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
 open Es5
+open Vscode_jsonrpc
+open Vscode_languageserver_types
 
 module AnonymousInterface0 : sig
   type t
@@ -381,76 +383,37 @@ module AnonymousInterface22 : sig
   val set_value_set : t -> SymbolTag.t list -> unit [@@js.set "valueSet"]
 end
 
-(* import { ProgressToken } from 'vscode-jsonrpc'; *)
-(* import { ProtocolRequestType, ProtocolRequestType0, ProtocolNotificationType,
-   ProtocolNotificationType0 } from './messages'; *)
-(* import { Position, Range, Location, LocationLink, Diagnostic, Command,
-   TextEdit, WorkspaceEdit, DocumentUri, TextDocumentIdentifier,
-   VersionedTextDocumentIdentifier, TextDocumentItem, CompletionItem,
-   CompletionList, Hover, SignatureHelp, ReferenceContext, DocumentHighlight,
-   SymbolInformation, CodeLens, CodeActionContext, FormattingOptions,
-   DocumentLink, MarkupKind, SymbolKind, CompletionItemKind, CodeAction,
-   CodeActionKind, DocumentSymbol, CompletionItemTag, DiagnosticTag, SymbolTag,
-   uinteger, integer, InsertTextMode } from 'vscode-languageserver-types'; *)
-(* import { ImplementationRequest, ImplementationClientCapabilities,
-   ImplementationOptions, ImplementationRegistrationOptions,
-   ImplementationParams } from './protocol.implementation'; *)
-(* import { TypeDefinitionRequest, TypeDefinitionClientCapabilities,
-   TypeDefinitionOptions, TypeDefinitionRegistrationOptions,
-   TypeDefinitionParams } from './protocol.typeDefinition'; *)
-(* import { WorkspaceFoldersRequest, DidChangeWorkspaceFoldersNotification,
-   DidChangeWorkspaceFoldersParams, WorkspaceFolder,
-   WorkspaceFoldersChangeEvent, WorkspaceFoldersInitializeParams,
-   WorkspaceFoldersClientCapabilities, WorkspaceFoldersServerCapabilities } from
-   './protocol.workspaceFolders'; *)
-(* import { ConfigurationRequest, ConfigurationParams, ConfigurationItem,
-   ConfigurationClientCapabilities } from './protocol.configuration'; *)
-(* import { DocumentColorRequest, ColorPresentationRequest,
-   DocumentColorOptions, DocumentColorParams, ColorPresentationParams,
-   DocumentColorClientCapabilities, DocumentColorRegistrationOptions } from
-   './protocol.colorProvider'; *)
-(* import { FoldingRangeClientCapabilities, FoldingRangeOptions,
-   FoldingRangeRequest, FoldingRangeParams, FoldingRangeRegistrationOptions }
-   from './protocol.foldingRange'; *)
-(* import { DeclarationClientCapabilities, DeclarationRequest,
-   DeclarationOptions, DeclarationRegistrationOptions, DeclarationParams } from
-   './protocol.declaration'; *)
-(* import { SelectionRangeClientCapabilities, SelectionRangeOptions,
-   SelectionRangeRequest, SelectionRangeParams,
-   SelectionRangeRegistrationOptions } from './protocol.selectionRange'; *)
-(* import { WorkDoneProgressClientCapabilities, WorkDoneProgressBegin,
-   WorkDoneProgressReport, WorkDoneProgressEnd, WorkDoneProgress,
-   WorkDoneProgressCreateParams, WorkDoneProgressCreateRequest,
-   WorkDoneProgressCancelParams, WorkDoneProgressCancelNotification } from
-   './protocol.progress'; *)
-(* import { CallHierarchyClientCapabilities, CallHierarchyOptions,
-   CallHierarchyRegistrationOptions, CallHierarchyIncomingCallsParams,
-   CallHierarchyIncomingCallsRequest, CallHierarchyOutgoingCallsParams,
-   CallHierarchyOutgoingCallsRequest, CallHierarchyPrepareParams,
-   CallHierarchyPrepareRequest } from './protocol.callHierarchy'; *)
-(* import { SemanticTokensPartialResult, SemanticTokensDeltaPartialResult,
-   TokenFormat, SemanticTokensClientCapabilities, SemanticTokensOptions,
-   SemanticTokensRegistrationOptions, SemanticTokensParams,
-   SemanticTokensRequest, SemanticTokensDeltaParams, SemanticTokensDeltaRequest,
-   SemanticTokensRangeParams, SemanticTokensRangeRequest,
-   SemanticTokensRefreshRequest, SemanticTokensWorkspaceClientCapabilities,
-   SemanticTokensRegistrationType } from './protocol.semanticTokens'; *)
-(* import { ShowDocumentParams, ShowDocumentResult, ShowDocumentRequest,
-   ShowDocumentClientCapabilities } from './protocol.showDocument'; *)
-(* import { LinkedEditingRangeClientCapabilities, LinkedEditingRanges,
-   LinkedEditingRangeOptions, LinkedEditingRangeParams,
-   LinkedEditingRangeRegistrationOptions, LinkedEditingRangeRequest } from
-   './protocol.linkedEditingRange'; *)
-(* import { FileOperationOptions, FileOperationClientCapabilities,
-   FileOperationRegistrationOptions, FileOperationPatternOptions,
-   FileOperationPatternKind, DidCreateFilesNotification, CreateFilesParams,
-   FileCreate, WillCreateFilesRequest, DidRenameFilesNotification,
-   RenameFilesParams, FileRename, WillRenameFilesRequest,
-   DidDeleteFilesNotification, DeleteFilesParams, FileDelete,
-   WillDeleteFilesRequest } from './protocol.fileOperations'; *)
-(* import { UniquenessLevel, MonikerKind, Moniker, MonikerClientCapabilities,
-   MonikerOptions, MonikerRegistrationOptions, MonikerParams, MonikerRequest }
-   from './protocol.moniker'; *)
+open Vscode_languageserver_protocol_messages
+
+open Vscode_languageserver_protocol_protocol_implementation
+
+open Vscode_languageserver_protocol_protocol_type_definition
+
+open Vscode_languageserver_protocol_protocol_workspace_folders
+
+open Vscode_languageserver_protocol_protocol_configuration
+
+open Vscode_languageserver_protocol_protocol_color_provider
+
+open Vscode_languageserver_protocol_protocol_folding_range
+open Vscode_languageserver_protocol_protocol_declaration
+
+open Vscode_languageserver_protocol_protocol_selection_range
+
+open Vscode_languageserver_protocol_protocol_progress
+
+open Vscode_languageserver_protocol_protocol_call_hierarchy
+
+open Vscode_languageserver_protocol_protocol_semantic_tokens
+
+open Vscode_languageserver_protocol_protocol_show_document
+
+open Vscode_languageserver_protocol_protocol_linked_editing_range
+
+open Vscode_languageserver_protocol_protocol_file_operations
+
+open Vscode_languageserver_protocol_protocol_moniker
+
 module DocumentFilter : sig
   type t = AnonymousInterface9.t
 
@@ -1486,7 +1449,10 @@ module M_InitializeParams : sig
     -> unit
     [@@js.set "trace"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 end
 [@@js.scope "_InitializeParams"]
 
@@ -1926,7 +1892,10 @@ module TextDocumentChangeRegistrationOptions : sig
 
   val set_sync_kind : t -> TextDocumentSyncKind.t -> unit [@@js.set "syncKind"]
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 end
 [@@js.scope "TextDocumentChangeRegistrationOptions"]
 
@@ -1998,7 +1967,10 @@ module TextDocumentSaveRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> SaveOptions.t [@@js.cast]
 end
@@ -2352,7 +2324,10 @@ module CompletionParams : sig
 
   val set_context : t -> CompletionContext.t -> unit [@@js.set "context"]
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 
@@ -2388,7 +2363,10 @@ module CompletionOptions : sig
   val set_completion_item : t -> AnonymousInterface7.t -> unit
     [@@js.set "completionItem"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "CompletionOptions"]
 
@@ -2399,7 +2377,10 @@ module CompletionRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> CompletionOptions.t [@@js.cast]
 end
@@ -2465,7 +2446,10 @@ module HoverOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "HoverOptions"]
 
@@ -2476,7 +2460,10 @@ module HoverParams : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 end
@@ -2489,7 +2476,10 @@ module HoverRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> HoverOptions.t [@@js.cast]
 end
@@ -2553,7 +2543,10 @@ module SignatureHelpOptions : sig
   val set_retrigger_characters : t -> string list -> unit
     [@@js.set "retriggerCharacters"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "SignatureHelpOptions"]
 
@@ -2621,7 +2614,10 @@ module SignatureHelpParams : sig
 
   val set_context : t -> SignatureHelpContext.t -> unit [@@js.set "context"]
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 end
@@ -2634,7 +2630,10 @@ module SignatureHelpRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> SignatureHelpOptions.t [@@js.cast]
 end
@@ -2682,7 +2681,10 @@ module DefinitionOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "DefinitionOptions"]
 
@@ -2693,7 +2695,10 @@ module DefinitionParams : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 
@@ -2708,7 +2713,10 @@ module DefinitionRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> DefinitionOptions.t [@@js.cast]
 end
@@ -2756,7 +2764,10 @@ module ReferenceParams : sig
 
   val set_context : t -> ReferenceContext.t -> unit [@@js.set "context"]
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 
@@ -2771,7 +2782,10 @@ module ReferenceOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "ReferenceOptions"]
 
@@ -2782,7 +2796,10 @@ module ReferenceRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> ReferenceOptions.t [@@js.cast]
 end
@@ -2826,7 +2843,10 @@ module DocumentHighlightParams : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 
@@ -2841,7 +2861,10 @@ module DocumentHighlightOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "DocumentHighlightOptions"]
 
@@ -2852,7 +2875,10 @@ module DocumentHighlightRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> DocumentHighlightOptions.t [@@js.cast]
 end
@@ -2924,7 +2950,10 @@ module DocumentSymbolParams : sig
   val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 
   val cast' : t -> PartialResultParams.t [@@js.cast]
 end
@@ -2941,7 +2970,10 @@ module DocumentSymbolOptions : sig
 
   val set_label : t -> string -> unit [@@js.set "label"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "DocumentSymbolOptions"]
 
@@ -2952,7 +2984,10 @@ module DocumentSymbolRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> DocumentSymbolOptions.t [@@js.cast]
 end
@@ -3042,7 +3077,10 @@ module CodeActionParams : sig
 
   val set_context : t -> CodeActionContext.t -> unit [@@js.set "context"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 
   val cast' : t -> PartialResultParams.t [@@js.cast]
 end
@@ -3065,7 +3103,10 @@ module CodeActionOptions : sig
 
   val set_resolve_provider : t -> bool -> unit [@@js.set "resolveProvider"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "CodeActionOptions"]
 
@@ -3076,7 +3117,10 @@ module CodeActionRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> CodeActionOptions.t [@@js.cast]
 end
@@ -3145,7 +3189,10 @@ module WorkspaceSymbolParams : sig
 
   val set_query : t -> string -> unit [@@js.set "query"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 
   val cast' : t -> PartialResultParams.t [@@js.cast]
 end
@@ -3158,7 +3205,10 @@ module WorkspaceSymbolOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "WorkspaceSymbolOptions"]
 
@@ -3169,7 +3219,10 @@ module WorkspaceSymbolRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkspaceSymbolOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkspaceSymbolOptions
+  end
 end
 [@@js.scope "WorkspaceSymbolRegistrationOptions"]
 
@@ -3228,7 +3281,10 @@ module CodeLensParams : sig
   val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 
   val cast' : t -> PartialResultParams.t [@@js.cast]
 end
@@ -3245,7 +3301,10 @@ module CodeLensOptions : sig
 
   val set_resolve_provider : t -> bool -> unit [@@js.set "resolveProvider"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "CodeLensOptions"]
 
@@ -3256,7 +3315,10 @@ module CodeLensRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> CodeLensOptions.t [@@js.cast]
 end
@@ -3327,7 +3389,10 @@ module DocumentLinkParams : sig
   val set_text_document : t -> TextDocumentIdentifier.t -> unit
     [@@js.set "textDocument"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 
   val cast' : t -> PartialResultParams.t [@@js.cast]
 end
@@ -3344,7 +3409,10 @@ module DocumentLinkOptions : sig
 
   val set_resolve_provider : t -> bool -> unit [@@js.set "resolveProvider"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "DocumentLinkOptions"]
 
@@ -3355,7 +3423,10 @@ module DocumentLinkRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> DocumentLinkOptions.t [@@js.cast]
 end
@@ -3420,7 +3491,10 @@ module DocumentFormattingParams : sig
 
   val set_options : t -> FormattingOptions.t -> unit [@@js.set "options"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 end
 [@@js.scope "DocumentFormattingParams"]
 
@@ -3431,7 +3505,10 @@ module DocumentFormattingOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "DocumentFormattingOptions"]
 
@@ -3442,7 +3519,10 @@ module DocumentFormattingRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> DocumentFormattingOptions.t [@@js.cast]
 end
@@ -3500,7 +3580,10 @@ module DocumentRangeFormattingParams : sig
 
   val set_options : t -> FormattingOptions.t -> unit [@@js.set "options"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 end
 [@@js.scope "DocumentRangeFormattingParams"]
 
@@ -3511,7 +3594,10 @@ module DocumentRangeFormattingOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "DocumentRangeFormattingOptions"]
 
@@ -3522,7 +3608,10 @@ module DocumentRangeFormattingRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> DocumentRangeFormattingOptions.t [@@js.cast]
 end
@@ -3616,7 +3705,10 @@ module DocumentOnTypeFormattingRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> DocumentOnTypeFormattingOptions.t [@@js.cast]
 end
@@ -3710,7 +3802,10 @@ module RenameParams : sig
 
   val set_new_name : t -> string -> unit [@@js.set "newName"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 end
 [@@js.scope "RenameParams"]
 
@@ -3725,7 +3820,10 @@ module RenameOptions : sig
 
   val set_prepare_provider : t -> bool -> unit [@@js.set "prepareProvider"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "RenameOptions"]
 
@@ -3736,7 +3834,10 @@ module RenameRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentRegistrationOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentRegistrationOptions
+  end
 
   val cast' : t -> RenameOptions.t [@@js.cast]
 end
@@ -3765,7 +3866,10 @@ module PrepareRenameParams : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> TextDocumentPositionParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include TextDocumentPositionParams
+  end
 
   val cast' : t -> WorkDoneProgressParams.t [@@js.cast]
 end
@@ -3817,7 +3921,10 @@ module ExecuteCommandParams : sig
 
   val set_arguments : t -> any list -> unit [@@js.set "arguments"]
 
-  val cast : t -> WorkDoneProgressParams.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressParams
+  end
 end
 [@@js.scope "ExecuteCommandParams"]
 
@@ -3832,7 +3939,10 @@ module ExecuteCommandOptions : sig
 
   val set_commands : t -> string list -> unit [@@js.set "commands"]
 
-  val cast : t -> WorkDoneProgressOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include WorkDoneProgressOptions
+  end
 end
 [@@js.scope "ExecuteCommandOptions"]
 
@@ -3843,7 +3953,10 @@ module ExecuteCommandRegistrationOptions : sig
 
   val t_of_js : Ojs.t -> t
 
-  val cast : t -> ExecuteCommandOptions.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include ExecuteCommandOptions
+  end
 end
 [@@js.scope "ExecuteCommandRegistrationOptions"]
 

@@ -354,171 +354,103 @@ module Dgram : sig
       -> bool
       [@@js.call "emit"]
 
-    val on
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "on"]
+    module CloseListener : sig
+      type t = unit -> unit
 
-    val on' : t -> event:([ `close ][@js.enum]) -> listener:(unit -> unit) -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on''
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val on'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "on"]
+    module ConnectListener : sig
+      type t = unit -> unit
 
-    val on''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_to_js : t -> Ojs.t
 
-    val on'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-      -> t
-      [@@js.call "on"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
-      [@@js.call "once"]
+    module ErrorListener : sig
+      type t = err:Error.t -> unit
 
-    val once'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once''
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val once'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "once"]
+    module ListeningListener : sig
+      type t = unit -> unit
 
-    val once''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_to_js : t -> Ojs.t
 
-    val once'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-      -> t
-      [@@js.call "once"]
+      val t_of_js : Ojs.t -> t
+    end
 
-    val prepend_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
+    module MessageListener : sig
+      type t = msg:Buffer.t -> rinfo:RemoteInfo.t -> unit
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+    end
+
+    type listener =
+      ([ `Close of CloseListener.t
+       | `Connect of ConnectListener.t
+       | `Error of ErrorListener.t
+       | `Listening of ListeningListener.t
+       | `Message of MessageListener.t
+       ]
+      [@js.union])
+
+    [@@@js.stop]
+
+    val on : t -> listener -> unit
+
+    val add_listener : t -> listener -> unit
+
+    val once : t -> listener -> unit
+
+    val prepend_listener : t -> listener -> unit
+
+    val prepend_once_listener : t -> listener -> unit
+
+    [@@@js.start]
+
+    [@@@js.implem
+    val on : t -> string -> Ojs.t -> unit [@@js.call "on"]
+
+    val add_listener : t -> string -> Ojs.t -> unit [@@js.call "addListener"]
+
+    val once : t -> string -> Ojs.t -> unit [@@js.call "once"]
+
+    val prepend_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependListener"]
 
-    val prepend_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-      -> t
-      [@@js.call "prependListener"]
-
-    val prepend_once_listener
-      :  t
-      -> event:string
-      -> listener:(args:(any list[@js.variadic]) -> unit)
-      -> t
+    val prepend_once_listener : t -> string -> Ojs.t -> unit
       [@@js.call "prependOnceListener"]
 
-    val prepend_once_listener'
-      :  t
-      -> event:([ `close ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let with_listener_fn fn t = function
+      | `Close f ->
+        fn t "close" @@ [%js.of: CloseListener.t] f
+      | `Connect f ->
+        fn t "connect" @@ [%js.of: ConnectListener.t] f
+      | `Error f ->
+        fn t "error" @@ [%js.of: ErrorListener.t] f
+      | `Listening f ->
+        fn t "listening" @@ [%js.of: ListeningListener.t] f
+      | `Message f ->
+        fn t "message" @@ [%js.of: MessageListener.t] f
 
-    val prepend_once_listener''
-      :  t
-      -> event:([ `connect ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let on = with_listener_fn on
 
-    val prepend_once_listener'''
-      :  t
-      -> event:([ `error ][@js.enum])
-      -> listener:(err:Error.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let add_listener = with_listener_fn add_listener
 
-    val prepend_once_listener''''
-      :  t
-      -> event:([ `listening ][@js.enum])
-      -> listener:(unit -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let once = with_listener_fn once
 
-    val prepend_once_listener'''''
-      :  t
-      -> event:([ `message ][@js.enum])
-      -> listener:(msg:Buffer.t -> rinfo:RemoteInfo.t -> unit)
-      -> t
-      [@@js.call "prependOnceListener"]
+    let prepend_listener = with_listener_fn prepend_listener
 
-    val cast : t -> Node_events.Events.EventEmitter.t [@@js.cast]
+    let prepend_once_listener = with_listener_fn prepend_once_listener]
   end
   [@@js.scope "Socket"]
 

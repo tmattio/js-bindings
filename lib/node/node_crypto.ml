@@ -589,19 +589,15 @@ module Crypto =
       end
     module HashOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x83 : Ojs.t) -> x83
-        and t_to_js : t -> Ojs.t = fun (x82 : Ojs.t) -> x82
+        include struct include Stream.TransformOptions end
         let (get_output_length : t -> int) =
-          fun (x84 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x84) "outputLength")
+          fun (x82 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x82) "outputLength")
         let (set_output_length : t -> int -> unit) =
-          fun (x85 : t) ->
-            fun (x86 : int) ->
-              Ojs.set_prop_ascii (t_to_js x85) "outputLength"
-                (Ojs.int_to_js x86)
-        let (cast : t -> Stream.TransformOptions.t) =
-          fun (x87 : t) -> Stream.TransformOptions.t_of_js (t_to_js x87)
+          fun (x83 : t) ->
+            fun (x84 : int) ->
+              Ojs.set_prop_ascii (t_to_js x83) "outputLength"
+                (Ojs.int_to_js x84)
       end
     let (fips : bool) =
       Ojs.bool_of_js (Ojs.get_prop_ascii Import.crypto "fips")
@@ -609,15 +605,15 @@ module Crypto =
       struct
         type t = [ `base64  | `hex ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x89 : Ojs.t) ->
-            let x90 = x89 in
-            match Ojs.string_of_js x90 with
+          fun (x86 : Ojs.t) ->
+            let x87 = x86 in
+            match Ojs.string_of_js x87 with
             | "base64" -> `base64
             | "hex" -> `hex
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x88 : [ `base64  | `hex ]) ->
-            match x88 with
+          fun (x85 : [ `base64  | `hex ]) ->
+            match x85 with
             | `base64 -> Ojs.string_to_js "base64"
             | `hex -> Ojs.string_to_js "hex"
       end
@@ -625,17 +621,17 @@ module Crypto =
       struct
         type t = [ `latin1  | `utf_8  | `utf16le  | `utf8 ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x92 : Ojs.t) ->
-            let x93 = x92 in
-            match Ojs.string_of_js x93 with
+          fun (x89 : Ojs.t) ->
+            let x90 = x89 in
+            match Ojs.string_of_js x90 with
             | "latin1" -> `latin1
             | "utf-8" -> `utf_8
             | "utf16le" -> `utf16le
             | "utf8" -> `utf8
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x91 : [ `latin1  | `utf_8  | `utf16le  | `utf8 ]) ->
-            match x91 with
+          fun (x88 : [ `latin1  | `utf_8  | `utf16le  | `utf8 ]) ->
+            match x88 with
             | `latin1 -> Ojs.string_to_js "latin1"
             | `utf_8 -> Ojs.string_to_js "utf-8"
             | `utf16le -> Ojs.string_to_js "utf16le"
@@ -645,17 +641,17 @@ module Crypto =
       struct
         type t = [ `ascii  | `binary  | `ucs_2  | `ucs2 ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x95 : Ojs.t) ->
-            let x96 = x95 in
-            match Ojs.string_of_js x96 with
+          fun (x92 : Ojs.t) ->
+            let x93 = x92 in
+            match Ojs.string_of_js x93 with
             | "ascii" -> `ascii
             | "binary" -> `binary
             | "ucs-2" -> `ucs_2
             | "ucs2" -> `ucs2
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x94 : [ `ascii  | `binary  | `ucs_2  | `ucs2 ]) ->
-            match x94 with
+          fun (x91 : [ `ascii  | `binary  | `ucs_2  | `ucs2 ]) ->
+            match x91 with
             | `ascii -> Ojs.string_to_js "ascii"
             | `binary -> Ojs.string_to_js "binary"
             | `ucs_2 -> Ojs.string_to_js "ucs-2"
@@ -669,15 +665,15 @@ module Crypto =
             [ `ascii  | `base64  | `binary  | `hex  | `latin1  | `ucs_2 
             | `ucs2  | `utf_8  | `utf16le  | `utf8 ]) or_enum
         let rec t_of_js : Ojs.t -> t =
-          fun (x103 : Ojs.t) ->
+          fun (x100 : Ojs.t) ->
             or_enum_of_js
-              (fun (x104 : Ojs.t) ->
+              (fun (x101 : Ojs.t) ->
                  union3_of_js BinaryToTextEncoding.t_of_js
                    CharacterEncoding.t_of_js LegacyCharacterEncoding.t_of_js
-                   x104)
-              (fun (x108 : Ojs.t) ->
-                 let x109 = x108 in
-                 match Ojs.string_of_js x109 with
+                   x101)
+              (fun (x105 : Ojs.t) ->
+                 let x106 = x105 in
+                 match Ojs.string_of_js x106 with
                  | "ascii" -> `ascii
                  | "base64" -> `base64
                  | "binary" -> `binary
@@ -688,10 +684,10 @@ module Crypto =
                  | "utf-8" -> `utf_8
                  | "utf16le" -> `utf16le
                  | "utf8" -> `utf8
-                 | _ -> assert false) x103
+                 | _ -> assert false) x100
         and t_to_js : t -> Ojs.t =
           fun
-            (x97 :
+            (x94 :
               ((BinaryToTextEncoding.t, CharacterEncoding.t,
                  LegacyCharacterEncoding.t) union3,
                 [ `ascii  | `base64  | `binary  | `hex  | `latin1  | 
@@ -700,19 +696,19 @@ module Crypto =
             ->
             or_enum_to_js
               (fun
-                 (x98 :
+                 (x95 :
                    (BinaryToTextEncoding.t, CharacterEncoding.t,
                      LegacyCharacterEncoding.t) union3)
                  ->
                  union3_to_js BinaryToTextEncoding.t_to_js
                    CharacterEncoding.t_to_js LegacyCharacterEncoding.t_to_js
-                   x98)
+                   x95)
               (fun
-                 (x102 :
+                 (x99 :
                    [ `ascii  | `base64  | `binary  | `hex  | `latin1 
                    | `ucs_2  | `ucs2  | `utf_8  | `utf16le  | `utf8 ])
                  ->
-                 match x102 with
+                 match x99 with
                  | `ascii -> Ojs.string_to_js "ascii"
                  | `base64 -> Ojs.string_to_js "base64"
                  | `binary -> Ojs.string_to_js "binary"
@@ -722,156 +718,148 @@ module Crypto =
                  | `ucs2 -> Ojs.string_to_js "ucs2"
                  | `utf_8 -> Ojs.string_to_js "utf-8"
                  | `utf16le -> Ojs.string_to_js "utf16le"
-                 | `utf8 -> Ojs.string_to_js "utf8") x97
+                 | `utf8 -> Ojs.string_to_js "utf8") x94
       end
     module ECDHKeyFormat =
       struct
         type t = [ `compressed  | `hybrid  | `uncompressed ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x111 : Ojs.t) ->
-            let x112 = x111 in
-            match Ojs.string_of_js x112 with
+          fun (x108 : Ojs.t) ->
+            let x109 = x108 in
+            match Ojs.string_of_js x109 with
             | "compressed" -> `compressed
             | "hybrid" -> `hybrid
             | "uncompressed" -> `uncompressed
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x110 : [ `compressed  | `hybrid  | `uncompressed ]) ->
-            match x110 with
+          fun (x107 : [ `compressed  | `hybrid  | `uncompressed ]) ->
+            match x107 with
             | `compressed -> Ojs.string_to_js "compressed"
             | `hybrid -> Ojs.string_to_js "hybrid"
             | `uncompressed -> Ojs.string_to_js "uncompressed"
       end
     module Hash =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x114 : Ojs.t) -> x114
-        and t_to_js : t -> Ojs.t = fun (x113 : Ojs.t) -> x113
+        include struct include Stream.Transform end
         let (create : unit -> t) =
           fun () ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.crypto "Hash") [||])
         let (copy : t -> t) =
-          fun (x115 : t) -> t_of_js (Ojs.call (t_to_js x115) "copy" [||])
+          fun (x110 : t) -> t_of_js (Ojs.call (t_to_js x110) "copy" [||])
         let (update : t -> data:BinaryLike.t -> t) =
-          fun (x117 : t) ->
-            fun ~data:(x116 : BinaryLike.t) ->
+          fun (x112 : t) ->
+            fun ~data:(x111 : BinaryLike.t) ->
               t_of_js
-                (Ojs.call (t_to_js x117) "update"
-                   [|(BinaryLike.t_to_js x116)|])
+                (Ojs.call (t_to_js x112) "update"
+                   [|(BinaryLike.t_to_js x111)|])
         let (update' : t -> data:string -> input_encoding:Encoding.t -> t) =
-          fun (x120 : t) ->
-            fun ~data:(x118 : string) ->
-              fun ~input_encoding:(x119 : Encoding.t) ->
+          fun (x115 : t) ->
+            fun ~data:(x113 : string) ->
+              fun ~input_encoding:(x114 : Encoding.t) ->
                 t_of_js
-                  (Ojs.call (t_to_js x120) "update"
-                     [|(Ojs.string_to_js x118);(Encoding.t_to_js x119)|])
+                  (Ojs.call (t_to_js x115) "update"
+                     [|(Ojs.string_to_js x113);(Encoding.t_to_js x114)|])
         let (digest : t -> Buffer.t) =
-          fun (x121 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x121) "digest" [||])
+          fun (x116 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x116) "digest" [||])
         let (digest' : t -> encoding:BinaryToTextEncoding.t -> string) =
-          fun (x123 : t) ->
-            fun ~encoding:(x122 : BinaryToTextEncoding.t) ->
+          fun (x118 : t) ->
+            fun ~encoding:(x117 : BinaryToTextEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x123) "digest"
-                   [|(BinaryToTextEncoding.t_to_js x122)|])
-        let (cast : t -> Stream.Transform.t) =
-          fun (x124 : t) -> Stream.Transform.t_of_js (t_to_js x124)
+                (Ojs.call (t_to_js x118) "digest"
+                   [|(BinaryToTextEncoding.t_to_js x117)|])
       end
     module Hmac =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x126 : Ojs.t) -> x126
-        and t_to_js : t -> Ojs.t = fun (x125 : Ojs.t) -> x125
+        include struct include Stream.Transform end
         let (create : unit -> t) =
           fun () ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.crypto "Hmac") [||])
         let (update : t -> data:BinaryLike.t -> t) =
-          fun (x128 : t) ->
-            fun ~data:(x127 : BinaryLike.t) ->
+          fun (x120 : t) ->
+            fun ~data:(x119 : BinaryLike.t) ->
               t_of_js
-                (Ojs.call (t_to_js x128) "update"
-                   [|(BinaryLike.t_to_js x127)|])
+                (Ojs.call (t_to_js x120) "update"
+                   [|(BinaryLike.t_to_js x119)|])
         let (update' : t -> data:string -> input_encoding:Encoding.t -> t) =
-          fun (x131 : t) ->
-            fun ~data:(x129 : string) ->
-              fun ~input_encoding:(x130 : Encoding.t) ->
+          fun (x123 : t) ->
+            fun ~data:(x121 : string) ->
+              fun ~input_encoding:(x122 : Encoding.t) ->
                 t_of_js
-                  (Ojs.call (t_to_js x131) "update"
-                     [|(Ojs.string_to_js x129);(Encoding.t_to_js x130)|])
+                  (Ojs.call (t_to_js x123) "update"
+                     [|(Ojs.string_to_js x121);(Encoding.t_to_js x122)|])
         let (digest : t -> Buffer.t) =
-          fun (x132 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x132) "digest" [||])
+          fun (x124 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x124) "digest" [||])
         let (digest' : t -> encoding:BinaryToTextEncoding.t -> string) =
-          fun (x134 : t) ->
-            fun ~encoding:(x133 : BinaryToTextEncoding.t) ->
+          fun (x126 : t) ->
+            fun ~encoding:(x125 : BinaryToTextEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x134) "digest"
-                   [|(BinaryToTextEncoding.t_to_js x133)|])
-        let (cast : t -> Stream.Transform.t) =
-          fun (x135 : t) -> Stream.Transform.t_of_js (t_to_js x135)
+                (Ojs.call (t_to_js x126) "digest"
+                   [|(BinaryToTextEncoding.t_to_js x125)|])
       end
     let (create_hash :
       algorithm:string -> ?options:HashOptions.t -> unit -> Hash.t) =
-      fun ~algorithm:(x136 : string) ->
-        fun ?options:(x137 : HashOptions.t option) ->
+      fun ~algorithm:(x127 : string) ->
+        fun ?options:(x128 : HashOptions.t option) ->
           fun () ->
             Hash.t_of_js
-              (let x140 = Import.crypto in
-               Ojs.call (Ojs.get_prop_ascii x140 "createHash") "apply"
-                 [|x140;((let x138 =
+              (let x131 = Import.crypto in
+               Ojs.call (Ojs.get_prop_ascii x131 "createHash") "apply"
+                 [|x131;((let x129 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x138 "push" [|(Ojs.string_to_js x136)|]);
-                          (match x137 with
-                           | Some x139 ->
+                            (Ojs.call x129 "push" [|(Ojs.string_to_js x127)|]);
+                          (match x128 with
+                           | Some x130 ->
                                ignore
-                                 (Ojs.call x138 "push"
-                                    [|(HashOptions.t_to_js x139)|])
+                                 (Ojs.call x129 "push"
+                                    [|(HashOptions.t_to_js x130)|])
                            | None -> ());
-                          x138))|])
+                          x129))|])
     let (create_hmac :
       algorithm:string ->
         key:(BinaryLike.t, KeyObject.t) union2 ->
           ?options:Stream.TransformOptions.t -> unit -> Hmac.t)
       =
-      fun ~algorithm:(x141 : string) ->
-        fun ~key:(x142 : (BinaryLike.t, KeyObject.t) union2) ->
-          fun ?options:(x143 : Stream.TransformOptions.t option) ->
+      fun ~algorithm:(x132 : string) ->
+        fun ~key:(x133 : (BinaryLike.t, KeyObject.t) union2) ->
+          fun ?options:(x134 : Stream.TransformOptions.t option) ->
             fun () ->
               Hmac.t_of_js
-                (let x148 = Import.crypto in
-                 Ojs.call (Ojs.get_prop_ascii x148 "createHmac") "apply"
-                   [|x148;((let x144 =
+                (let x139 = Import.crypto in
+                 Ojs.call (Ojs.get_prop_ascii x139 "createHmac") "apply"
+                   [|x139;((let x135 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x144 "push"
-                                 [|(Ojs.string_to_js x141)|]);
+                              (Ojs.call x135 "push"
+                                 [|(Ojs.string_to_js x132)|]);
                             ignore
-                              (Ojs.call x144 "push"
+                              (Ojs.call x135 "push"
                                  [|(union2_to_js BinaryLike.t_to_js
-                                      KeyObject.t_to_js x142)|]);
-                            (match x143 with
-                             | Some x145 ->
+                                      KeyObject.t_to_js x133)|]);
+                            (match x134 with
+                             | Some x136 ->
                                  ignore
-                                   (Ojs.call x144 "push"
-                                      [|(Stream.TransformOptions.t_to_js x145)|])
+                                   (Ojs.call x135 "push"
+                                      [|(Stream.TransformOptions.t_to_js x136)|])
                              | None -> ());
-                            x144))|])
+                            x135))|])
     module CipherCCMTypes =
       struct
         type t =
           [ `aes_128_ccm  | `aes_192_ccm  | `aes_256_ccm 
           | `chacha20_poly1305 ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x150 : Ojs.t) ->
-            let x151 = x150 in
-            match Ojs.string_of_js x151 with
+          fun (x141 : Ojs.t) ->
+            let x142 = x141 in
+            match Ojs.string_of_js x142 with
             | "aes-128-ccm" -> `aes_128_ccm
             | "aes-192-ccm" -> `aes_192_ccm
             | "aes-256-ccm" -> `aes_256_ccm
@@ -879,11 +867,11 @@ module Crypto =
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x149 :
+            (x140 :
               [ `aes_128_ccm  | `aes_192_ccm  | `aes_256_ccm 
               | `chacha20_poly1305 ])
             ->
-            match x149 with
+            match x140 with
             | `aes_128_ccm -> Ojs.string_to_js "aes-128-ccm"
             | `aes_192_ccm -> Ojs.string_to_js "aes-192-ccm"
             | `aes_256_ccm -> Ojs.string_to_js "aes-256-ccm"
@@ -893,777 +881,745 @@ module Crypto =
       struct
         type t = [ `aes_128_gcm  | `aes_192_gcm  | `aes_256_gcm ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x153 : Ojs.t) ->
-            let x154 = x153 in
-            match Ojs.string_of_js x154 with
+          fun (x144 : Ojs.t) ->
+            let x145 = x144 in
+            match Ojs.string_of_js x145 with
             | "aes-128-gcm" -> `aes_128_gcm
             | "aes-192-gcm" -> `aes_192_gcm
             | "aes-256-gcm" -> `aes_256_gcm
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x152 : [ `aes_128_gcm  | `aes_192_gcm  | `aes_256_gcm ]) ->
-            match x152 with
+          fun (x143 : [ `aes_128_gcm  | `aes_192_gcm  | `aes_256_gcm ]) ->
+            match x143 with
             | `aes_128_gcm -> Ojs.string_to_js "aes-128-gcm"
             | `aes_192_gcm -> Ojs.string_to_js "aes-192-gcm"
             | `aes_256_gcm -> Ojs.string_to_js "aes-256-gcm"
       end
     module CipherCCMOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x156 : Ojs.t) -> x156
-        and t_to_js : t -> Ojs.t = fun (x155 : Ojs.t) -> x155
+        include struct include Stream.TransformOptions end
         let (get_auth_tag_length : t -> int) =
-          fun (x157 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x157) "authTagLength")
+          fun (x146 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x146) "authTagLength")
         let (set_auth_tag_length : t -> int -> unit) =
-          fun (x158 : t) ->
-            fun (x159 : int) ->
-              Ojs.set_prop_ascii (t_to_js x158) "authTagLength"
-                (Ojs.int_to_js x159)
-        let (cast : t -> Stream.TransformOptions.t) =
-          fun (x160 : t) -> Stream.TransformOptions.t_of_js (t_to_js x160)
+          fun (x147 : t) ->
+            fun (x148 : int) ->
+              Ojs.set_prop_ascii (t_to_js x147) "authTagLength"
+                (Ojs.int_to_js x148)
       end
     module CipherGCMOptions =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x162 : Ojs.t) -> x162
-        and t_to_js : t -> Ojs.t = fun (x161 : Ojs.t) -> x161
+        include struct include Stream.TransformOptions end
         let (get_auth_tag_length : t -> int) =
-          fun (x163 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x163) "authTagLength")
+          fun (x149 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x149) "authTagLength")
         let (set_auth_tag_length : t -> int -> unit) =
-          fun (x164 : t) ->
-            fun (x165 : int) ->
-              Ojs.set_prop_ascii (t_to_js x164) "authTagLength"
-                (Ojs.int_to_js x165)
-        let (cast : t -> Stream.TransformOptions.t) =
-          fun (x166 : t) -> Stream.TransformOptions.t_of_js (t_to_js x166)
+          fun (x150 : t) ->
+            fun (x151 : int) ->
+              Ojs.set_prop_ascii (t_to_js x150) "authTagLength"
+                (Ojs.int_to_js x151)
       end
     module Cipher =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x168 : Ojs.t) -> x168
-        and t_to_js : t -> Ojs.t = fun (x167 : Ojs.t) -> x167
+        include struct include Stream.Transform end
         let (create : unit -> t) =
           fun () ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.crypto "Cipher") [||])
         let (update : t -> data:BinaryLike.t -> Buffer.t) =
-          fun (x170 : t) ->
-            fun ~data:(x169 : BinaryLike.t) ->
+          fun (x153 : t) ->
+            fun ~data:(x152 : BinaryLike.t) ->
               Buffer.t_of_js
-                (Ojs.call (t_to_js x170) "update"
-                   [|(BinaryLike.t_to_js x169)|])
+                (Ojs.call (t_to_js x153) "update"
+                   [|(BinaryLike.t_to_js x152)|])
         let (update' :
           t -> data:string -> input_encoding:Encoding.t -> Buffer.t) =
-          fun (x173 : t) ->
-            fun ~data:(x171 : string) ->
-              fun ~input_encoding:(x172 : Encoding.t) ->
+          fun (x156 : t) ->
+            fun ~data:(x154 : string) ->
+              fun ~input_encoding:(x155 : Encoding.t) ->
                 Buffer.t_of_js
-                  (Ojs.call (t_to_js x173) "update"
-                     [|(Ojs.string_to_js x171);(Encoding.t_to_js x172)|])
+                  (Ojs.call (t_to_js x156) "update"
+                     [|(Ojs.string_to_js x154);(Encoding.t_to_js x155)|])
         let (update'' :
           t ->
             data:ArrayBufferView.t ->
               input_encoding:never or_undefined ->
                 output_encoding:Encoding.t -> string)
           =
-          fun (x178 : t) ->
-            fun ~data:(x174 : ArrayBufferView.t) ->
-              fun ~input_encoding:(x175 : never or_undefined) ->
-                fun ~output_encoding:(x177 : Encoding.t) ->
+          fun (x161 : t) ->
+            fun ~data:(x157 : ArrayBufferView.t) ->
+              fun ~input_encoding:(x158 : never or_undefined) ->
+                fun ~output_encoding:(x160 : Encoding.t) ->
                   Ojs.string_of_js
-                    (Ojs.call (t_to_js x178) "update"
-                       [|(ArrayBufferView.t_to_js x174);(or_undefined_to_js
-                                                           never_to_js x175);(
-                         Encoding.t_to_js x177)|])
+                    (Ojs.call (t_to_js x161) "update"
+                       [|(ArrayBufferView.t_to_js x157);(or_undefined_to_js
+                                                           never_to_js x158);(
+                         Encoding.t_to_js x160)|])
         let (update''' :
           t ->
             data:string ->
               input_encoding:Encoding.t or_undefined ->
                 output_encoding:Encoding.t -> string)
           =
-          fun (x183 : t) ->
-            fun ~data:(x179 : string) ->
-              fun ~input_encoding:(x180 : Encoding.t or_undefined) ->
-                fun ~output_encoding:(x182 : Encoding.t) ->
+          fun (x166 : t) ->
+            fun ~data:(x162 : string) ->
+              fun ~input_encoding:(x163 : Encoding.t or_undefined) ->
+                fun ~output_encoding:(x165 : Encoding.t) ->
                   Ojs.string_of_js
-                    (Ojs.call (t_to_js x183) "update"
-                       [|(Ojs.string_to_js x179);(or_undefined_to_js
-                                                    Encoding.t_to_js x180);(
-                         Encoding.t_to_js x182)|])
+                    (Ojs.call (t_to_js x166) "update"
+                       [|(Ojs.string_to_js x162);(or_undefined_to_js
+                                                    Encoding.t_to_js x163);(
+                         Encoding.t_to_js x165)|])
         let (final : t -> Buffer.t) =
-          fun (x184 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x184) "final" [||])
+          fun (x167 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x167) "final" [||])
         let (final' : t -> output_encoding:BufferEncoding.t -> string) =
-          fun (x186 : t) ->
-            fun ~output_encoding:(x185 : BufferEncoding.t) ->
+          fun (x169 : t) ->
+            fun ~output_encoding:(x168 : BufferEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x186) "final"
-                   [|(BufferEncoding.t_to_js x185)|])
+                (Ojs.call (t_to_js x169) "final"
+                   [|(BufferEncoding.t_to_js x168)|])
         let (set_auto_padding : t -> ?auto_padding:bool -> unit -> t) =
-          fun (x190 : t) ->
-            fun ?auto_padding:(x187 : bool option) ->
+          fun (x173 : t) ->
+            fun ?auto_padding:(x170 : bool option) ->
               fun () ->
                 t_of_js
-                  (let x191 = t_to_js x190 in
-                   Ojs.call (Ojs.get_prop_ascii x191 "setAutoPadding")
+                  (let x174 = t_to_js x173 in
+                   Ojs.call (Ojs.get_prop_ascii x174 "setAutoPadding")
                      "apply"
-                     [|x191;((let x188 =
+                     [|x174;((let x171 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x187 with
-                               | Some x189 ->
+                              (match x170 with
+                               | Some x172 ->
                                    ignore
-                                     (Ojs.call x188 "push"
-                                        [|(Ojs.bool_to_js x189)|])
+                                     (Ojs.call x171 "push"
+                                        [|(Ojs.bool_to_js x172)|])
                                | None -> ());
-                              x188))|])
-        let (cast : t -> Stream.Transform.t) =
-          fun (x192 : t) -> Stream.Transform.t_of_js (t_to_js x192)
+                              x171))|])
       end
     module AnonymousInterface0 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x194 : Ojs.t) -> x194
-        and t_to_js : t -> Ojs.t = fun (x193 : Ojs.t) -> x193
+        let rec t_of_js : Ojs.t -> t = fun (x176 : Ojs.t) -> x176
+        and t_to_js : t -> Ojs.t = fun (x175 : Ojs.t) -> x175
         let (get_plaintext_length : t -> int) =
-          fun (x195 : t) ->
+          fun (x177 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x195) "plaintextLength")
+              (Ojs.get_prop_ascii (t_to_js x177) "plaintextLength")
         let (set_plaintext_length : t -> int -> unit) =
-          fun (x196 : t) ->
-            fun (x197 : int) ->
-              Ojs.set_prop_ascii (t_to_js x196) "plaintextLength"
-                (Ojs.int_to_js x197)
+          fun (x178 : t) ->
+            fun (x179 : int) ->
+              Ojs.set_prop_ascii (t_to_js x178) "plaintextLength"
+                (Ojs.int_to_js x179)
       end
     module CipherCCM =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x199 : Ojs.t) -> x199
-        and t_to_js : t -> Ojs.t = fun (x198 : Ojs.t) -> x198
+        include struct include Cipher end
         let (set_aad :
           t -> buffer:ArrayBufferView.t -> options:AnonymousInterface0.t -> t)
           =
-          fun (x202 : t) ->
-            fun ~buffer:(x200 : ArrayBufferView.t) ->
-              fun ~options:(x201 : AnonymousInterface0.t) ->
+          fun (x182 : t) ->
+            fun ~buffer:(x180 : ArrayBufferView.t) ->
+              fun ~options:(x181 : AnonymousInterface0.t) ->
                 t_of_js
-                  (Ojs.call (t_to_js x202) "setAAD"
-                     [|(ArrayBufferView.t_to_js x200);(AnonymousInterface0.t_to_js
-                                                         x201)|])
+                  (Ojs.call (t_to_js x182) "setAAD"
+                     [|(ArrayBufferView.t_to_js x180);(AnonymousInterface0.t_to_js
+                                                         x181)|])
         let (get_auth_tag : t -> Buffer.t) =
-          fun (x203 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x203) "getAuthTag" [||])
-        let (cast : t -> Cipher.t) =
-          fun (x204 : t) -> Cipher.t_of_js (t_to_js x204)
+          fun (x183 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x183) "getAuthTag" [||])
       end
     module CipherGCM =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x206 : Ojs.t) -> x206
-        and t_to_js : t -> Ojs.t = fun (x205 : Ojs.t) -> x205
+        include struct include Cipher end
         let (set_aad :
           t ->
             buffer:ArrayBufferView.t ->
               ?options:AnonymousInterface0.t -> unit -> t)
           =
-          fun (x211 : t) ->
-            fun ~buffer:(x207 : ArrayBufferView.t) ->
-              fun ?options:(x208 : AnonymousInterface0.t option) ->
+          fun (x188 : t) ->
+            fun ~buffer:(x184 : ArrayBufferView.t) ->
+              fun ?options:(x185 : AnonymousInterface0.t option) ->
                 fun () ->
                   t_of_js
-                    (let x212 = t_to_js x211 in
-                     Ojs.call (Ojs.get_prop_ascii x212 "setAAD") "apply"
-                       [|x212;((let x209 =
+                    (let x189 = t_to_js x188 in
+                     Ojs.call (Ojs.get_prop_ascii x189 "setAAD") "apply"
+                       [|x189;((let x186 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x209 "push"
-                                     [|(ArrayBufferView.t_to_js x207)|]);
-                                (match x208 with
-                                 | Some x210 ->
+                                  (Ojs.call x186 "push"
+                                     [|(ArrayBufferView.t_to_js x184)|]);
+                                (match x185 with
+                                 | Some x187 ->
                                      ignore
-                                       (Ojs.call x209 "push"
-                                          [|(AnonymousInterface0.t_to_js x210)|])
+                                       (Ojs.call x186 "push"
+                                          [|(AnonymousInterface0.t_to_js x187)|])
                                  | None -> ());
-                                x209))|])
+                                x186))|])
         let (get_auth_tag : t -> Buffer.t) =
-          fun (x213 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x213) "getAuthTag" [||])
-        let (cast : t -> Cipher.t) =
-          fun (x214 : t) -> Cipher.t_of_js (t_to_js x214)
+          fun (x190 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x190) "getAuthTag" [||])
       end
     let (create_cipher :
       algorithm:CipherCCMTypes.t ->
         password:BinaryLike.t -> options:CipherCCMOptions.t -> CipherCCM.t)
       =
-      fun ~algorithm:(x215 : CipherCCMTypes.t) ->
-        fun ~password:(x216 : BinaryLike.t) ->
-          fun ~options:(x217 : CipherCCMOptions.t) ->
+      fun ~algorithm:(x191 : CipherCCMTypes.t) ->
+        fun ~password:(x192 : BinaryLike.t) ->
+          fun ~options:(x193 : CipherCCMOptions.t) ->
             CipherCCM.t_of_js
               (Ojs.call Import.crypto "createCipher"
-                 [|(CipherCCMTypes.t_to_js x215);(BinaryLike.t_to_js x216);(
-                   CipherCCMOptions.t_to_js x217)|])
+                 [|(CipherCCMTypes.t_to_js x191);(BinaryLike.t_to_js x192);(
+                   CipherCCMOptions.t_to_js x193)|])
     let (create_cipher :
       algorithm:CipherGCMTypes.t ->
         password:BinaryLike.t ->
           ?options:CipherGCMOptions.t -> unit -> CipherGCM.t)
       =
-      fun ~algorithm:(x218 : CipherGCMTypes.t) ->
-        fun ~password:(x219 : BinaryLike.t) ->
-          fun ?options:(x220 : CipherGCMOptions.t option) ->
+      fun ~algorithm:(x194 : CipherGCMTypes.t) ->
+        fun ~password:(x195 : BinaryLike.t) ->
+          fun ?options:(x196 : CipherGCMOptions.t option) ->
             fun () ->
               CipherGCM.t_of_js
-                (let x223 = Import.crypto in
-                 Ojs.call (Ojs.get_prop_ascii x223 "createCipher") "apply"
-                   [|x223;((let x221 =
+                (let x199 = Import.crypto in
+                 Ojs.call (Ojs.get_prop_ascii x199 "createCipher") "apply"
+                   [|x199;((let x197 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x221 "push"
-                                 [|(CipherGCMTypes.t_to_js x218)|]);
+                              (Ojs.call x197 "push"
+                                 [|(CipherGCMTypes.t_to_js x194)|]);
                             ignore
-                              (Ojs.call x221 "push"
-                                 [|(BinaryLike.t_to_js x219)|]);
-                            (match x220 with
-                             | Some x222 ->
+                              (Ojs.call x197 "push"
+                                 [|(BinaryLike.t_to_js x195)|]);
+                            (match x196 with
+                             | Some x198 ->
                                  ignore
-                                   (Ojs.call x221 "push"
-                                      [|(CipherGCMOptions.t_to_js x222)|])
+                                   (Ojs.call x197 "push"
+                                      [|(CipherGCMOptions.t_to_js x198)|])
                              | None -> ());
-                            x221))|])
+                            x197))|])
     let (create_cipher :
       algorithm:string ->
         password:BinaryLike.t ->
           ?options:Stream.TransformOptions.t -> unit -> Cipher.t)
       =
-      fun ~algorithm:(x224 : string) ->
-        fun ~password:(x225 : BinaryLike.t) ->
-          fun ?options:(x226 : Stream.TransformOptions.t option) ->
+      fun ~algorithm:(x200 : string) ->
+        fun ~password:(x201 : BinaryLike.t) ->
+          fun ?options:(x202 : Stream.TransformOptions.t option) ->
             fun () ->
               Cipher.t_of_js
-                (let x229 = Import.crypto in
-                 Ojs.call (Ojs.get_prop_ascii x229 "createCipher") "apply"
-                   [|x229;((let x227 =
+                (let x205 = Import.crypto in
+                 Ojs.call (Ojs.get_prop_ascii x205 "createCipher") "apply"
+                   [|x205;((let x203 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x227 "push"
-                                 [|(Ojs.string_to_js x224)|]);
+                              (Ojs.call x203 "push"
+                                 [|(Ojs.string_to_js x200)|]);
                             ignore
-                              (Ojs.call x227 "push"
-                                 [|(BinaryLike.t_to_js x225)|]);
-                            (match x226 with
-                             | Some x228 ->
+                              (Ojs.call x203 "push"
+                                 [|(BinaryLike.t_to_js x201)|]);
+                            (match x202 with
+                             | Some x204 ->
                                  ignore
-                                   (Ojs.call x227 "push"
-                                      [|(Stream.TransformOptions.t_to_js x228)|])
+                                   (Ojs.call x203 "push"
+                                      [|(Stream.TransformOptions.t_to_js x204)|])
                              | None -> ());
-                            x227))|])
+                            x203))|])
     let (create_cipheriv :
       algorithm:CipherCCMTypes.t ->
         key:CipherKey.t ->
           iv:BinaryLike.t or_null ->
             options:CipherCCMOptions.t -> CipherCCM.t)
       =
-      fun ~algorithm:(x230 : CipherCCMTypes.t) ->
-        fun ~key:(x231 : CipherKey.t) ->
-          fun ~iv:(x232 : BinaryLike.t or_null) ->
-            fun ~options:(x234 : CipherCCMOptions.t) ->
+      fun ~algorithm:(x206 : CipherCCMTypes.t) ->
+        fun ~key:(x207 : CipherKey.t) ->
+          fun ~iv:(x208 : BinaryLike.t or_null) ->
+            fun ~options:(x210 : CipherCCMOptions.t) ->
               CipherCCM.t_of_js
                 (Ojs.call Import.crypto "createCipheriv"
-                   [|(CipherCCMTypes.t_to_js x230);(CipherKey.t_to_js x231);(
-                     or_null_to_js BinaryLike.t_to_js x232);(CipherCCMOptions.t_to_js
-                                                               x234)|])
+                   [|(CipherCCMTypes.t_to_js x206);(CipherKey.t_to_js x207);(
+                     or_null_to_js BinaryLike.t_to_js x208);(CipherCCMOptions.t_to_js
+                                                               x210)|])
     let (create_cipheriv :
       algorithm:CipherGCMTypes.t ->
         key:CipherKey.t ->
           iv:BinaryLike.t or_null ->
             ?options:CipherGCMOptions.t -> unit -> CipherGCM.t)
       =
-      fun ~algorithm:(x235 : CipherGCMTypes.t) ->
-        fun ~key:(x236 : CipherKey.t) ->
-          fun ~iv:(x237 : BinaryLike.t or_null) ->
-            fun ?options:(x238 : CipherGCMOptions.t option) ->
+      fun ~algorithm:(x211 : CipherGCMTypes.t) ->
+        fun ~key:(x212 : CipherKey.t) ->
+          fun ~iv:(x213 : BinaryLike.t or_null) ->
+            fun ?options:(x214 : CipherGCMOptions.t option) ->
               fun () ->
                 CipherGCM.t_of_js
-                  (let x242 = Import.crypto in
-                   Ojs.call (Ojs.get_prop_ascii x242 "createCipheriv")
+                  (let x218 = Import.crypto in
+                   Ojs.call (Ojs.get_prop_ascii x218 "createCipheriv")
                      "apply"
-                     [|x242;((let x239 =
+                     [|x218;((let x215 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x239 "push"
-                                   [|(CipherGCMTypes.t_to_js x235)|]);
+                                (Ojs.call x215 "push"
+                                   [|(CipherGCMTypes.t_to_js x211)|]);
                               ignore
-                                (Ojs.call x239 "push"
-                                   [|(CipherKey.t_to_js x236)|]);
+                                (Ojs.call x215 "push"
+                                   [|(CipherKey.t_to_js x212)|]);
                               ignore
-                                (Ojs.call x239 "push"
-                                   [|(or_null_to_js BinaryLike.t_to_js x237)|]);
-                              (match x238 with
-                               | Some x240 ->
+                                (Ojs.call x215 "push"
+                                   [|(or_null_to_js BinaryLike.t_to_js x213)|]);
+                              (match x214 with
+                               | Some x216 ->
                                    ignore
-                                     (Ojs.call x239 "push"
-                                        [|(CipherGCMOptions.t_to_js x240)|])
+                                     (Ojs.call x215 "push"
+                                        [|(CipherGCMOptions.t_to_js x216)|])
                                | None -> ());
-                              x239))|])
+                              x215))|])
     let (create_cipheriv :
       algorithm:string ->
         key:CipherKey.t ->
           iv:BinaryLike.t or_null ->
             ?options:Stream.TransformOptions.t -> unit -> Cipher.t)
       =
-      fun ~algorithm:(x243 : string) ->
-        fun ~key:(x244 : CipherKey.t) ->
-          fun ~iv:(x245 : BinaryLike.t or_null) ->
-            fun ?options:(x246 : Stream.TransformOptions.t option) ->
+      fun ~algorithm:(x219 : string) ->
+        fun ~key:(x220 : CipherKey.t) ->
+          fun ~iv:(x221 : BinaryLike.t or_null) ->
+            fun ?options:(x222 : Stream.TransformOptions.t option) ->
               fun () ->
                 Cipher.t_of_js
-                  (let x250 = Import.crypto in
-                   Ojs.call (Ojs.get_prop_ascii x250 "createCipheriv")
+                  (let x226 = Import.crypto in
+                   Ojs.call (Ojs.get_prop_ascii x226 "createCipheriv")
                      "apply"
-                     [|x250;((let x247 =
+                     [|x226;((let x223 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x247 "push"
-                                   [|(Ojs.string_to_js x243)|]);
+                                (Ojs.call x223 "push"
+                                   [|(Ojs.string_to_js x219)|]);
                               ignore
-                                (Ojs.call x247 "push"
-                                   [|(CipherKey.t_to_js x244)|]);
+                                (Ojs.call x223 "push"
+                                   [|(CipherKey.t_to_js x220)|]);
                               ignore
-                                (Ojs.call x247 "push"
-                                   [|(or_null_to_js BinaryLike.t_to_js x245)|]);
-                              (match x246 with
-                               | Some x248 ->
+                                (Ojs.call x223 "push"
+                                   [|(or_null_to_js BinaryLike.t_to_js x221)|]);
+                              (match x222 with
+                               | Some x224 ->
                                    ignore
-                                     (Ojs.call x247 "push"
+                                     (Ojs.call x223 "push"
                                         [|(Stream.TransformOptions.t_to_js
-                                             x248)|])
+                                             x224)|])
                                | None -> ());
-                              x247))|])
+                              x223))|])
     module Decipher =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x252 : Ojs.t) -> x252
-        and t_to_js : t -> Ojs.t = fun (x251 : Ojs.t) -> x251
+        include struct include Stream.Transform end
         let (create : unit -> t) =
           fun () ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.crypto "Decipher") [||])
         let (update : t -> data:ArrayBufferView.t -> Buffer.t) =
-          fun (x254 : t) ->
-            fun ~data:(x253 : ArrayBufferView.t) ->
+          fun (x228 : t) ->
+            fun ~data:(x227 : ArrayBufferView.t) ->
               Buffer.t_of_js
-                (Ojs.call (t_to_js x254) "update"
-                   [|(ArrayBufferView.t_to_js x253)|])
+                (Ojs.call (t_to_js x228) "update"
+                   [|(ArrayBufferView.t_to_js x227)|])
         let (update' :
           t -> data:string -> input_encoding:Encoding.t -> Buffer.t) =
-          fun (x257 : t) ->
-            fun ~data:(x255 : string) ->
-              fun ~input_encoding:(x256 : Encoding.t) ->
+          fun (x231 : t) ->
+            fun ~data:(x229 : string) ->
+              fun ~input_encoding:(x230 : Encoding.t) ->
                 Buffer.t_of_js
-                  (Ojs.call (t_to_js x257) "update"
-                     [|(Ojs.string_to_js x255);(Encoding.t_to_js x256)|])
+                  (Ojs.call (t_to_js x231) "update"
+                     [|(Ojs.string_to_js x229);(Encoding.t_to_js x230)|])
         let (update'' :
           t ->
             data:ArrayBufferView.t ->
               input_encoding:never or_undefined ->
                 output_encoding:Encoding.t -> string)
           =
-          fun (x262 : t) ->
-            fun ~data:(x258 : ArrayBufferView.t) ->
-              fun ~input_encoding:(x259 : never or_undefined) ->
-                fun ~output_encoding:(x261 : Encoding.t) ->
+          fun (x236 : t) ->
+            fun ~data:(x232 : ArrayBufferView.t) ->
+              fun ~input_encoding:(x233 : never or_undefined) ->
+                fun ~output_encoding:(x235 : Encoding.t) ->
                   Ojs.string_of_js
-                    (Ojs.call (t_to_js x262) "update"
-                       [|(ArrayBufferView.t_to_js x258);(or_undefined_to_js
-                                                           never_to_js x259);(
-                         Encoding.t_to_js x261)|])
+                    (Ojs.call (t_to_js x236) "update"
+                       [|(ArrayBufferView.t_to_js x232);(or_undefined_to_js
+                                                           never_to_js x233);(
+                         Encoding.t_to_js x235)|])
         let (update''' :
           t ->
             data:string ->
               input_encoding:Encoding.t or_undefined ->
                 output_encoding:Encoding.t -> string)
           =
-          fun (x267 : t) ->
-            fun ~data:(x263 : string) ->
-              fun ~input_encoding:(x264 : Encoding.t or_undefined) ->
-                fun ~output_encoding:(x266 : Encoding.t) ->
+          fun (x241 : t) ->
+            fun ~data:(x237 : string) ->
+              fun ~input_encoding:(x238 : Encoding.t or_undefined) ->
+                fun ~output_encoding:(x240 : Encoding.t) ->
                   Ojs.string_of_js
-                    (Ojs.call (t_to_js x267) "update"
-                       [|(Ojs.string_to_js x263);(or_undefined_to_js
-                                                    Encoding.t_to_js x264);(
-                         Encoding.t_to_js x266)|])
+                    (Ojs.call (t_to_js x241) "update"
+                       [|(Ojs.string_to_js x237);(or_undefined_to_js
+                                                    Encoding.t_to_js x238);(
+                         Encoding.t_to_js x240)|])
         let (final : t -> Buffer.t) =
-          fun (x268 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x268) "final" [||])
+          fun (x242 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x242) "final" [||])
         let (final' : t -> output_encoding:BufferEncoding.t -> string) =
-          fun (x270 : t) ->
-            fun ~output_encoding:(x269 : BufferEncoding.t) ->
+          fun (x244 : t) ->
+            fun ~output_encoding:(x243 : BufferEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x270) "final"
-                   [|(BufferEncoding.t_to_js x269)|])
+                (Ojs.call (t_to_js x244) "final"
+                   [|(BufferEncoding.t_to_js x243)|])
         let (set_auto_padding : t -> ?auto_padding:bool -> unit -> t) =
-          fun (x274 : t) ->
-            fun ?auto_padding:(x271 : bool option) ->
+          fun (x248 : t) ->
+            fun ?auto_padding:(x245 : bool option) ->
               fun () ->
                 t_of_js
-                  (let x275 = t_to_js x274 in
-                   Ojs.call (Ojs.get_prop_ascii x275 "setAutoPadding")
+                  (let x249 = t_to_js x248 in
+                   Ojs.call (Ojs.get_prop_ascii x249 "setAutoPadding")
                      "apply"
-                     [|x275;((let x272 =
+                     [|x249;((let x246 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x271 with
-                               | Some x273 ->
+                              (match x245 with
+                               | Some x247 ->
                                    ignore
-                                     (Ojs.call x272 "push"
-                                        [|(Ojs.bool_to_js x273)|])
+                                     (Ojs.call x246 "push"
+                                        [|(Ojs.bool_to_js x247)|])
                                | None -> ());
-                              x272))|])
-        let (cast : t -> Stream.Transform.t) =
-          fun (x276 : t) -> Stream.Transform.t_of_js (t_to_js x276)
+                              x246))|])
       end
     module DecipherCCM =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x278 : Ojs.t) -> x278
-        and t_to_js : t -> Ojs.t = fun (x277 : Ojs.t) -> x277
+        include struct include Decipher end
         let (set_auth_tag : t -> buffer:ArrayBufferView.t -> t) =
-          fun (x280 : t) ->
-            fun ~buffer:(x279 : ArrayBufferView.t) ->
+          fun (x251 : t) ->
+            fun ~buffer:(x250 : ArrayBufferView.t) ->
               t_of_js
-                (Ojs.call (t_to_js x280) "setAuthTag"
-                   [|(ArrayBufferView.t_to_js x279)|])
+                (Ojs.call (t_to_js x251) "setAuthTag"
+                   [|(ArrayBufferView.t_to_js x250)|])
         let (set_aad :
           t -> buffer:ArrayBufferView.t -> options:AnonymousInterface0.t -> t)
           =
-          fun (x283 : t) ->
-            fun ~buffer:(x281 : ArrayBufferView.t) ->
-              fun ~options:(x282 : AnonymousInterface0.t) ->
+          fun (x254 : t) ->
+            fun ~buffer:(x252 : ArrayBufferView.t) ->
+              fun ~options:(x253 : AnonymousInterface0.t) ->
                 t_of_js
-                  (Ojs.call (t_to_js x283) "setAAD"
-                     [|(ArrayBufferView.t_to_js x281);(AnonymousInterface0.t_to_js
-                                                         x282)|])
-        let (cast : t -> Decipher.t) =
-          fun (x284 : t) -> Decipher.t_of_js (t_to_js x284)
+                  (Ojs.call (t_to_js x254) "setAAD"
+                     [|(ArrayBufferView.t_to_js x252);(AnonymousInterface0.t_to_js
+                                                         x253)|])
       end
     module DecipherGCM =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x286 : Ojs.t) -> x286
-        and t_to_js : t -> Ojs.t = fun (x285 : Ojs.t) -> x285
+        include struct include Decipher end
         let (set_auth_tag : t -> buffer:ArrayBufferView.t -> t) =
-          fun (x288 : t) ->
-            fun ~buffer:(x287 : ArrayBufferView.t) ->
+          fun (x256 : t) ->
+            fun ~buffer:(x255 : ArrayBufferView.t) ->
               t_of_js
-                (Ojs.call (t_to_js x288) "setAuthTag"
-                   [|(ArrayBufferView.t_to_js x287)|])
+                (Ojs.call (t_to_js x256) "setAuthTag"
+                   [|(ArrayBufferView.t_to_js x255)|])
         let (set_aad :
           t ->
             buffer:ArrayBufferView.t ->
               ?options:AnonymousInterface0.t -> unit -> t)
           =
-          fun (x293 : t) ->
-            fun ~buffer:(x289 : ArrayBufferView.t) ->
-              fun ?options:(x290 : AnonymousInterface0.t option) ->
+          fun (x261 : t) ->
+            fun ~buffer:(x257 : ArrayBufferView.t) ->
+              fun ?options:(x258 : AnonymousInterface0.t option) ->
                 fun () ->
                   t_of_js
-                    (let x294 = t_to_js x293 in
-                     Ojs.call (Ojs.get_prop_ascii x294 "setAAD") "apply"
-                       [|x294;((let x291 =
+                    (let x262 = t_to_js x261 in
+                     Ojs.call (Ojs.get_prop_ascii x262 "setAAD") "apply"
+                       [|x262;((let x259 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x291 "push"
-                                     [|(ArrayBufferView.t_to_js x289)|]);
-                                (match x290 with
-                                 | Some x292 ->
+                                  (Ojs.call x259 "push"
+                                     [|(ArrayBufferView.t_to_js x257)|]);
+                                (match x258 with
+                                 | Some x260 ->
                                      ignore
-                                       (Ojs.call x291 "push"
-                                          [|(AnonymousInterface0.t_to_js x292)|])
+                                       (Ojs.call x259 "push"
+                                          [|(AnonymousInterface0.t_to_js x260)|])
                                  | None -> ());
-                                x291))|])
-        let (cast : t -> Decipher.t) =
-          fun (x295 : t) -> Decipher.t_of_js (t_to_js x295)
+                                x259))|])
       end
     let (create_decipher :
       algorithm:CipherCCMTypes.t ->
         password:BinaryLike.t -> options:CipherCCMOptions.t -> DecipherCCM.t)
       =
-      fun ~algorithm:(x296 : CipherCCMTypes.t) ->
-        fun ~password:(x297 : BinaryLike.t) ->
-          fun ~options:(x298 : CipherCCMOptions.t) ->
+      fun ~algorithm:(x263 : CipherCCMTypes.t) ->
+        fun ~password:(x264 : BinaryLike.t) ->
+          fun ~options:(x265 : CipherCCMOptions.t) ->
             DecipherCCM.t_of_js
               (Ojs.call Import.crypto "createDecipher"
-                 [|(CipherCCMTypes.t_to_js x296);(BinaryLike.t_to_js x297);(
-                   CipherCCMOptions.t_to_js x298)|])
+                 [|(CipherCCMTypes.t_to_js x263);(BinaryLike.t_to_js x264);(
+                   CipherCCMOptions.t_to_js x265)|])
     let (create_decipher :
       algorithm:CipherGCMTypes.t ->
         password:BinaryLike.t ->
           ?options:CipherGCMOptions.t -> unit -> DecipherGCM.t)
       =
-      fun ~algorithm:(x299 : CipherGCMTypes.t) ->
-        fun ~password:(x300 : BinaryLike.t) ->
-          fun ?options:(x301 : CipherGCMOptions.t option) ->
+      fun ~algorithm:(x266 : CipherGCMTypes.t) ->
+        fun ~password:(x267 : BinaryLike.t) ->
+          fun ?options:(x268 : CipherGCMOptions.t option) ->
             fun () ->
               DecipherGCM.t_of_js
-                (let x304 = Import.crypto in
-                 Ojs.call (Ojs.get_prop_ascii x304 "createDecipher") "apply"
-                   [|x304;((let x302 =
+                (let x271 = Import.crypto in
+                 Ojs.call (Ojs.get_prop_ascii x271 "createDecipher") "apply"
+                   [|x271;((let x269 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x302 "push"
-                                 [|(CipherGCMTypes.t_to_js x299)|]);
+                              (Ojs.call x269 "push"
+                                 [|(CipherGCMTypes.t_to_js x266)|]);
                             ignore
-                              (Ojs.call x302 "push"
-                                 [|(BinaryLike.t_to_js x300)|]);
-                            (match x301 with
-                             | Some x303 ->
+                              (Ojs.call x269 "push"
+                                 [|(BinaryLike.t_to_js x267)|]);
+                            (match x268 with
+                             | Some x270 ->
                                  ignore
-                                   (Ojs.call x302 "push"
-                                      [|(CipherGCMOptions.t_to_js x303)|])
+                                   (Ojs.call x269 "push"
+                                      [|(CipherGCMOptions.t_to_js x270)|])
                              | None -> ());
-                            x302))|])
+                            x269))|])
     let (create_decipher :
       algorithm:string ->
         password:BinaryLike.t ->
           ?options:Stream.TransformOptions.t -> unit -> Decipher.t)
       =
-      fun ~algorithm:(x305 : string) ->
-        fun ~password:(x306 : BinaryLike.t) ->
-          fun ?options:(x307 : Stream.TransformOptions.t option) ->
+      fun ~algorithm:(x272 : string) ->
+        fun ~password:(x273 : BinaryLike.t) ->
+          fun ?options:(x274 : Stream.TransformOptions.t option) ->
             fun () ->
               Decipher.t_of_js
-                (let x310 = Import.crypto in
-                 Ojs.call (Ojs.get_prop_ascii x310 "createDecipher") "apply"
-                   [|x310;((let x308 =
+                (let x277 = Import.crypto in
+                 Ojs.call (Ojs.get_prop_ascii x277 "createDecipher") "apply"
+                   [|x277;((let x275 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x308 "push"
-                                 [|(Ojs.string_to_js x305)|]);
+                              (Ojs.call x275 "push"
+                                 [|(Ojs.string_to_js x272)|]);
                             ignore
-                              (Ojs.call x308 "push"
-                                 [|(BinaryLike.t_to_js x306)|]);
-                            (match x307 with
-                             | Some x309 ->
+                              (Ojs.call x275 "push"
+                                 [|(BinaryLike.t_to_js x273)|]);
+                            (match x274 with
+                             | Some x276 ->
                                  ignore
-                                   (Ojs.call x308 "push"
-                                      [|(Stream.TransformOptions.t_to_js x309)|])
+                                   (Ojs.call x275 "push"
+                                      [|(Stream.TransformOptions.t_to_js x276)|])
                              | None -> ());
-                            x308))|])
+                            x275))|])
     let (create_decipheriv :
       algorithm:CipherCCMTypes.t ->
         key:CipherKey.t ->
           iv:BinaryLike.t or_null ->
             options:CipherCCMOptions.t -> DecipherCCM.t)
       =
-      fun ~algorithm:(x311 : CipherCCMTypes.t) ->
-        fun ~key:(x312 : CipherKey.t) ->
-          fun ~iv:(x313 : BinaryLike.t or_null) ->
-            fun ~options:(x315 : CipherCCMOptions.t) ->
+      fun ~algorithm:(x278 : CipherCCMTypes.t) ->
+        fun ~key:(x279 : CipherKey.t) ->
+          fun ~iv:(x280 : BinaryLike.t or_null) ->
+            fun ~options:(x282 : CipherCCMOptions.t) ->
               DecipherCCM.t_of_js
                 (Ojs.call Import.crypto "createDecipheriv"
-                   [|(CipherCCMTypes.t_to_js x311);(CipherKey.t_to_js x312);(
-                     or_null_to_js BinaryLike.t_to_js x313);(CipherCCMOptions.t_to_js
-                                                               x315)|])
+                   [|(CipherCCMTypes.t_to_js x278);(CipherKey.t_to_js x279);(
+                     or_null_to_js BinaryLike.t_to_js x280);(CipherCCMOptions.t_to_js
+                                                               x282)|])
     let (create_decipheriv :
       algorithm:CipherGCMTypes.t ->
         key:CipherKey.t ->
           iv:BinaryLike.t or_null ->
             ?options:CipherGCMOptions.t -> unit -> DecipherGCM.t)
       =
-      fun ~algorithm:(x316 : CipherGCMTypes.t) ->
-        fun ~key:(x317 : CipherKey.t) ->
-          fun ~iv:(x318 : BinaryLike.t or_null) ->
-            fun ?options:(x319 : CipherGCMOptions.t option) ->
+      fun ~algorithm:(x283 : CipherGCMTypes.t) ->
+        fun ~key:(x284 : CipherKey.t) ->
+          fun ~iv:(x285 : BinaryLike.t or_null) ->
+            fun ?options:(x286 : CipherGCMOptions.t option) ->
               fun () ->
                 DecipherGCM.t_of_js
-                  (let x323 = Import.crypto in
-                   Ojs.call (Ojs.get_prop_ascii x323 "createDecipheriv")
+                  (let x290 = Import.crypto in
+                   Ojs.call (Ojs.get_prop_ascii x290 "createDecipheriv")
                      "apply"
-                     [|x323;((let x320 =
+                     [|x290;((let x287 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x320 "push"
-                                   [|(CipherGCMTypes.t_to_js x316)|]);
+                                (Ojs.call x287 "push"
+                                   [|(CipherGCMTypes.t_to_js x283)|]);
                               ignore
-                                (Ojs.call x320 "push"
-                                   [|(CipherKey.t_to_js x317)|]);
+                                (Ojs.call x287 "push"
+                                   [|(CipherKey.t_to_js x284)|]);
                               ignore
-                                (Ojs.call x320 "push"
-                                   [|(or_null_to_js BinaryLike.t_to_js x318)|]);
-                              (match x319 with
-                               | Some x321 ->
+                                (Ojs.call x287 "push"
+                                   [|(or_null_to_js BinaryLike.t_to_js x285)|]);
+                              (match x286 with
+                               | Some x288 ->
                                    ignore
-                                     (Ojs.call x320 "push"
-                                        [|(CipherGCMOptions.t_to_js x321)|])
+                                     (Ojs.call x287 "push"
+                                        [|(CipherGCMOptions.t_to_js x288)|])
                                | None -> ());
-                              x320))|])
+                              x287))|])
     let (create_decipheriv :
       algorithm:string ->
         key:CipherKey.t ->
           iv:BinaryLike.t or_null ->
             ?options:Stream.TransformOptions.t -> unit -> Decipher.t)
       =
-      fun ~algorithm:(x324 : string) ->
-        fun ~key:(x325 : CipherKey.t) ->
-          fun ~iv:(x326 : BinaryLike.t or_null) ->
-            fun ?options:(x327 : Stream.TransformOptions.t option) ->
+      fun ~algorithm:(x291 : string) ->
+        fun ~key:(x292 : CipherKey.t) ->
+          fun ~iv:(x293 : BinaryLike.t or_null) ->
+            fun ?options:(x294 : Stream.TransformOptions.t option) ->
               fun () ->
                 Decipher.t_of_js
-                  (let x331 = Import.crypto in
-                   Ojs.call (Ojs.get_prop_ascii x331 "createDecipheriv")
+                  (let x298 = Import.crypto in
+                   Ojs.call (Ojs.get_prop_ascii x298 "createDecipheriv")
                      "apply"
-                     [|x331;((let x328 =
+                     [|x298;((let x295 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x328 "push"
-                                   [|(Ojs.string_to_js x324)|]);
+                                (Ojs.call x295 "push"
+                                   [|(Ojs.string_to_js x291)|]);
                               ignore
-                                (Ojs.call x328 "push"
-                                   [|(CipherKey.t_to_js x325)|]);
+                                (Ojs.call x295 "push"
+                                   [|(CipherKey.t_to_js x292)|]);
                               ignore
-                                (Ojs.call x328 "push"
-                                   [|(or_null_to_js BinaryLike.t_to_js x326)|]);
-                              (match x327 with
-                               | Some x329 ->
+                                (Ojs.call x295 "push"
+                                   [|(or_null_to_js BinaryLike.t_to_js x293)|]);
+                              (match x294 with
+                               | Some x296 ->
                                    ignore
-                                     (Ojs.call x328 "push"
+                                     (Ojs.call x295 "push"
                                         [|(Stream.TransformOptions.t_to_js
-                                             x329)|])
+                                             x296)|])
                                | None -> ());
-                              x328))|])
+                              x295))|])
     module KeyFormat =
       struct
         type t = [ `der  | `pem ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x333 : Ojs.t) ->
-            let x334 = x333 in
-            match Ojs.string_of_js x334 with
+          fun (x300 : Ojs.t) ->
+            let x301 = x300 in
+            match Ojs.string_of_js x301 with
             | "der" -> `der
             | "pem" -> `pem
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x332 : [ `der  | `pem ]) ->
-            match x332 with
+          fun (x299 : [ `der  | `pem ]) ->
+            match x299 with
             | `der -> Ojs.string_to_js "der"
             | `pem -> Ojs.string_to_js "pem"
       end
     module PrivateKeyInput =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x336 : Ojs.t) -> x336
-        and t_to_js : t -> Ojs.t = fun (x335 : Ojs.t) -> x335
+        let rec t_of_js : Ojs.t -> t = fun (x303 : Ojs.t) -> x303
+        and t_to_js : t -> Ojs.t = fun (x302 : Ojs.t) -> x302
         let (get_key : t -> Buffer.t or_string) =
-          fun (x337 : t) ->
+          fun (x304 : t) ->
             or_string_of_js Buffer.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x337) "key")
+              (Ojs.get_prop_ascii (t_to_js x304) "key")
         let (set_key : t -> Buffer.t or_string -> unit) =
-          fun (x339 : t) ->
-            fun (x340 : Buffer.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x339) "key"
-                (or_string_to_js Buffer.t_to_js x340)
+          fun (x306 : t) ->
+            fun (x307 : Buffer.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x306) "key"
+                (or_string_to_js Buffer.t_to_js x307)
         let (get_format : t -> KeyFormat.t) =
-          fun (x342 : t) ->
-            KeyFormat.t_of_js (Ojs.get_prop_ascii (t_to_js x342) "format")
+          fun (x309 : t) ->
+            KeyFormat.t_of_js (Ojs.get_prop_ascii (t_to_js x309) "format")
         let (set_format : t -> KeyFormat.t -> unit) =
-          fun (x343 : t) ->
-            fun (x344 : KeyFormat.t) ->
-              Ojs.set_prop_ascii (t_to_js x343) "format"
-                (KeyFormat.t_to_js x344)
+          fun (x310 : t) ->
+            fun (x311 : KeyFormat.t) ->
+              Ojs.set_prop_ascii (t_to_js x310) "format"
+                (KeyFormat.t_to_js x311)
         let (get_type : t -> [ `pkcs1  | `pkcs8  | `sec1 ]) =
-          fun (x345 : t) ->
-            let x346 = Ojs.get_prop_ascii (t_to_js x345) "type" in
-            match Ojs.string_of_js x346 with
+          fun (x312 : t) ->
+            let x313 = Ojs.get_prop_ascii (t_to_js x312) "type" in
+            match Ojs.string_of_js x313 with
             | "pkcs1" -> `pkcs1
             | "pkcs8" -> `pkcs8
             | "sec1" -> `sec1
             | _ -> assert false
         let (set_type : t -> [ `pkcs1  | `pkcs8  | `sec1 ] -> unit) =
-          fun (x347 : t) ->
-            fun (x348 : [ `pkcs1  | `pkcs8  | `sec1 ]) ->
-              Ojs.set_prop_ascii (t_to_js x347) "type"
-                (match x348 with
+          fun (x314 : t) ->
+            fun (x315 : [ `pkcs1  | `pkcs8  | `sec1 ]) ->
+              Ojs.set_prop_ascii (t_to_js x314) "type"
+                (match x315 with
                  | `pkcs1 -> Ojs.string_to_js "pkcs1"
                  | `pkcs8 -> Ojs.string_to_js "pkcs8"
                  | `sec1 -> Ojs.string_to_js "sec1")
         let (get_passphrase : t -> Buffer.t or_string) =
-          fun (x349 : t) ->
+          fun (x316 : t) ->
             or_string_of_js Buffer.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x349) "passphrase")
+              (Ojs.get_prop_ascii (t_to_js x316) "passphrase")
         let (set_passphrase : t -> Buffer.t or_string -> unit) =
-          fun (x351 : t) ->
-            fun (x352 : Buffer.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x351) "passphrase"
-                (or_string_to_js Buffer.t_to_js x352)
+          fun (x318 : t) ->
+            fun (x319 : Buffer.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x318) "passphrase"
+                (or_string_to_js Buffer.t_to_js x319)
       end
     module PublicKeyInput =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x355 : Ojs.t) -> x355
-        and t_to_js : t -> Ojs.t = fun (x354 : Ojs.t) -> x354
+        let rec t_of_js : Ojs.t -> t = fun (x322 : Ojs.t) -> x322
+        and t_to_js : t -> Ojs.t = fun (x321 : Ojs.t) -> x321
         let (get_key : t -> Buffer.t or_string) =
-          fun (x356 : t) ->
+          fun (x323 : t) ->
             or_string_of_js Buffer.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x356) "key")
+              (Ojs.get_prop_ascii (t_to_js x323) "key")
         let (set_key : t -> Buffer.t or_string -> unit) =
-          fun (x358 : t) ->
-            fun (x359 : Buffer.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x358) "key"
-                (or_string_to_js Buffer.t_to_js x359)
+          fun (x325 : t) ->
+            fun (x326 : Buffer.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x325) "key"
+                (or_string_to_js Buffer.t_to_js x326)
         let (get_format : t -> KeyFormat.t) =
-          fun (x361 : t) ->
-            KeyFormat.t_of_js (Ojs.get_prop_ascii (t_to_js x361) "format")
+          fun (x328 : t) ->
+            KeyFormat.t_of_js (Ojs.get_prop_ascii (t_to_js x328) "format")
         let (set_format : t -> KeyFormat.t -> unit) =
-          fun (x362 : t) ->
-            fun (x363 : KeyFormat.t) ->
-              Ojs.set_prop_ascii (t_to_js x362) "format"
-                (KeyFormat.t_to_js x363)
+          fun (x329 : t) ->
+            fun (x330 : KeyFormat.t) ->
+              Ojs.set_prop_ascii (t_to_js x329) "format"
+                (KeyFormat.t_to_js x330)
         let (get_type : t -> [ `pkcs1  | `spki ]) =
-          fun (x364 : t) ->
-            let x365 = Ojs.get_prop_ascii (t_to_js x364) "type" in
-            match Ojs.string_of_js x365 with
+          fun (x331 : t) ->
+            let x332 = Ojs.get_prop_ascii (t_to_js x331) "type" in
+            match Ojs.string_of_js x332 with
             | "pkcs1" -> `pkcs1
             | "spki" -> `spki
             | _ -> assert false
         let (set_type : t -> [ `pkcs1  | `spki ] -> unit) =
-          fun (x366 : t) ->
-            fun (x367 : [ `pkcs1  | `spki ]) ->
-              Ojs.set_prop_ascii (t_to_js x366) "type"
-                (match x367 with
+          fun (x333 : t) ->
+            fun (x334 : [ `pkcs1  | `spki ]) ->
+              Ojs.set_prop_ascii (t_to_js x333) "type"
+                (match x334 with
                  | `pkcs1 -> Ojs.string_to_js "pkcs1"
                  | `spki -> Ojs.string_to_js "spki")
       end
     let (create_private_key :
       key:(Buffer.t, PrivateKeyInput.t) union2 or_string -> KeyObject.t) =
-      fun ~key:(x368 : (Buffer.t, PrivateKeyInput.t) union2 or_string) ->
+      fun ~key:(x335 : (Buffer.t, PrivateKeyInput.t) union2 or_string) ->
         KeyObject.t_of_js
           (Ojs.call Import.crypto "createPrivateKey"
              [|(or_string_to_js
-                  (fun (x369 : (Buffer.t, PrivateKeyInput.t) union2) ->
-                     union2_to_js Buffer.t_to_js PrivateKeyInput.t_to_js x369)
-                  x368)|])
+                  (fun (x336 : (Buffer.t, PrivateKeyInput.t) union2) ->
+                     union2_to_js Buffer.t_to_js PrivateKeyInput.t_to_js x336)
+                  x335)|])
     let (create_public_key :
       key:([ `U_s21_pkcs1 of PublicKeyInput.t 
            | `U_s23_private of KeyObject.t  | `U_s24_public of KeyObject.t 
@@ -1672,7 +1628,7 @@ module Crypto =
         Buffer.t) or_ or_string -> KeyObject.t)
       =
       fun
-        ~key:(x372 :
+        ~key:(x339 :
                ([ `U_s21_pkcs1 of PublicKeyInput.t 
                 | `U_s23_private of KeyObject.t 
                 | `U_s24_public of KeyObject.t 
@@ -1683,7 +1639,7 @@ module Crypto =
           (Ojs.call Import.crypto "createPublicKey"
              [|(or_string_to_js
                   (fun
-                     (x373 :
+                     (x340 :
                        ([ `U_s21_pkcs1 of PublicKeyInput.t 
                         | `U_s23_private of KeyObject.t 
                         | `U_s24_public of KeyObject.t 
@@ -1692,160 +1648,142 @@ module Crypto =
                      ->
                      or__to_js
                        (fun
-                          (x374 :
+                          (x341 :
                             [ `U_s21_pkcs1 of PublicKeyInput.t 
                             | `U_s23_private of KeyObject.t 
                             | `U_s24_public of KeyObject.t 
                             | `U_s27_secret of KeyObject.t 
                             | `U_s28_spki of PublicKeyInput.t ])
                           ->
-                          match x374 with
-                          | `U_s21_pkcs1 x375 -> PublicKeyInput.t_to_js x375
-                          | `U_s23_private x376 -> KeyObject.t_to_js x376
-                          | `U_s24_public x377 -> KeyObject.t_to_js x377
-                          | `U_s27_secret x378 -> KeyObject.t_to_js x378
-                          | `U_s28_spki x379 -> PublicKeyInput.t_to_js x379)
-                       Buffer.t_to_js x373) x372)|])
+                          match x341 with
+                          | `U_s21_pkcs1 x342 -> PublicKeyInput.t_to_js x342
+                          | `U_s23_private x343 -> KeyObject.t_to_js x343
+                          | `U_s24_public x344 -> KeyObject.t_to_js x344
+                          | `U_s27_secret x345 -> KeyObject.t_to_js x345
+                          | `U_s28_spki x346 -> PublicKeyInput.t_to_js x346)
+                       Buffer.t_to_js x340) x339)|])
     let (create_secret_key : key:ArrayBufferView.t -> KeyObject.t) =
-      fun ~key:(x381 : ArrayBufferView.t) ->
+      fun ~key:(x348 : ArrayBufferView.t) ->
         KeyObject.t_of_js
           (Ojs.call Import.crypto "createSecretKey"
-             [|(ArrayBufferView.t_to_js x381)|])
+             [|(ArrayBufferView.t_to_js x348)|])
     module DSAEncoding =
       struct
         type t = [ `der  | `ieee_p1363 ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x383 : Ojs.t) ->
-            let x384 = x383 in
-            match Ojs.string_of_js x384 with
+          fun (x350 : Ojs.t) ->
+            let x351 = x350 in
+            match Ojs.string_of_js x351 with
             | "der" -> `der
             | "ieee-p1363" -> `ieee_p1363
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x382 : [ `der  | `ieee_p1363 ]) ->
-            match x382 with
+          fun (x349 : [ `der  | `ieee_p1363 ]) ->
+            match x349 with
             | `der -> Ojs.string_to_js "der"
             | `ieee_p1363 -> Ojs.string_to_js "ieee-p1363"
       end
     module SigningOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x386 : Ojs.t) -> x386
-        and t_to_js : t -> Ojs.t = fun (x385 : Ojs.t) -> x385
+        let rec t_of_js : Ojs.t -> t = fun (x353 : Ojs.t) -> x353
+        and t_to_js : t -> Ojs.t = fun (x352 : Ojs.t) -> x352
         let (get_padding : t -> int) =
-          fun (x387 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x387) "padding")
+          fun (x354 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x354) "padding")
         let (set_padding : t -> int -> unit) =
-          fun (x388 : t) ->
-            fun (x389 : int) ->
-              Ojs.set_prop_ascii (t_to_js x388) "padding"
-                (Ojs.int_to_js x389)
+          fun (x355 : t) ->
+            fun (x356 : int) ->
+              Ojs.set_prop_ascii (t_to_js x355) "padding"
+                (Ojs.int_to_js x356)
         let (get_salt_length : t -> int) =
-          fun (x390 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x390) "saltLength")
+          fun (x357 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x357) "saltLength")
         let (set_salt_length : t -> int -> unit) =
-          fun (x391 : t) ->
-            fun (x392 : int) ->
-              Ojs.set_prop_ascii (t_to_js x391) "saltLength"
-                (Ojs.int_to_js x392)
+          fun (x358 : t) ->
+            fun (x359 : int) ->
+              Ojs.set_prop_ascii (t_to_js x358) "saltLength"
+                (Ojs.int_to_js x359)
         let (get_dsa_encoding : t -> DSAEncoding.t) =
-          fun (x393 : t) ->
+          fun (x360 : t) ->
             DSAEncoding.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x393) "dsaEncoding")
+              (Ojs.get_prop_ascii (t_to_js x360) "dsaEncoding")
         let (set_dsa_encoding : t -> DSAEncoding.t -> unit) =
-          fun (x394 : t) ->
-            fun (x395 : DSAEncoding.t) ->
-              Ojs.set_prop_ascii (t_to_js x394) "dsaEncoding"
-                (DSAEncoding.t_to_js x395)
+          fun (x361 : t) ->
+            fun (x362 : DSAEncoding.t) ->
+              Ojs.set_prop_ascii (t_to_js x361) "dsaEncoding"
+                (DSAEncoding.t_to_js x362)
       end
     module SignPrivateKeyInput =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x397 : Ojs.t) -> x397
-        and t_to_js : t -> Ojs.t = fun (x396 : Ojs.t) -> x396
-        let (cast : t -> PrivateKeyInput.t) =
-          fun (x398 : t) -> PrivateKeyInput.t_of_js (t_to_js x398)
+        include struct include PrivateKeyInput end
         let (cast' : t -> SigningOptions.t) =
-          fun (x399 : t) -> SigningOptions.t_of_js (t_to_js x399)
+          fun (x363 : t) -> SigningOptions.t_of_js (t_to_js x363)
       end
     module SignKeyObjectInput =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x401 : Ojs.t) -> x401
-        and t_to_js : t -> Ojs.t = fun (x400 : Ojs.t) -> x400
+        include struct include SigningOptions end
         let (get_key : t -> KeyObject.t) =
-          fun (x402 : t) ->
-            KeyObject.t_of_js (Ojs.get_prop_ascii (t_to_js x402) "key")
+          fun (x364 : t) ->
+            KeyObject.t_of_js (Ojs.get_prop_ascii (t_to_js x364) "key")
         let (set_key : t -> KeyObject.t -> unit) =
-          fun (x403 : t) ->
-            fun (x404 : KeyObject.t) ->
-              Ojs.set_prop_ascii (t_to_js x403) "key"
-                (KeyObject.t_to_js x404)
-        let (cast : t -> SigningOptions.t) =
-          fun (x405 : t) -> SigningOptions.t_of_js (t_to_js x405)
+          fun (x365 : t) ->
+            fun (x366 : KeyObject.t) ->
+              Ojs.set_prop_ascii (t_to_js x365) "key"
+                (KeyObject.t_to_js x366)
       end
     module VerifyPublicKeyInput =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x407 : Ojs.t) -> x407
-        and t_to_js : t -> Ojs.t = fun (x406 : Ojs.t) -> x406
-        let (cast : t -> PublicKeyInput.t) =
-          fun (x408 : t) -> PublicKeyInput.t_of_js (t_to_js x408)
+        include struct include PublicKeyInput end
         let (cast' : t -> SigningOptions.t) =
-          fun (x409 : t) -> SigningOptions.t_of_js (t_to_js x409)
+          fun (x367 : t) -> SigningOptions.t_of_js (t_to_js x367)
       end
     module VerifyKeyObjectInput =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x411 : Ojs.t) -> x411
-        and t_to_js : t -> Ojs.t = fun (x410 : Ojs.t) -> x410
+        include struct include SigningOptions end
         let (get_key : t -> KeyObject.t) =
-          fun (x412 : t) ->
-            KeyObject.t_of_js (Ojs.get_prop_ascii (t_to_js x412) "key")
+          fun (x368 : t) ->
+            KeyObject.t_of_js (Ojs.get_prop_ascii (t_to_js x368) "key")
         let (set_key : t -> KeyObject.t -> unit) =
-          fun (x413 : t) ->
-            fun (x414 : KeyObject.t) ->
-              Ojs.set_prop_ascii (t_to_js x413) "key"
-                (KeyObject.t_to_js x414)
-        let (cast : t -> SigningOptions.t) =
-          fun (x415 : t) -> SigningOptions.t_of_js (t_to_js x415)
+          fun (x369 : t) ->
+            fun (x370 : KeyObject.t) ->
+              Ojs.set_prop_ascii (t_to_js x369) "key"
+                (KeyObject.t_to_js x370)
       end
     module KeyLike =
       struct
         type t = (Buffer.t, KeyObject.t) union2 or_string
         let rec t_of_js : Ojs.t -> t =
-          fun (x420 : Ojs.t) ->
+          fun (x375 : Ojs.t) ->
             or_string_of_js
-              (fun (x421 : Ojs.t) ->
-                 union2_of_js Buffer.t_of_js KeyObject.t_of_js x421) x420
+              (fun (x376 : Ojs.t) ->
+                 union2_of_js Buffer.t_of_js KeyObject.t_of_js x376) x375
         and t_to_js : t -> Ojs.t =
-          fun (x416 : (Buffer.t, KeyObject.t) union2 or_string) ->
+          fun (x371 : (Buffer.t, KeyObject.t) union2 or_string) ->
             or_string_to_js
-              (fun (x417 : (Buffer.t, KeyObject.t) union2) ->
-                 union2_to_js Buffer.t_to_js KeyObject.t_to_js x417) x416
+              (fun (x372 : (Buffer.t, KeyObject.t) union2) ->
+                 union2_to_js Buffer.t_to_js KeyObject.t_to_js x372) x371
       end
     module Signer =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x425 : Ojs.t) -> x425
-        and t_to_js : t -> Ojs.t = fun (x424 : Ojs.t) -> x424
+        include struct include Stream.Writable end
         let (create : unit -> t) =
           fun () ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.crypto "Signer") [||])
         let (update : t -> data:BinaryLike.t -> t) =
-          fun (x427 : t) ->
-            fun ~data:(x426 : BinaryLike.t) ->
+          fun (x380 : t) ->
+            fun ~data:(x379 : BinaryLike.t) ->
               t_of_js
-                (Ojs.call (t_to_js x427) "update"
-                   [|(BinaryLike.t_to_js x426)|])
+                (Ojs.call (t_to_js x380) "update"
+                   [|(BinaryLike.t_to_js x379)|])
         let (update' : t -> data:string -> input_encoding:Encoding.t -> t) =
-          fun (x430 : t) ->
-            fun ~data:(x428 : string) ->
-              fun ~input_encoding:(x429 : Encoding.t) ->
+          fun (x383 : t) ->
+            fun ~data:(x381 : string) ->
+              fun ~input_encoding:(x382 : Encoding.t) ->
                 t_of_js
-                  (Ojs.call (t_to_js x430) "update"
-                     [|(Ojs.string_to_js x428);(Encoding.t_to_js x429)|])
+                  (Ojs.call (t_to_js x383) "update"
+                     [|(Ojs.string_to_js x381);(Encoding.t_to_js x382)|])
         let (sign :
           t ->
             private_key:([ `U_s11_der of SignKeyObjectInput.t 
@@ -1856,9 +1794,9 @@ module Crypto =
               | `U_s26_sec1 of SignPrivateKeyInput.t 
               | `U_s27_secret of KeyLike.t ]) union2 -> Buffer.t)
           =
-          fun (x442 : t) ->
+          fun (x395 : t) ->
             fun
-              ~private_key:(x431 :
+              ~private_key:(x384 :
                              ([ `U_s11_der of SignKeyObjectInput.t 
                               | `U_s18_ieee_p1363 of SignKeyObjectInput.t ],
                                [ `U_s21_pkcs1 of SignPrivateKeyInput.t 
@@ -1869,20 +1807,20 @@ module Crypto =
                                | `U_s27_secret of KeyLike.t ]) union2)
               ->
               Buffer.t_of_js
-                (Ojs.call (t_to_js x442) "sign"
+                (Ojs.call (t_to_js x395) "sign"
                    [|(union2_to_js
                         (fun
-                           (x432 :
+                           (x385 :
                              [ `U_s11_der of SignKeyObjectInput.t 
                              | `U_s18_ieee_p1363 of SignKeyObjectInput.t ])
                            ->
-                           match x432 with
-                           | `U_s11_der x433 ->
-                               SignKeyObjectInput.t_to_js x433
-                           | `U_s18_ieee_p1363 x434 ->
-                               SignKeyObjectInput.t_to_js x434)
+                           match x385 with
+                           | `U_s11_der x386 ->
+                               SignKeyObjectInput.t_to_js x386
+                           | `U_s18_ieee_p1363 x387 ->
+                               SignKeyObjectInput.t_to_js x387)
                         (fun
-                           (x435 :
+                           (x388 :
                              [ `U_s21_pkcs1 of SignPrivateKeyInput.t 
                              | `U_s22_pkcs8 of SignPrivateKeyInput.t 
                              | `U_s23_private of KeyLike.t 
@@ -1890,16 +1828,16 @@ module Crypto =
                              | `U_s26_sec1 of SignPrivateKeyInput.t 
                              | `U_s27_secret of KeyLike.t ])
                            ->
-                           match x435 with
-                           | `U_s21_pkcs1 x436 ->
-                               SignPrivateKeyInput.t_to_js x436
-                           | `U_s22_pkcs8 x437 ->
-                               SignPrivateKeyInput.t_to_js x437
-                           | `U_s23_private x438 -> KeyLike.t_to_js x438
-                           | `U_s24_public x439 -> KeyLike.t_to_js x439
-                           | `U_s26_sec1 x440 ->
-                               SignPrivateKeyInput.t_to_js x440
-                           | `U_s27_secret x441 -> KeyLike.t_to_js x441) x431)|])
+                           match x388 with
+                           | `U_s21_pkcs1 x389 ->
+                               SignPrivateKeyInput.t_to_js x389
+                           | `U_s22_pkcs8 x390 ->
+                               SignPrivateKeyInput.t_to_js x390
+                           | `U_s23_private x391 -> KeyLike.t_to_js x391
+                           | `U_s24_public x392 -> KeyLike.t_to_js x392
+                           | `U_s26_sec1 x393 ->
+                               SignPrivateKeyInput.t_to_js x393
+                           | `U_s27_secret x394 -> KeyLike.t_to_js x394) x384)|])
         let (sign' :
           t ->
             private_key:([ `U_s11_der of SignKeyObjectInput.t 
@@ -1911,9 +1849,9 @@ module Crypto =
               | `U_s27_secret of KeyLike.t ]) union2 ->
               output_format:BinaryToTextEncoding.t -> string)
           =
-          fun (x455 : t) ->
+          fun (x408 : t) ->
             fun
-              ~private_key:(x443 :
+              ~private_key:(x396 :
                              ([ `U_s11_der of SignKeyObjectInput.t 
                               | `U_s18_ieee_p1363 of SignKeyObjectInput.t ],
                                [ `U_s21_pkcs1 of SignPrivateKeyInput.t 
@@ -1923,22 +1861,22 @@ module Crypto =
                                | `U_s26_sec1 of SignPrivateKeyInput.t 
                                | `U_s27_secret of KeyLike.t ]) union2)
               ->
-              fun ~output_format:(x454 : BinaryToTextEncoding.t) ->
+              fun ~output_format:(x407 : BinaryToTextEncoding.t) ->
                 Ojs.string_of_js
-                  (Ojs.call (t_to_js x455) "sign"
+                  (Ojs.call (t_to_js x408) "sign"
                      [|(union2_to_js
                           (fun
-                             (x444 :
+                             (x397 :
                                [ `U_s11_der of SignKeyObjectInput.t 
                                | `U_s18_ieee_p1363 of SignKeyObjectInput.t ])
                              ->
-                             match x444 with
-                             | `U_s11_der x445 ->
-                                 SignKeyObjectInput.t_to_js x445
-                             | `U_s18_ieee_p1363 x446 ->
-                                 SignKeyObjectInput.t_to_js x446)
+                             match x397 with
+                             | `U_s11_der x398 ->
+                                 SignKeyObjectInput.t_to_js x398
+                             | `U_s18_ieee_p1363 x399 ->
+                                 SignKeyObjectInput.t_to_js x399)
                           (fun
-                             (x447 :
+                             (x400 :
                                [ `U_s21_pkcs1 of SignPrivateKeyInput.t 
                                | `U_s22_pkcs8 of SignPrivateKeyInput.t 
                                | `U_s23_private of KeyLike.t 
@@ -1946,65 +1884,61 @@ module Crypto =
                                | `U_s26_sec1 of SignPrivateKeyInput.t 
                                | `U_s27_secret of KeyLike.t ])
                              ->
-                             match x447 with
-                             | `U_s21_pkcs1 x448 ->
-                                 SignPrivateKeyInput.t_to_js x448
-                             | `U_s22_pkcs8 x449 ->
-                                 SignPrivateKeyInput.t_to_js x449
-                             | `U_s23_private x450 -> KeyLike.t_to_js x450
-                             | `U_s24_public x451 -> KeyLike.t_to_js x451
-                             | `U_s26_sec1 x452 ->
-                                 SignPrivateKeyInput.t_to_js x452
-                             | `U_s27_secret x453 -> KeyLike.t_to_js x453)
-                          x443);(BinaryToTextEncoding.t_to_js x454)|])
-        let (cast : t -> Stream.Writable.t) =
-          fun (x456 : t) -> Stream.Writable.t_of_js (t_to_js x456)
+                             match x400 with
+                             | `U_s21_pkcs1 x401 ->
+                                 SignPrivateKeyInput.t_to_js x401
+                             | `U_s22_pkcs8 x402 ->
+                                 SignPrivateKeyInput.t_to_js x402
+                             | `U_s23_private x403 -> KeyLike.t_to_js x403
+                             | `U_s24_public x404 -> KeyLike.t_to_js x404
+                             | `U_s26_sec1 x405 ->
+                                 SignPrivateKeyInput.t_to_js x405
+                             | `U_s27_secret x406 -> KeyLike.t_to_js x406)
+                          x396);(BinaryToTextEncoding.t_to_js x407)|])
       end
     let (create_sign :
       algorithm:string ->
         ?options:Stream.WritableOptions.t -> unit -> Signer.t)
       =
-      fun ~algorithm:(x457 : string) ->
-        fun ?options:(x458 : Stream.WritableOptions.t option) ->
+      fun ~algorithm:(x409 : string) ->
+        fun ?options:(x410 : Stream.WritableOptions.t option) ->
           fun () ->
             Signer.t_of_js
-              (let x461 = Import.crypto in
-               Ojs.call (Ojs.get_prop_ascii x461 "createSign") "apply"
-                 [|x461;((let x459 =
+              (let x413 = Import.crypto in
+               Ojs.call (Ojs.get_prop_ascii x413 "createSign") "apply"
+                 [|x413;((let x411 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x459 "push" [|(Ojs.string_to_js x457)|]);
-                          (match x458 with
-                           | Some x460 ->
+                            (Ojs.call x411 "push" [|(Ojs.string_to_js x409)|]);
+                          (match x410 with
+                           | Some x412 ->
                                ignore
-                                 (Ojs.call x459 "push"
-                                    [|(Stream.WritableOptions.t_to_js x460)|])
+                                 (Ojs.call x411 "push"
+                                    [|(Stream.WritableOptions.t_to_js x412)|])
                            | None -> ());
-                          x459))|])
+                          x411))|])
     module Verify =
       struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x463 : Ojs.t) -> x463
-        and t_to_js : t -> Ojs.t = fun (x462 : Ojs.t) -> x462
+        include struct include Stream.Writable end
         let (create : unit -> t) =
           fun () ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.crypto "Verify") [||])
         let (update : t -> data:BinaryLike.t -> t) =
-          fun (x465 : t) ->
-            fun ~data:(x464 : BinaryLike.t) ->
+          fun (x415 : t) ->
+            fun ~data:(x414 : BinaryLike.t) ->
               t_of_js
-                (Ojs.call (t_to_js x465) "update"
-                   [|(BinaryLike.t_to_js x464)|])
+                (Ojs.call (t_to_js x415) "update"
+                   [|(BinaryLike.t_to_js x414)|])
         let (update' : t -> data:string -> input_encoding:Encoding.t -> t) =
-          fun (x468 : t) ->
-            fun ~data:(x466 : string) ->
-              fun ~input_encoding:(x467 : Encoding.t) ->
+          fun (x418 : t) ->
+            fun ~data:(x416 : string) ->
+              fun ~input_encoding:(x417 : Encoding.t) ->
                 t_of_js
-                  (Ojs.call (t_to_js x468) "update"
-                     [|(Ojs.string_to_js x466);(Encoding.t_to_js x467)|])
+                  (Ojs.call (t_to_js x418) "update"
+                     [|(Ojs.string_to_js x416);(Encoding.t_to_js x417)|])
         let (verify :
           t ->
             object_:([ `U_s11_der of VerifyKeyObjectInput.t 
@@ -2015,9 +1949,9 @@ module Crypto =
               | `U_s28_spki of VerifyPublicKeyInput.t ]) union2 ->
               signature:ArrayBufferView.t -> bool)
           =
-          fun (x480 : t) ->
+          fun (x430 : t) ->
             fun
-              ~object_:(x469 :
+              ~object_:(x419 :
                          ([ `U_s11_der of VerifyKeyObjectInput.t 
                           | `U_s18_ieee_p1363 of VerifyKeyObjectInput.t ],
                            [ `U_s21_pkcs1 of VerifyPublicKeyInput.t 
@@ -2026,37 +1960,37 @@ module Crypto =
                            | `U_s27_secret of KeyLike.t 
                            | `U_s28_spki of VerifyPublicKeyInput.t ]) union2)
               ->
-              fun ~signature:(x479 : ArrayBufferView.t) ->
+              fun ~signature:(x429 : ArrayBufferView.t) ->
                 Ojs.bool_of_js
-                  (Ojs.call (t_to_js x480) "verify"
+                  (Ojs.call (t_to_js x430) "verify"
                      [|(union2_to_js
                           (fun
-                             (x470 :
+                             (x420 :
                                [ `U_s11_der of VerifyKeyObjectInput.t 
                                | `U_s18_ieee_p1363 of VerifyKeyObjectInput.t ])
                              ->
-                             match x470 with
-                             | `U_s11_der x471 ->
-                                 VerifyKeyObjectInput.t_to_js x471
-                             | `U_s18_ieee_p1363 x472 ->
-                                 VerifyKeyObjectInput.t_to_js x472)
+                             match x420 with
+                             | `U_s11_der x421 ->
+                                 VerifyKeyObjectInput.t_to_js x421
+                             | `U_s18_ieee_p1363 x422 ->
+                                 VerifyKeyObjectInput.t_to_js x422)
                           (fun
-                             (x473 :
+                             (x423 :
                                [ `U_s21_pkcs1 of VerifyPublicKeyInput.t 
                                | `U_s23_private of KeyLike.t 
                                | `U_s24_public of KeyLike.t 
                                | `U_s27_secret of KeyLike.t 
                                | `U_s28_spki of VerifyPublicKeyInput.t ])
                              ->
-                             match x473 with
-                             | `U_s21_pkcs1 x474 ->
-                                 VerifyPublicKeyInput.t_to_js x474
-                             | `U_s23_private x475 -> KeyLike.t_to_js x475
-                             | `U_s24_public x476 -> KeyLike.t_to_js x476
-                             | `U_s27_secret x477 -> KeyLike.t_to_js x477
-                             | `U_s28_spki x478 ->
-                                 VerifyPublicKeyInput.t_to_js x478) x469);(
-                       ArrayBufferView.t_to_js x479)|])
+                             match x423 with
+                             | `U_s21_pkcs1 x424 ->
+                                 VerifyPublicKeyInput.t_to_js x424
+                             | `U_s23_private x425 -> KeyLike.t_to_js x425
+                             | `U_s24_public x426 -> KeyLike.t_to_js x426
+                             | `U_s27_secret x427 -> KeyLike.t_to_js x427
+                             | `U_s28_spki x428 ->
+                                 VerifyPublicKeyInput.t_to_js x428) x419);(
+                       ArrayBufferView.t_to_js x429)|])
         let (verify' :
           t ->
             object_:([ `U_s11_der of VerifyKeyObjectInput.t 
@@ -2068,9 +2002,9 @@ module Crypto =
               signature:string ->
                 ?signature_format:BinaryToTextEncoding.t -> unit -> bool)
           =
-          fun (x495 : t) ->
+          fun (x445 : t) ->
             fun
-              ~object_:(x481 :
+              ~object_:(x431 :
                          ([ `U_s11_der of VerifyKeyObjectInput.t 
                           | `U_s18_ieee_p1363 of VerifyKeyObjectInput.t ],
                            [ `U_s21_pkcs1 of VerifyPublicKeyInput.t 
@@ -2079,37 +2013,37 @@ module Crypto =
                            | `U_s27_secret of KeyLike.t 
                            | `U_s28_spki of VerifyPublicKeyInput.t ]) union2)
               ->
-              fun ~signature:(x482 : string) ->
-                fun ?signature_format:(x483 : BinaryToTextEncoding.t option)
+              fun ~signature:(x432 : string) ->
+                fun ?signature_format:(x433 : BinaryToTextEncoding.t option)
                   ->
                   fun () ->
                     Ojs.bool_of_js
-                      (let x496 = t_to_js x495 in
-                       Ojs.call (Ojs.get_prop_ascii x496 "verify") "apply"
-                         [|x496;((let x484 =
+                      (let x446 = t_to_js x445 in
+                       Ojs.call (Ojs.get_prop_ascii x446 "verify") "apply"
+                         [|x446;((let x434 =
                                     Ojs.new_obj
                                       (Ojs.get_prop_ascii Ojs.global "Array")
                                       [||] in
                                   ignore
-                                    (Ojs.call x484 "push"
+                                    (Ojs.call x434 "push"
                                        [|(union2_to_js
                                             (fun
-                                               (x486 :
+                                               (x436 :
                                                  [
                                                    `U_s11_der of
                                                      VerifyKeyObjectInput.t 
                                                  | `U_s18_ieee_p1363 of
                                                      VerifyKeyObjectInput.t ])
                                                ->
-                                               match x486 with
-                                               | `U_s11_der x487 ->
+                                               match x436 with
+                                               | `U_s11_der x437 ->
                                                    VerifyKeyObjectInput.t_to_js
-                                                     x487
-                                               | `U_s18_ieee_p1363 x488 ->
+                                                     x437
+                                               | `U_s18_ieee_p1363 x438 ->
                                                    VerifyKeyObjectInput.t_to_js
-                                                     x488)
+                                                     x438)
                                             (fun
-                                               (x489 :
+                                               (x439 :
                                                  [
                                                    `U_s21_pkcs1 of
                                                      VerifyPublicKeyInput.t 
@@ -2120,270 +2054,268 @@ module Crypto =
                                                  | `U_s28_spki of
                                                      VerifyPublicKeyInput.t ])
                                                ->
-                                               match x489 with
-                                               | `U_s21_pkcs1 x490 ->
+                                               match x439 with
+                                               | `U_s21_pkcs1 x440 ->
                                                    VerifyPublicKeyInput.t_to_js
-                                                     x490
-                                               | `U_s23_private x491 ->
-                                                   KeyLike.t_to_js x491
-                                               | `U_s24_public x492 ->
-                                                   KeyLike.t_to_js x492
-                                               | `U_s27_secret x493 ->
-                                                   KeyLike.t_to_js x493
-                                               | `U_s28_spki x494 ->
+                                                     x440
+                                               | `U_s23_private x441 ->
+                                                   KeyLike.t_to_js x441
+                                               | `U_s24_public x442 ->
+                                                   KeyLike.t_to_js x442
+                                               | `U_s27_secret x443 ->
+                                                   KeyLike.t_to_js x443
+                                               | `U_s28_spki x444 ->
                                                    VerifyPublicKeyInput.t_to_js
-                                                     x494) x481)|]);
+                                                     x444) x431)|]);
                                   ignore
-                                    (Ojs.call x484 "push"
-                                       [|(Ojs.string_to_js x482)|]);
-                                  (match x483 with
-                                   | Some x485 ->
+                                    (Ojs.call x434 "push"
+                                       [|(Ojs.string_to_js x432)|]);
+                                  (match x433 with
+                                   | Some x435 ->
                                        ignore
-                                         (Ojs.call x484 "push"
+                                         (Ojs.call x434 "push"
                                             [|(BinaryToTextEncoding.t_to_js
-                                                 x485)|])
+                                                 x435)|])
                                    | None -> ());
-                                  x484))|])
-        let (cast : t -> Stream.Writable.t) =
-          fun (x497 : t) -> Stream.Writable.t_of_js (t_to_js x497)
+                                  x434))|])
       end
     let (create_verify :
       algorithm:string ->
         ?options:Stream.WritableOptions.t -> unit -> Verify.t)
       =
-      fun ~algorithm:(x498 : string) ->
-        fun ?options:(x499 : Stream.WritableOptions.t option) ->
+      fun ~algorithm:(x447 : string) ->
+        fun ?options:(x448 : Stream.WritableOptions.t option) ->
           fun () ->
             Verify.t_of_js
-              (let x502 = Import.crypto in
-               Ojs.call (Ojs.get_prop_ascii x502 "createVerify") "apply"
-                 [|x502;((let x500 =
+              (let x451 = Import.crypto in
+               Ojs.call (Ojs.get_prop_ascii x451 "createVerify") "apply"
+                 [|x451;((let x449 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x500 "push" [|(Ojs.string_to_js x498)|]);
-                          (match x499 with
-                           | Some x501 ->
+                            (Ojs.call x449 "push" [|(Ojs.string_to_js x447)|]);
+                          (match x448 with
+                           | Some x450 ->
                                ignore
-                                 (Ojs.call x500 "push"
-                                    [|(Stream.WritableOptions.t_to_js x501)|])
+                                 (Ojs.call x449 "push"
+                                    [|(Stream.WritableOptions.t_to_js x450)|])
                            | None -> ());
-                          x500))|])
+                          x449))|])
     module DiffieHellman =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x504 : Ojs.t) -> x504
-        and t_to_js : t -> Ojs.t = fun (x503 : Ojs.t) -> x503
+        let rec t_of_js : Ojs.t -> t = fun (x453 : Ojs.t) -> x453
+        and t_to_js : t -> Ojs.t = fun (x452 : Ojs.t) -> x452
         let (create : unit -> t) =
           fun () ->
             t_of_js
               (Ojs.new_obj (Ojs.get_prop_ascii Import.crypto "DiffieHellman")
                  [||])
         let (generate_keys : t -> Buffer.t) =
-          fun (x505 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x505) "generateKeys" [||])
+          fun (x454 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x454) "generateKeys" [||])
         let (generate_keys' : t -> encoding:BinaryToTextEncoding.t -> string)
           =
-          fun (x507 : t) ->
-            fun ~encoding:(x506 : BinaryToTextEncoding.t) ->
+          fun (x456 : t) ->
+            fun ~encoding:(x455 : BinaryToTextEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x507) "generateKeys"
-                   [|(BinaryToTextEncoding.t_to_js x506)|])
+                (Ojs.call (t_to_js x456) "generateKeys"
+                   [|(BinaryToTextEncoding.t_to_js x455)|])
         let (compute_secret :
           t -> other_public_key:ArrayBufferView.t -> Buffer.t) =
-          fun (x509 : t) ->
-            fun ~other_public_key:(x508 : ArrayBufferView.t) ->
+          fun (x458 : t) ->
+            fun ~other_public_key:(x457 : ArrayBufferView.t) ->
               Buffer.t_of_js
-                (Ojs.call (t_to_js x509) "computeSecret"
-                   [|(ArrayBufferView.t_to_js x508)|])
+                (Ojs.call (t_to_js x458) "computeSecret"
+                   [|(ArrayBufferView.t_to_js x457)|])
         let (compute_secret' :
           t ->
             other_public_key:string ->
               input_encoding:BinaryToTextEncoding.t -> Buffer.t)
           =
-          fun (x512 : t) ->
-            fun ~other_public_key:(x510 : string) ->
-              fun ~input_encoding:(x511 : BinaryToTextEncoding.t) ->
+          fun (x461 : t) ->
+            fun ~other_public_key:(x459 : string) ->
+              fun ~input_encoding:(x460 : BinaryToTextEncoding.t) ->
                 Buffer.t_of_js
-                  (Ojs.call (t_to_js x512) "computeSecret"
-                     [|(Ojs.string_to_js x510);(BinaryToTextEncoding.t_to_js
-                                                  x511)|])
+                  (Ojs.call (t_to_js x461) "computeSecret"
+                     [|(Ojs.string_to_js x459);(BinaryToTextEncoding.t_to_js
+                                                  x460)|])
         let (compute_secret'' :
           t ->
             other_public_key:ArrayBufferView.t ->
               output_encoding:BinaryToTextEncoding.t -> string)
           =
-          fun (x515 : t) ->
-            fun ~other_public_key:(x513 : ArrayBufferView.t) ->
-              fun ~output_encoding:(x514 : BinaryToTextEncoding.t) ->
+          fun (x464 : t) ->
+            fun ~other_public_key:(x462 : ArrayBufferView.t) ->
+              fun ~output_encoding:(x463 : BinaryToTextEncoding.t) ->
                 Ojs.string_of_js
-                  (Ojs.call (t_to_js x515) "computeSecret"
-                     [|(ArrayBufferView.t_to_js x513);(BinaryToTextEncoding.t_to_js
-                                                         x514)|])
+                  (Ojs.call (t_to_js x464) "computeSecret"
+                     [|(ArrayBufferView.t_to_js x462);(BinaryToTextEncoding.t_to_js
+                                                         x463)|])
         let (compute_secret''' :
           t ->
             other_public_key:string ->
               input_encoding:BinaryToTextEncoding.t ->
                 output_encoding:BinaryToTextEncoding.t -> string)
           =
-          fun (x519 : t) ->
-            fun ~other_public_key:(x516 : string) ->
-              fun ~input_encoding:(x517 : BinaryToTextEncoding.t) ->
-                fun ~output_encoding:(x518 : BinaryToTextEncoding.t) ->
+          fun (x468 : t) ->
+            fun ~other_public_key:(x465 : string) ->
+              fun ~input_encoding:(x466 : BinaryToTextEncoding.t) ->
+                fun ~output_encoding:(x467 : BinaryToTextEncoding.t) ->
                   Ojs.string_of_js
-                    (Ojs.call (t_to_js x519) "computeSecret"
-                       [|(Ojs.string_to_js x516);(BinaryToTextEncoding.t_to_js
-                                                    x517);(BinaryToTextEncoding.t_to_js
-                                                             x518)|])
+                    (Ojs.call (t_to_js x468) "computeSecret"
+                       [|(Ojs.string_to_js x465);(BinaryToTextEncoding.t_to_js
+                                                    x466);(BinaryToTextEncoding.t_to_js
+                                                             x467)|])
         let (get_prime : t -> Buffer.t) =
-          fun (x520 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x520) "getPrime" [||])
+          fun (x469 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x469) "getPrime" [||])
         let (get_prime' : t -> encoding:BinaryToTextEncoding.t -> string) =
-          fun (x522 : t) ->
-            fun ~encoding:(x521 : BinaryToTextEncoding.t) ->
+          fun (x471 : t) ->
+            fun ~encoding:(x470 : BinaryToTextEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x522) "getPrime"
-                   [|(BinaryToTextEncoding.t_to_js x521)|])
+                (Ojs.call (t_to_js x471) "getPrime"
+                   [|(BinaryToTextEncoding.t_to_js x470)|])
         let (get_generator : t -> Buffer.t) =
-          fun (x523 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x523) "getGenerator" [||])
+          fun (x472 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x472) "getGenerator" [||])
         let (get_generator' : t -> encoding:BinaryToTextEncoding.t -> string)
           =
-          fun (x525 : t) ->
-            fun ~encoding:(x524 : BinaryToTextEncoding.t) ->
+          fun (x474 : t) ->
+            fun ~encoding:(x473 : BinaryToTextEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x525) "getGenerator"
-                   [|(BinaryToTextEncoding.t_to_js x524)|])
+                (Ojs.call (t_to_js x474) "getGenerator"
+                   [|(BinaryToTextEncoding.t_to_js x473)|])
         let (get_public_key : t -> Buffer.t) =
-          fun (x526 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x526) "getPublicKey" [||])
+          fun (x475 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x475) "getPublicKey" [||])
         let (get_public_key' :
           t -> encoding:BinaryToTextEncoding.t -> string) =
-          fun (x528 : t) ->
-            fun ~encoding:(x527 : BinaryToTextEncoding.t) ->
+          fun (x477 : t) ->
+            fun ~encoding:(x476 : BinaryToTextEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x528) "getPublicKey"
-                   [|(BinaryToTextEncoding.t_to_js x527)|])
+                (Ojs.call (t_to_js x477) "getPublicKey"
+                   [|(BinaryToTextEncoding.t_to_js x476)|])
         let (get_private_key : t -> Buffer.t) =
-          fun (x529 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x529) "getPrivateKey" [||])
+          fun (x478 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x478) "getPrivateKey" [||])
         let (get_private_key' :
           t -> encoding:BinaryToTextEncoding.t -> string) =
-          fun (x531 : t) ->
-            fun ~encoding:(x530 : BinaryToTextEncoding.t) ->
+          fun (x480 : t) ->
+            fun ~encoding:(x479 : BinaryToTextEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x531) "getPrivateKey"
-                   [|(BinaryToTextEncoding.t_to_js x530)|])
+                (Ojs.call (t_to_js x480) "getPrivateKey"
+                   [|(BinaryToTextEncoding.t_to_js x479)|])
         let (set_public_key : t -> public_key:ArrayBufferView.t -> unit) =
-          fun (x533 : t) ->
-            fun ~public_key:(x532 : ArrayBufferView.t) ->
+          fun (x482 : t) ->
+            fun ~public_key:(x481 : ArrayBufferView.t) ->
               ignore
-                (Ojs.call (t_to_js x533) "setPublicKey"
-                   [|(ArrayBufferView.t_to_js x532)|])
+                (Ojs.call (t_to_js x482) "setPublicKey"
+                   [|(ArrayBufferView.t_to_js x481)|])
         let (set_public_key' :
           t -> public_key:string -> encoding:BufferEncoding.t -> unit) =
-          fun (x536 : t) ->
-            fun ~public_key:(x534 : string) ->
-              fun ~encoding:(x535 : BufferEncoding.t) ->
+          fun (x485 : t) ->
+            fun ~public_key:(x483 : string) ->
+              fun ~encoding:(x484 : BufferEncoding.t) ->
                 ignore
-                  (Ojs.call (t_to_js x536) "setPublicKey"
-                     [|(Ojs.string_to_js x534);(BufferEncoding.t_to_js x535)|])
+                  (Ojs.call (t_to_js x485) "setPublicKey"
+                     [|(Ojs.string_to_js x483);(BufferEncoding.t_to_js x484)|])
         let (set_private_key : t -> private_key:ArrayBufferView.t -> unit) =
-          fun (x538 : t) ->
-            fun ~private_key:(x537 : ArrayBufferView.t) ->
+          fun (x487 : t) ->
+            fun ~private_key:(x486 : ArrayBufferView.t) ->
               ignore
-                (Ojs.call (t_to_js x538) "setPrivateKey"
-                   [|(ArrayBufferView.t_to_js x537)|])
+                (Ojs.call (t_to_js x487) "setPrivateKey"
+                   [|(ArrayBufferView.t_to_js x486)|])
         let (set_private_key' :
           t -> private_key:string -> encoding:BufferEncoding.t -> unit) =
-          fun (x541 : t) ->
-            fun ~private_key:(x539 : string) ->
-              fun ~encoding:(x540 : BufferEncoding.t) ->
+          fun (x490 : t) ->
+            fun ~private_key:(x488 : string) ->
+              fun ~encoding:(x489 : BufferEncoding.t) ->
                 ignore
-                  (Ojs.call (t_to_js x541) "setPrivateKey"
-                     [|(Ojs.string_to_js x539);(BufferEncoding.t_to_js x540)|])
+                  (Ojs.call (t_to_js x490) "setPrivateKey"
+                     [|(Ojs.string_to_js x488);(BufferEncoding.t_to_js x489)|])
         let (get_verify_error : t -> int) =
-          fun (x542 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x542) "verifyError")
+          fun (x491 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x491) "verifyError")
         let (set_verify_error : t -> int -> unit) =
-          fun (x543 : t) ->
-            fun (x544 : int) ->
-              Ojs.set_prop_ascii (t_to_js x543) "verifyError"
-                (Ojs.int_to_js x544)
+          fun (x492 : t) ->
+            fun (x493 : int) ->
+              Ojs.set_prop_ascii (t_to_js x492) "verifyError"
+                (Ojs.int_to_js x493)
       end
     let (create_diffie_hellman :
       prime_length:int ->
         ?generator:ArrayBufferView.t or_number -> unit -> DiffieHellman.t)
       =
-      fun ~prime_length:(x545 : int) ->
-        fun ?generator:(x546 : ArrayBufferView.t or_number option) ->
+      fun ~prime_length:(x494 : int) ->
+        fun ?generator:(x495 : ArrayBufferView.t or_number option) ->
           fun () ->
             DiffieHellman.t_of_js
-              (let x550 = Import.crypto in
-               Ojs.call (Ojs.get_prop_ascii x550 "createDiffieHellman")
+              (let x499 = Import.crypto in
+               Ojs.call (Ojs.get_prop_ascii x499 "createDiffieHellman")
                  "apply"
-                 [|x550;((let x547 =
+                 [|x499;((let x496 =
                             Ojs.new_obj
                               (Ojs.get_prop_ascii Ojs.global "Array") 
                               [||] in
                           ignore
-                            (Ojs.call x547 "push" [|(Ojs.int_to_js x545)|]);
-                          (match x546 with
-                           | Some x548 ->
+                            (Ojs.call x496 "push" [|(Ojs.int_to_js x494)|]);
+                          (match x495 with
+                           | Some x497 ->
                                ignore
-                                 (Ojs.call x547 "push"
+                                 (Ojs.call x496 "push"
                                     [|(or_number_to_js
-                                         ArrayBufferView.t_to_js x548)|])
+                                         ArrayBufferView.t_to_js x497)|])
                            | None -> ());
-                          x547))|])
+                          x496))|])
     let (create_diffie_hellman : prime:ArrayBufferView.t -> DiffieHellman.t)
       =
-      fun ~prime:(x551 : ArrayBufferView.t) ->
+      fun ~prime:(x500 : ArrayBufferView.t) ->
         DiffieHellman.t_of_js
           (Ojs.call Import.crypto "createDiffieHellman"
-             [|(ArrayBufferView.t_to_js x551)|])
+             [|(ArrayBufferView.t_to_js x500)|])
     let (create_diffie_hellman :
       prime:string ->
         prime_encoding:BinaryToTextEncoding.t -> DiffieHellman.t)
       =
-      fun ~prime:(x552 : string) ->
-        fun ~prime_encoding:(x553 : BinaryToTextEncoding.t) ->
+      fun ~prime:(x501 : string) ->
+        fun ~prime_encoding:(x502 : BinaryToTextEncoding.t) ->
           DiffieHellman.t_of_js
             (Ojs.call Import.crypto "createDiffieHellman"
-               [|(Ojs.string_to_js x552);(BinaryToTextEncoding.t_to_js x553)|])
+               [|(Ojs.string_to_js x501);(BinaryToTextEncoding.t_to_js x502)|])
     let (create_diffie_hellman :
       prime:string ->
         prime_encoding:BinaryToTextEncoding.t ->
           generator:ArrayBufferView.t or_number -> DiffieHellman.t)
       =
-      fun ~prime:(x554 : string) ->
-        fun ~prime_encoding:(x555 : BinaryToTextEncoding.t) ->
-          fun ~generator:(x556 : ArrayBufferView.t or_number) ->
+      fun ~prime:(x503 : string) ->
+        fun ~prime_encoding:(x504 : BinaryToTextEncoding.t) ->
+          fun ~generator:(x505 : ArrayBufferView.t or_number) ->
             DiffieHellman.t_of_js
               (Ojs.call Import.crypto "createDiffieHellman"
-                 [|(Ojs.string_to_js x554);(BinaryToTextEncoding.t_to_js x555);(
-                   or_number_to_js ArrayBufferView.t_to_js x556)|])
+                 [|(Ojs.string_to_js x503);(BinaryToTextEncoding.t_to_js x504);(
+                   or_number_to_js ArrayBufferView.t_to_js x505)|])
     let (create_diffie_hellman :
       prime:string ->
         prime_encoding:BinaryToTextEncoding.t ->
           generator:string ->
             generator_encoding:BinaryToTextEncoding.t -> DiffieHellman.t)
       =
-      fun ~prime:(x558 : string) ->
-        fun ~prime_encoding:(x559 : BinaryToTextEncoding.t) ->
-          fun ~generator:(x560 : string) ->
-            fun ~generator_encoding:(x561 : BinaryToTextEncoding.t) ->
+      fun ~prime:(x507 : string) ->
+        fun ~prime_encoding:(x508 : BinaryToTextEncoding.t) ->
+          fun ~generator:(x509 : string) ->
+            fun ~generator_encoding:(x510 : BinaryToTextEncoding.t) ->
               DiffieHellman.t_of_js
                 (Ojs.call Import.crypto "createDiffieHellman"
-                   [|(Ojs.string_to_js x558);(BinaryToTextEncoding.t_to_js
-                                                x559);(Ojs.string_to_js x560);(
-                     BinaryToTextEncoding.t_to_js x561)|])
+                   [|(Ojs.string_to_js x507);(BinaryToTextEncoding.t_to_js
+                                                x508);(Ojs.string_to_js x509);(
+                     BinaryToTextEncoding.t_to_js x510)|])
     let (get_diffie_hellman : group_name:string -> DiffieHellman.t) =
-      fun ~group_name:(x562 : string) ->
+      fun ~group_name:(x511 : string) ->
         DiffieHellman.t_of_js
           (Ojs.call Import.crypto "getDiffieHellman"
-             [|(Ojs.string_to_js x562)|])
+             [|(Ojs.string_to_js x511)|])
     let (pbkdf2 :
       password:BinaryLike.t ->
         salt:BinaryLike.t ->
@@ -2393,276 +2325,276 @@ module Crypto =
                 callback:(err:Error.t or_null -> derived_key:Buffer.t -> any)
                   -> unit)
       =
-      fun ~password:(x563 : BinaryLike.t) ->
-        fun ~salt:(x564 : BinaryLike.t) ->
-          fun ~iterations:(x565 : int) ->
-            fun ~keylen:(x566 : int) ->
-              fun ~digest:(x567 : string) ->
+      fun ~password:(x512 : BinaryLike.t) ->
+        fun ~salt:(x513 : BinaryLike.t) ->
+          fun ~iterations:(x514 : int) ->
+            fun ~keylen:(x515 : int) ->
+              fun ~digest:(x516 : string) ->
                 fun
-                  ~callback:(x568 :
+                  ~callback:(x517 :
                               err:Error.t or_null ->
                                 derived_key:Buffer.t -> any)
                   ->
                   ignore
                     (Ojs.call Import.crypto "pbkdf2"
-                       [|(BinaryLike.t_to_js x563);(BinaryLike.t_to_js x564);(
-                         Ojs.int_to_js x565);(Ojs.int_to_js x566);(Ojs.string_to_js
-                                                                    x567);(
+                       [|(BinaryLike.t_to_js x512);(BinaryLike.t_to_js x513);(
+                         Ojs.int_to_js x514);(Ojs.int_to_js x515);(Ojs.string_to_js
+                                                                    x516);(
                          Ojs.fun_to_js 2
-                           (fun (x569 : Ojs.t) ->
-                              fun (x571 : Ojs.t) ->
+                           (fun (x518 : Ojs.t) ->
+                              fun (x520 : Ojs.t) ->
                                 any_to_js
-                                  (x568
-                                     ~err:(or_null_of_js Error.t_of_js x569)
-                                     ~derived_key:(Buffer.t_of_js x571))))|])
+                                  (x517
+                                     ~err:(or_null_of_js Error.t_of_js x518)
+                                     ~derived_key:(Buffer.t_of_js x520))))|])
     let (pbkdf2Sync :
       password:BinaryLike.t ->
         salt:BinaryLike.t ->
           iterations:int -> keylen:int -> digest:string -> Buffer.t)
       =
-      fun ~password:(x572 : BinaryLike.t) ->
-        fun ~salt:(x573 : BinaryLike.t) ->
-          fun ~iterations:(x574 : int) ->
-            fun ~keylen:(x575 : int) ->
-              fun ~digest:(x576 : string) ->
+      fun ~password:(x521 : BinaryLike.t) ->
+        fun ~salt:(x522 : BinaryLike.t) ->
+          fun ~iterations:(x523 : int) ->
+            fun ~keylen:(x524 : int) ->
+              fun ~digest:(x525 : string) ->
                 Buffer.t_of_js
                   (Ojs.call Import.crypto "pbkdf2Sync"
-                     [|(BinaryLike.t_to_js x572);(BinaryLike.t_to_js x573);(
-                       Ojs.int_to_js x574);(Ojs.int_to_js x575);(Ojs.string_to_js
-                                                                   x576)|])
+                     [|(BinaryLike.t_to_js x521);(BinaryLike.t_to_js x522);(
+                       Ojs.int_to_js x523);(Ojs.int_to_js x524);(Ojs.string_to_js
+                                                                   x525)|])
     let (random_bytes : size:int -> Buffer.t) =
-      fun ~size:(x577 : int) ->
+      fun ~size:(x526 : int) ->
         Buffer.t_of_js
-          (Ojs.call Import.crypto "randomBytes" [|(Ojs.int_to_js x577)|])
+          (Ojs.call Import.crypto "randomBytes" [|(Ojs.int_to_js x526)|])
     let (random_bytes :
       size:int ->
         callback:(err:Error.t or_null -> buf:Buffer.t -> unit) -> unit)
       =
-      fun ~size:(x578 : int) ->
-        fun ~callback:(x579 : err:Error.t or_null -> buf:Buffer.t -> unit) ->
+      fun ~size:(x527 : int) ->
+        fun ~callback:(x528 : err:Error.t or_null -> buf:Buffer.t -> unit) ->
           ignore
             (Ojs.call Import.crypto "randomBytes"
-               [|(Ojs.int_to_js x578);(Ojs.fun_to_js 2
-                                         (fun (x580 : Ojs.t) ->
-                                            fun (x582 : Ojs.t) ->
-                                              x579
+               [|(Ojs.int_to_js x527);(Ojs.fun_to_js 2
+                                         (fun (x529 : Ojs.t) ->
+                                            fun (x531 : Ojs.t) ->
+                                              x528
                                                 ~err:(or_null_of_js
-                                                        Error.t_of_js x580)
-                                                ~buf:(Buffer.t_of_js x582)))|])
+                                                        Error.t_of_js x529)
+                                                ~buf:(Buffer.t_of_js x531)))|])
     let (pseudo_random_bytes : size:int -> Buffer.t) =
-      fun ~size:(x583 : int) ->
+      fun ~size:(x532 : int) ->
         Buffer.t_of_js
           (Ojs.call Import.crypto "pseudoRandomBytes"
-             [|(Ojs.int_to_js x583)|])
+             [|(Ojs.int_to_js x532)|])
     let (pseudo_random_bytes :
       size:int ->
         callback:(err:Error.t or_null -> buf:Buffer.t -> unit) -> unit)
       =
-      fun ~size:(x584 : int) ->
-        fun ~callback:(x585 : err:Error.t or_null -> buf:Buffer.t -> unit) ->
+      fun ~size:(x533 : int) ->
+        fun ~callback:(x534 : err:Error.t or_null -> buf:Buffer.t -> unit) ->
           ignore
             (Ojs.call Import.crypto "pseudoRandomBytes"
-               [|(Ojs.int_to_js x584);(Ojs.fun_to_js 2
-                                         (fun (x586 : Ojs.t) ->
-                                            fun (x588 : Ojs.t) ->
-                                              x585
+               [|(Ojs.int_to_js x533);(Ojs.fun_to_js 2
+                                         (fun (x535 : Ojs.t) ->
+                                            fun (x537 : Ojs.t) ->
+                                              x534
                                                 ~err:(or_null_of_js
-                                                        Error.t_of_js x586)
-                                                ~buf:(Buffer.t_of_js x588)))|])
+                                                        Error.t_of_js x535)
+                                                ~buf:(Buffer.t_of_js x537)))|])
     let (random_int : max:int -> int) =
-      fun ~max:(x589 : int) ->
+      fun ~max:(x538 : int) ->
         Ojs.int_of_js
-          (Ojs.call Import.crypto "randomInt" [|(Ojs.int_to_js x589)|])
+          (Ojs.call Import.crypto "randomInt" [|(Ojs.int_to_js x538)|])
     let (random_int : min:int -> max:int -> int) =
-      fun ~min:(x590 : int) ->
-        fun ~max:(x591 : int) ->
+      fun ~min:(x539 : int) ->
+        fun ~max:(x540 : int) ->
           Ojs.int_of_js
             (Ojs.call Import.crypto "randomInt"
-               [|(Ojs.int_to_js x590);(Ojs.int_to_js x591)|])
+               [|(Ojs.int_to_js x539);(Ojs.int_to_js x540)|])
     let (random_int :
       max:int -> callback:(err:Error.t or_null -> value:int -> unit) -> unit)
       =
-      fun ~max:(x592 : int) ->
-        fun ~callback:(x593 : err:Error.t or_null -> value:int -> unit) ->
+      fun ~max:(x541 : int) ->
+        fun ~callback:(x542 : err:Error.t or_null -> value:int -> unit) ->
           ignore
             (Ojs.call Import.crypto "randomInt"
-               [|(Ojs.int_to_js x592);(Ojs.fun_to_js 2
-                                         (fun (x594 : Ojs.t) ->
-                                            fun (x596 : Ojs.t) ->
-                                              x593
+               [|(Ojs.int_to_js x541);(Ojs.fun_to_js 2
+                                         (fun (x543 : Ojs.t) ->
+                                            fun (x545 : Ojs.t) ->
+                                              x542
                                                 ~err:(or_null_of_js
-                                                        Error.t_of_js x594)
-                                                ~value:(Ojs.int_of_js x596)))|])
+                                                        Error.t_of_js x543)
+                                                ~value:(Ojs.int_of_js x545)))|])
     let (random_int :
       min:int ->
         max:int ->
           callback:(err:Error.t or_null -> value:int -> unit) -> unit)
       =
-      fun ~min:(x597 : int) ->
-        fun ~max:(x598 : int) ->
-          fun ~callback:(x599 : err:Error.t or_null -> value:int -> unit) ->
+      fun ~min:(x546 : int) ->
+        fun ~max:(x547 : int) ->
+          fun ~callback:(x548 : err:Error.t or_null -> value:int -> unit) ->
             ignore
               (Ojs.call Import.crypto "randomInt"
-                 [|(Ojs.int_to_js x597);(Ojs.int_to_js x598);(Ojs.fun_to_js 2
+                 [|(Ojs.int_to_js x546);(Ojs.int_to_js x547);(Ojs.fun_to_js 2
                                                                 (fun
-                                                                   (x600 :
+                                                                   (x549 :
                                                                     Ojs.t)
                                                                    ->
                                                                    fun
-                                                                    (x602 :
+                                                                    (x551 :
                                                                     Ojs.t) ->
-                                                                    x599
+                                                                    x548
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     Error.t_of_js
-                                                                    x600)
+                                                                    x549)
                                                                     ~value:(
                                                                     Ojs.int_of_js
-                                                                    x602)))|])
+                                                                    x551)))|])
     let (random_fill_sync :
       buffer:'T -> ?offset:int -> ?size:int -> unit -> 'T) =
-      fun ~buffer:(x603 : 'T) ->
-        fun ?offset:(x604 : int option) ->
-          fun ?size:(x605 : int option) ->
+      fun ~buffer:(x552 : 'T) ->
+        fun ?offset:(x553 : int option) ->
+          fun ?size:(x554 : int option) ->
             fun () ->
               Obj.magic
-                (let x609 = Import.crypto in
-                 Ojs.call (Ojs.get_prop_ascii x609 "randomFillSync") "apply"
-                   [|x609;((let x606 =
+                (let x558 = Import.crypto in
+                 Ojs.call (Ojs.get_prop_ascii x558 "randomFillSync") "apply"
+                   [|x558;((let x555 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
                             ignore
-                              (Ojs.call x606 "push" [|(Obj.magic x603)|]);
-                            (match x604 with
-                             | Some x608 ->
+                              (Ojs.call x555 "push" [|(Obj.magic x552)|]);
+                            (match x553 with
+                             | Some x557 ->
                                  ignore
-                                   (Ojs.call x606 "push"
-                                      [|(Ojs.int_to_js x608)|])
+                                   (Ojs.call x555 "push"
+                                      [|(Ojs.int_to_js x557)|])
                              | None -> ());
-                            (match x605 with
-                             | Some x607 ->
+                            (match x554 with
+                             | Some x556 ->
                                  ignore
-                                   (Ojs.call x606 "push"
-                                      [|(Ojs.int_to_js x607)|])
+                                   (Ojs.call x555 "push"
+                                      [|(Ojs.int_to_js x556)|])
                              | None -> ());
-                            x606))|])
+                            x555))|])
     let (random_fill :
       buffer:'T -> callback:(err:Error.t or_null -> buf:'T -> unit) -> unit)
       =
-      fun ~buffer:(x610 : 'T) ->
-        fun ~callback:(x611 : err:Error.t or_null -> buf:'T -> unit) ->
+      fun ~buffer:(x559 : 'T) ->
+        fun ~callback:(x560 : err:Error.t or_null -> buf:'T -> unit) ->
           ignore
             (Ojs.call Import.crypto "randomFill"
-               [|(Obj.magic x610);(Ojs.fun_to_js 2
-                                     (fun (x612 : Ojs.t) ->
-                                        fun (x614 : Ojs.t) ->
-                                          x611
+               [|(Obj.magic x559);(Ojs.fun_to_js 2
+                                     (fun (x561 : Ojs.t) ->
+                                        fun (x563 : Ojs.t) ->
+                                          x560
                                             ~err:(or_null_of_js Error.t_of_js
-                                                    x612)
-                                            ~buf:(Obj.magic x614)))|])
+                                                    x561)
+                                            ~buf:(Obj.magic x563)))|])
     let (random_fill :
       buffer:'T ->
         offset:int ->
           callback:(err:Error.t or_null -> buf:'T -> unit) -> unit)
       =
-      fun ~buffer:(x615 : 'T) ->
-        fun ~offset:(x616 : int) ->
-          fun ~callback:(x617 : err:Error.t or_null -> buf:'T -> unit) ->
+      fun ~buffer:(x564 : 'T) ->
+        fun ~offset:(x565 : int) ->
+          fun ~callback:(x566 : err:Error.t or_null -> buf:'T -> unit) ->
             ignore
               (Ojs.call Import.crypto "randomFill"
-                 [|(Obj.magic x615);(Ojs.int_to_js x616);(Ojs.fun_to_js 2
+                 [|(Obj.magic x564);(Ojs.int_to_js x565);(Ojs.fun_to_js 2
                                                             (fun
-                                                               (x618 : Ojs.t)
+                                                               (x567 : Ojs.t)
                                                                ->
                                                                fun
-                                                                 (x620 :
+                                                                 (x569 :
                                                                    Ojs.t)
                                                                  ->
-                                                                 x617
+                                                                 x566
                                                                    ~err:(
                                                                    or_null_of_js
                                                                     Error.t_of_js
-                                                                    x618)
+                                                                    x567)
                                                                    ~buf:(
                                                                    Obj.magic
-                                                                    x620)))|])
+                                                                    x569)))|])
     let (random_fill :
       buffer:'T ->
         offset:int ->
           size:int ->
             callback:(err:Error.t or_null -> buf:'T -> unit) -> unit)
       =
-      fun ~buffer:(x621 : 'T) ->
-        fun ~offset:(x622 : int) ->
-          fun ~size:(x623 : int) ->
-            fun ~callback:(x624 : err:Error.t or_null -> buf:'T -> unit) ->
+      fun ~buffer:(x570 : 'T) ->
+        fun ~offset:(x571 : int) ->
+          fun ~size:(x572 : int) ->
+            fun ~callback:(x573 : err:Error.t or_null -> buf:'T -> unit) ->
               ignore
                 (Ojs.call Import.crypto "randomFill"
-                   [|(Obj.magic x621);(Ojs.int_to_js x622);(Ojs.int_to_js
-                                                              x623);(
+                   [|(Obj.magic x570);(Ojs.int_to_js x571);(Ojs.int_to_js
+                                                              x572);(
                      Ojs.fun_to_js 2
-                       (fun (x625 : Ojs.t) ->
-                          fun (x627 : Ojs.t) ->
-                            x624 ~err:(or_null_of_js Error.t_of_js x625)
-                              ~buf:(Obj.magic x627)))|])
+                       (fun (x574 : Ojs.t) ->
+                          fun (x576 : Ojs.t) ->
+                            x573 ~err:(or_null_of_js Error.t_of_js x574)
+                              ~buf:(Obj.magic x576)))|])
     module ScryptOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x629 : Ojs.t) -> x629
-        and t_to_js : t -> Ojs.t = fun (x628 : Ojs.t) -> x628
+        let rec t_of_js : Ojs.t -> t = fun (x578 : Ojs.t) -> x578
+        and t_to_js : t -> Ojs.t = fun (x577 : Ojs.t) -> x577
         let (get_cost : t -> int) =
-          fun (x630 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x630) "cost")
+          fun (x579 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x579) "cost")
         let (set_cost : t -> int -> unit) =
-          fun (x631 : t) ->
-            fun (x632 : int) ->
-              Ojs.set_prop_ascii (t_to_js x631) "cost" (Ojs.int_to_js x632)
+          fun (x580 : t) ->
+            fun (x581 : int) ->
+              Ojs.set_prop_ascii (t_to_js x580) "cost" (Ojs.int_to_js x581)
         let (get_block_size : t -> int) =
-          fun (x633 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x633) "blockSize")
+          fun (x582 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x582) "blockSize")
         let (set_block_size : t -> int -> unit) =
-          fun (x634 : t) ->
-            fun (x635 : int) ->
-              Ojs.set_prop_ascii (t_to_js x634) "blockSize"
-                (Ojs.int_to_js x635)
+          fun (x583 : t) ->
+            fun (x584 : int) ->
+              Ojs.set_prop_ascii (t_to_js x583) "blockSize"
+                (Ojs.int_to_js x584)
         let (get_parallelization : t -> int) =
-          fun (x636 : t) ->
+          fun (x585 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x636) "parallelization")
+              (Ojs.get_prop_ascii (t_to_js x585) "parallelization")
         let (set_parallelization : t -> int -> unit) =
-          fun (x637 : t) ->
-            fun (x638 : int) ->
-              Ojs.set_prop_ascii (t_to_js x637) "parallelization"
-                (Ojs.int_to_js x638)
+          fun (x586 : t) ->
+            fun (x587 : int) ->
+              Ojs.set_prop_ascii (t_to_js x586) "parallelization"
+                (Ojs.int_to_js x587)
         let (get_n : t -> int) =
-          fun (x639 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x639) "N")
+          fun (x588 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x588) "N")
         let (set_n : t -> int -> unit) =
-          fun (x640 : t) ->
-            fun (x641 : int) ->
-              Ojs.set_prop_ascii (t_to_js x640) "N" (Ojs.int_to_js x641)
+          fun (x589 : t) ->
+            fun (x590 : int) ->
+              Ojs.set_prop_ascii (t_to_js x589) "N" (Ojs.int_to_js x590)
         let (get_r : t -> int) =
-          fun (x642 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x642) "r")
+          fun (x591 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x591) "r")
         let (set_r : t -> int -> unit) =
-          fun (x643 : t) ->
-            fun (x644 : int) ->
-              Ojs.set_prop_ascii (t_to_js x643) "r" (Ojs.int_to_js x644)
+          fun (x592 : t) ->
+            fun (x593 : int) ->
+              Ojs.set_prop_ascii (t_to_js x592) "r" (Ojs.int_to_js x593)
         let (get_p : t -> int) =
-          fun (x645 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x645) "p")
+          fun (x594 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x594) "p")
         let (set_p : t -> int -> unit) =
-          fun (x646 : t) ->
-            fun (x647 : int) ->
-              Ojs.set_prop_ascii (t_to_js x646) "p" (Ojs.int_to_js x647)
+          fun (x595 : t) ->
+            fun (x596 : int) ->
+              Ojs.set_prop_ascii (t_to_js x595) "p" (Ojs.int_to_js x596)
         let (get_maxmem : t -> int) =
-          fun (x648 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x648) "maxmem")
+          fun (x597 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x597) "maxmem")
         let (set_maxmem : t -> int -> unit) =
-          fun (x649 : t) ->
-            fun (x650 : int) ->
-              Ojs.set_prop_ascii (t_to_js x649) "maxmem" (Ojs.int_to_js x650)
+          fun (x598 : t) ->
+            fun (x599 : int) ->
+              Ojs.set_prop_ascii (t_to_js x598) "maxmem" (Ojs.int_to_js x599)
       end
     let (scrypt :
       password:BinaryLike.t ->
@@ -2671,24 +2603,24 @@ module Crypto =
             callback:(err:Error.t or_null -> derived_key:Buffer.t -> unit) ->
               unit)
       =
-      fun ~password:(x651 : BinaryLike.t) ->
-        fun ~salt:(x652 : BinaryLike.t) ->
-          fun ~keylen:(x653 : int) ->
+      fun ~password:(x600 : BinaryLike.t) ->
+        fun ~salt:(x601 : BinaryLike.t) ->
+          fun ~keylen:(x602 : int) ->
             fun
-              ~callback:(x654 :
+              ~callback:(x603 :
                           err:Error.t or_null -> derived_key:Buffer.t -> unit)
               ->
               ignore
                 (Ojs.call Import.crypto "scrypt"
-                   [|(BinaryLike.t_to_js x651);(BinaryLike.t_to_js x652);(
-                     Ojs.int_to_js x653);(Ojs.fun_to_js 2
-                                            (fun (x655 : Ojs.t) ->
-                                               fun (x657 : Ojs.t) ->
-                                                 x654
+                   [|(BinaryLike.t_to_js x600);(BinaryLike.t_to_js x601);(
+                     Ojs.int_to_js x602);(Ojs.fun_to_js 2
+                                            (fun (x604 : Ojs.t) ->
+                                               fun (x606 : Ojs.t) ->
+                                                 x603
                                                    ~err:(or_null_of_js
-                                                           Error.t_of_js x655)
+                                                           Error.t_of_js x604)
                                                    ~derived_key:(Buffer.t_of_js
-                                                                   x657)))|])
+                                                                   x606)))|])
     let (scrypt :
       password:BinaryLike.t ->
         salt:BinaryLike.t ->
@@ -2697,166 +2629,166 @@ module Crypto =
               callback:(err:Error.t or_null -> derived_key:Buffer.t -> unit)
                 -> unit)
       =
-      fun ~password:(x658 : BinaryLike.t) ->
-        fun ~salt:(x659 : BinaryLike.t) ->
-          fun ~keylen:(x660 : int) ->
-            fun ~options:(x661 : ScryptOptions.t) ->
+      fun ~password:(x607 : BinaryLike.t) ->
+        fun ~salt:(x608 : BinaryLike.t) ->
+          fun ~keylen:(x609 : int) ->
+            fun ~options:(x610 : ScryptOptions.t) ->
               fun
-                ~callback:(x662 :
+                ~callback:(x611 :
                             err:Error.t or_null ->
                               derived_key:Buffer.t -> unit)
                 ->
                 ignore
                   (Ojs.call Import.crypto "scrypt"
-                     [|(BinaryLike.t_to_js x658);(BinaryLike.t_to_js x659);(
-                       Ojs.int_to_js x660);(ScryptOptions.t_to_js x661);(
+                     [|(BinaryLike.t_to_js x607);(BinaryLike.t_to_js x608);(
+                       Ojs.int_to_js x609);(ScryptOptions.t_to_js x610);(
                        Ojs.fun_to_js 2
-                         (fun (x663 : Ojs.t) ->
-                            fun (x665 : Ojs.t) ->
-                              x662 ~err:(or_null_of_js Error.t_of_js x663)
-                                ~derived_key:(Buffer.t_of_js x665)))|])
+                         (fun (x612 : Ojs.t) ->
+                            fun (x614 : Ojs.t) ->
+                              x611 ~err:(or_null_of_js Error.t_of_js x612)
+                                ~derived_key:(Buffer.t_of_js x614)))|])
     let (scrypt_sync :
       password:BinaryLike.t ->
         salt:BinaryLike.t ->
           keylen:int -> ?options:ScryptOptions.t -> unit -> Buffer.t)
       =
-      fun ~password:(x666 : BinaryLike.t) ->
-        fun ~salt:(x667 : BinaryLike.t) ->
-          fun ~keylen:(x668 : int) ->
-            fun ?options:(x669 : ScryptOptions.t option) ->
+      fun ~password:(x615 : BinaryLike.t) ->
+        fun ~salt:(x616 : BinaryLike.t) ->
+          fun ~keylen:(x617 : int) ->
+            fun ?options:(x618 : ScryptOptions.t option) ->
               fun () ->
                 Buffer.t_of_js
-                  (let x672 = Import.crypto in
-                   Ojs.call (Ojs.get_prop_ascii x672 "scryptSync") "apply"
-                     [|x672;((let x670 =
+                  (let x621 = Import.crypto in
+                   Ojs.call (Ojs.get_prop_ascii x621 "scryptSync") "apply"
+                     [|x621;((let x619 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x670 "push"
-                                   [|(BinaryLike.t_to_js x666)|]);
+                                (Ojs.call x619 "push"
+                                   [|(BinaryLike.t_to_js x615)|]);
                               ignore
-                                (Ojs.call x670 "push"
-                                   [|(BinaryLike.t_to_js x667)|]);
+                                (Ojs.call x619 "push"
+                                   [|(BinaryLike.t_to_js x616)|]);
                               ignore
-                                (Ojs.call x670 "push"
-                                   [|(Ojs.int_to_js x668)|]);
-                              (match x669 with
-                               | Some x671 ->
+                                (Ojs.call x619 "push"
+                                   [|(Ojs.int_to_js x617)|]);
+                              (match x618 with
+                               | Some x620 ->
                                    ignore
-                                     (Ojs.call x670 "push"
-                                        [|(ScryptOptions.t_to_js x671)|])
+                                     (Ojs.call x619 "push"
+                                        [|(ScryptOptions.t_to_js x620)|])
                                | None -> ());
-                              x670))|])
+                              x619))|])
     module RsaPublicKey =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x674 : Ojs.t) -> x674
-        and t_to_js : t -> Ojs.t = fun (x673 : Ojs.t) -> x673
+        let rec t_of_js : Ojs.t -> t = fun (x623 : Ojs.t) -> x623
+        and t_to_js : t -> Ojs.t = fun (x622 : Ojs.t) -> x622
         let (get_key : t -> KeyLike.t) =
-          fun (x675 : t) ->
-            KeyLike.t_of_js (Ojs.get_prop_ascii (t_to_js x675) "key")
+          fun (x624 : t) ->
+            KeyLike.t_of_js (Ojs.get_prop_ascii (t_to_js x624) "key")
         let (set_key : t -> KeyLike.t -> unit) =
-          fun (x676 : t) ->
-            fun (x677 : KeyLike.t) ->
-              Ojs.set_prop_ascii (t_to_js x676) "key" (KeyLike.t_to_js x677)
+          fun (x625 : t) ->
+            fun (x626 : KeyLike.t) ->
+              Ojs.set_prop_ascii (t_to_js x625) "key" (KeyLike.t_to_js x626)
         let (get_padding : t -> int) =
-          fun (x678 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x678) "padding")
+          fun (x627 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x627) "padding")
         let (set_padding : t -> int -> unit) =
-          fun (x679 : t) ->
-            fun (x680 : int) ->
-              Ojs.set_prop_ascii (t_to_js x679) "padding"
-                (Ojs.int_to_js x680)
+          fun (x628 : t) ->
+            fun (x629 : int) ->
+              Ojs.set_prop_ascii (t_to_js x628) "padding"
+                (Ojs.int_to_js x629)
       end
     module RsaPrivateKey =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x682 : Ojs.t) -> x682
-        and t_to_js : t -> Ojs.t = fun (x681 : Ojs.t) -> x681
+        let rec t_of_js : Ojs.t -> t = fun (x631 : Ojs.t) -> x631
+        and t_to_js : t -> Ojs.t = fun (x630 : Ojs.t) -> x630
         let (get_key : t -> KeyLike.t) =
-          fun (x683 : t) ->
-            KeyLike.t_of_js (Ojs.get_prop_ascii (t_to_js x683) "key")
+          fun (x632 : t) ->
+            KeyLike.t_of_js (Ojs.get_prop_ascii (t_to_js x632) "key")
         let (set_key : t -> KeyLike.t -> unit) =
-          fun (x684 : t) ->
-            fun (x685 : KeyLike.t) ->
-              Ojs.set_prop_ascii (t_to_js x684) "key" (KeyLike.t_to_js x685)
+          fun (x633 : t) ->
+            fun (x634 : KeyLike.t) ->
+              Ojs.set_prop_ascii (t_to_js x633) "key" (KeyLike.t_to_js x634)
         let (get_passphrase : t -> string) =
-          fun (x686 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x686) "passphrase")
+          fun (x635 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x635) "passphrase")
         let (set_passphrase : t -> string -> unit) =
-          fun (x687 : t) ->
-            fun (x688 : string) ->
-              Ojs.set_prop_ascii (t_to_js x687) "passphrase"
-                (Ojs.string_to_js x688)
+          fun (x636 : t) ->
+            fun (x637 : string) ->
+              Ojs.set_prop_ascii (t_to_js x636) "passphrase"
+                (Ojs.string_to_js x637)
         let (get_oaep_hash : t -> string) =
-          fun (x689 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x689) "oaepHash")
+          fun (x638 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x638) "oaepHash")
         let (set_oaep_hash : t -> string -> unit) =
-          fun (x690 : t) ->
-            fun (x691 : string) ->
-              Ojs.set_prop_ascii (t_to_js x690) "oaepHash"
-                (Ojs.string_to_js x691)
+          fun (x639 : t) ->
+            fun (x640 : string) ->
+              Ojs.set_prop_ascii (t_to_js x639) "oaepHash"
+                (Ojs.string_to_js x640)
         let (get_oaep_label : t -> TypedArray.t) =
-          fun (x692 : t) ->
+          fun (x641 : t) ->
             TypedArray.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x692) "oaepLabel")
+              (Ojs.get_prop_ascii (t_to_js x641) "oaepLabel")
         let (set_oaep_label : t -> TypedArray.t -> unit) =
-          fun (x693 : t) ->
-            fun (x694 : TypedArray.t) ->
-              Ojs.set_prop_ascii (t_to_js x693) "oaepLabel"
-                (TypedArray.t_to_js x694)
+          fun (x642 : t) ->
+            fun (x643 : TypedArray.t) ->
+              Ojs.set_prop_ascii (t_to_js x642) "oaepLabel"
+                (TypedArray.t_to_js x643)
         let (get_padding : t -> int) =
-          fun (x695 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x695) "padding")
+          fun (x644 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x644) "padding")
         let (set_padding : t -> int -> unit) =
-          fun (x696 : t) ->
-            fun (x697 : int) ->
-              Ojs.set_prop_ascii (t_to_js x696) "padding"
-                (Ojs.int_to_js x697)
+          fun (x645 : t) ->
+            fun (x646 : int) ->
+              Ojs.set_prop_ascii (t_to_js x645) "padding"
+                (Ojs.int_to_js x646)
       end
     let (public_encrypt :
       key:(KeyLike.t, RsaPrivateKey.t, RsaPublicKey.t) union3 ->
         buffer:ArrayBufferView.t -> Buffer.t)
       =
-      fun ~key:(x698 : (KeyLike.t, RsaPrivateKey.t, RsaPublicKey.t) union3)
+      fun ~key:(x647 : (KeyLike.t, RsaPrivateKey.t, RsaPublicKey.t) union3)
         ->
-        fun ~buffer:(x702 : ArrayBufferView.t) ->
+        fun ~buffer:(x651 : ArrayBufferView.t) ->
           Buffer.t_of_js
             (Ojs.call Import.crypto "publicEncrypt"
                [|(union3_to_js KeyLike.t_to_js RsaPrivateKey.t_to_js
-                    RsaPublicKey.t_to_js x698);(ArrayBufferView.t_to_js x702)|])
+                    RsaPublicKey.t_to_js x647);(ArrayBufferView.t_to_js x651)|])
     let (public_decrypt :
       key:(KeyLike.t, RsaPrivateKey.t, RsaPublicKey.t) union3 ->
         buffer:ArrayBufferView.t -> Buffer.t)
       =
-      fun ~key:(x703 : (KeyLike.t, RsaPrivateKey.t, RsaPublicKey.t) union3)
+      fun ~key:(x652 : (KeyLike.t, RsaPrivateKey.t, RsaPublicKey.t) union3)
         ->
-        fun ~buffer:(x707 : ArrayBufferView.t) ->
+        fun ~buffer:(x656 : ArrayBufferView.t) ->
           Buffer.t_of_js
             (Ojs.call Import.crypto "publicDecrypt"
                [|(union3_to_js KeyLike.t_to_js RsaPrivateKey.t_to_js
-                    RsaPublicKey.t_to_js x703);(ArrayBufferView.t_to_js x707)|])
+                    RsaPublicKey.t_to_js x652);(ArrayBufferView.t_to_js x656)|])
     let (private_decrypt :
       private_key:(KeyLike.t, RsaPrivateKey.t) union2 ->
         buffer:ArrayBufferView.t -> Buffer.t)
       =
-      fun ~private_key:(x708 : (KeyLike.t, RsaPrivateKey.t) union2) ->
-        fun ~buffer:(x711 : ArrayBufferView.t) ->
+      fun ~private_key:(x657 : (KeyLike.t, RsaPrivateKey.t) union2) ->
+        fun ~buffer:(x660 : ArrayBufferView.t) ->
           Buffer.t_of_js
             (Ojs.call Import.crypto "privateDecrypt"
-               [|(union2_to_js KeyLike.t_to_js RsaPrivateKey.t_to_js x708);(
-                 ArrayBufferView.t_to_js x711)|])
+               [|(union2_to_js KeyLike.t_to_js RsaPrivateKey.t_to_js x657);(
+                 ArrayBufferView.t_to_js x660)|])
     let (private_encrypt :
       private_key:(KeyLike.t, RsaPrivateKey.t) union2 ->
         buffer:ArrayBufferView.t -> Buffer.t)
       =
-      fun ~private_key:(x712 : (KeyLike.t, RsaPrivateKey.t) union2) ->
-        fun ~buffer:(x715 : ArrayBufferView.t) ->
+      fun ~private_key:(x661 : (KeyLike.t, RsaPrivateKey.t) union2) ->
+        fun ~buffer:(x664 : ArrayBufferView.t) ->
           Buffer.t_of_js
             (Ojs.call Import.crypto "privateEncrypt"
-               [|(union2_to_js KeyLike.t_to_js RsaPrivateKey.t_to_js x712);(
-                 ArrayBufferView.t_to_js x715)|])
+               [|(union2_to_js KeyLike.t_to_js RsaPrivateKey.t_to_js x661);(
+                 ArrayBufferView.t_to_js x664)|])
     let (get_ciphers : unit -> string list) =
       fun () ->
         Ojs.list_of_js Ojs.string_of_js
@@ -2867,8 +2799,8 @@ module Crypto =
           (Ojs.call Import.crypto "getCurves" [||])
     let (get_fips : unit -> [ `L_n_0  | `L_n_1 ]) =
       fun () ->
-        let x718 = Ojs.call Import.crypto "getFips" [||] in
-        match Ojs.int_of_js x718 with
+        let x667 = Ojs.call Import.crypto "getFips" [||] in
+        match Ojs.int_of_js x667 with
         | 0 -> `L_n_0
         | 1 -> `L_n_1
         | _ -> assert false
@@ -2879,8 +2811,8 @@ module Crypto =
     module ECDH =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x721 : Ojs.t) -> x721
-        and t_to_js : t -> Ojs.t = fun (x720 : Ojs.t) -> x720
+        let rec t_of_js : Ojs.t -> t = fun (x670 : Ojs.t) -> x670
+        and t_to_js : t -> Ojs.t = fun (x669 : Ojs.t) -> x669
         let (create : unit -> t) =
           fun () ->
             t_of_js
@@ -2893,45 +2825,45 @@ module Crypto =
                   ?format:[ `compressed  | `hybrid  | `uncompressed ] ->
                     unit -> Buffer.t or_string)
           =
-          fun ~key:(x722 : BinaryLike.t) ->
-            fun ~curve:(x723 : string) ->
-              fun ?input_encoding:(x724 : BinaryToTextEncoding.t option) ->
+          fun ~key:(x671 : BinaryLike.t) ->
+            fun ~curve:(x672 : string) ->
+              fun ?input_encoding:(x673 : BinaryToTextEncoding.t option) ->
                 fun
-                  ?output_encoding:(x725 :
+                  ?output_encoding:(x674 :
                                      [ `base64  | `hex  | `latin1 ] option)
                   ->
                   fun
-                    ?format:(x726 :
+                    ?format:(x675 :
                               [ `compressed  | `hybrid  | `uncompressed ]
                                 option)
                     ->
                     fun () ->
                       or_string_of_js Buffer.t_of_js
-                        (let x731 = Ojs.get_prop_ascii Import.crypto "ECDH" in
-                         Ojs.call (Ojs.get_prop_ascii x731 "convertKey")
+                        (let x680 = Ojs.get_prop_ascii Import.crypto "ECDH" in
+                         Ojs.call (Ojs.get_prop_ascii x680 "convertKey")
                            "apply"
-                           [|x731;((let x727 =
+                           [|x680;((let x676 =
                                       Ojs.new_obj
                                         (Ojs.get_prop_ascii Ojs.global
                                            "Array") [||] in
                                     ignore
-                                      (Ojs.call x727 "push"
-                                         [|(BinaryLike.t_to_js x722)|]);
+                                      (Ojs.call x676 "push"
+                                         [|(BinaryLike.t_to_js x671)|]);
                                     ignore
-                                      (Ojs.call x727 "push"
-                                         [|(Ojs.string_to_js x723)|]);
-                                    (match x724 with
-                                     | Some x730 ->
+                                      (Ojs.call x676 "push"
+                                         [|(Ojs.string_to_js x672)|]);
+                                    (match x673 with
+                                     | Some x679 ->
                                          ignore
-                                           (Ojs.call x727 "push"
+                                           (Ojs.call x676 "push"
                                               [|(BinaryToTextEncoding.t_to_js
-                                                   x730)|])
+                                                   x679)|])
                                      | None -> ());
-                                    (match x725 with
-                                     | Some x729 ->
+                                    (match x674 with
+                                     | Some x678 ->
                                          ignore
-                                           (Ojs.call x727 "push"
-                                              [|((match x729 with
+                                           (Ojs.call x676 "push"
+                                              [|((match x678 with
                                                   | `base64 ->
                                                       Ojs.string_to_js
                                                         "base64"
@@ -2941,11 +2873,11 @@ module Crypto =
                                                       Ojs.string_to_js
                                                         "latin1"))|])
                                      | None -> ());
-                                    (match x726 with
-                                     | Some x728 ->
+                                    (match x675 with
+                                     | Some x677 ->
                                          ignore
-                                           (Ojs.call x727 "push"
-                                              [|((match x728 with
+                                           (Ojs.call x676 "push"
+                                              [|((match x677 with
                                                   | `compressed ->
                                                       Ojs.string_to_js
                                                         "compressed"
@@ -2956,347 +2888,344 @@ module Crypto =
                                                       Ojs.string_to_js
                                                         "uncompressed"))|])
                                      | None -> ());
-                                    x727))|])
+                                    x676))|])
         let (generate_keys : t -> Buffer.t) =
-          fun (x733 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x733) "generateKeys" [||])
+          fun (x682 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x682) "generateKeys" [||])
         let (generate_keys' :
           t ->
             encoding:BinaryToTextEncoding.t ->
               ?format:ECDHKeyFormat.t -> unit -> string)
           =
-          fun (x738 : t) ->
-            fun ~encoding:(x734 : BinaryToTextEncoding.t) ->
-              fun ?format:(x735 : ECDHKeyFormat.t option) ->
+          fun (x687 : t) ->
+            fun ~encoding:(x683 : BinaryToTextEncoding.t) ->
+              fun ?format:(x684 : ECDHKeyFormat.t option) ->
                 fun () ->
                   Ojs.string_of_js
-                    (let x739 = t_to_js x738 in
-                     Ojs.call (Ojs.get_prop_ascii x739 "generateKeys")
+                    (let x688 = t_to_js x687 in
+                     Ojs.call (Ojs.get_prop_ascii x688 "generateKeys")
                        "apply"
-                       [|x739;((let x736 =
+                       [|x688;((let x685 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x736 "push"
-                                     [|(BinaryToTextEncoding.t_to_js x734)|]);
-                                (match x735 with
-                                 | Some x737 ->
+                                  (Ojs.call x685 "push"
+                                     [|(BinaryToTextEncoding.t_to_js x683)|]);
+                                (match x684 with
+                                 | Some x686 ->
                                      ignore
-                                       (Ojs.call x736 "push"
-                                          [|(ECDHKeyFormat.t_to_js x737)|])
+                                       (Ojs.call x685 "push"
+                                          [|(ECDHKeyFormat.t_to_js x686)|])
                                  | None -> ());
-                                x736))|])
+                                x685))|])
         let (compute_secret :
           t -> other_public_key:ArrayBufferView.t -> Buffer.t) =
-          fun (x741 : t) ->
-            fun ~other_public_key:(x740 : ArrayBufferView.t) ->
+          fun (x690 : t) ->
+            fun ~other_public_key:(x689 : ArrayBufferView.t) ->
               Buffer.t_of_js
-                (Ojs.call (t_to_js x741) "computeSecret"
-                   [|(ArrayBufferView.t_to_js x740)|])
+                (Ojs.call (t_to_js x690) "computeSecret"
+                   [|(ArrayBufferView.t_to_js x689)|])
         let (compute_secret' :
           t ->
             other_public_key:string ->
               input_encoding:BinaryToTextEncoding.t -> Buffer.t)
           =
-          fun (x744 : t) ->
-            fun ~other_public_key:(x742 : string) ->
-              fun ~input_encoding:(x743 : BinaryToTextEncoding.t) ->
+          fun (x693 : t) ->
+            fun ~other_public_key:(x691 : string) ->
+              fun ~input_encoding:(x692 : BinaryToTextEncoding.t) ->
                 Buffer.t_of_js
-                  (Ojs.call (t_to_js x744) "computeSecret"
-                     [|(Ojs.string_to_js x742);(BinaryToTextEncoding.t_to_js
-                                                  x743)|])
+                  (Ojs.call (t_to_js x693) "computeSecret"
+                     [|(Ojs.string_to_js x691);(BinaryToTextEncoding.t_to_js
+                                                  x692)|])
         let (compute_secret'' :
           t ->
             other_public_key:ArrayBufferView.t ->
               output_encoding:BinaryToTextEncoding.t -> string)
           =
-          fun (x747 : t) ->
-            fun ~other_public_key:(x745 : ArrayBufferView.t) ->
-              fun ~output_encoding:(x746 : BinaryToTextEncoding.t) ->
+          fun (x696 : t) ->
+            fun ~other_public_key:(x694 : ArrayBufferView.t) ->
+              fun ~output_encoding:(x695 : BinaryToTextEncoding.t) ->
                 Ojs.string_of_js
-                  (Ojs.call (t_to_js x747) "computeSecret"
-                     [|(ArrayBufferView.t_to_js x745);(BinaryToTextEncoding.t_to_js
-                                                         x746)|])
+                  (Ojs.call (t_to_js x696) "computeSecret"
+                     [|(ArrayBufferView.t_to_js x694);(BinaryToTextEncoding.t_to_js
+                                                         x695)|])
         let (compute_secret''' :
           t ->
             other_public_key:string ->
               input_encoding:BinaryToTextEncoding.t ->
                 output_encoding:BinaryToTextEncoding.t -> string)
           =
-          fun (x751 : t) ->
-            fun ~other_public_key:(x748 : string) ->
-              fun ~input_encoding:(x749 : BinaryToTextEncoding.t) ->
-                fun ~output_encoding:(x750 : BinaryToTextEncoding.t) ->
+          fun (x700 : t) ->
+            fun ~other_public_key:(x697 : string) ->
+              fun ~input_encoding:(x698 : BinaryToTextEncoding.t) ->
+                fun ~output_encoding:(x699 : BinaryToTextEncoding.t) ->
                   Ojs.string_of_js
-                    (Ojs.call (t_to_js x751) "computeSecret"
-                       [|(Ojs.string_to_js x748);(BinaryToTextEncoding.t_to_js
-                                                    x749);(BinaryToTextEncoding.t_to_js
-                                                             x750)|])
+                    (Ojs.call (t_to_js x700) "computeSecret"
+                       [|(Ojs.string_to_js x697);(BinaryToTextEncoding.t_to_js
+                                                    x698);(BinaryToTextEncoding.t_to_js
+                                                             x699)|])
         let (get_private_key : t -> Buffer.t) =
-          fun (x752 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x752) "getPrivateKey" [||])
+          fun (x701 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x701) "getPrivateKey" [||])
         let (get_private_key' :
           t -> encoding:BinaryToTextEncoding.t -> string) =
-          fun (x754 : t) ->
-            fun ~encoding:(x753 : BinaryToTextEncoding.t) ->
+          fun (x703 : t) ->
+            fun ~encoding:(x702 : BinaryToTextEncoding.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x754) "getPrivateKey"
-                   [|(BinaryToTextEncoding.t_to_js x753)|])
+                (Ojs.call (t_to_js x703) "getPrivateKey"
+                   [|(BinaryToTextEncoding.t_to_js x702)|])
         let (get_public_key : t -> Buffer.t) =
-          fun (x755 : t) ->
-            Buffer.t_of_js (Ojs.call (t_to_js x755) "getPublicKey" [||])
+          fun (x704 : t) ->
+            Buffer.t_of_js (Ojs.call (t_to_js x704) "getPublicKey" [||])
         let (get_public_key' :
           t ->
             encoding:BinaryToTextEncoding.t ->
               ?format:ECDHKeyFormat.t -> unit -> string)
           =
-          fun (x760 : t) ->
-            fun ~encoding:(x756 : BinaryToTextEncoding.t) ->
-              fun ?format:(x757 : ECDHKeyFormat.t option) ->
+          fun (x709 : t) ->
+            fun ~encoding:(x705 : BinaryToTextEncoding.t) ->
+              fun ?format:(x706 : ECDHKeyFormat.t option) ->
                 fun () ->
                   Ojs.string_of_js
-                    (let x761 = t_to_js x760 in
-                     Ojs.call (Ojs.get_prop_ascii x761 "getPublicKey")
+                    (let x710 = t_to_js x709 in
+                     Ojs.call (Ojs.get_prop_ascii x710 "getPublicKey")
                        "apply"
-                       [|x761;((let x758 =
+                       [|x710;((let x707 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x758 "push"
-                                     [|(BinaryToTextEncoding.t_to_js x756)|]);
-                                (match x757 with
-                                 | Some x759 ->
+                                  (Ojs.call x707 "push"
+                                     [|(BinaryToTextEncoding.t_to_js x705)|]);
+                                (match x706 with
+                                 | Some x708 ->
                                      ignore
-                                       (Ojs.call x758 "push"
-                                          [|(ECDHKeyFormat.t_to_js x759)|])
+                                       (Ojs.call x707 "push"
+                                          [|(ECDHKeyFormat.t_to_js x708)|])
                                  | None -> ());
-                                x758))|])
+                                x707))|])
         let (set_private_key : t -> private_key:ArrayBufferView.t -> unit) =
-          fun (x763 : t) ->
-            fun ~private_key:(x762 : ArrayBufferView.t) ->
+          fun (x712 : t) ->
+            fun ~private_key:(x711 : ArrayBufferView.t) ->
               ignore
-                (Ojs.call (t_to_js x763) "setPrivateKey"
-                   [|(ArrayBufferView.t_to_js x762)|])
+                (Ojs.call (t_to_js x712) "setPrivateKey"
+                   [|(ArrayBufferView.t_to_js x711)|])
         let (set_private_key' :
           t -> private_key:string -> encoding:BinaryToTextEncoding.t -> unit)
           =
-          fun (x766 : t) ->
-            fun ~private_key:(x764 : string) ->
-              fun ~encoding:(x765 : BinaryToTextEncoding.t) ->
+          fun (x715 : t) ->
+            fun ~private_key:(x713 : string) ->
+              fun ~encoding:(x714 : BinaryToTextEncoding.t) ->
                 ignore
-                  (Ojs.call (t_to_js x766) "setPrivateKey"
-                     [|(Ojs.string_to_js x764);(BinaryToTextEncoding.t_to_js
-                                                  x765)|])
+                  (Ojs.call (t_to_js x715) "setPrivateKey"
+                     [|(Ojs.string_to_js x713);(BinaryToTextEncoding.t_to_js
+                                                  x714)|])
       end
     let (create_ecdh : curve_name:string -> ECDH.t) =
-      fun ~curve_name:(x767 : string) ->
+      fun ~curve_name:(x716 : string) ->
         ECDH.t_of_js
-          (Ojs.call Import.crypto "createECDH" [|(Ojs.string_to_js x767)|])
+          (Ojs.call Import.crypto "createECDH" [|(Ojs.string_to_js x716)|])
     let (timing_safe_equal :
       a:ArrayBufferView.t -> b:ArrayBufferView.t -> bool) =
-      fun ~a:(x768 : ArrayBufferView.t) ->
-        fun ~b:(x769 : ArrayBufferView.t) ->
+      fun ~a:(x717 : ArrayBufferView.t) ->
+        fun ~b:(x718 : ArrayBufferView.t) ->
           Ojs.bool_of_js
             (Ojs.call Import.crypto "timingSafeEqual"
-               [|(ArrayBufferView.t_to_js x768);(ArrayBufferView.t_to_js x769)|])
-    let (d_efault_encoding : BufferEncoding.t) =
-      BufferEncoding.t_of_js
-        (Ojs.get_prop_ascii Import.crypto "DEFAULT_ENCODING")
+               [|(ArrayBufferView.t_to_js x717);(ArrayBufferView.t_to_js x718)|])
     module AnonymousInterface2 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x771 : Ojs.t) -> x771
-        and t_to_js : t -> Ojs.t = fun (x770 : Ojs.t) -> x770
+        let rec t_of_js : Ojs.t -> t = fun (x720 : Ojs.t) -> x720
+        and t_to_js : t -> Ojs.t = fun (x719 : Ojs.t) -> x719
         let (get_public_key : t -> Buffer.t) =
-          fun (x772 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x772) "publicKey")
+          fun (x721 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x721) "publicKey")
         let (set_public_key : t -> Buffer.t -> unit) =
-          fun (x773 : t) ->
-            fun (x774 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x773) "publicKey"
-                (Buffer.t_to_js x774)
+          fun (x722 : t) ->
+            fun (x723 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x722) "publicKey"
+                (Buffer.t_to_js x723)
         let (get_private_key : t -> Buffer.t) =
-          fun (x775 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x775) "privateKey")
+          fun (x724 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x724) "privateKey")
         let (set_private_key : t -> Buffer.t -> unit) =
-          fun (x776 : t) ->
-            fun (x777 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x776) "privateKey"
-                (Buffer.t_to_js x777)
+          fun (x725 : t) ->
+            fun (x726 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x725) "privateKey"
+                (Buffer.t_to_js x726)
       end
     module AnonymousInterface3 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x779 : Ojs.t) -> x779
-        and t_to_js : t -> Ojs.t = fun (x778 : Ojs.t) -> x778
+        let rec t_of_js : Ojs.t -> t = fun (x728 : Ojs.t) -> x728
+        and t_to_js : t -> Ojs.t = fun (x727 : Ojs.t) -> x727
         let (get_public_key : t -> Buffer.t) =
-          fun (x780 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x780) "publicKey")
+          fun (x729 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x729) "publicKey")
         let (set_public_key : t -> Buffer.t -> unit) =
-          fun (x781 : t) ->
-            fun (x782 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x781) "publicKey"
-                (Buffer.t_to_js x782)
+          fun (x730 : t) ->
+            fun (x731 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x730) "publicKey"
+                (Buffer.t_to_js x731)
         let (get_private_key : t -> string) =
-          fun (x783 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x783) "privateKey")
+          fun (x732 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x732) "privateKey")
         let (set_private_key : t -> string -> unit) =
-          fun (x784 : t) ->
-            fun (x785 : string) ->
-              Ojs.set_prop_ascii (t_to_js x784) "privateKey"
-                (Ojs.string_to_js x785)
+          fun (x733 : t) ->
+            fun (x734 : string) ->
+              Ojs.set_prop_ascii (t_to_js x733) "privateKey"
+                (Ojs.string_to_js x734)
       end
     module AnonymousInterface4 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x787 : Ojs.t) -> x787
-        and t_to_js : t -> Ojs.t = fun (x786 : Ojs.t) -> x786
+        let rec t_of_js : Ojs.t -> t = fun (x736 : Ojs.t) -> x736
+        and t_to_js : t -> Ojs.t = fun (x735 : Ojs.t) -> x735
         let (get_public_key : t -> string) =
-          fun (x788 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x788) "publicKey")
+          fun (x737 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x737) "publicKey")
         let (set_public_key : t -> string -> unit) =
-          fun (x789 : t) ->
-            fun (x790 : string) ->
-              Ojs.set_prop_ascii (t_to_js x789) "publicKey"
-                (Ojs.string_to_js x790)
+          fun (x738 : t) ->
+            fun (x739 : string) ->
+              Ojs.set_prop_ascii (t_to_js x738) "publicKey"
+                (Ojs.string_to_js x739)
         let (get_private_key : t -> Buffer.t) =
-          fun (x791 : t) ->
-            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x791) "privateKey")
+          fun (x740 : t) ->
+            Buffer.t_of_js (Ojs.get_prop_ascii (t_to_js x740) "privateKey")
         let (set_private_key : t -> Buffer.t -> unit) =
-          fun (x792 : t) ->
-            fun (x793 : Buffer.t) ->
-              Ojs.set_prop_ascii (t_to_js x792) "privateKey"
-                (Buffer.t_to_js x793)
+          fun (x741 : t) ->
+            fun (x742 : Buffer.t) ->
+              Ojs.set_prop_ascii (t_to_js x741) "privateKey"
+                (Buffer.t_to_js x742)
       end
     module AnonymousInterface5 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x795 : Ojs.t) -> x795
-        and t_to_js : t -> Ojs.t = fun (x794 : Ojs.t) -> x794
+        let rec t_of_js : Ojs.t -> t = fun (x744 : Ojs.t) -> x744
+        and t_to_js : t -> Ojs.t = fun (x743 : Ojs.t) -> x743
         let (get_public_key : t -> string) =
-          fun (x796 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x796) "publicKey")
+          fun (x745 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x745) "publicKey")
         let (set_public_key : t -> string -> unit) =
-          fun (x797 : t) ->
-            fun (x798 : string) ->
-              Ojs.set_prop_ascii (t_to_js x797) "publicKey"
-                (Ojs.string_to_js x798)
+          fun (x746 : t) ->
+            fun (x747 : string) ->
+              Ojs.set_prop_ascii (t_to_js x746) "publicKey"
+                (Ojs.string_to_js x747)
         let (get_private_key : t -> string) =
-          fun (x799 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x799) "privateKey")
+          fun (x748 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x748) "privateKey")
         let (set_private_key : t -> string -> unit) =
-          fun (x800 : t) ->
-            fun (x801 : string) ->
-              Ojs.set_prop_ascii (t_to_js x800) "privateKey"
-                (Ojs.string_to_js x801)
+          fun (x749 : t) ->
+            fun (x750 : string) ->
+              Ojs.set_prop_ascii (t_to_js x749) "privateKey"
+                (Ojs.string_to_js x750)
       end
     module AnonymousInterface6 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x803 : Ojs.t) -> x803
-        and t_to_js : t -> Ojs.t = fun (x802 : Ojs.t) -> x802
+        let rec t_of_js : Ojs.t -> t = fun (x752 : Ojs.t) -> x752
+        and t_to_js : t -> Ojs.t = fun (x751 : Ojs.t) -> x751
         let (get_type : t -> [ `pkcs8 ]) =
-          fun (x804 : t) ->
-            let x805 = Ojs.get_prop_ascii (t_to_js x804) "type" in
-            match Ojs.string_of_js x805 with
+          fun (x753 : t) ->
+            let x754 = Ojs.get_prop_ascii (t_to_js x753) "type" in
+            match Ojs.string_of_js x754 with
             | "pkcs8" -> `pkcs8
             | _ -> assert false
         let (set_type : t -> [ `pkcs8 ] -> unit) =
-          fun (x806 : t) ->
-            fun (x807 : [ `pkcs8 ]) ->
-              Ojs.set_prop_ascii (t_to_js x806) "type"
-                (match x807 with | `pkcs8 -> Ojs.string_to_js "pkcs8")
+          fun (x755 : t) ->
+            fun (x756 : [ `pkcs8 ]) ->
+              Ojs.set_prop_ascii (t_to_js x755) "type"
+                (match x756 with | `pkcs8 -> Ojs.string_to_js "pkcs8")
       end
     module AnonymousInterface7 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x809 : Ojs.t) -> x809
-        and t_to_js : t -> Ojs.t = fun (x808 : Ojs.t) -> x808
+        let rec t_of_js : Ojs.t -> t = fun (x758 : Ojs.t) -> x758
+        and t_to_js : t -> Ojs.t = fun (x757 : Ojs.t) -> x757
         let (get_type : t -> [ `spki ]) =
-          fun (x810 : t) ->
-            let x811 = Ojs.get_prop_ascii (t_to_js x810) "type" in
-            match Ojs.string_of_js x811 with
+          fun (x759 : t) ->
+            let x760 = Ojs.get_prop_ascii (t_to_js x759) "type" in
+            match Ojs.string_of_js x760 with
             | "spki" -> `spki
             | _ -> assert false
         let (set_type : t -> [ `spki ] -> unit) =
-          fun (x812 : t) ->
-            fun (x813 : [ `spki ]) ->
-              Ojs.set_prop_ascii (t_to_js x812) "type"
-                (match x813 with | `spki -> Ojs.string_to_js "spki")
+          fun (x761 : t) ->
+            fun (x762 : [ `spki ]) ->
+              Ojs.set_prop_ascii (t_to_js x761) "type"
+                (match x762 with | `spki -> Ojs.string_to_js "spki")
         let (get_format : t -> 'PubF) =
-          fun (x814 : t) ->
-            Obj.magic (Ojs.get_prop_ascii (t_to_js x814) "format")
+          fun (x763 : t) ->
+            Obj.magic (Ojs.get_prop_ascii (t_to_js x763) "format")
         let (set_format : t -> 'PubF -> unit) =
-          fun (x815 : t) ->
-            fun (x816 : 'PubF) ->
-              Ojs.set_prop_ascii (t_to_js x815) "format" (Obj.magic x816)
+          fun (x764 : t) ->
+            fun (x765 : 'PubF) ->
+              Ojs.set_prop_ascii (t_to_js x764) "format" (Obj.magic x765)
       end
     module AnonymousInterface8 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x818 : Ojs.t) -> x818
-        and t_to_js : t -> Ojs.t = fun (x817 : Ojs.t) -> x817
+        let rec t_of_js : Ojs.t -> t = fun (x767 : Ojs.t) -> x767
+        and t_to_js : t -> Ojs.t = fun (x766 : Ojs.t) -> x766
         let (get_type : t -> [ `pkcs1  | `pkcs8 ]) =
-          fun (x819 : t) ->
-            let x820 = Ojs.get_prop_ascii (t_to_js x819) "type" in
-            match Ojs.string_of_js x820 with
+          fun (x768 : t) ->
+            let x769 = Ojs.get_prop_ascii (t_to_js x768) "type" in
+            match Ojs.string_of_js x769 with
             | "pkcs1" -> `pkcs1
             | "pkcs8" -> `pkcs8
             | _ -> assert false
         let (set_type : t -> [ `pkcs1  | `pkcs8 ] -> unit) =
-          fun (x821 : t) ->
-            fun (x822 : [ `pkcs1  | `pkcs8 ]) ->
-              Ojs.set_prop_ascii (t_to_js x821) "type"
-                (match x822 with
+          fun (x770 : t) ->
+            fun (x771 : [ `pkcs1  | `pkcs8 ]) ->
+              Ojs.set_prop_ascii (t_to_js x770) "type"
+                (match x771 with
                  | `pkcs1 -> Ojs.string_to_js "pkcs1"
                  | `pkcs8 -> Ojs.string_to_js "pkcs8")
       end
     module AnonymousInterface9 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x824 : Ojs.t) -> x824
-        and t_to_js : t -> Ojs.t = fun (x823 : Ojs.t) -> x823
+        let rec t_of_js : Ojs.t -> t = fun (x773 : Ojs.t) -> x773
+        and t_to_js : t -> Ojs.t = fun (x772 : Ojs.t) -> x772
         let (get_type : t -> [ `pkcs1  | `spki ]) =
-          fun (x825 : t) ->
-            let x826 = Ojs.get_prop_ascii (t_to_js x825) "type" in
-            match Ojs.string_of_js x826 with
+          fun (x774 : t) ->
+            let x775 = Ojs.get_prop_ascii (t_to_js x774) "type" in
+            match Ojs.string_of_js x775 with
             | "pkcs1" -> `pkcs1
             | "spki" -> `spki
             | _ -> assert false
         let (set_type : t -> [ `pkcs1  | `spki ] -> unit) =
-          fun (x827 : t) ->
-            fun (x828 : [ `pkcs1  | `spki ]) ->
-              Ojs.set_prop_ascii (t_to_js x827) "type"
-                (match x828 with
+          fun (x776 : t) ->
+            fun (x777 : [ `pkcs1  | `spki ]) ->
+              Ojs.set_prop_ascii (t_to_js x776) "type"
+                (match x777 with
                  | `pkcs1 -> Ojs.string_to_js "pkcs1"
                  | `spki -> Ojs.string_to_js "spki")
         let (get_format : t -> 'PubF) =
-          fun (x829 : t) ->
-            Obj.magic (Ojs.get_prop_ascii (t_to_js x829) "format")
+          fun (x778 : t) ->
+            Obj.magic (Ojs.get_prop_ascii (t_to_js x778) "format")
         let (set_format : t -> 'PubF -> unit) =
-          fun (x830 : t) ->
-            fun (x831 : 'PubF) ->
-              Ojs.set_prop_ascii (t_to_js x830) "format" (Obj.magic x831)
+          fun (x779 : t) ->
+            fun (x780 : 'PubF) ->
+              Ojs.set_prop_ascii (t_to_js x779) "format" (Obj.magic x780)
       end
     module AnonymousInterface10 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x833 : Ojs.t) -> x833
-        and t_to_js : t -> Ojs.t = fun (x832 : Ojs.t) -> x832
+        let rec t_of_js : Ojs.t -> t = fun (x782 : Ojs.t) -> x782
+        and t_to_js : t -> Ojs.t = fun (x781 : Ojs.t) -> x781
         let (get_type : t -> [ `pkcs8  | `sec1 ]) =
-          fun (x834 : t) ->
-            let x835 = Ojs.get_prop_ascii (t_to_js x834) "type" in
-            match Ojs.string_of_js x835 with
+          fun (x783 : t) ->
+            let x784 = Ojs.get_prop_ascii (t_to_js x783) "type" in
+            match Ojs.string_of_js x784 with
             | "pkcs8" -> `pkcs8
             | "sec1" -> `sec1
             | _ -> assert false
         let (set_type : t -> [ `pkcs8  | `sec1 ] -> unit) =
-          fun (x836 : t) ->
-            fun (x837 : [ `pkcs8  | `sec1 ]) ->
-              Ojs.set_prop_ascii (t_to_js x836) "type"
-                (match x837 with
+          fun (x785 : t) ->
+            fun (x786 : [ `pkcs8  | `sec1 ]) ->
+              Ojs.set_prop_ascii (t_to_js x785) "type"
+                (match x786 with
                  | `pkcs8 -> Ojs.string_to_js "pkcs8"
                  | `sec1 -> Ojs.string_to_js "sec1")
       end
@@ -3305,141 +3234,141 @@ module Crypto =
         type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
           __T) ->
-          fun (__T_of_js : Ojs.t -> __T) -> fun (x839 : Ojs.t) -> x839
+          fun (__T_of_js : Ojs.t -> __T) -> fun (x788 : Ojs.t) -> x788
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) -> fun (x838 : Ojs.t) -> x838
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x787 : Ojs.t) -> x787
         let (get_format : 'T t -> 'T) =
-          fun (x840 : 'T t) ->
-            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x840) "format")
+          fun (x789 : 'T t) ->
+            Obj.magic (Ojs.get_prop_ascii (t_to_js Obj.magic x789) "format")
         let (set_format : 'T t -> 'T -> unit) =
-          fun (x842 : 'T t) ->
-            fun (x843 : 'T) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x842) "format"
-                (Obj.magic x843)
+          fun (x791 : 'T t) ->
+            fun (x792 : 'T) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x791) "format"
+                (Obj.magic x792)
         let (get_cipher : 'T t -> string) =
-          fun (x845 : 'T t) ->
+          fun (x794 : 'T t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x845) "cipher")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x794) "cipher")
         let (set_cipher : 'T t -> string -> unit) =
-          fun (x847 : 'T t) ->
-            fun (x848 : string) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x847) "cipher"
-                (Ojs.string_to_js x848)
+          fun (x796 : 'T t) ->
+            fun (x797 : string) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x796) "cipher"
+                (Ojs.string_to_js x797)
         let (get_passphrase : 'T t -> string) =
-          fun (x850 : 'T t) ->
+          fun (x799 : 'T t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x850) "passphrase")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x799) "passphrase")
         let (set_passphrase : 'T t -> string -> unit) =
-          fun (x852 : 'T t) ->
-            fun (x853 : string) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x852) "passphrase"
-                (Ojs.string_to_js x853)
+          fun (x801 : 'T t) ->
+            fun (x802 : string) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x801) "passphrase"
+                (Ojs.string_to_js x802)
       end
     module KeyPairKeyObjectResult =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x856 : Ojs.t) -> x856
-        and t_to_js : t -> Ojs.t = fun (x855 : Ojs.t) -> x855
+        let rec t_of_js : Ojs.t -> t = fun (x805 : Ojs.t) -> x805
+        and t_to_js : t -> Ojs.t = fun (x804 : Ojs.t) -> x804
         let (get_public_key : t -> KeyObject.t) =
-          fun (x857 : t) ->
-            KeyObject.t_of_js (Ojs.get_prop_ascii (t_to_js x857) "publicKey")
+          fun (x806 : t) ->
+            KeyObject.t_of_js (Ojs.get_prop_ascii (t_to_js x806) "publicKey")
         let (set_public_key : t -> KeyObject.t -> unit) =
-          fun (x858 : t) ->
-            fun (x859 : KeyObject.t) ->
-              Ojs.set_prop_ascii (t_to_js x858) "publicKey"
-                (KeyObject.t_to_js x859)
+          fun (x807 : t) ->
+            fun (x808 : KeyObject.t) ->
+              Ojs.set_prop_ascii (t_to_js x807) "publicKey"
+                (KeyObject.t_to_js x808)
         let (get_private_key : t -> KeyObject.t) =
-          fun (x860 : t) ->
+          fun (x809 : t) ->
             KeyObject.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x860) "privateKey")
+              (Ojs.get_prop_ascii (t_to_js x809) "privateKey")
         let (set_private_key : t -> KeyObject.t -> unit) =
-          fun (x861 : t) ->
-            fun (x862 : KeyObject.t) ->
-              Ojs.set_prop_ascii (t_to_js x861) "privateKey"
-                (KeyObject.t_to_js x862)
+          fun (x810 : t) ->
+            fun (x811 : KeyObject.t) ->
+              Ojs.set_prop_ascii (t_to_js x810) "privateKey"
+                (KeyObject.t_to_js x811)
       end
     module ED25519KeyPairKeyObjectOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x864 : Ojs.t) -> x864
-        and t_to_js : t -> Ojs.t = fun (x863 : Ojs.t) -> x863
+        let rec t_of_js : Ojs.t -> t = fun (x813 : Ojs.t) -> x813
+        and t_to_js : t -> Ojs.t = fun (x812 : Ojs.t) -> x812
       end
     module ED448KeyPairKeyObjectOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x866 : Ojs.t) -> x866
-        and t_to_js : t -> Ojs.t = fun (x865 : Ojs.t) -> x865
+        let rec t_of_js : Ojs.t -> t = fun (x815 : Ojs.t) -> x815
+        and t_to_js : t -> Ojs.t = fun (x814 : Ojs.t) -> x814
       end
     module X25519KeyPairKeyObjectOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x868 : Ojs.t) -> x868
-        and t_to_js : t -> Ojs.t = fun (x867 : Ojs.t) -> x867
+        let rec t_of_js : Ojs.t -> t = fun (x817 : Ojs.t) -> x817
+        and t_to_js : t -> Ojs.t = fun (x816 : Ojs.t) -> x816
       end
     module X448KeyPairKeyObjectOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x870 : Ojs.t) -> x870
-        and t_to_js : t -> Ojs.t = fun (x869 : Ojs.t) -> x869
+        let rec t_of_js : Ojs.t -> t = fun (x819 : Ojs.t) -> x819
+        and t_to_js : t -> Ojs.t = fun (x818 : Ojs.t) -> x818
       end
     module ECKeyPairKeyObjectOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x872 : Ojs.t) -> x872
-        and t_to_js : t -> Ojs.t = fun (x871 : Ojs.t) -> x871
+        let rec t_of_js : Ojs.t -> t = fun (x821 : Ojs.t) -> x821
+        and t_to_js : t -> Ojs.t = fun (x820 : Ojs.t) -> x820
         let (get_named_curve : t -> string) =
-          fun (x873 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x873) "namedCurve")
+          fun (x822 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x822) "namedCurve")
         let (set_named_curve : t -> string -> unit) =
-          fun (x874 : t) ->
-            fun (x875 : string) ->
-              Ojs.set_prop_ascii (t_to_js x874) "namedCurve"
-                (Ojs.string_to_js x875)
+          fun (x823 : t) ->
+            fun (x824 : string) ->
+              Ojs.set_prop_ascii (t_to_js x823) "namedCurve"
+                (Ojs.string_to_js x824)
       end
     module RSAKeyPairKeyObjectOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x877 : Ojs.t) -> x877
-        and t_to_js : t -> Ojs.t = fun (x876 : Ojs.t) -> x876
+        let rec t_of_js : Ojs.t -> t = fun (x826 : Ojs.t) -> x826
+        and t_to_js : t -> Ojs.t = fun (x825 : Ojs.t) -> x825
         let (get_modulus_length : t -> int) =
-          fun (x878 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x878) "modulusLength")
+          fun (x827 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x827) "modulusLength")
         let (set_modulus_length : t -> int -> unit) =
-          fun (x879 : t) ->
-            fun (x880 : int) ->
-              Ojs.set_prop_ascii (t_to_js x879) "modulusLength"
-                (Ojs.int_to_js x880)
+          fun (x828 : t) ->
+            fun (x829 : int) ->
+              Ojs.set_prop_ascii (t_to_js x828) "modulusLength"
+                (Ojs.int_to_js x829)
         let (get_public_exponent : t -> int) =
-          fun (x881 : t) ->
+          fun (x830 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x881) "publicExponent")
+              (Ojs.get_prop_ascii (t_to_js x830) "publicExponent")
         let (set_public_exponent : t -> int -> unit) =
-          fun (x882 : t) ->
-            fun (x883 : int) ->
-              Ojs.set_prop_ascii (t_to_js x882) "publicExponent"
-                (Ojs.int_to_js x883)
+          fun (x831 : t) ->
+            fun (x832 : int) ->
+              Ojs.set_prop_ascii (t_to_js x831) "publicExponent"
+                (Ojs.int_to_js x832)
       end
     module DSAKeyPairKeyObjectOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x885 : Ojs.t) -> x885
-        and t_to_js : t -> Ojs.t = fun (x884 : Ojs.t) -> x884
+        let rec t_of_js : Ojs.t -> t = fun (x834 : Ojs.t) -> x834
+        and t_to_js : t -> Ojs.t = fun (x833 : Ojs.t) -> x833
         let (get_modulus_length : t -> int) =
-          fun (x886 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x886) "modulusLength")
+          fun (x835 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x835) "modulusLength")
         let (set_modulus_length : t -> int -> unit) =
-          fun (x887 : t) ->
-            fun (x888 : int) ->
-              Ojs.set_prop_ascii (t_to_js x887) "modulusLength"
-                (Ojs.int_to_js x888)
+          fun (x836 : t) ->
+            fun (x837 : int) ->
+              Ojs.set_prop_ascii (t_to_js x836) "modulusLength"
+                (Ojs.int_to_js x837)
         let (get_divisor_length : t -> int) =
-          fun (x889 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x889) "divisorLength")
+          fun (x838 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x838) "divisorLength")
         let (set_divisor_length : t -> int -> unit) =
-          fun (x890 : t) ->
-            fun (x891 : int) ->
-              Ojs.set_prop_ascii (t_to_js x890) "divisorLength"
-                (Ojs.int_to_js x891)
+          fun (x839 : t) ->
+            fun (x840 : int) ->
+              Ojs.set_prop_ascii (t_to_js x839) "divisorLength"
+                (Ojs.int_to_js x840)
       end
     module RSAKeyPairOptions =
       struct
@@ -3451,7 +3380,7 @@ module Crypto =
           = fun (type __PubF) -> fun (type __PrivF) ->
           fun (__PubF_of_js : Ojs.t -> __PubF) ->
             fun (__PrivF_of_js : Ojs.t -> __PrivF) ->
-              fun (x893 : Ojs.t) -> x893
+              fun (x842 : Ojs.t) -> x842
         and t_to_js :
           'PubF 'PrivF .
             ('PubF -> Ojs.t) ->
@@ -3459,68 +3388,68 @@ module Crypto =
           = fun (type __PubF) -> fun (type __PrivF) ->
           fun (__PubF_to_js : __PubF -> Ojs.t) ->
             fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
-              fun (x892 : Ojs.t) -> x892
+              fun (x841 : Ojs.t) -> x841
         let (get_modulus_length : ('PubF, 'PrivF) t -> int) =
-          fun (x894 : ('PubF, 'PrivF) t) ->
+          fun (x843 : ('PubF, 'PrivF) t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x894)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x843)
                  "modulusLength")
         let (set_modulus_length : ('PubF, 'PrivF) t -> int -> unit) =
-          fun (x897 : ('PubF, 'PrivF) t) ->
-            fun (x898 : int) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x897)
-                "modulusLength" (Ojs.int_to_js x898)
+          fun (x846 : ('PubF, 'PrivF) t) ->
+            fun (x847 : int) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x846)
+                "modulusLength" (Ojs.int_to_js x847)
         let (get_public_exponent : ('PubF, 'PrivF) t -> int) =
-          fun (x901 : ('PubF, 'PrivF) t) ->
+          fun (x850 : ('PubF, 'PrivF) t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x901)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x850)
                  "publicExponent")
         let (set_public_exponent : ('PubF, 'PrivF) t -> int -> unit) =
-          fun (x904 : ('PubF, 'PrivF) t) ->
-            fun (x905 : int) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x904)
-                "publicExponent" (Ojs.int_to_js x905)
+          fun (x853 : ('PubF, 'PrivF) t) ->
+            fun (x854 : int) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x853)
+                "publicExponent" (Ojs.int_to_js x854)
         let (get_public_key_encoding :
           ('PubF, 'PrivF) t -> AnonymousInterface9.t) =
-          fun (x908 : ('PubF, 'PrivF) t) ->
+          fun (x857 : ('PubF, 'PrivF) t) ->
             AnonymousInterface9.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x908)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x857)
                  "publicKeyEncoding")
         let (set_public_key_encoding :
           ('PubF, 'PrivF) t -> AnonymousInterface9.t -> unit) =
-          fun (x911 : ('PubF, 'PrivF) t) ->
-            fun (x912 : AnonymousInterface9.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x911)
-                "publicKeyEncoding" (AnonymousInterface9.t_to_js x912)
+          fun (x860 : ('PubF, 'PrivF) t) ->
+            fun (x861 : AnonymousInterface9.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x860)
+                "publicKeyEncoding" (AnonymousInterface9.t_to_js x861)
         let (get_private_key_encoding :
           ('PubF, 'PrivF) t ->
             ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface8.t)
               intersection2)
           =
-          fun (x915 : ('PubF, 'PrivF) t) ->
+          fun (x864 : ('PubF, 'PrivF) t) ->
             intersection2_of_js
-              (fun (x918 : Ojs.t) ->
-                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x918)
+              (fun (x867 : Ojs.t) ->
+                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x867)
               AnonymousInterface8.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x915)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x864)
                  "privateKeyEncoding")
         let (set_private_key_encoding :
           ('PubF, 'PrivF) t ->
             ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface8.t)
               intersection2 -> unit)
           =
-          fun (x921 : ('PubF, 'PrivF) t) ->
+          fun (x870 : ('PubF, 'PrivF) t) ->
             fun
-              (x922 :
+              (x871 :
                 ('PrivF BasePrivateKeyEncodingOptions.t,
                   AnonymousInterface8.t) intersection2)
               ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x921)
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x870)
                 "privateKeyEncoding"
                 (intersection2_to_js
-                   (fun (x923 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
-                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x923)
-                   AnonymousInterface8.t_to_js x922)
+                   (fun (x872 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
+                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x872)
+                   AnonymousInterface8.t_to_js x871)
       end
     module DSAKeyPairOptions =
       struct
@@ -3532,7 +3461,7 @@ module Crypto =
           = fun (type __PubF) -> fun (type __PrivF) ->
           fun (__PubF_of_js : Ojs.t -> __PubF) ->
             fun (__PrivF_of_js : Ojs.t -> __PrivF) ->
-              fun (x929 : Ojs.t) -> x929
+              fun (x878 : Ojs.t) -> x878
         and t_to_js :
           'PubF 'PrivF .
             ('PubF -> Ojs.t) ->
@@ -3540,27 +3469,159 @@ module Crypto =
           = fun (type __PubF) -> fun (type __PrivF) ->
           fun (__PubF_to_js : __PubF -> Ojs.t) ->
             fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
-              fun (x928 : Ojs.t) -> x928
+              fun (x877 : Ojs.t) -> x877
         let (get_modulus_length : ('PubF, 'PrivF) t -> int) =
-          fun (x930 : ('PubF, 'PrivF) t) ->
+          fun (x879 : ('PubF, 'PrivF) t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x930)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x879)
                  "modulusLength")
         let (set_modulus_length : ('PubF, 'PrivF) t -> int -> unit) =
-          fun (x933 : ('PubF, 'PrivF) t) ->
-            fun (x934 : int) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x933)
-                "modulusLength" (Ojs.int_to_js x934)
+          fun (x882 : ('PubF, 'PrivF) t) ->
+            fun (x883 : int) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x882)
+                "modulusLength" (Ojs.int_to_js x883)
         let (get_divisor_length : ('PubF, 'PrivF) t -> int) =
-          fun (x937 : ('PubF, 'PrivF) t) ->
+          fun (x886 : ('PubF, 'PrivF) t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x937)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x886)
                  "divisorLength")
         let (set_divisor_length : ('PubF, 'PrivF) t -> int -> unit) =
-          fun (x940 : ('PubF, 'PrivF) t) ->
-            fun (x941 : int) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x940)
-                "divisorLength" (Ojs.int_to_js x941)
+          fun (x889 : ('PubF, 'PrivF) t) ->
+            fun (x890 : int) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x889)
+                "divisorLength" (Ojs.int_to_js x890)
+        let (get_public_key_encoding :
+          ('PubF, 'PrivF) t -> AnonymousInterface7.t) =
+          fun (x893 : ('PubF, 'PrivF) t) ->
+            AnonymousInterface7.t_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x893)
+                 "publicKeyEncoding")
+        let (set_public_key_encoding :
+          ('PubF, 'PrivF) t -> AnonymousInterface7.t -> unit) =
+          fun (x896 : ('PubF, 'PrivF) t) ->
+            fun (x897 : AnonymousInterface7.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x896)
+                "publicKeyEncoding" (AnonymousInterface7.t_to_js x897)
+        let (get_private_key_encoding :
+          ('PubF, 'PrivF) t ->
+            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
+              intersection2)
+          =
+          fun (x900 : ('PubF, 'PrivF) t) ->
+            intersection2_of_js
+              (fun (x903 : Ojs.t) ->
+                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x903)
+              AnonymousInterface6.t_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x900)
+                 "privateKeyEncoding")
+        let (set_private_key_encoding :
+          ('PubF, 'PrivF) t ->
+            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
+              intersection2 -> unit)
+          =
+          fun (x906 : ('PubF, 'PrivF) t) ->
+            fun
+              (x907 :
+                ('PrivF BasePrivateKeyEncodingOptions.t,
+                  AnonymousInterface6.t) intersection2)
+              ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x906)
+                "privateKeyEncoding"
+                (intersection2_to_js
+                   (fun (x908 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
+                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x908)
+                   AnonymousInterface6.t_to_js x907)
+      end
+    module ECKeyPairOptions =
+      struct
+        type ('PubF, 'PrivF) t = Ojs.t
+        let rec t_of_js :
+          'PubF 'PrivF .
+            (Ojs.t -> 'PubF) ->
+              (Ojs.t -> 'PrivF) -> Ojs.t -> ('PubF, 'PrivF) t
+          = fun (type __PubF) -> fun (type __PrivF) ->
+          fun (__PubF_of_js : Ojs.t -> __PubF) ->
+            fun (__PrivF_of_js : Ojs.t -> __PrivF) ->
+              fun (x914 : Ojs.t) -> x914
+        and t_to_js :
+          'PubF 'PrivF .
+            ('PubF -> Ojs.t) ->
+              ('PrivF -> Ojs.t) -> ('PubF, 'PrivF) t -> Ojs.t
+          = fun (type __PubF) -> fun (type __PrivF) ->
+          fun (__PubF_to_js : __PubF -> Ojs.t) ->
+            fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
+              fun (x913 : Ojs.t) -> x913
+        let (get_named_curve : ('PubF, 'PrivF) t -> string) =
+          fun (x915 : ('PubF, 'PrivF) t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x915)
+                 "namedCurve")
+        let (set_named_curve : ('PubF, 'PrivF) t -> string -> unit) =
+          fun (x918 : ('PubF, 'PrivF) t) ->
+            fun (x919 : string) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x918)
+                "namedCurve" (Ojs.string_to_js x919)
+        let (get_public_key_encoding :
+          ('PubF, 'PrivF) t -> AnonymousInterface9.t) =
+          fun (x922 : ('PubF, 'PrivF) t) ->
+            AnonymousInterface9.t_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x922)
+                 "publicKeyEncoding")
+        let (set_public_key_encoding :
+          ('PubF, 'PrivF) t -> AnonymousInterface9.t -> unit) =
+          fun (x925 : ('PubF, 'PrivF) t) ->
+            fun (x926 : AnonymousInterface9.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x925)
+                "publicKeyEncoding" (AnonymousInterface9.t_to_js x926)
+        let (get_private_key_encoding :
+          ('PubF, 'PrivF) t ->
+            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface10.t)
+              intersection2)
+          =
+          fun (x929 : ('PubF, 'PrivF) t) ->
+            intersection2_of_js
+              (fun (x932 : Ojs.t) ->
+                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x932)
+              AnonymousInterface10.t_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x929)
+                 "privateKeyEncoding")
+        let (set_private_key_encoding :
+          ('PubF, 'PrivF) t ->
+            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface10.t)
+              intersection2 -> unit)
+          =
+          fun (x935 : ('PubF, 'PrivF) t) ->
+            fun
+              (x936 :
+                ('PrivF BasePrivateKeyEncodingOptions.t,
+                  AnonymousInterface10.t) intersection2)
+              ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x935)
+                "privateKeyEncoding"
+                (intersection2_to_js
+                   (fun (x937 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
+                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x937)
+                   AnonymousInterface10.t_to_js x936)
+      end
+    module ED25519KeyPairOptions =
+      struct
+        type ('PubF, 'PrivF) t = Ojs.t
+        let rec t_of_js :
+          'PubF 'PrivF .
+            (Ojs.t -> 'PubF) ->
+              (Ojs.t -> 'PrivF) -> Ojs.t -> ('PubF, 'PrivF) t
+          = fun (type __PubF) -> fun (type __PrivF) ->
+          fun (__PubF_of_js : Ojs.t -> __PubF) ->
+            fun (__PrivF_of_js : Ojs.t -> __PrivF) ->
+              fun (x943 : Ojs.t) -> x943
+        and t_to_js :
+          'PubF 'PrivF .
+            ('PubF -> Ojs.t) ->
+              ('PrivF -> Ojs.t) -> ('PubF, 'PrivF) t -> Ojs.t
+          = fun (type __PubF) -> fun (type __PrivF) ->
+          fun (__PubF_to_js : __PubF -> Ojs.t) ->
+            fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
+              fun (x942 : Ojs.t) -> x942
         let (get_public_key_encoding :
           ('PubF, 'PrivF) t -> AnonymousInterface7.t) =
           fun (x944 : ('PubF, 'PrivF) t) ->
@@ -3603,7 +3664,7 @@ module Crypto =
                       BasePrivateKeyEncodingOptions.t_to_js Obj.magic x959)
                    AnonymousInterface6.t_to_js x958)
       end
-    module ECKeyPairOptions =
+    module ED448KeyPairOptions =
       struct
         type ('PubF, 'PrivF) t = Ojs.t
         let rec t_of_js :
@@ -3622,179 +3683,47 @@ module Crypto =
           fun (__PubF_to_js : __PubF -> Ojs.t) ->
             fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
               fun (x964 : Ojs.t) -> x964
-        let (get_named_curve : ('PubF, 'PrivF) t -> string) =
+        let (get_public_key_encoding :
+          ('PubF, 'PrivF) t -> AnonymousInterface7.t) =
           fun (x966 : ('PubF, 'PrivF) t) ->
-            Ojs.string_of_js
+            AnonymousInterface7.t_of_js
               (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x966)
-                 "namedCurve")
-        let (set_named_curve : ('PubF, 'PrivF) t -> string -> unit) =
+                 "publicKeyEncoding")
+        let (set_public_key_encoding :
+          ('PubF, 'PrivF) t -> AnonymousInterface7.t -> unit) =
           fun (x969 : ('PubF, 'PrivF) t) ->
-            fun (x970 : string) ->
+            fun (x970 : AnonymousInterface7.t) ->
               Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x969)
-                "namedCurve" (Ojs.string_to_js x970)
-        let (get_public_key_encoding :
-          ('PubF, 'PrivF) t -> AnonymousInterface9.t) =
+                "publicKeyEncoding" (AnonymousInterface7.t_to_js x970)
+        let (get_private_key_encoding :
+          ('PubF, 'PrivF) t ->
+            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
+              intersection2)
+          =
           fun (x973 : ('PubF, 'PrivF) t) ->
-            AnonymousInterface9.t_of_js
+            intersection2_of_js
+              (fun (x976 : Ojs.t) ->
+                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x976)
+              AnonymousInterface6.t_of_js
               (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x973)
-                 "publicKeyEncoding")
-        let (set_public_key_encoding :
-          ('PubF, 'PrivF) t -> AnonymousInterface9.t -> unit) =
-          fun (x976 : ('PubF, 'PrivF) t) ->
-            fun (x977 : AnonymousInterface9.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x976)
-                "publicKeyEncoding" (AnonymousInterface9.t_to_js x977)
-        let (get_private_key_encoding :
-          ('PubF, 'PrivF) t ->
-            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface10.t)
-              intersection2)
-          =
-          fun (x980 : ('PubF, 'PrivF) t) ->
-            intersection2_of_js
-              (fun (x983 : Ojs.t) ->
-                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x983)
-              AnonymousInterface10.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x980)
-                 "privateKeyEncoding")
-        let (set_private_key_encoding :
-          ('PubF, 'PrivF) t ->
-            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface10.t)
-              intersection2 -> unit)
-          =
-          fun (x986 : ('PubF, 'PrivF) t) ->
-            fun
-              (x987 :
-                ('PrivF BasePrivateKeyEncodingOptions.t,
-                  AnonymousInterface10.t) intersection2)
-              ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x986)
-                "privateKeyEncoding"
-                (intersection2_to_js
-                   (fun (x988 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
-                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x988)
-                   AnonymousInterface10.t_to_js x987)
-      end
-    module ED25519KeyPairOptions =
-      struct
-        type ('PubF, 'PrivF) t = Ojs.t
-        let rec t_of_js :
-          'PubF 'PrivF .
-            (Ojs.t -> 'PubF) ->
-              (Ojs.t -> 'PrivF) -> Ojs.t -> ('PubF, 'PrivF) t
-          = fun (type __PubF) -> fun (type __PrivF) ->
-          fun (__PubF_of_js : Ojs.t -> __PubF) ->
-            fun (__PrivF_of_js : Ojs.t -> __PrivF) ->
-              fun (x994 : Ojs.t) -> x994
-        and t_to_js :
-          'PubF 'PrivF .
-            ('PubF -> Ojs.t) ->
-              ('PrivF -> Ojs.t) -> ('PubF, 'PrivF) t -> Ojs.t
-          = fun (type __PubF) -> fun (type __PrivF) ->
-          fun (__PubF_to_js : __PubF -> Ojs.t) ->
-            fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
-              fun (x993 : Ojs.t) -> x993
-        let (get_public_key_encoding :
-          ('PubF, 'PrivF) t -> AnonymousInterface7.t) =
-          fun (x995 : ('PubF, 'PrivF) t) ->
-            AnonymousInterface7.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x995)
-                 "publicKeyEncoding")
-        let (set_public_key_encoding :
-          ('PubF, 'PrivF) t -> AnonymousInterface7.t -> unit) =
-          fun (x998 : ('PubF, 'PrivF) t) ->
-            fun (x999 : AnonymousInterface7.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x998)
-                "publicKeyEncoding" (AnonymousInterface7.t_to_js x999)
-        let (get_private_key_encoding :
-          ('PubF, 'PrivF) t ->
-            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
-              intersection2)
-          =
-          fun (x1002 : ('PubF, 'PrivF) t) ->
-            intersection2_of_js
-              (fun (x1005 : Ojs.t) ->
-                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x1005)
-              AnonymousInterface6.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1002)
                  "privateKeyEncoding")
         let (set_private_key_encoding :
           ('PubF, 'PrivF) t ->
             ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
               intersection2 -> unit)
           =
-          fun (x1008 : ('PubF, 'PrivF) t) ->
+          fun (x979 : ('PubF, 'PrivF) t) ->
             fun
-              (x1009 :
+              (x980 :
                 ('PrivF BasePrivateKeyEncodingOptions.t,
                   AnonymousInterface6.t) intersection2)
               ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1008)
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x979)
                 "privateKeyEncoding"
                 (intersection2_to_js
-                   (fun (x1010 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
-                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x1010)
-                   AnonymousInterface6.t_to_js x1009)
-      end
-    module ED448KeyPairOptions =
-      struct
-        type ('PubF, 'PrivF) t = Ojs.t
-        let rec t_of_js :
-          'PubF 'PrivF .
-            (Ojs.t -> 'PubF) ->
-              (Ojs.t -> 'PrivF) -> Ojs.t -> ('PubF, 'PrivF) t
-          = fun (type __PubF) -> fun (type __PrivF) ->
-          fun (__PubF_of_js : Ojs.t -> __PubF) ->
-            fun (__PrivF_of_js : Ojs.t -> __PrivF) ->
-              fun (x1016 : Ojs.t) -> x1016
-        and t_to_js :
-          'PubF 'PrivF .
-            ('PubF -> Ojs.t) ->
-              ('PrivF -> Ojs.t) -> ('PubF, 'PrivF) t -> Ojs.t
-          = fun (type __PubF) -> fun (type __PrivF) ->
-          fun (__PubF_to_js : __PubF -> Ojs.t) ->
-            fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
-              fun (x1015 : Ojs.t) -> x1015
-        let (get_public_key_encoding :
-          ('PubF, 'PrivF) t -> AnonymousInterface7.t) =
-          fun (x1017 : ('PubF, 'PrivF) t) ->
-            AnonymousInterface7.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1017)
-                 "publicKeyEncoding")
-        let (set_public_key_encoding :
-          ('PubF, 'PrivF) t -> AnonymousInterface7.t -> unit) =
-          fun (x1020 : ('PubF, 'PrivF) t) ->
-            fun (x1021 : AnonymousInterface7.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1020)
-                "publicKeyEncoding" (AnonymousInterface7.t_to_js x1021)
-        let (get_private_key_encoding :
-          ('PubF, 'PrivF) t ->
-            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
-              intersection2)
-          =
-          fun (x1024 : ('PubF, 'PrivF) t) ->
-            intersection2_of_js
-              (fun (x1027 : Ojs.t) ->
-                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x1027)
-              AnonymousInterface6.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1024)
-                 "privateKeyEncoding")
-        let (set_private_key_encoding :
-          ('PubF, 'PrivF) t ->
-            ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
-              intersection2 -> unit)
-          =
-          fun (x1030 : ('PubF, 'PrivF) t) ->
-            fun
-              (x1031 :
-                ('PrivF BasePrivateKeyEncodingOptions.t,
-                  AnonymousInterface6.t) intersection2)
-              ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1030)
-                "privateKeyEncoding"
-                (intersection2_to_js
-                   (fun (x1032 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
-                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x1032)
-                   AnonymousInterface6.t_to_js x1031)
+                   (fun (x981 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
+                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x981)
+                   AnonymousInterface6.t_to_js x980)
       end
     module X25519KeyPairOptions =
       struct
@@ -3806,7 +3735,7 @@ module Crypto =
           = fun (type __PubF) -> fun (type __PrivF) ->
           fun (__PubF_of_js : Ojs.t -> __PubF) ->
             fun (__PrivF_of_js : Ojs.t -> __PrivF) ->
-              fun (x1038 : Ojs.t) -> x1038
+              fun (x987 : Ojs.t) -> x987
         and t_to_js :
           'PubF 'PrivF .
             ('PubF -> Ojs.t) ->
@@ -3814,48 +3743,48 @@ module Crypto =
           = fun (type __PubF) -> fun (type __PrivF) ->
           fun (__PubF_to_js : __PubF -> Ojs.t) ->
             fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
-              fun (x1037 : Ojs.t) -> x1037
+              fun (x986 : Ojs.t) -> x986
         let (get_public_key_encoding :
           ('PubF, 'PrivF) t -> AnonymousInterface7.t) =
-          fun (x1039 : ('PubF, 'PrivF) t) ->
+          fun (x988 : ('PubF, 'PrivF) t) ->
             AnonymousInterface7.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1039)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x988)
                  "publicKeyEncoding")
         let (set_public_key_encoding :
           ('PubF, 'PrivF) t -> AnonymousInterface7.t -> unit) =
-          fun (x1042 : ('PubF, 'PrivF) t) ->
-            fun (x1043 : AnonymousInterface7.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1042)
-                "publicKeyEncoding" (AnonymousInterface7.t_to_js x1043)
+          fun (x991 : ('PubF, 'PrivF) t) ->
+            fun (x992 : AnonymousInterface7.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x991)
+                "publicKeyEncoding" (AnonymousInterface7.t_to_js x992)
         let (get_private_key_encoding :
           ('PubF, 'PrivF) t ->
             ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
               intersection2)
           =
-          fun (x1046 : ('PubF, 'PrivF) t) ->
+          fun (x995 : ('PubF, 'PrivF) t) ->
             intersection2_of_js
-              (fun (x1049 : Ojs.t) ->
-                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x1049)
+              (fun (x998 : Ojs.t) ->
+                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x998)
               AnonymousInterface6.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1046)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x995)
                  "privateKeyEncoding")
         let (set_private_key_encoding :
           ('PubF, 'PrivF) t ->
             ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
               intersection2 -> unit)
           =
-          fun (x1052 : ('PubF, 'PrivF) t) ->
+          fun (x1001 : ('PubF, 'PrivF) t) ->
             fun
-              (x1053 :
+              (x1002 :
                 ('PrivF BasePrivateKeyEncodingOptions.t,
                   AnonymousInterface6.t) intersection2)
               ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1052)
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1001)
                 "privateKeyEncoding"
                 (intersection2_to_js
-                   (fun (x1054 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
-                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x1054)
-                   AnonymousInterface6.t_to_js x1053)
+                   (fun (x1003 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
+                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x1003)
+                   AnonymousInterface6.t_to_js x1002)
       end
     module X448KeyPairOptions =
       struct
@@ -3867,7 +3796,7 @@ module Crypto =
           = fun (type __PubF) -> fun (type __PrivF) ->
           fun (__PubF_of_js : Ojs.t -> __PubF) ->
             fun (__PrivF_of_js : Ojs.t -> __PrivF) ->
-              fun (x1060 : Ojs.t) -> x1060
+              fun (x1009 : Ojs.t) -> x1009
         and t_to_js :
           'PubF 'PrivF .
             ('PubF -> Ojs.t) ->
@@ -3875,48 +3804,48 @@ module Crypto =
           = fun (type __PubF) -> fun (type __PrivF) ->
           fun (__PubF_to_js : __PubF -> Ojs.t) ->
             fun (__PrivF_to_js : __PrivF -> Ojs.t) ->
-              fun (x1059 : Ojs.t) -> x1059
+              fun (x1008 : Ojs.t) -> x1008
         let (get_public_key_encoding :
           ('PubF, 'PrivF) t -> AnonymousInterface7.t) =
-          fun (x1061 : ('PubF, 'PrivF) t) ->
+          fun (x1010 : ('PubF, 'PrivF) t) ->
             AnonymousInterface7.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1061)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1010)
                  "publicKeyEncoding")
         let (set_public_key_encoding :
           ('PubF, 'PrivF) t -> AnonymousInterface7.t -> unit) =
-          fun (x1064 : ('PubF, 'PrivF) t) ->
-            fun (x1065 : AnonymousInterface7.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1064)
-                "publicKeyEncoding" (AnonymousInterface7.t_to_js x1065)
+          fun (x1013 : ('PubF, 'PrivF) t) ->
+            fun (x1014 : AnonymousInterface7.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1013)
+                "publicKeyEncoding" (AnonymousInterface7.t_to_js x1014)
         let (get_private_key_encoding :
           ('PubF, 'PrivF) t ->
             ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
               intersection2)
           =
-          fun (x1068 : ('PubF, 'PrivF) t) ->
+          fun (x1017 : ('PubF, 'PrivF) t) ->
             intersection2_of_js
-              (fun (x1071 : Ojs.t) ->
-                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x1071)
+              (fun (x1020 : Ojs.t) ->
+                 BasePrivateKeyEncodingOptions.t_of_js Obj.magic x1020)
               AnonymousInterface6.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1068)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1017)
                  "privateKeyEncoding")
         let (set_private_key_encoding :
           ('PubF, 'PrivF) t ->
             ('PrivF BasePrivateKeyEncodingOptions.t, AnonymousInterface6.t)
               intersection2 -> unit)
           =
-          fun (x1074 : ('PubF, 'PrivF) t) ->
+          fun (x1023 : ('PubF, 'PrivF) t) ->
             fun
-              (x1075 :
+              (x1024 :
                 ('PrivF BasePrivateKeyEncodingOptions.t,
                   AnonymousInterface6.t) intersection2)
               ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1074)
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1023)
                 "privateKeyEncoding"
                 (intersection2_to_js
-                   (fun (x1076 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
-                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x1076)
-                   AnonymousInterface6.t_to_js x1075)
+                   (fun (x1025 : 'PrivF BasePrivateKeyEncodingOptions.t) ->
+                      BasePrivateKeyEncodingOptions.t_to_js Obj.magic x1025)
+                   AnonymousInterface6.t_to_js x1024)
       end
     module KeyPairSyncResult =
       struct
@@ -3925,627 +3854,627 @@ module Crypto =
           'T1 'T2 . (Ojs.t -> 'T1) -> (Ojs.t -> 'T2) -> Ojs.t -> ('T1, 'T2) t
           = fun (type __T1) -> fun (type __T2) ->
           fun (__T1_of_js : Ojs.t -> __T1) ->
-            fun (__T2_of_js : Ojs.t -> __T2) -> fun (x1082 : Ojs.t) -> x1082
+            fun (__T2_of_js : Ojs.t -> __T2) -> fun (x1031 : Ojs.t) -> x1031
         and t_to_js :
           'T1 'T2 . ('T1 -> Ojs.t) -> ('T2 -> Ojs.t) -> ('T1, 'T2) t -> Ojs.t
           = fun (type __T1) -> fun (type __T2) ->
           fun (__T1_to_js : __T1 -> Ojs.t) ->
-            fun (__T2_to_js : __T2 -> Ojs.t) -> fun (x1081 : Ojs.t) -> x1081
+            fun (__T2_to_js : __T2 -> Ojs.t) -> fun (x1030 : Ojs.t) -> x1030
         let (get_public_key : ('T1, 'T2) t -> 'T1) =
-          fun (x1083 : ('T1, 'T2) t) ->
+          fun (x1032 : ('T1, 'T2) t) ->
             Obj.magic
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1083)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1032)
                  "publicKey")
         let (set_public_key : ('T1, 'T2) t -> 'T1 -> unit) =
-          fun (x1086 : ('T1, 'T2) t) ->
-            fun (x1087 : 'T1) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1086)
-                "publicKey" (Obj.magic x1087)
+          fun (x1035 : ('T1, 'T2) t) ->
+            fun (x1036 : 'T1) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1035)
+                "publicKey" (Obj.magic x1036)
         let (get_private_key : ('T1, 'T2) t -> 'T2) =
-          fun (x1090 : ('T1, 'T2) t) ->
+          fun (x1039 : ('T1, 'T2) t) ->
             Obj.magic
-              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1090)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic Obj.magic x1039)
                  "privateKey")
         let (set_private_key : ('T1, 'T2) t -> 'T2 -> unit) =
-          fun (x1093 : ('T1, 'T2) t) ->
-            fun (x1094 : 'T2) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1093)
-                "privateKey" (Obj.magic x1094)
+          fun (x1042 : ('T1, 'T2) t) ->
+            fun (x1043 : 'T2) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic Obj.magic x1042)
+                "privateKey" (Obj.magic x1043)
       end
     let (generate_key_pair_sync :
       type_:[ `rsa ] ->
         options:([ `pem ], [ `pem ]) RSAKeyPairOptions.t ->
           (string, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1097 : [ `rsa ]) ->
-        fun ~options:(x1098 : ([ `pem ], [ `pem ]) RSAKeyPairOptions.t) ->
+      fun ~type_:(x1046 : [ `rsa ]) ->
+        fun ~options:(x1047 : ([ `pem ], [ `pem ]) RSAKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1097 with | `rsa -> Ojs.string_to_js "rsa"));(
+               [|((match x1046 with | `rsa -> Ojs.string_to_js "rsa"));(
                  RSAKeyPairOptions.t_to_js
-                   (fun (x1099 : [ `pem ]) ->
-                      match x1099 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1100 : [ `pem ]) ->
-                      match x1100 with | `pem -> Ojs.string_to_js "pem")
-                   x1098)|])
+                   (fun (x1048 : [ `pem ]) ->
+                      match x1048 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1049 : [ `pem ]) ->
+                      match x1049 with | `pem -> Ojs.string_to_js "pem")
+                   x1047)|])
     let (generate_key_pair_sync :
       type_:[ `rsa ] ->
         options:([ `pem ], [ `der ]) RSAKeyPairOptions.t ->
           (string, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1103 : [ `rsa ]) ->
-        fun ~options:(x1104 : ([ `pem ], [ `der ]) RSAKeyPairOptions.t) ->
+      fun ~type_:(x1052 : [ `rsa ]) ->
+        fun ~options:(x1053 : ([ `pem ], [ `der ]) RSAKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1103 with | `rsa -> Ojs.string_to_js "rsa"));(
+               [|((match x1052 with | `rsa -> Ojs.string_to_js "rsa"));(
                  RSAKeyPairOptions.t_to_js
-                   (fun (x1105 : [ `pem ]) ->
-                      match x1105 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1106 : [ `der ]) ->
-                      match x1106 with | `der -> Ojs.string_to_js "der")
-                   x1104)|])
+                   (fun (x1054 : [ `pem ]) ->
+                      match x1054 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1055 : [ `der ]) ->
+                      match x1055 with | `der -> Ojs.string_to_js "der")
+                   x1053)|])
     let (generate_key_pair_sync :
       type_:[ `rsa ] ->
         options:([ `der ], [ `pem ]) RSAKeyPairOptions.t ->
           (Buffer.t, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1109 : [ `rsa ]) ->
-        fun ~options:(x1110 : ([ `der ], [ `pem ]) RSAKeyPairOptions.t) ->
+      fun ~type_:(x1058 : [ `rsa ]) ->
+        fun ~options:(x1059 : ([ `der ], [ `pem ]) RSAKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1109 with | `rsa -> Ojs.string_to_js "rsa"));(
+               [|((match x1058 with | `rsa -> Ojs.string_to_js "rsa"));(
                  RSAKeyPairOptions.t_to_js
-                   (fun (x1111 : [ `der ]) ->
-                      match x1111 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1112 : [ `pem ]) ->
-                      match x1112 with | `pem -> Ojs.string_to_js "pem")
-                   x1110)|])
+                   (fun (x1060 : [ `der ]) ->
+                      match x1060 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1061 : [ `pem ]) ->
+                      match x1061 with | `pem -> Ojs.string_to_js "pem")
+                   x1059)|])
     let (generate_key_pair_sync :
       type_:[ `rsa ] ->
         options:([ `der ], [ `der ]) RSAKeyPairOptions.t ->
           (Buffer.t, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1115 : [ `rsa ]) ->
-        fun ~options:(x1116 : ([ `der ], [ `der ]) RSAKeyPairOptions.t) ->
+      fun ~type_:(x1064 : [ `rsa ]) ->
+        fun ~options:(x1065 : ([ `der ], [ `der ]) RSAKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1115 with | `rsa -> Ojs.string_to_js "rsa"));(
+               [|((match x1064 with | `rsa -> Ojs.string_to_js "rsa"));(
                  RSAKeyPairOptions.t_to_js
-                   (fun (x1117 : [ `der ]) ->
-                      match x1117 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1118 : [ `der ]) ->
-                      match x1118 with | `der -> Ojs.string_to_js "der")
-                   x1116)|])
+                   (fun (x1066 : [ `der ]) ->
+                      match x1066 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1067 : [ `der ]) ->
+                      match x1067 with | `der -> Ojs.string_to_js "der")
+                   x1065)|])
     let (generate_key_pair_sync :
       type_:[ `rsa ] ->
         options:RSAKeyPairKeyObjectOptions.t -> KeyPairKeyObjectResult.t)
       =
-      fun ~type_:(x1121 : [ `rsa ]) ->
-        fun ~options:(x1122 : RSAKeyPairKeyObjectOptions.t) ->
+      fun ~type_:(x1070 : [ `rsa ]) ->
+        fun ~options:(x1071 : RSAKeyPairKeyObjectOptions.t) ->
           KeyPairKeyObjectResult.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1121 with | `rsa -> Ojs.string_to_js "rsa"));(
-                 RSAKeyPairKeyObjectOptions.t_to_js x1122)|])
+               [|((match x1070 with | `rsa -> Ojs.string_to_js "rsa"));(
+                 RSAKeyPairKeyObjectOptions.t_to_js x1071)|])
     let (generate_key_pair_sync :
       type_:[ `dsa ] ->
         options:([ `pem ], [ `pem ]) DSAKeyPairOptions.t ->
           (string, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1123 : [ `dsa ]) ->
-        fun ~options:(x1124 : ([ `pem ], [ `pem ]) DSAKeyPairOptions.t) ->
+      fun ~type_:(x1072 : [ `dsa ]) ->
+        fun ~options:(x1073 : ([ `pem ], [ `pem ]) DSAKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1123 with | `dsa -> Ojs.string_to_js "dsa"));(
+               [|((match x1072 with | `dsa -> Ojs.string_to_js "dsa"));(
                  DSAKeyPairOptions.t_to_js
-                   (fun (x1125 : [ `pem ]) ->
-                      match x1125 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1126 : [ `pem ]) ->
-                      match x1126 with | `pem -> Ojs.string_to_js "pem")
-                   x1124)|])
+                   (fun (x1074 : [ `pem ]) ->
+                      match x1074 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1075 : [ `pem ]) ->
+                      match x1075 with | `pem -> Ojs.string_to_js "pem")
+                   x1073)|])
     let (generate_key_pair_sync :
       type_:[ `dsa ] ->
         options:([ `pem ], [ `der ]) DSAKeyPairOptions.t ->
           (string, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1129 : [ `dsa ]) ->
-        fun ~options:(x1130 : ([ `pem ], [ `der ]) DSAKeyPairOptions.t) ->
+      fun ~type_:(x1078 : [ `dsa ]) ->
+        fun ~options:(x1079 : ([ `pem ], [ `der ]) DSAKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1129 with | `dsa -> Ojs.string_to_js "dsa"));(
+               [|((match x1078 with | `dsa -> Ojs.string_to_js "dsa"));(
                  DSAKeyPairOptions.t_to_js
-                   (fun (x1131 : [ `pem ]) ->
-                      match x1131 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1132 : [ `der ]) ->
-                      match x1132 with | `der -> Ojs.string_to_js "der")
-                   x1130)|])
+                   (fun (x1080 : [ `pem ]) ->
+                      match x1080 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1081 : [ `der ]) ->
+                      match x1081 with | `der -> Ojs.string_to_js "der")
+                   x1079)|])
     let (generate_key_pair_sync :
       type_:[ `dsa ] ->
         options:([ `der ], [ `pem ]) DSAKeyPairOptions.t ->
           (Buffer.t, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1135 : [ `dsa ]) ->
-        fun ~options:(x1136 : ([ `der ], [ `pem ]) DSAKeyPairOptions.t) ->
+      fun ~type_:(x1084 : [ `dsa ]) ->
+        fun ~options:(x1085 : ([ `der ], [ `pem ]) DSAKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1135 with | `dsa -> Ojs.string_to_js "dsa"));(
+               [|((match x1084 with | `dsa -> Ojs.string_to_js "dsa"));(
                  DSAKeyPairOptions.t_to_js
-                   (fun (x1137 : [ `der ]) ->
-                      match x1137 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1138 : [ `pem ]) ->
-                      match x1138 with | `pem -> Ojs.string_to_js "pem")
-                   x1136)|])
+                   (fun (x1086 : [ `der ]) ->
+                      match x1086 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1087 : [ `pem ]) ->
+                      match x1087 with | `pem -> Ojs.string_to_js "pem")
+                   x1085)|])
     let (generate_key_pair_sync :
       type_:[ `dsa ] ->
         options:([ `der ], [ `der ]) DSAKeyPairOptions.t ->
           (Buffer.t, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1141 : [ `dsa ]) ->
-        fun ~options:(x1142 : ([ `der ], [ `der ]) DSAKeyPairOptions.t) ->
+      fun ~type_:(x1090 : [ `dsa ]) ->
+        fun ~options:(x1091 : ([ `der ], [ `der ]) DSAKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1141 with | `dsa -> Ojs.string_to_js "dsa"));(
+               [|((match x1090 with | `dsa -> Ojs.string_to_js "dsa"));(
                  DSAKeyPairOptions.t_to_js
-                   (fun (x1143 : [ `der ]) ->
-                      match x1143 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1144 : [ `der ]) ->
-                      match x1144 with | `der -> Ojs.string_to_js "der")
-                   x1142)|])
+                   (fun (x1092 : [ `der ]) ->
+                      match x1092 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1093 : [ `der ]) ->
+                      match x1093 with | `der -> Ojs.string_to_js "der")
+                   x1091)|])
     let (generate_key_pair_sync :
       type_:[ `dsa ] ->
         options:DSAKeyPairKeyObjectOptions.t -> KeyPairKeyObjectResult.t)
       =
-      fun ~type_:(x1147 : [ `dsa ]) ->
-        fun ~options:(x1148 : DSAKeyPairKeyObjectOptions.t) ->
+      fun ~type_:(x1096 : [ `dsa ]) ->
+        fun ~options:(x1097 : DSAKeyPairKeyObjectOptions.t) ->
           KeyPairKeyObjectResult.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1147 with | `dsa -> Ojs.string_to_js "dsa"));(
-                 DSAKeyPairKeyObjectOptions.t_to_js x1148)|])
+               [|((match x1096 with | `dsa -> Ojs.string_to_js "dsa"));(
+                 DSAKeyPairKeyObjectOptions.t_to_js x1097)|])
     let (generate_key_pair_sync :
       type_:[ `ec ] ->
         options:([ `pem ], [ `pem ]) ECKeyPairOptions.t ->
           (string, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1149 : [ `ec ]) ->
-        fun ~options:(x1150 : ([ `pem ], [ `pem ]) ECKeyPairOptions.t) ->
+      fun ~type_:(x1098 : [ `ec ]) ->
+        fun ~options:(x1099 : ([ `pem ], [ `pem ]) ECKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1149 with | `ec -> Ojs.string_to_js "ec"));(
+               [|((match x1098 with | `ec -> Ojs.string_to_js "ec"));(
                  ECKeyPairOptions.t_to_js
-                   (fun (x1151 : [ `pem ]) ->
-                      match x1151 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1152 : [ `pem ]) ->
-                      match x1152 with | `pem -> Ojs.string_to_js "pem")
-                   x1150)|])
+                   (fun (x1100 : [ `pem ]) ->
+                      match x1100 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1101 : [ `pem ]) ->
+                      match x1101 with | `pem -> Ojs.string_to_js "pem")
+                   x1099)|])
     let (generate_key_pair_sync :
       type_:[ `ec ] ->
         options:([ `pem ], [ `der ]) ECKeyPairOptions.t ->
           (string, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1155 : [ `ec ]) ->
-        fun ~options:(x1156 : ([ `pem ], [ `der ]) ECKeyPairOptions.t) ->
+      fun ~type_:(x1104 : [ `ec ]) ->
+        fun ~options:(x1105 : ([ `pem ], [ `der ]) ECKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1155 with | `ec -> Ojs.string_to_js "ec"));(
+               [|((match x1104 with | `ec -> Ojs.string_to_js "ec"));(
                  ECKeyPairOptions.t_to_js
-                   (fun (x1157 : [ `pem ]) ->
-                      match x1157 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1158 : [ `der ]) ->
-                      match x1158 with | `der -> Ojs.string_to_js "der")
-                   x1156)|])
+                   (fun (x1106 : [ `pem ]) ->
+                      match x1106 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1107 : [ `der ]) ->
+                      match x1107 with | `der -> Ojs.string_to_js "der")
+                   x1105)|])
     let (generate_key_pair_sync :
       type_:[ `ec ] ->
         options:([ `der ], [ `pem ]) ECKeyPairOptions.t ->
           (Buffer.t, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1161 : [ `ec ]) ->
-        fun ~options:(x1162 : ([ `der ], [ `pem ]) ECKeyPairOptions.t) ->
+      fun ~type_:(x1110 : [ `ec ]) ->
+        fun ~options:(x1111 : ([ `der ], [ `pem ]) ECKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1161 with | `ec -> Ojs.string_to_js "ec"));(
+               [|((match x1110 with | `ec -> Ojs.string_to_js "ec"));(
                  ECKeyPairOptions.t_to_js
-                   (fun (x1163 : [ `der ]) ->
-                      match x1163 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1164 : [ `pem ]) ->
-                      match x1164 with | `pem -> Ojs.string_to_js "pem")
-                   x1162)|])
+                   (fun (x1112 : [ `der ]) ->
+                      match x1112 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1113 : [ `pem ]) ->
+                      match x1113 with | `pem -> Ojs.string_to_js "pem")
+                   x1111)|])
     let (generate_key_pair_sync :
       type_:[ `ec ] ->
         options:([ `der ], [ `der ]) ECKeyPairOptions.t ->
           (Buffer.t, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1167 : [ `ec ]) ->
-        fun ~options:(x1168 : ([ `der ], [ `der ]) ECKeyPairOptions.t) ->
+      fun ~type_:(x1116 : [ `ec ]) ->
+        fun ~options:(x1117 : ([ `der ], [ `der ]) ECKeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1167 with | `ec -> Ojs.string_to_js "ec"));(
+               [|((match x1116 with | `ec -> Ojs.string_to_js "ec"));(
                  ECKeyPairOptions.t_to_js
-                   (fun (x1169 : [ `der ]) ->
-                      match x1169 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1170 : [ `der ]) ->
-                      match x1170 with | `der -> Ojs.string_to_js "der")
-                   x1168)|])
+                   (fun (x1118 : [ `der ]) ->
+                      match x1118 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1119 : [ `der ]) ->
+                      match x1119 with | `der -> Ojs.string_to_js "der")
+                   x1117)|])
     let (generate_key_pair_sync :
       type_:[ `ec ] ->
         options:ECKeyPairKeyObjectOptions.t -> KeyPairKeyObjectResult.t)
       =
-      fun ~type_:(x1173 : [ `ec ]) ->
-        fun ~options:(x1174 : ECKeyPairKeyObjectOptions.t) ->
+      fun ~type_:(x1122 : [ `ec ]) ->
+        fun ~options:(x1123 : ECKeyPairKeyObjectOptions.t) ->
           KeyPairKeyObjectResult.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1173 with | `ec -> Ojs.string_to_js "ec"));(
-                 ECKeyPairKeyObjectOptions.t_to_js x1174)|])
+               [|((match x1122 with | `ec -> Ojs.string_to_js "ec"));(
+                 ECKeyPairKeyObjectOptions.t_to_js x1123)|])
     let (generate_key_pair_sync :
       type_:[ `ed25519 ] ->
         options:([ `pem ], [ `pem ]) ED25519KeyPairOptions.t ->
           (string, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1175 : [ `ed25519 ]) ->
-        fun ~options:(x1176 : ([ `pem ], [ `pem ]) ED25519KeyPairOptions.t)
+      fun ~type_:(x1124 : [ `ed25519 ]) ->
+        fun ~options:(x1125 : ([ `pem ], [ `pem ]) ED25519KeyPairOptions.t)
           ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1175 with | `ed25519 -> Ojs.string_to_js "ed25519"));(
+               [|((match x1124 with | `ed25519 -> Ojs.string_to_js "ed25519"));(
                  ED25519KeyPairOptions.t_to_js
-                   (fun (x1177 : [ `pem ]) ->
-                      match x1177 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1178 : [ `pem ]) ->
-                      match x1178 with | `pem -> Ojs.string_to_js "pem")
-                   x1176)|])
+                   (fun (x1126 : [ `pem ]) ->
+                      match x1126 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1127 : [ `pem ]) ->
+                      match x1127 with | `pem -> Ojs.string_to_js "pem")
+                   x1125)|])
     let (generate_key_pair_sync :
       type_:[ `ed25519 ] ->
         options:([ `pem ], [ `der ]) ED25519KeyPairOptions.t ->
           (string, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1181 : [ `ed25519 ]) ->
-        fun ~options:(x1182 : ([ `pem ], [ `der ]) ED25519KeyPairOptions.t)
+      fun ~type_:(x1130 : [ `ed25519 ]) ->
+        fun ~options:(x1131 : ([ `pem ], [ `der ]) ED25519KeyPairOptions.t)
           ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1181 with | `ed25519 -> Ojs.string_to_js "ed25519"));(
+               [|((match x1130 with | `ed25519 -> Ojs.string_to_js "ed25519"));(
                  ED25519KeyPairOptions.t_to_js
-                   (fun (x1183 : [ `pem ]) ->
-                      match x1183 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1184 : [ `der ]) ->
-                      match x1184 with | `der -> Ojs.string_to_js "der")
-                   x1182)|])
+                   (fun (x1132 : [ `pem ]) ->
+                      match x1132 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1133 : [ `der ]) ->
+                      match x1133 with | `der -> Ojs.string_to_js "der")
+                   x1131)|])
     let (generate_key_pair_sync :
       type_:[ `ed25519 ] ->
         options:([ `der ], [ `pem ]) ED25519KeyPairOptions.t ->
           (Buffer.t, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1187 : [ `ed25519 ]) ->
-        fun ~options:(x1188 : ([ `der ], [ `pem ]) ED25519KeyPairOptions.t)
+      fun ~type_:(x1136 : [ `ed25519 ]) ->
+        fun ~options:(x1137 : ([ `der ], [ `pem ]) ED25519KeyPairOptions.t)
           ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1187 with | `ed25519 -> Ojs.string_to_js "ed25519"));(
+               [|((match x1136 with | `ed25519 -> Ojs.string_to_js "ed25519"));(
                  ED25519KeyPairOptions.t_to_js
-                   (fun (x1189 : [ `der ]) ->
-                      match x1189 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1190 : [ `pem ]) ->
-                      match x1190 with | `pem -> Ojs.string_to_js "pem")
-                   x1188)|])
+                   (fun (x1138 : [ `der ]) ->
+                      match x1138 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1139 : [ `pem ]) ->
+                      match x1139 with | `pem -> Ojs.string_to_js "pem")
+                   x1137)|])
     let (generate_key_pair_sync :
       type_:[ `ed25519 ] ->
         options:([ `der ], [ `der ]) ED25519KeyPairOptions.t ->
           (Buffer.t, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1193 : [ `ed25519 ]) ->
-        fun ~options:(x1194 : ([ `der ], [ `der ]) ED25519KeyPairOptions.t)
+      fun ~type_:(x1142 : [ `ed25519 ]) ->
+        fun ~options:(x1143 : ([ `der ], [ `der ]) ED25519KeyPairOptions.t)
           ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1193 with | `ed25519 -> Ojs.string_to_js "ed25519"));(
+               [|((match x1142 with | `ed25519 -> Ojs.string_to_js "ed25519"));(
                  ED25519KeyPairOptions.t_to_js
-                   (fun (x1195 : [ `der ]) ->
-                      match x1195 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1196 : [ `der ]) ->
-                      match x1196 with | `der -> Ojs.string_to_js "der")
-                   x1194)|])
+                   (fun (x1144 : [ `der ]) ->
+                      match x1144 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1145 : [ `der ]) ->
+                      match x1145 with | `der -> Ojs.string_to_js "der")
+                   x1143)|])
     let (generate_key_pair_sync :
       type_:[ `ed25519 ] ->
         ?options:ED25519KeyPairKeyObjectOptions.t ->
           unit -> KeyPairKeyObjectResult.t)
       =
-      fun ~type_:(x1199 : [ `ed25519 ]) ->
-        fun ?options:(x1200 : ED25519KeyPairKeyObjectOptions.t option) ->
+      fun ~type_:(x1148 : [ `ed25519 ]) ->
+        fun ?options:(x1149 : ED25519KeyPairKeyObjectOptions.t option) ->
           fun () ->
             KeyPairKeyObjectResult.t_of_js
-              (let x1203 = Import.crypto in
-               Ojs.call (Ojs.get_prop_ascii x1203 "generateKeyPairSync")
+              (let x1152 = Import.crypto in
+               Ojs.call (Ojs.get_prop_ascii x1152 "generateKeyPairSync")
                  "apply"
-                 [|x1203;((let x1201 =
+                 [|x1152;((let x1150 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1201 "push"
-                                [|((match x1199 with
+                             (Ojs.call x1150 "push"
+                                [|((match x1148 with
                                     | `ed25519 -> Ojs.string_to_js "ed25519"))|]);
-                           (match x1200 with
-                            | Some x1202 ->
+                           (match x1149 with
+                            | Some x1151 ->
                                 ignore
-                                  (Ojs.call x1201 "push"
+                                  (Ojs.call x1150 "push"
                                      [|(ED25519KeyPairKeyObjectOptions.t_to_js
-                                          x1202)|])
+                                          x1151)|])
                             | None -> ());
-                           x1201))|])
+                           x1150))|])
     let (generate_key_pair_sync :
       type_:[ `ed448 ] ->
         options:([ `pem ], [ `pem ]) ED448KeyPairOptions.t ->
           (string, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1204 : [ `ed448 ]) ->
-        fun ~options:(x1205 : ([ `pem ], [ `pem ]) ED448KeyPairOptions.t) ->
+      fun ~type_:(x1153 : [ `ed448 ]) ->
+        fun ~options:(x1154 : ([ `pem ], [ `pem ]) ED448KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1204 with | `ed448 -> Ojs.string_to_js "ed448"));(
+               [|((match x1153 with | `ed448 -> Ojs.string_to_js "ed448"));(
                  ED448KeyPairOptions.t_to_js
-                   (fun (x1206 : [ `pem ]) ->
-                      match x1206 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1207 : [ `pem ]) ->
-                      match x1207 with | `pem -> Ojs.string_to_js "pem")
-                   x1205)|])
+                   (fun (x1155 : [ `pem ]) ->
+                      match x1155 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1156 : [ `pem ]) ->
+                      match x1156 with | `pem -> Ojs.string_to_js "pem")
+                   x1154)|])
     let (generate_key_pair_sync :
       type_:[ `ed448 ] ->
         options:([ `pem ], [ `der ]) ED448KeyPairOptions.t ->
           (string, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1210 : [ `ed448 ]) ->
-        fun ~options:(x1211 : ([ `pem ], [ `der ]) ED448KeyPairOptions.t) ->
+      fun ~type_:(x1159 : [ `ed448 ]) ->
+        fun ~options:(x1160 : ([ `pem ], [ `der ]) ED448KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1210 with | `ed448 -> Ojs.string_to_js "ed448"));(
+               [|((match x1159 with | `ed448 -> Ojs.string_to_js "ed448"));(
                  ED448KeyPairOptions.t_to_js
-                   (fun (x1212 : [ `pem ]) ->
-                      match x1212 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1213 : [ `der ]) ->
-                      match x1213 with | `der -> Ojs.string_to_js "der")
-                   x1211)|])
+                   (fun (x1161 : [ `pem ]) ->
+                      match x1161 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1162 : [ `der ]) ->
+                      match x1162 with | `der -> Ojs.string_to_js "der")
+                   x1160)|])
     let (generate_key_pair_sync :
       type_:[ `ed448 ] ->
         options:([ `der ], [ `pem ]) ED448KeyPairOptions.t ->
           (Buffer.t, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1216 : [ `ed448 ]) ->
-        fun ~options:(x1217 : ([ `der ], [ `pem ]) ED448KeyPairOptions.t) ->
+      fun ~type_:(x1165 : [ `ed448 ]) ->
+        fun ~options:(x1166 : ([ `der ], [ `pem ]) ED448KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1216 with | `ed448 -> Ojs.string_to_js "ed448"));(
+               [|((match x1165 with | `ed448 -> Ojs.string_to_js "ed448"));(
                  ED448KeyPairOptions.t_to_js
-                   (fun (x1218 : [ `der ]) ->
-                      match x1218 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1219 : [ `pem ]) ->
-                      match x1219 with | `pem -> Ojs.string_to_js "pem")
-                   x1217)|])
+                   (fun (x1167 : [ `der ]) ->
+                      match x1167 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1168 : [ `pem ]) ->
+                      match x1168 with | `pem -> Ojs.string_to_js "pem")
+                   x1166)|])
     let (generate_key_pair_sync :
       type_:[ `ed448 ] ->
         options:([ `der ], [ `der ]) ED448KeyPairOptions.t ->
           (Buffer.t, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1222 : [ `ed448 ]) ->
-        fun ~options:(x1223 : ([ `der ], [ `der ]) ED448KeyPairOptions.t) ->
+      fun ~type_:(x1171 : [ `ed448 ]) ->
+        fun ~options:(x1172 : ([ `der ], [ `der ]) ED448KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1222 with | `ed448 -> Ojs.string_to_js "ed448"));(
+               [|((match x1171 with | `ed448 -> Ojs.string_to_js "ed448"));(
                  ED448KeyPairOptions.t_to_js
-                   (fun (x1224 : [ `der ]) ->
-                      match x1224 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1225 : [ `der ]) ->
-                      match x1225 with | `der -> Ojs.string_to_js "der")
-                   x1223)|])
+                   (fun (x1173 : [ `der ]) ->
+                      match x1173 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1174 : [ `der ]) ->
+                      match x1174 with | `der -> Ojs.string_to_js "der")
+                   x1172)|])
     let (generate_key_pair_sync :
       type_:[ `ed448 ] ->
         ?options:ED448KeyPairKeyObjectOptions.t ->
           unit -> KeyPairKeyObjectResult.t)
       =
-      fun ~type_:(x1228 : [ `ed448 ]) ->
-        fun ?options:(x1229 : ED448KeyPairKeyObjectOptions.t option) ->
+      fun ~type_:(x1177 : [ `ed448 ]) ->
+        fun ?options:(x1178 : ED448KeyPairKeyObjectOptions.t option) ->
           fun () ->
             KeyPairKeyObjectResult.t_of_js
-              (let x1232 = Import.crypto in
-               Ojs.call (Ojs.get_prop_ascii x1232 "generateKeyPairSync")
+              (let x1181 = Import.crypto in
+               Ojs.call (Ojs.get_prop_ascii x1181 "generateKeyPairSync")
                  "apply"
-                 [|x1232;((let x1230 =
+                 [|x1181;((let x1179 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1230 "push"
-                                [|((match x1228 with
+                             (Ojs.call x1179 "push"
+                                [|((match x1177 with
                                     | `ed448 -> Ojs.string_to_js "ed448"))|]);
-                           (match x1229 with
-                            | Some x1231 ->
+                           (match x1178 with
+                            | Some x1180 ->
                                 ignore
-                                  (Ojs.call x1230 "push"
+                                  (Ojs.call x1179 "push"
                                      [|(ED448KeyPairKeyObjectOptions.t_to_js
-                                          x1231)|])
+                                          x1180)|])
                             | None -> ());
-                           x1230))|])
+                           x1179))|])
     let (generate_key_pair_sync :
       type_:[ `x25519 ] ->
         options:([ `pem ], [ `pem ]) X25519KeyPairOptions.t ->
           (string, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1233 : [ `x25519 ]) ->
-        fun ~options:(x1234 : ([ `pem ], [ `pem ]) X25519KeyPairOptions.t) ->
+      fun ~type_:(x1182 : [ `x25519 ]) ->
+        fun ~options:(x1183 : ([ `pem ], [ `pem ]) X25519KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1233 with | `x25519 -> Ojs.string_to_js "x25519"));(
+               [|((match x1182 with | `x25519 -> Ojs.string_to_js "x25519"));(
                  X25519KeyPairOptions.t_to_js
-                   (fun (x1235 : [ `pem ]) ->
-                      match x1235 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1236 : [ `pem ]) ->
-                      match x1236 with | `pem -> Ojs.string_to_js "pem")
-                   x1234)|])
+                   (fun (x1184 : [ `pem ]) ->
+                      match x1184 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1185 : [ `pem ]) ->
+                      match x1185 with | `pem -> Ojs.string_to_js "pem")
+                   x1183)|])
     let (generate_key_pair_sync :
       type_:[ `x25519 ] ->
         options:([ `pem ], [ `der ]) X25519KeyPairOptions.t ->
           (string, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1239 : [ `x25519 ]) ->
-        fun ~options:(x1240 : ([ `pem ], [ `der ]) X25519KeyPairOptions.t) ->
+      fun ~type_:(x1188 : [ `x25519 ]) ->
+        fun ~options:(x1189 : ([ `pem ], [ `der ]) X25519KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1239 with | `x25519 -> Ojs.string_to_js "x25519"));(
+               [|((match x1188 with | `x25519 -> Ojs.string_to_js "x25519"));(
                  X25519KeyPairOptions.t_to_js
-                   (fun (x1241 : [ `pem ]) ->
-                      match x1241 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1242 : [ `der ]) ->
-                      match x1242 with | `der -> Ojs.string_to_js "der")
-                   x1240)|])
+                   (fun (x1190 : [ `pem ]) ->
+                      match x1190 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1191 : [ `der ]) ->
+                      match x1191 with | `der -> Ojs.string_to_js "der")
+                   x1189)|])
     let (generate_key_pair_sync :
       type_:[ `x25519 ] ->
         options:([ `der ], [ `pem ]) X25519KeyPairOptions.t ->
           (Buffer.t, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1245 : [ `x25519 ]) ->
-        fun ~options:(x1246 : ([ `der ], [ `pem ]) X25519KeyPairOptions.t) ->
+      fun ~type_:(x1194 : [ `x25519 ]) ->
+        fun ~options:(x1195 : ([ `der ], [ `pem ]) X25519KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1245 with | `x25519 -> Ojs.string_to_js "x25519"));(
+               [|((match x1194 with | `x25519 -> Ojs.string_to_js "x25519"));(
                  X25519KeyPairOptions.t_to_js
-                   (fun (x1247 : [ `der ]) ->
-                      match x1247 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1248 : [ `pem ]) ->
-                      match x1248 with | `pem -> Ojs.string_to_js "pem")
-                   x1246)|])
+                   (fun (x1196 : [ `der ]) ->
+                      match x1196 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1197 : [ `pem ]) ->
+                      match x1197 with | `pem -> Ojs.string_to_js "pem")
+                   x1195)|])
     let (generate_key_pair_sync :
       type_:[ `x25519 ] ->
         options:([ `der ], [ `der ]) X25519KeyPairOptions.t ->
           (Buffer.t, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1251 : [ `x25519 ]) ->
-        fun ~options:(x1252 : ([ `der ], [ `der ]) X25519KeyPairOptions.t) ->
+      fun ~type_:(x1200 : [ `x25519 ]) ->
+        fun ~options:(x1201 : ([ `der ], [ `der ]) X25519KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1251 with | `x25519 -> Ojs.string_to_js "x25519"));(
+               [|((match x1200 with | `x25519 -> Ojs.string_to_js "x25519"));(
                  X25519KeyPairOptions.t_to_js
-                   (fun (x1253 : [ `der ]) ->
-                      match x1253 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1254 : [ `der ]) ->
-                      match x1254 with | `der -> Ojs.string_to_js "der")
-                   x1252)|])
+                   (fun (x1202 : [ `der ]) ->
+                      match x1202 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1203 : [ `der ]) ->
+                      match x1203 with | `der -> Ojs.string_to_js "der")
+                   x1201)|])
     let (generate_key_pair_sync :
       type_:[ `x25519 ] ->
         ?options:X25519KeyPairKeyObjectOptions.t ->
           unit -> KeyPairKeyObjectResult.t)
       =
-      fun ~type_:(x1257 : [ `x25519 ]) ->
-        fun ?options:(x1258 : X25519KeyPairKeyObjectOptions.t option) ->
+      fun ~type_:(x1206 : [ `x25519 ]) ->
+        fun ?options:(x1207 : X25519KeyPairKeyObjectOptions.t option) ->
           fun () ->
             KeyPairKeyObjectResult.t_of_js
-              (let x1261 = Import.crypto in
-               Ojs.call (Ojs.get_prop_ascii x1261 "generateKeyPairSync")
+              (let x1210 = Import.crypto in
+               Ojs.call (Ojs.get_prop_ascii x1210 "generateKeyPairSync")
                  "apply"
-                 [|x1261;((let x1259 =
+                 [|x1210;((let x1208 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1259 "push"
-                                [|((match x1257 with
+                             (Ojs.call x1208 "push"
+                                [|((match x1206 with
                                     | `x25519 -> Ojs.string_to_js "x25519"))|]);
-                           (match x1258 with
-                            | Some x1260 ->
+                           (match x1207 with
+                            | Some x1209 ->
                                 ignore
-                                  (Ojs.call x1259 "push"
+                                  (Ojs.call x1208 "push"
                                      [|(X25519KeyPairKeyObjectOptions.t_to_js
-                                          x1260)|])
+                                          x1209)|])
                             | None -> ());
-                           x1259))|])
+                           x1208))|])
     let (generate_key_pair_sync :
       type_:[ `x448 ] ->
         options:([ `pem ], [ `pem ]) X448KeyPairOptions.t ->
           (string, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1262 : [ `x448 ]) ->
-        fun ~options:(x1263 : ([ `pem ], [ `pem ]) X448KeyPairOptions.t) ->
+      fun ~type_:(x1211 : [ `x448 ]) ->
+        fun ~options:(x1212 : ([ `pem ], [ `pem ]) X448KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1262 with | `x448 -> Ojs.string_to_js "x448"));(
+               [|((match x1211 with | `x448 -> Ojs.string_to_js "x448"));(
                  X448KeyPairOptions.t_to_js
-                   (fun (x1264 : [ `pem ]) ->
-                      match x1264 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1265 : [ `pem ]) ->
-                      match x1265 with | `pem -> Ojs.string_to_js "pem")
-                   x1263)|])
+                   (fun (x1213 : [ `pem ]) ->
+                      match x1213 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1214 : [ `pem ]) ->
+                      match x1214 with | `pem -> Ojs.string_to_js "pem")
+                   x1212)|])
     let (generate_key_pair_sync :
       type_:[ `x448 ] ->
         options:([ `pem ], [ `der ]) X448KeyPairOptions.t ->
           (string, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1268 : [ `x448 ]) ->
-        fun ~options:(x1269 : ([ `pem ], [ `der ]) X448KeyPairOptions.t) ->
+      fun ~type_:(x1217 : [ `x448 ]) ->
+        fun ~options:(x1218 : ([ `pem ], [ `der ]) X448KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Ojs.string_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1268 with | `x448 -> Ojs.string_to_js "x448"));(
+               [|((match x1217 with | `x448 -> Ojs.string_to_js "x448"));(
                  X448KeyPairOptions.t_to_js
-                   (fun (x1270 : [ `pem ]) ->
-                      match x1270 with | `pem -> Ojs.string_to_js "pem")
-                   (fun (x1271 : [ `der ]) ->
-                      match x1271 with | `der -> Ojs.string_to_js "der")
-                   x1269)|])
+                   (fun (x1219 : [ `pem ]) ->
+                      match x1219 with | `pem -> Ojs.string_to_js "pem")
+                   (fun (x1220 : [ `der ]) ->
+                      match x1220 with | `der -> Ojs.string_to_js "der")
+                   x1218)|])
     let (generate_key_pair_sync :
       type_:[ `x448 ] ->
         options:([ `der ], [ `pem ]) X448KeyPairOptions.t ->
           (Buffer.t, string) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1274 : [ `x448 ]) ->
-        fun ~options:(x1275 : ([ `der ], [ `pem ]) X448KeyPairOptions.t) ->
+      fun ~type_:(x1223 : [ `x448 ]) ->
+        fun ~options:(x1224 : ([ `der ], [ `pem ]) X448KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Ojs.string_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1274 with | `x448 -> Ojs.string_to_js "x448"));(
+               [|((match x1223 with | `x448 -> Ojs.string_to_js "x448"));(
                  X448KeyPairOptions.t_to_js
-                   (fun (x1276 : [ `der ]) ->
-                      match x1276 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1277 : [ `pem ]) ->
-                      match x1277 with | `pem -> Ojs.string_to_js "pem")
-                   x1275)|])
+                   (fun (x1225 : [ `der ]) ->
+                      match x1225 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1226 : [ `pem ]) ->
+                      match x1226 with | `pem -> Ojs.string_to_js "pem")
+                   x1224)|])
     let (generate_key_pair_sync :
       type_:[ `x448 ] ->
         options:([ `der ], [ `der ]) X448KeyPairOptions.t ->
           (Buffer.t, Buffer.t) KeyPairSyncResult.t)
       =
-      fun ~type_:(x1280 : [ `x448 ]) ->
-        fun ~options:(x1281 : ([ `der ], [ `der ]) X448KeyPairOptions.t) ->
+      fun ~type_:(x1229 : [ `x448 ]) ->
+        fun ~options:(x1230 : ([ `der ], [ `der ]) X448KeyPairOptions.t) ->
           KeyPairSyncResult.t_of_js Buffer.t_of_js Buffer.t_of_js
             (Ojs.call Import.crypto "generateKeyPairSync"
-               [|((match x1280 with | `x448 -> Ojs.string_to_js "x448"));(
+               [|((match x1229 with | `x448 -> Ojs.string_to_js "x448"));(
                  X448KeyPairOptions.t_to_js
-                   (fun (x1282 : [ `der ]) ->
-                      match x1282 with | `der -> Ojs.string_to_js "der")
-                   (fun (x1283 : [ `der ]) ->
-                      match x1283 with | `der -> Ojs.string_to_js "der")
-                   x1281)|])
+                   (fun (x1231 : [ `der ]) ->
+                      match x1231 with | `der -> Ojs.string_to_js "der")
+                   (fun (x1232 : [ `der ]) ->
+                      match x1232 with | `der -> Ojs.string_to_js "der")
+                   x1230)|])
     let (generate_key_pair_sync :
       type_:[ `x448 ] ->
         ?options:X448KeyPairKeyObjectOptions.t ->
           unit -> KeyPairKeyObjectResult.t)
       =
-      fun ~type_:(x1286 : [ `x448 ]) ->
-        fun ?options:(x1287 : X448KeyPairKeyObjectOptions.t option) ->
+      fun ~type_:(x1235 : [ `x448 ]) ->
+        fun ?options:(x1236 : X448KeyPairKeyObjectOptions.t option) ->
           fun () ->
             KeyPairKeyObjectResult.t_of_js
-              (let x1290 = Import.crypto in
-               Ojs.call (Ojs.get_prop_ascii x1290 "generateKeyPairSync")
+              (let x1239 = Import.crypto in
+               Ojs.call (Ojs.get_prop_ascii x1239 "generateKeyPairSync")
                  "apply"
-                 [|x1290;((let x1288 =
+                 [|x1239;((let x1237 =
                              Ojs.new_obj
                                (Ojs.get_prop_ascii Ojs.global "Array") 
                                [||] in
                            ignore
-                             (Ojs.call x1288 "push"
-                                [|((match x1286 with
+                             (Ojs.call x1237 "push"
+                                [|((match x1235 with
                                     | `x448 -> Ojs.string_to_js "x448"))|]);
-                           (match x1287 with
-                            | Some x1289 ->
+                           (match x1236 with
+                            | Some x1238 ->
                                 ignore
-                                  (Ojs.call x1288 "push"
+                                  (Ojs.call x1237 "push"
                                      [|(X448KeyPairKeyObjectOptions.t_to_js
-                                          x1289)|])
+                                          x1238)|])
                             | None -> ());
-                           x1288))|])
+                           x1237))|])
     let (generate_key_pair :
       type_:[ `rsa ] ->
         options:([ `pem ], [ `pem ]) RSAKeyPairOptions.t ->
@@ -4553,30 +4482,30 @@ module Crypto =
                       public_key:string -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1291 : [ `rsa ]) ->
-        fun ~options:(x1292 : ([ `pem ], [ `pem ]) RSAKeyPairOptions.t) ->
+      fun ~type_:(x1240 : [ `rsa ]) ->
+        fun ~options:(x1241 : ([ `pem ], [ `pem ]) RSAKeyPairOptions.t) ->
           fun
-            ~callback:(x1295 :
+            ~callback:(x1244 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1291 with | `rsa -> Ojs.string_to_js "rsa"));(
+                 [|((match x1240 with | `rsa -> Ojs.string_to_js "rsa"));(
                    RSAKeyPairOptions.t_to_js
-                     (fun (x1293 : [ `pem ]) ->
-                        match x1293 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1294 : [ `pem ]) ->
-                        match x1294 with | `pem -> Ojs.string_to_js "pem")
-                     x1292);(Ojs.fun_to_js 3
-                               (fun (x1296 : Ojs.t) ->
-                                  fun (x1298 : Ojs.t) ->
-                                    fun (x1299 : Ojs.t) ->
-                                      x1295
+                     (fun (x1242 : [ `pem ]) ->
+                        match x1242 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1243 : [ `pem ]) ->
+                        match x1243 with | `pem -> Ojs.string_to_js "pem")
+                     x1241);(Ojs.fun_to_js 3
+                               (fun (x1245 : Ojs.t) ->
+                                  fun (x1247 : Ojs.t) ->
+                                    fun (x1248 : Ojs.t) ->
+                                      x1244
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1296)
-                                        ~public_key:(Ojs.string_of_js x1298)
-                                        ~private_key:(Ojs.string_of_js x1299)))|])
+                                                x1245)
+                                        ~public_key:(Ojs.string_of_js x1247)
+                                        ~private_key:(Ojs.string_of_js x1248)))|])
     let (generate_key_pair :
       type_:[ `rsa ] ->
         options:([ `pem ], [ `der ]) RSAKeyPairOptions.t ->
@@ -4584,30 +4513,30 @@ module Crypto =
                       public_key:string -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1300 : [ `rsa ]) ->
-        fun ~options:(x1301 : ([ `pem ], [ `der ]) RSAKeyPairOptions.t) ->
+      fun ~type_:(x1249 : [ `rsa ]) ->
+        fun ~options:(x1250 : ([ `pem ], [ `der ]) RSAKeyPairOptions.t) ->
           fun
-            ~callback:(x1304 :
+            ~callback:(x1253 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1300 with | `rsa -> Ojs.string_to_js "rsa"));(
+                 [|((match x1249 with | `rsa -> Ojs.string_to_js "rsa"));(
                    RSAKeyPairOptions.t_to_js
-                     (fun (x1302 : [ `pem ]) ->
-                        match x1302 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1303 : [ `der ]) ->
-                        match x1303 with | `der -> Ojs.string_to_js "der")
-                     x1301);(Ojs.fun_to_js 3
-                               (fun (x1305 : Ojs.t) ->
-                                  fun (x1307 : Ojs.t) ->
-                                    fun (x1308 : Ojs.t) ->
-                                      x1304
+                     (fun (x1251 : [ `pem ]) ->
+                        match x1251 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1252 : [ `der ]) ->
+                        match x1252 with | `der -> Ojs.string_to_js "der")
+                     x1250);(Ojs.fun_to_js 3
+                               (fun (x1254 : Ojs.t) ->
+                                  fun (x1256 : Ojs.t) ->
+                                    fun (x1257 : Ojs.t) ->
+                                      x1253
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1305)
-                                        ~public_key:(Ojs.string_of_js x1307)
-                                        ~private_key:(Buffer.t_of_js x1308)))|])
+                                                x1254)
+                                        ~public_key:(Ojs.string_of_js x1256)
+                                        ~private_key:(Buffer.t_of_js x1257)))|])
     let (generate_key_pair :
       type_:[ `rsa ] ->
         options:([ `der ], [ `pem ]) RSAKeyPairOptions.t ->
@@ -4615,30 +4544,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1309 : [ `rsa ]) ->
-        fun ~options:(x1310 : ([ `der ], [ `pem ]) RSAKeyPairOptions.t) ->
+      fun ~type_:(x1258 : [ `rsa ]) ->
+        fun ~options:(x1259 : ([ `der ], [ `pem ]) RSAKeyPairOptions.t) ->
           fun
-            ~callback:(x1313 :
+            ~callback:(x1262 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1309 with | `rsa -> Ojs.string_to_js "rsa"));(
+                 [|((match x1258 with | `rsa -> Ojs.string_to_js "rsa"));(
                    RSAKeyPairOptions.t_to_js
-                     (fun (x1311 : [ `der ]) ->
-                        match x1311 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1312 : [ `pem ]) ->
-                        match x1312 with | `pem -> Ojs.string_to_js "pem")
-                     x1310);(Ojs.fun_to_js 3
-                               (fun (x1314 : Ojs.t) ->
-                                  fun (x1316 : Ojs.t) ->
-                                    fun (x1317 : Ojs.t) ->
-                                      x1313
+                     (fun (x1260 : [ `der ]) ->
+                        match x1260 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1261 : [ `pem ]) ->
+                        match x1261 with | `pem -> Ojs.string_to_js "pem")
+                     x1259);(Ojs.fun_to_js 3
+                               (fun (x1263 : Ojs.t) ->
+                                  fun (x1265 : Ojs.t) ->
+                                    fun (x1266 : Ojs.t) ->
+                                      x1262
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1314)
-                                        ~public_key:(Buffer.t_of_js x1316)
-                                        ~private_key:(Ojs.string_of_js x1317)))|])
+                                                x1263)
+                                        ~public_key:(Buffer.t_of_js x1265)
+                                        ~private_key:(Ojs.string_of_js x1266)))|])
     let (generate_key_pair :
       type_:[ `rsa ] ->
         options:([ `der ], [ `der ]) RSAKeyPairOptions.t ->
@@ -4646,30 +4575,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1318 : [ `rsa ]) ->
-        fun ~options:(x1319 : ([ `der ], [ `der ]) RSAKeyPairOptions.t) ->
+      fun ~type_:(x1267 : [ `rsa ]) ->
+        fun ~options:(x1268 : ([ `der ], [ `der ]) RSAKeyPairOptions.t) ->
           fun
-            ~callback:(x1322 :
+            ~callback:(x1271 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1318 with | `rsa -> Ojs.string_to_js "rsa"));(
+                 [|((match x1267 with | `rsa -> Ojs.string_to_js "rsa"));(
                    RSAKeyPairOptions.t_to_js
-                     (fun (x1320 : [ `der ]) ->
-                        match x1320 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1321 : [ `der ]) ->
-                        match x1321 with | `der -> Ojs.string_to_js "der")
-                     x1319);(Ojs.fun_to_js 3
-                               (fun (x1323 : Ojs.t) ->
-                                  fun (x1325 : Ojs.t) ->
-                                    fun (x1326 : Ojs.t) ->
-                                      x1322
+                     (fun (x1269 : [ `der ]) ->
+                        match x1269 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1270 : [ `der ]) ->
+                        match x1270 with | `der -> Ojs.string_to_js "der")
+                     x1268);(Ojs.fun_to_js 3
+                               (fun (x1272 : Ojs.t) ->
+                                  fun (x1274 : Ojs.t) ->
+                                    fun (x1275 : Ojs.t) ->
+                                      x1271
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1323)
-                                        ~public_key:(Buffer.t_of_js x1325)
-                                        ~private_key:(Buffer.t_of_js x1326)))|])
+                                                x1272)
+                                        ~public_key:(Buffer.t_of_js x1274)
+                                        ~private_key:(Buffer.t_of_js x1275)))|])
     let (generate_key_pair :
       type_:[ `rsa ] ->
         options:RSAKeyPairKeyObjectOptions.t ->
@@ -4678,39 +4607,39 @@ module Crypto =
                         private_key:KeyObject.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1327 : [ `rsa ]) ->
-        fun ~options:(x1328 : RSAKeyPairKeyObjectOptions.t) ->
+      fun ~type_:(x1276 : [ `rsa ]) ->
+        fun ~options:(x1277 : RSAKeyPairKeyObjectOptions.t) ->
           fun
-            ~callback:(x1329 :
+            ~callback:(x1278 :
                         err:Error.t or_null ->
                           public_key:KeyObject.t ->
                             private_key:KeyObject.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1327 with | `rsa -> Ojs.string_to_js "rsa"));(
-                   RSAKeyPairKeyObjectOptions.t_to_js x1328);(Ojs.fun_to_js 3
+                 [|((match x1276 with | `rsa -> Ojs.string_to_js "rsa"));(
+                   RSAKeyPairKeyObjectOptions.t_to_js x1277);(Ojs.fun_to_js 3
                                                                 (fun
-                                                                   (x1330 :
+                                                                   (x1279 :
                                                                     Ojs.t)
                                                                    ->
                                                                    fun
-                                                                    (x1332 :
+                                                                    (x1281 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1333 :
+                                                                    (x1282 :
                                                                     Ojs.t) ->
-                                                                    x1329
+                                                                    x1278
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     Error.t_of_js
-                                                                    x1330)
+                                                                    x1279)
                                                                     ~public_key:(
                                                                     KeyObject.t_of_js
-                                                                    x1332)
+                                                                    x1281)
                                                                     ~private_key:(
                                                                     KeyObject.t_of_js
-                                                                    x1333)))|])
+                                                                    x1282)))|])
     let (generate_key_pair :
       type_:[ `dsa ] ->
         options:([ `pem ], [ `pem ]) DSAKeyPairOptions.t ->
@@ -4718,30 +4647,30 @@ module Crypto =
                       public_key:string -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1334 : [ `dsa ]) ->
-        fun ~options:(x1335 : ([ `pem ], [ `pem ]) DSAKeyPairOptions.t) ->
+      fun ~type_:(x1283 : [ `dsa ]) ->
+        fun ~options:(x1284 : ([ `pem ], [ `pem ]) DSAKeyPairOptions.t) ->
           fun
-            ~callback:(x1338 :
+            ~callback:(x1287 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1334 with | `dsa -> Ojs.string_to_js "dsa"));(
+                 [|((match x1283 with | `dsa -> Ojs.string_to_js "dsa"));(
                    DSAKeyPairOptions.t_to_js
-                     (fun (x1336 : [ `pem ]) ->
-                        match x1336 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1337 : [ `pem ]) ->
-                        match x1337 with | `pem -> Ojs.string_to_js "pem")
-                     x1335);(Ojs.fun_to_js 3
-                               (fun (x1339 : Ojs.t) ->
-                                  fun (x1341 : Ojs.t) ->
-                                    fun (x1342 : Ojs.t) ->
-                                      x1338
+                     (fun (x1285 : [ `pem ]) ->
+                        match x1285 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1286 : [ `pem ]) ->
+                        match x1286 with | `pem -> Ojs.string_to_js "pem")
+                     x1284);(Ojs.fun_to_js 3
+                               (fun (x1288 : Ojs.t) ->
+                                  fun (x1290 : Ojs.t) ->
+                                    fun (x1291 : Ojs.t) ->
+                                      x1287
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1339)
-                                        ~public_key:(Ojs.string_of_js x1341)
-                                        ~private_key:(Ojs.string_of_js x1342)))|])
+                                                x1288)
+                                        ~public_key:(Ojs.string_of_js x1290)
+                                        ~private_key:(Ojs.string_of_js x1291)))|])
     let (generate_key_pair :
       type_:[ `dsa ] ->
         options:([ `pem ], [ `der ]) DSAKeyPairOptions.t ->
@@ -4749,30 +4678,30 @@ module Crypto =
                       public_key:string -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1343 : [ `dsa ]) ->
-        fun ~options:(x1344 : ([ `pem ], [ `der ]) DSAKeyPairOptions.t) ->
+      fun ~type_:(x1292 : [ `dsa ]) ->
+        fun ~options:(x1293 : ([ `pem ], [ `der ]) DSAKeyPairOptions.t) ->
           fun
-            ~callback:(x1347 :
+            ~callback:(x1296 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1343 with | `dsa -> Ojs.string_to_js "dsa"));(
+                 [|((match x1292 with | `dsa -> Ojs.string_to_js "dsa"));(
                    DSAKeyPairOptions.t_to_js
-                     (fun (x1345 : [ `pem ]) ->
-                        match x1345 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1346 : [ `der ]) ->
-                        match x1346 with | `der -> Ojs.string_to_js "der")
-                     x1344);(Ojs.fun_to_js 3
-                               (fun (x1348 : Ojs.t) ->
-                                  fun (x1350 : Ojs.t) ->
-                                    fun (x1351 : Ojs.t) ->
-                                      x1347
+                     (fun (x1294 : [ `pem ]) ->
+                        match x1294 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1295 : [ `der ]) ->
+                        match x1295 with | `der -> Ojs.string_to_js "der")
+                     x1293);(Ojs.fun_to_js 3
+                               (fun (x1297 : Ojs.t) ->
+                                  fun (x1299 : Ojs.t) ->
+                                    fun (x1300 : Ojs.t) ->
+                                      x1296
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1348)
-                                        ~public_key:(Ojs.string_of_js x1350)
-                                        ~private_key:(Buffer.t_of_js x1351)))|])
+                                                x1297)
+                                        ~public_key:(Ojs.string_of_js x1299)
+                                        ~private_key:(Buffer.t_of_js x1300)))|])
     let (generate_key_pair :
       type_:[ `dsa ] ->
         options:([ `der ], [ `pem ]) DSAKeyPairOptions.t ->
@@ -4780,30 +4709,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1352 : [ `dsa ]) ->
-        fun ~options:(x1353 : ([ `der ], [ `pem ]) DSAKeyPairOptions.t) ->
+      fun ~type_:(x1301 : [ `dsa ]) ->
+        fun ~options:(x1302 : ([ `der ], [ `pem ]) DSAKeyPairOptions.t) ->
           fun
-            ~callback:(x1356 :
+            ~callback:(x1305 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1352 with | `dsa -> Ojs.string_to_js "dsa"));(
+                 [|((match x1301 with | `dsa -> Ojs.string_to_js "dsa"));(
                    DSAKeyPairOptions.t_to_js
-                     (fun (x1354 : [ `der ]) ->
-                        match x1354 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1355 : [ `pem ]) ->
-                        match x1355 with | `pem -> Ojs.string_to_js "pem")
-                     x1353);(Ojs.fun_to_js 3
-                               (fun (x1357 : Ojs.t) ->
-                                  fun (x1359 : Ojs.t) ->
-                                    fun (x1360 : Ojs.t) ->
-                                      x1356
+                     (fun (x1303 : [ `der ]) ->
+                        match x1303 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1304 : [ `pem ]) ->
+                        match x1304 with | `pem -> Ojs.string_to_js "pem")
+                     x1302);(Ojs.fun_to_js 3
+                               (fun (x1306 : Ojs.t) ->
+                                  fun (x1308 : Ojs.t) ->
+                                    fun (x1309 : Ojs.t) ->
+                                      x1305
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1357)
-                                        ~public_key:(Buffer.t_of_js x1359)
-                                        ~private_key:(Ojs.string_of_js x1360)))|])
+                                                x1306)
+                                        ~public_key:(Buffer.t_of_js x1308)
+                                        ~private_key:(Ojs.string_of_js x1309)))|])
     let (generate_key_pair :
       type_:[ `dsa ] ->
         options:([ `der ], [ `der ]) DSAKeyPairOptions.t ->
@@ -4811,30 +4740,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1361 : [ `dsa ]) ->
-        fun ~options:(x1362 : ([ `der ], [ `der ]) DSAKeyPairOptions.t) ->
+      fun ~type_:(x1310 : [ `dsa ]) ->
+        fun ~options:(x1311 : ([ `der ], [ `der ]) DSAKeyPairOptions.t) ->
           fun
-            ~callback:(x1365 :
+            ~callback:(x1314 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1361 with | `dsa -> Ojs.string_to_js "dsa"));(
+                 [|((match x1310 with | `dsa -> Ojs.string_to_js "dsa"));(
                    DSAKeyPairOptions.t_to_js
-                     (fun (x1363 : [ `der ]) ->
-                        match x1363 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1364 : [ `der ]) ->
-                        match x1364 with | `der -> Ojs.string_to_js "der")
-                     x1362);(Ojs.fun_to_js 3
-                               (fun (x1366 : Ojs.t) ->
-                                  fun (x1368 : Ojs.t) ->
-                                    fun (x1369 : Ojs.t) ->
-                                      x1365
+                     (fun (x1312 : [ `der ]) ->
+                        match x1312 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1313 : [ `der ]) ->
+                        match x1313 with | `der -> Ojs.string_to_js "der")
+                     x1311);(Ojs.fun_to_js 3
+                               (fun (x1315 : Ojs.t) ->
+                                  fun (x1317 : Ojs.t) ->
+                                    fun (x1318 : Ojs.t) ->
+                                      x1314
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1366)
-                                        ~public_key:(Buffer.t_of_js x1368)
-                                        ~private_key:(Buffer.t_of_js x1369)))|])
+                                                x1315)
+                                        ~public_key:(Buffer.t_of_js x1317)
+                                        ~private_key:(Buffer.t_of_js x1318)))|])
     let (generate_key_pair :
       type_:[ `dsa ] ->
         options:DSAKeyPairKeyObjectOptions.t ->
@@ -4843,39 +4772,39 @@ module Crypto =
                         private_key:KeyObject.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1370 : [ `dsa ]) ->
-        fun ~options:(x1371 : DSAKeyPairKeyObjectOptions.t) ->
+      fun ~type_:(x1319 : [ `dsa ]) ->
+        fun ~options:(x1320 : DSAKeyPairKeyObjectOptions.t) ->
           fun
-            ~callback:(x1372 :
+            ~callback:(x1321 :
                         err:Error.t or_null ->
                           public_key:KeyObject.t ->
                             private_key:KeyObject.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1370 with | `dsa -> Ojs.string_to_js "dsa"));(
-                   DSAKeyPairKeyObjectOptions.t_to_js x1371);(Ojs.fun_to_js 3
+                 [|((match x1319 with | `dsa -> Ojs.string_to_js "dsa"));(
+                   DSAKeyPairKeyObjectOptions.t_to_js x1320);(Ojs.fun_to_js 3
                                                                 (fun
-                                                                   (x1373 :
+                                                                   (x1322 :
                                                                     Ojs.t)
                                                                    ->
                                                                    fun
-                                                                    (x1375 :
+                                                                    (x1324 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1376 :
+                                                                    (x1325 :
                                                                     Ojs.t) ->
-                                                                    x1372
+                                                                    x1321
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     Error.t_of_js
-                                                                    x1373)
+                                                                    x1322)
                                                                     ~public_key:(
                                                                     KeyObject.t_of_js
-                                                                    x1375)
+                                                                    x1324)
                                                                     ~private_key:(
                                                                     KeyObject.t_of_js
-                                                                    x1376)))|])
+                                                                    x1325)))|])
     let (generate_key_pair :
       type_:[ `ec ] ->
         options:([ `pem ], [ `pem ]) ECKeyPairOptions.t ->
@@ -4883,30 +4812,30 @@ module Crypto =
                       public_key:string -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1377 : [ `ec ]) ->
-        fun ~options:(x1378 : ([ `pem ], [ `pem ]) ECKeyPairOptions.t) ->
+      fun ~type_:(x1326 : [ `ec ]) ->
+        fun ~options:(x1327 : ([ `pem ], [ `pem ]) ECKeyPairOptions.t) ->
           fun
-            ~callback:(x1381 :
+            ~callback:(x1330 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1377 with | `ec -> Ojs.string_to_js "ec"));(
+                 [|((match x1326 with | `ec -> Ojs.string_to_js "ec"));(
                    ECKeyPairOptions.t_to_js
-                     (fun (x1379 : [ `pem ]) ->
-                        match x1379 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1380 : [ `pem ]) ->
-                        match x1380 with | `pem -> Ojs.string_to_js "pem")
-                     x1378);(Ojs.fun_to_js 3
-                               (fun (x1382 : Ojs.t) ->
-                                  fun (x1384 : Ojs.t) ->
-                                    fun (x1385 : Ojs.t) ->
-                                      x1381
+                     (fun (x1328 : [ `pem ]) ->
+                        match x1328 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1329 : [ `pem ]) ->
+                        match x1329 with | `pem -> Ojs.string_to_js "pem")
+                     x1327);(Ojs.fun_to_js 3
+                               (fun (x1331 : Ojs.t) ->
+                                  fun (x1333 : Ojs.t) ->
+                                    fun (x1334 : Ojs.t) ->
+                                      x1330
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1382)
-                                        ~public_key:(Ojs.string_of_js x1384)
-                                        ~private_key:(Ojs.string_of_js x1385)))|])
+                                                x1331)
+                                        ~public_key:(Ojs.string_of_js x1333)
+                                        ~private_key:(Ojs.string_of_js x1334)))|])
     let (generate_key_pair :
       type_:[ `ec ] ->
         options:([ `pem ], [ `der ]) ECKeyPairOptions.t ->
@@ -4914,30 +4843,30 @@ module Crypto =
                       public_key:string -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1386 : [ `ec ]) ->
-        fun ~options:(x1387 : ([ `pem ], [ `der ]) ECKeyPairOptions.t) ->
+      fun ~type_:(x1335 : [ `ec ]) ->
+        fun ~options:(x1336 : ([ `pem ], [ `der ]) ECKeyPairOptions.t) ->
           fun
-            ~callback:(x1390 :
+            ~callback:(x1339 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1386 with | `ec -> Ojs.string_to_js "ec"));(
+                 [|((match x1335 with | `ec -> Ojs.string_to_js "ec"));(
                    ECKeyPairOptions.t_to_js
-                     (fun (x1388 : [ `pem ]) ->
-                        match x1388 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1389 : [ `der ]) ->
-                        match x1389 with | `der -> Ojs.string_to_js "der")
-                     x1387);(Ojs.fun_to_js 3
-                               (fun (x1391 : Ojs.t) ->
-                                  fun (x1393 : Ojs.t) ->
-                                    fun (x1394 : Ojs.t) ->
-                                      x1390
+                     (fun (x1337 : [ `pem ]) ->
+                        match x1337 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1338 : [ `der ]) ->
+                        match x1338 with | `der -> Ojs.string_to_js "der")
+                     x1336);(Ojs.fun_to_js 3
+                               (fun (x1340 : Ojs.t) ->
+                                  fun (x1342 : Ojs.t) ->
+                                    fun (x1343 : Ojs.t) ->
+                                      x1339
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1391)
-                                        ~public_key:(Ojs.string_of_js x1393)
-                                        ~private_key:(Buffer.t_of_js x1394)))|])
+                                                x1340)
+                                        ~public_key:(Ojs.string_of_js x1342)
+                                        ~private_key:(Buffer.t_of_js x1343)))|])
     let (generate_key_pair :
       type_:[ `ec ] ->
         options:([ `der ], [ `pem ]) ECKeyPairOptions.t ->
@@ -4945,30 +4874,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1395 : [ `ec ]) ->
-        fun ~options:(x1396 : ([ `der ], [ `pem ]) ECKeyPairOptions.t) ->
+      fun ~type_:(x1344 : [ `ec ]) ->
+        fun ~options:(x1345 : ([ `der ], [ `pem ]) ECKeyPairOptions.t) ->
           fun
-            ~callback:(x1399 :
+            ~callback:(x1348 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1395 with | `ec -> Ojs.string_to_js "ec"));(
+                 [|((match x1344 with | `ec -> Ojs.string_to_js "ec"));(
                    ECKeyPairOptions.t_to_js
-                     (fun (x1397 : [ `der ]) ->
-                        match x1397 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1398 : [ `pem ]) ->
-                        match x1398 with | `pem -> Ojs.string_to_js "pem")
-                     x1396);(Ojs.fun_to_js 3
-                               (fun (x1400 : Ojs.t) ->
-                                  fun (x1402 : Ojs.t) ->
-                                    fun (x1403 : Ojs.t) ->
-                                      x1399
+                     (fun (x1346 : [ `der ]) ->
+                        match x1346 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1347 : [ `pem ]) ->
+                        match x1347 with | `pem -> Ojs.string_to_js "pem")
+                     x1345);(Ojs.fun_to_js 3
+                               (fun (x1349 : Ojs.t) ->
+                                  fun (x1351 : Ojs.t) ->
+                                    fun (x1352 : Ojs.t) ->
+                                      x1348
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1400)
-                                        ~public_key:(Buffer.t_of_js x1402)
-                                        ~private_key:(Ojs.string_of_js x1403)))|])
+                                                x1349)
+                                        ~public_key:(Buffer.t_of_js x1351)
+                                        ~private_key:(Ojs.string_of_js x1352)))|])
     let (generate_key_pair :
       type_:[ `ec ] ->
         options:([ `der ], [ `der ]) ECKeyPairOptions.t ->
@@ -4976,30 +4905,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1404 : [ `ec ]) ->
-        fun ~options:(x1405 : ([ `der ], [ `der ]) ECKeyPairOptions.t) ->
+      fun ~type_:(x1353 : [ `ec ]) ->
+        fun ~options:(x1354 : ([ `der ], [ `der ]) ECKeyPairOptions.t) ->
           fun
-            ~callback:(x1408 :
+            ~callback:(x1357 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1404 with | `ec -> Ojs.string_to_js "ec"));(
+                 [|((match x1353 with | `ec -> Ojs.string_to_js "ec"));(
                    ECKeyPairOptions.t_to_js
-                     (fun (x1406 : [ `der ]) ->
-                        match x1406 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1407 : [ `der ]) ->
-                        match x1407 with | `der -> Ojs.string_to_js "der")
-                     x1405);(Ojs.fun_to_js 3
-                               (fun (x1409 : Ojs.t) ->
-                                  fun (x1411 : Ojs.t) ->
-                                    fun (x1412 : Ojs.t) ->
-                                      x1408
+                     (fun (x1355 : [ `der ]) ->
+                        match x1355 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1356 : [ `der ]) ->
+                        match x1356 with | `der -> Ojs.string_to_js "der")
+                     x1354);(Ojs.fun_to_js 3
+                               (fun (x1358 : Ojs.t) ->
+                                  fun (x1360 : Ojs.t) ->
+                                    fun (x1361 : Ojs.t) ->
+                                      x1357
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1409)
-                                        ~public_key:(Buffer.t_of_js x1411)
-                                        ~private_key:(Buffer.t_of_js x1412)))|])
+                                                x1358)
+                                        ~public_key:(Buffer.t_of_js x1360)
+                                        ~private_key:(Buffer.t_of_js x1361)))|])
     let (generate_key_pair :
       type_:[ `ec ] ->
         options:ECKeyPairKeyObjectOptions.t ->
@@ -5008,39 +4937,39 @@ module Crypto =
                         private_key:KeyObject.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1413 : [ `ec ]) ->
-        fun ~options:(x1414 : ECKeyPairKeyObjectOptions.t) ->
+      fun ~type_:(x1362 : [ `ec ]) ->
+        fun ~options:(x1363 : ECKeyPairKeyObjectOptions.t) ->
           fun
-            ~callback:(x1415 :
+            ~callback:(x1364 :
                         err:Error.t or_null ->
                           public_key:KeyObject.t ->
                             private_key:KeyObject.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1413 with | `ec -> Ojs.string_to_js "ec"));(
-                   ECKeyPairKeyObjectOptions.t_to_js x1414);(Ojs.fun_to_js 3
+                 [|((match x1362 with | `ec -> Ojs.string_to_js "ec"));(
+                   ECKeyPairKeyObjectOptions.t_to_js x1363);(Ojs.fun_to_js 3
                                                                (fun
-                                                                  (x1416 :
+                                                                  (x1365 :
                                                                     Ojs.t)
                                                                   ->
                                                                   fun
-                                                                    (x1418 :
+                                                                    (x1367 :
                                                                     Ojs.t) ->
                                                                     fun
-                                                                    (x1419 :
+                                                                    (x1368 :
                                                                     Ojs.t) ->
-                                                                    x1415
+                                                                    x1364
                                                                     ~err:(
                                                                     or_null_of_js
                                                                     Error.t_of_js
-                                                                    x1416)
+                                                                    x1365)
                                                                     ~public_key:(
                                                                     KeyObject.t_of_js
-                                                                    x1418)
+                                                                    x1367)
                                                                     ~private_key:(
                                                                     KeyObject.t_of_js
-                                                                    x1419)))|])
+                                                                    x1368)))|])
     let (generate_key_pair :
       type_:[ `ed25519 ] ->
         options:([ `pem ], [ `pem ]) ED25519KeyPairOptions.t ->
@@ -5048,46 +4977,46 @@ module Crypto =
                       public_key:string -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1420 : [ `ed25519 ]) ->
-        fun ~options:(x1421 : ([ `pem ], [ `pem ]) ED25519KeyPairOptions.t)
+      fun ~type_:(x1369 : [ `ed25519 ]) ->
+        fun ~options:(x1370 : ([ `pem ], [ `pem ]) ED25519KeyPairOptions.t)
           ->
           fun
-            ~callback:(x1424 :
+            ~callback:(x1373 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1420 with
+                 [|((match x1369 with
                      | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
                                                                    (fun
-                                                                    (x1422 :
+                                                                    (x1371 :
                                                                     [ `pem ])
                                                                     ->
-                                                                    match x1422
+                                                                    match x1371
                                                                     with
                                                                     | 
                                                                     `pem ->
                                                                     Ojs.string_to_js
                                                                     "pem")
                                                                    (fun
-                                                                    (x1423 :
+                                                                    (x1372 :
                                                                     [ `pem ])
                                                                     ->
-                                                                    match x1423
+                                                                    match x1372
                                                                     with
                                                                     | 
                                                                     `pem ->
                                                                     Ojs.string_to_js
                                                                     "pem")
-                                                                   x1421);(
+                                                                   x1370);(
                    Ojs.fun_to_js 3
-                     (fun (x1425 : Ojs.t) ->
-                        fun (x1427 : Ojs.t) ->
-                          fun (x1428 : Ojs.t) ->
-                            x1424 ~err:(or_null_of_js Error.t_of_js x1425)
-                              ~public_key:(Ojs.string_of_js x1427)
-                              ~private_key:(Ojs.string_of_js x1428)))|])
+                     (fun (x1374 : Ojs.t) ->
+                        fun (x1376 : Ojs.t) ->
+                          fun (x1377 : Ojs.t) ->
+                            x1373 ~err:(or_null_of_js Error.t_of_js x1374)
+                              ~public_key:(Ojs.string_of_js x1376)
+                              ~private_key:(Ojs.string_of_js x1377)))|])
     let (generate_key_pair :
       type_:[ `ed25519 ] ->
         options:([ `pem ], [ `der ]) ED25519KeyPairOptions.t ->
@@ -5095,46 +5024,46 @@ module Crypto =
                       public_key:string -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1429 : [ `ed25519 ]) ->
-        fun ~options:(x1430 : ([ `pem ], [ `der ]) ED25519KeyPairOptions.t)
+      fun ~type_:(x1378 : [ `ed25519 ]) ->
+        fun ~options:(x1379 : ([ `pem ], [ `der ]) ED25519KeyPairOptions.t)
           ->
           fun
-            ~callback:(x1433 :
+            ~callback:(x1382 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1429 with
+                 [|((match x1378 with
                      | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
                                                                    (fun
-                                                                    (x1431 :
+                                                                    (x1380 :
                                                                     [ `pem ])
                                                                     ->
-                                                                    match x1431
+                                                                    match x1380
                                                                     with
                                                                     | 
                                                                     `pem ->
                                                                     Ojs.string_to_js
                                                                     "pem")
                                                                    (fun
-                                                                    (x1432 :
+                                                                    (x1381 :
                                                                     [ `der ])
                                                                     ->
-                                                                    match x1432
+                                                                    match x1381
                                                                     with
                                                                     | 
                                                                     `der ->
                                                                     Ojs.string_to_js
                                                                     "der")
-                                                                   x1430);(
+                                                                   x1379);(
                    Ojs.fun_to_js 3
-                     (fun (x1434 : Ojs.t) ->
-                        fun (x1436 : Ojs.t) ->
-                          fun (x1437 : Ojs.t) ->
-                            x1433 ~err:(or_null_of_js Error.t_of_js x1434)
-                              ~public_key:(Ojs.string_of_js x1436)
-                              ~private_key:(Buffer.t_of_js x1437)))|])
+                     (fun (x1383 : Ojs.t) ->
+                        fun (x1385 : Ojs.t) ->
+                          fun (x1386 : Ojs.t) ->
+                            x1382 ~err:(or_null_of_js Error.t_of_js x1383)
+                              ~public_key:(Ojs.string_of_js x1385)
+                              ~private_key:(Buffer.t_of_js x1386)))|])
     let (generate_key_pair :
       type_:[ `ed25519 ] ->
         options:([ `der ], [ `pem ]) ED25519KeyPairOptions.t ->
@@ -5142,46 +5071,46 @@ module Crypto =
                       public_key:Buffer.t -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1438 : [ `ed25519 ]) ->
-        fun ~options:(x1439 : ([ `der ], [ `pem ]) ED25519KeyPairOptions.t)
+      fun ~type_:(x1387 : [ `ed25519 ]) ->
+        fun ~options:(x1388 : ([ `der ], [ `pem ]) ED25519KeyPairOptions.t)
           ->
           fun
-            ~callback:(x1442 :
+            ~callback:(x1391 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1438 with
+                 [|((match x1387 with
                      | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
                                                                    (fun
-                                                                    (x1440 :
+                                                                    (x1389 :
                                                                     [ `der ])
                                                                     ->
-                                                                    match x1440
+                                                                    match x1389
                                                                     with
                                                                     | 
                                                                     `der ->
                                                                     Ojs.string_to_js
                                                                     "der")
                                                                    (fun
-                                                                    (x1441 :
+                                                                    (x1390 :
                                                                     [ `pem ])
                                                                     ->
-                                                                    match x1441
+                                                                    match x1390
                                                                     with
                                                                     | 
                                                                     `pem ->
                                                                     Ojs.string_to_js
                                                                     "pem")
-                                                                   x1439);(
+                                                                   x1388);(
                    Ojs.fun_to_js 3
-                     (fun (x1443 : Ojs.t) ->
-                        fun (x1445 : Ojs.t) ->
-                          fun (x1446 : Ojs.t) ->
-                            x1442 ~err:(or_null_of_js Error.t_of_js x1443)
-                              ~public_key:(Buffer.t_of_js x1445)
-                              ~private_key:(Ojs.string_of_js x1446)))|])
+                     (fun (x1392 : Ojs.t) ->
+                        fun (x1394 : Ojs.t) ->
+                          fun (x1395 : Ojs.t) ->
+                            x1391 ~err:(or_null_of_js Error.t_of_js x1392)
+                              ~public_key:(Buffer.t_of_js x1394)
+                              ~private_key:(Ojs.string_of_js x1395)))|])
     let (generate_key_pair :
       type_:[ `ed25519 ] ->
         options:([ `der ], [ `der ]) ED25519KeyPairOptions.t ->
@@ -5189,46 +5118,46 @@ module Crypto =
                       public_key:Buffer.t -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1447 : [ `ed25519 ]) ->
-        fun ~options:(x1448 : ([ `der ], [ `der ]) ED25519KeyPairOptions.t)
+      fun ~type_:(x1396 : [ `ed25519 ]) ->
+        fun ~options:(x1397 : ([ `der ], [ `der ]) ED25519KeyPairOptions.t)
           ->
           fun
-            ~callback:(x1451 :
+            ~callback:(x1400 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1447 with
+                 [|((match x1396 with
                      | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
                                                                    (fun
-                                                                    (x1449 :
+                                                                    (x1398 :
                                                                     [ `der ])
                                                                     ->
-                                                                    match x1449
+                                                                    match x1398
                                                                     with
                                                                     | 
                                                                     `der ->
                                                                     Ojs.string_to_js
                                                                     "der")
                                                                    (fun
-                                                                    (x1450 :
+                                                                    (x1399 :
                                                                     [ `der ])
                                                                     ->
-                                                                    match x1450
+                                                                    match x1399
                                                                     with
                                                                     | 
                                                                     `der ->
                                                                     Ojs.string_to_js
                                                                     "der")
-                                                                   x1448);(
+                                                                   x1397);(
                    Ojs.fun_to_js 3
-                     (fun (x1452 : Ojs.t) ->
-                        fun (x1454 : Ojs.t) ->
-                          fun (x1455 : Ojs.t) ->
-                            x1451 ~err:(or_null_of_js Error.t_of_js x1452)
-                              ~public_key:(Buffer.t_of_js x1454)
-                              ~private_key:(Buffer.t_of_js x1455)))|])
+                     (fun (x1401 : Ojs.t) ->
+                        fun (x1403 : Ojs.t) ->
+                          fun (x1404 : Ojs.t) ->
+                            x1400 ~err:(or_null_of_js Error.t_of_js x1401)
+                              ~public_key:(Buffer.t_of_js x1403)
+                              ~private_key:(Buffer.t_of_js x1404)))|])
     let (generate_key_pair :
       type_:[ `ed25519 ] ->
         options:ED25519KeyPairKeyObjectOptions.t or_undefined ->
@@ -5237,28 +5166,28 @@ module Crypto =
                         private_key:KeyObject.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1456 : [ `ed25519 ]) ->
-        fun ~options:(x1457 : ED25519KeyPairKeyObjectOptions.t or_undefined)
+      fun ~type_:(x1405 : [ `ed25519 ]) ->
+        fun ~options:(x1406 : ED25519KeyPairKeyObjectOptions.t or_undefined)
           ->
           fun
-            ~callback:(x1459 :
+            ~callback:(x1408 :
                         err:Error.t or_null ->
                           public_key:KeyObject.t ->
                             private_key:KeyObject.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1456 with
+                 [|((match x1405 with
                      | `ed25519 -> Ojs.string_to_js "ed25519"));(or_undefined_to_js
                                                                    ED25519KeyPairKeyObjectOptions.t_to_js
-                                                                   x1457);(
+                                                                   x1406);(
                    Ojs.fun_to_js 3
-                     (fun (x1460 : Ojs.t) ->
-                        fun (x1462 : Ojs.t) ->
-                          fun (x1463 : Ojs.t) ->
-                            x1459 ~err:(or_null_of_js Error.t_of_js x1460)
-                              ~public_key:(KeyObject.t_of_js x1462)
-                              ~private_key:(KeyObject.t_of_js x1463)))|])
+                     (fun (x1409 : Ojs.t) ->
+                        fun (x1411 : Ojs.t) ->
+                          fun (x1412 : Ojs.t) ->
+                            x1408 ~err:(or_null_of_js Error.t_of_js x1409)
+                              ~public_key:(KeyObject.t_of_js x1411)
+                              ~private_key:(KeyObject.t_of_js x1412)))|])
     let (generate_key_pair :
       type_:[ `ed448 ] ->
         options:([ `pem ], [ `pem ]) ED448KeyPairOptions.t ->
@@ -5266,30 +5195,30 @@ module Crypto =
                       public_key:string -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1464 : [ `ed448 ]) ->
-        fun ~options:(x1465 : ([ `pem ], [ `pem ]) ED448KeyPairOptions.t) ->
+      fun ~type_:(x1413 : [ `ed448 ]) ->
+        fun ~options:(x1414 : ([ `pem ], [ `pem ]) ED448KeyPairOptions.t) ->
           fun
-            ~callback:(x1468 :
+            ~callback:(x1417 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1464 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                 [|((match x1413 with | `ed448 -> Ojs.string_to_js "ed448"));(
                    ED448KeyPairOptions.t_to_js
-                     (fun (x1466 : [ `pem ]) ->
-                        match x1466 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1467 : [ `pem ]) ->
-                        match x1467 with | `pem -> Ojs.string_to_js "pem")
-                     x1465);(Ojs.fun_to_js 3
-                               (fun (x1469 : Ojs.t) ->
-                                  fun (x1471 : Ojs.t) ->
-                                    fun (x1472 : Ojs.t) ->
-                                      x1468
+                     (fun (x1415 : [ `pem ]) ->
+                        match x1415 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1416 : [ `pem ]) ->
+                        match x1416 with | `pem -> Ojs.string_to_js "pem")
+                     x1414);(Ojs.fun_to_js 3
+                               (fun (x1418 : Ojs.t) ->
+                                  fun (x1420 : Ojs.t) ->
+                                    fun (x1421 : Ojs.t) ->
+                                      x1417
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1469)
-                                        ~public_key:(Ojs.string_of_js x1471)
-                                        ~private_key:(Ojs.string_of_js x1472)))|])
+                                                x1418)
+                                        ~public_key:(Ojs.string_of_js x1420)
+                                        ~private_key:(Ojs.string_of_js x1421)))|])
     let (generate_key_pair :
       type_:[ `ed448 ] ->
         options:([ `pem ], [ `der ]) ED448KeyPairOptions.t ->
@@ -5297,30 +5226,30 @@ module Crypto =
                       public_key:string -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1473 : [ `ed448 ]) ->
-        fun ~options:(x1474 : ([ `pem ], [ `der ]) ED448KeyPairOptions.t) ->
+      fun ~type_:(x1422 : [ `ed448 ]) ->
+        fun ~options:(x1423 : ([ `pem ], [ `der ]) ED448KeyPairOptions.t) ->
           fun
-            ~callback:(x1477 :
+            ~callback:(x1426 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1473 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                 [|((match x1422 with | `ed448 -> Ojs.string_to_js "ed448"));(
                    ED448KeyPairOptions.t_to_js
-                     (fun (x1475 : [ `pem ]) ->
-                        match x1475 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1476 : [ `der ]) ->
-                        match x1476 with | `der -> Ojs.string_to_js "der")
-                     x1474);(Ojs.fun_to_js 3
-                               (fun (x1478 : Ojs.t) ->
-                                  fun (x1480 : Ojs.t) ->
-                                    fun (x1481 : Ojs.t) ->
-                                      x1477
+                     (fun (x1424 : [ `pem ]) ->
+                        match x1424 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1425 : [ `der ]) ->
+                        match x1425 with | `der -> Ojs.string_to_js "der")
+                     x1423);(Ojs.fun_to_js 3
+                               (fun (x1427 : Ojs.t) ->
+                                  fun (x1429 : Ojs.t) ->
+                                    fun (x1430 : Ojs.t) ->
+                                      x1426
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1478)
-                                        ~public_key:(Ojs.string_of_js x1480)
-                                        ~private_key:(Buffer.t_of_js x1481)))|])
+                                                x1427)
+                                        ~public_key:(Ojs.string_of_js x1429)
+                                        ~private_key:(Buffer.t_of_js x1430)))|])
     let (generate_key_pair :
       type_:[ `ed448 ] ->
         options:([ `der ], [ `pem ]) ED448KeyPairOptions.t ->
@@ -5328,30 +5257,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1482 : [ `ed448 ]) ->
-        fun ~options:(x1483 : ([ `der ], [ `pem ]) ED448KeyPairOptions.t) ->
+      fun ~type_:(x1431 : [ `ed448 ]) ->
+        fun ~options:(x1432 : ([ `der ], [ `pem ]) ED448KeyPairOptions.t) ->
           fun
-            ~callback:(x1486 :
+            ~callback:(x1435 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1482 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                 [|((match x1431 with | `ed448 -> Ojs.string_to_js "ed448"));(
                    ED448KeyPairOptions.t_to_js
-                     (fun (x1484 : [ `der ]) ->
-                        match x1484 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1485 : [ `pem ]) ->
-                        match x1485 with | `pem -> Ojs.string_to_js "pem")
-                     x1483);(Ojs.fun_to_js 3
-                               (fun (x1487 : Ojs.t) ->
-                                  fun (x1489 : Ojs.t) ->
-                                    fun (x1490 : Ojs.t) ->
-                                      x1486
+                     (fun (x1433 : [ `der ]) ->
+                        match x1433 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1434 : [ `pem ]) ->
+                        match x1434 with | `pem -> Ojs.string_to_js "pem")
+                     x1432);(Ojs.fun_to_js 3
+                               (fun (x1436 : Ojs.t) ->
+                                  fun (x1438 : Ojs.t) ->
+                                    fun (x1439 : Ojs.t) ->
+                                      x1435
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1487)
-                                        ~public_key:(Buffer.t_of_js x1489)
-                                        ~private_key:(Ojs.string_of_js x1490)))|])
+                                                x1436)
+                                        ~public_key:(Buffer.t_of_js x1438)
+                                        ~private_key:(Ojs.string_of_js x1439)))|])
     let (generate_key_pair :
       type_:[ `ed448 ] ->
         options:([ `der ], [ `der ]) ED448KeyPairOptions.t ->
@@ -5359,30 +5288,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1491 : [ `ed448 ]) ->
-        fun ~options:(x1492 : ([ `der ], [ `der ]) ED448KeyPairOptions.t) ->
+      fun ~type_:(x1440 : [ `ed448 ]) ->
+        fun ~options:(x1441 : ([ `der ], [ `der ]) ED448KeyPairOptions.t) ->
           fun
-            ~callback:(x1495 :
+            ~callback:(x1444 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1491 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                 [|((match x1440 with | `ed448 -> Ojs.string_to_js "ed448"));(
                    ED448KeyPairOptions.t_to_js
-                     (fun (x1493 : [ `der ]) ->
-                        match x1493 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1494 : [ `der ]) ->
-                        match x1494 with | `der -> Ojs.string_to_js "der")
-                     x1492);(Ojs.fun_to_js 3
-                               (fun (x1496 : Ojs.t) ->
-                                  fun (x1498 : Ojs.t) ->
-                                    fun (x1499 : Ojs.t) ->
-                                      x1495
+                     (fun (x1442 : [ `der ]) ->
+                        match x1442 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1443 : [ `der ]) ->
+                        match x1443 with | `der -> Ojs.string_to_js "der")
+                     x1441);(Ojs.fun_to_js 3
+                               (fun (x1445 : Ojs.t) ->
+                                  fun (x1447 : Ojs.t) ->
+                                    fun (x1448 : Ojs.t) ->
+                                      x1444
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1496)
-                                        ~public_key:(Buffer.t_of_js x1498)
-                                        ~private_key:(Buffer.t_of_js x1499)))|])
+                                                x1445)
+                                        ~public_key:(Buffer.t_of_js x1447)
+                                        ~private_key:(Buffer.t_of_js x1448)))|])
     let (generate_key_pair :
       type_:[ `ed448 ] ->
         options:ED448KeyPairKeyObjectOptions.t or_undefined ->
@@ -5391,27 +5320,27 @@ module Crypto =
                         private_key:KeyObject.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1500 : [ `ed448 ]) ->
-        fun ~options:(x1501 : ED448KeyPairKeyObjectOptions.t or_undefined) ->
+      fun ~type_:(x1449 : [ `ed448 ]) ->
+        fun ~options:(x1450 : ED448KeyPairKeyObjectOptions.t or_undefined) ->
           fun
-            ~callback:(x1503 :
+            ~callback:(x1452 :
                         err:Error.t or_null ->
                           public_key:KeyObject.t ->
                             private_key:KeyObject.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1500 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                 [|((match x1449 with | `ed448 -> Ojs.string_to_js "ed448"));(
                    or_undefined_to_js ED448KeyPairKeyObjectOptions.t_to_js
-                     x1501);(Ojs.fun_to_js 3
-                               (fun (x1504 : Ojs.t) ->
-                                  fun (x1506 : Ojs.t) ->
-                                    fun (x1507 : Ojs.t) ->
-                                      x1503
+                     x1450);(Ojs.fun_to_js 3
+                               (fun (x1453 : Ojs.t) ->
+                                  fun (x1455 : Ojs.t) ->
+                                    fun (x1456 : Ojs.t) ->
+                                      x1452
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1504)
-                                        ~public_key:(KeyObject.t_of_js x1506)
-                                        ~private_key:(KeyObject.t_of_js x1507)))|])
+                                                x1453)
+                                        ~public_key:(KeyObject.t_of_js x1455)
+                                        ~private_key:(KeyObject.t_of_js x1456)))|])
     let (generate_key_pair :
       type_:[ `x25519 ] ->
         options:([ `pem ], [ `pem ]) X25519KeyPairOptions.t ->
@@ -5419,30 +5348,30 @@ module Crypto =
                       public_key:string -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1508 : [ `x25519 ]) ->
-        fun ~options:(x1509 : ([ `pem ], [ `pem ]) X25519KeyPairOptions.t) ->
+      fun ~type_:(x1457 : [ `x25519 ]) ->
+        fun ~options:(x1458 : ([ `pem ], [ `pem ]) X25519KeyPairOptions.t) ->
           fun
-            ~callback:(x1512 :
+            ~callback:(x1461 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1508 with | `x25519 -> Ojs.string_to_js "x25519"));(
+                 [|((match x1457 with | `x25519 -> Ojs.string_to_js "x25519"));(
                    X25519KeyPairOptions.t_to_js
-                     (fun (x1510 : [ `pem ]) ->
-                        match x1510 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1511 : [ `pem ]) ->
-                        match x1511 with | `pem -> Ojs.string_to_js "pem")
-                     x1509);(Ojs.fun_to_js 3
-                               (fun (x1513 : Ojs.t) ->
-                                  fun (x1515 : Ojs.t) ->
-                                    fun (x1516 : Ojs.t) ->
-                                      x1512
+                     (fun (x1459 : [ `pem ]) ->
+                        match x1459 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1460 : [ `pem ]) ->
+                        match x1460 with | `pem -> Ojs.string_to_js "pem")
+                     x1458);(Ojs.fun_to_js 3
+                               (fun (x1462 : Ojs.t) ->
+                                  fun (x1464 : Ojs.t) ->
+                                    fun (x1465 : Ojs.t) ->
+                                      x1461
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1513)
-                                        ~public_key:(Ojs.string_of_js x1515)
-                                        ~private_key:(Ojs.string_of_js x1516)))|])
+                                                x1462)
+                                        ~public_key:(Ojs.string_of_js x1464)
+                                        ~private_key:(Ojs.string_of_js x1465)))|])
     let (generate_key_pair :
       type_:[ `x25519 ] ->
         options:([ `pem ], [ `der ]) X25519KeyPairOptions.t ->
@@ -5450,30 +5379,30 @@ module Crypto =
                       public_key:string -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1517 : [ `x25519 ]) ->
-        fun ~options:(x1518 : ([ `pem ], [ `der ]) X25519KeyPairOptions.t) ->
+      fun ~type_:(x1466 : [ `x25519 ]) ->
+        fun ~options:(x1467 : ([ `pem ], [ `der ]) X25519KeyPairOptions.t) ->
           fun
-            ~callback:(x1521 :
+            ~callback:(x1470 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1517 with | `x25519 -> Ojs.string_to_js "x25519"));(
+                 [|((match x1466 with | `x25519 -> Ojs.string_to_js "x25519"));(
                    X25519KeyPairOptions.t_to_js
-                     (fun (x1519 : [ `pem ]) ->
-                        match x1519 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1520 : [ `der ]) ->
-                        match x1520 with | `der -> Ojs.string_to_js "der")
-                     x1518);(Ojs.fun_to_js 3
-                               (fun (x1522 : Ojs.t) ->
-                                  fun (x1524 : Ojs.t) ->
-                                    fun (x1525 : Ojs.t) ->
-                                      x1521
+                     (fun (x1468 : [ `pem ]) ->
+                        match x1468 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1469 : [ `der ]) ->
+                        match x1469 with | `der -> Ojs.string_to_js "der")
+                     x1467);(Ojs.fun_to_js 3
+                               (fun (x1471 : Ojs.t) ->
+                                  fun (x1473 : Ojs.t) ->
+                                    fun (x1474 : Ojs.t) ->
+                                      x1470
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1522)
-                                        ~public_key:(Ojs.string_of_js x1524)
-                                        ~private_key:(Buffer.t_of_js x1525)))|])
+                                                x1471)
+                                        ~public_key:(Ojs.string_of_js x1473)
+                                        ~private_key:(Buffer.t_of_js x1474)))|])
     let (generate_key_pair :
       type_:[ `x25519 ] ->
         options:([ `der ], [ `pem ]) X25519KeyPairOptions.t ->
@@ -5481,30 +5410,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1526 : [ `x25519 ]) ->
-        fun ~options:(x1527 : ([ `der ], [ `pem ]) X25519KeyPairOptions.t) ->
+      fun ~type_:(x1475 : [ `x25519 ]) ->
+        fun ~options:(x1476 : ([ `der ], [ `pem ]) X25519KeyPairOptions.t) ->
           fun
-            ~callback:(x1530 :
+            ~callback:(x1479 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1526 with | `x25519 -> Ojs.string_to_js "x25519"));(
+                 [|((match x1475 with | `x25519 -> Ojs.string_to_js "x25519"));(
                    X25519KeyPairOptions.t_to_js
-                     (fun (x1528 : [ `der ]) ->
-                        match x1528 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1529 : [ `pem ]) ->
-                        match x1529 with | `pem -> Ojs.string_to_js "pem")
-                     x1527);(Ojs.fun_to_js 3
-                               (fun (x1531 : Ojs.t) ->
-                                  fun (x1533 : Ojs.t) ->
-                                    fun (x1534 : Ojs.t) ->
-                                      x1530
+                     (fun (x1477 : [ `der ]) ->
+                        match x1477 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1478 : [ `pem ]) ->
+                        match x1478 with | `pem -> Ojs.string_to_js "pem")
+                     x1476);(Ojs.fun_to_js 3
+                               (fun (x1480 : Ojs.t) ->
+                                  fun (x1482 : Ojs.t) ->
+                                    fun (x1483 : Ojs.t) ->
+                                      x1479
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1531)
-                                        ~public_key:(Buffer.t_of_js x1533)
-                                        ~private_key:(Ojs.string_of_js x1534)))|])
+                                                x1480)
+                                        ~public_key:(Buffer.t_of_js x1482)
+                                        ~private_key:(Ojs.string_of_js x1483)))|])
     let (generate_key_pair :
       type_:[ `x25519 ] ->
         options:([ `der ], [ `der ]) X25519KeyPairOptions.t ->
@@ -5512,30 +5441,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1535 : [ `x25519 ]) ->
-        fun ~options:(x1536 : ([ `der ], [ `der ]) X25519KeyPairOptions.t) ->
+      fun ~type_:(x1484 : [ `x25519 ]) ->
+        fun ~options:(x1485 : ([ `der ], [ `der ]) X25519KeyPairOptions.t) ->
           fun
-            ~callback:(x1539 :
+            ~callback:(x1488 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1535 with | `x25519 -> Ojs.string_to_js "x25519"));(
+                 [|((match x1484 with | `x25519 -> Ojs.string_to_js "x25519"));(
                    X25519KeyPairOptions.t_to_js
-                     (fun (x1537 : [ `der ]) ->
-                        match x1537 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1538 : [ `der ]) ->
-                        match x1538 with | `der -> Ojs.string_to_js "der")
-                     x1536);(Ojs.fun_to_js 3
-                               (fun (x1540 : Ojs.t) ->
-                                  fun (x1542 : Ojs.t) ->
-                                    fun (x1543 : Ojs.t) ->
-                                      x1539
+                     (fun (x1486 : [ `der ]) ->
+                        match x1486 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1487 : [ `der ]) ->
+                        match x1487 with | `der -> Ojs.string_to_js "der")
+                     x1485);(Ojs.fun_to_js 3
+                               (fun (x1489 : Ojs.t) ->
+                                  fun (x1491 : Ojs.t) ->
+                                    fun (x1492 : Ojs.t) ->
+                                      x1488
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1540)
-                                        ~public_key:(Buffer.t_of_js x1542)
-                                        ~private_key:(Buffer.t_of_js x1543)))|])
+                                                x1489)
+                                        ~public_key:(Buffer.t_of_js x1491)
+                                        ~private_key:(Buffer.t_of_js x1492)))|])
     let (generate_key_pair :
       type_:[ `x25519 ] ->
         options:X25519KeyPairKeyObjectOptions.t or_undefined ->
@@ -5544,28 +5473,28 @@ module Crypto =
                         private_key:KeyObject.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1544 : [ `x25519 ]) ->
-        fun ~options:(x1545 : X25519KeyPairKeyObjectOptions.t or_undefined)
+      fun ~type_:(x1493 : [ `x25519 ]) ->
+        fun ~options:(x1494 : X25519KeyPairKeyObjectOptions.t or_undefined)
           ->
           fun
-            ~callback:(x1547 :
+            ~callback:(x1496 :
                         err:Error.t or_null ->
                           public_key:KeyObject.t ->
                             private_key:KeyObject.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1544 with | `x25519 -> Ojs.string_to_js "x25519"));(
+                 [|((match x1493 with | `x25519 -> Ojs.string_to_js "x25519"));(
                    or_undefined_to_js X25519KeyPairKeyObjectOptions.t_to_js
-                     x1545);(Ojs.fun_to_js 3
-                               (fun (x1548 : Ojs.t) ->
-                                  fun (x1550 : Ojs.t) ->
-                                    fun (x1551 : Ojs.t) ->
-                                      x1547
+                     x1494);(Ojs.fun_to_js 3
+                               (fun (x1497 : Ojs.t) ->
+                                  fun (x1499 : Ojs.t) ->
+                                    fun (x1500 : Ojs.t) ->
+                                      x1496
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1548)
-                                        ~public_key:(KeyObject.t_of_js x1550)
-                                        ~private_key:(KeyObject.t_of_js x1551)))|])
+                                                x1497)
+                                        ~public_key:(KeyObject.t_of_js x1499)
+                                        ~private_key:(KeyObject.t_of_js x1500)))|])
     let (generate_key_pair :
       type_:[ `x448 ] ->
         options:([ `pem ], [ `pem ]) X448KeyPairOptions.t ->
@@ -5573,30 +5502,30 @@ module Crypto =
                       public_key:string -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1552 : [ `x448 ]) ->
-        fun ~options:(x1553 : ([ `pem ], [ `pem ]) X448KeyPairOptions.t) ->
+      fun ~type_:(x1501 : [ `x448 ]) ->
+        fun ~options:(x1502 : ([ `pem ], [ `pem ]) X448KeyPairOptions.t) ->
           fun
-            ~callback:(x1556 :
+            ~callback:(x1505 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1552 with | `x448 -> Ojs.string_to_js "x448"));(
+                 [|((match x1501 with | `x448 -> Ojs.string_to_js "x448"));(
                    X448KeyPairOptions.t_to_js
-                     (fun (x1554 : [ `pem ]) ->
-                        match x1554 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1555 : [ `pem ]) ->
-                        match x1555 with | `pem -> Ojs.string_to_js "pem")
-                     x1553);(Ojs.fun_to_js 3
-                               (fun (x1557 : Ojs.t) ->
-                                  fun (x1559 : Ojs.t) ->
-                                    fun (x1560 : Ojs.t) ->
-                                      x1556
+                     (fun (x1503 : [ `pem ]) ->
+                        match x1503 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1504 : [ `pem ]) ->
+                        match x1504 with | `pem -> Ojs.string_to_js "pem")
+                     x1502);(Ojs.fun_to_js 3
+                               (fun (x1506 : Ojs.t) ->
+                                  fun (x1508 : Ojs.t) ->
+                                    fun (x1509 : Ojs.t) ->
+                                      x1505
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1557)
-                                        ~public_key:(Ojs.string_of_js x1559)
-                                        ~private_key:(Ojs.string_of_js x1560)))|])
+                                                x1506)
+                                        ~public_key:(Ojs.string_of_js x1508)
+                                        ~private_key:(Ojs.string_of_js x1509)))|])
     let (generate_key_pair :
       type_:[ `x448 ] ->
         options:([ `pem ], [ `der ]) X448KeyPairOptions.t ->
@@ -5604,30 +5533,30 @@ module Crypto =
                       public_key:string -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1561 : [ `x448 ]) ->
-        fun ~options:(x1562 : ([ `pem ], [ `der ]) X448KeyPairOptions.t) ->
+      fun ~type_:(x1510 : [ `x448 ]) ->
+        fun ~options:(x1511 : ([ `pem ], [ `der ]) X448KeyPairOptions.t) ->
           fun
-            ~callback:(x1565 :
+            ~callback:(x1514 :
                         err:Error.t or_null ->
                           public_key:string -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1561 with | `x448 -> Ojs.string_to_js "x448"));(
+                 [|((match x1510 with | `x448 -> Ojs.string_to_js "x448"));(
                    X448KeyPairOptions.t_to_js
-                     (fun (x1563 : [ `pem ]) ->
-                        match x1563 with | `pem -> Ojs.string_to_js "pem")
-                     (fun (x1564 : [ `der ]) ->
-                        match x1564 with | `der -> Ojs.string_to_js "der")
-                     x1562);(Ojs.fun_to_js 3
-                               (fun (x1566 : Ojs.t) ->
-                                  fun (x1568 : Ojs.t) ->
-                                    fun (x1569 : Ojs.t) ->
-                                      x1565
+                     (fun (x1512 : [ `pem ]) ->
+                        match x1512 with | `pem -> Ojs.string_to_js "pem")
+                     (fun (x1513 : [ `der ]) ->
+                        match x1513 with | `der -> Ojs.string_to_js "der")
+                     x1511);(Ojs.fun_to_js 3
+                               (fun (x1515 : Ojs.t) ->
+                                  fun (x1517 : Ojs.t) ->
+                                    fun (x1518 : Ojs.t) ->
+                                      x1514
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1566)
-                                        ~public_key:(Ojs.string_of_js x1568)
-                                        ~private_key:(Buffer.t_of_js x1569)))|])
+                                                x1515)
+                                        ~public_key:(Ojs.string_of_js x1517)
+                                        ~private_key:(Buffer.t_of_js x1518)))|])
     let (generate_key_pair :
       type_:[ `x448 ] ->
         options:([ `der ], [ `pem ]) X448KeyPairOptions.t ->
@@ -5635,30 +5564,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:string -> unit)
             -> unit)
       =
-      fun ~type_:(x1570 : [ `x448 ]) ->
-        fun ~options:(x1571 : ([ `der ], [ `pem ]) X448KeyPairOptions.t) ->
+      fun ~type_:(x1519 : [ `x448 ]) ->
+        fun ~options:(x1520 : ([ `der ], [ `pem ]) X448KeyPairOptions.t) ->
           fun
-            ~callback:(x1574 :
+            ~callback:(x1523 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:string -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1570 with | `x448 -> Ojs.string_to_js "x448"));(
+                 [|((match x1519 with | `x448 -> Ojs.string_to_js "x448"));(
                    X448KeyPairOptions.t_to_js
-                     (fun (x1572 : [ `der ]) ->
-                        match x1572 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1573 : [ `pem ]) ->
-                        match x1573 with | `pem -> Ojs.string_to_js "pem")
-                     x1571);(Ojs.fun_to_js 3
-                               (fun (x1575 : Ojs.t) ->
-                                  fun (x1577 : Ojs.t) ->
-                                    fun (x1578 : Ojs.t) ->
-                                      x1574
+                     (fun (x1521 : [ `der ]) ->
+                        match x1521 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1522 : [ `pem ]) ->
+                        match x1522 with | `pem -> Ojs.string_to_js "pem")
+                     x1520);(Ojs.fun_to_js 3
+                               (fun (x1524 : Ojs.t) ->
+                                  fun (x1526 : Ojs.t) ->
+                                    fun (x1527 : Ojs.t) ->
+                                      x1523
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1575)
-                                        ~public_key:(Buffer.t_of_js x1577)
-                                        ~private_key:(Ojs.string_of_js x1578)))|])
+                                                x1524)
+                                        ~public_key:(Buffer.t_of_js x1526)
+                                        ~private_key:(Ojs.string_of_js x1527)))|])
     let (generate_key_pair :
       type_:[ `x448 ] ->
         options:([ `der ], [ `der ]) X448KeyPairOptions.t ->
@@ -5666,30 +5595,30 @@ module Crypto =
                       public_key:Buffer.t -> private_key:Buffer.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1579 : [ `x448 ]) ->
-        fun ~options:(x1580 : ([ `der ], [ `der ]) X448KeyPairOptions.t) ->
+      fun ~type_:(x1528 : [ `x448 ]) ->
+        fun ~options:(x1529 : ([ `der ], [ `der ]) X448KeyPairOptions.t) ->
           fun
-            ~callback:(x1583 :
+            ~callback:(x1532 :
                         err:Error.t or_null ->
                           public_key:Buffer.t -> private_key:Buffer.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1579 with | `x448 -> Ojs.string_to_js "x448"));(
+                 [|((match x1528 with | `x448 -> Ojs.string_to_js "x448"));(
                    X448KeyPairOptions.t_to_js
-                     (fun (x1581 : [ `der ]) ->
-                        match x1581 with | `der -> Ojs.string_to_js "der")
-                     (fun (x1582 : [ `der ]) ->
-                        match x1582 with | `der -> Ojs.string_to_js "der")
-                     x1580);(Ojs.fun_to_js 3
-                               (fun (x1584 : Ojs.t) ->
-                                  fun (x1586 : Ojs.t) ->
-                                    fun (x1587 : Ojs.t) ->
-                                      x1583
+                     (fun (x1530 : [ `der ]) ->
+                        match x1530 with | `der -> Ojs.string_to_js "der")
+                     (fun (x1531 : [ `der ]) ->
+                        match x1531 with | `der -> Ojs.string_to_js "der")
+                     x1529);(Ojs.fun_to_js 3
+                               (fun (x1533 : Ojs.t) ->
+                                  fun (x1535 : Ojs.t) ->
+                                    fun (x1536 : Ojs.t) ->
+                                      x1532
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1584)
-                                        ~public_key:(Buffer.t_of_js x1586)
-                                        ~private_key:(Buffer.t_of_js x1587)))|])
+                                                x1533)
+                                        ~public_key:(Buffer.t_of_js x1535)
+                                        ~private_key:(Buffer.t_of_js x1536)))|])
     let (generate_key_pair :
       type_:[ `x448 ] ->
         options:X448KeyPairKeyObjectOptions.t or_undefined ->
@@ -5698,27 +5627,27 @@ module Crypto =
                         private_key:KeyObject.t -> unit)
             -> unit)
       =
-      fun ~type_:(x1588 : [ `x448 ]) ->
-        fun ~options:(x1589 : X448KeyPairKeyObjectOptions.t or_undefined) ->
+      fun ~type_:(x1537 : [ `x448 ]) ->
+        fun ~options:(x1538 : X448KeyPairKeyObjectOptions.t or_undefined) ->
           fun
-            ~callback:(x1591 :
+            ~callback:(x1540 :
                         err:Error.t or_null ->
                           public_key:KeyObject.t ->
                             private_key:KeyObject.t -> unit)
             ->
             ignore
               (Ojs.call Import.crypto "generateKeyPair"
-                 [|((match x1588 with | `x448 -> Ojs.string_to_js "x448"));(
+                 [|((match x1537 with | `x448 -> Ojs.string_to_js "x448"));(
                    or_undefined_to_js X448KeyPairKeyObjectOptions.t_to_js
-                     x1589);(Ojs.fun_to_js 3
-                               (fun (x1592 : Ojs.t) ->
-                                  fun (x1594 : Ojs.t) ->
-                                    fun (x1595 : Ojs.t) ->
-                                      x1591
+                     x1538);(Ojs.fun_to_js 3
+                               (fun (x1541 : Ojs.t) ->
+                                  fun (x1543 : Ojs.t) ->
+                                    fun (x1544 : Ojs.t) ->
+                                      x1540
                                         ~err:(or_null_of_js Error.t_of_js
-                                                x1592)
-                                        ~public_key:(KeyObject.t_of_js x1594)
-                                        ~private_key:(KeyObject.t_of_js x1595)))|])
+                                                x1541)
+                                        ~public_key:(KeyObject.t_of_js x1543)
+                                        ~private_key:(KeyObject.t_of_js x1544)))|])
     module GenerateKeyPair =
       struct
         let (__promisify__ :
@@ -5726,290 +5655,559 @@ module Crypto =
             options:([ `pem ], [ `pem ]) RSAKeyPairOptions.t ->
               AnonymousInterface5.t Promise.t)
           =
-          fun ~type_:(x1596 : [ `rsa ]) ->
-            fun ~options:(x1597 : ([ `pem ], [ `pem ]) RSAKeyPairOptions.t)
+          fun ~type_:(x1545 : [ `rsa ]) ->
+            fun ~options:(x1546 : ([ `pem ], [ `pem ]) RSAKeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface5.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1596 with | `rsa -> Ojs.string_to_js "rsa"));(
+                   [|((match x1545 with | `rsa -> Ojs.string_to_js "rsa"));(
                      RSAKeyPairOptions.t_to_js
-                       (fun (x1598 : [ `pem ]) ->
-                          match x1598 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1599 : [ `pem ]) ->
-                          match x1599 with | `pem -> Ojs.string_to_js "pem")
-                       x1597)|])
+                       (fun (x1547 : [ `pem ]) ->
+                          match x1547 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1548 : [ `pem ]) ->
+                          match x1548 with | `pem -> Ojs.string_to_js "pem")
+                       x1546)|])
         let (__promisify__ :
           type_:[ `rsa ] ->
             options:([ `pem ], [ `der ]) RSAKeyPairOptions.t ->
               AnonymousInterface4.t Promise.t)
           =
-          fun ~type_:(x1601 : [ `rsa ]) ->
-            fun ~options:(x1602 : ([ `pem ], [ `der ]) RSAKeyPairOptions.t)
+          fun ~type_:(x1550 : [ `rsa ]) ->
+            fun ~options:(x1551 : ([ `pem ], [ `der ]) RSAKeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface4.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1601 with | `rsa -> Ojs.string_to_js "rsa"));(
+                   [|((match x1550 with | `rsa -> Ojs.string_to_js "rsa"));(
                      RSAKeyPairOptions.t_to_js
-                       (fun (x1603 : [ `pem ]) ->
-                          match x1603 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1604 : [ `der ]) ->
-                          match x1604 with | `der -> Ojs.string_to_js "der")
-                       x1602)|])
+                       (fun (x1552 : [ `pem ]) ->
+                          match x1552 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1553 : [ `der ]) ->
+                          match x1553 with | `der -> Ojs.string_to_js "der")
+                       x1551)|])
         let (__promisify__ :
           type_:[ `rsa ] ->
             options:([ `der ], [ `pem ]) RSAKeyPairOptions.t ->
               AnonymousInterface3.t Promise.t)
           =
-          fun ~type_:(x1606 : [ `rsa ]) ->
-            fun ~options:(x1607 : ([ `der ], [ `pem ]) RSAKeyPairOptions.t)
+          fun ~type_:(x1555 : [ `rsa ]) ->
+            fun ~options:(x1556 : ([ `der ], [ `pem ]) RSAKeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface3.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1606 with | `rsa -> Ojs.string_to_js "rsa"));(
+                   [|((match x1555 with | `rsa -> Ojs.string_to_js "rsa"));(
                      RSAKeyPairOptions.t_to_js
-                       (fun (x1608 : [ `der ]) ->
-                          match x1608 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1609 : [ `pem ]) ->
-                          match x1609 with | `pem -> Ojs.string_to_js "pem")
-                       x1607)|])
+                       (fun (x1557 : [ `der ]) ->
+                          match x1557 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1558 : [ `pem ]) ->
+                          match x1558 with | `pem -> Ojs.string_to_js "pem")
+                       x1556)|])
         let (__promisify__ :
           type_:[ `rsa ] ->
             options:([ `der ], [ `der ]) RSAKeyPairOptions.t ->
               AnonymousInterface2.t Promise.t)
           =
-          fun ~type_:(x1611 : [ `rsa ]) ->
-            fun ~options:(x1612 : ([ `der ], [ `der ]) RSAKeyPairOptions.t)
+          fun ~type_:(x1560 : [ `rsa ]) ->
+            fun ~options:(x1561 : ([ `der ], [ `der ]) RSAKeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface2.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1611 with | `rsa -> Ojs.string_to_js "rsa"));(
+                   [|((match x1560 with | `rsa -> Ojs.string_to_js "rsa"));(
                      RSAKeyPairOptions.t_to_js
-                       (fun (x1613 : [ `der ]) ->
-                          match x1613 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1614 : [ `der ]) ->
-                          match x1614 with | `der -> Ojs.string_to_js "der")
-                       x1612)|])
+                       (fun (x1562 : [ `der ]) ->
+                          match x1562 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1563 : [ `der ]) ->
+                          match x1563 with | `der -> Ojs.string_to_js "der")
+                       x1561)|])
         let (__promisify__ :
           type_:[ `rsa ] ->
             options:RSAKeyPairKeyObjectOptions.t ->
               KeyPairKeyObjectResult.t Promise.t)
           =
-          fun ~type_:(x1616 : [ `rsa ]) ->
-            fun ~options:(x1617 : RSAKeyPairKeyObjectOptions.t) ->
+          fun ~type_:(x1565 : [ `rsa ]) ->
+            fun ~options:(x1566 : RSAKeyPairKeyObjectOptions.t) ->
               Promise.t_of_js KeyPairKeyObjectResult.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1616 with | `rsa -> Ojs.string_to_js "rsa"));(
-                     RSAKeyPairKeyObjectOptions.t_to_js x1617)|])
+                   [|((match x1565 with | `rsa -> Ojs.string_to_js "rsa"));(
+                     RSAKeyPairKeyObjectOptions.t_to_js x1566)|])
         let (__promisify__ :
           type_:[ `dsa ] ->
             options:([ `pem ], [ `pem ]) DSAKeyPairOptions.t ->
               AnonymousInterface5.t Promise.t)
           =
-          fun ~type_:(x1619 : [ `dsa ]) ->
-            fun ~options:(x1620 : ([ `pem ], [ `pem ]) DSAKeyPairOptions.t)
+          fun ~type_:(x1568 : [ `dsa ]) ->
+            fun ~options:(x1569 : ([ `pem ], [ `pem ]) DSAKeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface5.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1619 with | `dsa -> Ojs.string_to_js "dsa"));(
+                   [|((match x1568 with | `dsa -> Ojs.string_to_js "dsa"));(
                      DSAKeyPairOptions.t_to_js
-                       (fun (x1621 : [ `pem ]) ->
-                          match x1621 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1622 : [ `pem ]) ->
-                          match x1622 with | `pem -> Ojs.string_to_js "pem")
-                       x1620)|])
+                       (fun (x1570 : [ `pem ]) ->
+                          match x1570 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1571 : [ `pem ]) ->
+                          match x1571 with | `pem -> Ojs.string_to_js "pem")
+                       x1569)|])
         let (__promisify__ :
           type_:[ `dsa ] ->
             options:([ `pem ], [ `der ]) DSAKeyPairOptions.t ->
               AnonymousInterface4.t Promise.t)
           =
-          fun ~type_:(x1624 : [ `dsa ]) ->
-            fun ~options:(x1625 : ([ `pem ], [ `der ]) DSAKeyPairOptions.t)
+          fun ~type_:(x1573 : [ `dsa ]) ->
+            fun ~options:(x1574 : ([ `pem ], [ `der ]) DSAKeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface4.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1624 with | `dsa -> Ojs.string_to_js "dsa"));(
+                   [|((match x1573 with | `dsa -> Ojs.string_to_js "dsa"));(
                      DSAKeyPairOptions.t_to_js
-                       (fun (x1626 : [ `pem ]) ->
-                          match x1626 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1627 : [ `der ]) ->
-                          match x1627 with | `der -> Ojs.string_to_js "der")
-                       x1625)|])
+                       (fun (x1575 : [ `pem ]) ->
+                          match x1575 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1576 : [ `der ]) ->
+                          match x1576 with | `der -> Ojs.string_to_js "der")
+                       x1574)|])
         let (__promisify__ :
           type_:[ `dsa ] ->
             options:([ `der ], [ `pem ]) DSAKeyPairOptions.t ->
               AnonymousInterface3.t Promise.t)
           =
-          fun ~type_:(x1629 : [ `dsa ]) ->
-            fun ~options:(x1630 : ([ `der ], [ `pem ]) DSAKeyPairOptions.t)
+          fun ~type_:(x1578 : [ `dsa ]) ->
+            fun ~options:(x1579 : ([ `der ], [ `pem ]) DSAKeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface3.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1629 with | `dsa -> Ojs.string_to_js "dsa"));(
+                   [|((match x1578 with | `dsa -> Ojs.string_to_js "dsa"));(
                      DSAKeyPairOptions.t_to_js
-                       (fun (x1631 : [ `der ]) ->
-                          match x1631 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1632 : [ `pem ]) ->
-                          match x1632 with | `pem -> Ojs.string_to_js "pem")
-                       x1630)|])
+                       (fun (x1580 : [ `der ]) ->
+                          match x1580 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1581 : [ `pem ]) ->
+                          match x1581 with | `pem -> Ojs.string_to_js "pem")
+                       x1579)|])
         let (__promisify__ :
           type_:[ `dsa ] ->
             options:([ `der ], [ `der ]) DSAKeyPairOptions.t ->
               AnonymousInterface2.t Promise.t)
           =
-          fun ~type_:(x1634 : [ `dsa ]) ->
-            fun ~options:(x1635 : ([ `der ], [ `der ]) DSAKeyPairOptions.t)
+          fun ~type_:(x1583 : [ `dsa ]) ->
+            fun ~options:(x1584 : ([ `der ], [ `der ]) DSAKeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface2.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1634 with | `dsa -> Ojs.string_to_js "dsa"));(
+                   [|((match x1583 with | `dsa -> Ojs.string_to_js "dsa"));(
                      DSAKeyPairOptions.t_to_js
-                       (fun (x1636 : [ `der ]) ->
-                          match x1636 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1637 : [ `der ]) ->
-                          match x1637 with | `der -> Ojs.string_to_js "der")
-                       x1635)|])
+                       (fun (x1585 : [ `der ]) ->
+                          match x1585 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1586 : [ `der ]) ->
+                          match x1586 with | `der -> Ojs.string_to_js "der")
+                       x1584)|])
         let (__promisify__ :
           type_:[ `dsa ] ->
             options:DSAKeyPairKeyObjectOptions.t ->
               KeyPairKeyObjectResult.t Promise.t)
           =
-          fun ~type_:(x1639 : [ `dsa ]) ->
-            fun ~options:(x1640 : DSAKeyPairKeyObjectOptions.t) ->
+          fun ~type_:(x1588 : [ `dsa ]) ->
+            fun ~options:(x1589 : DSAKeyPairKeyObjectOptions.t) ->
               Promise.t_of_js KeyPairKeyObjectResult.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1639 with | `dsa -> Ojs.string_to_js "dsa"));(
-                     DSAKeyPairKeyObjectOptions.t_to_js x1640)|])
+                   [|((match x1588 with | `dsa -> Ojs.string_to_js "dsa"));(
+                     DSAKeyPairKeyObjectOptions.t_to_js x1589)|])
         let (__promisify__ :
           type_:[ `ec ] ->
             options:([ `pem ], [ `pem ]) ECKeyPairOptions.t ->
               AnonymousInterface5.t Promise.t)
           =
-          fun ~type_:(x1642 : [ `ec ]) ->
-            fun ~options:(x1643 : ([ `pem ], [ `pem ]) ECKeyPairOptions.t) ->
+          fun ~type_:(x1591 : [ `ec ]) ->
+            fun ~options:(x1592 : ([ `pem ], [ `pem ]) ECKeyPairOptions.t) ->
               Promise.t_of_js AnonymousInterface5.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1642 with | `ec -> Ojs.string_to_js "ec"));(
+                   [|((match x1591 with | `ec -> Ojs.string_to_js "ec"));(
                      ECKeyPairOptions.t_to_js
-                       (fun (x1644 : [ `pem ]) ->
-                          match x1644 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1645 : [ `pem ]) ->
-                          match x1645 with | `pem -> Ojs.string_to_js "pem")
-                       x1643)|])
+                       (fun (x1593 : [ `pem ]) ->
+                          match x1593 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1594 : [ `pem ]) ->
+                          match x1594 with | `pem -> Ojs.string_to_js "pem")
+                       x1592)|])
         let (__promisify__ :
           type_:[ `ec ] ->
             options:([ `pem ], [ `der ]) ECKeyPairOptions.t ->
               AnonymousInterface4.t Promise.t)
           =
-          fun ~type_:(x1647 : [ `ec ]) ->
-            fun ~options:(x1648 : ([ `pem ], [ `der ]) ECKeyPairOptions.t) ->
+          fun ~type_:(x1596 : [ `ec ]) ->
+            fun ~options:(x1597 : ([ `pem ], [ `der ]) ECKeyPairOptions.t) ->
               Promise.t_of_js AnonymousInterface4.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1647 with | `ec -> Ojs.string_to_js "ec"));(
+                   [|((match x1596 with | `ec -> Ojs.string_to_js "ec"));(
                      ECKeyPairOptions.t_to_js
-                       (fun (x1649 : [ `pem ]) ->
-                          match x1649 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1650 : [ `der ]) ->
-                          match x1650 with | `der -> Ojs.string_to_js "der")
-                       x1648)|])
+                       (fun (x1598 : [ `pem ]) ->
+                          match x1598 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1599 : [ `der ]) ->
+                          match x1599 with | `der -> Ojs.string_to_js "der")
+                       x1597)|])
         let (__promisify__ :
           type_:[ `ec ] ->
             options:([ `der ], [ `pem ]) ECKeyPairOptions.t ->
               AnonymousInterface3.t Promise.t)
           =
-          fun ~type_:(x1652 : [ `ec ]) ->
-            fun ~options:(x1653 : ([ `der ], [ `pem ]) ECKeyPairOptions.t) ->
+          fun ~type_:(x1601 : [ `ec ]) ->
+            fun ~options:(x1602 : ([ `der ], [ `pem ]) ECKeyPairOptions.t) ->
               Promise.t_of_js AnonymousInterface3.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1652 with | `ec -> Ojs.string_to_js "ec"));(
+                   [|((match x1601 with | `ec -> Ojs.string_to_js "ec"));(
                      ECKeyPairOptions.t_to_js
-                       (fun (x1654 : [ `der ]) ->
-                          match x1654 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1655 : [ `pem ]) ->
-                          match x1655 with | `pem -> Ojs.string_to_js "pem")
-                       x1653)|])
+                       (fun (x1603 : [ `der ]) ->
+                          match x1603 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1604 : [ `pem ]) ->
+                          match x1604 with | `pem -> Ojs.string_to_js "pem")
+                       x1602)|])
         let (__promisify__ :
           type_:[ `ec ] ->
             options:([ `der ], [ `der ]) ECKeyPairOptions.t ->
               AnonymousInterface2.t Promise.t)
           =
-          fun ~type_:(x1657 : [ `ec ]) ->
-            fun ~options:(x1658 : ([ `der ], [ `der ]) ECKeyPairOptions.t) ->
+          fun ~type_:(x1606 : [ `ec ]) ->
+            fun ~options:(x1607 : ([ `der ], [ `der ]) ECKeyPairOptions.t) ->
               Promise.t_of_js AnonymousInterface2.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1657 with | `ec -> Ojs.string_to_js "ec"));(
+                   [|((match x1606 with | `ec -> Ojs.string_to_js "ec"));(
                      ECKeyPairOptions.t_to_js
-                       (fun (x1659 : [ `der ]) ->
-                          match x1659 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1660 : [ `der ]) ->
-                          match x1660 with | `der -> Ojs.string_to_js "der")
-                       x1658)|])
+                       (fun (x1608 : [ `der ]) ->
+                          match x1608 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1609 : [ `der ]) ->
+                          match x1609 with | `der -> Ojs.string_to_js "der")
+                       x1607)|])
         let (__promisify__ :
           type_:[ `ec ] ->
             options:ECKeyPairKeyObjectOptions.t ->
               KeyPairKeyObjectResult.t Promise.t)
           =
-          fun ~type_:(x1662 : [ `ec ]) ->
-            fun ~options:(x1663 : ECKeyPairKeyObjectOptions.t) ->
+          fun ~type_:(x1611 : [ `ec ]) ->
+            fun ~options:(x1612 : ECKeyPairKeyObjectOptions.t) ->
               Promise.t_of_js KeyPairKeyObjectResult.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1662 with | `ec -> Ojs.string_to_js "ec"));(
-                     ECKeyPairKeyObjectOptions.t_to_js x1663)|])
+                   [|((match x1611 with | `ec -> Ojs.string_to_js "ec"));(
+                     ECKeyPairKeyObjectOptions.t_to_js x1612)|])
         let (__promisify__ :
           type_:[ `ed25519 ] ->
             options:([ `pem ], [ `pem ]) ED25519KeyPairOptions.t ->
               AnonymousInterface5.t Promise.t)
           =
-          fun ~type_:(x1665 : [ `ed25519 ]) ->
+          fun ~type_:(x1614 : [ `ed25519 ]) ->
             fun
-              ~options:(x1666 : ([ `pem ], [ `pem ]) ED25519KeyPairOptions.t)
+              ~options:(x1615 : ([ `pem ], [ `pem ]) ED25519KeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface5.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1665 with
+                   [|((match x1614 with
                        | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
                                                                     (fun
-                                                                    (x1667 :
+                                                                    (x1616 :
                                                                     [ `pem ])
                                                                     ->
-                                                                    match x1667
+                                                                    match x1616
                                                                     with
                                                                     | 
                                                                     `pem ->
                                                                     Ojs.string_to_js
                                                                     "pem")
                                                                     (fun
+                                                                    (x1617 :
+                                                                    [ `pem ])
+                                                                    ->
+                                                                    match x1617
+                                                                    with
+                                                                    | 
+                                                                    `pem ->
+                                                                    Ojs.string_to_js
+                                                                    "pem")
+                                                                    x1615)|])
+        let (__promisify__ :
+          type_:[ `ed25519 ] ->
+            options:([ `pem ], [ `der ]) ED25519KeyPairOptions.t ->
+              AnonymousInterface4.t Promise.t)
+          =
+          fun ~type_:(x1619 : [ `ed25519 ]) ->
+            fun
+              ~options:(x1620 : ([ `pem ], [ `der ]) ED25519KeyPairOptions.t)
+              ->
+              Promise.t_of_js AnonymousInterface4.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
+                   "__promisify__"
+                   [|((match x1619 with
+                       | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
+                                                                    (fun
+                                                                    (x1621 :
+                                                                    [ `pem ])
+                                                                    ->
+                                                                    match x1621
+                                                                    with
+                                                                    | 
+                                                                    `pem ->
+                                                                    Ojs.string_to_js
+                                                                    "pem")
+                                                                    (fun
+                                                                    (x1622 :
+                                                                    [ `der ])
+                                                                    ->
+                                                                    match x1622
+                                                                    with
+                                                                    | 
+                                                                    `der ->
+                                                                    Ojs.string_to_js
+                                                                    "der")
+                                                                    x1620)|])
+        let (__promisify__ :
+          type_:[ `ed25519 ] ->
+            options:([ `der ], [ `pem ]) ED25519KeyPairOptions.t ->
+              AnonymousInterface3.t Promise.t)
+          =
+          fun ~type_:(x1624 : [ `ed25519 ]) ->
+            fun
+              ~options:(x1625 : ([ `der ], [ `pem ]) ED25519KeyPairOptions.t)
+              ->
+              Promise.t_of_js AnonymousInterface3.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
+                   "__promisify__"
+                   [|((match x1624 with
+                       | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
+                                                                    (fun
+                                                                    (x1626 :
+                                                                    [ `der ])
+                                                                    ->
+                                                                    match x1626
+                                                                    with
+                                                                    | 
+                                                                    `der ->
+                                                                    Ojs.string_to_js
+                                                                    "der")
+                                                                    (fun
+                                                                    (x1627 :
+                                                                    [ `pem ])
+                                                                    ->
+                                                                    match x1627
+                                                                    with
+                                                                    | 
+                                                                    `pem ->
+                                                                    Ojs.string_to_js
+                                                                    "pem")
+                                                                    x1625)|])
+        let (__promisify__ :
+          type_:[ `ed25519 ] ->
+            options:([ `der ], [ `der ]) ED25519KeyPairOptions.t ->
+              AnonymousInterface2.t Promise.t)
+          =
+          fun ~type_:(x1629 : [ `ed25519 ]) ->
+            fun
+              ~options:(x1630 : ([ `der ], [ `der ]) ED25519KeyPairOptions.t)
+              ->
+              Promise.t_of_js AnonymousInterface2.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
+                   "__promisify__"
+                   [|((match x1629 with
+                       | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
+                                                                    (fun
+                                                                    (x1631 :
+                                                                    [ `der ])
+                                                                    ->
+                                                                    match x1631
+                                                                    with
+                                                                    | 
+                                                                    `der ->
+                                                                    Ojs.string_to_js
+                                                                    "der")
+                                                                    (fun
+                                                                    (x1632 :
+                                                                    [ `der ])
+                                                                    ->
+                                                                    match x1632
+                                                                    with
+                                                                    | 
+                                                                    `der ->
+                                                                    Ojs.string_to_js
+                                                                    "der")
+                                                                    x1630)|])
+        let (__promisify__ :
+          type_:[ `ed25519 ] ->
+            ?options:ED25519KeyPairKeyObjectOptions.t ->
+              unit -> KeyPairKeyObjectResult.t Promise.t)
+          =
+          fun ~type_:(x1634 : [ `ed25519 ]) ->
+            fun ?options:(x1635 : ED25519KeyPairKeyObjectOptions.t option) ->
+              fun () ->
+                Promise.t_of_js KeyPairKeyObjectResult.t_of_js
+                  (let x1638 =
+                     Ojs.get_prop_ascii Import.crypto "generateKeyPair" in
+                   Ojs.call (Ojs.get_prop_ascii x1638 "__promisify__")
+                     "apply"
+                     [|x1638;((let x1636 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               ignore
+                                 (Ojs.call x1636 "push"
+                                    [|((match x1634 with
+                                        | `ed25519 ->
+                                            Ojs.string_to_js "ed25519"))|]);
+                               (match x1635 with
+                                | Some x1637 ->
+                                    ignore
+                                      (Ojs.call x1636 "push"
+                                         [|(ED25519KeyPairKeyObjectOptions.t_to_js
+                                              x1637)|])
+                                | None -> ());
+                               x1636))|])
+        let (__promisify__ :
+          type_:[ `ed448 ] ->
+            options:([ `pem ], [ `pem ]) ED448KeyPairOptions.t ->
+              AnonymousInterface5.t Promise.t)
+          =
+          fun ~type_:(x1640 : [ `ed448 ]) ->
+            fun ~options:(x1641 : ([ `pem ], [ `pem ]) ED448KeyPairOptions.t)
+              ->
+              Promise.t_of_js AnonymousInterface5.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
+                   "__promisify__"
+                   [|((match x1640 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                     ED448KeyPairOptions.t_to_js
+                       (fun (x1642 : [ `pem ]) ->
+                          match x1642 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1643 : [ `pem ]) ->
+                          match x1643 with | `pem -> Ojs.string_to_js "pem")
+                       x1641)|])
+        let (__promisify__ :
+          type_:[ `ed448 ] ->
+            options:([ `pem ], [ `der ]) ED448KeyPairOptions.t ->
+              AnonymousInterface4.t Promise.t)
+          =
+          fun ~type_:(x1645 : [ `ed448 ]) ->
+            fun ~options:(x1646 : ([ `pem ], [ `der ]) ED448KeyPairOptions.t)
+              ->
+              Promise.t_of_js AnonymousInterface4.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
+                   "__promisify__"
+                   [|((match x1645 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                     ED448KeyPairOptions.t_to_js
+                       (fun (x1647 : [ `pem ]) ->
+                          match x1647 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1648 : [ `der ]) ->
+                          match x1648 with | `der -> Ojs.string_to_js "der")
+                       x1646)|])
+        let (__promisify__ :
+          type_:[ `ed448 ] ->
+            options:([ `der ], [ `pem ]) ED448KeyPairOptions.t ->
+              AnonymousInterface3.t Promise.t)
+          =
+          fun ~type_:(x1650 : [ `ed448 ]) ->
+            fun ~options:(x1651 : ([ `der ], [ `pem ]) ED448KeyPairOptions.t)
+              ->
+              Promise.t_of_js AnonymousInterface3.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
+                   "__promisify__"
+                   [|((match x1650 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                     ED448KeyPairOptions.t_to_js
+                       (fun (x1652 : [ `der ]) ->
+                          match x1652 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1653 : [ `pem ]) ->
+                          match x1653 with | `pem -> Ojs.string_to_js "pem")
+                       x1651)|])
+        let (__promisify__ :
+          type_:[ `ed448 ] ->
+            options:([ `der ], [ `der ]) ED448KeyPairOptions.t ->
+              AnonymousInterface2.t Promise.t)
+          =
+          fun ~type_:(x1655 : [ `ed448 ]) ->
+            fun ~options:(x1656 : ([ `der ], [ `der ]) ED448KeyPairOptions.t)
+              ->
+              Promise.t_of_js AnonymousInterface2.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
+                   "__promisify__"
+                   [|((match x1655 with | `ed448 -> Ojs.string_to_js "ed448"));(
+                     ED448KeyPairOptions.t_to_js
+                       (fun (x1657 : [ `der ]) ->
+                          match x1657 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1658 : [ `der ]) ->
+                          match x1658 with | `der -> Ojs.string_to_js "der")
+                       x1656)|])
+        let (__promisify__ :
+          type_:[ `ed448 ] ->
+            ?options:ED448KeyPairKeyObjectOptions.t ->
+              unit -> KeyPairKeyObjectResult.t Promise.t)
+          =
+          fun ~type_:(x1660 : [ `ed448 ]) ->
+            fun ?options:(x1661 : ED448KeyPairKeyObjectOptions.t option) ->
+              fun () ->
+                Promise.t_of_js KeyPairKeyObjectResult.t_of_js
+                  (let x1664 =
+                     Ojs.get_prop_ascii Import.crypto "generateKeyPair" in
+                   Ojs.call (Ojs.get_prop_ascii x1664 "__promisify__")
+                     "apply"
+                     [|x1664;((let x1662 =
+                                 Ojs.new_obj
+                                   (Ojs.get_prop_ascii Ojs.global "Array")
+                                   [||] in
+                               ignore
+                                 (Ojs.call x1662 "push"
+                                    [|((match x1660 with
+                                        | `ed448 -> Ojs.string_to_js "ed448"))|]);
+                               (match x1661 with
+                                | Some x1663 ->
+                                    ignore
+                                      (Ojs.call x1662 "push"
+                                         [|(ED448KeyPairKeyObjectOptions.t_to_js
+                                              x1663)|])
+                                | None -> ());
+                               x1662))|])
+        let (__promisify__ :
+          type_:[ `x25519 ] ->
+            options:([ `pem ], [ `pem ]) X25519KeyPairOptions.t ->
+              AnonymousInterface5.t Promise.t)
+          =
+          fun ~type_:(x1666 : [ `x25519 ]) ->
+            fun
+              ~options:(x1667 : ([ `pem ], [ `pem ]) X25519KeyPairOptions.t)
+              ->
+              Promise.t_of_js AnonymousInterface5.t_of_js
+                (Ojs.call
+                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
+                   "__promisify__"
+                   [|((match x1666 with
+                       | `x25519 -> Ojs.string_to_js "x25519"));(X25519KeyPairOptions.t_to_js
+                                                                   (fun
                                                                     (x1668 :
                                                                     [ `pem ])
                                                                     ->
@@ -6019,105 +6217,105 @@ module Crypto =
                                                                     `pem ->
                                                                     Ojs.string_to_js
                                                                     "pem")
-                                                                    x1666)|])
+                                                                   (fun
+                                                                    (x1669 :
+                                                                    [ `pem ])
+                                                                    ->
+                                                                    match x1669
+                                                                    with
+                                                                    | 
+                                                                    `pem ->
+                                                                    Ojs.string_to_js
+                                                                    "pem")
+                                                                   x1667)|])
         let (__promisify__ :
-          type_:[ `ed25519 ] ->
-            options:([ `pem ], [ `der ]) ED25519KeyPairOptions.t ->
+          type_:[ `x25519 ] ->
+            options:([ `pem ], [ `der ]) X25519KeyPairOptions.t ->
               AnonymousInterface4.t Promise.t)
           =
-          fun ~type_:(x1670 : [ `ed25519 ]) ->
+          fun ~type_:(x1671 : [ `x25519 ]) ->
             fun
-              ~options:(x1671 : ([ `pem ], [ `der ]) ED25519KeyPairOptions.t)
+              ~options:(x1672 : ([ `pem ], [ `der ]) X25519KeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface4.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1670 with
-                       | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
-                                                                    (fun
-                                                                    (x1672 :
+                   [|((match x1671 with
+                       | `x25519 -> Ojs.string_to_js "x25519"));(X25519KeyPairOptions.t_to_js
+                                                                   (fun
+                                                                    (x1673 :
                                                                     [ `pem ])
                                                                     ->
-                                                                    match x1672
+                                                                    match x1673
                                                                     with
                                                                     | 
                                                                     `pem ->
                                                                     Ojs.string_to_js
                                                                     "pem")
-                                                                    (fun
-                                                                    (x1673 :
+                                                                   (fun
+                                                                    (x1674 :
                                                                     [ `der ])
                                                                     ->
-                                                                    match x1673
+                                                                    match x1674
                                                                     with
                                                                     | 
                                                                     `der ->
                                                                     Ojs.string_to_js
                                                                     "der")
-                                                                    x1671)|])
+                                                                   x1672)|])
         let (__promisify__ :
-          type_:[ `ed25519 ] ->
-            options:([ `der ], [ `pem ]) ED25519KeyPairOptions.t ->
+          type_:[ `x25519 ] ->
+            options:([ `der ], [ `pem ]) X25519KeyPairOptions.t ->
               AnonymousInterface3.t Promise.t)
           =
-          fun ~type_:(x1675 : [ `ed25519 ]) ->
+          fun ~type_:(x1676 : [ `x25519 ]) ->
             fun
-              ~options:(x1676 : ([ `der ], [ `pem ]) ED25519KeyPairOptions.t)
+              ~options:(x1677 : ([ `der ], [ `pem ]) X25519KeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface3.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1675 with
-                       | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
-                                                                    (fun
-                                                                    (x1677 :
+                   [|((match x1676 with
+                       | `x25519 -> Ojs.string_to_js "x25519"));(X25519KeyPairOptions.t_to_js
+                                                                   (fun
+                                                                    (x1678 :
                                                                     [ `der ])
                                                                     ->
-                                                                    match x1677
+                                                                    match x1678
                                                                     with
                                                                     | 
                                                                     `der ->
                                                                     Ojs.string_to_js
                                                                     "der")
-                                                                    (fun
-                                                                    (x1678 :
+                                                                   (fun
+                                                                    (x1679 :
                                                                     [ `pem ])
                                                                     ->
-                                                                    match x1678
+                                                                    match x1679
                                                                     with
                                                                     | 
                                                                     `pem ->
                                                                     Ojs.string_to_js
                                                                     "pem")
-                                                                    x1676)|])
+                                                                   x1677)|])
         let (__promisify__ :
-          type_:[ `ed25519 ] ->
-            options:([ `der ], [ `der ]) ED25519KeyPairOptions.t ->
+          type_:[ `x25519 ] ->
+            options:([ `der ], [ `der ]) X25519KeyPairOptions.t ->
               AnonymousInterface2.t Promise.t)
           =
-          fun ~type_:(x1680 : [ `ed25519 ]) ->
+          fun ~type_:(x1681 : [ `x25519 ]) ->
             fun
-              ~options:(x1681 : ([ `der ], [ `der ]) ED25519KeyPairOptions.t)
+              ~options:(x1682 : ([ `der ], [ `der ]) X25519KeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface2.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1680 with
-                       | `ed25519 -> Ojs.string_to_js "ed25519"));(ED25519KeyPairOptions.t_to_js
-                                                                    (fun
-                                                                    (x1682 :
-                                                                    [ `der ])
-                                                                    ->
-                                                                    match x1682
-                                                                    with
-                                                                    | 
-                                                                    `der ->
-                                                                    Ojs.string_to_js
-                                                                    "der")
-                                                                    (fun
+                   [|((match x1681 with
+                       | `x25519 -> Ojs.string_to_js "x25519"));(X25519KeyPairOptions.t_to_js
+                                                                   (fun
                                                                     (x1683 :
                                                                     [ `der ])
                                                                     ->
@@ -6127,421 +6325,152 @@ module Crypto =
                                                                     `der ->
                                                                     Ojs.string_to_js
                                                                     "der")
-                                                                    x1681)|])
-        let (__promisify__ :
-          type_:[ `ed25519 ] ->
-            ?options:ED25519KeyPairKeyObjectOptions.t ->
-              unit -> KeyPairKeyObjectResult.t Promise.t)
-          =
-          fun ~type_:(x1685 : [ `ed25519 ]) ->
-            fun ?options:(x1686 : ED25519KeyPairKeyObjectOptions.t option) ->
-              fun () ->
-                Promise.t_of_js KeyPairKeyObjectResult.t_of_js
-                  (let x1689 =
-                     Ojs.get_prop_ascii Import.crypto "generateKeyPair" in
-                   Ojs.call (Ojs.get_prop_ascii x1689 "__promisify__")
-                     "apply"
-                     [|x1689;((let x1687 =
-                                 Ojs.new_obj
-                                   (Ojs.get_prop_ascii Ojs.global "Array")
-                                   [||] in
-                               ignore
-                                 (Ojs.call x1687 "push"
-                                    [|((match x1685 with
-                                        | `ed25519 ->
-                                            Ojs.string_to_js "ed25519"))|]);
-                               (match x1686 with
-                                | Some x1688 ->
-                                    ignore
-                                      (Ojs.call x1687 "push"
-                                         [|(ED25519KeyPairKeyObjectOptions.t_to_js
-                                              x1688)|])
-                                | None -> ());
-                               x1687))|])
-        let (__promisify__ :
-          type_:[ `ed448 ] ->
-            options:([ `pem ], [ `pem ]) ED448KeyPairOptions.t ->
-              AnonymousInterface5.t Promise.t)
-          =
-          fun ~type_:(x1691 : [ `ed448 ]) ->
-            fun ~options:(x1692 : ([ `pem ], [ `pem ]) ED448KeyPairOptions.t)
-              ->
-              Promise.t_of_js AnonymousInterface5.t_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
-                   "__promisify__"
-                   [|((match x1691 with | `ed448 -> Ojs.string_to_js "ed448"));(
-                     ED448KeyPairOptions.t_to_js
-                       (fun (x1693 : [ `pem ]) ->
-                          match x1693 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1694 : [ `pem ]) ->
-                          match x1694 with | `pem -> Ojs.string_to_js "pem")
-                       x1692)|])
-        let (__promisify__ :
-          type_:[ `ed448 ] ->
-            options:([ `pem ], [ `der ]) ED448KeyPairOptions.t ->
-              AnonymousInterface4.t Promise.t)
-          =
-          fun ~type_:(x1696 : [ `ed448 ]) ->
-            fun ~options:(x1697 : ([ `pem ], [ `der ]) ED448KeyPairOptions.t)
-              ->
-              Promise.t_of_js AnonymousInterface4.t_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
-                   "__promisify__"
-                   [|((match x1696 with | `ed448 -> Ojs.string_to_js "ed448"));(
-                     ED448KeyPairOptions.t_to_js
-                       (fun (x1698 : [ `pem ]) ->
-                          match x1698 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1699 : [ `der ]) ->
-                          match x1699 with | `der -> Ojs.string_to_js "der")
-                       x1697)|])
-        let (__promisify__ :
-          type_:[ `ed448 ] ->
-            options:([ `der ], [ `pem ]) ED448KeyPairOptions.t ->
-              AnonymousInterface3.t Promise.t)
-          =
-          fun ~type_:(x1701 : [ `ed448 ]) ->
-            fun ~options:(x1702 : ([ `der ], [ `pem ]) ED448KeyPairOptions.t)
-              ->
-              Promise.t_of_js AnonymousInterface3.t_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
-                   "__promisify__"
-                   [|((match x1701 with | `ed448 -> Ojs.string_to_js "ed448"));(
-                     ED448KeyPairOptions.t_to_js
-                       (fun (x1703 : [ `der ]) ->
-                          match x1703 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1704 : [ `pem ]) ->
-                          match x1704 with | `pem -> Ojs.string_to_js "pem")
-                       x1702)|])
-        let (__promisify__ :
-          type_:[ `ed448 ] ->
-            options:([ `der ], [ `der ]) ED448KeyPairOptions.t ->
-              AnonymousInterface2.t Promise.t)
-          =
-          fun ~type_:(x1706 : [ `ed448 ]) ->
-            fun ~options:(x1707 : ([ `der ], [ `der ]) ED448KeyPairOptions.t)
-              ->
-              Promise.t_of_js AnonymousInterface2.t_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
-                   "__promisify__"
-                   [|((match x1706 with | `ed448 -> Ojs.string_to_js "ed448"));(
-                     ED448KeyPairOptions.t_to_js
-                       (fun (x1708 : [ `der ]) ->
-                          match x1708 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1709 : [ `der ]) ->
-                          match x1709 with | `der -> Ojs.string_to_js "der")
-                       x1707)|])
-        let (__promisify__ :
-          type_:[ `ed448 ] ->
-            ?options:ED448KeyPairKeyObjectOptions.t ->
-              unit -> KeyPairKeyObjectResult.t Promise.t)
-          =
-          fun ~type_:(x1711 : [ `ed448 ]) ->
-            fun ?options:(x1712 : ED448KeyPairKeyObjectOptions.t option) ->
-              fun () ->
-                Promise.t_of_js KeyPairKeyObjectResult.t_of_js
-                  (let x1715 =
-                     Ojs.get_prop_ascii Import.crypto "generateKeyPair" in
-                   Ojs.call (Ojs.get_prop_ascii x1715 "__promisify__")
-                     "apply"
-                     [|x1715;((let x1713 =
-                                 Ojs.new_obj
-                                   (Ojs.get_prop_ascii Ojs.global "Array")
-                                   [||] in
-                               ignore
-                                 (Ojs.call x1713 "push"
-                                    [|((match x1711 with
-                                        | `ed448 -> Ojs.string_to_js "ed448"))|]);
-                               (match x1712 with
-                                | Some x1714 ->
-                                    ignore
-                                      (Ojs.call x1713 "push"
-                                         [|(ED448KeyPairKeyObjectOptions.t_to_js
-                                              x1714)|])
-                                | None -> ());
-                               x1713))|])
-        let (__promisify__ :
-          type_:[ `x25519 ] ->
-            options:([ `pem ], [ `pem ]) X25519KeyPairOptions.t ->
-              AnonymousInterface5.t Promise.t)
-          =
-          fun ~type_:(x1717 : [ `x25519 ]) ->
-            fun
-              ~options:(x1718 : ([ `pem ], [ `pem ]) X25519KeyPairOptions.t)
-              ->
-              Promise.t_of_js AnonymousInterface5.t_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
-                   "__promisify__"
-                   [|((match x1717 with
-                       | `x25519 -> Ojs.string_to_js "x25519"));(X25519KeyPairOptions.t_to_js
                                                                    (fun
-                                                                    (x1719 :
-                                                                    [ `pem ])
-                                                                    ->
-                                                                    match x1719
-                                                                    with
-                                                                    | 
-                                                                    `pem ->
-                                                                    Ojs.string_to_js
-                                                                    "pem")
-                                                                   (fun
-                                                                    (x1720 :
-                                                                    [ `pem ])
-                                                                    ->
-                                                                    match x1720
-                                                                    with
-                                                                    | 
-                                                                    `pem ->
-                                                                    Ojs.string_to_js
-                                                                    "pem")
-                                                                   x1718)|])
-        let (__promisify__ :
-          type_:[ `x25519 ] ->
-            options:([ `pem ], [ `der ]) X25519KeyPairOptions.t ->
-              AnonymousInterface4.t Promise.t)
-          =
-          fun ~type_:(x1722 : [ `x25519 ]) ->
-            fun
-              ~options:(x1723 : ([ `pem ], [ `der ]) X25519KeyPairOptions.t)
-              ->
-              Promise.t_of_js AnonymousInterface4.t_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
-                   "__promisify__"
-                   [|((match x1722 with
-                       | `x25519 -> Ojs.string_to_js "x25519"));(X25519KeyPairOptions.t_to_js
-                                                                   (fun
-                                                                    (x1724 :
-                                                                    [ `pem ])
-                                                                    ->
-                                                                    match x1724
-                                                                    with
-                                                                    | 
-                                                                    `pem ->
-                                                                    Ojs.string_to_js
-                                                                    "pem")
-                                                                   (fun
-                                                                    (x1725 :
+                                                                    (x1684 :
                                                                     [ `der ])
                                                                     ->
-                                                                    match x1725
+                                                                    match x1684
                                                                     with
                                                                     | 
                                                                     `der ->
                                                                     Ojs.string_to_js
                                                                     "der")
-                                                                   x1723)|])
-        let (__promisify__ :
-          type_:[ `x25519 ] ->
-            options:([ `der ], [ `pem ]) X25519KeyPairOptions.t ->
-              AnonymousInterface3.t Promise.t)
-          =
-          fun ~type_:(x1727 : [ `x25519 ]) ->
-            fun
-              ~options:(x1728 : ([ `der ], [ `pem ]) X25519KeyPairOptions.t)
-              ->
-              Promise.t_of_js AnonymousInterface3.t_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
-                   "__promisify__"
-                   [|((match x1727 with
-                       | `x25519 -> Ojs.string_to_js "x25519"));(X25519KeyPairOptions.t_to_js
-                                                                   (fun
-                                                                    (x1729 :
-                                                                    [ `der ])
-                                                                    ->
-                                                                    match x1729
-                                                                    with
-                                                                    | 
-                                                                    `der ->
-                                                                    Ojs.string_to_js
-                                                                    "der")
-                                                                   (fun
-                                                                    (x1730 :
-                                                                    [ `pem ])
-                                                                    ->
-                                                                    match x1730
-                                                                    with
-                                                                    | 
-                                                                    `pem ->
-                                                                    Ojs.string_to_js
-                                                                    "pem")
-                                                                   x1728)|])
-        let (__promisify__ :
-          type_:[ `x25519 ] ->
-            options:([ `der ], [ `der ]) X25519KeyPairOptions.t ->
-              AnonymousInterface2.t Promise.t)
-          =
-          fun ~type_:(x1732 : [ `x25519 ]) ->
-            fun
-              ~options:(x1733 : ([ `der ], [ `der ]) X25519KeyPairOptions.t)
-              ->
-              Promise.t_of_js AnonymousInterface2.t_of_js
-                (Ojs.call
-                   (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
-                   "__promisify__"
-                   [|((match x1732 with
-                       | `x25519 -> Ojs.string_to_js "x25519"));(X25519KeyPairOptions.t_to_js
-                                                                   (fun
-                                                                    (x1734 :
-                                                                    [ `der ])
-                                                                    ->
-                                                                    match x1734
-                                                                    with
-                                                                    | 
-                                                                    `der ->
-                                                                    Ojs.string_to_js
-                                                                    "der")
-                                                                   (fun
-                                                                    (x1735 :
-                                                                    [ `der ])
-                                                                    ->
-                                                                    match x1735
-                                                                    with
-                                                                    | 
-                                                                    `der ->
-                                                                    Ojs.string_to_js
-                                                                    "der")
-                                                                   x1733)|])
+                                                                   x1682)|])
         let (__promisify__ :
           type_:[ `x25519 ] ->
             ?options:X25519KeyPairKeyObjectOptions.t ->
               unit -> KeyPairKeyObjectResult.t Promise.t)
           =
-          fun ~type_:(x1737 : [ `x25519 ]) ->
-            fun ?options:(x1738 : X25519KeyPairKeyObjectOptions.t option) ->
+          fun ~type_:(x1686 : [ `x25519 ]) ->
+            fun ?options:(x1687 : X25519KeyPairKeyObjectOptions.t option) ->
               fun () ->
                 Promise.t_of_js KeyPairKeyObjectResult.t_of_js
-                  (let x1741 =
+                  (let x1690 =
                      Ojs.get_prop_ascii Import.crypto "generateKeyPair" in
-                   Ojs.call (Ojs.get_prop_ascii x1741 "__promisify__")
+                   Ojs.call (Ojs.get_prop_ascii x1690 "__promisify__")
                      "apply"
-                     [|x1741;((let x1739 =
+                     [|x1690;((let x1688 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1739 "push"
-                                    [|((match x1737 with
+                                 (Ojs.call x1688 "push"
+                                    [|((match x1686 with
                                         | `x25519 ->
                                             Ojs.string_to_js "x25519"))|]);
-                               (match x1738 with
-                                | Some x1740 ->
+                               (match x1687 with
+                                | Some x1689 ->
                                     ignore
-                                      (Ojs.call x1739 "push"
+                                      (Ojs.call x1688 "push"
                                          [|(X25519KeyPairKeyObjectOptions.t_to_js
-                                              x1740)|])
+                                              x1689)|])
                                 | None -> ());
-                               x1739))|])
+                               x1688))|])
         let (__promisify__ :
           type_:[ `x448 ] ->
             options:([ `pem ], [ `pem ]) X448KeyPairOptions.t ->
               AnonymousInterface5.t Promise.t)
           =
-          fun ~type_:(x1743 : [ `x448 ]) ->
-            fun ~options:(x1744 : ([ `pem ], [ `pem ]) X448KeyPairOptions.t)
+          fun ~type_:(x1692 : [ `x448 ]) ->
+            fun ~options:(x1693 : ([ `pem ], [ `pem ]) X448KeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface5.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1743 with | `x448 -> Ojs.string_to_js "x448"));(
+                   [|((match x1692 with | `x448 -> Ojs.string_to_js "x448"));(
                      X448KeyPairOptions.t_to_js
-                       (fun (x1745 : [ `pem ]) ->
-                          match x1745 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1746 : [ `pem ]) ->
-                          match x1746 with | `pem -> Ojs.string_to_js "pem")
-                       x1744)|])
+                       (fun (x1694 : [ `pem ]) ->
+                          match x1694 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1695 : [ `pem ]) ->
+                          match x1695 with | `pem -> Ojs.string_to_js "pem")
+                       x1693)|])
         let (__promisify__ :
           type_:[ `x448 ] ->
             options:([ `pem ], [ `der ]) X448KeyPairOptions.t ->
               AnonymousInterface4.t Promise.t)
           =
-          fun ~type_:(x1748 : [ `x448 ]) ->
-            fun ~options:(x1749 : ([ `pem ], [ `der ]) X448KeyPairOptions.t)
+          fun ~type_:(x1697 : [ `x448 ]) ->
+            fun ~options:(x1698 : ([ `pem ], [ `der ]) X448KeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface4.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1748 with | `x448 -> Ojs.string_to_js "x448"));(
+                   [|((match x1697 with | `x448 -> Ojs.string_to_js "x448"));(
                      X448KeyPairOptions.t_to_js
-                       (fun (x1750 : [ `pem ]) ->
-                          match x1750 with | `pem -> Ojs.string_to_js "pem")
-                       (fun (x1751 : [ `der ]) ->
-                          match x1751 with | `der -> Ojs.string_to_js "der")
-                       x1749)|])
+                       (fun (x1699 : [ `pem ]) ->
+                          match x1699 with | `pem -> Ojs.string_to_js "pem")
+                       (fun (x1700 : [ `der ]) ->
+                          match x1700 with | `der -> Ojs.string_to_js "der")
+                       x1698)|])
         let (__promisify__ :
           type_:[ `x448 ] ->
             options:([ `der ], [ `pem ]) X448KeyPairOptions.t ->
               AnonymousInterface3.t Promise.t)
           =
-          fun ~type_:(x1753 : [ `x448 ]) ->
-            fun ~options:(x1754 : ([ `der ], [ `pem ]) X448KeyPairOptions.t)
+          fun ~type_:(x1702 : [ `x448 ]) ->
+            fun ~options:(x1703 : ([ `der ], [ `pem ]) X448KeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface3.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1753 with | `x448 -> Ojs.string_to_js "x448"));(
+                   [|((match x1702 with | `x448 -> Ojs.string_to_js "x448"));(
                      X448KeyPairOptions.t_to_js
-                       (fun (x1755 : [ `der ]) ->
-                          match x1755 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1756 : [ `pem ]) ->
-                          match x1756 with | `pem -> Ojs.string_to_js "pem")
-                       x1754)|])
+                       (fun (x1704 : [ `der ]) ->
+                          match x1704 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1705 : [ `pem ]) ->
+                          match x1705 with | `pem -> Ojs.string_to_js "pem")
+                       x1703)|])
         let (__promisify__ :
           type_:[ `x448 ] ->
             options:([ `der ], [ `der ]) X448KeyPairOptions.t ->
               AnonymousInterface2.t Promise.t)
           =
-          fun ~type_:(x1758 : [ `x448 ]) ->
-            fun ~options:(x1759 : ([ `der ], [ `der ]) X448KeyPairOptions.t)
+          fun ~type_:(x1707 : [ `x448 ]) ->
+            fun ~options:(x1708 : ([ `der ], [ `der ]) X448KeyPairOptions.t)
               ->
               Promise.t_of_js AnonymousInterface2.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii Import.crypto "generateKeyPair")
                    "__promisify__"
-                   [|((match x1758 with | `x448 -> Ojs.string_to_js "x448"));(
+                   [|((match x1707 with | `x448 -> Ojs.string_to_js "x448"));(
                      X448KeyPairOptions.t_to_js
-                       (fun (x1760 : [ `der ]) ->
-                          match x1760 with | `der -> Ojs.string_to_js "der")
-                       (fun (x1761 : [ `der ]) ->
-                          match x1761 with | `der -> Ojs.string_to_js "der")
-                       x1759)|])
+                       (fun (x1709 : [ `der ]) ->
+                          match x1709 with | `der -> Ojs.string_to_js "der")
+                       (fun (x1710 : [ `der ]) ->
+                          match x1710 with | `der -> Ojs.string_to_js "der")
+                       x1708)|])
         let (__promisify__ :
           type_:[ `x448 ] ->
             ?options:X448KeyPairKeyObjectOptions.t ->
               unit -> KeyPairKeyObjectResult.t Promise.t)
           =
-          fun ~type_:(x1763 : [ `x448 ]) ->
-            fun ?options:(x1764 : X448KeyPairKeyObjectOptions.t option) ->
+          fun ~type_:(x1712 : [ `x448 ]) ->
+            fun ?options:(x1713 : X448KeyPairKeyObjectOptions.t option) ->
               fun () ->
                 Promise.t_of_js KeyPairKeyObjectResult.t_of_js
-                  (let x1767 =
+                  (let x1716 =
                      Ojs.get_prop_ascii Import.crypto "generateKeyPair" in
-                   Ojs.call (Ojs.get_prop_ascii x1767 "__promisify__")
+                   Ojs.call (Ojs.get_prop_ascii x1716 "__promisify__")
                      "apply"
-                     [|x1767;((let x1765 =
+                     [|x1716;((let x1714 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1765 "push"
-                                    [|((match x1763 with
+                                 (Ojs.call x1714 "push"
+                                    [|((match x1712 with
                                         | `x448 -> Ojs.string_to_js "x448"))|]);
-                               (match x1764 with
-                                | Some x1766 ->
+                               (match x1713 with
+                                | Some x1715 ->
                                     ignore
-                                      (Ojs.call x1765 "push"
+                                      (Ojs.call x1714 "push"
                                          [|(X448KeyPairKeyObjectOptions.t_to_js
-                                              x1766)|])
+                                              x1715)|])
                                 | None -> ());
-                               x1765))|])
+                               x1714))|])
       end
     let (sign :
       algorithm:string or_null_or_undefined ->
@@ -6554,10 +6483,10 @@ module Crypto =
             | `U_s26_sec1 of SignPrivateKeyInput.t 
             | `U_s27_secret of KeyLike.t ]) union2 -> Buffer.t)
       =
-      fun ~algorithm:(x1769 : string or_null_or_undefined) ->
-        fun ~data:(x1771 : ArrayBufferView.t) ->
+      fun ~algorithm:(x1718 : string or_null_or_undefined) ->
+        fun ~data:(x1720 : ArrayBufferView.t) ->
           fun
-            ~key:(x1772 :
+            ~key:(x1721 :
                    ([ `U_s11_der of SignKeyObjectInput.t 
                     | `U_s18_ieee_p1363 of SignKeyObjectInput.t ],
                      [ `U_s21_pkcs1 of SignPrivateKeyInput.t 
@@ -6569,10 +6498,10 @@ module Crypto =
             ->
             Buffer.t_of_js
               (Ojs.call Import.crypto "sign"
-                 [|(or_null_or_undefined_to_js Ojs.string_to_js x1769);(
-                   ArrayBufferView.t_to_js x1771);(union2_to_js
+                 [|(or_null_or_undefined_to_js Ojs.string_to_js x1718);(
+                   ArrayBufferView.t_to_js x1720);(union2_to_js
                                                      (fun
-                                                        (x1773 :
+                                                        (x1722 :
                                                           [
                                                             `U_s11_der of
                                                               SignKeyObjectInput.t
@@ -6581,16 +6510,16 @@ module Crypto =
                                                                    SignKeyObjectInput.t
                                                                    ])
                                                         ->
-                                                        match x1773 with
-                                                        | `U_s11_der x1774 ->
+                                                        match x1722 with
+                                                        | `U_s11_der x1723 ->
                                                             SignKeyObjectInput.t_to_js
-                                                              x1774
+                                                              x1723
                                                         | `U_s18_ieee_p1363
-                                                            x1775 ->
+                                                            x1724 ->
                                                             SignKeyObjectInput.t_to_js
-                                                              x1775)
+                                                              x1724)
                                                      (fun
-                                                        (x1776 :
+                                                        (x1725 :
                                                           [
                                                             `U_s21_pkcs1 of
                                                               SignPrivateKeyInput.t
@@ -6608,31 +6537,31 @@ module Crypto =
                                                                    of
                                                                    KeyLike.t ])
                                                         ->
-                                                        match x1776 with
-                                                        | `U_s21_pkcs1 x1777
+                                                        match x1725 with
+                                                        | `U_s21_pkcs1 x1726
                                                             ->
                                                             SignPrivateKeyInput.t_to_js
-                                                              x1777
-                                                        | `U_s22_pkcs8 x1778
+                                                              x1726
+                                                        | `U_s22_pkcs8 x1727
                                                             ->
                                                             SignPrivateKeyInput.t_to_js
-                                                              x1778
+                                                              x1727
                                                         | `U_s23_private
-                                                            x1779 ->
+                                                            x1728 ->
                                                             KeyLike.t_to_js
-                                                              x1779
-                                                        | `U_s24_public x1780
+                                                              x1728
+                                                        | `U_s24_public x1729
                                                             ->
                                                             KeyLike.t_to_js
-                                                              x1780
-                                                        | `U_s26_sec1 x1781
+                                                              x1729
+                                                        | `U_s26_sec1 x1730
                                                             ->
                                                             SignPrivateKeyInput.t_to_js
-                                                              x1781
-                                                        | `U_s27_secret x1782
+                                                              x1730
+                                                        | `U_s27_secret x1731
                                                             ->
                                                             KeyLike.t_to_js
-                                                              x1782) x1772)|])
+                                                              x1731) x1721)|])
     let (verify :
       algorithm:string or_null_or_undefined ->
         data:ArrayBufferView.t ->
@@ -6644,10 +6573,10 @@ module Crypto =
             | `U_s28_spki of VerifyPublicKeyInput.t ]) union2 ->
             signature:ArrayBufferView.t -> bool)
       =
-      fun ~algorithm:(x1783 : string or_null_or_undefined) ->
-        fun ~data:(x1785 : ArrayBufferView.t) ->
+      fun ~algorithm:(x1732 : string or_null_or_undefined) ->
+        fun ~data:(x1734 : ArrayBufferView.t) ->
           fun
-            ~key:(x1786 :
+            ~key:(x1735 :
                    ([ `U_s11_der of VerifyKeyObjectInput.t 
                     | `U_s18_ieee_p1363 of VerifyKeyObjectInput.t ],
                      [ `U_s21_pkcs1 of VerifyPublicKeyInput.t 
@@ -6656,13 +6585,13 @@ module Crypto =
                      | `U_s27_secret of KeyLike.t 
                      | `U_s28_spki of VerifyPublicKeyInput.t ]) union2)
             ->
-            fun ~signature:(x1796 : ArrayBufferView.t) ->
+            fun ~signature:(x1745 : ArrayBufferView.t) ->
               Ojs.bool_of_js
                 (Ojs.call Import.crypto "verify"
-                   [|(or_null_or_undefined_to_js Ojs.string_to_js x1783);(
-                     ArrayBufferView.t_to_js x1785);(union2_to_js
+                   [|(or_null_or_undefined_to_js Ojs.string_to_js x1732);(
+                     ArrayBufferView.t_to_js x1734);(union2_to_js
                                                        (fun
-                                                          (x1787 :
+                                                          (x1736 :
                                                             [
                                                               `U_s11_der of
                                                                 VerifyKeyObjectInput.t
@@ -6671,17 +6600,17 @@ module Crypto =
                                                                     VerifyKeyObjectInput.t
                                                                     ])
                                                           ->
-                                                          match x1787 with
-                                                          | `U_s11_der x1788
+                                                          match x1736 with
+                                                          | `U_s11_der x1737
                                                               ->
                                                               VerifyKeyObjectInput.t_to_js
-                                                                x1788
+                                                                x1737
                                                           | `U_s18_ieee_p1363
-                                                              x1789 ->
+                                                              x1738 ->
                                                               VerifyKeyObjectInput.t_to_js
-                                                                x1789)
+                                                                x1738)
                                                        (fun
-                                                          (x1790 :
+                                                          (x1739 :
                                                             [
                                                               `U_s21_pkcs1 of
                                                                 VerifyPublicKeyInput.t
@@ -6696,55 +6625,55 @@ module Crypto =
                                                                 VerifyPublicKeyInput.t
                                                                 ])
                                                           ->
-                                                          match x1790 with
+                                                          match x1739 with
                                                           | `U_s21_pkcs1
-                                                              x1791 ->
+                                                              x1740 ->
                                                               VerifyPublicKeyInput.t_to_js
-                                                                x1791
+                                                                x1740
                                                           | `U_s23_private
-                                                              x1792 ->
+                                                              x1741 ->
                                                               KeyLike.t_to_js
-                                                                x1792
+                                                                x1741
                                                           | `U_s24_public
-                                                              x1793 ->
+                                                              x1742 ->
                                                               KeyLike.t_to_js
-                                                                x1793
+                                                                x1742
                                                           | `U_s27_secret
-                                                              x1794 ->
+                                                              x1743 ->
                                                               KeyLike.t_to_js
-                                                                x1794
-                                                          | `U_s28_spki x1795
+                                                                x1743
+                                                          | `U_s28_spki x1744
                                                               ->
                                                               VerifyPublicKeyInput.t_to_js
-                                                                x1795) x1786);(
-                     ArrayBufferView.t_to_js x1796)|])
+                                                                x1744) x1735);(
+                     ArrayBufferView.t_to_js x1745)|])
     module AnonymousInterface1 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1798 : Ojs.t) -> x1798
-        and t_to_js : t -> Ojs.t = fun (x1797 : Ojs.t) -> x1797
+        let rec t_of_js : Ojs.t -> t = fun (x1747 : Ojs.t) -> x1747
+        and t_to_js : t -> Ojs.t = fun (x1746 : Ojs.t) -> x1746
         let (get_private_key : t -> KeyObject.t) =
-          fun (x1799 : t) ->
+          fun (x1748 : t) ->
             KeyObject.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1799) "privateKey")
+              (Ojs.get_prop_ascii (t_to_js x1748) "privateKey")
         let (set_private_key : t -> KeyObject.t -> unit) =
-          fun (x1800 : t) ->
-            fun (x1801 : KeyObject.t) ->
-              Ojs.set_prop_ascii (t_to_js x1800) "privateKey"
-                (KeyObject.t_to_js x1801)
+          fun (x1749 : t) ->
+            fun (x1750 : KeyObject.t) ->
+              Ojs.set_prop_ascii (t_to_js x1749) "privateKey"
+                (KeyObject.t_to_js x1750)
         let (get_public_key : t -> KeyObject.t) =
-          fun (x1802 : t) ->
+          fun (x1751 : t) ->
             KeyObject.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1802) "publicKey")
+              (Ojs.get_prop_ascii (t_to_js x1751) "publicKey")
         let (set_public_key : t -> KeyObject.t -> unit) =
-          fun (x1803 : t) ->
-            fun (x1804 : KeyObject.t) ->
-              Ojs.set_prop_ascii (t_to_js x1803) "publicKey"
-                (KeyObject.t_to_js x1804)
+          fun (x1752 : t) ->
+            fun (x1753 : KeyObject.t) ->
+              Ojs.set_prop_ascii (t_to_js x1752) "publicKey"
+                (KeyObject.t_to_js x1753)
       end
     let (diffie_hellman : options:AnonymousInterface1.t -> Buffer.t) =
-      fun ~options:(x1805 : AnonymousInterface1.t) ->
+      fun ~options:(x1754 : AnonymousInterface1.t) ->
         Buffer.t_of_js
           (Ojs.call Import.crypto "diffieHellman"
-             [|(AnonymousInterface1.t_to_js x1805)|])
+             [|(AnonymousInterface1.t_to_js x1754)|])
   end

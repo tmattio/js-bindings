@@ -1,14 +1,7 @@
 {
   "private": true,
-  "name": "ts2ocaml",
-  "files": [
-    "script/ts2ocaml.js"
-  ],
-  "main": "./script/ts2ocaml.js",
-  "bin": {
-    "ts2ocaml": "./script/ts2ocaml.js"
-  },
-  "dependencies": {
-    "typescript": "^4.2.4"
+  "name": "js-bindings",
+  "devDependencies": {
+    "vscode-jsonrpc": "^6.0.0"
   }
 }

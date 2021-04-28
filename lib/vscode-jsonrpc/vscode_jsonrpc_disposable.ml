@@ -12,6 +12,9 @@ module Disposable =
     let (create_ : func:(unit -> unit) -> t) =
       fun ~func:(x4 : unit -> unit) ->
         t_of_js
-          (Ojs.call (Ojs.get_prop_ascii Ojs.global "Disposable") "create"
+          (Ojs.call
+             (Ojs.get_prop_ascii
+                (Ojs.get_prop_ascii Ojs.global
+                   "__LIB__VSCODE_JSONRPC__IMPORTS") "Disposable") "create"
              [|(Ojs.fun_to_js 1 (fun _ -> x4 ()))|])
   end

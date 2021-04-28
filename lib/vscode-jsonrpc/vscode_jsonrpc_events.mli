@@ -2,6 +2,8 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
+[@@@js.scope "__LIB__VSCODE_JSONRPC__IMPORTS"]
+
 open Es2020
 
 module Event : sig

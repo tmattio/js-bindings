@@ -20,15 +20,13 @@ module CancellationToken =
       t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii
-              (Ojs.get_prop_ascii Ojs.global
-                 "__LIB__VSCODE_JSONRPC__IMPORTS.cancellation")
+              (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
               "CancellationToken") "None")
     let (cancelled : t) =
       t_of_js
         (Ojs.get_prop_ascii
            (Ojs.get_prop_ascii
-              (Ojs.get_prop_ascii Ojs.global
-                 "__LIB__VSCODE_JSONRPC__IMPORTS.cancellation")
+              (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE_JSONRPC__IMPORTS")
               "CancellationToken") "Cancelled")
     let (is : value:any -> bool) =
       fun ~value:(x6 : any) ->
@@ -36,46 +34,37 @@ module CancellationToken =
           (Ojs.call
              (Ojs.get_prop_ascii
                 (Ojs.get_prop_ascii Ojs.global
-                   "__LIB__VSCODE_JSONRPC__IMPORTS.cancellation")
-                "CancellationToken") "is" [|(any_to_js x6)|])
+                   "__LIB__VSCODE_JSONRPC__IMPORTS") "CancellationToken")
+             "is" [|(any_to_js x6)|])
   end
 module AbstractCancellationTokenSource =
   struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x8 : Ojs.t) -> x8
-    and t_to_js : t -> Ojs.t = fun (x7 : Ojs.t) -> x7
+    include struct include Vscode_jsonrpc_disposable.Disposable end
     let (get_token : t -> CancellationToken.t) =
-      fun (x9 : t) ->
-        CancellationToken.t_of_js (Ojs.get_prop_ascii (t_to_js x9) "token")
+      fun (x7 : t) ->
+        CancellationToken.t_of_js (Ojs.get_prop_ascii (t_to_js x7) "token")
     let (set_token : t -> CancellationToken.t -> unit) =
-      fun (x10 : t) ->
-        fun (x11 : CancellationToken.t) ->
-          Ojs.set_prop_ascii (t_to_js x10) "token"
-            (CancellationToken.t_to_js x11)
+      fun (x8 : t) ->
+        fun (x9 : CancellationToken.t) ->
+          Ojs.set_prop_ascii (t_to_js x8) "token"
+            (CancellationToken.t_to_js x9)
     let (cancel : t -> unit) =
-      fun (x12 : t) -> ignore (Ojs.call (t_to_js x12) "cancel" [||])
-    let (cast : t -> Vscode_jsonrpc_disposable.Disposable.t) =
-      fun (x13 : t) ->
-        Vscode_jsonrpc_disposable.Disposable.t_of_js (t_to_js x13)
+      fun (x10 : t) -> ignore (Ojs.call (t_to_js x10) "cancel" [||])
   end
 module CancellationTokenSource =
   struct
-    type t = Ojs.t
-    let rec t_of_js : Ojs.t -> t = fun (x15 : Ojs.t) -> x15
-    and t_to_js : t -> Ojs.t = fun (x14 : Ojs.t) -> x14
+    include struct include AbstractCancellationTokenSource end
     let (get__token : t -> any) =
-      fun (x16 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x16) "_token")
+      fun (x11 : t) -> any_of_js (Ojs.get_prop_ascii (t_to_js x11) "_token")
     let (set__token : t -> any -> unit) =
-      fun (x17 : t) ->
-        fun (x18 : any) ->
-          Ojs.set_prop_ascii (t_to_js x17) "_token" (any_to_js x18)
+      fun (x12 : t) ->
+        fun (x13 : any) ->
+          Ojs.set_prop_ascii (t_to_js x12) "_token" (any_to_js x13)
     let (get_token : t -> CancellationToken.t) =
-      fun (x19 : t) ->
-        CancellationToken.t_of_js (Ojs.get_prop_ascii (t_to_js x19) "token")
+      fun (x14 : t) ->
+        CancellationToken.t_of_js (Ojs.get_prop_ascii (t_to_js x14) "token")
     let (cancel : t -> unit) =
-      fun (x20 : t) -> ignore (Ojs.call (t_to_js x20) "cancel" [||])
+      fun (x15 : t) -> ignore (Ojs.call (t_to_js x15) "cancel" [||])
     let (dispose : t -> unit) =
-      fun (x21 : t) -> ignore (Ojs.call (t_to_js x21) "dispose" [||])
-    let (cast : t -> AbstractCancellationTokenSource.t) =
-      fun (x22 : t) -> AbstractCancellationTokenSource.t_of_js (t_to_js x22)
+      fun (x16 : t) -> ignore (Ojs.call (t_to_js x16) "dispose" [||])
   end

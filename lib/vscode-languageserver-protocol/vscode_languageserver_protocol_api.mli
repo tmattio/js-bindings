@@ -4,18 +4,33 @@
 
 open Es5
 open Vscode_languageserver_protocol_proposed_diagnostic
-open Vscode_jsonrpc
-open Vscode_languageserver_types
-open Vscode_languageserver_protocol_messages
-open Vscode_languageserver_protocol_protocol
 open Vscode_languageserver_protocol_connection
 
-(* import type { integer } from 'vscode-languageserver-types'; *)
-(* export * from 'vscode-jsonrpc'; *)
-(* export * from 'vscode-languageserver-types'; *)
-(* export * from './messages'; *)
-(* export * from './protocol'; *)
-(* export { ProtocolConnection, createProtocolConnection } from './connection'; *)
+include module type of struct
+  include Vscode_jsonrpc
+end
+
+include module type of struct
+  include Vscode_languageserver_types
+end
+
+include module type of struct
+  include Vscode_languageserver_protocol_messages
+end
+
+include module type of struct
+  include Vscode_languageserver_protocol_protocol
+end
+
+include module type of struct
+  module ProtocolConnection =
+    Vscode_languageserver_protocol_protocol_connection.ProtocolConnection
+
+  let create_crotocol_connection =
+    Vscode_languageserver_protocol_protocol_connection
+    .create_crotocol_connection
+end
+
 module LSPErrorCodes : sig
   val lsp_reserved_error_range_start : Integer.t
     [@@js.global "lspReservedErrorRangeStart"]

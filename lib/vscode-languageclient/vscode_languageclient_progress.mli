@@ -33,6 +33,9 @@ module ProgressFeature : sig
 
   val dispose : t -> unit [@@js.call "dispose"]
 
-  val cast : t -> StaticFeature.t [@@js.cast]
+  (* TODO: Move me*)
+  include module type of struct
+    include StaticFeature
+  end
 end
 [@@js.scope "ProgressFeature"]
