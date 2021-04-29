@@ -1,6 +1,13 @@
 open Es2020
 
 let activate (context : Vscode.ExtensionContext.t) =
+  (* DEBUG *)
+  let tree_provider = Tree.Provider.create () in
+  let disposable =
+    Vscode.Window.register_tree_data_provider "tree" tree_provider
+  in
+  Vscode.ExtensionContext.subscribe context disposable;
+  (* / *)
   let node_dependencies_provider =
     Node_dependencies.Provider.create Vscode.Workspace.root_path
   in
@@ -10,10 +17,11 @@ let activate (context : Vscode.ExtensionContext.t) =
       node_dependencies_provider
   in
   Vscode.ExtensionContext.subscribe context disposable;
-  (* let disposable = Vscode.Commands.register_command
-     "nodeDependencies.refreshEntry" (fun _ ->
-     Node_dependencies.Provider.refresh ()) in Vscode.ExtensionContext.subscribe
-     context disposable; *)
+  let disposable =
+    Vscode.Commands.register_command "nodeDependencies.refreshEntry" (fun _ ->
+        Node_dependencies.Provider.refresh ())
+  in
+  Vscode.ExtensionContext.subscribe context disposable;
   let disposable =
     Vscode.Commands.register_command "extension.openPackageOnNpm" (fun args ->
         let module_name = List.hd args in

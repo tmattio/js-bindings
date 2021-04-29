@@ -1,0 +1,35 @@
+{
+  "name": "mdx-notebook",
+  "displayName": "Mdx Notebook",
+  "description": "An extension for editing mdx files in VS Code notebooks",
+  "version": "0.0.1",
+  "publisher": "vscode-samples",
+  "preview": true,
+  "enableProposedApi": true,
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "repository": {
+    "url": "https://github.com/microsoft/vscode-markdown-notebook"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "notebookProvider": [
+      {
+        "viewType": "mdx-notebook",
+        "displayName": "Mdx Notebook",
+        "selector": [
+          {
+            "filenamePattern": "*.mdx"
+          }
+        ]
+      }
+    ]
+  }
+}

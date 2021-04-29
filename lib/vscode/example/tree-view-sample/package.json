@@ -12,6 +12,7 @@
     "Other"
   ],
   "activationEvents": [
+    "onView:tree",
     "onView:nodeDependencies",
     "onView:ftpExplorer",
     "onView:jsonOutline",
@@ -39,6 +40,11 @@
           "name": "Node Dependencies",
           "icon": "media/dep.svg",
           "contextualTitle": "Package Explorer"
+        },
+        {
+          "id": "tree",
+          "name": "Tree",
+          "icon": "media/dep.svg"
         }
       ],
       "explorer": [

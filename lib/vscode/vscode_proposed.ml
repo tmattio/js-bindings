@@ -126,8 +126,9 @@ module Vscode =
                     t_of_js
                       (Ojs.new_obj_arr
                          (Ojs.get_prop_ascii
-                            (Ojs.get_prop_ascii Ojs.global
-                               "__LIB__VSCODE__IMPORTS.vscode")
+                            (Ojs.get_prop_ascii
+                               (Ojs.get_prop_ascii Ojs.global
+                                  "__LIB__VSCODE__IMPORTS") "vscode")
                             "NotebookDocumentMetadata")
                          (let x54 =
                             Ojs.new_obj
@@ -165,30 +166,27 @@ module Vscode =
                 (Ojs.call (t_to_js x60) "with"
                    [|(AnonymousInterface6.t_to_js x59)|])
       end
-    module NotebookDocumentContentOptions =
+    module AnonymousInterface13 =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x62 : Ojs.t) -> x62
         and t_to_js : t -> Ojs.t = fun (x61 : Ojs.t) -> x61
-        let (transient_outputs : t -> bool) =
+        let (start : t -> int) =
           fun (x63 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x63) "transientOutputs")
-        let (set_transient_outputs : t -> bool -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x63) "start")
+        let (set_start : t -> int -> unit) =
           fun (x64 : t) ->
-            fun (x65 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x64) "transientOutputs"
-                (Ojs.bool_to_js x65)
-        let (transient_metadata : t -> any) =
+            fun (x65 : int) ->
+              Ojs.set_prop_ascii (t_to_js x64) "start" (Ojs.int_to_js x65)
+        let (end_ : t -> int) =
           fun (x66 : t) ->
-            any_of_js (Ojs.get_prop_ascii (t_to_js x66) "transientMetadata")
-        let (set_transient_metadata : t -> any -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x66) "end")
+        let (set_end : t -> int -> unit) =
           fun (x67 : t) ->
-            fun (x68 : any) ->
-              Ojs.set_prop_ascii (t_to_js x67) "transientMetadata"
-                (any_to_js x68)
+            fun (x68 : int) ->
+              Ojs.set_prop_ascii (t_to_js x67) "end" (Ojs.int_to_js x68)
       end
-    module AnonymousInterface13 =
+    module NotebookCellRange =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x70 : Ojs.t) -> x70
@@ -196,285 +194,270 @@ module Vscode =
         let (start : t -> int) =
           fun (x71 : t) ->
             Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x71) "start")
-        let (set_start : t -> int -> unit) =
+        let (end_ : t -> int) =
           fun (x72 : t) ->
-            fun (x73 : int) ->
-              Ojs.set_prop_ascii (t_to_js x72) "start" (Ojs.int_to_js x73)
-        let (end_ : t -> int) =
-          fun (x74 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x74) "end")
-        let (set_end : t -> int -> unit) =
-          fun (x75 : t) ->
-            fun (x76 : int) ->
-              Ojs.set_prop_ascii (t_to_js x75) "end" (Ojs.int_to_js x76)
-      end
-    module NotebookCellRange =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x78 : Ojs.t) -> x78
-        and t_to_js : t -> Ojs.t = fun (x77 : Ojs.t) -> x77
-        let (start : t -> int) =
-          fun (x79 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x79) "start")
-        let (end_ : t -> int) =
-          fun (x80 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x80) "end")
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x72) "end")
         let (is_empty : t -> bool) =
-          fun (x81 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x81) "isEmpty")
+          fun (x73 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x73) "isEmpty")
         let (create : start:int -> end_:int -> t) =
-          fun ~start:(x82 : int) ->
-            fun ~end_:(x83 : int) ->
+          fun ~start:(x74 : int) ->
+            fun ~end_:(x75 : int) ->
               t_of_js
                 (Ojs.new_obj
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "NotebookCellRange")
-                   [|(Ojs.int_to_js x82);(Ojs.int_to_js x83)|])
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode")
+                      "NotebookCellRange")
+                   [|(Ojs.int_to_js x74);(Ojs.int_to_js x75)|])
         let (with_ : t -> change:AnonymousInterface13.t -> t) =
-          fun (x85 : t) ->
-            fun ~change:(x84 : AnonymousInterface13.t) ->
+          fun (x77 : t) ->
+            fun ~change:(x76 : AnonymousInterface13.t) ->
               t_of_js
-                (Ojs.call (t_to_js x85) "with"
-                   [|(AnonymousInterface13.t_to_js x84)|])
+                (Ojs.call (t_to_js x77) "with"
+                   [|(AnonymousInterface13.t_to_js x76)|])
       end
     module NotebookCellOutputItem =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x87 : Ojs.t) -> x87
-        and t_to_js : t -> Ojs.t = fun (x86 : Ojs.t) -> x86
+        let rec t_of_js : Ojs.t -> t = fun (x79 : Ojs.t) -> x79
+        and t_to_js : t -> Ojs.t = fun (x78 : Ojs.t) -> x78
         let (mime : t -> string) =
-          fun (x88 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x88) "mime")
+          fun (x80 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x80) "mime")
         let (value : t -> unknown) =
-          fun (x89 : t) ->
-            unknown_of_js (Ojs.get_prop_ascii (t_to_js x89) "value")
+          fun (x81 : t) ->
+            unknown_of_js (Ojs.get_prop_ascii (t_to_js x81) "value")
         let (metadata : t -> (string, any) Record.t) =
-          fun (x90 : t) ->
+          fun (x82 : t) ->
             Record.t_of_js Ojs.string_of_js any_of_js
-              (Ojs.get_prop_ascii (t_to_js x90) "metadata")
+              (Ojs.get_prop_ascii (t_to_js x82) "metadata")
         let (create :
           mime:string ->
             value:unknown -> ?metadata:(string, any) Record.t -> unit -> t)
           =
-          fun ~mime:(x93 : string) ->
-            fun ~value:(x94 : unknown) ->
-              fun ?metadata:(x95 : (string, any) Record.t option) ->
+          fun ~mime:(x85 : string) ->
+            fun ~value:(x86 : unknown) ->
+              fun ?metadata:(x87 : (string, any) Record.t option) ->
                 fun () ->
                   t_of_js
                     (Ojs.new_obj_arr
                        (Ojs.get_prop_ascii
-                          (Ojs.get_prop_ascii Ojs.global
-                             "__LIB__VSCODE__IMPORTS.vscode")
+                          (Ojs.get_prop_ascii
+                             (Ojs.get_prop_ascii Ojs.global
+                                "__LIB__VSCODE__IMPORTS") "vscode")
                           "NotebookCellOutputItem")
-                       (let x96 =
+                       (let x88 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
                         ignore
-                          (Ojs.call x96 "push" [|(Ojs.string_to_js x93)|]);
-                        ignore (Ojs.call x96 "push" [|(unknown_to_js x94)|]);
-                        (match x95 with
-                         | Some x97 ->
+                          (Ojs.call x88 "push" [|(Ojs.string_to_js x85)|]);
+                        ignore (Ojs.call x88 "push" [|(unknown_to_js x86)|]);
+                        (match x87 with
+                         | Some x89 ->
                              ignore
-                               (Ojs.call x96 "push"
+                               (Ojs.call x88 "push"
                                   [|(Record.t_to_js Ojs.string_to_js
-                                       any_to_js x97)|])
+                                       any_to_js x89)|])
                          | None -> ());
-                        x96))
+                        x88))
       end
     module NotebookCellOutput =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x101 : Ojs.t) -> x101
-        and t_to_js : t -> Ojs.t = fun (x100 : Ojs.t) -> x100
+        let rec t_of_js : Ojs.t -> t = fun (x93 : Ojs.t) -> x93
+        and t_to_js : t -> Ojs.t = fun (x92 : Ojs.t) -> x92
         let (id : t -> string) =
-          fun (x102 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x102) "id")
+          fun (x94 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x94) "id")
         let (outputs : t -> NotebookCellOutputItem.t list) =
-          fun (x103 : t) ->
+          fun (x95 : t) ->
             Ojs.list_of_js NotebookCellOutputItem.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x103) "outputs")
+              (Ojs.get_prop_ascii (t_to_js x95) "outputs")
         let (metadata : t -> (string, any) Record.t) =
-          fun (x105 : t) ->
+          fun (x97 : t) ->
             Record.t_of_js Ojs.string_of_js any_of_js
-              (Ojs.get_prop_ascii (t_to_js x105) "metadata")
+              (Ojs.get_prop_ascii (t_to_js x97) "metadata")
         let (create :
           outputs:NotebookCellOutputItem.t list ->
             ?metadata:(string, any) Record.t -> unit -> t)
           =
-          fun ~outputs:(x108 : NotebookCellOutputItem.t list) ->
-            fun ?metadata:(x109 : (string, any) Record.t option) ->
+          fun ~outputs:(x100 : NotebookCellOutputItem.t list) ->
+            fun ?metadata:(x101 : (string, any) Record.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii
-                        (Ojs.get_prop_ascii Ojs.global
-                           "__LIB__VSCODE__IMPORTS.vscode")
+                        (Ojs.get_prop_ascii
+                           (Ojs.get_prop_ascii Ojs.global
+                              "__LIB__VSCODE__IMPORTS") "vscode")
                         "NotebookCellOutput")
-                     (let x110 =
+                     (let x102 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x110 "push"
+                        (Ojs.call x102 "push"
                            [|(Ojs.list_to_js NotebookCellOutputItem.t_to_js
-                                x108)|]);
-                      (match x109 with
-                       | Some x111 ->
+                                x100)|]);
+                      (match x101 with
+                       | Some x103 ->
                            ignore
-                             (Ojs.call x110 "push"
+                             (Ojs.call x102 "push"
                                 [|(Record.t_to_js Ojs.string_to_js any_to_js
-                                     x111)|])
+                                     x103)|])
                        | None -> ());
-                      x110))
+                      x102))
         let (create' :
           outputs:NotebookCellOutputItem.t list ->
             id:string -> ?metadata:(string, any) Record.t -> unit -> t)
           =
-          fun ~outputs:(x115 : NotebookCellOutputItem.t list) ->
-            fun ~id:(x116 : string) ->
-              fun ?metadata:(x117 : (string, any) Record.t option) ->
+          fun ~outputs:(x107 : NotebookCellOutputItem.t list) ->
+            fun ~id:(x108 : string) ->
+              fun ?metadata:(x109 : (string, any) Record.t option) ->
                 fun () ->
                   t_of_js
                     (Ojs.new_obj_arr
                        (Ojs.get_prop_ascii
-                          (Ojs.get_prop_ascii Ojs.global
-                             "__LIB__VSCODE__IMPORTS.vscode")
+                          (Ojs.get_prop_ascii
+                             (Ojs.get_prop_ascii Ojs.global
+                                "__LIB__VSCODE__IMPORTS") "vscode")
                           "NotebookCellOutput")
-                       (let x118 =
+                       (let x110 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
                         ignore
-                          (Ojs.call x118 "push"
+                          (Ojs.call x110 "push"
                              [|(Ojs.list_to_js NotebookCellOutputItem.t_to_js
-                                  x115)|]);
+                                  x107)|]);
                         ignore
-                          (Ojs.call x118 "push" [|(Ojs.string_to_js x116)|]);
-                        (match x117 with
-                         | Some x119 ->
+                          (Ojs.call x110 "push" [|(Ojs.string_to_js x108)|]);
+                        (match x109 with
+                         | Some x111 ->
                              ignore
-                               (Ojs.call x118 "push"
+                               (Ojs.call x110 "push"
                                   [|(Record.t_to_js Ojs.string_to_js
-                                       any_to_js x119)|])
+                                       any_to_js x111)|])
                          | None -> ());
-                        x118))
+                        x110))
       end
     module NotebookCellKind =
       struct
         type t = [ `Markdown  | `Code ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x124 : Ojs.t) ->
-            let x125 = x124 in
-            match Ojs.int_of_js x125 with
+          fun (x116 : Ojs.t) ->
+            let x117 = x116 in
+            match Ojs.int_of_js x117 with
             | 1 -> `Markdown
             | 2 -> `Code
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x123 : [ `Markdown  | `Code ]) ->
-            match x123 with
+          fun (x115 : [ `Markdown  | `Code ]) ->
+            match x115 with
             | `Markdown -> Ojs.int_to_js 1
             | `Code -> Ojs.int_to_js 2
       end
     module AnonymousInterface5 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x127 : Ojs.t) -> x127
-        and t_to_js : t -> Ojs.t = fun (x126 : Ojs.t) -> x126
+        let rec t_of_js : Ojs.t -> t = fun (x119 : Ojs.t) -> x119
+        and t_to_js : t -> Ojs.t = fun (x118 : Ojs.t) -> x118
         let (editable : t -> bool or_null) =
-          fun (x128 : t) ->
+          fun (x120 : t) ->
             or_null_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x128) "editable")
+              (Ojs.get_prop_ascii (t_to_js x120) "editable")
         let (set_editable : t -> bool or_null -> unit) =
-          fun (x130 : t) ->
-            fun (x131 : bool or_null) ->
-              Ojs.set_prop_ascii (t_to_js x130) "editable"
-                (or_null_to_js Ojs.bool_to_js x131)
+          fun (x122 : t) ->
+            fun (x123 : bool or_null) ->
+              Ojs.set_prop_ascii (t_to_js x122) "editable"
+                (or_null_to_js Ojs.bool_to_js x123)
         let (breakpoint_margin : t -> bool or_null) =
-          fun (x133 : t) ->
+          fun (x125 : t) ->
             or_null_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x133) "breakpointMargin")
+              (Ojs.get_prop_ascii (t_to_js x125) "breakpointMargin")
         let (set_breakpoint_margin : t -> bool or_null -> unit) =
-          fun (x135 : t) ->
-            fun (x136 : bool or_null) ->
-              Ojs.set_prop_ascii (t_to_js x135) "breakpointMargin"
-                (or_null_to_js Ojs.bool_to_js x136)
+          fun (x127 : t) ->
+            fun (x128 : bool or_null) ->
+              Ojs.set_prop_ascii (t_to_js x127) "breakpointMargin"
+                (or_null_to_js Ojs.bool_to_js x128)
         let (status_message : t -> string or_null) =
-          fun (x138 : t) ->
+          fun (x130 : t) ->
             or_null_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x138) "statusMessage")
+              (Ojs.get_prop_ascii (t_to_js x130) "statusMessage")
         let (set_status_message : t -> string or_null -> unit) =
-          fun (x140 : t) ->
-            fun (x141 : string or_null) ->
-              Ojs.set_prop_ascii (t_to_js x140) "statusMessage"
-                (or_null_to_js Ojs.string_to_js x141)
+          fun (x132 : t) ->
+            fun (x133 : string or_null) ->
+              Ojs.set_prop_ascii (t_to_js x132) "statusMessage"
+                (or_null_to_js Ojs.string_to_js x133)
         let (last_run_duration : t -> int or_null) =
-          fun (x143 : t) ->
+          fun (x135 : t) ->
             or_null_of_js Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x143) "lastRunDuration")
+              (Ojs.get_prop_ascii (t_to_js x135) "lastRunDuration")
         let (set_last_run_duration : t -> int or_null -> unit) =
-          fun (x145 : t) ->
-            fun (x146 : int or_null) ->
-              Ojs.set_prop_ascii (t_to_js x145) "lastRunDuration"
-                (or_null_to_js Ojs.int_to_js x146)
+          fun (x137 : t) ->
+            fun (x138 : int or_null) ->
+              Ojs.set_prop_ascii (t_to_js x137) "lastRunDuration"
+                (or_null_to_js Ojs.int_to_js x138)
         let (input_collapsed : t -> bool or_null) =
-          fun (x148 : t) ->
+          fun (x140 : t) ->
             or_null_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x148) "inputCollapsed")
+              (Ojs.get_prop_ascii (t_to_js x140) "inputCollapsed")
         let (set_input_collapsed : t -> bool or_null -> unit) =
-          fun (x150 : t) ->
-            fun (x151 : bool or_null) ->
-              Ojs.set_prop_ascii (t_to_js x150) "inputCollapsed"
-                (or_null_to_js Ojs.bool_to_js x151)
+          fun (x142 : t) ->
+            fun (x143 : bool or_null) ->
+              Ojs.set_prop_ascii (t_to_js x142) "inputCollapsed"
+                (or_null_to_js Ojs.bool_to_js x143)
         let (output_collapsed : t -> bool or_null) =
-          fun (x153 : t) ->
+          fun (x145 : t) ->
             or_null_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x153) "outputCollapsed")
+              (Ojs.get_prop_ascii (t_to_js x145) "outputCollapsed")
         let (set_output_collapsed : t -> bool or_null -> unit) =
-          fun (x155 : t) ->
-            fun (x156 : bool or_null) ->
-              Ojs.set_prop_ascii (t_to_js x155) "outputCollapsed"
-                (or_null_to_js Ojs.bool_to_js x156)
+          fun (x147 : t) ->
+            fun (x148 : bool or_null) ->
+              Ojs.set_prop_ascii (t_to_js x147) "outputCollapsed"
+                (or_null_to_js Ojs.bool_to_js x148)
         let (custom : t -> (string, any) Record.t or_null) =
-          fun (x158 : t) ->
+          fun (x150 : t) ->
             or_null_of_js
-              (fun (x159 : Ojs.t) ->
-                 Record.t_of_js Ojs.string_of_js any_of_js x159)
-              (Ojs.get_prop_ascii (t_to_js x158) "custom")
+              (fun (x151 : Ojs.t) ->
+                 Record.t_of_js Ojs.string_of_js any_of_js x151)
+              (Ojs.get_prop_ascii (t_to_js x150) "custom")
         let (set_custom : t -> (string, any) Record.t or_null -> unit) =
-          fun (x162 : t) ->
-            fun (x163 : (string, any) Record.t or_null) ->
-              Ojs.set_prop_ascii (t_to_js x162) "custom"
+          fun (x154 : t) ->
+            fun (x155 : (string, any) Record.t or_null) ->
+              Ojs.set_prop_ascii (t_to_js x154) "custom"
                 (or_null_to_js
-                   (fun (x164 : (string, any) Record.t) ->
-                      Record.t_to_js Ojs.string_to_js any_to_js x164) x163)
+                   (fun (x156 : (string, any) Record.t) ->
+                      Record.t_to_js Ojs.string_to_js any_to_js x156) x155)
       end
     module NotebookCellMetadata =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x168 : Ojs.t) -> x168
-        and t_to_js : t -> Ojs.t = fun (x167 : Ojs.t) -> x167
+        let rec t_of_js : Ojs.t -> t = fun (x160 : Ojs.t) -> x160
+        and t_to_js : t -> Ojs.t = fun (x159 : Ojs.t) -> x159
         let (editable : t -> bool) =
-          fun (x169 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x169) "editable")
+          fun (x161 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x161) "editable")
         let (breakpoint_margin : t -> bool) =
-          fun (x170 : t) ->
+          fun (x162 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x170) "breakpointMargin")
+              (Ojs.get_prop_ascii (t_to_js x162) "breakpointMargin")
         let (output_collapsed : t -> bool) =
-          fun (x171 : t) ->
+          fun (x163 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x171) "outputCollapsed")
+              (Ojs.get_prop_ascii (t_to_js x163) "outputCollapsed")
         let (input_collapsed : t -> bool) =
-          fun (x172 : t) ->
+          fun (x164 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x172) "inputCollapsed")
+              (Ojs.get_prop_ascii (t_to_js x164) "inputCollapsed")
         let (custom : t -> (string, any) Record.t) =
-          fun (x173 : t) ->
+          fun (x165 : t) ->
             Record.t_of_js Ojs.string_of_js any_of_js
-              (Ojs.get_prop_ascii (t_to_js x173) "custom")
+              (Ojs.get_prop_ascii (t_to_js x165) "custom")
         let (status_message : t -> string) =
-          fun (x176 : t) ->
+          fun (x168 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x176) "statusMessage")
+              (Ojs.get_prop_ascii (t_to_js x168) "statusMessage")
         let (create :
           ?editable:bool ->
             ?breakpoint_margin:bool ->
@@ -484,528 +467,617 @@ module Vscode =
                     ?output_collapsed:bool ->
                       ?custom:(string, any) Record.t -> unit -> t)
           =
-          fun ?editable:(x177 : bool option) ->
-            fun ?breakpoint_margin:(x178 : bool option) ->
-              fun ?status_message:(x179 : string option) ->
-                fun ?last_run_duration:(x180 : int option) ->
-                  fun ?input_collapsed:(x181 : bool option) ->
-                    fun ?output_collapsed:(x182 : bool option) ->
-                      fun ?custom:(x183 : (string, any) Record.t option) ->
+          fun ?editable:(x169 : bool option) ->
+            fun ?breakpoint_margin:(x170 : bool option) ->
+              fun ?status_message:(x171 : string option) ->
+                fun ?last_run_duration:(x172 : int option) ->
+                  fun ?input_collapsed:(x173 : bool option) ->
+                    fun ?output_collapsed:(x174 : bool option) ->
+                      fun ?custom:(x175 : (string, any) Record.t option) ->
                         fun () ->
                           t_of_js
                             (Ojs.new_obj_arr
                                (Ojs.get_prop_ascii
-                                  (Ojs.get_prop_ascii Ojs.global
-                                     "__LIB__VSCODE__IMPORTS.vscode")
+                                  (Ojs.get_prop_ascii
+                                     (Ojs.get_prop_ascii Ojs.global
+                                        "__LIB__VSCODE__IMPORTS") "vscode")
                                   "NotebookCellMetadata")
-                               (let x184 =
+                               (let x176 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
-                                (match x177 with
-                                 | Some x193 ->
-                                     ignore
-                                       (Ojs.call x184 "push"
-                                          [|(Ojs.bool_to_js x193)|])
-                                 | None -> ());
-                                (match x178 with
-                                 | Some x192 ->
-                                     ignore
-                                       (Ojs.call x184 "push"
-                                          [|(Ojs.bool_to_js x192)|])
-                                 | None -> ());
-                                (match x179 with
-                                 | Some x191 ->
-                                     ignore
-                                       (Ojs.call x184 "push"
-                                          [|(Ojs.string_to_js x191)|])
-                                 | None -> ());
-                                (match x180 with
-                                 | Some x190 ->
-                                     ignore
-                                       (Ojs.call x184 "push"
-                                          [|(Ojs.int_to_js x190)|])
-                                 | None -> ());
-                                (match x181 with
-                                 | Some x189 ->
-                                     ignore
-                                       (Ojs.call x184 "push"
-                                          [|(Ojs.bool_to_js x189)|])
-                                 | None -> ());
-                                (match x182 with
-                                 | Some x188 ->
-                                     ignore
-                                       (Ojs.call x184 "push"
-                                          [|(Ojs.bool_to_js x188)|])
-                                 | None -> ());
-                                (match x183 with
+                                (match x169 with
                                  | Some x185 ->
                                      ignore
-                                       (Ojs.call x184 "push"
-                                          [|(Record.t_to_js Ojs.string_to_js
-                                               any_to_js x185)|])
+                                       (Ojs.call x176 "push"
+                                          [|(Ojs.bool_to_js x185)|])
                                  | None -> ());
-                                x184))
+                                (match x170 with
+                                 | Some x184 ->
+                                     ignore
+                                       (Ojs.call x176 "push"
+                                          [|(Ojs.bool_to_js x184)|])
+                                 | None -> ());
+                                (match x171 with
+                                 | Some x183 ->
+                                     ignore
+                                       (Ojs.call x176 "push"
+                                          [|(Ojs.string_to_js x183)|])
+                                 | None -> ());
+                                (match x172 with
+                                 | Some x182 ->
+                                     ignore
+                                       (Ojs.call x176 "push"
+                                          [|(Ojs.int_to_js x182)|])
+                                 | None -> ());
+                                (match x173 with
+                                 | Some x181 ->
+                                     ignore
+                                       (Ojs.call x176 "push"
+                                          [|(Ojs.bool_to_js x181)|])
+                                 | None -> ());
+                                (match x174 with
+                                 | Some x180 ->
+                                     ignore
+                                       (Ojs.call x176 "push"
+                                          [|(Ojs.bool_to_js x180)|])
+                                 | None -> ());
+                                (match x175 with
+                                 | Some x177 ->
+                                     ignore
+                                       (Ojs.call x176 "push"
+                                          [|(Record.t_to_js Ojs.string_to_js
+                                               any_to_js x177)|])
+                                 | None -> ());
+                                x176))
         let (with_ : t -> change:AnonymousInterface5.t -> t) =
-          fun (x195 : t) ->
-            fun ~change:(x194 : AnonymousInterface5.t) ->
+          fun (x187 : t) ->
+            fun ~change:(x186 : AnonymousInterface5.t) ->
               t_of_js
-                (Ojs.call (t_to_js x195) "with"
-                   [|(AnonymousInterface5.t_to_js x194)|])
+                (Ojs.call (t_to_js x187) "with"
+                   [|(AnonymousInterface5.t_to_js x186)|])
       end
     module NotebookCellExecutionSummary =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x197 : Ojs.t) -> x197
-        and t_to_js : t -> Ojs.t = fun (x196 : Ojs.t) -> x196
+        let rec t_of_js : Ojs.t -> t = fun (x189 : Ojs.t) -> x189
+        and t_to_js : t -> Ojs.t = fun (x188 : Ojs.t) -> x188
         let (execution_order : t -> int) =
-          fun (x198 : t) ->
+          fun (x190 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x198) "executionOrder")
+              (Ojs.get_prop_ascii (t_to_js x190) "executionOrder")
         let (set_execution_order : t -> int -> unit) =
-          fun (x199 : t) ->
-            fun (x200 : int) ->
-              Ojs.set_prop_ascii (t_to_js x199) "executionOrder"
-                (Ojs.int_to_js x200)
+          fun (x191 : t) ->
+            fun (x192 : int) ->
+              Ojs.set_prop_ascii (t_to_js x191) "executionOrder"
+                (Ojs.int_to_js x192)
         let (success : t -> bool) =
-          fun (x201 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x201) "success")
+          fun (x193 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x193) "success")
         let (set_success : t -> bool -> unit) =
-          fun (x202 : t) ->
-            fun (x203 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x202) "success"
-                (Ojs.bool_to_js x203)
+          fun (x194 : t) ->
+            fun (x195 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x194) "success"
+                (Ojs.bool_to_js x195)
         let (duration : t -> int) =
-          fun (x204 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x204) "duration")
+          fun (x196 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x196) "duration")
         let (set_duration : t -> int -> unit) =
-          fun (x205 : t) ->
-            fun (x206 : int) ->
-              Ojs.set_prop_ascii (t_to_js x205) "duration"
-                (Ojs.int_to_js x206)
+          fun (x197 : t) ->
+            fun (x198 : int) ->
+              Ojs.set_prop_ascii (t_to_js x197) "duration"
+                (Ojs.int_to_js x198)
       end
     module NotebookCell =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x208 : Ojs.t) -> x208
-        and t_to_js : t -> Ojs.t = fun (x207 : Ojs.t) -> x207
+        let rec t_of_js : Ojs.t -> t = fun (x200 : Ojs.t) -> x200
+        and t_to_js : t -> Ojs.t = fun (x199 : Ojs.t) -> x199
         let (index : t -> int) =
-          fun (x209 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x209) "index")
+          fun (x201 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x201) "index")
         let (kind : t -> NotebookCellKind.t) =
-          fun (x210 : t) ->
+          fun (x202 : t) ->
             NotebookCellKind.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x210) "kind")
+              (Ojs.get_prop_ascii (t_to_js x202) "kind")
         let (document : t -> TextDocument.t) =
-          fun (x211 : t) ->
+          fun (x203 : t) ->
             TextDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x211) "document")
+              (Ojs.get_prop_ascii (t_to_js x203) "document")
         let (metadata : t -> NotebookCellMetadata.t) =
-          fun (x212 : t) ->
+          fun (x204 : t) ->
             NotebookCellMetadata.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x212) "metadata")
+              (Ojs.get_prop_ascii (t_to_js x204) "metadata")
         let (outputs : t -> NotebookCellOutput.t list) =
-          fun (x213 : t) ->
+          fun (x205 : t) ->
             Ojs.list_of_js NotebookCellOutput.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x213) "outputs")
+              (Ojs.get_prop_ascii (t_to_js x205) "outputs")
         let (latest_execution_summary :
           t -> NotebookCellExecutionSummary.t or_undefined) =
-          fun (x215 : t) ->
+          fun (x207 : t) ->
             or_undefined_of_js NotebookCellExecutionSummary.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x215) "latestExecutionSummary")
+              (Ojs.get_prop_ascii (t_to_js x207) "latestExecutionSummary")
       end
     module NotebookDocument =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x218 : Ojs.t) -> x218
-        and t_to_js : t -> Ojs.t = fun (x217 : Ojs.t) -> x217
+        let rec t_of_js : Ojs.t -> t = fun (x210 : Ojs.t) -> x210
+        and t_to_js : t -> Ojs.t = fun (x209 : Ojs.t) -> x209
         let (uri : t -> Uri.t) =
-          fun (x219 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x219) "uri")
+          fun (x211 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x211) "uri")
         let (version : t -> int) =
-          fun (x220 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x220) "version")
+          fun (x212 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x212) "version")
         let (file_name : t -> string) =
-          fun (x221 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x221) "fileName")
+          fun (x213 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x213) "fileName")
         let (is_dirty : t -> bool) =
-          fun (x222 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x222) "isDirty")
+          fun (x214 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x214) "isDirty")
         let (is_untitled : t -> bool) =
-          fun (x223 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x223) "isUntitled")
+          fun (x215 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x215) "isUntitled")
         let (is_closed : t -> bool) =
-          fun (x224 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x224) "isClosed")
+          fun (x216 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x216) "isClosed")
         let (metadata : t -> NotebookDocumentMetadata.t) =
-          fun (x225 : t) ->
+          fun (x217 : t) ->
             NotebookDocumentMetadata.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x225) "metadata")
+              (Ojs.get_prop_ascii (t_to_js x217) "metadata")
         let (view_type : t -> string) =
-          fun (x226 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x226) "viewType")
+          fun (x218 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x218) "viewType")
         let (cell_count : t -> int) =
-          fun (x227 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x227) "cellCount")
+          fun (x219 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x219) "cellCount")
         let (cell_at : t -> index:int -> NotebookCell.t) =
-          fun (x229 : t) ->
-            fun ~index:(x228 : int) ->
+          fun (x221 : t) ->
+            fun ~index:(x220 : int) ->
               NotebookCell.t_of_js
-                (Ojs.call (t_to_js x229) "cellAt" [|(Ojs.int_to_js x228)|])
+                (Ojs.call (t_to_js x221) "cellAt" [|(Ojs.int_to_js x220)|])
         let (get_cells :
           t -> ?range:NotebookCellRange.t -> unit -> NotebookCell.t list) =
-          fun (x233 : t) ->
-            fun ?range:(x230 : NotebookCellRange.t option) ->
+          fun (x225 : t) ->
+            fun ?range:(x222 : NotebookCellRange.t option) ->
               fun () ->
                 Ojs.list_of_js NotebookCell.t_of_js
-                  (let x234 = t_to_js x233 in
-                   Ojs.call (Ojs.get_prop_ascii x234 "getCells") "apply"
-                     [|x234;((let x231 =
+                  (let x226 = t_to_js x225 in
+                   Ojs.call (Ojs.get_prop_ascii x226 "getCells") "apply"
+                     [|x226;((let x223 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x230 with
-                               | Some x232 ->
+                              (match x222 with
+                               | Some x224 ->
                                    ignore
-                                     (Ojs.call x231 "push"
-                                        [|(NotebookCellRange.t_to_js x232)|])
+                                     (Ojs.call x223 "push"
+                                        [|(NotebookCellRange.t_to_js x224)|])
                                | None -> ());
-                              x231))|])
+                              x223))|])
         let (save : t -> bool Promise.t) =
-          fun (x236 : t) ->
+          fun (x228 : t) ->
             Promise.t_of_js Ojs.bool_of_js
-              (Ojs.call (t_to_js x236) "save" [||])
+              (Ojs.call (t_to_js x228) "save" [||])
+      end
+    module NotebookDocumentContentOptions =
+      struct
+        module TransientMetadata =
+          struct
+            type t = Ojs.t
+            let rec t_of_js : Ojs.t -> t = fun (x231 : Ojs.t) -> x231
+            and t_to_js : t -> Ojs.t = fun (x230 : Ojs.t) -> x230
+            let (create :
+              ?editable:bool ->
+                ?cell_editable:bool ->
+                  ?custom:bool ->
+                    ?trusted:bool -> ?runnable:bool -> unit -> t)
+              =
+              fun ?editable:(x232 : bool option) ->
+                fun ?cell_editable:(x233 : bool option) ->
+                  fun ?custom:(x234 : bool option) ->
+                    fun ?trusted:(x235 : bool option) ->
+                      fun ?runnable:(x236 : bool option) ->
+                        fun () ->
+                          let x237 = Ojs.empty_obj () in
+                          (match x232 with
+                           | Some x242 ->
+                               Ojs.set_prop_ascii x237 "editable"
+                                 (Ojs.bool_to_js x242)
+                           | None -> ());
+                          (match x233 with
+                           | Some x241 ->
+                               Ojs.set_prop_ascii x237 "cellEditable"
+                                 (Ojs.bool_to_js x241)
+                           | None -> ());
+                          (match x234 with
+                           | Some x240 ->
+                               Ojs.set_prop_ascii x237 "custom"
+                                 (Ojs.bool_to_js x240)
+                           | None -> ());
+                          (match x235 with
+                           | Some x239 ->
+                               Ojs.set_prop_ascii x237 "trusted"
+                                 (Ojs.bool_to_js x239)
+                           | None -> ());
+                          (match x236 with
+                           | Some x238 ->
+                               Ojs.set_prop_ascii x237 "runnable"
+                                 (Ojs.bool_to_js x238)
+                           | None -> ());
+                          t_of_js x237
+          end
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x244 : Ojs.t) -> x244
+        and t_to_js : t -> Ojs.t = fun (x243 : Ojs.t) -> x243
+        let (transient_outputs : t -> bool) =
+          fun (x245 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x245) "transientOutputs")
+        let (set_transient_outputs : t -> bool -> unit) =
+          fun (x246 : t) ->
+            fun (x247 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x246) "transientOutputs"
+                (Ojs.bool_to_js x247)
+        let (transient_metadata : t -> TransientMetadata.t) =
+          fun (x248 : t) ->
+            TransientMetadata.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x248) "transientMetadata")
+        let (set_transient_metadata : t -> TransientMetadata.t -> unit) =
+          fun (x249 : t) ->
+            fun (x250 : TransientMetadata.t) ->
+              Ojs.set_prop_ascii (t_to_js x249) "transientMetadata"
+                (TransientMetadata.t_to_js x250)
+        let (create :
+          ?transient_outputs:bool ->
+            ?transient_metadata:TransientMetadata.t -> unit -> t)
+          =
+          fun ?transient_outputs:(x251 : bool option) ->
+            fun ?transient_metadata:(x252 : TransientMetadata.t option) ->
+              fun () ->
+                let x253 = Ojs.empty_obj () in
+                (match x251 with
+                 | Some x255 ->
+                     Ojs.set_prop_ascii x253 "transientOutputs"
+                       (Ojs.bool_to_js x255)
+                 | None -> ());
+                (match x252 with
+                 | Some x254 ->
+                     Ojs.set_prop_ascii x253 "transientMetadata"
+                       (TransientMetadata.t_to_js x254)
+                 | None -> ());
+                t_of_js x253
       end
     module NotebookKernel =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x239 : Ojs.t) -> x239
-        and t_to_js : t -> Ojs.t = fun (x238 : Ojs.t) -> x238
+        let rec t_of_js : Ojs.t -> t = fun (x257 : Ojs.t) -> x257
+        and t_to_js : t -> Ojs.t = fun (x256 : Ojs.t) -> x256
         let (id : t -> string) =
-          fun (x240 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x240) "id")
-        let (label : t -> string) =
-          fun (x241 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x241) "label")
-        let (set_label : t -> string -> unit) =
-          fun (x242 : t) ->
-            fun (x243 : string) ->
-              Ojs.set_prop_ascii (t_to_js x242) "label"
-                (Ojs.string_to_js x243)
-        let (description : t -> string) =
-          fun (x244 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x244) "description")
-        let (set_description : t -> string -> unit) =
-          fun (x245 : t) ->
-            fun (x246 : string) ->
-              Ojs.set_prop_ascii (t_to_js x245) "description"
-                (Ojs.string_to_js x246)
-        let (detail : t -> string) =
-          fun (x247 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x247) "detail")
-        let (set_detail : t -> string -> unit) =
-          fun (x248 : t) ->
-            fun (x249 : string) ->
-              Ojs.set_prop_ascii (t_to_js x248) "detail"
-                (Ojs.string_to_js x249)
-        let (is_preferred : t -> bool) =
-          fun (x250 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x250) "isPreferred")
-        let (set_is_preferred : t -> bool -> unit) =
-          fun (x251 : t) ->
-            fun (x252 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x251) "isPreferred"
-                (Ojs.bool_to_js x252)
-        let (preloads : t -> Uri.t list) =
-          fun (x253 : t) ->
-            Ojs.list_of_js Uri.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x253) "preloads")
-        let (set_preloads : t -> Uri.t list -> unit) =
-          fun (x255 : t) ->
-            fun (x256 : Uri.t list) ->
-              Ojs.set_prop_ascii (t_to_js x255) "preloads"
-                (Ojs.list_to_js Uri.t_to_js x256)
-        let (supported_languages : t -> string list) =
           fun (x258 : t) ->
-            Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x258) "supportedLanguages")
-        let (set_supported_languages : t -> string list -> unit) =
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x258) "id")
+        let (label : t -> string) =
+          fun (x259 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x259) "label")
+        let (set_label : t -> string -> unit) =
           fun (x260 : t) ->
-            fun (x261 : string list) ->
-              Ojs.set_prop_ascii (t_to_js x260) "supportedLanguages"
-                (Ojs.list_to_js Ojs.string_to_js x261)
+            fun (x261 : string) ->
+              Ojs.set_prop_ascii (t_to_js x260) "label"
+                (Ojs.string_to_js x261)
+        let (description : t -> string) =
+          fun (x262 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x262) "description")
+        let (set_description : t -> string -> unit) =
+          fun (x263 : t) ->
+            fun (x264 : string) ->
+              Ojs.set_prop_ascii (t_to_js x263) "description"
+                (Ojs.string_to_js x264)
+        let (detail : t -> string) =
+          fun (x265 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x265) "detail")
+        let (set_detail : t -> string -> unit) =
+          fun (x266 : t) ->
+            fun (x267 : string) ->
+              Ojs.set_prop_ascii (t_to_js x266) "detail"
+                (Ojs.string_to_js x267)
+        let (is_preferred : t -> bool) =
+          fun (x268 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x268) "isPreferred")
+        let (set_is_preferred : t -> bool -> unit) =
+          fun (x269 : t) ->
+            fun (x270 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x269) "isPreferred"
+                (Ojs.bool_to_js x270)
+        let (preloads : t -> Uri.t list) =
+          fun (x271 : t) ->
+            Ojs.list_of_js Uri.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x271) "preloads")
+        let (set_preloads : t -> Uri.t list -> unit) =
+          fun (x273 : t) ->
+            fun (x274 : Uri.t list) ->
+              Ojs.set_prop_ascii (t_to_js x273) "preloads"
+                (Ojs.list_to_js Uri.t_to_js x274)
+        let (supported_languages : t -> string list) =
+          fun (x276 : t) ->
+            Ojs.list_of_js Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x276) "supportedLanguages")
+        let (set_supported_languages : t -> string list -> unit) =
+          fun (x278 : t) ->
+            fun (x279 : string list) ->
+              Ojs.set_prop_ascii (t_to_js x278) "supportedLanguages"
+                (Ojs.list_to_js Ojs.string_to_js x279)
         let (interrupt : t -> document:NotebookDocument.t -> unit) =
-          fun (x264 : t) ->
-            fun ~document:(x263 : NotebookDocument.t) ->
+          fun (x282 : t) ->
+            fun ~document:(x281 : NotebookDocument.t) ->
               ignore
-                (Ojs.call (t_to_js x264) "interrupt"
-                   [|(NotebookDocument.t_to_js x263)|])
+                (Ojs.call (t_to_js x282) "interrupt"
+                   [|(NotebookDocument.t_to_js x281)|])
         let (execute_cells_request :
           t ->
             document:NotebookDocument.t ->
               ranges:NotebookCellRange.t list -> unit Promise.t)
           =
-          fun (x268 : t) ->
-            fun ~document:(x265 : NotebookDocument.t) ->
-              fun ~ranges:(x266 : NotebookCellRange.t list) ->
+          fun (x286 : t) ->
+            fun ~document:(x283 : NotebookDocument.t) ->
+              fun ~ranges:(x284 : NotebookCellRange.t list) ->
                 Promise.t_of_js Ojs.unit_of_js
-                  (Ojs.call (t_to_js x268) "executeCellsRequest"
-                     [|(NotebookDocument.t_to_js x265);(Ojs.list_to_js
+                  (Ojs.call (t_to_js x286) "executeCellsRequest"
+                     [|(NotebookDocument.t_to_js x283);(Ojs.list_to_js
                                                           NotebookCellRange.t_to_js
-                                                          x266)|])
+                                                          x284)|])
       end
     module AnonymousInterface3 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x271 : Ojs.t) -> x271
-        and t_to_js : t -> Ojs.t = fun (x270 : Ojs.t) -> x270
+        let rec t_of_js : Ojs.t -> t = fun (x289 : Ojs.t) -> x289
+        and t_to_js : t -> Ojs.t = fun (x288 : Ojs.t) -> x288
         let (display_name : t -> string) =
-          fun (x272 : t) ->
+          fun (x290 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x272) "displayName")
+              (Ojs.get_prop_ascii (t_to_js x290) "displayName")
         let (set_display_name : t -> string -> unit) =
-          fun (x273 : t) ->
-            fun (x274 : string) ->
-              Ojs.set_prop_ascii (t_to_js x273) "displayName"
-                (Ojs.string_to_js x274)
+          fun (x291 : t) ->
+            fun (x292 : string) ->
+              Ojs.set_prop_ascii (t_to_js x291) "displayName"
+                (Ojs.string_to_js x292)
         let (filename_pattern : t -> NotebookFilenamePattern.t list) =
-          fun (x275 : t) ->
+          fun (x293 : t) ->
             Ojs.list_of_js NotebookFilenamePattern.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x275) "filenamePattern")
+              (Ojs.get_prop_ascii (t_to_js x293) "filenamePattern")
         let (set_filename_pattern :
           t -> NotebookFilenamePattern.t list -> unit) =
-          fun (x277 : t) ->
-            fun (x278 : NotebookFilenamePattern.t list) ->
-              Ojs.set_prop_ascii (t_to_js x277) "filenamePattern"
-                (Ojs.list_to_js NotebookFilenamePattern.t_to_js x278)
+          fun (x295 : t) ->
+            fun (x296 : NotebookFilenamePattern.t list) ->
+              Ojs.set_prop_ascii (t_to_js x295) "filenamePattern"
+                (Ojs.list_to_js NotebookFilenamePattern.t_to_js x296)
         let (exclusive : t -> bool) =
-          fun (x280 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x280) "exclusive")
+          fun (x298 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x298) "exclusive")
         let (set_exclusive : t -> bool -> unit) =
-          fun (x281 : t) ->
-            fun (x282 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x281) "exclusive"
-                (Ojs.bool_to_js x282)
+          fun (x299 : t) ->
+            fun (x300 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x299) "exclusive"
+                (Ojs.bool_to_js x300)
       end
     module AnonymousInterface4 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x284 : Ojs.t) -> x284
-        and t_to_js : t -> Ojs.t = fun (x283 : Ojs.t) -> x283
+        let rec t_of_js : Ojs.t -> t = fun (x302 : Ojs.t) -> x302
+        and t_to_js : t -> Ojs.t = fun (x301 : Ojs.t) -> x301
         let (document : t -> NotebookDocument.t) =
-          fun (x285 : t) ->
+          fun (x303 : t) ->
             NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x285) "document")
+              (Ojs.get_prop_ascii (t_to_js x303) "document")
         let (set_document : t -> NotebookDocument.t -> unit) =
-          fun (x286 : t) ->
-            fun (x287 : NotebookDocument.t) ->
-              Ojs.set_prop_ascii (t_to_js x286) "document"
-                (NotebookDocument.t_to_js x287)
+          fun (x304 : t) ->
+            fun (x305 : NotebookDocument.t) ->
+              Ojs.set_prop_ascii (t_to_js x304) "document"
+                (NotebookDocument.t_to_js x305)
         let (kernel : t -> NotebookKernel.t or_undefined) =
-          fun (x288 : t) ->
+          fun (x306 : t) ->
             or_undefined_of_js NotebookKernel.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x288) "kernel")
+              (Ojs.get_prop_ascii (t_to_js x306) "kernel")
         let (set_kernel : t -> NotebookKernel.t or_undefined -> unit) =
-          fun (x290 : t) ->
-            fun (x291 : NotebookKernel.t or_undefined) ->
-              Ojs.set_prop_ascii (t_to_js x290) "kernel"
-                (or_undefined_to_js NotebookKernel.t_to_js x291)
+          fun (x308 : t) ->
+            fun (x309 : NotebookKernel.t or_undefined) ->
+              Ojs.set_prop_ascii (t_to_js x308) "kernel"
+                (or_undefined_to_js NotebookKernel.t_to_js x309)
       end
     module AnonymousInterface7 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x294 : Ojs.t) -> x294
-        and t_to_js : t -> Ojs.t = fun (x293 : Ojs.t) -> x293
+        let rec t_of_js : Ojs.t -> t = fun (x312 : Ojs.t) -> x312
+        and t_to_js : t -> Ojs.t = fun (x311 : Ojs.t) -> x311
         let (elevation : t -> bool) =
-          fun (x295 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x295) "elevation")
+          fun (x313 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x313) "elevation")
         let (set_elevation : t -> bool -> unit) =
-          fun (x296 : t) ->
-            fun (x297 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x296) "elevation"
-                (Ojs.bool_to_js x297)
+          fun (x314 : t) ->
+            fun (x315 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x314) "elevation"
+                (Ojs.bool_to_js x315)
         let (public : t -> bool) =
-          fun (x298 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x298) "public")
+          fun (x316 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x316) "public")
         let (set_public : t -> bool -> unit) =
-          fun (x299 : t) ->
-            fun (x300 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x299) "public"
-                (Ojs.bool_to_js x300)
+          fun (x317 : t) ->
+            fun (x318 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x317) "public"
+                (Ojs.bool_to_js x318)
       end
     module AnonymousInterface9 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x302 : Ojs.t) -> x302
-        and t_to_js : t -> Ojs.t = fun (x301 : Ojs.t) -> x301
+        let rec t_of_js : Ojs.t -> t = fun (x320 : Ojs.t) -> x320
+        and t_to_js : t -> Ojs.t = fun (x319 : Ojs.t) -> x319
         let (light : t -> Uri.t) =
-          fun (x303 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x303) "light")
+          fun (x321 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x321) "light")
         let (set_light : t -> Uri.t -> unit) =
-          fun (x304 : t) ->
-            fun (x305 : Uri.t) ->
-              Ojs.set_prop_ascii (t_to_js x304) "light" (Uri.t_to_js x305)
+          fun (x322 : t) ->
+            fun (x323 : Uri.t) ->
+              Ojs.set_prop_ascii (t_to_js x322) "light" (Uri.t_to_js x323)
         let (dark : t -> Uri.t) =
-          fun (x306 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x306) "dark")
+          fun (x324 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x324) "dark")
         let (set_dark : t -> Uri.t -> unit) =
-          fun (x307 : t) ->
-            fun (x308 : Uri.t) ->
-              Ojs.set_prop_ascii (t_to_js x307) "dark" (Uri.t_to_js x308)
+          fun (x325 : t) ->
+            fun (x326 : Uri.t) ->
+              Ojs.set_prop_ascii (t_to_js x325) "dark" (Uri.t_to_js x326)
       end
     module AnonymousInterface10 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x310 : Ojs.t) -> x310
-        and t_to_js : t -> Ojs.t = fun (x309 : Ojs.t) -> x309
+        let rec t_of_js : Ojs.t -> t = fun (x328 : Ojs.t) -> x328
+        and t_to_js : t -> Ojs.t = fun (x327 : Ojs.t) -> x327
         let (pid : t -> int) =
-          fun (x311 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x311) "pid")
+          fun (x329 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x329) "pid")
         let (set_pid : t -> int -> unit) =
-          fun (x312 : t) ->
-            fun (x313 : int) ->
-              Ojs.set_prop_ascii (t_to_js x312) "pid" (Ojs.int_to_js x313)
+          fun (x330 : t) ->
+            fun (x331 : int) ->
+              Ojs.set_prop_ascii (t_to_js x330) "pid" (Ojs.int_to_js x331)
         let (port_range : t -> (int * int)) =
-          fun (x314 : t) ->
-            let x315 = Ojs.get_prop_ascii (t_to_js x314) "portRange" in
-            ((Ojs.int_of_js (Ojs.array_get x315 0)),
-              (Ojs.int_of_js (Ojs.array_get x315 1)))
+          fun (x332 : t) ->
+            let x333 = Ojs.get_prop_ascii (t_to_js x332) "portRange" in
+            ((Ojs.int_of_js (Ojs.array_get x333 0)),
+              (Ojs.int_of_js (Ojs.array_get x333 1)))
         let (set_port_range : t -> (int * int) -> unit) =
-          fun (x316 : t) ->
-            fun (x317 : (int * int)) ->
-              Ojs.set_prop_ascii (t_to_js x316) "portRange"
-                (let (x318, x319) = x317 in
-                 let x320 = Ojs.array_make 2 in
-                 Ojs.array_set x320 0 (Ojs.int_to_js x318);
-                 Ojs.array_set x320 1 (Ojs.int_to_js x319);
-                 x320)
+          fun (x334 : t) ->
+            fun (x335 : (int * int)) ->
+              Ojs.set_prop_ascii (t_to_js x334) "portRange"
+                (let (x336, x337) = x335 in
+                 let x338 = Ojs.array_make 2 in
+                 Ojs.array_set x338 0 (Ojs.int_to_js x336);
+                 Ojs.array_set x338 1 (Ojs.int_to_js x337);
+                 x338)
         let (command_matcher : t -> regexp) =
-          fun (x321 : t) ->
-            regexp_of_js (Ojs.get_prop_ascii (t_to_js x321) "commandMatcher")
+          fun (x339 : t) ->
+            regexp_of_js (Ojs.get_prop_ascii (t_to_js x339) "commandMatcher")
         let (set_command_matcher : t -> regexp -> unit) =
-          fun (x322 : t) ->
-            fun (x323 : regexp) ->
-              Ojs.set_prop_ascii (t_to_js x322) "commandMatcher"
-                (regexp_to_js x323)
+          fun (x340 : t) ->
+            fun (x341 : regexp) ->
+              Ojs.set_prop_ascii (t_to_js x340) "commandMatcher"
+                (regexp_to_js x341)
       end
     module AnonymousInterface11 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x325 : Ojs.t) -> x325
-        and t_to_js : t -> Ojs.t = fun (x324 : Ojs.t) -> x324
+        let rec t_of_js : Ojs.t -> t = fun (x343 : Ojs.t) -> x343
+        and t_to_js : t -> Ojs.t = fun (x342 : Ojs.t) -> x342
         let (port : t -> int) =
-          fun (x326 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x326) "port")
+          fun (x344 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x344) "port")
         let (set_port : t -> int -> unit) =
-          fun (x327 : t) ->
-            fun (x328 : int) ->
-              Ojs.set_prop_ascii (t_to_js x327) "port" (Ojs.int_to_js x328)
+          fun (x345 : t) ->
+            fun (x346 : int) ->
+              Ojs.set_prop_ascii (t_to_js x345) "port" (Ojs.int_to_js x346)
         let (host : t -> string) =
-          fun (x329 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x329) "host")
+          fun (x347 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x347) "host")
         let (set_host : t -> string -> unit) =
-          fun (x330 : t) ->
-            fun (x331 : string) ->
-              Ojs.set_prop_ascii (t_to_js x330) "host"
-                (Ojs.string_to_js x331)
+          fun (x348 : t) ->
+            fun (x349 : string) ->
+              Ojs.set_prop_ascii (t_to_js x348) "host"
+                (Ojs.string_to_js x349)
       end
     module AnonymousInterface12 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x333 : Ojs.t) -> x333
-        and t_to_js : t -> Ojs.t = fun (x332 : Ojs.t) -> x332
+        let rec t_of_js : Ojs.t -> t = fun (x351 : Ojs.t) -> x351
+        and t_to_js : t -> Ojs.t = fun (x350 : Ojs.t) -> x350
         let (select : t -> bool) =
-          fun (x334 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x334) "select")
+          fun (x352 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x352) "select")
         let (set_select : t -> bool -> unit) =
-          fun (x335 : t) ->
-            fun (x336 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x335) "select"
-                (Ojs.bool_to_js x336)
+          fun (x353 : t) ->
+            fun (x354 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x353) "select"
+                (Ojs.bool_to_js x354)
         let (focus : t -> bool) =
-          fun (x337 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x337) "focus")
+          fun (x355 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x355) "focus")
         let (set_focus : t -> bool -> unit) =
-          fun (x338 : t) ->
-            fun (x339 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x338) "focus" (Ojs.bool_to_js x339)
+          fun (x356 : t) ->
+            fun (x357 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x356) "focus" (Ojs.bool_to_js x357)
         let (expand : t -> bool or_number) =
-          fun (x340 : t) ->
+          fun (x358 : t) ->
             or_number_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x340) "expand")
+              (Ojs.get_prop_ascii (t_to_js x358) "expand")
         let (set_expand : t -> bool or_number -> unit) =
-          fun (x342 : t) ->
-            fun (x343 : bool or_number) ->
-              Ojs.set_prop_ascii (t_to_js x342) "expand"
-                (or_number_to_js Ojs.bool_to_js x343)
+          fun (x360 : t) ->
+            fun (x361 : bool or_number) ->
+              Ojs.set_prop_ascii (t_to_js x360) "expand"
+                (or_number_to_js Ojs.bool_to_js x361)
       end
     module AnonymousInterface14 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x346 : Ojs.t) -> x346
-        and t_to_js : t -> Ojs.t = fun (x345 : Ojs.t) -> x345
+        let rec t_of_js : Ojs.t -> t = fun (x364 : Ojs.t) -> x364
+        and t_to_js : t -> Ojs.t = fun (x363 : Ojs.t) -> x363
         let (timestamp : t -> int) =
-          fun (x347 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x347) "timestamp")
+          fun (x365 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x365) "timestamp")
         let (set_timestamp : t -> int -> unit) =
-          fun (x348 : t) ->
-            fun (x349 : int) ->
-              Ojs.set_prop_ascii (t_to_js x348) "timestamp"
-                (Ojs.int_to_js x349)
+          fun (x366 : t) ->
+            fun (x367 : int) ->
+              Ojs.set_prop_ascii (t_to_js x366) "timestamp"
+                (Ojs.int_to_js x367)
         let (id : t -> string) =
-          fun (x350 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x350) "id")
+          fun (x368 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x368) "id")
         let (set_id : t -> string -> unit) =
-          fun (x351 : t) ->
-            fun (x352 : string) ->
-              Ojs.set_prop_ascii (t_to_js x351) "id" (Ojs.string_to_js x352)
+          fun (x369 : t) ->
+            fun (x370 : string) ->
+              Ojs.set_prop_ascii (t_to_js x369) "id" (Ojs.string_to_js x370)
       end
     module AnonymousInterface15 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x354 : Ojs.t) -> x354
-        and t_to_js : t -> Ojs.t = fun (x353 : Ojs.t) -> x353
+        let rec t_of_js : Ojs.t -> t = fun (x372 : Ojs.t) -> x372
+        and t_to_js : t -> Ojs.t = fun (x371 : Ojs.t) -> x371
         let (view_options : t -> AnonymousInterface3.t) =
-          fun (x355 : t) ->
+          fun (x373 : t) ->
             AnonymousInterface3.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x355) "viewOptions")
+              (Ojs.get_prop_ascii (t_to_js x373) "viewOptions")
         let (set_view_options : t -> AnonymousInterface3.t -> unit) =
-          fun (x356 : t) ->
-            fun (x357 : AnonymousInterface3.t) ->
-              Ojs.set_prop_ascii (t_to_js x356) "viewOptions"
-                (AnonymousInterface3.t_to_js x357)
+          fun (x374 : t) ->
+            fun (x375 : AnonymousInterface3.t) ->
+              Ojs.set_prop_ascii (t_to_js x374) "viewOptions"
+                (AnonymousInterface3.t_to_js x375)
       end
     module AnonymousInterface17 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x359 : Ojs.t) -> x359
-        and t_to_js : t -> Ojs.t = fun (x358 : Ojs.t) -> x358
+        let rec t_of_js : Ojs.t -> t = fun (x377 : Ojs.t) -> x377
+        and t_to_js : t -> Ojs.t = fun (x376 : Ojs.t) -> x376
         let (get : t -> string -> string or_null) =
-          fun (x360 : t) ->
-            fun (x361 : string) ->
+          fun (x378 : t) ->
+            fun (x379 : string) ->
               or_null_of_js Ojs.string_of_js
-                (Ojs.get_prop (t_to_js x360) (Ojs.string_to_js x361))
+                (Ojs.get_prop (t_to_js x378) (Ojs.string_to_js x379))
         let (set : t -> string -> string or_null -> unit) =
-          fun (x363 : t) ->
-            fun (x364 : string) ->
-              fun (x365 : string or_null) ->
-                Ojs.set_prop (t_to_js x363) (Ojs.string_to_js x364)
-                  (or_null_to_js Ojs.string_to_js x365)
+          fun (x381 : t) ->
+            fun (x382 : string) ->
+              fun (x383 : string or_null) ->
+                Ojs.set_prop (t_to_js x381) (Ojs.string_to_js x382)
+                  (or_null_to_js Ojs.string_to_js x383)
       end
     module AuthenticationProvidersChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x368 : Ojs.t) -> x368
-        and t_to_js : t -> Ojs.t = fun (x367 : Ojs.t) -> x367
+        let rec t_of_js : Ojs.t -> t = fun (x386 : Ojs.t) -> x386
+        and t_to_js : t -> Ojs.t = fun (x385 : Ojs.t) -> x385
         let (added : t -> AuthenticationProviderInformation.t list) =
-          fun (x369 : t) ->
+          fun (x387 : t) ->
             Ojs.list_of_js AuthenticationProviderInformation.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x369) "added")
+              (Ojs.get_prop_ascii (t_to_js x387) "added")
         let (removed : t -> AuthenticationProviderInformation.t list) =
-          fun (x371 : t) ->
+          fun (x389 : t) ->
             Ojs.list_of_js AuthenticationProviderInformation.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x371) "removed")
+              (Ojs.get_prop_ascii (t_to_js x389) "removed")
       end
     module Authentication =
       struct
@@ -1014,250 +1086,253 @@ module Vscode =
           Event.t_of_js AuthenticationProvidersChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "authentication")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "authentication")
                "onDidChangeAuthenticationProviders")
         let (providers : AuthenticationProviderInformation.t list) =
           Ojs.list_of_js AuthenticationProviderInformation.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "authentication")
-               "providers")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "authentication") "providers")
         let (logout :
           provider_id:string -> session_id:string -> unit Promise.t) =
-          fun ~provider_id:(x375 : string) ->
-            fun ~session_id:(x376 : string) ->
+          fun ~provider_id:(x393 : string) ->
+            fun ~session_id:(x394 : string) ->
               Promise.t_of_js Ojs.unit_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "authentication")
-                   "logout"
-                   [|(Ojs.string_to_js x375);(Ojs.string_to_js x376)|])
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode")
+                      "authentication") "logout"
+                   [|(Ojs.string_to_js x393);(Ojs.string_to_js x394)|])
       end
     module MessageOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x379 : Ojs.t) -> x379
-        and t_to_js : t -> Ojs.t = fun (x378 : Ojs.t) -> x378
+        let rec t_of_js : Ojs.t -> t = fun (x397 : Ojs.t) -> x397
+        and t_to_js : t -> Ojs.t = fun (x396 : Ojs.t) -> x396
         let (use_custom : t -> bool) =
-          fun (x380 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x380) "useCustom")
+          fun (x398 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x398) "useCustom")
         let (set_use_custom : t -> bool -> unit) =
-          fun (x381 : t) ->
-            fun (x382 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x381) "useCustom"
-                (Ojs.bool_to_js x382)
+          fun (x399 : t) ->
+            fun (x400 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x399) "useCustom"
+                (Ojs.bool_to_js x400)
       end
     module RemoteAuthorityResolverContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x384 : Ojs.t) -> x384
-        and t_to_js : t -> Ojs.t = fun (x383 : Ojs.t) -> x383
+        let rec t_of_js : Ojs.t -> t = fun (x402 : Ojs.t) -> x402
+        and t_to_js : t -> Ojs.t = fun (x401 : Ojs.t) -> x401
         let (resolve_attempt : t -> int) =
-          fun (x385 : t) ->
+          fun (x403 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x385) "resolveAttempt")
+              (Ojs.get_prop_ascii (t_to_js x403) "resolveAttempt")
         let (set_resolve_attempt : t -> int -> unit) =
-          fun (x386 : t) ->
-            fun (x387 : int) ->
-              Ojs.set_prop_ascii (t_to_js x386) "resolveAttempt"
-                (Ojs.int_to_js x387)
+          fun (x404 : t) ->
+            fun (x405 : int) ->
+              Ojs.set_prop_ascii (t_to_js x404) "resolveAttempt"
+                (Ojs.int_to_js x405)
       end
     module ResolvedAuthority =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x389 : Ojs.t) -> x389
-        and t_to_js : t -> Ojs.t = fun (x388 : Ojs.t) -> x388
+        let rec t_of_js : Ojs.t -> t = fun (x407 : Ojs.t) -> x407
+        and t_to_js : t -> Ojs.t = fun (x406 : Ojs.t) -> x406
         let (host : t -> string) =
-          fun (x390 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x390) "host")
+          fun (x408 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x408) "host")
         let (port : t -> int) =
-          fun (x391 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x391) "port")
+          fun (x409 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x409) "port")
         let (connection_token : t -> string or_undefined) =
-          fun (x392 : t) ->
+          fun (x410 : t) ->
             or_undefined_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x392) "connectionToken")
+              (Ojs.get_prop_ascii (t_to_js x410) "connectionToken")
         let (create :
           host:string -> port:int -> ?connection_token:string -> unit -> t) =
-          fun ~host:(x394 : string) ->
-            fun ~port:(x395 : int) ->
-              fun ?connection_token:(x396 : string option) ->
+          fun ~host:(x412 : string) ->
+            fun ~port:(x413 : int) ->
+              fun ?connection_token:(x414 : string option) ->
                 fun () ->
                   t_of_js
                     (Ojs.new_obj_arr
                        (Ojs.get_prop_ascii
-                          (Ojs.get_prop_ascii Ojs.global
-                             "__LIB__VSCODE__IMPORTS.vscode")
+                          (Ojs.get_prop_ascii
+                             (Ojs.get_prop_ascii Ojs.global
+                                "__LIB__VSCODE__IMPORTS") "vscode")
                           "ResolvedAuthority")
-                       (let x397 =
+                       (let x415 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
                         ignore
-                          (Ojs.call x397 "push" [|(Ojs.string_to_js x394)|]);
+                          (Ojs.call x415 "push" [|(Ojs.string_to_js x412)|]);
                         ignore
-                          (Ojs.call x397 "push" [|(Ojs.int_to_js x395)|]);
-                        (match x396 with
-                         | Some x398 ->
+                          (Ojs.call x415 "push" [|(Ojs.int_to_js x413)|]);
+                        (match x414 with
+                         | Some x416 ->
                              ignore
-                               (Ojs.call x397 "push"
-                                  [|(Ojs.string_to_js x398)|])
+                               (Ojs.call x415 "push"
+                                  [|(Ojs.string_to_js x416)|])
                          | None -> ());
-                        x397))
+                        x415))
       end
     module ResolvedOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x400 : Ojs.t) -> x400
-        and t_to_js : t -> Ojs.t = fun (x399 : Ojs.t) -> x399
+        let rec t_of_js : Ojs.t -> t = fun (x418 : Ojs.t) -> x418
+        and t_to_js : t -> Ojs.t = fun (x417 : Ojs.t) -> x417
         let (extension_host_env : t -> AnonymousInterface17.t) =
-          fun (x401 : t) ->
+          fun (x419 : t) ->
             AnonymousInterface17.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x401) "extensionHostEnv")
+              (Ojs.get_prop_ascii (t_to_js x419) "extensionHostEnv")
         let (set_extension_host_env : t -> AnonymousInterface17.t -> unit) =
-          fun (x402 : t) ->
-            fun (x403 : AnonymousInterface17.t) ->
-              Ojs.set_prop_ascii (t_to_js x402) "extensionHostEnv"
-                (AnonymousInterface17.t_to_js x403)
+          fun (x420 : t) ->
+            fun (x421 : AnonymousInterface17.t) ->
+              Ojs.set_prop_ascii (t_to_js x420) "extensionHostEnv"
+                (AnonymousInterface17.t_to_js x421)
       end
     module TunnelOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x405 : Ojs.t) -> x405
-        and t_to_js : t -> Ojs.t = fun (x404 : Ojs.t) -> x404
+        let rec t_of_js : Ojs.t -> t = fun (x423 : Ojs.t) -> x423
+        and t_to_js : t -> Ojs.t = fun (x422 : Ojs.t) -> x422
         let (remote_address : t -> AnonymousInterface11.t) =
-          fun (x406 : t) ->
+          fun (x424 : t) ->
             AnonymousInterface11.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x406) "remoteAddress")
+              (Ojs.get_prop_ascii (t_to_js x424) "remoteAddress")
         let (set_remote_address : t -> AnonymousInterface11.t -> unit) =
-          fun (x407 : t) ->
-            fun (x408 : AnonymousInterface11.t) ->
-              Ojs.set_prop_ascii (t_to_js x407) "remoteAddress"
-                (AnonymousInterface11.t_to_js x408)
+          fun (x425 : t) ->
+            fun (x426 : AnonymousInterface11.t) ->
+              Ojs.set_prop_ascii (t_to_js x425) "remoteAddress"
+                (AnonymousInterface11.t_to_js x426)
         let (local_address_port : t -> int) =
-          fun (x409 : t) ->
+          fun (x427 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x409) "localAddressPort")
+              (Ojs.get_prop_ascii (t_to_js x427) "localAddressPort")
         let (set_local_address_port : t -> int -> unit) =
-          fun (x410 : t) ->
-            fun (x411 : int) ->
-              Ojs.set_prop_ascii (t_to_js x410) "localAddressPort"
-                (Ojs.int_to_js x411)
+          fun (x428 : t) ->
+            fun (x429 : int) ->
+              Ojs.set_prop_ascii (t_to_js x428) "localAddressPort"
+                (Ojs.int_to_js x429)
         let (label : t -> string) =
-          fun (x412 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x412) "label")
+          fun (x430 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x430) "label")
         let (set_label : t -> string -> unit) =
-          fun (x413 : t) ->
-            fun (x414 : string) ->
-              Ojs.set_prop_ascii (t_to_js x413) "label"
-                (Ojs.string_to_js x414)
+          fun (x431 : t) ->
+            fun (x432 : string) ->
+              Ojs.set_prop_ascii (t_to_js x431) "label"
+                (Ojs.string_to_js x432)
         let (public : t -> bool) =
-          fun (x415 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x415) "public")
+          fun (x433 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x433) "public")
         let (set_public : t -> bool -> unit) =
-          fun (x416 : t) ->
-            fun (x417 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x416) "public"
-                (Ojs.bool_to_js x417)
+          fun (x434 : t) ->
+            fun (x435 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x434) "public"
+                (Ojs.bool_to_js x435)
       end
     module TunnelDescription =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x419 : Ojs.t) -> x419
-        and t_to_js : t -> Ojs.t = fun (x418 : Ojs.t) -> x418
+        let rec t_of_js : Ojs.t -> t = fun (x437 : Ojs.t) -> x437
+        and t_to_js : t -> Ojs.t = fun (x436 : Ojs.t) -> x436
         let (remote_address : t -> AnonymousInterface11.t) =
-          fun (x420 : t) ->
+          fun (x438 : t) ->
             AnonymousInterface11.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x420) "remoteAddress")
+              (Ojs.get_prop_ascii (t_to_js x438) "remoteAddress")
         let (set_remote_address : t -> AnonymousInterface11.t -> unit) =
-          fun (x421 : t) ->
-            fun (x422 : AnonymousInterface11.t) ->
-              Ojs.set_prop_ascii (t_to_js x421) "remoteAddress"
-                (AnonymousInterface11.t_to_js x422)
+          fun (x439 : t) ->
+            fun (x440 : AnonymousInterface11.t) ->
+              Ojs.set_prop_ascii (t_to_js x439) "remoteAddress"
+                (AnonymousInterface11.t_to_js x440)
         let (local_address : t -> AnonymousInterface11.t or_string) =
-          fun (x423 : t) ->
+          fun (x441 : t) ->
             or_string_of_js AnonymousInterface11.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x423) "localAddress")
+              (Ojs.get_prop_ascii (t_to_js x441) "localAddress")
         let (set_local_address :
           t -> AnonymousInterface11.t or_string -> unit) =
-          fun (x425 : t) ->
-            fun (x426 : AnonymousInterface11.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x425) "localAddress"
-                (or_string_to_js AnonymousInterface11.t_to_js x426)
+          fun (x443 : t) ->
+            fun (x444 : AnonymousInterface11.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x443) "localAddress"
+                (or_string_to_js AnonymousInterface11.t_to_js x444)
         let (public : t -> bool) =
-          fun (x428 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x428) "public")
+          fun (x446 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x446) "public")
         let (set_public : t -> bool -> unit) =
-          fun (x429 : t) ->
-            fun (x430 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x429) "public"
-                (Ojs.bool_to_js x430)
+          fun (x447 : t) ->
+            fun (x448 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x447) "public"
+                (Ojs.bool_to_js x448)
       end
     module Tunnel =
       struct
         include struct include TunnelDescription end
         let (on_did_dispose : t -> unit Event.t) =
-          fun (x431 : t) ->
+          fun (x449 : t) ->
             Event.t_of_js Ojs.unit_of_js
-              (Ojs.get_prop_ascii (t_to_js x431) "onDidDispose")
+              (Ojs.get_prop_ascii (t_to_js x449) "onDidDispose")
         let (set_on_did_dispose : t -> unit Event.t -> unit) =
-          fun (x433 : t) ->
-            fun (x434 : unit Event.t) ->
-              Ojs.set_prop_ascii (t_to_js x433) "onDidDispose"
-                (Event.t_to_js Ojs.unit_to_js x434)
+          fun (x451 : t) ->
+            fun (x452 : unit Event.t) ->
+              Ojs.set_prop_ascii (t_to_js x451) "onDidDispose"
+                (Event.t_to_js Ojs.unit_to_js x452)
         let (dispose : t -> (unit, unit Promise.t) union2) =
-          fun (x436 : t) ->
+          fun (x454 : t) ->
             union2_of_js Ojs.unit_of_js
-              (fun (x438 : Ojs.t) -> Promise.t_of_js Ojs.unit_of_js x438)
-              (Ojs.call (t_to_js x436) "dispose" [||])
+              (fun (x456 : Ojs.t) -> Promise.t_of_js Ojs.unit_of_js x456)
+              (Ojs.call (t_to_js x454) "dispose" [||])
       end
     module TunnelInformation =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x441 : Ojs.t) -> x441
-        and t_to_js : t -> Ojs.t = fun (x440 : Ojs.t) -> x440
+        let rec t_of_js : Ojs.t -> t = fun (x459 : Ojs.t) -> x459
+        and t_to_js : t -> Ojs.t = fun (x458 : Ojs.t) -> x458
         let (environment_tunnels : t -> TunnelDescription.t list) =
-          fun (x442 : t) ->
+          fun (x460 : t) ->
             Ojs.list_of_js TunnelDescription.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x442) "environmentTunnels")
+              (Ojs.get_prop_ascii (t_to_js x460) "environmentTunnels")
         let (set_environment_tunnels : t -> TunnelDescription.t list -> unit)
           =
-          fun (x444 : t) ->
-            fun (x445 : TunnelDescription.t list) ->
-              Ojs.set_prop_ascii (t_to_js x444) "environmentTunnels"
-                (Ojs.list_to_js TunnelDescription.t_to_js x445)
+          fun (x462 : t) ->
+            fun (x463 : TunnelDescription.t list) ->
+              Ojs.set_prop_ascii (t_to_js x462) "environmentTunnels"
+                (Ojs.list_to_js TunnelDescription.t_to_js x463)
       end
     module TunnelCreationOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x448 : Ojs.t) -> x448
-        and t_to_js : t -> Ojs.t = fun (x447 : Ojs.t) -> x447
+        let rec t_of_js : Ojs.t -> t = fun (x466 : Ojs.t) -> x466
+        and t_to_js : t -> Ojs.t = fun (x465 : Ojs.t) -> x465
         let (elevation_required : t -> bool) =
-          fun (x449 : t) ->
+          fun (x467 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x449) "elevationRequired")
+              (Ojs.get_prop_ascii (t_to_js x467) "elevationRequired")
         let (set_elevation_required : t -> bool -> unit) =
-          fun (x450 : t) ->
-            fun (x451 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x450) "elevationRequired"
-                (Ojs.bool_to_js x451)
+          fun (x468 : t) ->
+            fun (x469 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x468) "elevationRequired"
+                (Ojs.bool_to_js x469)
       end
     module CandidatePortSource =
       struct
         type t = [ `None  | `Process  | `Output ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x453 : Ojs.t) ->
-            let x454 = x453 in
-            match Ojs.int_of_js x454 with
+          fun (x471 : Ojs.t) ->
+            let x472 = x471 in
+            match Ojs.int_of_js x472 with
             | 0 -> `None
             | 1 -> `Process
             | 2 -> `Output
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x452 : [ `None  | `Process  | `Output ]) ->
-            match x452 with
+          fun (x470 : [ `None  | `Process  | `Output ]) ->
+            match x470 with
             | `None -> Ojs.int_to_js 0
             | `Process -> Ojs.int_to_js 1
             | `Output -> Ojs.int_to_js 2
@@ -1268,297 +1343,300 @@ module Vscode =
           (ResolvedAuthority.t, ResolvedOptions.t, TunnelInformation.t)
             intersection3
         let rec t_of_js : Ojs.t -> t =
-          fun (x459 : Ojs.t) ->
+          fun (x477 : Ojs.t) ->
             intersection3_of_js ResolvedAuthority.t_of_js
-              ResolvedOptions.t_of_js TunnelInformation.t_of_js x459
+              ResolvedOptions.t_of_js TunnelInformation.t_of_js x477
         and t_to_js : t -> Ojs.t =
           fun
-            (x455 :
+            (x473 :
               (ResolvedAuthority.t, ResolvedOptions.t, TunnelInformation.t)
                 intersection3)
             ->
             intersection3_to_js ResolvedAuthority.t_to_js
-              ResolvedOptions.t_to_js TunnelInformation.t_to_js x455
+              ResolvedOptions.t_to_js TunnelInformation.t_to_js x473
       end
     module RemoteAuthorityResolverError =
       struct
         include struct include Error end
         let (not_available : ?message:string -> ?handled:bool -> unit -> t) =
-          fun ?message:(x463 : string option) ->
-            fun ?handled:(x464 : bool option) ->
+          fun ?message:(x481 : string option) ->
+            fun ?handled:(x482 : bool option) ->
               fun () ->
                 t_of_js
-                  (let x468 =
+                  (let x486 =
                      Ojs.get_prop_ascii
-                       (Ojs.get_prop_ascii Ojs.global
-                          "__LIB__VSCODE__IMPORTS.vscode")
+                       (Ojs.get_prop_ascii
+                          (Ojs.get_prop_ascii Ojs.global
+                             "__LIB__VSCODE__IMPORTS") "vscode")
                        "RemoteAuthorityResolverError" in
-                   Ojs.call (Ojs.get_prop_ascii x468 "NotAvailable") "apply"
-                     [|x468;((let x465 =
+                   Ojs.call (Ojs.get_prop_ascii x486 "NotAvailable") "apply"
+                     [|x486;((let x483 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
-                              (match x463 with
-                               | Some x467 ->
+                              (match x481 with
+                               | Some x485 ->
                                    ignore
-                                     (Ojs.call x465 "push"
-                                        [|(Ojs.string_to_js x467)|])
+                                     (Ojs.call x483 "push"
+                                        [|(Ojs.string_to_js x485)|])
                                | None -> ());
-                              (match x464 with
-                               | Some x466 ->
+                              (match x482 with
+                               | Some x484 ->
                                    ignore
-                                     (Ojs.call x465 "push"
-                                        [|(Ojs.bool_to_js x466)|])
+                                     (Ojs.call x483 "push"
+                                        [|(Ojs.bool_to_js x484)|])
                                | None -> ());
-                              x465))|])
+                              x483))|])
         let (temporarily_not_available : ?message:string -> unit -> t) =
-          fun ?message:(x469 : string option) ->
+          fun ?message:(x487 : string option) ->
             fun () ->
               t_of_js
-                (let x472 =
+                (let x490 =
                    Ojs.get_prop_ascii
-                     (Ojs.get_prop_ascii Ojs.global
-                        "__LIB__VSCODE__IMPORTS.vscode")
+                     (Ojs.get_prop_ascii
+                        (Ojs.get_prop_ascii Ojs.global
+                           "__LIB__VSCODE__IMPORTS") "vscode")
                      "RemoteAuthorityResolverError" in
-                 Ojs.call (Ojs.get_prop_ascii x472 "TemporarilyNotAvailable")
+                 Ojs.call (Ojs.get_prop_ascii x490 "TemporarilyNotAvailable")
                    "apply"
-                   [|x472;((let x470 =
+                   [|x490;((let x488 =
                               Ojs.new_obj
                                 (Ojs.get_prop_ascii Ojs.global "Array") 
                                 [||] in
-                            (match x469 with
-                             | Some x471 ->
+                            (match x487 with
+                             | Some x489 ->
                                  ignore
-                                   (Ojs.call x470 "push"
-                                      [|(Ojs.string_to_js x471)|])
+                                   (Ojs.call x488 "push"
+                                      [|(Ojs.string_to_js x489)|])
                              | None -> ());
-                            x470))|])
+                            x488))|])
         let (create : ?message:string -> unit -> t) =
-          fun ?message:(x473 : string option) ->
+          fun ?message:(x491 : string option) ->
             fun () ->
               t_of_js
                 (Ojs.new_obj_arr
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode")
                       "RemoteAuthorityResolverError")
-                   (let x474 =
+                   (let x492 =
                       Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                         [||] in
-                    (match x473 with
-                     | Some x475 ->
+                    (match x491 with
+                     | Some x493 ->
                          ignore
-                           (Ojs.call x474 "push" [|(Ojs.string_to_js x475)|])
+                           (Ojs.call x492 "push" [|(Ojs.string_to_js x493)|])
                      | None -> ());
-                    x474))
+                    x492))
       end
     module RemoteAuthorityResolver =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x477 : Ojs.t) -> x477
-        and t_to_js : t -> Ojs.t = fun (x476 : Ojs.t) -> x476
+        let rec t_of_js : Ojs.t -> t = fun (x495 : Ojs.t) -> x495
+        and t_to_js : t -> Ojs.t = fun (x494 : Ojs.t) -> x494
         let (resolve :
           t ->
             authority:string ->
               context:RemoteAuthorityResolverContext.t ->
                 (ResolverResult.t, ResolverResult.t Promise.t) union2)
           =
-          fun (x480 : t) ->
-            fun ~authority:(x478 : string) ->
-              fun ~context:(x479 : RemoteAuthorityResolverContext.t) ->
+          fun (x498 : t) ->
+            fun ~authority:(x496 : string) ->
+              fun ~context:(x497 : RemoteAuthorityResolverContext.t) ->
                 union2_of_js ResolverResult.t_of_js
-                  (fun (x482 : Ojs.t) ->
-                     Promise.t_of_js ResolverResult.t_of_js x482)
-                  (Ojs.call (t_to_js x480) "resolve"
-                     [|(Ojs.string_to_js x478);(RemoteAuthorityResolverContext.t_to_js
-                                                  x479)|])
+                  (fun (x500 : Ojs.t) ->
+                     Promise.t_of_js ResolverResult.t_of_js x500)
+                  (Ojs.call (t_to_js x498) "resolve"
+                     [|(Ojs.string_to_js x496);(RemoteAuthorityResolverContext.t_to_js
+                                                  x497)|])
         let (tunnel_factory :
           t ->
             tunnel_options:TunnelOptions.t ->
               tunnel_creation_options:TunnelCreationOptions.t ->
                 Tunnel.t Promise.t or_undefined)
           =
-          fun (x486 : t) ->
-            fun ~tunnel_options:(x484 : TunnelOptions.t) ->
-              fun ~tunnel_creation_options:(x485 : TunnelCreationOptions.t)
+          fun (x504 : t) ->
+            fun ~tunnel_options:(x502 : TunnelOptions.t) ->
+              fun ~tunnel_creation_options:(x503 : TunnelCreationOptions.t)
                 ->
                 or_undefined_of_js
-                  (fun (x487 : Ojs.t) -> Promise.t_of_js Tunnel.t_of_js x487)
-                  (Ojs.call (t_to_js x486) "tunnelFactory"
-                     [|(TunnelOptions.t_to_js x484);(TunnelCreationOptions.t_to_js
-                                                       x485)|])
+                  (fun (x505 : Ojs.t) -> Promise.t_of_js Tunnel.t_of_js x505)
+                  (Ojs.call (t_to_js x504) "tunnelFactory"
+                     [|(TunnelOptions.t_to_js x502);(TunnelCreationOptions.t_to_js
+                                                       x503)|])
         let (show_candidate_port :
           t -> host:string -> port:int -> detail:string -> bool Promise.t) =
-          fun (x492 : t) ->
-            fun ~host:(x489 : string) ->
-              fun ~port:(x490 : int) ->
-                fun ~detail:(x491 : string) ->
+          fun (x510 : t) ->
+            fun ~host:(x507 : string) ->
+              fun ~port:(x508 : int) ->
+                fun ~detail:(x509 : string) ->
                   Promise.t_of_js Ojs.bool_of_js
-                    (Ojs.call (t_to_js x492) "showCandidatePort"
-                       [|(Ojs.string_to_js x489);(Ojs.int_to_js x490);(
-                         Ojs.string_to_js x491)|])
+                    (Ojs.call (t_to_js x510) "showCandidatePort"
+                       [|(Ojs.string_to_js x507);(Ojs.int_to_js x508);(
+                         Ojs.string_to_js x509)|])
         let (tunnel_features : t -> AnonymousInterface7.t) =
-          fun (x494 : t) ->
+          fun (x512 : t) ->
             AnonymousInterface7.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x494) "tunnelFeatures")
+              (Ojs.get_prop_ascii (t_to_js x512) "tunnelFeatures")
         let (set_tunnel_features : t -> AnonymousInterface7.t -> unit) =
-          fun (x495 : t) ->
-            fun (x496 : AnonymousInterface7.t) ->
-              Ojs.set_prop_ascii (t_to_js x495) "tunnelFeatures"
-                (AnonymousInterface7.t_to_js x496)
+          fun (x513 : t) ->
+            fun (x514 : AnonymousInterface7.t) ->
+              Ojs.set_prop_ascii (t_to_js x513) "tunnelFeatures"
+                (AnonymousInterface7.t_to_js x514)
         let (candidate_port_source : t -> CandidatePortSource.t) =
-          fun (x497 : t) ->
+          fun (x515 : t) ->
             CandidatePortSource.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x497) "candidatePortSource")
+              (Ojs.get_prop_ascii (t_to_js x515) "candidatePortSource")
         let (set_candidate_port_source : t -> CandidatePortSource.t -> unit)
           =
-          fun (x498 : t) ->
-            fun (x499 : CandidatePortSource.t) ->
-              Ojs.set_prop_ascii (t_to_js x498) "candidatePortSource"
-                (CandidatePortSource.t_to_js x499)
+          fun (x516 : t) ->
+            fun (x517 : CandidatePortSource.t) ->
+              Ojs.set_prop_ascii (t_to_js x516) "candidatePortSource"
+                (CandidatePortSource.t_to_js x517)
       end
     module ResourceLabelFormatting =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x501 : Ojs.t) -> x501
-        and t_to_js : t -> Ojs.t = fun (x500 : Ojs.t) -> x500
+        let rec t_of_js : Ojs.t -> t = fun (x519 : Ojs.t) -> x519
+        and t_to_js : t -> Ojs.t = fun (x518 : Ojs.t) -> x518
         let (label : t -> string) =
-          fun (x502 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x502) "label")
+          fun (x520 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x520) "label")
         let (set_label : t -> string -> unit) =
-          fun (x503 : t) ->
-            fun (x504 : string) ->
-              Ojs.set_prop_ascii (t_to_js x503) "label"
-                (Ojs.string_to_js x504)
+          fun (x521 : t) ->
+            fun (x522 : string) ->
+              Ojs.set_prop_ascii (t_to_js x521) "label"
+                (Ojs.string_to_js x522)
         let (separator : t -> [ `L_s0  | `L_s1  | `L_s2 ]) =
-          fun (x505 : t) ->
-            let x506 = Ojs.get_prop_ascii (t_to_js x505) "separator" in
-            match Ojs.string_of_js x506 with
+          fun (x523 : t) ->
+            let x524 = Ojs.get_prop_ascii (t_to_js x523) "separator" in
+            match Ojs.string_of_js x524 with
             | "" -> `L_s0
             | "/" -> `L_s1
             | "\\" -> `L_s2
             | _ -> assert false
         let (set_separator : t -> [ `L_s0  | `L_s1  | `L_s2 ] -> unit) =
-          fun (x507 : t) ->
-            fun (x508 : [ `L_s0  | `L_s1  | `L_s2 ]) ->
-              Ojs.set_prop_ascii (t_to_js x507) "separator"
-                (match x508 with
+          fun (x525 : t) ->
+            fun (x526 : [ `L_s0  | `L_s1  | `L_s2 ]) ->
+              Ojs.set_prop_ascii (t_to_js x525) "separator"
+                (match x526 with
                  | `L_s0 -> Ojs.string_to_js "LS0"
                  | `L_s1 -> Ojs.string_to_js "LS1"
                  | `L_s2 -> Ojs.string_to_js "LS2")
         let (tildify : t -> bool) =
-          fun (x509 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x509) "tildify")
+          fun (x527 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x527) "tildify")
         let (set_tildify : t -> bool -> unit) =
-          fun (x510 : t) ->
-            fun (x511 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x510) "tildify"
-                (Ojs.bool_to_js x511)
+          fun (x528 : t) ->
+            fun (x529 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x528) "tildify"
+                (Ojs.bool_to_js x529)
         let (normalize_drive_letter : t -> bool) =
-          fun (x512 : t) ->
+          fun (x530 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x512) "normalizeDriveLetter")
+              (Ojs.get_prop_ascii (t_to_js x530) "normalizeDriveLetter")
         let (set_normalize_drive_letter : t -> bool -> unit) =
-          fun (x513 : t) ->
-            fun (x514 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x513) "normalizeDriveLetter"
-                (Ojs.bool_to_js x514)
+          fun (x531 : t) ->
+            fun (x532 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x531) "normalizeDriveLetter"
+                (Ojs.bool_to_js x532)
         let (workspace_suffix : t -> string) =
-          fun (x515 : t) ->
+          fun (x533 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x515) "workspaceSuffix")
+              (Ojs.get_prop_ascii (t_to_js x533) "workspaceSuffix")
         let (set_workspace_suffix : t -> string -> unit) =
-          fun (x516 : t) ->
-            fun (x517 : string) ->
-              Ojs.set_prop_ascii (t_to_js x516) "workspaceSuffix"
-                (Ojs.string_to_js x517)
+          fun (x534 : t) ->
+            fun (x535 : string) ->
+              Ojs.set_prop_ascii (t_to_js x534) "workspaceSuffix"
+                (Ojs.string_to_js x535)
         let (authority_prefix : t -> string) =
-          fun (x518 : t) ->
+          fun (x536 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x518) "authorityPrefix")
+              (Ojs.get_prop_ascii (t_to_js x536) "authorityPrefix")
         let (set_authority_prefix : t -> string -> unit) =
-          fun (x519 : t) ->
-            fun (x520 : string) ->
-              Ojs.set_prop_ascii (t_to_js x519) "authorityPrefix"
-                (Ojs.string_to_js x520)
+          fun (x537 : t) ->
+            fun (x538 : string) ->
+              Ojs.set_prop_ascii (t_to_js x537) "authorityPrefix"
+                (Ojs.string_to_js x538)
         let (strip_path_starting_separator : t -> bool) =
-          fun (x521 : t) ->
+          fun (x539 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x521) "stripPathStartingSeparator")
+              (Ojs.get_prop_ascii (t_to_js x539) "stripPathStartingSeparator")
         let (set_strip_path_starting_separator : t -> bool -> unit) =
-          fun (x522 : t) ->
-            fun (x523 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x522) "stripPathStartingSeparator"
-                (Ojs.bool_to_js x523)
+          fun (x540 : t) ->
+            fun (x541 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x540) "stripPathStartingSeparator"
+                (Ojs.bool_to_js x541)
       end
     module ResourceLabelFormatter =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x525 : Ojs.t) -> x525
-        and t_to_js : t -> Ojs.t = fun (x524 : Ojs.t) -> x524
+        let rec t_of_js : Ojs.t -> t = fun (x543 : Ojs.t) -> x543
+        and t_to_js : t -> Ojs.t = fun (x542 : Ojs.t) -> x542
         let (scheme : t -> string) =
-          fun (x526 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x526) "scheme")
+          fun (x544 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x544) "scheme")
         let (set_scheme : t -> string -> unit) =
-          fun (x527 : t) ->
-            fun (x528 : string) ->
-              Ojs.set_prop_ascii (t_to_js x527) "scheme"
-                (Ojs.string_to_js x528)
+          fun (x545 : t) ->
+            fun (x546 : string) ->
+              Ojs.set_prop_ascii (t_to_js x545) "scheme"
+                (Ojs.string_to_js x546)
         let (authority : t -> string) =
-          fun (x529 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x529) "authority")
+          fun (x547 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x547) "authority")
         let (set_authority : t -> string -> unit) =
-          fun (x530 : t) ->
-            fun (x531 : string) ->
-              Ojs.set_prop_ascii (t_to_js x530) "authority"
-                (Ojs.string_to_js x531)
+          fun (x548 : t) ->
+            fun (x549 : string) ->
+              Ojs.set_prop_ascii (t_to_js x548) "authority"
+                (Ojs.string_to_js x549)
         let (formatting : t -> ResourceLabelFormatting.t) =
-          fun (x532 : t) ->
+          fun (x550 : t) ->
             ResourceLabelFormatting.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x532) "formatting")
+              (Ojs.get_prop_ascii (t_to_js x550) "formatting")
         let (set_formatting : t -> ResourceLabelFormatting.t -> unit) =
-          fun (x533 : t) ->
-            fun (x534 : ResourceLabelFormatting.t) ->
-              Ojs.set_prop_ascii (t_to_js x533) "formatting"
-                (ResourceLabelFormatting.t_to_js x534)
+          fun (x551 : t) ->
+            fun (x552 : ResourceLabelFormatting.t) ->
+              Ojs.set_prop_ascii (t_to_js x551) "formatting"
+                (ResourceLabelFormatting.t_to_js x552)
       end
     module AnonymousInterface1 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x536 : Ojs.t) -> x536
-        and t_to_js : t -> Ojs.t = fun (x535 : Ojs.t) -> x535
+        let rec t_of_js : Ojs.t -> t = fun (x554 : Ojs.t) -> x554
+        and t_to_js : t -> Ojs.t = fun (x553 : Ojs.t) -> x553
         let (create : t -> bool) =
-          fun (x537 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x537) "create")
+          fun (x555 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x555) "create")
         let (set_create : t -> bool -> unit) =
-          fun (x538 : t) ->
-            fun (x539 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x538) "create"
-                (Ojs.bool_to_js x539)
+          fun (x556 : t) ->
+            fun (x557 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x556) "create"
+                (Ojs.bool_to_js x557)
       end
     module FileSystemProvider =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x541 : Ojs.t) -> x541
-        and t_to_js : t -> Ojs.t = fun (x540 : Ojs.t) -> x540
+        let rec t_of_js : Ojs.t -> t = fun (x559 : Ojs.t) -> x559
+        and t_to_js : t -> Ojs.t = fun (x558 : Ojs.t) -> x558
         let (open_ :
           t ->
             resource:Uri.t ->
               options:AnonymousInterface1.t -> int Promise.t or_number)
           =
-          fun (x544 : t) ->
-            fun ~resource:(x542 : Uri.t) ->
-              fun ~options:(x543 : AnonymousInterface1.t) ->
+          fun (x562 : t) ->
+            fun ~resource:(x560 : Uri.t) ->
+              fun ~options:(x561 : AnonymousInterface1.t) ->
                 or_number_of_js
-                  (fun (x545 : Ojs.t) -> Promise.t_of_js Ojs.int_of_js x545)
-                  (Ojs.call (t_to_js x544) "open"
-                     [|(Uri.t_to_js x542);(AnonymousInterface1.t_to_js x543)|])
+                  (fun (x563 : Ojs.t) -> Promise.t_of_js Ojs.int_of_js x563)
+                  (Ojs.call (t_to_js x562) "open"
+                     [|(Uri.t_to_js x560);(AnonymousInterface1.t_to_js x561)|])
         let (close : t -> fd:int -> (unit, unit Promise.t) union2) =
-          fun (x548 : t) ->
-            fun ~fd:(x547 : int) ->
+          fun (x566 : t) ->
+            fun ~fd:(x565 : int) ->
               union2_of_js Ojs.unit_of_js
-                (fun (x550 : Ojs.t) -> Promise.t_of_js Ojs.unit_of_js x550)
-                (Ojs.call (t_to_js x548) "close" [|(Ojs.int_to_js x547)|])
+                (fun (x568 : Ojs.t) -> Promise.t_of_js Ojs.unit_of_js x568)
+                (Ojs.call (t_to_js x566) "close" [|(Ojs.int_to_js x565)|])
         let (read :
           t ->
             fd:int ->
@@ -1566,19 +1644,19 @@ module Vscode =
                 data:Uint8Array.t ->
                   offset:int -> length:int -> int Promise.t or_number)
           =
-          fun (x557 : t) ->
-            fun ~fd:(x552 : int) ->
-              fun ~pos:(x553 : int) ->
-                fun ~data:(x554 : Uint8Array.t) ->
-                  fun ~offset:(x555 : int) ->
-                    fun ~length:(x556 : int) ->
+          fun (x575 : t) ->
+            fun ~fd:(x570 : int) ->
+              fun ~pos:(x571 : int) ->
+                fun ~data:(x572 : Uint8Array.t) ->
+                  fun ~offset:(x573 : int) ->
+                    fun ~length:(x574 : int) ->
                       or_number_of_js
-                        (fun (x558 : Ojs.t) ->
-                           Promise.t_of_js Ojs.int_of_js x558)
-                        (Ojs.call (t_to_js x557) "read"
-                           [|(Ojs.int_to_js x552);(Ojs.int_to_js x553);(
-                             Uint8Array.t_to_js x554);(Ojs.int_to_js x555);(
-                             Ojs.int_to_js x556)|])
+                        (fun (x576 : Ojs.t) ->
+                           Promise.t_of_js Ojs.int_of_js x576)
+                        (Ojs.call (t_to_js x575) "read"
+                           [|(Ojs.int_to_js x570);(Ojs.int_to_js x571);(
+                             Uint8Array.t_to_js x572);(Ojs.int_to_js x573);(
+                             Ojs.int_to_js x574)|])
         let (write :
           t ->
             fd:int ->
@@ -1586,322 +1664,322 @@ module Vscode =
                 data:Uint8Array.t ->
                   offset:int -> length:int -> int Promise.t or_number)
           =
-          fun (x565 : t) ->
-            fun ~fd:(x560 : int) ->
-              fun ~pos:(x561 : int) ->
-                fun ~data:(x562 : Uint8Array.t) ->
-                  fun ~offset:(x563 : int) ->
-                    fun ~length:(x564 : int) ->
+          fun (x583 : t) ->
+            fun ~fd:(x578 : int) ->
+              fun ~pos:(x579 : int) ->
+                fun ~data:(x580 : Uint8Array.t) ->
+                  fun ~offset:(x581 : int) ->
+                    fun ~length:(x582 : int) ->
                       or_number_of_js
-                        (fun (x566 : Ojs.t) ->
-                           Promise.t_of_js Ojs.int_of_js x566)
-                        (Ojs.call (t_to_js x565) "write"
-                           [|(Ojs.int_to_js x560);(Ojs.int_to_js x561);(
-                             Uint8Array.t_to_js x562);(Ojs.int_to_js x563);(
-                             Ojs.int_to_js x564)|])
+                        (fun (x584 : Ojs.t) ->
+                           Promise.t_of_js Ojs.int_of_js x584)
+                        (Ojs.call (t_to_js x583) "write"
+                           [|(Ojs.int_to_js x578);(Ojs.int_to_js x579);(
+                             Uint8Array.t_to_js x580);(Ojs.int_to_js x581);(
+                             Ojs.int_to_js x582)|])
       end
     module TextSearchQuery =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x569 : Ojs.t) -> x569
-        and t_to_js : t -> Ojs.t = fun (x568 : Ojs.t) -> x568
+        let rec t_of_js : Ojs.t -> t = fun (x587 : Ojs.t) -> x587
+        and t_to_js : t -> Ojs.t = fun (x586 : Ojs.t) -> x586
         let (pattern : t -> string) =
-          fun (x570 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x570) "pattern")
+          fun (x588 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x588) "pattern")
         let (set_pattern : t -> string -> unit) =
-          fun (x571 : t) ->
-            fun (x572 : string) ->
-              Ojs.set_prop_ascii (t_to_js x571) "pattern"
-                (Ojs.string_to_js x572)
+          fun (x589 : t) ->
+            fun (x590 : string) ->
+              Ojs.set_prop_ascii (t_to_js x589) "pattern"
+                (Ojs.string_to_js x590)
         let (is_multiline : t -> bool) =
-          fun (x573 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x573) "isMultiline")
+          fun (x591 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x591) "isMultiline")
         let (set_is_multiline : t -> bool -> unit) =
-          fun (x574 : t) ->
-            fun (x575 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x574) "isMultiline"
-                (Ojs.bool_to_js x575)
+          fun (x592 : t) ->
+            fun (x593 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x592) "isMultiline"
+                (Ojs.bool_to_js x593)
         let (is_reg_exp : t -> bool) =
-          fun (x576 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x576) "isRegExp")
+          fun (x594 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x594) "isRegExp")
         let (set_is_reg_exp : t -> bool -> unit) =
-          fun (x577 : t) ->
-            fun (x578 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x577) "isRegExp"
-                (Ojs.bool_to_js x578)
+          fun (x595 : t) ->
+            fun (x596 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x595) "isRegExp"
+                (Ojs.bool_to_js x596)
         let (is_case_sensitive : t -> bool) =
-          fun (x579 : t) ->
+          fun (x597 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x579) "isCaseSensitive")
+              (Ojs.get_prop_ascii (t_to_js x597) "isCaseSensitive")
         let (set_is_case_sensitive : t -> bool -> unit) =
-          fun (x580 : t) ->
-            fun (x581 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x580) "isCaseSensitive"
-                (Ojs.bool_to_js x581)
+          fun (x598 : t) ->
+            fun (x599 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x598) "isCaseSensitive"
+                (Ojs.bool_to_js x599)
         let (is_word_match : t -> bool) =
-          fun (x582 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x582) "isWordMatch")
+          fun (x600 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x600) "isWordMatch")
         let (set_is_word_match : t -> bool -> unit) =
-          fun (x583 : t) ->
-            fun (x584 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x583) "isWordMatch"
-                (Ojs.bool_to_js x584)
+          fun (x601 : t) ->
+            fun (x602 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x601) "isWordMatch"
+                (Ojs.bool_to_js x602)
       end
     module GlobString =
       struct
         type t = string
         let rec t_of_js : Ojs.t -> t =
-          fun (x586 : Ojs.t) -> Ojs.string_of_js x586
+          fun (x604 : Ojs.t) -> Ojs.string_of_js x604
         and t_to_js : t -> Ojs.t =
-          fun (x585 : string) -> Ojs.string_to_js x585
+          fun (x603 : string) -> Ojs.string_to_js x603
       end
     module SearchOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x588 : Ojs.t) -> x588
-        and t_to_js : t -> Ojs.t = fun (x587 : Ojs.t) -> x587
+        let rec t_of_js : Ojs.t -> t = fun (x606 : Ojs.t) -> x606
+        and t_to_js : t -> Ojs.t = fun (x605 : Ojs.t) -> x605
         let (folder : t -> Uri.t) =
-          fun (x589 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x589) "folder")
+          fun (x607 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x607) "folder")
         let (set_folder : t -> Uri.t -> unit) =
-          fun (x590 : t) ->
-            fun (x591 : Uri.t) ->
-              Ojs.set_prop_ascii (t_to_js x590) "folder" (Uri.t_to_js x591)
-        let (includes : t -> GlobString.t list) =
-          fun (x592 : t) ->
-            Ojs.list_of_js GlobString.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x592) "includes")
-        let (set_includes : t -> GlobString.t list -> unit) =
-          fun (x594 : t) ->
-            fun (x595 : GlobString.t list) ->
-              Ojs.set_prop_ascii (t_to_js x594) "includes"
-                (Ojs.list_to_js GlobString.t_to_js x595)
-        let (excludes : t -> GlobString.t list) =
-          fun (x597 : t) ->
-            Ojs.list_of_js GlobString.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x597) "excludes")
-        let (set_excludes : t -> GlobString.t list -> unit) =
-          fun (x599 : t) ->
-            fun (x600 : GlobString.t list) ->
-              Ojs.set_prop_ascii (t_to_js x599) "excludes"
-                (Ojs.list_to_js GlobString.t_to_js x600)
-        let (use_ignore_files : t -> bool) =
-          fun (x602 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x602) "useIgnoreFiles")
-        let (set_use_ignore_files : t -> bool -> unit) =
-          fun (x603 : t) ->
-            fun (x604 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x603) "useIgnoreFiles"
-                (Ojs.bool_to_js x604)
-        let (follow_symlinks : t -> bool) =
-          fun (x605 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x605) "followSymlinks")
-        let (set_follow_symlinks : t -> bool -> unit) =
-          fun (x606 : t) ->
-            fun (x607 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x606) "followSymlinks"
-                (Ojs.bool_to_js x607)
-        let (use_global_ignore_files : t -> bool) =
           fun (x608 : t) ->
+            fun (x609 : Uri.t) ->
+              Ojs.set_prop_ascii (t_to_js x608) "folder" (Uri.t_to_js x609)
+        let (includes : t -> GlobString.t list) =
+          fun (x610 : t) ->
+            Ojs.list_of_js GlobString.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x610) "includes")
+        let (set_includes : t -> GlobString.t list -> unit) =
+          fun (x612 : t) ->
+            fun (x613 : GlobString.t list) ->
+              Ojs.set_prop_ascii (t_to_js x612) "includes"
+                (Ojs.list_to_js GlobString.t_to_js x613)
+        let (excludes : t -> GlobString.t list) =
+          fun (x615 : t) ->
+            Ojs.list_of_js GlobString.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x615) "excludes")
+        let (set_excludes : t -> GlobString.t list -> unit) =
+          fun (x617 : t) ->
+            fun (x618 : GlobString.t list) ->
+              Ojs.set_prop_ascii (t_to_js x617) "excludes"
+                (Ojs.list_to_js GlobString.t_to_js x618)
+        let (use_ignore_files : t -> bool) =
+          fun (x620 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x608) "useGlobalIgnoreFiles")
+              (Ojs.get_prop_ascii (t_to_js x620) "useIgnoreFiles")
+        let (set_use_ignore_files : t -> bool -> unit) =
+          fun (x621 : t) ->
+            fun (x622 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x621) "useIgnoreFiles"
+                (Ojs.bool_to_js x622)
+        let (follow_symlinks : t -> bool) =
+          fun (x623 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x623) "followSymlinks")
+        let (set_follow_symlinks : t -> bool -> unit) =
+          fun (x624 : t) ->
+            fun (x625 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x624) "followSymlinks"
+                (Ojs.bool_to_js x625)
+        let (use_global_ignore_files : t -> bool) =
+          fun (x626 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x626) "useGlobalIgnoreFiles")
         let (set_use_global_ignore_files : t -> bool -> unit) =
-          fun (x609 : t) ->
-            fun (x610 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x609) "useGlobalIgnoreFiles"
-                (Ojs.bool_to_js x610)
+          fun (x627 : t) ->
+            fun (x628 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x627) "useGlobalIgnoreFiles"
+                (Ojs.bool_to_js x628)
       end
     module TextSearchPreviewOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x612 : Ojs.t) -> x612
-        and t_to_js : t -> Ojs.t = fun (x611 : Ojs.t) -> x611
+        let rec t_of_js : Ojs.t -> t = fun (x630 : Ojs.t) -> x630
+        and t_to_js : t -> Ojs.t = fun (x629 : Ojs.t) -> x629
         let (match_lines : t -> int) =
-          fun (x613 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x613) "matchLines")
+          fun (x631 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x631) "matchLines")
         let (set_match_lines : t -> int -> unit) =
-          fun (x614 : t) ->
-            fun (x615 : int) ->
-              Ojs.set_prop_ascii (t_to_js x614) "matchLines"
-                (Ojs.int_to_js x615)
+          fun (x632 : t) ->
+            fun (x633 : int) ->
+              Ojs.set_prop_ascii (t_to_js x632) "matchLines"
+                (Ojs.int_to_js x633)
         let (chars_per_line : t -> int) =
-          fun (x616 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x616) "charsPerLine")
+          fun (x634 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x634) "charsPerLine")
         let (set_chars_per_line : t -> int -> unit) =
-          fun (x617 : t) ->
-            fun (x618 : int) ->
-              Ojs.set_prop_ascii (t_to_js x617) "charsPerLine"
-                (Ojs.int_to_js x618)
+          fun (x635 : t) ->
+            fun (x636 : int) ->
+              Ojs.set_prop_ascii (t_to_js x635) "charsPerLine"
+                (Ojs.int_to_js x636)
       end
     module TextSearchOptions =
       struct
         include struct include SearchOptions end
         let (max_results : t -> int) =
-          fun (x619 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x619) "maxResults")
+          fun (x637 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x637) "maxResults")
         let (set_max_results : t -> int -> unit) =
-          fun (x620 : t) ->
-            fun (x621 : int) ->
-              Ojs.set_prop_ascii (t_to_js x620) "maxResults"
-                (Ojs.int_to_js x621)
+          fun (x638 : t) ->
+            fun (x639 : int) ->
+              Ojs.set_prop_ascii (t_to_js x638) "maxResults"
+                (Ojs.int_to_js x639)
         let (preview_options : t -> TextSearchPreviewOptions.t) =
-          fun (x622 : t) ->
+          fun (x640 : t) ->
             TextSearchPreviewOptions.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x622) "previewOptions")
+              (Ojs.get_prop_ascii (t_to_js x640) "previewOptions")
         let (set_preview_options : t -> TextSearchPreviewOptions.t -> unit) =
-          fun (x623 : t) ->
-            fun (x624 : TextSearchPreviewOptions.t) ->
-              Ojs.set_prop_ascii (t_to_js x623) "previewOptions"
-                (TextSearchPreviewOptions.t_to_js x624)
+          fun (x641 : t) ->
+            fun (x642 : TextSearchPreviewOptions.t) ->
+              Ojs.set_prop_ascii (t_to_js x641) "previewOptions"
+                (TextSearchPreviewOptions.t_to_js x642)
         let (max_file_size : t -> int) =
-          fun (x625 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x625) "maxFileSize")
+          fun (x643 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x643) "maxFileSize")
         let (set_max_file_size : t -> int -> unit) =
-          fun (x626 : t) ->
-            fun (x627 : int) ->
-              Ojs.set_prop_ascii (t_to_js x626) "maxFileSize"
-                (Ojs.int_to_js x627)
+          fun (x644 : t) ->
+            fun (x645 : int) ->
+              Ojs.set_prop_ascii (t_to_js x644) "maxFileSize"
+                (Ojs.int_to_js x645)
         let (encoding : t -> string) =
-          fun (x628 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x628) "encoding")
+          fun (x646 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x646) "encoding")
         let (set_encoding : t -> string -> unit) =
-          fun (x629 : t) ->
-            fun (x630 : string) ->
-              Ojs.set_prop_ascii (t_to_js x629) "encoding"
-                (Ojs.string_to_js x630)
+          fun (x647 : t) ->
+            fun (x648 : string) ->
+              Ojs.set_prop_ascii (t_to_js x647) "encoding"
+                (Ojs.string_to_js x648)
         let (before_context : t -> int) =
-          fun (x631 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x631) "beforeContext")
+          fun (x649 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x649) "beforeContext")
         let (set_before_context : t -> int -> unit) =
-          fun (x632 : t) ->
-            fun (x633 : int) ->
-              Ojs.set_prop_ascii (t_to_js x632) "beforeContext"
-                (Ojs.int_to_js x633)
+          fun (x650 : t) ->
+            fun (x651 : int) ->
+              Ojs.set_prop_ascii (t_to_js x650) "beforeContext"
+                (Ojs.int_to_js x651)
         let (after_context : t -> int) =
-          fun (x634 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x634) "afterContext")
+          fun (x652 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x652) "afterContext")
         let (set_after_context : t -> int -> unit) =
-          fun (x635 : t) ->
-            fun (x636 : int) ->
-              Ojs.set_prop_ascii (t_to_js x635) "afterContext"
-                (Ojs.int_to_js x636)
+          fun (x653 : t) ->
+            fun (x654 : int) ->
+              Ojs.set_prop_ascii (t_to_js x653) "afterContext"
+                (Ojs.int_to_js x654)
       end
     module TextSearchComplete =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x638 : Ojs.t) -> x638
-        and t_to_js : t -> Ojs.t = fun (x637 : Ojs.t) -> x637
+        let rec t_of_js : Ojs.t -> t = fun (x656 : Ojs.t) -> x656
+        and t_to_js : t -> Ojs.t = fun (x655 : Ojs.t) -> x655
         let (limit_hit : t -> bool) =
-          fun (x639 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x639) "limitHit")
+          fun (x657 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x657) "limitHit")
         let (set_limit_hit : t -> bool -> unit) =
-          fun (x640 : t) ->
-            fun (x641 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x640) "limitHit"
-                (Ojs.bool_to_js x641)
+          fun (x658 : t) ->
+            fun (x659 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x658) "limitHit"
+                (Ojs.bool_to_js x659)
       end
     module TextSearchMatchPreview =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x643 : Ojs.t) -> x643
-        and t_to_js : t -> Ojs.t = fun (x642 : Ojs.t) -> x642
+        let rec t_of_js : Ojs.t -> t = fun (x661 : Ojs.t) -> x661
+        and t_to_js : t -> Ojs.t = fun (x660 : Ojs.t) -> x660
         let (text : t -> string) =
-          fun (x644 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x644) "text")
+          fun (x662 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x662) "text")
         let (set_text : t -> string -> unit) =
-          fun (x645 : t) ->
-            fun (x646 : string) ->
-              Ojs.set_prop_ascii (t_to_js x645) "text"
-                (Ojs.string_to_js x646)
+          fun (x663 : t) ->
+            fun (x664 : string) ->
+              Ojs.set_prop_ascii (t_to_js x663) "text"
+                (Ojs.string_to_js x664)
         let (matches : t -> (Range.t, Range.t) or_array) =
-          fun (x647 : t) ->
+          fun (x665 : t) ->
             or_array_of_js Range.t_of_js Range.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x647) "matches")
+              (Ojs.get_prop_ascii (t_to_js x665) "matches")
         let (set_matches : t -> (Range.t, Range.t) or_array -> unit) =
-          fun (x650 : t) ->
-            fun (x651 : (Range.t, Range.t) or_array) ->
-              Ojs.set_prop_ascii (t_to_js x650) "matches"
-                (or_array_to_js Range.t_to_js Range.t_to_js x651)
+          fun (x668 : t) ->
+            fun (x669 : (Range.t, Range.t) or_array) ->
+              Ojs.set_prop_ascii (t_to_js x668) "matches"
+                (or_array_to_js Range.t_to_js Range.t_to_js x669)
       end
     module TextSearchMatch =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x655 : Ojs.t) -> x655
-        and t_to_js : t -> Ojs.t = fun (x654 : Ojs.t) -> x654
+        let rec t_of_js : Ojs.t -> t = fun (x673 : Ojs.t) -> x673
+        and t_to_js : t -> Ojs.t = fun (x672 : Ojs.t) -> x672
         let (uri : t -> Uri.t) =
-          fun (x656 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x656) "uri")
+          fun (x674 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x674) "uri")
         let (set_uri : t -> Uri.t -> unit) =
-          fun (x657 : t) ->
-            fun (x658 : Uri.t) ->
-              Ojs.set_prop_ascii (t_to_js x657) "uri" (Uri.t_to_js x658)
+          fun (x675 : t) ->
+            fun (x676 : Uri.t) ->
+              Ojs.set_prop_ascii (t_to_js x675) "uri" (Uri.t_to_js x676)
         let (ranges : t -> (Range.t, Range.t) or_array) =
-          fun (x659 : t) ->
+          fun (x677 : t) ->
             or_array_of_js Range.t_of_js Range.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x659) "ranges")
+              (Ojs.get_prop_ascii (t_to_js x677) "ranges")
         let (set_ranges : t -> (Range.t, Range.t) or_array -> unit) =
-          fun (x662 : t) ->
-            fun (x663 : (Range.t, Range.t) or_array) ->
-              Ojs.set_prop_ascii (t_to_js x662) "ranges"
-                (or_array_to_js Range.t_to_js Range.t_to_js x663)
+          fun (x680 : t) ->
+            fun (x681 : (Range.t, Range.t) or_array) ->
+              Ojs.set_prop_ascii (t_to_js x680) "ranges"
+                (or_array_to_js Range.t_to_js Range.t_to_js x681)
         let (preview : t -> TextSearchMatchPreview.t) =
-          fun (x666 : t) ->
+          fun (x684 : t) ->
             TextSearchMatchPreview.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x666) "preview")
+              (Ojs.get_prop_ascii (t_to_js x684) "preview")
         let (set_preview : t -> TextSearchMatchPreview.t -> unit) =
-          fun (x667 : t) ->
-            fun (x668 : TextSearchMatchPreview.t) ->
-              Ojs.set_prop_ascii (t_to_js x667) "preview"
-                (TextSearchMatchPreview.t_to_js x668)
+          fun (x685 : t) ->
+            fun (x686 : TextSearchMatchPreview.t) ->
+              Ojs.set_prop_ascii (t_to_js x685) "preview"
+                (TextSearchMatchPreview.t_to_js x686)
       end
     module TextSearchContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x670 : Ojs.t) -> x670
-        and t_to_js : t -> Ojs.t = fun (x669 : Ojs.t) -> x669
+        let rec t_of_js : Ojs.t -> t = fun (x688 : Ojs.t) -> x688
+        and t_to_js : t -> Ojs.t = fun (x687 : Ojs.t) -> x687
         let (uri : t -> Uri.t) =
-          fun (x671 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x671) "uri")
+          fun (x689 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x689) "uri")
         let (set_uri : t -> Uri.t -> unit) =
-          fun (x672 : t) ->
-            fun (x673 : Uri.t) ->
-              Ojs.set_prop_ascii (t_to_js x672) "uri" (Uri.t_to_js x673)
+          fun (x690 : t) ->
+            fun (x691 : Uri.t) ->
+              Ojs.set_prop_ascii (t_to_js x690) "uri" (Uri.t_to_js x691)
         let (text : t -> string) =
-          fun (x674 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x674) "text")
+          fun (x692 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x692) "text")
         let (set_text : t -> string -> unit) =
-          fun (x675 : t) ->
-            fun (x676 : string) ->
-              Ojs.set_prop_ascii (t_to_js x675) "text"
-                (Ojs.string_to_js x676)
+          fun (x693 : t) ->
+            fun (x694 : string) ->
+              Ojs.set_prop_ascii (t_to_js x693) "text"
+                (Ojs.string_to_js x694)
         let (line_number : t -> int) =
-          fun (x677 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x677) "lineNumber")
+          fun (x695 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x695) "lineNumber")
         let (set_line_number : t -> int -> unit) =
-          fun (x678 : t) ->
-            fun (x679 : int) ->
-              Ojs.set_prop_ascii (t_to_js x678) "lineNumber"
-                (Ojs.int_to_js x679)
+          fun (x696 : t) ->
+            fun (x697 : int) ->
+              Ojs.set_prop_ascii (t_to_js x696) "lineNumber"
+                (Ojs.int_to_js x697)
       end
     module TextSearchResult =
       struct
         type t = (TextSearchContext.t, TextSearchMatch.t) union2
         let rec t_of_js : Ojs.t -> t =
-          fun (x683 : Ojs.t) ->
+          fun (x701 : Ojs.t) ->
             union2_of_js TextSearchContext.t_of_js TextSearchMatch.t_of_js
-              x683
+              x701
         and t_to_js : t -> Ojs.t =
-          fun (x680 : (TextSearchContext.t, TextSearchMatch.t) union2) ->
+          fun (x698 : (TextSearchContext.t, TextSearchMatch.t) union2) ->
             union2_to_js TextSearchContext.t_to_js TextSearchMatch.t_to_js
-              x680
+              x698
       end
     module TextSearchProvider =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x687 : Ojs.t) -> x687
-        and t_to_js : t -> Ojs.t = fun (x686 : Ojs.t) -> x686
+        let rec t_of_js : Ojs.t -> t = fun (x705 : Ojs.t) -> x705
+        and t_to_js : t -> Ojs.t = fun (x704 : Ojs.t) -> x704
         let (provide_text_search_results :
           t ->
             query:TextSearchQuery.t ->
@@ -1910,271 +1988,271 @@ module Vscode =
                   token:CancellationToken.t ->
                     TextSearchComplete.t ProviderResult.t)
           =
-          fun (x693 : t) ->
-            fun ~query:(x688 : TextSearchQuery.t) ->
-              fun ~options:(x689 : TextSearchOptions.t) ->
-                fun ~progress:(x690 : TextSearchResult.t Progress.t) ->
-                  fun ~token:(x692 : CancellationToken.t) ->
+          fun (x711 : t) ->
+            fun ~query:(x706 : TextSearchQuery.t) ->
+              fun ~options:(x707 : TextSearchOptions.t) ->
+                fun ~progress:(x708 : TextSearchResult.t Progress.t) ->
+                  fun ~token:(x710 : CancellationToken.t) ->
                     ProviderResult.t_of_js TextSearchComplete.t_of_js
-                      (Ojs.call (t_to_js x693) "provideTextSearchResults"
-                         [|(TextSearchQuery.t_to_js x688);(TextSearchOptions.t_to_js
-                                                             x689);(Progress.t_to_js
+                      (Ojs.call (t_to_js x711) "provideTextSearchResults"
+                         [|(TextSearchQuery.t_to_js x706);(TextSearchOptions.t_to_js
+                                                             x707);(Progress.t_to_js
                                                                     TextSearchResult.t_to_js
-                                                                    x690);(
-                           CancellationToken.t_to_js x692)|])
+                                                                    x708);(
+                           CancellationToken.t_to_js x710)|])
       end
     module FileSearchQuery =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x696 : Ojs.t) -> x696
-        and t_to_js : t -> Ojs.t = fun (x695 : Ojs.t) -> x695
+        let rec t_of_js : Ojs.t -> t = fun (x714 : Ojs.t) -> x714
+        and t_to_js : t -> Ojs.t = fun (x713 : Ojs.t) -> x713
         let (pattern : t -> string) =
-          fun (x697 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x697) "pattern")
+          fun (x715 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x715) "pattern")
         let (set_pattern : t -> string -> unit) =
-          fun (x698 : t) ->
-            fun (x699 : string) ->
-              Ojs.set_prop_ascii (t_to_js x698) "pattern"
-                (Ojs.string_to_js x699)
+          fun (x716 : t) ->
+            fun (x717 : string) ->
+              Ojs.set_prop_ascii (t_to_js x716) "pattern"
+                (Ojs.string_to_js x717)
       end
     module FileSearchOptions =
       struct
         include struct include SearchOptions end
         let (max_results : t -> int) =
-          fun (x700 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x700) "maxResults")
+          fun (x718 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x718) "maxResults")
         let (set_max_results : t -> int -> unit) =
-          fun (x701 : t) ->
-            fun (x702 : int) ->
-              Ojs.set_prop_ascii (t_to_js x701) "maxResults"
-                (Ojs.int_to_js x702)
+          fun (x719 : t) ->
+            fun (x720 : int) ->
+              Ojs.set_prop_ascii (t_to_js x719) "maxResults"
+                (Ojs.int_to_js x720)
         let (session : t -> CancellationToken.t) =
-          fun (x703 : t) ->
+          fun (x721 : t) ->
             CancellationToken.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x703) "session")
+              (Ojs.get_prop_ascii (t_to_js x721) "session")
         let (set_session : t -> CancellationToken.t -> unit) =
-          fun (x704 : t) ->
-            fun (x705 : CancellationToken.t) ->
-              Ojs.set_prop_ascii (t_to_js x704) "session"
-                (CancellationToken.t_to_js x705)
+          fun (x722 : t) ->
+            fun (x723 : CancellationToken.t) ->
+              Ojs.set_prop_ascii (t_to_js x722) "session"
+                (CancellationToken.t_to_js x723)
       end
     module FileSearchProvider =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x707 : Ojs.t) -> x707
-        and t_to_js : t -> Ojs.t = fun (x706 : Ojs.t) -> x706
+        let rec t_of_js : Ojs.t -> t = fun (x725 : Ojs.t) -> x725
+        and t_to_js : t -> Ojs.t = fun (x724 : Ojs.t) -> x724
         let (provide_file_search_results :
           t ->
             query:FileSearchQuery.t ->
               options:FileSearchOptions.t ->
                 token:CancellationToken.t -> Uri.t list ProviderResult.t)
           =
-          fun (x711 : t) ->
-            fun ~query:(x708 : FileSearchQuery.t) ->
-              fun ~options:(x709 : FileSearchOptions.t) ->
-                fun ~token:(x710 : CancellationToken.t) ->
+          fun (x729 : t) ->
+            fun ~query:(x726 : FileSearchQuery.t) ->
+              fun ~options:(x727 : FileSearchOptions.t) ->
+                fun ~token:(x728 : CancellationToken.t) ->
                   ProviderResult.t_of_js
-                    (fun (x712 : Ojs.t) -> Ojs.list_of_js Uri.t_of_js x712)
-                    (Ojs.call (t_to_js x711) "provideFileSearchResults"
-                       [|(FileSearchQuery.t_to_js x708);(FileSearchOptions.t_to_js
-                                                           x709);(CancellationToken.t_to_js
-                                                                    x710)|])
+                    (fun (x730 : Ojs.t) -> Ojs.list_of_js Uri.t_of_js x730)
+                    (Ojs.call (t_to_js x729) "provideFileSearchResults"
+                       [|(FileSearchQuery.t_to_js x726);(FileSearchOptions.t_to_js
+                                                           x727);(CancellationToken.t_to_js
+                                                                    x728)|])
       end
     module WebviewEditorInset =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x715 : Ojs.t) -> x715
-        and t_to_js : t -> Ojs.t = fun (x714 : Ojs.t) -> x714
+        let rec t_of_js : Ojs.t -> t = fun (x733 : Ojs.t) -> x733
+        and t_to_js : t -> Ojs.t = fun (x732 : Ojs.t) -> x732
         let (editor : t -> TextEditor.t) =
-          fun (x716 : t) ->
-            TextEditor.t_of_js (Ojs.get_prop_ascii (t_to_js x716) "editor")
+          fun (x734 : t) ->
+            TextEditor.t_of_js (Ojs.get_prop_ascii (t_to_js x734) "editor")
         let (line : t -> int) =
-          fun (x717 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x717) "line")
+          fun (x735 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x735) "line")
         let (height : t -> int) =
-          fun (x718 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x718) "height")
+          fun (x736 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x736) "height")
         let (webview : t -> Webview.t) =
-          fun (x719 : t) ->
-            Webview.t_of_js (Ojs.get_prop_ascii (t_to_js x719) "webview")
+          fun (x737 : t) ->
+            Webview.t_of_js (Ojs.get_prop_ascii (t_to_js x737) "webview")
         let (on_did_dispose : t -> unit Event.t) =
-          fun (x720 : t) ->
+          fun (x738 : t) ->
             Event.t_of_js Ojs.unit_of_js
-              (Ojs.get_prop_ascii (t_to_js x720) "onDidDispose")
+              (Ojs.get_prop_ascii (t_to_js x738) "onDidDispose")
         let (dispose : t -> unit) =
-          fun (x722 : t) -> ignore (Ojs.call (t_to_js x722) "dispose" [||])
+          fun (x740 : t) -> ignore (Ojs.call (t_to_js x740) "dispose" [||])
       end
     module TerminalDataWriteEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x724 : Ojs.t) -> x724
-        and t_to_js : t -> Ojs.t = fun (x723 : Ojs.t) -> x723
+        let rec t_of_js : Ojs.t -> t = fun (x742 : Ojs.t) -> x742
+        and t_to_js : t -> Ojs.t = fun (x741 : Ojs.t) -> x741
         let (terminal : t -> Terminal.t) =
-          fun (x725 : t) ->
-            Terminal.t_of_js (Ojs.get_prop_ascii (t_to_js x725) "terminal")
+          fun (x743 : t) ->
+            Terminal.t_of_js (Ojs.get_prop_ascii (t_to_js x743) "terminal")
         let (data : t -> string) =
-          fun (x726 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x726) "data")
+          fun (x744 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x744) "data")
       end
     module TerminalDimensionsChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x728 : Ojs.t) -> x728
-        and t_to_js : t -> Ojs.t = fun (x727 : Ojs.t) -> x727
+        let rec t_of_js : Ojs.t -> t = fun (x746 : Ojs.t) -> x746
+        and t_to_js : t -> Ojs.t = fun (x745 : Ojs.t) -> x745
         let (terminal : t -> Terminal.t) =
-          fun (x729 : t) ->
-            Terminal.t_of_js (Ojs.get_prop_ascii (t_to_js x729) "terminal")
+          fun (x747 : t) ->
+            Terminal.t_of_js (Ojs.get_prop_ascii (t_to_js x747) "terminal")
         let (dimensions : t -> TerminalDimensions.t) =
-          fun (x730 : t) ->
+          fun (x748 : t) ->
             TerminalDimensions.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x730) "dimensions")
+              (Ojs.get_prop_ascii (t_to_js x748) "dimensions")
       end
     module Terminal =
       struct
         type t = Terminal.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x732 : Ojs.t) -> Terminal.t_of_js x732
+          fun (x750 : Ojs.t) -> Terminal.t_of_js x750
         and t_to_js : t -> Ojs.t =
-          fun (x731 : Terminal.t) -> Terminal.t_to_js x731
+          fun (x749 : Terminal.t) -> Terminal.t_to_js x749
         let (dimensions : t -> TerminalDimensions.t or_undefined) =
-          fun (x733 : t) ->
+          fun (x751 : t) ->
             or_undefined_of_js TerminalDimensions.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x733) "dimensions")
+              (Ojs.get_prop_ascii (t_to_js x751) "dimensions")
       end
     module TerminalOptions =
       struct
         type t = TerminalOptions.t
         let rec t_of_js : Ojs.t -> t =
-          fun (x736 : Ojs.t) -> TerminalOptions.t_of_js x736
+          fun (x754 : Ojs.t) -> TerminalOptions.t_of_js x754
         and t_to_js : t -> Ojs.t =
-          fun (x735 : TerminalOptions.t) -> TerminalOptions.t_to_js x735
+          fun (x753 : TerminalOptions.t) -> TerminalOptions.t_to_js x753
         let (icon : t -> string) =
-          fun (x737 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x737) "icon")
+          fun (x755 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x755) "icon")
         let (message : t -> string) =
-          fun (x738 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x738) "message")
+          fun (x756 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x756) "message")
       end
     module FindTextInFilesOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x740 : Ojs.t) -> x740
-        and t_to_js : t -> Ojs.t = fun (x739 : Ojs.t) -> x739
+        let rec t_of_js : Ojs.t -> t = fun (x758 : Ojs.t) -> x758
+        and t_to_js : t -> Ojs.t = fun (x757 : Ojs.t) -> x757
         let (include_ : t -> GlobPattern.t) =
-          fun (x741 : t) ->
-            GlobPattern.t_of_js (Ojs.get_prop_ascii (t_to_js x741) "include")
-        let (set_include : t -> GlobPattern.t -> unit) =
-          fun (x742 : t) ->
-            fun (x743 : GlobPattern.t) ->
-              Ojs.set_prop_ascii (t_to_js x742) "include"
-                (GlobPattern.t_to_js x743)
-        let (exclude : t -> GlobPattern.t) =
-          fun (x744 : t) ->
-            GlobPattern.t_of_js (Ojs.get_prop_ascii (t_to_js x744) "exclude")
-        let (set_exclude : t -> GlobPattern.t -> unit) =
-          fun (x745 : t) ->
-            fun (x746 : GlobPattern.t) ->
-              Ojs.set_prop_ascii (t_to_js x745) "exclude"
-                (GlobPattern.t_to_js x746)
-        let (use_default_excludes : t -> bool) =
-          fun (x747 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x747) "useDefaultExcludes")
-        let (set_use_default_excludes : t -> bool -> unit) =
-          fun (x748 : t) ->
-            fun (x749 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x748) "useDefaultExcludes"
-                (Ojs.bool_to_js x749)
-        let (max_results : t -> int) =
-          fun (x750 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x750) "maxResults")
-        let (set_max_results : t -> int -> unit) =
-          fun (x751 : t) ->
-            fun (x752 : int) ->
-              Ojs.set_prop_ascii (t_to_js x751) "maxResults"
-                (Ojs.int_to_js x752)
-        let (use_ignore_files : t -> bool) =
-          fun (x753 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x753) "useIgnoreFiles")
-        let (set_use_ignore_files : t -> bool -> unit) =
-          fun (x754 : t) ->
-            fun (x755 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x754) "useIgnoreFiles"
-                (Ojs.bool_to_js x755)
-        let (use_global_ignore_files : t -> bool) =
-          fun (x756 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x756) "useGlobalIgnoreFiles")
-        let (set_use_global_ignore_files : t -> bool -> unit) =
-          fun (x757 : t) ->
-            fun (x758 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x757) "useGlobalIgnoreFiles"
-                (Ojs.bool_to_js x758)
-        let (follow_symlinks : t -> bool) =
           fun (x759 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x759) "followSymlinks")
-        let (set_follow_symlinks : t -> bool -> unit) =
+            GlobPattern.t_of_js (Ojs.get_prop_ascii (t_to_js x759) "include")
+        let (set_include : t -> GlobPattern.t -> unit) =
           fun (x760 : t) ->
-            fun (x761 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x760) "followSymlinks"
-                (Ojs.bool_to_js x761)
-        let (encoding : t -> string) =
+            fun (x761 : GlobPattern.t) ->
+              Ojs.set_prop_ascii (t_to_js x760) "include"
+                (GlobPattern.t_to_js x761)
+        let (exclude : t -> GlobPattern.t) =
           fun (x762 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x762) "encoding")
-        let (set_encoding : t -> string -> unit) =
+            GlobPattern.t_of_js (Ojs.get_prop_ascii (t_to_js x762) "exclude")
+        let (set_exclude : t -> GlobPattern.t -> unit) =
           fun (x763 : t) ->
-            fun (x764 : string) ->
-              Ojs.set_prop_ascii (t_to_js x763) "encoding"
-                (Ojs.string_to_js x764)
-        let (preview_options : t -> TextSearchPreviewOptions.t) =
+            fun (x764 : GlobPattern.t) ->
+              Ojs.set_prop_ascii (t_to_js x763) "exclude"
+                (GlobPattern.t_to_js x764)
+        let (use_default_excludes : t -> bool) =
           fun (x765 : t) ->
-            TextSearchPreviewOptions.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x765) "previewOptions")
-        let (set_preview_options : t -> TextSearchPreviewOptions.t -> unit) =
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x765) "useDefaultExcludes")
+        let (set_use_default_excludes : t -> bool -> unit) =
           fun (x766 : t) ->
-            fun (x767 : TextSearchPreviewOptions.t) ->
-              Ojs.set_prop_ascii (t_to_js x766) "previewOptions"
-                (TextSearchPreviewOptions.t_to_js x767)
-        let (before_context : t -> int) =
+            fun (x767 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x766) "useDefaultExcludes"
+                (Ojs.bool_to_js x767)
+        let (max_results : t -> int) =
           fun (x768 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x768) "beforeContext")
-        let (set_before_context : t -> int -> unit) =
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x768) "maxResults")
+        let (set_max_results : t -> int -> unit) =
           fun (x769 : t) ->
             fun (x770 : int) ->
-              Ojs.set_prop_ascii (t_to_js x769) "beforeContext"
+              Ojs.set_prop_ascii (t_to_js x769) "maxResults"
                 (Ojs.int_to_js x770)
-        let (after_context : t -> int) =
+        let (use_ignore_files : t -> bool) =
           fun (x771 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x771) "afterContext")
-        let (set_after_context : t -> int -> unit) =
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x771) "useIgnoreFiles")
+        let (set_use_ignore_files : t -> bool -> unit) =
           fun (x772 : t) ->
-            fun (x773 : int) ->
-              Ojs.set_prop_ascii (t_to_js x772) "afterContext"
-                (Ojs.int_to_js x773)
+            fun (x773 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x772) "useIgnoreFiles"
+                (Ojs.bool_to_js x773)
+        let (use_global_ignore_files : t -> bool) =
+          fun (x774 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x774) "useGlobalIgnoreFiles")
+        let (set_use_global_ignore_files : t -> bool -> unit) =
+          fun (x775 : t) ->
+            fun (x776 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x775) "useGlobalIgnoreFiles"
+                (Ojs.bool_to_js x776)
+        let (follow_symlinks : t -> bool) =
+          fun (x777 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x777) "followSymlinks")
+        let (set_follow_symlinks : t -> bool -> unit) =
+          fun (x778 : t) ->
+            fun (x779 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x778) "followSymlinks"
+                (Ojs.bool_to_js x779)
+        let (encoding : t -> string) =
+          fun (x780 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x780) "encoding")
+        let (set_encoding : t -> string -> unit) =
+          fun (x781 : t) ->
+            fun (x782 : string) ->
+              Ojs.set_prop_ascii (t_to_js x781) "encoding"
+                (Ojs.string_to_js x782)
+        let (preview_options : t -> TextSearchPreviewOptions.t) =
+          fun (x783 : t) ->
+            TextSearchPreviewOptions.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x783) "previewOptions")
+        let (set_preview_options : t -> TextSearchPreviewOptions.t -> unit) =
+          fun (x784 : t) ->
+            fun (x785 : TextSearchPreviewOptions.t) ->
+              Ojs.set_prop_ascii (t_to_js x784) "previewOptions"
+                (TextSearchPreviewOptions.t_to_js x785)
+        let (before_context : t -> int) =
+          fun (x786 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x786) "beforeContext")
+        let (set_before_context : t -> int -> unit) =
+          fun (x787 : t) ->
+            fun (x788 : int) ->
+              Ojs.set_prop_ascii (t_to_js x787) "beforeContext"
+                (Ojs.int_to_js x788)
+        let (after_context : t -> int) =
+          fun (x789 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x789) "afterContext")
+        let (set_after_context : t -> int -> unit) =
+          fun (x790 : t) ->
+            fun (x791 : int) ->
+              Ojs.set_prop_ascii (t_to_js x790) "afterContext"
+                (Ojs.int_to_js x791)
       end
     module LineChange =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x775 : Ojs.t) -> x775
-        and t_to_js : t -> Ojs.t = fun (x774 : Ojs.t) -> x774
+        let rec t_of_js : Ojs.t -> t = fun (x793 : Ojs.t) -> x793
+        and t_to_js : t -> Ojs.t = fun (x792 : Ojs.t) -> x792
         let (original_start_line_number : t -> int) =
-          fun (x776 : t) ->
+          fun (x794 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x776) "originalStartLineNumber")
+              (Ojs.get_prop_ascii (t_to_js x794) "originalStartLineNumber")
         let (original_end_line_number : t -> int) =
-          fun (x777 : t) ->
+          fun (x795 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x777) "originalEndLineNumber")
+              (Ojs.get_prop_ascii (t_to_js x795) "originalEndLineNumber")
         let (modified_start_line_number : t -> int) =
-          fun (x778 : t) ->
+          fun (x796 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x778) "modifiedStartLineNumber")
+              (Ojs.get_prop_ascii (t_to_js x796) "modifiedStartLineNumber")
         let (modified_end_line_number : t -> int) =
-          fun (x779 : t) ->
+          fun (x797 : t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x779) "modifiedEndLineNumber")
+              (Ojs.get_prop_ascii (t_to_js x797) "modifiedEndLineNumber")
       end
     module Commands =
       struct
@@ -2183,74 +2261,75 @@ module Vscode =
             callback:(diff:LineChange.t list -> args:any list -> any) ->
               ?this_arg:any -> unit -> Disposable.t)
           =
-          fun ~command:(x780 : string) ->
+          fun ~command:(x798 : string) ->
             fun
-              ~callback:(x781 :
+              ~callback:(x799 :
                           diff:LineChange.t list -> args:any list -> any)
               ->
-              fun ?this_arg:(x782 : any option) ->
+              fun ?this_arg:(x800 : any option) ->
                 fun () ->
                   Disposable.t_of_js
-                    (let x788 =
+                    (let x806 =
                        Ojs.get_prop_ascii
-                         (Ojs.get_prop_ascii Ojs.global
-                            "__LIB__VSCODE__IMPORTS.vscode") "commands" in
+                         (Ojs.get_prop_ascii
+                            (Ojs.get_prop_ascii Ojs.global
+                               "__LIB__VSCODE__IMPORTS") "vscode") "commands" in
                      Ojs.call
-                       (Ojs.get_prop_ascii x788
+                       (Ojs.get_prop_ascii x806
                           "registerDiffInformationCommand") "apply"
-                       [|x788;((let x783 =
+                       [|x806;((let x801 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x783 "push"
-                                     [|(Ojs.string_to_js x780)|]);
+                                  (Ojs.call x801 "push"
+                                     [|(Ojs.string_to_js x798)|]);
                                 ignore
-                                  (Ojs.call x783 "push"
+                                  (Ojs.call x801 "push"
                                      [|(Ojs.fun_to_js_args
-                                          (fun (x785 : _) ->
+                                          (fun (x803 : _) ->
                                              any_to_js
-                                               (x781
+                                               (x799
                                                   ~diff:(Ojs.list_of_js
                                                            LineChange.t_of_js
                                                            (Ojs.array_get
-                                                              x785 0))
+                                                              x803 0))
                                                   ~args:(Ojs.list_of_js_from
-                                                           any_of_js x785 1))))|]);
-                                (match x782 with
-                                 | Some x784 ->
+                                                           any_of_js x803 1))))|]);
+                                (match x800 with
+                                 | Some x802 ->
                                      ignore
-                                       (Ojs.call x783 "push"
-                                          [|(any_to_js x784)|])
+                                       (Ojs.call x801 "push"
+                                          [|(any_to_js x802)|])
                                  | None -> ());
-                                x783))|])
+                                x801))|])
       end
     module DebugProtocolVariableContainer =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x790 : Ojs.t) -> x790
-        and t_to_js : t -> Ojs.t = fun (x789 : Ojs.t) -> x789
+        let rec t_of_js : Ojs.t -> t = fun (x808 : Ojs.t) -> x808
+        and t_to_js : t -> Ojs.t = fun (x807 : Ojs.t) -> x807
       end
     module DebugProtocolVariable =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x792 : Ojs.t) -> x792
-        and t_to_js : t -> Ojs.t = fun (x791 : Ojs.t) -> x791
+        let rec t_of_js : Ojs.t -> t = fun (x810 : Ojs.t) -> x810
+        and t_to_js : t -> Ojs.t = fun (x809 : Ojs.t) -> x809
       end
     module SourceControlInputBoxValidationType =
       struct
         type t = [ `Error  | `Warning  | `Information ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x794 : Ojs.t) ->
-            let x795 = x794 in
-            match Ojs.int_of_js x795 with
+          fun (x812 : Ojs.t) ->
+            let x813 = x812 in
+            match Ojs.int_of_js x813 with
             | 0 -> `Error
             | 1 -> `Warning
             | 2 -> `Information
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x793 : [ `Error  | `Warning  | `Information ]) ->
-            match x793 with
+          fun (x811 : [ `Error  | `Warning  | `Information ]) ->
+            match x811 with
             | `Error -> Ojs.int_to_js 0
             | `Warning -> Ojs.int_to_js 1
             | `Information -> Ojs.int_to_js 2
@@ -2258,70 +2337,70 @@ module Vscode =
     module SourceControlInputBoxValidation =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x797 : Ojs.t) -> x797
-        and t_to_js : t -> Ojs.t = fun (x796 : Ojs.t) -> x796
+        let rec t_of_js : Ojs.t -> t = fun (x815 : Ojs.t) -> x815
+        and t_to_js : t -> Ojs.t = fun (x814 : Ojs.t) -> x814
         let (message : t -> string) =
-          fun (x798 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x798) "message")
+          fun (x816 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x816) "message")
         let (type_ : t -> SourceControlInputBoxValidationType.t) =
-          fun (x799 : t) ->
+          fun (x817 : t) ->
             SourceControlInputBoxValidationType.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x799) "type")
+              (Ojs.get_prop_ascii (t_to_js x817) "type")
       end
     module SourceControlInputBox =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x801 : Ojs.t) -> x801
-        and t_to_js : t -> Ojs.t = fun (x800 : Ojs.t) -> x800
+        let rec t_of_js : Ojs.t -> t = fun (x819 : Ojs.t) -> x819
+        and t_to_js : t -> Ojs.t = fun (x818 : Ojs.t) -> x818
         let (focus : t -> unit) =
-          fun (x802 : t) -> ignore (Ojs.call (t_to_js x802) "focus" [||])
+          fun (x820 : t) -> ignore (Ojs.call (t_to_js x820) "focus" [||])
         let (show_validation_message :
           t ->
             message:string ->
               type_:SourceControlInputBoxValidationType.t -> unit)
           =
-          fun (x805 : t) ->
-            fun ~message:(x803 : string) ->
-              fun ~type_:(x804 : SourceControlInputBoxValidationType.t) ->
+          fun (x823 : t) ->
+            fun ~message:(x821 : string) ->
+              fun ~type_:(x822 : SourceControlInputBoxValidationType.t) ->
                 ignore
-                  (Ojs.call (t_to_js x805) "showValidationMessage"
-                     [|(Ojs.string_to_js x803);(SourceControlInputBoxValidationType.t_to_js
-                                                  x804)|])
+                  (Ojs.call (t_to_js x823) "showValidationMessage"
+                     [|(Ojs.string_to_js x821);(SourceControlInputBoxValidationType.t_to_js
+                                                  x822)|])
         let (validate_input :
           t ->
             value:string ->
               cursor_position:int ->
                 SourceControlInputBoxValidation.t ProviderResult.t)
           =
-          fun (x808 : t) ->
-            fun ~value:(x806 : string) ->
-              fun ~cursor_position:(x807 : int) ->
+          fun (x826 : t) ->
+            fun ~value:(x824 : string) ->
+              fun ~cursor_position:(x825 : int) ->
                 ProviderResult.t_of_js
                   SourceControlInputBoxValidation.t_of_js
-                  (Ojs.call (t_to_js x808) "validateInput"
-                     [|(Ojs.string_to_js x806);(Ojs.int_to_js x807)|])
+                  (Ojs.call (t_to_js x826) "validateInput"
+                     [|(Ojs.string_to_js x824);(Ojs.int_to_js x825)|])
       end
     module SourceControl =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x811 : Ojs.t) -> x811
-        and t_to_js : t -> Ojs.t = fun (x810 : Ojs.t) -> x810
+        let rec t_of_js : Ojs.t -> t = fun (x829 : Ojs.t) -> x829
+        and t_to_js : t -> Ojs.t = fun (x828 : Ojs.t) -> x828
         let (selected : t -> bool) =
-          fun (x812 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x812) "selected")
+          fun (x830 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x830) "selected")
         let (on_did_change_selection : t -> bool Event.t) =
-          fun (x813 : t) ->
+          fun (x831 : t) ->
             Event.t_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x813) "onDidChangeSelection")
+              (Ojs.get_prop_ascii (t_to_js x831) "onDidChangeSelection")
       end
     module DocumentFilter =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x816 : Ojs.t) -> x816
-        and t_to_js : t -> Ojs.t = fun (x815 : Ojs.t) -> x815
+        let rec t_of_js : Ojs.t -> t = fun (x834 : Ojs.t) -> x834
+        and t_to_js : t -> Ojs.t = fun (x833 : Ojs.t) -> x833
         let (exclusive : t -> bool) =
-          fun (x817 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x817) "exclusive")
+          fun (x835 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x835) "exclusive")
       end
     module TreeView =
       struct
@@ -2329,119 +2408,119 @@ module Vscode =
         type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
           __T) ->
-          fun (__T_of_js : Ojs.t -> __T) -> fun (x819 : Ojs.t) -> x819
+          fun (__T_of_js : Ojs.t -> __T) -> fun (x837 : Ojs.t) -> x837
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) -> fun (x818 : Ojs.t) -> x818
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x836 : Ojs.t) -> x836
         let (reveal :
           'T t ->
             element:'T or_undefined ->
               ?options:AnonymousInterface12.t -> unit -> unit Promise.t)
           =
-          fun (x825 : 'T t) ->
-            fun ~element:(x820 : 'T or_undefined) ->
-              fun ?options:(x821 : AnonymousInterface12.t option) ->
+          fun (x843 : 'T t) ->
+            fun ~element:(x838 : 'T or_undefined) ->
+              fun ?options:(x839 : AnonymousInterface12.t option) ->
                 fun () ->
                   Promise.t_of_js Ojs.unit_of_js
-                    (let x827 = t_to_js Obj.magic x825 in
-                     Ojs.call (Ojs.get_prop_ascii x827 "reveal") "apply"
-                       [|x827;((let x822 =
+                    (let x845 = t_to_js Obj.magic x843 in
+                     Ojs.call (Ojs.get_prop_ascii x845 "reveal") "apply"
+                       [|x845;((let x840 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x822 "push"
-                                     [|(or_undefined_to_js Obj.magic x820)|]);
-                                (match x821 with
-                                 | Some x823 ->
+                                  (Ojs.call x840 "push"
+                                     [|(or_undefined_to_js Obj.magic x838)|]);
+                                (match x839 with
+                                 | Some x841 ->
                                      ignore
-                                       (Ojs.call x822 "push"
+                                       (Ojs.call x840 "push"
                                           [|(AnonymousInterface12.t_to_js
-                                               x823)|])
+                                               x841)|])
                                  | None -> ());
-                                x822))|])
+                                x840))|])
       end
     module TaskPresentationOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x830 : Ojs.t) -> x830
-        and t_to_js : t -> Ojs.t = fun (x829 : Ojs.t) -> x829
+        let rec t_of_js : Ojs.t -> t = fun (x848 : Ojs.t) -> x848
+        and t_to_js : t -> Ojs.t = fun (x847 : Ojs.t) -> x847
         let (group : t -> string) =
-          fun (x831 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x831) "group")
+          fun (x849 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x849) "group")
         let (set_group : t -> string -> unit) =
-          fun (x832 : t) ->
-            fun (x833 : string) ->
-              Ojs.set_prop_ascii (t_to_js x832) "group"
-                (Ojs.string_to_js x833)
+          fun (x850 : t) ->
+            fun (x851 : string) ->
+              Ojs.set_prop_ascii (t_to_js x850) "group"
+                (Ojs.string_to_js x851)
       end
     module StatusBarItemOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x835 : Ojs.t) -> x835
-        and t_to_js : t -> Ojs.t = fun (x834 : Ojs.t) -> x834
+        let rec t_of_js : Ojs.t -> t = fun (x853 : Ojs.t) -> x853
+        and t_to_js : t -> Ojs.t = fun (x852 : Ojs.t) -> x852
         let (id : t -> string) =
-          fun (x836 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x836) "id")
+          fun (x854 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x854) "id")
         let (set_id : t -> string -> unit) =
-          fun (x837 : t) ->
-            fun (x838 : string) ->
-              Ojs.set_prop_ascii (t_to_js x837) "id" (Ojs.string_to_js x838)
+          fun (x855 : t) ->
+            fun (x856 : string) ->
+              Ojs.set_prop_ascii (t_to_js x855) "id" (Ojs.string_to_js x856)
         let (name : t -> string) =
-          fun (x839 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x839) "name")
+          fun (x857 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x857) "name")
         let (set_name : t -> string -> unit) =
-          fun (x840 : t) ->
-            fun (x841 : string) ->
-              Ojs.set_prop_ascii (t_to_js x840) "name"
-                (Ojs.string_to_js x841)
+          fun (x858 : t) ->
+            fun (x859 : string) ->
+              Ojs.set_prop_ascii (t_to_js x858) "name"
+                (Ojs.string_to_js x859)
         let (accessibility_information : t -> AccessibilityInformation.t) =
-          fun (x842 : t) ->
+          fun (x860 : t) ->
             AccessibilityInformation.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x842) "accessibilityInformation")
+              (Ojs.get_prop_ascii (t_to_js x860) "accessibilityInformation")
         let (set_accessibility_information :
           t -> AccessibilityInformation.t -> unit) =
-          fun (x843 : t) ->
-            fun (x844 : AccessibilityInformation.t) ->
-              Ojs.set_prop_ascii (t_to_js x843) "accessibilityInformation"
-                (AccessibilityInformation.t_to_js x844)
+          fun (x861 : t) ->
+            fun (x862 : AccessibilityInformation.t) ->
+              Ojs.set_prop_ascii (t_to_js x861) "accessibilityInformation"
+                (AccessibilityInformation.t_to_js x862)
         let (alignment : t -> StatusBarAlignment.t) =
-          fun (x845 : t) ->
+          fun (x863 : t) ->
             StatusBarAlignment.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x845) "alignment")
+              (Ojs.get_prop_ascii (t_to_js x863) "alignment")
         let (set_alignment : t -> StatusBarAlignment.t -> unit) =
-          fun (x846 : t) ->
-            fun (x847 : StatusBarAlignment.t) ->
-              Ojs.set_prop_ascii (t_to_js x846) "alignment"
-                (StatusBarAlignment.t_to_js x847)
+          fun (x864 : t) ->
+            fun (x865 : StatusBarAlignment.t) ->
+              Ojs.set_prop_ascii (t_to_js x864) "alignment"
+                (StatusBarAlignment.t_to_js x865)
         let (priority : t -> int) =
-          fun (x848 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x848) "priority")
+          fun (x866 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x866) "priority")
         let (set_priority : t -> int -> unit) =
-          fun (x849 : t) ->
-            fun (x850 : int) ->
-              Ojs.set_prop_ascii (t_to_js x849) "priority"
-                (Ojs.int_to_js x850)
+          fun (x867 : t) ->
+            fun (x868 : int) ->
+              Ojs.set_prop_ascii (t_to_js x867) "priority"
+                (Ojs.int_to_js x868)
       end
     module CustomTextEditorProvider =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x852 : Ojs.t) -> x852
-        and t_to_js : t -> Ojs.t = fun (x851 : Ojs.t) -> x851
+        let rec t_of_js : Ojs.t -> t = fun (x870 : Ojs.t) -> x870
+        and t_to_js : t -> Ojs.t = fun (x869 : Ojs.t) -> x869
         let (move_custom_text_editor :
           t ->
             new_document:TextDocument.t ->
               existing_webview_panel:WebviewPanel.t ->
                 token:CancellationToken.t -> unit Promise.t)
           =
-          fun (x856 : t) ->
-            fun ~new_document:(x853 : TextDocument.t) ->
-              fun ~existing_webview_panel:(x854 : WebviewPanel.t) ->
-                fun ~token:(x855 : CancellationToken.t) ->
+          fun (x874 : t) ->
+            fun ~new_document:(x871 : TextDocument.t) ->
+              fun ~existing_webview_panel:(x872 : WebviewPanel.t) ->
+                fun ~token:(x873 : CancellationToken.t) ->
                   Promise.t_of_js Ojs.unit_of_js
-                    (Ojs.call (t_to_js x856) "moveCustomTextEditor"
-                       [|(TextDocument.t_to_js x853);(WebviewPanel.t_to_js
-                                                        x854);(CancellationToken.t_to_js
-                                                                 x855)|])
+                    (Ojs.call (t_to_js x874) "moveCustomTextEditor"
+                       [|(TextDocument.t_to_js x871);(WebviewPanel.t_to_js
+                                                        x872);(CancellationToken.t_to_js
+                                                                 x873)|])
       end
     module QuickPick =
       struct
@@ -2449,55 +2528,55 @@ module Vscode =
         type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
           __T) ->
-          fun (__T_of_js : Ojs.t -> __T) -> fun (x859 : Ojs.t) -> x859
+          fun (__T_of_js : Ojs.t -> __T) -> fun (x877 : Ojs.t) -> x877
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) -> fun (x858 : Ojs.t) -> x858
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x876 : Ojs.t) -> x876
         let (sort_by_label : 'T t -> bool) =
-          fun (x860 : 'T t) ->
+          fun (x878 : 'T t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x860) "sortByLabel")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x878) "sortByLabel")
         let (set_sort_by_label : 'T t -> bool -> unit) =
-          fun (x862 : 'T t) ->
-            fun (x863 : bool) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x862) "sortByLabel"
-                (Ojs.bool_to_js x863)
+          fun (x880 : 'T t) ->
+            fun (x881 : bool) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x880) "sortByLabel"
+                (Ojs.bool_to_js x881)
       end
     module QuickPickOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x866 : Ojs.t) -> x866
-        and t_to_js : t -> Ojs.t = fun (x865 : Ojs.t) -> x865
+        let rec t_of_js : Ojs.t -> t = fun (x884 : Ojs.t) -> x884
+        and t_to_js : t -> Ojs.t = fun (x883 : Ojs.t) -> x883
         let (title : t -> string) =
-          fun (x867 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x867) "title")
+          fun (x885 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x885) "title")
         let (set_title : t -> string -> unit) =
-          fun (x868 : t) ->
-            fun (x869 : string) ->
-              Ojs.set_prop_ascii (t_to_js x868) "title"
-                (Ojs.string_to_js x869)
+          fun (x886 : t) ->
+            fun (x887 : string) ->
+              Ojs.set_prop_ascii (t_to_js x886) "title"
+                (Ojs.string_to_js x887)
       end
     module InputBoxOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x871 : Ojs.t) -> x871
-        and t_to_js : t -> Ojs.t = fun (x870 : Ojs.t) -> x870
+        let rec t_of_js : Ojs.t -> t = fun (x889 : Ojs.t) -> x889
+        and t_to_js : t -> Ojs.t = fun (x888 : Ojs.t) -> x888
         let (title : t -> string) =
-          fun (x872 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x872) "title")
+          fun (x890 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x890) "title")
         let (set_title : t -> string -> unit) =
-          fun (x873 : t) ->
-            fun (x874 : string) ->
-              Ojs.set_prop_ascii (t_to_js x873) "title"
-                (Ojs.string_to_js x874)
+          fun (x891 : t) ->
+            fun (x892 : string) ->
+              Ojs.set_prop_ascii (t_to_js x891) "title"
+                (Ojs.string_to_js x892)
       end
     module NotebookEditorRevealType =
       struct
         type t =
           [ `Default  | `InCenter  | `InCenterIfOutsideViewport  | `AtTop ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x876 : Ojs.t) ->
-            let x877 = x876 in
-            match Ojs.int_of_js x877 with
+          fun (x894 : Ojs.t) ->
+            let x895 = x894 in
+            match Ojs.int_of_js x895 with
             | 0 -> `Default
             | 1 -> `InCenter
             | 2 -> `InCenterIfOutsideViewport
@@ -2505,11 +2584,11 @@ module Vscode =
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x875 :
+            (x893 :
               [ `Default  | `InCenter  | `InCenterIfOutsideViewport 
               | `AtTop ])
             ->
-            match x875 with
+            match x893 with
             | `Default -> Ojs.int_to_js 0
             | `InCenter -> Ojs.int_to_js 1
             | `InCenterIfOutsideViewport -> Ojs.int_to_js 2
@@ -2518,62 +2597,62 @@ module Vscode =
     module NotebookCellData =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x879 : Ojs.t) -> x879
-        and t_to_js : t -> Ojs.t = fun (x878 : Ojs.t) -> x878
+        let rec t_of_js : Ojs.t -> t = fun (x897 : Ojs.t) -> x897
+        and t_to_js : t -> Ojs.t = fun (x896 : Ojs.t) -> x896
         let (kind : t -> NotebookCellKind.t) =
-          fun (x880 : t) ->
+          fun (x898 : t) ->
             NotebookCellKind.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x880) "kind")
+              (Ojs.get_prop_ascii (t_to_js x898) "kind")
         let (set_kind : t -> NotebookCellKind.t -> unit) =
-          fun (x881 : t) ->
-            fun (x882 : NotebookCellKind.t) ->
-              Ojs.set_prop_ascii (t_to_js x881) "kind"
-                (NotebookCellKind.t_to_js x882)
+          fun (x899 : t) ->
+            fun (x900 : NotebookCellKind.t) ->
+              Ojs.set_prop_ascii (t_to_js x899) "kind"
+                (NotebookCellKind.t_to_js x900)
         let (source : t -> string) =
-          fun (x883 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x883) "source")
+          fun (x901 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x901) "source")
         let (set_source : t -> string -> unit) =
-          fun (x884 : t) ->
-            fun (x885 : string) ->
-              Ojs.set_prop_ascii (t_to_js x884) "source"
-                (Ojs.string_to_js x885)
+          fun (x902 : t) ->
+            fun (x903 : string) ->
+              Ojs.set_prop_ascii (t_to_js x902) "source"
+                (Ojs.string_to_js x903)
         let (language : t -> string) =
-          fun (x886 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x886) "language")
+          fun (x904 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x904) "language")
         let (set_language : t -> string -> unit) =
-          fun (x887 : t) ->
-            fun (x888 : string) ->
-              Ojs.set_prop_ascii (t_to_js x887) "language"
-                (Ojs.string_to_js x888)
+          fun (x905 : t) ->
+            fun (x906 : string) ->
+              Ojs.set_prop_ascii (t_to_js x905) "language"
+                (Ojs.string_to_js x906)
         let (outputs : t -> NotebookCellOutput.t list) =
-          fun (x889 : t) ->
+          fun (x907 : t) ->
             Ojs.list_of_js NotebookCellOutput.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x889) "outputs")
+              (Ojs.get_prop_ascii (t_to_js x907) "outputs")
         let (set_outputs : t -> NotebookCellOutput.t list -> unit) =
-          fun (x891 : t) ->
-            fun (x892 : NotebookCellOutput.t list) ->
-              Ojs.set_prop_ascii (t_to_js x891) "outputs"
-                (Ojs.list_to_js NotebookCellOutput.t_to_js x892)
+          fun (x909 : t) ->
+            fun (x910 : NotebookCellOutput.t list) ->
+              Ojs.set_prop_ascii (t_to_js x909) "outputs"
+                (Ojs.list_to_js NotebookCellOutput.t_to_js x910)
         let (metadata : t -> NotebookCellMetadata.t) =
-          fun (x894 : t) ->
+          fun (x912 : t) ->
             NotebookCellMetadata.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x894) "metadata")
+              (Ojs.get_prop_ascii (t_to_js x912) "metadata")
         let (set_metadata : t -> NotebookCellMetadata.t -> unit) =
-          fun (x895 : t) ->
-            fun (x896 : NotebookCellMetadata.t) ->
-              Ojs.set_prop_ascii (t_to_js x895) "metadata"
-                (NotebookCellMetadata.t_to_js x896)
+          fun (x913 : t) ->
+            fun (x914 : NotebookCellMetadata.t) ->
+              Ojs.set_prop_ascii (t_to_js x913) "metadata"
+                (NotebookCellMetadata.t_to_js x914)
         let (latest_execution_summary : t -> NotebookCellExecutionSummary.t)
           =
-          fun (x897 : t) ->
+          fun (x915 : t) ->
             NotebookCellExecutionSummary.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x897) "latestExecutionSummary")
+              (Ojs.get_prop_ascii (t_to_js x915) "latestExecutionSummary")
         let (set_latest_execution_summary :
           t -> NotebookCellExecutionSummary.t -> unit) =
-          fun (x898 : t) ->
-            fun (x899 : NotebookCellExecutionSummary.t) ->
-              Ojs.set_prop_ascii (t_to_js x898) "latestExecutionSummary"
-                (NotebookCellExecutionSummary.t_to_js x899)
+          fun (x916 : t) ->
+            fun (x917 : NotebookCellExecutionSummary.t) ->
+              Ojs.set_prop_ascii (t_to_js x916) "latestExecutionSummary"
+                (NotebookCellExecutionSummary.t_to_js x917)
         let (create :
           kind:NotebookCellKind.t ->
             source:string ->
@@ -2583,13 +2662,13 @@ module Vscode =
                     ?latest_execution_summary:NotebookCellExecutionSummary.t
                       -> unit -> t)
           =
-          fun ~kind:(x900 : NotebookCellKind.t) ->
-            fun ~source:(x901 : string) ->
-              fun ~language:(x902 : string) ->
-                fun ?outputs:(x903 : NotebookCellOutput.t list option) ->
-                  fun ?metadata:(x904 : NotebookCellMetadata.t option) ->
+          fun ~kind:(x918 : NotebookCellKind.t) ->
+            fun ~source:(x919 : string) ->
+              fun ~language:(x920 : string) ->
+                fun ?outputs:(x921 : NotebookCellOutput.t list option) ->
+                  fun ?metadata:(x922 : NotebookCellMetadata.t option) ->
                     fun
-                      ?latest_execution_summary:(x905 :
+                      ?latest_execution_summary:(x923 :
                                                   NotebookCellExecutionSummary.t
                                                     option)
                       ->
@@ -2597,295 +2676,296 @@ module Vscode =
                         t_of_js
                           (Ojs.new_obj_arr
                              (Ojs.get_prop_ascii
-                                (Ojs.get_prop_ascii Ojs.global
-                                   "__LIB__VSCODE__IMPORTS.vscode")
+                                (Ojs.get_prop_ascii
+                                   (Ojs.get_prop_ascii Ojs.global
+                                      "__LIB__VSCODE__IMPORTS") "vscode")
                                 "NotebookCellData")
-                             (let x906 =
+                             (let x924 =
                                 Ojs.new_obj
                                   (Ojs.get_prop_ascii Ojs.global "Array")
                                   [||] in
                               ignore
-                                (Ojs.call x906 "push"
-                                   [|(NotebookCellKind.t_to_js x900)|]);
+                                (Ojs.call x924 "push"
+                                   [|(NotebookCellKind.t_to_js x918)|]);
                               ignore
-                                (Ojs.call x906 "push"
-                                   [|(Ojs.string_to_js x901)|]);
+                                (Ojs.call x924 "push"
+                                   [|(Ojs.string_to_js x919)|]);
                               ignore
-                                (Ojs.call x906 "push"
-                                   [|(Ojs.string_to_js x902)|]);
-                              (match x903 with
-                               | Some x909 ->
+                                (Ojs.call x924 "push"
+                                   [|(Ojs.string_to_js x920)|]);
+                              (match x921 with
+                               | Some x927 ->
                                    ignore
-                                     (Ojs.call x906 "push"
+                                     (Ojs.call x924 "push"
                                         [|(Ojs.list_to_js
-                                             NotebookCellOutput.t_to_js x909)|])
+                                             NotebookCellOutput.t_to_js x927)|])
                                | None -> ());
-                              (match x904 with
-                               | Some x908 ->
+                              (match x922 with
+                               | Some x926 ->
                                    ignore
-                                     (Ojs.call x906 "push"
-                                        [|(NotebookCellMetadata.t_to_js x908)|])
+                                     (Ojs.call x924 "push"
+                                        [|(NotebookCellMetadata.t_to_js x926)|])
                                | None -> ());
-                              (match x905 with
-                               | Some x907 ->
+                              (match x923 with
+                               | Some x925 ->
                                    ignore
-                                     (Ojs.call x906 "push"
+                                     (Ojs.call x924 "push"
                                         [|(NotebookCellExecutionSummary.t_to_js
-                                             x907)|])
+                                             x925)|])
                                | None -> ());
-                              x906))
+                              x924))
       end
     module NotebookEditorEdit =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x912 : Ojs.t) -> x912
-        and t_to_js : t -> Ojs.t = fun (x911 : Ojs.t) -> x911
+        let rec t_of_js : Ojs.t -> t = fun (x930 : Ojs.t) -> x930
+        and t_to_js : t -> Ojs.t = fun (x929 : Ojs.t) -> x929
         let (replace_metadata :
           t -> value:NotebookDocumentMetadata.t -> unit) =
-          fun (x914 : t) ->
-            fun ~value:(x913 : NotebookDocumentMetadata.t) ->
+          fun (x932 : t) ->
+            fun ~value:(x931 : NotebookDocumentMetadata.t) ->
               ignore
-                (Ojs.call (t_to_js x914) "replaceMetadata"
-                   [|(NotebookDocumentMetadata.t_to_js x913)|])
+                (Ojs.call (t_to_js x932) "replaceMetadata"
+                   [|(NotebookDocumentMetadata.t_to_js x931)|])
         let (replace_cells :
           t -> start:int -> end_:int -> cells:NotebookCellData.t list -> unit)
           =
-          fun (x919 : t) ->
-            fun ~start:(x915 : int) ->
-              fun ~end_:(x916 : int) ->
-                fun ~cells:(x917 : NotebookCellData.t list) ->
+          fun (x937 : t) ->
+            fun ~start:(x933 : int) ->
+              fun ~end_:(x934 : int) ->
+                fun ~cells:(x935 : NotebookCellData.t list) ->
                   ignore
-                    (Ojs.call (t_to_js x919) "replaceCells"
-                       [|(Ojs.int_to_js x915);(Ojs.int_to_js x916);(Ojs.list_to_js
+                    (Ojs.call (t_to_js x937) "replaceCells"
+                       [|(Ojs.int_to_js x933);(Ojs.int_to_js x934);(Ojs.list_to_js
                                                                     NotebookCellData.t_to_js
-                                                                    x917)|])
+                                                                    x935)|])
         let (replace_cell_output :
           t -> index:int -> outputs:NotebookCellOutput.t list -> unit) =
-          fun (x923 : t) ->
-            fun ~index:(x920 : int) ->
-              fun ~outputs:(x921 : NotebookCellOutput.t list) ->
+          fun (x941 : t) ->
+            fun ~index:(x938 : int) ->
+              fun ~outputs:(x939 : NotebookCellOutput.t list) ->
                 ignore
-                  (Ojs.call (t_to_js x923) "replaceCellOutput"
-                     [|(Ojs.int_to_js x920);(Ojs.list_to_js
+                  (Ojs.call (t_to_js x941) "replaceCellOutput"
+                     [|(Ojs.int_to_js x938);(Ojs.list_to_js
                                                NotebookCellOutput.t_to_js
-                                               x921)|])
+                                               x939)|])
         let (replace_cell_metadata :
           t -> index:int -> metadata:NotebookCellMetadata.t -> unit) =
-          fun (x926 : t) ->
-            fun ~index:(x924 : int) ->
-              fun ~metadata:(x925 : NotebookCellMetadata.t) ->
+          fun (x944 : t) ->
+            fun ~index:(x942 : int) ->
+              fun ~metadata:(x943 : NotebookCellMetadata.t) ->
                 ignore
-                  (Ojs.call (t_to_js x926) "replaceCellMetadata"
-                     [|(Ojs.int_to_js x924);(NotebookCellMetadata.t_to_js
-                                               x925)|])
+                  (Ojs.call (t_to_js x944) "replaceCellMetadata"
+                     [|(Ojs.int_to_js x942);(NotebookCellMetadata.t_to_js
+                                               x943)|])
       end
     module NotebookEditorDecorationType =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x928 : Ojs.t) -> x928
-        and t_to_js : t -> Ojs.t = fun (x927 : Ojs.t) -> x927
+        let rec t_of_js : Ojs.t -> t = fun (x946 : Ojs.t) -> x946
+        and t_to_js : t -> Ojs.t = fun (x945 : Ojs.t) -> x945
         let (key : t -> string) =
-          fun (x929 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x929) "key")
+          fun (x947 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x947) "key")
         let (dispose : t -> unit) =
-          fun (x930 : t) -> ignore (Ojs.call (t_to_js x930) "dispose" [||])
+          fun (x948 : t) -> ignore (Ojs.call (t_to_js x948) "dispose" [||])
       end
     module NotebookEditor =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x932 : Ojs.t) -> x932
-        and t_to_js : t -> Ojs.t = fun (x931 : Ojs.t) -> x931
+        let rec t_of_js : Ojs.t -> t = fun (x950 : Ojs.t) -> x950
+        and t_to_js : t -> Ojs.t = fun (x949 : Ojs.t) -> x949
         let (set_decorations :
           t ->
             decoration_type:NotebookEditorDecorationType.t ->
               range:NotebookCellRange.t -> unit)
           =
-          fun (x935 : t) ->
-            fun ~decoration_type:(x933 : NotebookEditorDecorationType.t) ->
-              fun ~range:(x934 : NotebookCellRange.t) ->
+          fun (x953 : t) ->
+            fun ~decoration_type:(x951 : NotebookEditorDecorationType.t) ->
+              fun ~range:(x952 : NotebookCellRange.t) ->
                 ignore
-                  (Ojs.call (t_to_js x935) "setDecorations"
-                     [|(NotebookEditorDecorationType.t_to_js x933);(NotebookCellRange.t_to_js
-                                                                    x934)|])
+                  (Ojs.call (t_to_js x953) "setDecorations"
+                     [|(NotebookEditorDecorationType.t_to_js x951);(NotebookCellRange.t_to_js
+                                                                    x952)|])
         let (kernel : t -> NotebookKernel.t) =
-          fun (x936 : t) ->
+          fun (x954 : t) ->
             NotebookKernel.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x936) "kernel")
+              (Ojs.get_prop_ascii (t_to_js x954) "kernel")
         let (edit :
           t ->
             callback:(editBuilder:NotebookEditorEdit.t -> unit) ->
               bool Promise.t)
           =
-          fun (x939 : t) ->
-            fun ~callback:(x937 : editBuilder:NotebookEditorEdit.t -> unit)
+          fun (x957 : t) ->
+            fun ~callback:(x955 : editBuilder:NotebookEditorEdit.t -> unit)
               ->
               Promise.t_of_js Ojs.bool_of_js
-                (Ojs.call (t_to_js x939) "edit"
+                (Ojs.call (t_to_js x957) "edit"
                    [|(Ojs.fun_to_js 1
-                        (fun (x938 : Ojs.t) ->
-                           x937
-                             ~editBuilder:(NotebookEditorEdit.t_of_js x938)))|])
+                        (fun (x956 : Ojs.t) ->
+                           x955
+                             ~editBuilder:(NotebookEditorEdit.t_of_js x956)))|])
         let (document : t -> NotebookDocument.t) =
-          fun (x941 : t) ->
+          fun (x959 : t) ->
             NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x941) "document")
+              (Ojs.get_prop_ascii (t_to_js x959) "document")
         let (selection : t -> NotebookCell.t) =
-          fun (x942 : t) ->
+          fun (x960 : t) ->
             NotebookCell.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x942) "selection")
+              (Ojs.get_prop_ascii (t_to_js x960) "selection")
         let (selections : t -> NotebookCellRange.t list) =
-          fun (x943 : t) ->
+          fun (x961 : t) ->
             Ojs.list_of_js NotebookCellRange.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x943) "selections")
+              (Ojs.get_prop_ascii (t_to_js x961) "selections")
         let (visible_ranges : t -> NotebookCellRange.t list) =
-          fun (x945 : t) ->
+          fun (x963 : t) ->
             Ojs.list_of_js NotebookCellRange.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x945) "visibleRanges")
+              (Ojs.get_prop_ascii (t_to_js x963) "visibleRanges")
         let (reveal_range :
           t ->
             range:NotebookCellRange.t ->
               ?reveal_type:NotebookEditorRevealType.t -> unit -> unit)
           =
-          fun (x951 : t) ->
-            fun ~range:(x947 : NotebookCellRange.t) ->
-              fun ?reveal_type:(x948 : NotebookEditorRevealType.t option) ->
+          fun (x969 : t) ->
+            fun ~range:(x965 : NotebookCellRange.t) ->
+              fun ?reveal_type:(x966 : NotebookEditorRevealType.t option) ->
                 fun () ->
                   ignore
-                    (let x952 = t_to_js x951 in
-                     Ojs.call (Ojs.get_prop_ascii x952 "revealRange") "apply"
-                       [|x952;((let x949 =
+                    (let x970 = t_to_js x969 in
+                     Ojs.call (Ojs.get_prop_ascii x970 "revealRange") "apply"
+                       [|x970;((let x967 =
                                   Ojs.new_obj
                                     (Ojs.get_prop_ascii Ojs.global "Array")
                                     [||] in
                                 ignore
-                                  (Ojs.call x949 "push"
-                                     [|(NotebookCellRange.t_to_js x947)|]);
-                                (match x948 with
-                                 | Some x950 ->
+                                  (Ojs.call x967 "push"
+                                     [|(NotebookCellRange.t_to_js x965)|]);
+                                (match x966 with
+                                 | Some x968 ->
                                      ignore
-                                       (Ojs.call x949 "push"
+                                       (Ojs.call x967 "push"
                                           [|(NotebookEditorRevealType.t_to_js
-                                               x950)|])
+                                               x968)|])
                                  | None -> ());
-                                x949))|])
+                                x967))|])
         let (view_column : t -> ViewColumn.t) =
-          fun (x953 : t) ->
+          fun (x971 : t) ->
             ViewColumn.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x953) "viewColumn")
+              (Ojs.get_prop_ascii (t_to_js x971) "viewColumn")
       end
     module NotebookDocumentMetadataChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x955 : Ojs.t) -> x955
-        and t_to_js : t -> Ojs.t = fun (x954 : Ojs.t) -> x954
+        let rec t_of_js : Ojs.t -> t = fun (x973 : Ojs.t) -> x973
+        and t_to_js : t -> Ojs.t = fun (x972 : Ojs.t) -> x972
         let (document : t -> NotebookDocument.t) =
-          fun (x956 : t) ->
+          fun (x974 : t) ->
             NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x956) "document")
+              (Ojs.get_prop_ascii (t_to_js x974) "document")
       end
     module NotebookCellsChangeData =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x958 : Ojs.t) -> x958
-        and t_to_js : t -> Ojs.t = fun (x957 : Ojs.t) -> x957
+        let rec t_of_js : Ojs.t -> t = fun (x976 : Ojs.t) -> x976
+        and t_to_js : t -> Ojs.t = fun (x975 : Ojs.t) -> x975
         let (start : t -> int) =
-          fun (x959 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x959) "start")
+          fun (x977 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x977) "start")
         let (deleted_count : t -> int) =
-          fun (x960 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x960) "deletedCount")
+          fun (x978 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x978) "deletedCount")
         let (deleted_items : t -> NotebookCell.t list) =
-          fun (x961 : t) ->
+          fun (x979 : t) ->
             Ojs.list_of_js NotebookCell.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x961) "deletedItems")
+              (Ojs.get_prop_ascii (t_to_js x979) "deletedItems")
         let (items : t -> NotebookCell.t list) =
-          fun (x963 : t) ->
+          fun (x981 : t) ->
             Ojs.list_of_js NotebookCell.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x963) "items")
+              (Ojs.get_prop_ascii (t_to_js x981) "items")
       end
     module NotebookCellsChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x966 : Ojs.t) -> x966
-        and t_to_js : t -> Ojs.t = fun (x965 : Ojs.t) -> x965
+        let rec t_of_js : Ojs.t -> t = fun (x984 : Ojs.t) -> x984
+        and t_to_js : t -> Ojs.t = fun (x983 : Ojs.t) -> x983
         let (document : t -> NotebookDocument.t) =
-          fun (x967 : t) ->
+          fun (x985 : t) ->
             NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x967) "document")
+              (Ojs.get_prop_ascii (t_to_js x985) "document")
         let (changes : t -> NotebookCellsChangeData.t list) =
-          fun (x968 : t) ->
+          fun (x986 : t) ->
             Ojs.list_of_js NotebookCellsChangeData.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x968) "changes")
+              (Ojs.get_prop_ascii (t_to_js x986) "changes")
       end
     module NotebookCellOutputsChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x971 : Ojs.t) -> x971
-        and t_to_js : t -> Ojs.t = fun (x970 : Ojs.t) -> x970
+        let rec t_of_js : Ojs.t -> t = fun (x989 : Ojs.t) -> x989
+        and t_to_js : t -> Ojs.t = fun (x988 : Ojs.t) -> x988
         let (document : t -> NotebookDocument.t) =
-          fun (x972 : t) ->
+          fun (x990 : t) ->
             NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x972) "document")
+              (Ojs.get_prop_ascii (t_to_js x990) "document")
         let (cells : t -> NotebookCell.t list) =
-          fun (x973 : t) ->
+          fun (x991 : t) ->
             Ojs.list_of_js NotebookCell.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x973) "cells")
+              (Ojs.get_prop_ascii (t_to_js x991) "cells")
       end
     module NotebookCellMetadataChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x976 : Ojs.t) -> x976
-        and t_to_js : t -> Ojs.t = fun (x975 : Ojs.t) -> x975
+        let rec t_of_js : Ojs.t -> t = fun (x994 : Ojs.t) -> x994
+        and t_to_js : t -> Ojs.t = fun (x993 : Ojs.t) -> x993
         let (document : t -> NotebookDocument.t) =
-          fun (x977 : t) ->
+          fun (x995 : t) ->
             NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x977) "document")
+              (Ojs.get_prop_ascii (t_to_js x995) "document")
         let (cell : t -> NotebookCell.t) =
-          fun (x978 : t) ->
-            NotebookCell.t_of_js (Ojs.get_prop_ascii (t_to_js x978) "cell")
+          fun (x996 : t) ->
+            NotebookCell.t_of_js (Ojs.get_prop_ascii (t_to_js x996) "cell")
       end
     module NotebookEditorSelectionChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x980 : Ojs.t) -> x980
-        and t_to_js : t -> Ojs.t = fun (x979 : Ojs.t) -> x979
+        let rec t_of_js : Ojs.t -> t = fun (x998 : Ojs.t) -> x998
+        and t_to_js : t -> Ojs.t = fun (x997 : Ojs.t) -> x997
         let (notebook_editor : t -> NotebookEditor.t) =
-          fun (x981 : t) ->
+          fun (x999 : t) ->
             NotebookEditor.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x981) "notebookEditor")
+              (Ojs.get_prop_ascii (t_to_js x999) "notebookEditor")
         let (selections : t -> NotebookCellRange.t list) =
-          fun (x982 : t) ->
+          fun (x1000 : t) ->
             Ojs.list_of_js NotebookCellRange.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x982) "selections")
+              (Ojs.get_prop_ascii (t_to_js x1000) "selections")
       end
     module NotebookEditorVisibleRangesChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x985 : Ojs.t) -> x985
-        and t_to_js : t -> Ojs.t = fun (x984 : Ojs.t) -> x984
+        let rec t_of_js : Ojs.t -> t = fun (x1003 : Ojs.t) -> x1003
+        and t_to_js : t -> Ojs.t = fun (x1002 : Ojs.t) -> x1002
         let (notebook_editor : t -> NotebookEditor.t) =
-          fun (x986 : t) ->
+          fun (x1004 : t) ->
             NotebookEditor.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x986) "notebookEditor")
+              (Ojs.get_prop_ascii (t_to_js x1004) "notebookEditor")
         let (visible_ranges : t -> NotebookCellRange.t list) =
-          fun (x987 : t) ->
+          fun (x1005 : t) ->
             Ojs.list_of_js NotebookCellRange.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x987) "visibleRanges")
+              (Ojs.get_prop_ascii (t_to_js x1005) "visibleRanges")
       end
     module NotebookCellExecutionState =
       struct
         type t = [ `Idle  | `Pending  | `Executing ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x990 : Ojs.t) ->
-            let x991 = x990 in
-            match Ojs.int_of_js x991 with
+          fun (x1008 : Ojs.t) ->
+            let x1009 = x1008 in
+            match Ojs.int_of_js x1009 with
             | 1 -> `Idle
             | 2 -> `Pending
             | 3 -> `Executing
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x989 : [ `Idle  | `Pending  | `Executing ]) ->
-            match x989 with
+          fun (x1007 : [ `Idle  | `Pending  | `Executing ]) ->
+            match x1007 with
             | `Idle -> Ojs.int_to_js 1
             | `Pending -> Ojs.int_to_js 2
             | `Executing -> Ojs.int_to_js 3
@@ -2893,179 +2973,219 @@ module Vscode =
     module NotebookCellExecutionStateChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x993 : Ojs.t) -> x993
-        and t_to_js : t -> Ojs.t = fun (x992 : Ojs.t) -> x992
+        let rec t_of_js : Ojs.t -> t = fun (x1011 : Ojs.t) -> x1011
+        and t_to_js : t -> Ojs.t = fun (x1010 : Ojs.t) -> x1010
         let (document : t -> NotebookDocument.t) =
-          fun (x994 : t) ->
+          fun (x1012 : t) ->
             NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x994) "document")
+              (Ojs.get_prop_ascii (t_to_js x1012) "document")
         let (cell : t -> NotebookCell.t) =
-          fun (x995 : t) ->
-            NotebookCell.t_of_js (Ojs.get_prop_ascii (t_to_js x995) "cell")
+          fun (x1013 : t) ->
+            NotebookCell.t_of_js (Ojs.get_prop_ascii (t_to_js x1013) "cell")
         let (execution_state : t -> NotebookCellExecutionState.t) =
-          fun (x996 : t) ->
+          fun (x1014 : t) ->
             NotebookCellExecutionState.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x996) "executionState")
+              (Ojs.get_prop_ascii (t_to_js x1014) "executionState")
       end
     module NotebookData =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x998 : Ojs.t) -> x998
-        and t_to_js : t -> Ojs.t = fun (x997 : Ojs.t) -> x997
+        let rec t_of_js : Ojs.t -> t = fun (x1016 : Ojs.t) -> x1016
+        and t_to_js : t -> Ojs.t = fun (x1015 : Ojs.t) -> x1015
         let (cells : t -> NotebookCellData.t list) =
-          fun (x999 : t) ->
+          fun (x1017 : t) ->
             Ojs.list_of_js NotebookCellData.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x999) "cells")
+              (Ojs.get_prop_ascii (t_to_js x1017) "cells")
         let (set_cells : t -> NotebookCellData.t list -> unit) =
-          fun (x1001 : t) ->
-            fun (x1002 : NotebookCellData.t list) ->
-              Ojs.set_prop_ascii (t_to_js x1001) "cells"
-                (Ojs.list_to_js NotebookCellData.t_to_js x1002)
+          fun (x1019 : t) ->
+            fun (x1020 : NotebookCellData.t list) ->
+              Ojs.set_prop_ascii (t_to_js x1019) "cells"
+                (Ojs.list_to_js NotebookCellData.t_to_js x1020)
         let (metadata : t -> NotebookDocumentMetadata.t) =
-          fun (x1004 : t) ->
+          fun (x1022 : t) ->
             NotebookDocumentMetadata.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1004) "metadata")
+              (Ojs.get_prop_ascii (t_to_js x1022) "metadata")
         let (set_metadata : t -> NotebookDocumentMetadata.t -> unit) =
-          fun (x1005 : t) ->
-            fun (x1006 : NotebookDocumentMetadata.t) ->
-              Ojs.set_prop_ascii (t_to_js x1005) "metadata"
-                (NotebookDocumentMetadata.t_to_js x1006)
+          fun (x1023 : t) ->
+            fun (x1024 : NotebookDocumentMetadata.t) ->
+              Ojs.set_prop_ascii (t_to_js x1023) "metadata"
+                (NotebookDocumentMetadata.t_to_js x1024)
         let (create :
           cells:NotebookCellData.t list ->
             ?metadata:NotebookDocumentMetadata.t -> unit -> t)
           =
-          fun ~cells:(x1007 : NotebookCellData.t list) ->
-            fun ?metadata:(x1008 : NotebookDocumentMetadata.t option) ->
+          fun ~cells:(x1025 : NotebookCellData.t list) ->
+            fun ?metadata:(x1026 : NotebookDocumentMetadata.t option) ->
               fun () ->
                 t_of_js
                   (Ojs.new_obj_arr
                      (Ojs.get_prop_ascii
-                        (Ojs.get_prop_ascii Ojs.global
-                           "__LIB__VSCODE__IMPORTS.vscode") "NotebookData")
-                     (let x1009 =
+                        (Ojs.get_prop_ascii
+                           (Ojs.get_prop_ascii Ojs.global
+                              "__LIB__VSCODE__IMPORTS") "vscode")
+                        "NotebookData")
+                     (let x1027 =
                         Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                           [||] in
                       ignore
-                        (Ojs.call x1009 "push"
-                           [|(Ojs.list_to_js NotebookCellData.t_to_js x1007)|]);
-                      (match x1008 with
-                       | Some x1010 ->
+                        (Ojs.call x1027 "push"
+                           [|(Ojs.list_to_js NotebookCellData.t_to_js x1025)|]);
+                      (match x1026 with
+                       | Some x1028 ->
                            ignore
-                             (Ojs.call x1009 "push"
-                                [|(NotebookDocumentMetadata.t_to_js x1010)|])
+                             (Ojs.call x1027 "push"
+                                [|(NotebookDocumentMetadata.t_to_js x1028)|])
                        | None -> ());
-                      x1009))
+                      x1027))
       end
     module NotebookCommunication =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1013 : Ojs.t) -> x1013
-        and t_to_js : t -> Ojs.t = fun (x1012 : Ojs.t) -> x1012
+        let rec t_of_js : Ojs.t -> t = fun (x1031 : Ojs.t) -> x1031
+        and t_to_js : t -> Ojs.t = fun (x1030 : Ojs.t) -> x1030
         let (editor_id : t -> string) =
-          fun (x1014 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1014) "editorId")
+          fun (x1032 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1032) "editorId")
         let (on_did_receive_message : t -> any Event.t) =
-          fun (x1015 : t) ->
+          fun (x1033 : t) ->
             Event.t_of_js any_of_js
-              (Ojs.get_prop_ascii (t_to_js x1015) "onDidReceiveMessage")
+              (Ojs.get_prop_ascii (t_to_js x1033) "onDidReceiveMessage")
         let (post_message : t -> message:any -> bool Promise.t) =
-          fun (x1018 : t) ->
-            fun ~message:(x1017 : any) ->
+          fun (x1036 : t) ->
+            fun ~message:(x1035 : any) ->
               Promise.t_of_js Ojs.bool_of_js
-                (Ojs.call (t_to_js x1018) "postMessage" [|(any_to_js x1017)|])
+                (Ojs.call (t_to_js x1036) "postMessage" [|(any_to_js x1035)|])
         let (as_webview_uri : t -> local_resource:Uri.t -> Uri.t) =
-          fun (x1021 : t) ->
-            fun ~local_resource:(x1020 : Uri.t) ->
+          fun (x1039 : t) ->
+            fun ~local_resource:(x1038 : Uri.t) ->
               Uri.t_of_js
-                (Ojs.call (t_to_js x1021) "asWebviewUri"
-                   [|(Uri.t_to_js x1020)|])
+                (Ojs.call (t_to_js x1039) "asWebviewUri"
+                   [|(Uri.t_to_js x1038)|])
       end
     module NotebookDocumentShowOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1023 : Ojs.t) -> x1023
-        and t_to_js : t -> Ojs.t = fun (x1022 : Ojs.t) -> x1022
+        let rec t_of_js : Ojs.t -> t = fun (x1041 : Ojs.t) -> x1041
+        and t_to_js : t -> Ojs.t = fun (x1040 : Ojs.t) -> x1040
         let (view_column : t -> ViewColumn.t) =
-          fun (x1024 : t) ->
+          fun (x1042 : t) ->
             ViewColumn.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1024) "viewColumn")
+              (Ojs.get_prop_ascii (t_to_js x1042) "viewColumn")
         let (set_view_column : t -> ViewColumn.t -> unit) =
-          fun (x1025 : t) ->
-            fun (x1026 : ViewColumn.t) ->
-              Ojs.set_prop_ascii (t_to_js x1025) "viewColumn"
-                (ViewColumn.t_to_js x1026)
+          fun (x1043 : t) ->
+            fun (x1044 : ViewColumn.t) ->
+              Ojs.set_prop_ascii (t_to_js x1043) "viewColumn"
+                (ViewColumn.t_to_js x1044)
         let (preserve_focus : t -> bool) =
-          fun (x1027 : t) ->
+          fun (x1045 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x1027) "preserveFocus")
+              (Ojs.get_prop_ascii (t_to_js x1045) "preserveFocus")
         let (set_preserve_focus : t -> bool -> unit) =
-          fun (x1028 : t) ->
-            fun (x1029 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1028) "preserveFocus"
-                (Ojs.bool_to_js x1029)
+          fun (x1046 : t) ->
+            fun (x1047 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1046) "preserveFocus"
+                (Ojs.bool_to_js x1047)
         let (preview : t -> bool) =
-          fun (x1030 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1030) "preview")
+          fun (x1048 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1048) "preview")
         let (set_preview : t -> bool -> unit) =
-          fun (x1031 : t) ->
-            fun (x1032 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1031) "preview"
-                (Ojs.bool_to_js x1032)
+          fun (x1049 : t) ->
+            fun (x1050 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1049) "preview"
+                (Ojs.bool_to_js x1050)
         let (selection : t -> NotebookCellRange.t) =
-          fun (x1033 : t) ->
+          fun (x1051 : t) ->
             NotebookCellRange.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1033) "selection")
+              (Ojs.get_prop_ascii (t_to_js x1051) "selection")
         let (set_selection : t -> NotebookCellRange.t -> unit) =
-          fun (x1034 : t) ->
-            fun (x1035 : NotebookCellRange.t) ->
-              Ojs.set_prop_ascii (t_to_js x1034) "selection"
-                (NotebookCellRange.t_to_js x1035)
+          fun (x1052 : t) ->
+            fun (x1053 : NotebookCellRange.t) ->
+              Ojs.set_prop_ascii (t_to_js x1052) "selection"
+                (NotebookCellRange.t_to_js x1053)
       end
     module NotebookSerializer =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1037 : Ojs.t) -> x1037
-        and t_to_js : t -> Ojs.t = fun (x1036 : Ojs.t) -> x1036
+        let rec t_of_js : Ojs.t -> t = fun (x1055 : Ojs.t) -> x1055
+        and t_to_js : t -> Ojs.t = fun (x1054 : Ojs.t) -> x1054
         let (data_to_notebook :
           t ->
             data:Uint8Array.t ->
               (NotebookData.t, NotebookData.t Promise.t) union2)
           =
-          fun (x1039 : t) ->
-            fun ~data:(x1038 : Uint8Array.t) ->
+          fun (x1057 : t) ->
+            fun ~data:(x1056 : Uint8Array.t) ->
               union2_of_js NotebookData.t_of_js
-                (fun (x1041 : Ojs.t) ->
-                   Promise.t_of_js NotebookData.t_of_js x1041)
-                (Ojs.call (t_to_js x1039) "dataToNotebook"
-                   [|(Uint8Array.t_to_js x1038)|])
+                (fun (x1059 : Ojs.t) ->
+                   Promise.t_of_js NotebookData.t_of_js x1059)
+                (Ojs.call (t_to_js x1057) "dataToNotebook"
+                   [|(Uint8Array.t_to_js x1056)|])
         let (notebook_to_data :
           t ->
             data:NotebookData.t ->
               (Uint8Array.t, Uint8Array.t Promise.t) union2)
           =
-          fun (x1044 : t) ->
-            fun ~data:(x1043 : NotebookData.t) ->
+          fun (x1062 : t) ->
+            fun ~data:(x1061 : NotebookData.t) ->
               union2_of_js Uint8Array.t_of_js
-                (fun (x1046 : Ojs.t) ->
-                   Promise.t_of_js Uint8Array.t_of_js x1046)
-                (Ojs.call (t_to_js x1044) "notebookToData"
-                   [|(NotebookData.t_to_js x1043)|])
+                (fun (x1064 : Ojs.t) ->
+                   Promise.t_of_js Uint8Array.t_of_js x1064)
+                (Ojs.call (t_to_js x1062) "notebookToData"
+                   [|(NotebookData.t_to_js x1061)|])
+        let (create :
+          deserialize_notebook:(content:Uint8Array.t ->
+                                  token:CancellationToken.t ->
+                                    NotebookData.t Promise.t)
+            ->
+            serialize_notebook:(data:NotebookData.t ->
+                                  token:CancellationToken.t ->
+                                    Uint8Array.t Promise.t)
+              -> t)
+          =
+          fun
+            ~deserialize_notebook:(x1066 :
+                                    content:Uint8Array.t ->
+                                      token:CancellationToken.t ->
+                                        NotebookData.t Promise.t)
+            ->
+            fun
+              ~serialize_notebook:(x1067 :
+                                    data:NotebookData.t ->
+                                      token:CancellationToken.t ->
+                                        Uint8Array.t Promise.t)
+              ->
+              let x1068 = Ojs.empty_obj () in
+              Ojs.set_prop_ascii x1068 "deserializeNotebook"
+                (Ojs.fun_to_js 2
+                   (fun (x1072 : Ojs.t) ->
+                      fun (x1073 : Ojs.t) ->
+                        Promise.t_to_js NotebookData.t_to_js
+                          (x1066 ~content:(Uint8Array.t_of_js x1072)
+                             ~token:(CancellationToken.t_of_js x1073))));
+              Ojs.set_prop_ascii x1068 "serializeNotebook"
+                (Ojs.fun_to_js 2
+                   (fun (x1069 : Ojs.t) ->
+                      fun (x1070 : Ojs.t) ->
+                        Promise.t_to_js Uint8Array.t_to_js
+                          (x1067 ~data:(NotebookData.t_of_js x1069)
+                             ~token:(CancellationToken.t_of_js x1070))));
+              t_of_js x1068
       end
     module NotebookFilter =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1049 : Ojs.t) -> x1049
-        and t_to_js : t -> Ojs.t = fun (x1048 : Ojs.t) -> x1048
+        let rec t_of_js : Ojs.t -> t = fun (x1076 : Ojs.t) -> x1076
+        and t_to_js : t -> Ojs.t = fun (x1075 : Ojs.t) -> x1075
         let (view_type : t -> string) =
-          fun (x1050 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1050) "viewType")
+          fun (x1077 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1077) "viewType")
         let (scheme : t -> string) =
-          fun (x1051 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1051) "scheme")
+          fun (x1078 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1078) "scheme")
         let (pattern : t -> GlobPattern.t) =
-          fun (x1052 : t) ->
+          fun (x1079 : t) ->
             GlobPattern.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1052) "pattern")
+              (Ojs.get_prop_ascii (t_to_js x1079) "pattern")
       end
     module NotebookSelector =
       struct
@@ -3073,358 +3193,287 @@ module Vscode =
           (NotebookFilter.t, NotebookFilter.t or_string list) union2
             or_string
         let rec t_of_js : Ojs.t -> t =
-          fun (x1059 : Ojs.t) ->
+          fun (x1086 : Ojs.t) ->
             or_string_of_js
-              (fun (x1060 : Ojs.t) ->
+              (fun (x1087 : Ojs.t) ->
                  union2_of_js NotebookFilter.t_of_js
-                   (fun (x1062 : Ojs.t) ->
+                   (fun (x1089 : Ojs.t) ->
                       Ojs.list_of_js
-                        (fun (x1063 : Ojs.t) ->
-                           or_string_of_js NotebookFilter.t_of_js x1063)
-                        x1062) x1060) x1059
+                        (fun (x1090 : Ojs.t) ->
+                           or_string_of_js NotebookFilter.t_of_js x1090)
+                        x1089) x1087) x1086
         and t_to_js : t -> Ojs.t =
           fun
-            (x1053 :
+            (x1080 :
               (NotebookFilter.t, NotebookFilter.t or_string list) union2
                 or_string)
             ->
             or_string_to_js
               (fun
-                 (x1054 :
+                 (x1081 :
                    (NotebookFilter.t, NotebookFilter.t or_string list) union2)
                  ->
                  union2_to_js NotebookFilter.t_to_js
-                   (fun (x1056 : NotebookFilter.t or_string list) ->
+                   (fun (x1083 : NotebookFilter.t or_string list) ->
                       Ojs.list_to_js
-                        (fun (x1057 : NotebookFilter.t or_string) ->
-                           or_string_to_js NotebookFilter.t_to_js x1057)
-                        x1056) x1054) x1053
+                        (fun (x1084 : NotebookFilter.t or_string) ->
+                           or_string_to_js NotebookFilter.t_to_js x1084)
+                        x1083) x1081) x1080
       end
     module NotebookCellExecuteStartContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1066 : Ojs.t) -> x1066
-        and t_to_js : t -> Ojs.t = fun (x1065 : Ojs.t) -> x1065
+        let rec t_of_js : Ojs.t -> t = fun (x1093 : Ojs.t) -> x1093
+        and t_to_js : t -> Ojs.t = fun (x1092 : Ojs.t) -> x1092
         let (start_time : t -> int) =
-          fun (x1067 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1067) "startTime")
+          fun (x1094 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1094) "startTime")
         let (set_start_time : t -> int -> unit) =
-          fun (x1068 : t) ->
-            fun (x1069 : int) ->
-              Ojs.set_prop_ascii (t_to_js x1068) "startTime"
-                (Ojs.int_to_js x1069)
+          fun (x1095 : t) ->
+            fun (x1096 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1095) "startTime"
+                (Ojs.int_to_js x1096)
       end
     module NotebookCellExecuteEndContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1071 : Ojs.t) -> x1071
-        and t_to_js : t -> Ojs.t = fun (x1070 : Ojs.t) -> x1070
+        let rec t_of_js : Ojs.t -> t = fun (x1098 : Ojs.t) -> x1098
+        and t_to_js : t -> Ojs.t = fun (x1097 : Ojs.t) -> x1097
         let (success : t -> bool) =
-          fun (x1072 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1072) "success")
+          fun (x1099 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1099) "success")
         let (set_success : t -> bool -> unit) =
-          fun (x1073 : t) ->
-            fun (x1074 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1073) "success"
-                (Ojs.bool_to_js x1074)
+          fun (x1100 : t) ->
+            fun (x1101 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1100) "success"
+                (Ojs.bool_to_js x1101)
         let (duration : t -> int) =
-          fun (x1075 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1075) "duration")
+          fun (x1102 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1102) "duration")
         let (set_duration : t -> int -> unit) =
-          fun (x1076 : t) ->
-            fun (x1077 : int) ->
-              Ojs.set_prop_ascii (t_to_js x1076) "duration"
-                (Ojs.int_to_js x1077)
+          fun (x1103 : t) ->
+            fun (x1104 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1103) "duration"
+                (Ojs.int_to_js x1104)
       end
     module NotebookCellExecutionTask =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1079 : Ojs.t) -> x1079
-        and t_to_js : t -> Ojs.t = fun (x1078 : Ojs.t) -> x1078
+        let rec t_of_js : Ojs.t -> t = fun (x1106 : Ojs.t) -> x1106
+        and t_to_js : t -> Ojs.t = fun (x1105 : Ojs.t) -> x1105
         let (document : t -> NotebookDocument.t) =
-          fun (x1080 : t) ->
+          fun (x1107 : t) ->
             NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1080) "document")
+              (Ojs.get_prop_ascii (t_to_js x1107) "document")
         let (cell : t -> NotebookCell.t) =
-          fun (x1081 : t) ->
-            NotebookCell.t_of_js (Ojs.get_prop_ascii (t_to_js x1081) "cell")
+          fun (x1108 : t) ->
+            NotebookCell.t_of_js (Ojs.get_prop_ascii (t_to_js x1108) "cell")
         let (start :
           t -> ?context:NotebookCellExecuteStartContext.t -> unit -> unit) =
-          fun (x1085 : t) ->
-            fun ?context:(x1082 : NotebookCellExecuteStartContext.t option)
+          fun (x1112 : t) ->
+            fun ?context:(x1109 : NotebookCellExecuteStartContext.t option)
               ->
               fun () ->
                 ignore
-                  (let x1086 = t_to_js x1085 in
-                   Ojs.call (Ojs.get_prop_ascii x1086 "start") "apply"
-                     [|x1086;((let x1083 =
+                  (let x1113 = t_to_js x1112 in
+                   Ojs.call (Ojs.get_prop_ascii x1113 "start") "apply"
+                     [|x1113;((let x1110 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
-                               (match x1082 with
-                                | Some x1084 ->
+                               (match x1109 with
+                                | Some x1111 ->
                                     ignore
-                                      (Ojs.call x1083 "push"
+                                      (Ojs.call x1110 "push"
                                          [|(NotebookCellExecuteStartContext.t_to_js
-                                              x1084)|])
+                                              x1111)|])
                                 | None -> ());
-                               x1083))|])
+                               x1110))|])
         let (execution_order : t -> int or_undefined) =
-          fun (x1087 : t) ->
+          fun (x1114 : t) ->
             or_undefined_of_js Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js x1087) "executionOrder")
+              (Ojs.get_prop_ascii (t_to_js x1114) "executionOrder")
         let (set_execution_order : t -> int or_undefined -> unit) =
-          fun (x1089 : t) ->
-            fun (x1090 : int or_undefined) ->
-              Ojs.set_prop_ascii (t_to_js x1089) "executionOrder"
-                (or_undefined_to_js Ojs.int_to_js x1090)
+          fun (x1116 : t) ->
+            fun (x1117 : int or_undefined) ->
+              Ojs.set_prop_ascii (t_to_js x1116) "executionOrder"
+                (or_undefined_to_js Ojs.int_to_js x1117)
         let (end_ :
           t -> ?result:NotebookCellExecuteEndContext.t -> unit -> unit) =
-          fun (x1095 : t) ->
-            fun ?result:(x1092 : NotebookCellExecuteEndContext.t option) ->
+          fun (x1122 : t) ->
+            fun ?result:(x1119 : NotebookCellExecuteEndContext.t option) ->
               fun () ->
                 ignore
-                  (let x1096 = t_to_js x1095 in
-                   Ojs.call (Ojs.get_prop_ascii x1096 "end") "apply"
-                     [|x1096;((let x1093 =
+                  (let x1123 = t_to_js x1122 in
+                   Ojs.call (Ojs.get_prop_ascii x1123 "end") "apply"
+                     [|x1123;((let x1120 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
-                               (match x1092 with
-                                | Some x1094 ->
+                               (match x1119 with
+                                | Some x1121 ->
                                     ignore
-                                      (Ojs.call x1093 "push"
+                                      (Ojs.call x1120 "push"
                                          [|(NotebookCellExecuteEndContext.t_to_js
-                                              x1094)|])
+                                              x1121)|])
                                 | None -> ());
-                               x1093))|])
+                               x1120))|])
         let (token : t -> CancellationToken.t) =
-          fun (x1097 : t) ->
+          fun (x1124 : t) ->
             CancellationToken.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1097) "token")
+              (Ojs.get_prop_ascii (t_to_js x1124) "token")
         let (clear_output : t -> ?cell_index:int -> unit -> unit Promise.t) =
-          fun (x1101 : t) ->
-            fun ?cell_index:(x1098 : int option) ->
+          fun (x1128 : t) ->
+            fun ?cell_index:(x1125 : int option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
-                  (let x1102 = t_to_js x1101 in
-                   Ojs.call (Ojs.get_prop_ascii x1102 "clearOutput") "apply"
-                     [|x1102;((let x1099 =
+                  (let x1129 = t_to_js x1128 in
+                   Ojs.call (Ojs.get_prop_ascii x1129 "clearOutput") "apply"
+                     [|x1129;((let x1126 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
-                               (match x1098 with
-                                | Some x1100 ->
+                               (match x1125 with
+                                | Some x1127 ->
                                     ignore
-                                      (Ojs.call x1099 "push"
-                                         [|(Ojs.int_to_js x1100)|])
+                                      (Ojs.call x1126 "push"
+                                         [|(Ojs.int_to_js x1127)|])
                                 | None -> ());
-                               x1099))|])
+                               x1126))|])
         let (append_output :
           t ->
             out:(NotebookCellOutput.t, NotebookCellOutput.t) or_array ->
               ?cell_index:int -> unit -> unit Promise.t)
           =
-          fun (x1110 : t) ->
+          fun (x1137 : t) ->
             fun
-              ~out:(x1104 :
+              ~out:(x1131 :
                      (NotebookCellOutput.t, NotebookCellOutput.t) or_array)
               ->
-              fun ?cell_index:(x1105 : int option) ->
+              fun ?cell_index:(x1132 : int option) ->
                 fun () ->
                   Promise.t_of_js Ojs.unit_of_js
-                    (let x1111 = t_to_js x1110 in
-                     Ojs.call (Ojs.get_prop_ascii x1111 "appendOutput")
+                    (let x1138 = t_to_js x1137 in
+                     Ojs.call (Ojs.get_prop_ascii x1138 "appendOutput")
                        "apply"
-                       [|x1111;((let x1106 =
+                       [|x1138;((let x1133 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x1106 "push"
+                                   (Ojs.call x1133 "push"
                                       [|(or_array_to_js
                                            NotebookCellOutput.t_to_js
-                                           NotebookCellOutput.t_to_js x1104)|]);
-                                 (match x1105 with
-                                  | Some x1107 ->
+                                           NotebookCellOutput.t_to_js x1131)|]);
+                                 (match x1132 with
+                                  | Some x1134 ->
                                       ignore
-                                        (Ojs.call x1106 "push"
-                                           [|(Ojs.int_to_js x1107)|])
+                                        (Ojs.call x1133 "push"
+                                           [|(Ojs.int_to_js x1134)|])
                                   | None -> ());
-                                 x1106))|])
+                                 x1133))|])
         let (replace_output :
           t ->
             out:(NotebookCellOutput.t, NotebookCellOutput.t) or_array ->
               ?cell_index:int -> unit -> unit Promise.t)
           =
-          fun (x1119 : t) ->
+          fun (x1146 : t) ->
             fun
-              ~out:(x1113 :
+              ~out:(x1140 :
                      (NotebookCellOutput.t, NotebookCellOutput.t) or_array)
               ->
-              fun ?cell_index:(x1114 : int option) ->
+              fun ?cell_index:(x1141 : int option) ->
                 fun () ->
                   Promise.t_of_js Ojs.unit_of_js
-                    (let x1120 = t_to_js x1119 in
-                     Ojs.call (Ojs.get_prop_ascii x1120 "replaceOutput")
+                    (let x1147 = t_to_js x1146 in
+                     Ojs.call (Ojs.get_prop_ascii x1147 "replaceOutput")
                        "apply"
-                       [|x1120;((let x1115 =
+                       [|x1147;((let x1142 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x1115 "push"
+                                   (Ojs.call x1142 "push"
                                       [|(or_array_to_js
                                            NotebookCellOutput.t_to_js
-                                           NotebookCellOutput.t_to_js x1113)|]);
-                                 (match x1114 with
-                                  | Some x1116 ->
+                                           NotebookCellOutput.t_to_js x1140)|]);
+                                 (match x1141 with
+                                  | Some x1143 ->
                                       ignore
-                                        (Ojs.call x1115 "push"
-                                           [|(Ojs.int_to_js x1116)|])
+                                        (Ojs.call x1142 "push"
+                                           [|(Ojs.int_to_js x1143)|])
                                   | None -> ());
-                                 x1115))|])
+                                 x1142))|])
         let (append_output_items :
           t ->
             items:(NotebookCellOutputItem.t, NotebookCellOutputItem.t)
               or_array -> output_id:string -> unit Promise.t)
           =
-          fun (x1126 : t) ->
+          fun (x1153 : t) ->
             fun
-              ~items:(x1122 :
+              ~items:(x1149 :
                        (NotebookCellOutputItem.t, NotebookCellOutputItem.t)
                          or_array)
               ->
-              fun ~output_id:(x1125 : string) ->
+              fun ~output_id:(x1152 : string) ->
                 Promise.t_of_js Ojs.unit_of_js
-                  (Ojs.call (t_to_js x1126) "appendOutputItems"
+                  (Ojs.call (t_to_js x1153) "appendOutputItems"
                      [|(or_array_to_js NotebookCellOutputItem.t_to_js
-                          NotebookCellOutputItem.t_to_js x1122);(Ojs.string_to_js
-                                                                   x1125)|])
+                          NotebookCellOutputItem.t_to_js x1149);(Ojs.string_to_js
+                                                                   x1152)|])
         let (replace_output_items :
           t ->
             items:(NotebookCellOutputItem.t, NotebookCellOutputItem.t)
               or_array -> output_id:string -> unit Promise.t)
           =
-          fun (x1132 : t) ->
+          fun (x1159 : t) ->
             fun
-              ~items:(x1128 :
+              ~items:(x1155 :
                        (NotebookCellOutputItem.t, NotebookCellOutputItem.t)
                          or_array)
               ->
-              fun ~output_id:(x1131 : string) ->
+              fun ~output_id:(x1158 : string) ->
                 Promise.t_of_js Ojs.unit_of_js
-                  (Ojs.call (t_to_js x1132) "replaceOutputItems"
+                  (Ojs.call (t_to_js x1159) "replaceOutputItems"
                      [|(or_array_to_js NotebookCellOutputItem.t_to_js
-                          NotebookCellOutputItem.t_to_js x1128);(Ojs.string_to_js
-                                                                   x1131)|])
+                          NotebookCellOutputItem.t_to_js x1155);(Ojs.string_to_js
+                                                                   x1158)|])
       end
     module NotebookDecorationRenderOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1135 : Ojs.t) -> x1135
-        and t_to_js : t -> Ojs.t = fun (x1134 : Ojs.t) -> x1134
+        let rec t_of_js : Ojs.t -> t = fun (x1162 : Ojs.t) -> x1162
+        and t_to_js : t -> Ojs.t = fun (x1161 : Ojs.t) -> x1161
         let (background_color : t -> ThemeColor.t or_string) =
-          fun (x1136 : t) ->
+          fun (x1163 : t) ->
             or_string_of_js ThemeColor.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1136) "backgroundColor")
+              (Ojs.get_prop_ascii (t_to_js x1163) "backgroundColor")
         let (set_background_color : t -> ThemeColor.t or_string -> unit) =
-          fun (x1138 : t) ->
-            fun (x1139 : ThemeColor.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1138) "backgroundColor"
-                (or_string_to_js ThemeColor.t_to_js x1139)
+          fun (x1165 : t) ->
+            fun (x1166 : ThemeColor.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1165) "backgroundColor"
+                (or_string_to_js ThemeColor.t_to_js x1166)
         let (border_color : t -> ThemeColor.t or_string) =
-          fun (x1141 : t) ->
+          fun (x1168 : t) ->
             or_string_of_js ThemeColor.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1141) "borderColor")
+              (Ojs.get_prop_ascii (t_to_js x1168) "borderColor")
         let (set_border_color : t -> ThemeColor.t or_string -> unit) =
-          fun (x1143 : t) ->
-            fun (x1144 : ThemeColor.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1143) "borderColor"
-                (or_string_to_js ThemeColor.t_to_js x1144)
+          fun (x1170 : t) ->
+            fun (x1171 : ThemeColor.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1170) "borderColor"
+                (or_string_to_js ThemeColor.t_to_js x1171)
         let (top : t -> ThemableDecorationAttachmentRenderOptions.t) =
-          fun (x1146 : t) ->
+          fun (x1173 : t) ->
             ThemableDecorationAttachmentRenderOptions.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1146) "top")
+              (Ojs.get_prop_ascii (t_to_js x1173) "top")
         let (set_top :
           t -> ThemableDecorationAttachmentRenderOptions.t -> unit) =
-          fun (x1147 : t) ->
-            fun (x1148 : ThemableDecorationAttachmentRenderOptions.t) ->
-              Ojs.set_prop_ascii (t_to_js x1147) "top"
-                (ThemableDecorationAttachmentRenderOptions.t_to_js x1148)
+          fun (x1174 : t) ->
+            fun (x1175 : ThemableDecorationAttachmentRenderOptions.t) ->
+              Ojs.set_prop_ascii (t_to_js x1174) "top"
+                (ThemableDecorationAttachmentRenderOptions.t_to_js x1175)
       end
     module NotebookKernelOptions =
-      struct
-        type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1150 : Ojs.t) -> x1150
-        and t_to_js : t -> Ojs.t = fun (x1149 : Ojs.t) -> x1149
-        let (id : t -> string) =
-          fun (x1151 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1151) "id")
-        let (set_id : t -> string -> unit) =
-          fun (x1152 : t) ->
-            fun (x1153 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1152) "id"
-                (Ojs.string_to_js x1153)
-        let (label : t -> string) =
-          fun (x1154 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1154) "label")
-        let (set_label : t -> string -> unit) =
-          fun (x1155 : t) ->
-            fun (x1156 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1155) "label"
-                (Ojs.string_to_js x1156)
-        let (description : t -> string) =
-          fun (x1157 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1157) "description")
-        let (set_description : t -> string -> unit) =
-          fun (x1158 : t) ->
-            fun (x1159 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1158) "description"
-                (Ojs.string_to_js x1159)
-        let (selector : t -> NotebookSelector.t) =
-          fun (x1160 : t) ->
-            NotebookSelector.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1160) "selector")
-        let (set_selector : t -> NotebookSelector.t -> unit) =
-          fun (x1161 : t) ->
-            fun (x1162 : NotebookSelector.t) ->
-              Ojs.set_prop_ascii (t_to_js x1161) "selector"
-                (NotebookSelector.t_to_js x1162)
-        let (supported_languages : t -> string list) =
-          fun (x1163 : t) ->
-            Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1163) "supportedLanguages")
-        let (set_supported_languages : t -> string list -> unit) =
-          fun (x1165 : t) ->
-            fun (x1166 : string list) ->
-              Ojs.set_prop_ascii (t_to_js x1165) "supportedLanguages"
-                (Ojs.list_to_js Ojs.string_to_js x1166)
-        let (has_execution_order : t -> bool) =
-          fun (x1168 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x1168) "hasExecutionOrder")
-        let (set_has_execution_order : t -> bool -> unit) =
-          fun (x1169 : t) ->
-            fun (x1170 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1169) "hasExecutionOrder"
-                (Ojs.bool_to_js x1170)
-        let (execute_handler :
-          t -> executions:NotebookCellExecutionTask.t list -> unit) =
-          fun (x1173 : t) ->
-            fun ~executions:(x1171 : NotebookCellExecutionTask.t list) ->
-              ignore
-                (Ojs.call (t_to_js x1173) "executeHandler"
-                   [|(Ojs.list_to_js NotebookCellExecutionTask.t_to_js x1171)|])
-        let (interrupt_handler : t -> notebook:NotebookDocument.t -> unit) =
-          fun (x1175 : t) ->
-            fun ~notebook:(x1174 : NotebookDocument.t) ->
-              ignore
-                (Ojs.call (t_to_js x1175) "interruptHandler"
-                   [|(NotebookDocument.t_to_js x1174)|])
-      end
-    module NotebookKernel2 =
       struct
         type t = Ojs.t
         let rec t_of_js : Ojs.t -> t = fun (x1177 : Ojs.t) -> x1177
@@ -3432,115 +3481,186 @@ module Vscode =
         let (id : t -> string) =
           fun (x1178 : t) ->
             Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1178) "id")
-        let (selector : t -> NotebookSelector.t) =
+        let (set_id : t -> string -> unit) =
           fun (x1179 : t) ->
-            NotebookSelector.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1179) "selector")
+            fun (x1180 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1179) "id"
+                (Ojs.string_to_js x1180)
         let (label : t -> string) =
-          fun (x1180 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1180) "label")
-        let (set_label : t -> string -> unit) =
           fun (x1181 : t) ->
-            fun (x1182 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1181) "label"
-                (Ojs.string_to_js x1182)
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1181) "label")
+        let (set_label : t -> string -> unit) =
+          fun (x1182 : t) ->
+            fun (x1183 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1182) "label"
+                (Ojs.string_to_js x1183)
         let (description : t -> string) =
-          fun (x1183 : t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1183) "description")
-        let (set_description : t -> string -> unit) =
           fun (x1184 : t) ->
-            fun (x1185 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1184) "description"
-                (Ojs.string_to_js x1185)
-        let (supported_languages : t -> string list) =
-          fun (x1186 : t) ->
-            Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1186) "supportedLanguages")
-        let (set_supported_languages : t -> string list -> unit) =
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x1184) "description")
+        let (set_description : t -> string -> unit) =
+          fun (x1185 : t) ->
+            fun (x1186 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1185) "description"
+                (Ojs.string_to_js x1186)
+        let (selector : t -> NotebookSelector.t) =
+          fun (x1187 : t) ->
+            NotebookSelector.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x1187) "selector")
+        let (set_selector : t -> NotebookSelector.t -> unit) =
           fun (x1188 : t) ->
-            fun (x1189 : string list) ->
-              Ojs.set_prop_ascii (t_to_js x1188) "supportedLanguages"
-                (Ojs.list_to_js Ojs.string_to_js x1189)
-        let (has_execution_order : t -> bool) =
-          fun (x1191 : t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x1191) "hasExecutionOrder")
-        let (set_has_execution_order : t -> bool -> unit) =
+            fun (x1189 : NotebookSelector.t) ->
+              Ojs.set_prop_ascii (t_to_js x1188) "selector"
+                (NotebookSelector.t_to_js x1189)
+        let (supported_languages : t -> string list) =
+          fun (x1190 : t) ->
+            Ojs.list_of_js Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x1190) "supportedLanguages")
+        let (set_supported_languages : t -> string list -> unit) =
           fun (x1192 : t) ->
-            fun (x1193 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1192) "hasExecutionOrder"
-                (Ojs.bool_to_js x1193)
+            fun (x1193 : string list) ->
+              Ojs.set_prop_ascii (t_to_js x1192) "supportedLanguages"
+                (Ojs.list_to_js Ojs.string_to_js x1193)
+        let (has_execution_order : t -> bool) =
+          fun (x1195 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x1195) "hasExecutionOrder")
+        let (set_has_execution_order : t -> bool -> unit) =
+          fun (x1196 : t) ->
+            fun (x1197 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1196) "hasExecutionOrder"
+                (Ojs.bool_to_js x1197)
         let (execute_handler :
           t -> executions:NotebookCellExecutionTask.t list -> unit) =
-          fun (x1196 : t) ->
-            fun ~executions:(x1194 : NotebookCellExecutionTask.t list) ->
+          fun (x1200 : t) ->
+            fun ~executions:(x1198 : NotebookCellExecutionTask.t list) ->
               ignore
-                (Ojs.call (t_to_js x1196) "executeHandler"
-                   [|(Ojs.list_to_js NotebookCellExecutionTask.t_to_js x1194)|])
+                (Ojs.call (t_to_js x1200) "executeHandler"
+                   [|(Ojs.list_to_js NotebookCellExecutionTask.t_to_js x1198)|])
         let (interrupt_handler : t -> notebook:NotebookDocument.t -> unit) =
-          fun (x1198 : t) ->
-            fun ~notebook:(x1197 : NotebookDocument.t) ->
+          fun (x1202 : t) ->
+            fun ~notebook:(x1201 : NotebookDocument.t) ->
               ignore
-                (Ojs.call (t_to_js x1198) "interruptHandler"
-                   [|(NotebookDocument.t_to_js x1197)|])
+                (Ojs.call (t_to_js x1202) "interruptHandler"
+                   [|(NotebookDocument.t_to_js x1201)|])
+      end
+    module NotebookKernel2 =
+      struct
+        type t = Ojs.t
+        let rec t_of_js : Ojs.t -> t = fun (x1204 : Ojs.t) -> x1204
+        and t_to_js : t -> Ojs.t = fun (x1203 : Ojs.t) -> x1203
+        let (id : t -> string) =
+          fun (x1205 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1205) "id")
+        let (selector : t -> NotebookSelector.t) =
+          fun (x1206 : t) ->
+            NotebookSelector.t_of_js
+              (Ojs.get_prop_ascii (t_to_js x1206) "selector")
+        let (label : t -> string) =
+          fun (x1207 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1207) "label")
+        let (set_label : t -> string -> unit) =
+          fun (x1208 : t) ->
+            fun (x1209 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1208) "label"
+                (Ojs.string_to_js x1209)
+        let (description : t -> string) =
+          fun (x1210 : t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x1210) "description")
+        let (set_description : t -> string -> unit) =
+          fun (x1211 : t) ->
+            fun (x1212 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1211) "description"
+                (Ojs.string_to_js x1212)
+        let (supported_languages : t -> string list) =
+          fun (x1213 : t) ->
+            Ojs.list_of_js Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js x1213) "supportedLanguages")
+        let (set_supported_languages : t -> string list -> unit) =
+          fun (x1215 : t) ->
+            fun (x1216 : string list) ->
+              Ojs.set_prop_ascii (t_to_js x1215) "supportedLanguages"
+                (Ojs.list_to_js Ojs.string_to_js x1216)
+        let (has_execution_order : t -> bool) =
+          fun (x1218 : t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js x1218) "hasExecutionOrder")
+        let (set_has_execution_order : t -> bool -> unit) =
+          fun (x1219 : t) ->
+            fun (x1220 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1219) "hasExecutionOrder"
+                (Ojs.bool_to_js x1220)
+        let (execute_handler :
+          t -> executions:NotebookCellExecutionTask.t list -> unit) =
+          fun (x1223 : t) ->
+            fun ~executions:(x1221 : NotebookCellExecutionTask.t list) ->
+              ignore
+                (Ojs.call (t_to_js x1223) "executeHandler"
+                   [|(Ojs.list_to_js NotebookCellExecutionTask.t_to_js x1221)|])
+        let (interrupt_handler : t -> notebook:NotebookDocument.t -> unit) =
+          fun (x1225 : t) ->
+            fun ~notebook:(x1224 : NotebookDocument.t) ->
+              ignore
+                (Ojs.call (t_to_js x1225) "interruptHandler"
+                   [|(NotebookDocument.t_to_js x1224)|])
         let (dispose : t -> unit) =
-          fun (x1199 : t) -> ignore (Ojs.call (t_to_js x1199) "dispose" [||])
+          fun (x1226 : t) -> ignore (Ojs.call (t_to_js x1226) "dispose" [||])
         let (create_notebook_cell_execution_task :
           t -> cell:NotebookCell.t -> NotebookCellExecutionTask.t) =
-          fun (x1201 : t) ->
-            fun ~cell:(x1200 : NotebookCell.t) ->
+          fun (x1228 : t) ->
+            fun ~cell:(x1227 : NotebookCell.t) ->
               NotebookCellExecutionTask.t_of_js
-                (Ojs.call (t_to_js x1201) "createNotebookCellExecutionTask"
-                   [|(NotebookCell.t_to_js x1200)|])
+                (Ojs.call (t_to_js x1228) "createNotebookCellExecutionTask"
+                   [|(NotebookCell.t_to_js x1227)|])
       end
     module NotebookDocumentBackup =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1203 : Ojs.t) -> x1203
-        and t_to_js : t -> Ojs.t = fun (x1202 : Ojs.t) -> x1202
+        let rec t_of_js : Ojs.t -> t = fun (x1230 : Ojs.t) -> x1230
+        and t_to_js : t -> Ojs.t = fun (x1229 : Ojs.t) -> x1229
         let (id : t -> string) =
-          fun (x1204 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1204) "id")
+          fun (x1231 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1231) "id")
         let (delete : t -> unit) =
-          fun (x1205 : t) -> ignore (Ojs.call (t_to_js x1205) "delete" [||])
+          fun (x1232 : t) -> ignore (Ojs.call (t_to_js x1232) "delete" [||])
       end
     module NotebookDocumentBackupContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1207 : Ojs.t) -> x1207
-        and t_to_js : t -> Ojs.t = fun (x1206 : Ojs.t) -> x1206
+        let rec t_of_js : Ojs.t -> t = fun (x1234 : Ojs.t) -> x1234
+        and t_to_js : t -> Ojs.t = fun (x1233 : Ojs.t) -> x1233
         let (destination : t -> Uri.t) =
-          fun (x1208 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1208) "destination")
+          fun (x1235 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1235) "destination")
       end
     module NotebookDocumentOpenContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1210 : Ojs.t) -> x1210
-        and t_to_js : t -> Ojs.t = fun (x1209 : Ojs.t) -> x1209
+        let rec t_of_js : Ojs.t -> t = fun (x1237 : Ojs.t) -> x1237
+        and t_to_js : t -> Ojs.t = fun (x1236 : Ojs.t) -> x1236
         let (backup_id : t -> string) =
-          fun (x1211 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1211) "backupId")
+          fun (x1238 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1238) "backupId")
         let (untitled_document_data : t -> Uint8Array.t) =
-          fun (x1212 : t) ->
+          fun (x1239 : t) ->
             Uint8Array.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1212) "untitledDocumentData")
+              (Ojs.get_prop_ascii (t_to_js x1239) "untitledDocumentData")
       end
     module NotebookContentProvider =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1214 : Ojs.t) -> x1214
-        and t_to_js : t -> Ojs.t = fun (x1213 : Ojs.t) -> x1213
+        let rec t_of_js : Ojs.t -> t = fun (x1241 : Ojs.t) -> x1241
+        and t_to_js : t -> Ojs.t = fun (x1240 : Ojs.t) -> x1240
         let (options : t -> NotebookDocumentContentOptions.t) =
-          fun (x1215 : t) ->
+          fun (x1242 : t) ->
             NotebookDocumentContentOptions.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1215) "options")
+              (Ojs.get_prop_ascii (t_to_js x1242) "options")
         let (on_did_change_notebook_content_options :
           t -> NotebookDocumentContentOptions.t Event.t) =
-          fun (x1216 : t) ->
+          fun (x1243 : t) ->
             Event.t_of_js NotebookDocumentContentOptions.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1216)
+              (Ojs.get_prop_ascii (t_to_js x1243)
                  "onDidChangeNotebookContentOptions")
         let (open_notebook :
           t ->
@@ -3549,43 +3669,43 @@ module Vscode =
                 token:CancellationToken.t ->
                   (NotebookData.t, NotebookData.t Promise.t) union2)
           =
-          fun (x1221 : t) ->
-            fun ~uri:(x1218 : Uri.t) ->
-              fun ~open_context:(x1219 : NotebookDocumentOpenContext.t) ->
-                fun ~token:(x1220 : CancellationToken.t) ->
+          fun (x1248 : t) ->
+            fun ~uri:(x1245 : Uri.t) ->
+              fun ~open_context:(x1246 : NotebookDocumentOpenContext.t) ->
+                fun ~token:(x1247 : CancellationToken.t) ->
                   union2_of_js NotebookData.t_of_js
-                    (fun (x1223 : Ojs.t) ->
-                       Promise.t_of_js NotebookData.t_of_js x1223)
-                    (Ojs.call (t_to_js x1221) "openNotebook"
-                       [|(Uri.t_to_js x1218);(NotebookDocumentOpenContext.t_to_js
-                                                x1219);(CancellationToken.t_to_js
-                                                          x1220)|])
+                    (fun (x1250 : Ojs.t) ->
+                       Promise.t_of_js NotebookData.t_of_js x1250)
+                    (Ojs.call (t_to_js x1248) "openNotebook"
+                       [|(Uri.t_to_js x1245);(NotebookDocumentOpenContext.t_to_js
+                                                x1246);(CancellationToken.t_to_js
+                                                          x1247)|])
         let (save_notebook :
           t ->
             document:NotebookDocument.t ->
               token:CancellationToken.t -> unit Promise.t)
           =
-          fun (x1227 : t) ->
-            fun ~document:(x1225 : NotebookDocument.t) ->
-              fun ~token:(x1226 : CancellationToken.t) ->
+          fun (x1254 : t) ->
+            fun ~document:(x1252 : NotebookDocument.t) ->
+              fun ~token:(x1253 : CancellationToken.t) ->
                 Promise.t_of_js Ojs.unit_of_js
-                  (Ojs.call (t_to_js x1227) "saveNotebook"
-                     [|(NotebookDocument.t_to_js x1225);(CancellationToken.t_to_js
-                                                           x1226)|])
+                  (Ojs.call (t_to_js x1254) "saveNotebook"
+                     [|(NotebookDocument.t_to_js x1252);(CancellationToken.t_to_js
+                                                           x1253)|])
         let (save_notebook_as :
           t ->
             target_resource:Uri.t ->
               document:NotebookDocument.t ->
                 token:CancellationToken.t -> unit Promise.t)
           =
-          fun (x1232 : t) ->
-            fun ~target_resource:(x1229 : Uri.t) ->
-              fun ~document:(x1230 : NotebookDocument.t) ->
-                fun ~token:(x1231 : CancellationToken.t) ->
+          fun (x1259 : t) ->
+            fun ~target_resource:(x1256 : Uri.t) ->
+              fun ~document:(x1257 : NotebookDocument.t) ->
+                fun ~token:(x1258 : CancellationToken.t) ->
                   Promise.t_of_js Ojs.unit_of_js
-                    (Ojs.call (t_to_js x1232) "saveNotebookAs"
-                       [|(Uri.t_to_js x1229);(NotebookDocument.t_to_js x1230);(
-                         CancellationToken.t_to_js x1231)|])
+                    (Ojs.call (t_to_js x1259) "saveNotebookAs"
+                       [|(Uri.t_to_js x1256);(NotebookDocument.t_to_js x1257);(
+                         CancellationToken.t_to_js x1258)|])
         let (backup_notebook :
           t ->
             document:NotebookDocument.t ->
@@ -3593,88 +3713,88 @@ module Vscode =
                 token:CancellationToken.t ->
                   NotebookDocumentBackup.t Promise.t)
           =
-          fun (x1237 : t) ->
-            fun ~document:(x1234 : NotebookDocument.t) ->
-              fun ~context:(x1235 : NotebookDocumentBackupContext.t) ->
-                fun ~token:(x1236 : CancellationToken.t) ->
+          fun (x1264 : t) ->
+            fun ~document:(x1261 : NotebookDocument.t) ->
+              fun ~context:(x1262 : NotebookDocumentBackupContext.t) ->
+                fun ~token:(x1263 : CancellationToken.t) ->
                   Promise.t_of_js NotebookDocumentBackup.t_of_js
-                    (Ojs.call (t_to_js x1237) "backupNotebook"
-                       [|(NotebookDocument.t_to_js x1234);(NotebookDocumentBackupContext.t_to_js
-                                                             x1235);(
-                         CancellationToken.t_to_js x1236)|])
+                    (Ojs.call (t_to_js x1264) "backupNotebook"
+                       [|(NotebookDocument.t_to_js x1261);(NotebookDocumentBackupContext.t_to_js
+                                                             x1262);(
+                         CancellationToken.t_to_js x1263)|])
       end
     module NotebookDocumentFilter =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1240 : Ojs.t) -> x1240
-        and t_to_js : t -> Ojs.t = fun (x1239 : Ojs.t) -> x1239
+        let rec t_of_js : Ojs.t -> t = fun (x1267 : Ojs.t) -> x1267
+        and t_to_js : t -> Ojs.t = fun (x1266 : Ojs.t) -> x1266
         let (view_type : t -> string list or_string) =
-          fun (x1241 : t) ->
+          fun (x1268 : t) ->
             or_string_of_js
-              (fun (x1242 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x1242)
-              (Ojs.get_prop_ascii (t_to_js x1241) "viewType")
+              (fun (x1269 : Ojs.t) -> Ojs.list_of_js Ojs.string_of_js x1269)
+              (Ojs.get_prop_ascii (t_to_js x1268) "viewType")
         let (set_view_type : t -> string list or_string -> unit) =
-          fun (x1244 : t) ->
-            fun (x1245 : string list or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1244) "viewType"
+          fun (x1271 : t) ->
+            fun (x1272 : string list or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1271) "viewType"
                 (or_string_to_js
-                   (fun (x1246 : string list) ->
-                      Ojs.list_to_js Ojs.string_to_js x1246) x1245)
+                   (fun (x1273 : string list) ->
+                      Ojs.list_to_js Ojs.string_to_js x1273) x1272)
         let (filename_pattern : t -> NotebookFilenamePattern.t) =
-          fun (x1248 : t) ->
+          fun (x1275 : t) ->
             NotebookFilenamePattern.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1248) "filenamePattern")
+              (Ojs.get_prop_ascii (t_to_js x1275) "filenamePattern")
         let (set_filename_pattern : t -> NotebookFilenamePattern.t -> unit) =
-          fun (x1249 : t) ->
-            fun (x1250 : NotebookFilenamePattern.t) ->
-              Ojs.set_prop_ascii (t_to_js x1249) "filenamePattern"
-                (NotebookFilenamePattern.t_to_js x1250)
+          fun (x1276 : t) ->
+            fun (x1277 : NotebookFilenamePattern.t) ->
+              Ojs.set_prop_ascii (t_to_js x1276) "filenamePattern"
+                (NotebookFilenamePattern.t_to_js x1277)
       end
     module NotebookKernelProvider =
       struct
         type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
           __T) ->
-          fun (__T_of_js : Ojs.t -> __T) -> fun (x1252 : Ojs.t) -> x1252
+          fun (__T_of_js : Ojs.t -> __T) -> fun (x1279 : Ojs.t) -> x1279
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) -> fun (x1251 : Ojs.t) -> x1251
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x1278 : Ojs.t) -> x1278
         type t_0 = NotebookKernel.t t
         let rec t_0_of_js : Ojs.t -> t_0 =
-          fun (x1255 : Ojs.t) -> t_of_js NotebookKernel.t_of_js x1255
+          fun (x1282 : Ojs.t) -> t_of_js NotebookKernel.t_of_js x1282
         and t_0_to_js : t_0 -> Ojs.t =
-          fun (x1253 : NotebookKernel.t t) ->
-            t_to_js NotebookKernel.t_to_js x1253
+          fun (x1280 : NotebookKernel.t t) ->
+            t_to_js NotebookKernel.t_to_js x1280
         let (on_did_change_kernels :
           'T t -> NotebookDocument.t or_undefined Event.t) =
-          fun (x1257 : 'T t) ->
+          fun (x1284 : 'T t) ->
             Event.t_of_js
-              (fun (x1259 : Ojs.t) ->
-                 or_undefined_of_js NotebookDocument.t_of_js x1259)
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1257)
+              (fun (x1286 : Ojs.t) ->
+                 or_undefined_of_js NotebookDocument.t_of_js x1286)
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1284)
                  "onDidChangeKernels")
         let (set_on_did_change_kernels :
           'T t -> NotebookDocument.t or_undefined Event.t -> unit) =
-          fun (x1261 : 'T t) ->
-            fun (x1262 : NotebookDocument.t or_undefined Event.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1261)
+          fun (x1288 : 'T t) ->
+            fun (x1289 : NotebookDocument.t or_undefined Event.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1288)
                 "onDidChangeKernels"
                 (Event.t_to_js
-                   (fun (x1263 : NotebookDocument.t or_undefined) ->
-                      or_undefined_to_js NotebookDocument.t_to_js x1263)
-                   x1262)
+                   (fun (x1290 : NotebookDocument.t or_undefined) ->
+                      or_undefined_to_js NotebookDocument.t_to_js x1290)
+                   x1289)
         let (provide_kernels :
           'T t ->
             document:NotebookDocument.t ->
               token:CancellationToken.t -> 'T list ProviderResult.t)
           =
-          fun (x1268 : 'T t) ->
-            fun ~document:(x1266 : NotebookDocument.t) ->
-              fun ~token:(x1267 : CancellationToken.t) ->
+          fun (x1295 : 'T t) ->
+            fun ~document:(x1293 : NotebookDocument.t) ->
+              fun ~token:(x1294 : CancellationToken.t) ->
                 ProviderResult.t_of_js
-                  (fun (x1270 : Ojs.t) -> Ojs.list_of_js Obj.magic x1270)
-                  (Ojs.call (t_to_js Obj.magic x1268) "provideKernels"
-                     [|(NotebookDocument.t_to_js x1266);(CancellationToken.t_to_js
-                                                           x1267)|])
+                  (fun (x1297 : Ojs.t) -> Ojs.list_of_js Obj.magic x1297)
+                  (Ojs.call (t_to_js Obj.magic x1295) "provideKernels"
+                     [|(NotebookDocument.t_to_js x1293);(CancellationToken.t_to_js
+                                                           x1294)|])
         let (resolve_kernel :
           'T t ->
             kernel:'T ->
@@ -3682,491 +3802,501 @@ module Vscode =
                 webview:NotebookCommunication.t ->
                   token:CancellationToken.t -> unit ProviderResult.t)
           =
-          fun (x1276 : 'T t) ->
-            fun ~kernel:(x1272 : 'T) ->
-              fun ~document:(x1273 : NotebookDocument.t) ->
-                fun ~webview:(x1274 : NotebookCommunication.t) ->
-                  fun ~token:(x1275 : CancellationToken.t) ->
+          fun (x1303 : 'T t) ->
+            fun ~kernel:(x1299 : 'T) ->
+              fun ~document:(x1300 : NotebookDocument.t) ->
+                fun ~webview:(x1301 : NotebookCommunication.t) ->
+                  fun ~token:(x1302 : CancellationToken.t) ->
                     ProviderResult.t_of_js Ojs.unit_of_js
-                      (Ojs.call (t_to_js Obj.magic x1276) "resolveKernel"
-                         [|(Obj.magic x1272);(NotebookDocument.t_to_js x1273);(
-                           NotebookCommunication.t_to_js x1274);(CancellationToken.t_to_js
-                                                                   x1275)|])
+                      (Ojs.call (t_to_js Obj.magic x1303) "resolveKernel"
+                         [|(Obj.magic x1299);(NotebookDocument.t_to_js x1300);(
+                           NotebookCommunication.t_to_js x1301);(CancellationToken.t_to_js
+                                                                   x1302)|])
       end
     module NotebookCellStatusBarAlignment =
       struct
         type t = [ `Left  | `Right ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1280 : Ojs.t) ->
-            let x1281 = x1280 in
-            match Ojs.int_of_js x1281 with
+          fun (x1307 : Ojs.t) ->
+            let x1308 = x1307 in
+            match Ojs.int_of_js x1308 with
             | 1 -> `Left
             | 2 -> `Right
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x1279 : [ `Left  | `Right ]) ->
-            match x1279 with
+          fun (x1306 : [ `Left  | `Right ]) ->
+            match x1306 with
             | `Left -> Ojs.int_to_js 1
             | `Right -> Ojs.int_to_js 2
       end
     module NotebookCellStatusBarItem =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1283 : Ojs.t) -> x1283
-        and t_to_js : t -> Ojs.t = fun (x1282 : Ojs.t) -> x1282
+        let rec t_of_js : Ojs.t -> t = fun (x1310 : Ojs.t) -> x1310
+        and t_to_js : t -> Ojs.t = fun (x1309 : Ojs.t) -> x1309
         let (cell : t -> NotebookCell.t) =
-          fun (x1284 : t) ->
-            NotebookCell.t_of_js (Ojs.get_prop_ascii (t_to_js x1284) "cell")
+          fun (x1311 : t) ->
+            NotebookCell.t_of_js (Ojs.get_prop_ascii (t_to_js x1311) "cell")
         let (alignment : t -> NotebookCellStatusBarAlignment.t) =
-          fun (x1285 : t) ->
+          fun (x1312 : t) ->
             NotebookCellStatusBarAlignment.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1285) "alignment")
+              (Ojs.get_prop_ascii (t_to_js x1312) "alignment")
         let (priority : t -> int) =
-          fun (x1286 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1286) "priority")
+          fun (x1313 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1313) "priority")
         let (text : t -> string) =
-          fun (x1287 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1287) "text")
+          fun (x1314 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1314) "text")
         let (set_text : t -> string -> unit) =
-          fun (x1288 : t) ->
-            fun (x1289 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1288) "text"
-                (Ojs.string_to_js x1289)
+          fun (x1315 : t) ->
+            fun (x1316 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1315) "text"
+                (Ojs.string_to_js x1316)
         let (tooltip : t -> string or_undefined) =
-          fun (x1290 : t) ->
+          fun (x1317 : t) ->
             or_undefined_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1290) "tooltip")
+              (Ojs.get_prop_ascii (t_to_js x1317) "tooltip")
         let (set_tooltip : t -> string or_undefined -> unit) =
-          fun (x1292 : t) ->
-            fun (x1293 : string or_undefined) ->
-              Ojs.set_prop_ascii (t_to_js x1292) "tooltip"
-                (or_undefined_to_js Ojs.string_to_js x1293)
+          fun (x1319 : t) ->
+            fun (x1320 : string or_undefined) ->
+              Ojs.set_prop_ascii (t_to_js x1319) "tooltip"
+                (or_undefined_to_js Ojs.string_to_js x1320)
         let (command : t -> Command.t or_string or_undefined) =
-          fun (x1295 : t) ->
+          fun (x1322 : t) ->
             or_undefined_of_js
-              (fun (x1296 : Ojs.t) -> or_string_of_js Command.t_of_js x1296)
-              (Ojs.get_prop_ascii (t_to_js x1295) "command")
+              (fun (x1323 : Ojs.t) -> or_string_of_js Command.t_of_js x1323)
+              (Ojs.get_prop_ascii (t_to_js x1322) "command")
         let (set_command : t -> Command.t or_string or_undefined -> unit) =
-          fun (x1298 : t) ->
-            fun (x1299 : Command.t or_string or_undefined) ->
-              Ojs.set_prop_ascii (t_to_js x1298) "command"
+          fun (x1325 : t) ->
+            fun (x1326 : Command.t or_string or_undefined) ->
+              Ojs.set_prop_ascii (t_to_js x1325) "command"
                 (or_undefined_to_js
-                   (fun (x1300 : Command.t or_string) ->
-                      or_string_to_js Command.t_to_js x1300) x1299)
+                   (fun (x1327 : Command.t or_string) ->
+                      or_string_to_js Command.t_to_js x1327) x1326)
         let (accessibility_information : t -> AccessibilityInformation.t) =
-          fun (x1302 : t) ->
+          fun (x1329 : t) ->
             AccessibilityInformation.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1302) "accessibilityInformation")
+              (Ojs.get_prop_ascii (t_to_js x1329) "accessibilityInformation")
         let (set_accessibility_information :
           t -> AccessibilityInformation.t -> unit) =
-          fun (x1303 : t) ->
-            fun (x1304 : AccessibilityInformation.t) ->
-              Ojs.set_prop_ascii (t_to_js x1303) "accessibilityInformation"
-                (AccessibilityInformation.t_to_js x1304)
+          fun (x1330 : t) ->
+            fun (x1331 : AccessibilityInformation.t) ->
+              Ojs.set_prop_ascii (t_to_js x1330) "accessibilityInformation"
+                (AccessibilityInformation.t_to_js x1331)
         let (show : t -> unit) =
-          fun (x1305 : t) -> ignore (Ojs.call (t_to_js x1305) "show" [||])
+          fun (x1332 : t) -> ignore (Ojs.call (t_to_js x1332) "show" [||])
         let (hide : t -> unit) =
-          fun (x1306 : t) -> ignore (Ojs.call (t_to_js x1306) "hide" [||])
+          fun (x1333 : t) -> ignore (Ojs.call (t_to_js x1333) "hide" [||])
         let (dispose : t -> unit) =
-          fun (x1307 : t) -> ignore (Ojs.call (t_to_js x1307) "dispose" [||])
+          fun (x1334 : t) -> ignore (Ojs.call (t_to_js x1334) "dispose" [||])
       end
     module NotebookConcatTextDocument =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1309 : Ojs.t) -> x1309
-        and t_to_js : t -> Ojs.t = fun (x1308 : Ojs.t) -> x1308
+        let rec t_of_js : Ojs.t -> t = fun (x1336 : Ojs.t) -> x1336
+        and t_to_js : t -> Ojs.t = fun (x1335 : Ojs.t) -> x1335
         let (uri : t -> Uri.t) =
-          fun (x1310 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1310) "uri")
+          fun (x1337 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1337) "uri")
         let (set_uri : t -> Uri.t -> unit) =
-          fun (x1311 : t) ->
-            fun (x1312 : Uri.t) ->
-              Ojs.set_prop_ascii (t_to_js x1311) "uri" (Uri.t_to_js x1312)
+          fun (x1338 : t) ->
+            fun (x1339 : Uri.t) ->
+              Ojs.set_prop_ascii (t_to_js x1338) "uri" (Uri.t_to_js x1339)
         let (is_closed : t -> bool) =
-          fun (x1313 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1313) "isClosed")
+          fun (x1340 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1340) "isClosed")
         let (set_is_closed : t -> bool -> unit) =
-          fun (x1314 : t) ->
-            fun (x1315 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1314) "isClosed"
-                (Ojs.bool_to_js x1315)
+          fun (x1341 : t) ->
+            fun (x1342 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1341) "isClosed"
+                (Ojs.bool_to_js x1342)
         let (dispose : t -> unit) =
-          fun (x1316 : t) -> ignore (Ojs.call (t_to_js x1316) "dispose" [||])
+          fun (x1343 : t) -> ignore (Ojs.call (t_to_js x1343) "dispose" [||])
         let (on_did_change : t -> unit Event.t) =
-          fun (x1317 : t) ->
+          fun (x1344 : t) ->
             Event.t_of_js Ojs.unit_of_js
-              (Ojs.get_prop_ascii (t_to_js x1317) "onDidChange")
+              (Ojs.get_prop_ascii (t_to_js x1344) "onDidChange")
         let (set_on_did_change : t -> unit Event.t -> unit) =
-          fun (x1319 : t) ->
-            fun (x1320 : unit Event.t) ->
-              Ojs.set_prop_ascii (t_to_js x1319) "onDidChange"
-                (Event.t_to_js Ojs.unit_to_js x1320)
+          fun (x1346 : t) ->
+            fun (x1347 : unit Event.t) ->
+              Ojs.set_prop_ascii (t_to_js x1346) "onDidChange"
+                (Event.t_to_js Ojs.unit_to_js x1347)
         let (version : t -> int) =
-          fun (x1322 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1322) "version")
+          fun (x1349 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1349) "version")
         let (set_version : t -> int -> unit) =
-          fun (x1323 : t) ->
-            fun (x1324 : int) ->
-              Ojs.set_prop_ascii (t_to_js x1323) "version"
-                (Ojs.int_to_js x1324)
+          fun (x1350 : t) ->
+            fun (x1351 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1350) "version"
+                (Ojs.int_to_js x1351)
         let (get_text : t -> string) =
-          fun (x1325 : t) ->
-            Ojs.string_of_js (Ojs.call (t_to_js x1325) "getText" [||])
+          fun (x1352 : t) ->
+            Ojs.string_of_js (Ojs.call (t_to_js x1352) "getText" [||])
         let (get_text' : t -> range:Range.t -> string) =
-          fun (x1327 : t) ->
-            fun ~range:(x1326 : Range.t) ->
+          fun (x1354 : t) ->
+            fun ~range:(x1353 : Range.t) ->
               Ojs.string_of_js
-                (Ojs.call (t_to_js x1327) "getText" [|(Range.t_to_js x1326)|])
+                (Ojs.call (t_to_js x1354) "getText" [|(Range.t_to_js x1353)|])
         let (offset_at : t -> position:Position.t -> int) =
-          fun (x1329 : t) ->
-            fun ~position:(x1328 : Position.t) ->
+          fun (x1356 : t) ->
+            fun ~position:(x1355 : Position.t) ->
               Ojs.int_of_js
-                (Ojs.call (t_to_js x1329) "offsetAt"
-                   [|(Position.t_to_js x1328)|])
+                (Ojs.call (t_to_js x1356) "offsetAt"
+                   [|(Position.t_to_js x1355)|])
         let (position_at : t -> offset:int -> Position.t) =
-          fun (x1331 : t) ->
-            fun ~offset:(x1330 : int) ->
+          fun (x1358 : t) ->
+            fun ~offset:(x1357 : int) ->
               Position.t_of_js
-                (Ojs.call (t_to_js x1331) "positionAt"
-                   [|(Ojs.int_to_js x1330)|])
+                (Ojs.call (t_to_js x1358) "positionAt"
+                   [|(Ojs.int_to_js x1357)|])
         let (validate_range : t -> range:Range.t -> Range.t) =
-          fun (x1333 : t) ->
-            fun ~range:(x1332 : Range.t) ->
+          fun (x1360 : t) ->
+            fun ~range:(x1359 : Range.t) ->
               Range.t_of_js
-                (Ojs.call (t_to_js x1333) "validateRange"
-                   [|(Range.t_to_js x1332)|])
+                (Ojs.call (t_to_js x1360) "validateRange"
+                   [|(Range.t_to_js x1359)|])
         let (validate_position : t -> position:Position.t -> Position.t) =
-          fun (x1335 : t) ->
-            fun ~position:(x1334 : Position.t) ->
+          fun (x1362 : t) ->
+            fun ~position:(x1361 : Position.t) ->
               Position.t_of_js
-                (Ojs.call (t_to_js x1335) "validatePosition"
-                   [|(Position.t_to_js x1334)|])
+                (Ojs.call (t_to_js x1362) "validatePosition"
+                   [|(Position.t_to_js x1361)|])
         let (location_at :
           t -> position_or_range:(Position.t, Range.t) union2 -> Location.t)
           =
-          fun (x1339 : t) ->
-            fun ~position_or_range:(x1336 : (Position.t, Range.t) union2) ->
+          fun (x1366 : t) ->
+            fun ~position_or_range:(x1363 : (Position.t, Range.t) union2) ->
               Location.t_of_js
-                (Ojs.call (t_to_js x1339) "locationAt"
-                   [|(union2_to_js Position.t_to_js Range.t_to_js x1336)|])
+                (Ojs.call (t_to_js x1366) "locationAt"
+                   [|(union2_to_js Position.t_to_js Range.t_to_js x1363)|])
         let (position_at' : t -> location:Location.t -> Position.t) =
-          fun (x1341 : t) ->
-            fun ~location:(x1340 : Location.t) ->
+          fun (x1368 : t) ->
+            fun ~location:(x1367 : Location.t) ->
               Position.t_of_js
-                (Ojs.call (t_to_js x1341) "positionAt"
-                   [|(Location.t_to_js x1340)|])
+                (Ojs.call (t_to_js x1368) "positionAt"
+                   [|(Location.t_to_js x1367)|])
         let (contains : t -> uri:Uri.t -> bool) =
-          fun (x1343 : t) ->
-            fun ~uri:(x1342 : Uri.t) ->
+          fun (x1370 : t) ->
+            fun ~uri:(x1369 : Uri.t) ->
               Ojs.bool_of_js
-                (Ojs.call (t_to_js x1343) "contains" [|(Uri.t_to_js x1342)|])
+                (Ojs.call (t_to_js x1370) "contains" [|(Uri.t_to_js x1369)|])
       end
     module Notebook =
       struct
         let (open_notebook_document :
           uri:Uri.t -> NotebookDocument.t Promise.t) =
-          fun ~uri:(x1344 : Uri.t) ->
+          fun ~uri:(x1371 : Uri.t) ->
             Promise.t_of_js NotebookDocument.t_of_js
               (Ojs.call
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-                 "openNotebookDocument" [|(Uri.t_to_js x1344)|])
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "notebook")
+                 "openNotebookDocument" [|(Uri.t_to_js x1371)|])
         let (on_did_open_notebook_document : NotebookDocument.t Event.t) =
           Event.t_of_js NotebookDocument.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "onDidOpenNotebookDocument")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "onDidOpenNotebookDocument")
         let (on_did_close_notebook_document : NotebookDocument.t Event.t) =
           Event.t_of_js NotebookDocument.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "onDidCloseNotebookDocument")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "onDidCloseNotebookDocument")
         let (on_did_save_notebook_document : NotebookDocument.t Event.t) =
           Event.t_of_js NotebookDocument.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "onDidSaveNotebookDocument")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "onDidSaveNotebookDocument")
         let (notebook_documents : NotebookDocument.t list) =
           Ojs.list_of_js NotebookDocument.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "notebookDocuments")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "notebookDocuments")
         let (on_did_change_notebook_document_metadata :
           NotebookDocumentMetadataChangeEvent.t Event.t) =
           Event.t_of_js NotebookDocumentMetadataChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook")
                "onDidChangeNotebookDocumentMetadata")
         let (on_did_change_notebook_cells :
           NotebookCellsChangeEvent.t Event.t) =
           Event.t_of_js NotebookCellsChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "onDidChangeNotebookCells")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "onDidChangeNotebookCells")
         let (on_did_change_cell_outputs :
           NotebookCellOutputsChangeEvent.t Event.t) =
           Event.t_of_js NotebookCellOutputsChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "onDidChangeCellOutputs")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "onDidChangeCellOutputs")
         let (on_did_change_cell_metadata :
           NotebookCellMetadataChangeEvent.t Event.t) =
           Event.t_of_js NotebookCellMetadataChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "onDidChangeCellMetadata")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "onDidChangeCellMetadata")
         let (register_notebook_serializer :
           notebook_type:string ->
             provider:NotebookSerializer.t ->
               ?options:NotebookDocumentContentOptions.t ->
                 unit -> Disposable.t)
           =
-          fun ~notebook_type:(x1354 : string) ->
-            fun ~provider:(x1355 : NotebookSerializer.t) ->
-              fun ?options:(x1356 : NotebookDocumentContentOptions.t option)
+          fun ~notebook_type:(x1381 : string) ->
+            fun ~provider:(x1382 : NotebookSerializer.t) ->
+              fun ?options:(x1383 : NotebookDocumentContentOptions.t option)
                 ->
                 fun () ->
                   Disposable.t_of_js
-                    (let x1359 =
+                    (let x1386 =
                        Ojs.get_prop_ascii
-                         (Ojs.get_prop_ascii Ojs.global
-                            "__LIB__VSCODE__IMPORTS.vscode") "notebook" in
+                         (Ojs.get_prop_ascii
+                            (Ojs.get_prop_ascii Ojs.global
+                               "__LIB__VSCODE__IMPORTS") "vscode") "notebook" in
                      Ojs.call
-                       (Ojs.get_prop_ascii x1359 "registerNotebookSerializer")
+                       (Ojs.get_prop_ascii x1386 "registerNotebookSerializer")
                        "apply"
-                       [|x1359;((let x1357 =
+                       [|x1386;((let x1384 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x1357 "push"
-                                      [|(Ojs.string_to_js x1354)|]);
+                                   (Ojs.call x1384 "push"
+                                      [|(Ojs.string_to_js x1381)|]);
                                  ignore
-                                   (Ojs.call x1357 "push"
-                                      [|(NotebookSerializer.t_to_js x1355)|]);
-                                 (match x1356 with
-                                  | Some x1358 ->
+                                   (Ojs.call x1384 "push"
+                                      [|(NotebookSerializer.t_to_js x1382)|]);
+                                 (match x1383 with
+                                  | Some x1385 ->
                                       ignore
-                                        (Ojs.call x1357 "push"
+                                        (Ojs.call x1384 "push"
                                            [|(NotebookDocumentContentOptions.t_to_js
-                                                x1358)|])
+                                                x1385)|])
                                   | None -> ());
-                                 x1357))|])
+                                 x1384))|])
         let (create_notebook_kernel :
           options:NotebookKernelOptions.t -> NotebookKernel2.t) =
-          fun ~options:(x1360 : NotebookKernelOptions.t) ->
+          fun ~options:(x1387 : NotebookKernelOptions.t) ->
             NotebookKernel2.t_of_js
               (Ojs.call
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "notebook")
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "notebook")
                  "createNotebookKernel"
-                 [|(NotebookKernelOptions.t_to_js x1360)|])
+                 [|(NotebookKernelOptions.t_to_js x1387)|])
         let (register_notebook_content_provider :
           notebook_type:string ->
             provider:NotebookContentProvider.t ->
               ?options:(NotebookDocumentContentOptions.t,
                 AnonymousInterface15.t) intersection2 -> unit -> Disposable.t)
           =
-          fun ~notebook_type:(x1361 : string) ->
-            fun ~provider:(x1362 : NotebookContentProvider.t) ->
+          fun ~notebook_type:(x1388 : string) ->
+            fun ~provider:(x1389 : NotebookContentProvider.t) ->
               fun
-                ?options:(x1363 :
+                ?options:(x1390 :
                            (NotebookDocumentContentOptions.t,
                              AnonymousInterface15.t) intersection2 option)
                 ->
                 fun () ->
                   Disposable.t_of_js
-                    (let x1368 =
+                    (let x1395 =
                        Ojs.get_prop_ascii
-                         (Ojs.get_prop_ascii Ojs.global
-                            "__LIB__VSCODE__IMPORTS.vscode") "notebook" in
+                         (Ojs.get_prop_ascii
+                            (Ojs.get_prop_ascii Ojs.global
+                               "__LIB__VSCODE__IMPORTS") "vscode") "notebook" in
                      Ojs.call
-                       (Ojs.get_prop_ascii x1368
+                       (Ojs.get_prop_ascii x1395
                           "registerNotebookContentProvider") "apply"
-                       [|x1368;((let x1364 =
+                       [|x1395;((let x1391 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x1364 "push"
-                                      [|(Ojs.string_to_js x1361)|]);
+                                   (Ojs.call x1391 "push"
+                                      [|(Ojs.string_to_js x1388)|]);
                                  ignore
-                                   (Ojs.call x1364 "push"
+                                   (Ojs.call x1391 "push"
                                       [|(NotebookContentProvider.t_to_js
-                                           x1362)|]);
-                                 (match x1363 with
-                                  | Some x1365 ->
+                                           x1389)|]);
+                                 (match x1390 with
+                                  | Some x1392 ->
                                       ignore
-                                        (Ojs.call x1364 "push"
+                                        (Ojs.call x1391 "push"
                                            [|(intersection2_to_js
                                                 NotebookDocumentContentOptions.t_to_js
                                                 AnonymousInterface15.t_to_js
-                                                x1365)|])
+                                                x1392)|])
                                   | None -> ());
-                                 x1364))|])
+                                 x1391))|])
         let (create_notebook_cell_execution_task :
           uri:Uri.t ->
             index:int ->
               kernel_id:string -> NotebookCellExecutionTask.t or_undefined)
           =
-          fun ~uri:(x1369 : Uri.t) ->
-            fun ~index:(x1370 : int) ->
-              fun ~kernel_id:(x1371 : string) ->
+          fun ~uri:(x1396 : Uri.t) ->
+            fun ~index:(x1397 : int) ->
+              fun ~kernel_id:(x1398 : string) ->
                 or_undefined_of_js NotebookCellExecutionTask.t_of_js
                   (Ojs.call
                      (Ojs.get_prop_ascii
-                        (Ojs.get_prop_ascii Ojs.global
-                           "__LIB__VSCODE__IMPORTS.vscode") "notebook")
+                        (Ojs.get_prop_ascii
+                           (Ojs.get_prop_ascii Ojs.global
+                              "__LIB__VSCODE__IMPORTS") "vscode") "notebook")
                      "createNotebookCellExecutionTask"
-                     [|(Uri.t_to_js x1369);(Ojs.int_to_js x1370);(Ojs.string_to_js
-                                                                    x1371)|])
+                     [|(Uri.t_to_js x1396);(Ojs.int_to_js x1397);(Ojs.string_to_js
+                                                                    x1398)|])
         let (on_did_change_cell_execution_state :
           NotebookCellExecutionStateChangeEvent.t Event.t) =
           Event.t_of_js NotebookCellExecutionStateChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "onDidChangeCellExecutionState")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "onDidChangeCellExecutionState")
         let (on_did_change_active_notebook_kernel :
           AnonymousInterface4.t Event.t) =
           Event.t_of_js AnonymousInterface4.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "notebook")
-               "onDidChangeActiveNotebookKernel")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "notebook") "onDidChangeActiveNotebookKernel")
         let (register_notebook_kernel_provider :
           selector:NotebookDocumentFilter.t ->
             provider:NotebookKernel.t NotebookKernelProvider.t ->
               Disposable.t)
           =
-          fun ~selector:(x1375 : NotebookDocumentFilter.t) ->
-            fun ~provider:(x1376 : NotebookKernel.t NotebookKernelProvider.t)
+          fun ~selector:(x1402 : NotebookDocumentFilter.t) ->
+            fun ~provider:(x1403 : NotebookKernel.t NotebookKernelProvider.t)
               ->
               Disposable.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "notebook")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode") "notebook")
                    "registerNotebookKernelProvider"
-                   [|(NotebookDocumentFilter.t_to_js x1375);(NotebookKernelProvider.t_to_js
+                   [|(NotebookDocumentFilter.t_to_js x1402);(NotebookKernelProvider.t_to_js
                                                                NotebookKernel.t_to_js
-                                                               x1376)|])
+                                                               x1403)|])
         let (create_notebook_editor_decoration_type :
           options:NotebookDecorationRenderOptions.t ->
             NotebookEditorDecorationType.t)
           =
-          fun ~options:(x1378 : NotebookDecorationRenderOptions.t) ->
+          fun ~options:(x1405 : NotebookDecorationRenderOptions.t) ->
             NotebookEditorDecorationType.t_of_js
               (Ojs.call
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "notebook")
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "notebook")
                  "createNotebookEditorDecorationType"
-                 [|(NotebookDecorationRenderOptions.t_to_js x1378)|])
+                 [|(NotebookDecorationRenderOptions.t_to_js x1405)|])
         let (create_cell_status_bar_item :
           cell:NotebookCell.t ->
             ?alignment:NotebookCellStatusBarAlignment.t ->
               ?priority:int -> unit -> NotebookCellStatusBarItem.t)
           =
-          fun ~cell:(x1379 : NotebookCell.t) ->
-            fun ?alignment:(x1380 : NotebookCellStatusBarAlignment.t option)
+          fun ~cell:(x1406 : NotebookCell.t) ->
+            fun ?alignment:(x1407 : NotebookCellStatusBarAlignment.t option)
               ->
-              fun ?priority:(x1381 : int option) ->
+              fun ?priority:(x1408 : int option) ->
                 fun () ->
                   NotebookCellStatusBarItem.t_of_js
-                    (let x1385 =
+                    (let x1412 =
                        Ojs.get_prop_ascii
-                         (Ojs.get_prop_ascii Ojs.global
-                            "__LIB__VSCODE__IMPORTS.vscode") "notebook" in
+                         (Ojs.get_prop_ascii
+                            (Ojs.get_prop_ascii Ojs.global
+                               "__LIB__VSCODE__IMPORTS") "vscode") "notebook" in
                      Ojs.call
-                       (Ojs.get_prop_ascii x1385 "createCellStatusBarItem")
+                       (Ojs.get_prop_ascii x1412 "createCellStatusBarItem")
                        "apply"
-                       [|x1385;((let x1382 =
+                       [|x1412;((let x1409 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x1382 "push"
-                                      [|(NotebookCell.t_to_js x1379)|]);
-                                 (match x1380 with
-                                  | Some x1384 ->
+                                   (Ojs.call x1409 "push"
+                                      [|(NotebookCell.t_to_js x1406)|]);
+                                 (match x1407 with
+                                  | Some x1411 ->
                                       ignore
-                                        (Ojs.call x1382 "push"
+                                        (Ojs.call x1409 "push"
                                            [|(NotebookCellStatusBarAlignment.t_to_js
-                                                x1384)|])
+                                                x1411)|])
                                   | None -> ());
-                                 (match x1381 with
-                                  | Some x1383 ->
+                                 (match x1408 with
+                                  | Some x1410 ->
                                       ignore
-                                        (Ojs.call x1382 "push"
-                                           [|(Ojs.int_to_js x1383)|])
+                                        (Ojs.call x1409 "push"
+                                           [|(Ojs.int_to_js x1410)|])
                                   | None -> ());
-                                 x1382))|])
+                                 x1409))|])
         let (create_concat_text_document :
           notebook:NotebookDocument.t ->
             ?selector:DocumentSelector.t ->
               unit -> NotebookConcatTextDocument.t)
           =
-          fun ~notebook:(x1386 : NotebookDocument.t) ->
-            fun ?selector:(x1387 : DocumentSelector.t option) ->
+          fun ~notebook:(x1413 : NotebookDocument.t) ->
+            fun ?selector:(x1414 : DocumentSelector.t option) ->
               fun () ->
                 NotebookConcatTextDocument.t_of_js
-                  (let x1390 =
+                  (let x1417 =
                      Ojs.get_prop_ascii
-                       (Ojs.get_prop_ascii Ojs.global
-                          "__LIB__VSCODE__IMPORTS.vscode") "notebook" in
+                       (Ojs.get_prop_ascii
+                          (Ojs.get_prop_ascii Ojs.global
+                             "__LIB__VSCODE__IMPORTS") "vscode") "notebook" in
                    Ojs.call
-                     (Ojs.get_prop_ascii x1390 "createConcatTextDocument")
+                     (Ojs.get_prop_ascii x1417 "createConcatTextDocument")
                      "apply"
-                     [|x1390;((let x1388 =
+                     [|x1417;((let x1415 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1388 "push"
-                                    [|(NotebookDocument.t_to_js x1386)|]);
-                               (match x1387 with
-                                | Some x1389 ->
+                                 (Ojs.call x1415 "push"
+                                    [|(NotebookDocument.t_to_js x1413)|]);
+                               (match x1414 with
+                                | Some x1416 ->
                                     ignore
-                                      (Ojs.call x1388 "push"
-                                         [|(DocumentSelector.t_to_js x1389)|])
+                                      (Ojs.call x1415 "push"
+                                         [|(DocumentSelector.t_to_js x1416)|])
                                 | None -> ());
-                               x1388))|])
+                               x1415))|])
       end
     module WorkspaceEdit =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1392 : Ojs.t) -> x1392
-        and t_to_js : t -> Ojs.t = fun (x1391 : Ojs.t) -> x1391
+        let rec t_of_js : Ojs.t -> t = fun (x1419 : Ojs.t) -> x1419
+        and t_to_js : t -> Ojs.t = fun (x1418 : Ojs.t) -> x1418
         let (replace_notebook_metadata :
           t -> uri:Uri.t -> value:NotebookDocumentMetadata.t -> unit) =
-          fun (x1395 : t) ->
-            fun ~uri:(x1393 : Uri.t) ->
-              fun ~value:(x1394 : NotebookDocumentMetadata.t) ->
+          fun (x1422 : t) ->
+            fun ~uri:(x1420 : Uri.t) ->
+              fun ~value:(x1421 : NotebookDocumentMetadata.t) ->
                 ignore
-                  (Ojs.call (t_to_js x1395) "replaceNotebookMetadata"
-                     [|(Uri.t_to_js x1393);(NotebookDocumentMetadata.t_to_js
-                                              x1394)|])
+                  (Ojs.call (t_to_js x1422) "replaceNotebookMetadata"
+                     [|(Uri.t_to_js x1420);(NotebookDocumentMetadata.t_to_js
+                                              x1421)|])
         let (replace_notebook_cells :
           t ->
             uri:Uri.t ->
@@ -4175,46 +4305,46 @@ module Vscode =
                   cells:NotebookCellData.t list ->
                     ?metadata:WorkspaceEditEntryMetadata.t -> unit -> unit)
           =
-          fun (x1404 : t) ->
-            fun ~uri:(x1396 : Uri.t) ->
-              fun ~start:(x1397 : int) ->
-                fun ~end_:(x1398 : int) ->
-                  fun ~cells:(x1399 : NotebookCellData.t list) ->
+          fun (x1431 : t) ->
+            fun ~uri:(x1423 : Uri.t) ->
+              fun ~start:(x1424 : int) ->
+                fun ~end_:(x1425 : int) ->
+                  fun ~cells:(x1426 : NotebookCellData.t list) ->
                     fun
-                      ?metadata:(x1400 : WorkspaceEditEntryMetadata.t option)
+                      ?metadata:(x1427 : WorkspaceEditEntryMetadata.t option)
                       ->
                       fun () ->
                         ignore
-                          (let x1405 = t_to_js x1404 in
+                          (let x1432 = t_to_js x1431 in
                            Ojs.call
-                             (Ojs.get_prop_ascii x1405 "replaceNotebookCells")
+                             (Ojs.get_prop_ascii x1432 "replaceNotebookCells")
                              "apply"
-                             [|x1405;((let x1401 =
+                             [|x1432;((let x1428 =
                                          Ojs.new_obj
                                            (Ojs.get_prop_ascii Ojs.global
                                               "Array") [||] in
                                        ignore
-                                         (Ojs.call x1401 "push"
-                                            [|(Uri.t_to_js x1396)|]);
+                                         (Ojs.call x1428 "push"
+                                            [|(Uri.t_to_js x1423)|]);
                                        ignore
-                                         (Ojs.call x1401 "push"
-                                            [|(Ojs.int_to_js x1397)|]);
+                                         (Ojs.call x1428 "push"
+                                            [|(Ojs.int_to_js x1424)|]);
                                        ignore
-                                         (Ojs.call x1401 "push"
-                                            [|(Ojs.int_to_js x1398)|]);
+                                         (Ojs.call x1428 "push"
+                                            [|(Ojs.int_to_js x1425)|]);
                                        ignore
-                                         (Ojs.call x1401 "push"
+                                         (Ojs.call x1428 "push"
                                             [|(Ojs.list_to_js
                                                  NotebookCellData.t_to_js
-                                                 x1399)|]);
-                                       (match x1400 with
-                                        | Some x1402 ->
+                                                 x1426)|]);
+                                       (match x1427 with
+                                        | Some x1429 ->
                                             ignore
-                                              (Ojs.call x1401 "push"
+                                              (Ojs.call x1428 "push"
                                                  [|(WorkspaceEditEntryMetadata.t_to_js
-                                                      x1402)|])
+                                                      x1429)|])
                                         | None -> ());
-                                       x1401))|])
+                                       x1428))|])
         let (replace_notebook_cell_metadata :
           t ->
             uri:Uri.t ->
@@ -4222,40 +4352,40 @@ module Vscode =
                 cell_metadata:NotebookCellMetadata.t ->
                   ?metadata:WorkspaceEditEntryMetadata.t -> unit -> unit)
           =
-          fun (x1412 : t) ->
-            fun ~uri:(x1406 : Uri.t) ->
-              fun ~index:(x1407 : int) ->
-                fun ~cell_metadata:(x1408 : NotebookCellMetadata.t) ->
-                  fun ?metadata:(x1409 : WorkspaceEditEntryMetadata.t option)
+          fun (x1439 : t) ->
+            fun ~uri:(x1433 : Uri.t) ->
+              fun ~index:(x1434 : int) ->
+                fun ~cell_metadata:(x1435 : NotebookCellMetadata.t) ->
+                  fun ?metadata:(x1436 : WorkspaceEditEntryMetadata.t option)
                     ->
                     fun () ->
                       ignore
-                        (let x1413 = t_to_js x1412 in
+                        (let x1440 = t_to_js x1439 in
                          Ojs.call
-                           (Ojs.get_prop_ascii x1413
+                           (Ojs.get_prop_ascii x1440
                               "replaceNotebookCellMetadata") "apply"
-                           [|x1413;((let x1410 =
+                           [|x1440;((let x1437 =
                                        Ojs.new_obj
                                          (Ojs.get_prop_ascii Ojs.global
                                             "Array") [||] in
                                      ignore
-                                       (Ojs.call x1410 "push"
-                                          [|(Uri.t_to_js x1406)|]);
+                                       (Ojs.call x1437 "push"
+                                          [|(Uri.t_to_js x1433)|]);
                                      ignore
-                                       (Ojs.call x1410 "push"
-                                          [|(Ojs.int_to_js x1407)|]);
+                                       (Ojs.call x1437 "push"
+                                          [|(Ojs.int_to_js x1434)|]);
                                      ignore
-                                       (Ojs.call x1410 "push"
+                                       (Ojs.call x1437 "push"
                                           [|(NotebookCellMetadata.t_to_js
-                                               x1408)|]);
-                                     (match x1409 with
-                                      | Some x1411 ->
+                                               x1435)|]);
+                                     (match x1436 with
+                                      | Some x1438 ->
                                           ignore
-                                            (Ojs.call x1410 "push"
+                                            (Ojs.call x1437 "push"
                                                [|(WorkspaceEditEntryMetadata.t_to_js
-                                                    x1411)|])
+                                                    x1438)|])
                                       | None -> ());
-                                     x1410))|])
+                                     x1437))|])
         let (replace_notebook_cell_output :
           t ->
             uri:Uri.t ->
@@ -4263,41 +4393,41 @@ module Vscode =
                 outputs:NotebookCellOutput.t list ->
                   ?metadata:WorkspaceEditEntryMetadata.t -> unit -> unit)
           =
-          fun (x1421 : t) ->
-            fun ~uri:(x1414 : Uri.t) ->
-              fun ~index:(x1415 : int) ->
-                fun ~outputs:(x1416 : NotebookCellOutput.t list) ->
-                  fun ?metadata:(x1417 : WorkspaceEditEntryMetadata.t option)
+          fun (x1448 : t) ->
+            fun ~uri:(x1441 : Uri.t) ->
+              fun ~index:(x1442 : int) ->
+                fun ~outputs:(x1443 : NotebookCellOutput.t list) ->
+                  fun ?metadata:(x1444 : WorkspaceEditEntryMetadata.t option)
                     ->
                     fun () ->
                       ignore
-                        (let x1422 = t_to_js x1421 in
+                        (let x1449 = t_to_js x1448 in
                          Ojs.call
-                           (Ojs.get_prop_ascii x1422
+                           (Ojs.get_prop_ascii x1449
                               "replaceNotebookCellOutput") "apply"
-                           [|x1422;((let x1418 =
+                           [|x1449;((let x1445 =
                                        Ojs.new_obj
                                          (Ojs.get_prop_ascii Ojs.global
                                             "Array") [||] in
                                      ignore
-                                       (Ojs.call x1418 "push"
-                                          [|(Uri.t_to_js x1414)|]);
+                                       (Ojs.call x1445 "push"
+                                          [|(Uri.t_to_js x1441)|]);
                                      ignore
-                                       (Ojs.call x1418 "push"
-                                          [|(Ojs.int_to_js x1415)|]);
+                                       (Ojs.call x1445 "push"
+                                          [|(Ojs.int_to_js x1442)|]);
                                      ignore
-                                       (Ojs.call x1418 "push"
+                                       (Ojs.call x1445 "push"
                                           [|(Ojs.list_to_js
                                                NotebookCellOutput.t_to_js
-                                               x1416)|]);
-                                     (match x1417 with
-                                      | Some x1419 ->
+                                               x1443)|]);
+                                     (match x1444 with
+                                      | Some x1446 ->
                                           ignore
-                                            (Ojs.call x1418 "push"
+                                            (Ojs.call x1445 "push"
                                                [|(WorkspaceEditEntryMetadata.t_to_js
-                                                    x1419)|])
+                                                    x1446)|])
                                       | None -> ());
-                                     x1418))|])
+                                     x1445))|])
         let (append_notebook_cell_output :
           t ->
             uri:Uri.t ->
@@ -4305,41 +4435,41 @@ module Vscode =
                 outputs:NotebookCellOutput.t list ->
                   ?metadata:WorkspaceEditEntryMetadata.t -> unit -> unit)
           =
-          fun (x1430 : t) ->
-            fun ~uri:(x1423 : Uri.t) ->
-              fun ~index:(x1424 : int) ->
-                fun ~outputs:(x1425 : NotebookCellOutput.t list) ->
-                  fun ?metadata:(x1426 : WorkspaceEditEntryMetadata.t option)
+          fun (x1457 : t) ->
+            fun ~uri:(x1450 : Uri.t) ->
+              fun ~index:(x1451 : int) ->
+                fun ~outputs:(x1452 : NotebookCellOutput.t list) ->
+                  fun ?metadata:(x1453 : WorkspaceEditEntryMetadata.t option)
                     ->
                     fun () ->
                       ignore
-                        (let x1431 = t_to_js x1430 in
+                        (let x1458 = t_to_js x1457 in
                          Ojs.call
-                           (Ojs.get_prop_ascii x1431
+                           (Ojs.get_prop_ascii x1458
                               "appendNotebookCellOutput") "apply"
-                           [|x1431;((let x1427 =
+                           [|x1458;((let x1454 =
                                        Ojs.new_obj
                                          (Ojs.get_prop_ascii Ojs.global
                                             "Array") [||] in
                                      ignore
-                                       (Ojs.call x1427 "push"
-                                          [|(Uri.t_to_js x1423)|]);
+                                       (Ojs.call x1454 "push"
+                                          [|(Uri.t_to_js x1450)|]);
                                      ignore
-                                       (Ojs.call x1427 "push"
-                                          [|(Ojs.int_to_js x1424)|]);
+                                       (Ojs.call x1454 "push"
+                                          [|(Ojs.int_to_js x1451)|]);
                                      ignore
-                                       (Ojs.call x1427 "push"
+                                       (Ojs.call x1454 "push"
                                           [|(Ojs.list_to_js
                                                NotebookCellOutput.t_to_js
-                                               x1425)|]);
-                                     (match x1426 with
-                                      | Some x1428 ->
+                                               x1452)|]);
+                                     (match x1453 with
+                                      | Some x1455 ->
                                           ignore
-                                            (Ojs.call x1427 "push"
+                                            (Ojs.call x1454 "push"
                                                [|(WorkspaceEditEntryMetadata.t_to_js
-                                                    x1428)|])
+                                                    x1455)|])
                                       | None -> ());
-                                     x1427))|])
+                                     x1454))|])
         let (replace_notebook_cell_output_items :
           t ->
             uri:Uri.t ->
@@ -4348,46 +4478,46 @@ module Vscode =
                   items:NotebookCellOutputItem.t list ->
                     ?metadata:WorkspaceEditEntryMetadata.t -> unit -> unit)
           =
-          fun (x1440 : t) ->
-            fun ~uri:(x1432 : Uri.t) ->
-              fun ~index:(x1433 : int) ->
-                fun ~output_id:(x1434 : string) ->
-                  fun ~items:(x1435 : NotebookCellOutputItem.t list) ->
+          fun (x1467 : t) ->
+            fun ~uri:(x1459 : Uri.t) ->
+              fun ~index:(x1460 : int) ->
+                fun ~output_id:(x1461 : string) ->
+                  fun ~items:(x1462 : NotebookCellOutputItem.t list) ->
                     fun
-                      ?metadata:(x1436 : WorkspaceEditEntryMetadata.t option)
+                      ?metadata:(x1463 : WorkspaceEditEntryMetadata.t option)
                       ->
                       fun () ->
                         ignore
-                          (let x1441 = t_to_js x1440 in
+                          (let x1468 = t_to_js x1467 in
                            Ojs.call
-                             (Ojs.get_prop_ascii x1441
+                             (Ojs.get_prop_ascii x1468
                                 "replaceNotebookCellOutputItems") "apply"
-                             [|x1441;((let x1437 =
+                             [|x1468;((let x1464 =
                                          Ojs.new_obj
                                            (Ojs.get_prop_ascii Ojs.global
                                               "Array") [||] in
                                        ignore
-                                         (Ojs.call x1437 "push"
-                                            [|(Uri.t_to_js x1432)|]);
+                                         (Ojs.call x1464 "push"
+                                            [|(Uri.t_to_js x1459)|]);
                                        ignore
-                                         (Ojs.call x1437 "push"
-                                            [|(Ojs.int_to_js x1433)|]);
+                                         (Ojs.call x1464 "push"
+                                            [|(Ojs.int_to_js x1460)|]);
                                        ignore
-                                         (Ojs.call x1437 "push"
-                                            [|(Ojs.string_to_js x1434)|]);
+                                         (Ojs.call x1464 "push"
+                                            [|(Ojs.string_to_js x1461)|]);
                                        ignore
-                                         (Ojs.call x1437 "push"
+                                         (Ojs.call x1464 "push"
                                             [|(Ojs.list_to_js
                                                  NotebookCellOutputItem.t_to_js
-                                                 x1435)|]);
-                                       (match x1436 with
-                                        | Some x1438 ->
+                                                 x1462)|]);
+                                       (match x1463 with
+                                        | Some x1465 ->
                                             ignore
-                                              (Ojs.call x1437 "push"
+                                              (Ojs.call x1464 "push"
                                                  [|(WorkspaceEditEntryMetadata.t_to_js
-                                                      x1438)|])
+                                                      x1465)|])
                                         | None -> ());
-                                       x1437))|])
+                                       x1464))|])
         let (append_notebook_cell_output_items :
           t ->
             uri:Uri.t ->
@@ -4396,323 +4526,325 @@ module Vscode =
                   items:NotebookCellOutputItem.t list ->
                     ?metadata:WorkspaceEditEntryMetadata.t -> unit -> unit)
           =
-          fun (x1450 : t) ->
-            fun ~uri:(x1442 : Uri.t) ->
-              fun ~index:(x1443 : int) ->
-                fun ~output_id:(x1444 : string) ->
-                  fun ~items:(x1445 : NotebookCellOutputItem.t list) ->
+          fun (x1477 : t) ->
+            fun ~uri:(x1469 : Uri.t) ->
+              fun ~index:(x1470 : int) ->
+                fun ~output_id:(x1471 : string) ->
+                  fun ~items:(x1472 : NotebookCellOutputItem.t list) ->
                     fun
-                      ?metadata:(x1446 : WorkspaceEditEntryMetadata.t option)
+                      ?metadata:(x1473 : WorkspaceEditEntryMetadata.t option)
                       ->
                       fun () ->
                         ignore
-                          (let x1451 = t_to_js x1450 in
+                          (let x1478 = t_to_js x1477 in
                            Ojs.call
-                             (Ojs.get_prop_ascii x1451
+                             (Ojs.get_prop_ascii x1478
                                 "appendNotebookCellOutputItems") "apply"
-                             [|x1451;((let x1447 =
+                             [|x1478;((let x1474 =
                                          Ojs.new_obj
                                            (Ojs.get_prop_ascii Ojs.global
                                               "Array") [||] in
                                        ignore
-                                         (Ojs.call x1447 "push"
-                                            [|(Uri.t_to_js x1442)|]);
+                                         (Ojs.call x1474 "push"
+                                            [|(Uri.t_to_js x1469)|]);
                                        ignore
-                                         (Ojs.call x1447 "push"
-                                            [|(Ojs.int_to_js x1443)|]);
+                                         (Ojs.call x1474 "push"
+                                            [|(Ojs.int_to_js x1470)|]);
                                        ignore
-                                         (Ojs.call x1447 "push"
-                                            [|(Ojs.string_to_js x1444)|]);
+                                         (Ojs.call x1474 "push"
+                                            [|(Ojs.string_to_js x1471)|]);
                                        ignore
-                                         (Ojs.call x1447 "push"
+                                         (Ojs.call x1474 "push"
                                             [|(Ojs.list_to_js
                                                  NotebookCellOutputItem.t_to_js
-                                                 x1445)|]);
-                                       (match x1446 with
-                                        | Some x1448 ->
+                                                 x1472)|]);
+                                       (match x1473 with
+                                        | Some x1475 ->
                                             ignore
-                                              (Ojs.call x1447 "push"
+                                              (Ojs.call x1474 "push"
                                                  [|(WorkspaceEditEntryMetadata.t_to_js
-                                                      x1448)|])
+                                                      x1475)|])
                                         | None -> ());
-                                       x1447))|])
+                                       x1474))|])
       end
     module CompletionItemLabel =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1453 : Ojs.t) -> x1453
-        and t_to_js : t -> Ojs.t = fun (x1452 : Ojs.t) -> x1452
+        let rec t_of_js : Ojs.t -> t = fun (x1480 : Ojs.t) -> x1480
+        and t_to_js : t -> Ojs.t = fun (x1479 : Ojs.t) -> x1479
         let (name : t -> string) =
-          fun (x1454 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1454) "name")
+          fun (x1481 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1481) "name")
         let (set_name : t -> string -> unit) =
-          fun (x1455 : t) ->
-            fun (x1456 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1455) "name"
-                (Ojs.string_to_js x1456)
+          fun (x1482 : t) ->
+            fun (x1483 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1482) "name"
+                (Ojs.string_to_js x1483)
         let (parameters : t -> string) =
-          fun (x1457 : t) ->
+          fun (x1484 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1457) "parameters")
+              (Ojs.get_prop_ascii (t_to_js x1484) "parameters")
         let (set_parameters : t -> string -> unit) =
-          fun (x1458 : t) ->
-            fun (x1459 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1458) "parameters"
-                (Ojs.string_to_js x1459)
+          fun (x1485 : t) ->
+            fun (x1486 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1485) "parameters"
+                (Ojs.string_to_js x1486)
         let (qualifier : t -> string) =
-          fun (x1460 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1460) "qualifier")
+          fun (x1487 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1487) "qualifier")
         let (set_qualifier : t -> string -> unit) =
-          fun (x1461 : t) ->
-            fun (x1462 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1461) "qualifier"
-                (Ojs.string_to_js x1462)
+          fun (x1488 : t) ->
+            fun (x1489 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1488) "qualifier"
+                (Ojs.string_to_js x1489)
         let (type_ : t -> string) =
-          fun (x1463 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1463) "type")
+          fun (x1490 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1490) "type")
         let (set_type : t -> string -> unit) =
-          fun (x1464 : t) ->
-            fun (x1465 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1464) "type"
-                (Ojs.string_to_js x1465)
+          fun (x1491 : t) ->
+            fun (x1492 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1491) "type"
+                (Ojs.string_to_js x1492)
       end
     module CompletionItem =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1467 : Ojs.t) -> x1467
-        and t_to_js : t -> Ojs.t = fun (x1466 : Ojs.t) -> x1466
+        let rec t_of_js : Ojs.t -> t = fun (x1494 : Ojs.t) -> x1494
+        and t_to_js : t -> Ojs.t = fun (x1493 : Ojs.t) -> x1493
         let (label2 : t -> CompletionItemLabel.t) =
-          fun (x1468 : t) ->
+          fun (x1495 : t) ->
             CompletionItemLabel.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1468) "label2")
+              (Ojs.get_prop_ascii (t_to_js x1495) "label2")
         let (set_label2 : t -> CompletionItemLabel.t -> unit) =
-          fun (x1469 : t) ->
-            fun (x1470 : CompletionItemLabel.t) ->
-              Ojs.set_prop_ascii (t_to_js x1469) "label2"
-                (CompletionItemLabel.t_to_js x1470)
+          fun (x1496 : t) ->
+            fun (x1497 : CompletionItemLabel.t) ->
+              Ojs.set_prop_ascii (t_to_js x1496) "label2"
+                (CompletionItemLabel.t_to_js x1497)
       end
     module TimelineItem =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1472 : Ojs.t) -> x1472
-        and t_to_js : t -> Ojs.t = fun (x1471 : Ojs.t) -> x1471
+        let rec t_of_js : Ojs.t -> t = fun (x1499 : Ojs.t) -> x1499
+        and t_to_js : t -> Ojs.t = fun (x1498 : Ojs.t) -> x1498
         let (timestamp : t -> int) =
-          fun (x1473 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1473) "timestamp")
+          fun (x1500 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1500) "timestamp")
         let (set_timestamp : t -> int -> unit) =
-          fun (x1474 : t) ->
-            fun (x1475 : int) ->
-              Ojs.set_prop_ascii (t_to_js x1474) "timestamp"
-                (Ojs.int_to_js x1475)
+          fun (x1501 : t) ->
+            fun (x1502 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1501) "timestamp"
+                (Ojs.int_to_js x1502)
         let (label : t -> string) =
-          fun (x1476 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1476) "label")
+          fun (x1503 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1503) "label")
         let (set_label : t -> string -> unit) =
-          fun (x1477 : t) ->
-            fun (x1478 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1477) "label"
-                (Ojs.string_to_js x1478)
+          fun (x1504 : t) ->
+            fun (x1505 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1504) "label"
+                (Ojs.string_to_js x1505)
         let (id : t -> string) =
-          fun (x1479 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1479) "id")
+          fun (x1506 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1506) "id")
         let (set_id : t -> string -> unit) =
-          fun (x1480 : t) ->
-            fun (x1481 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1480) "id"
-                (Ojs.string_to_js x1481)
+          fun (x1507 : t) ->
+            fun (x1508 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1507) "id"
+                (Ojs.string_to_js x1508)
         let (icon_path :
           t -> (ThemeIcon.t, Uri.t, AnonymousInterface9.t) union3) =
-          fun (x1482 : t) ->
+          fun (x1509 : t) ->
             union3_of_js ThemeIcon.t_of_js Uri.t_of_js
               AnonymousInterface9.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1482) "iconPath")
+              (Ojs.get_prop_ascii (t_to_js x1509) "iconPath")
         let (set_icon_path :
           t -> (ThemeIcon.t, Uri.t, AnonymousInterface9.t) union3 -> unit) =
-          fun (x1486 : t) ->
-            fun (x1487 : (ThemeIcon.t, Uri.t, AnonymousInterface9.t) union3)
+          fun (x1513 : t) ->
+            fun (x1514 : (ThemeIcon.t, Uri.t, AnonymousInterface9.t) union3)
               ->
-              Ojs.set_prop_ascii (t_to_js x1486) "iconPath"
+              Ojs.set_prop_ascii (t_to_js x1513) "iconPath"
                 (union3_to_js ThemeIcon.t_to_js Uri.t_to_js
-                   AnonymousInterface9.t_to_js x1487)
+                   AnonymousInterface9.t_to_js x1514)
         let (description : t -> string) =
-          fun (x1491 : t) ->
+          fun (x1518 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1491) "description")
+              (Ojs.get_prop_ascii (t_to_js x1518) "description")
         let (set_description : t -> string -> unit) =
-          fun (x1492 : t) ->
-            fun (x1493 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1492) "description"
-                (Ojs.string_to_js x1493)
+          fun (x1519 : t) ->
+            fun (x1520 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1519) "description"
+                (Ojs.string_to_js x1520)
         let (detail : t -> string) =
-          fun (x1494 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1494) "detail")
+          fun (x1521 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1521) "detail")
         let (set_detail : t -> string -> unit) =
-          fun (x1495 : t) ->
-            fun (x1496 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1495) "detail"
-                (Ojs.string_to_js x1496)
+          fun (x1522 : t) ->
+            fun (x1523 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1522) "detail"
+                (Ojs.string_to_js x1523)
         let (command : t -> Command.t) =
-          fun (x1497 : t) ->
-            Command.t_of_js (Ojs.get_prop_ascii (t_to_js x1497) "command")
+          fun (x1524 : t) ->
+            Command.t_of_js (Ojs.get_prop_ascii (t_to_js x1524) "command")
         let (set_command : t -> Command.t -> unit) =
-          fun (x1498 : t) ->
-            fun (x1499 : Command.t) ->
-              Ojs.set_prop_ascii (t_to_js x1498) "command"
-                (Command.t_to_js x1499)
+          fun (x1525 : t) ->
+            fun (x1526 : Command.t) ->
+              Ojs.set_prop_ascii (t_to_js x1525) "command"
+                (Command.t_to_js x1526)
         let (context_value : t -> string) =
-          fun (x1500 : t) ->
+          fun (x1527 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1500) "contextValue")
+              (Ojs.get_prop_ascii (t_to_js x1527) "contextValue")
         let (set_context_value : t -> string -> unit) =
-          fun (x1501 : t) ->
-            fun (x1502 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1501) "contextValue"
-                (Ojs.string_to_js x1502)
+          fun (x1528 : t) ->
+            fun (x1529 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1528) "contextValue"
+                (Ojs.string_to_js x1529)
         let (accessibility_information : t -> AccessibilityInformation.t) =
-          fun (x1503 : t) ->
+          fun (x1530 : t) ->
             AccessibilityInformation.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1503) "accessibilityInformation")
+              (Ojs.get_prop_ascii (t_to_js x1530) "accessibilityInformation")
         let (set_accessibility_information :
           t -> AccessibilityInformation.t -> unit) =
-          fun (x1504 : t) ->
-            fun (x1505 : AccessibilityInformation.t) ->
-              Ojs.set_prop_ascii (t_to_js x1504) "accessibilityInformation"
-                (AccessibilityInformation.t_to_js x1505)
+          fun (x1531 : t) ->
+            fun (x1532 : AccessibilityInformation.t) ->
+              Ojs.set_prop_ascii (t_to_js x1531) "accessibilityInformation"
+                (AccessibilityInformation.t_to_js x1532)
         let (create : label:string -> timestamp:int -> t) =
-          fun ~label:(x1506 : string) ->
-            fun ~timestamp:(x1507 : int) ->
+          fun ~label:(x1533 : string) ->
+            fun ~timestamp:(x1534 : int) ->
               t_of_js
                 (Ojs.new_obj
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "TimelineItem")
-                   [|(Ojs.string_to_js x1506);(Ojs.int_to_js x1507)|])
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode")
+                      "TimelineItem")
+                   [|(Ojs.string_to_js x1533);(Ojs.int_to_js x1534)|])
       end
     module TimelineChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1509 : Ojs.t) -> x1509
-        and t_to_js : t -> Ojs.t = fun (x1508 : Ojs.t) -> x1508
+        let rec t_of_js : Ojs.t -> t = fun (x1536 : Ojs.t) -> x1536
+        and t_to_js : t -> Ojs.t = fun (x1535 : Ojs.t) -> x1535
         let (uri : t -> Uri.t) =
-          fun (x1510 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1510) "uri")
+          fun (x1537 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1537) "uri")
         let (set_uri : t -> Uri.t -> unit) =
-          fun (x1511 : t) ->
-            fun (x1512 : Uri.t) ->
-              Ojs.set_prop_ascii (t_to_js x1511) "uri" (Uri.t_to_js x1512)
+          fun (x1538 : t) ->
+            fun (x1539 : Uri.t) ->
+              Ojs.set_prop_ascii (t_to_js x1538) "uri" (Uri.t_to_js x1539)
         let (reset : t -> bool) =
-          fun (x1513 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1513) "reset")
+          fun (x1540 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1540) "reset")
         let (set_reset : t -> bool -> unit) =
-          fun (x1514 : t) ->
-            fun (x1515 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1514) "reset"
-                (Ojs.bool_to_js x1515)
+          fun (x1541 : t) ->
+            fun (x1542 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1541) "reset"
+                (Ojs.bool_to_js x1542)
       end
     module AnonymousInterface2 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1517 : Ojs.t) -> x1517
-        and t_to_js : t -> Ojs.t = fun (x1516 : Ojs.t) -> x1516
+        let rec t_of_js : Ojs.t -> t = fun (x1544 : Ojs.t) -> x1544
+        and t_to_js : t -> Ojs.t = fun (x1543 : Ojs.t) -> x1543
         let (cursor : t -> string or_undefined) =
-          fun (x1518 : t) ->
+          fun (x1545 : t) ->
             or_undefined_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1518) "cursor")
+              (Ojs.get_prop_ascii (t_to_js x1545) "cursor")
       end
     module Timeline =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1521 : Ojs.t) -> x1521
-        and t_to_js : t -> Ojs.t = fun (x1520 : Ojs.t) -> x1520
+        let rec t_of_js : Ojs.t -> t = fun (x1548 : Ojs.t) -> x1548
+        and t_to_js : t -> Ojs.t = fun (x1547 : Ojs.t) -> x1547
         let (paging : t -> AnonymousInterface2.t) =
-          fun (x1522 : t) ->
+          fun (x1549 : t) ->
             AnonymousInterface2.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1522) "paging")
+              (Ojs.get_prop_ascii (t_to_js x1549) "paging")
         let (items : t -> TimelineItem.t list) =
-          fun (x1523 : t) ->
+          fun (x1550 : t) ->
             Ojs.list_of_js TimelineItem.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1523) "items")
+              (Ojs.get_prop_ascii (t_to_js x1550) "items")
       end
     module TimelineOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1526 : Ojs.t) -> x1526
-        and t_to_js : t -> Ojs.t = fun (x1525 : Ojs.t) -> x1525
+        let rec t_of_js : Ojs.t -> t = fun (x1553 : Ojs.t) -> x1553
+        and t_to_js : t -> Ojs.t = fun (x1552 : Ojs.t) -> x1552
         let (cursor : t -> string) =
-          fun (x1527 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1527) "cursor")
+          fun (x1554 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1554) "cursor")
         let (set_cursor : t -> string -> unit) =
-          fun (x1528 : t) ->
-            fun (x1529 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1528) "cursor"
-                (Ojs.string_to_js x1529)
+          fun (x1555 : t) ->
+            fun (x1556 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1555) "cursor"
+                (Ojs.string_to_js x1556)
         let (limit : t -> AnonymousInterface14.t or_number) =
-          fun (x1530 : t) ->
+          fun (x1557 : t) ->
             or_number_of_js AnonymousInterface14.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1530) "limit")
+              (Ojs.get_prop_ascii (t_to_js x1557) "limit")
         let (set_limit : t -> AnonymousInterface14.t or_number -> unit) =
-          fun (x1532 : t) ->
-            fun (x1533 : AnonymousInterface14.t or_number) ->
-              Ojs.set_prop_ascii (t_to_js x1532) "limit"
-                (or_number_to_js AnonymousInterface14.t_to_js x1533)
+          fun (x1559 : t) ->
+            fun (x1560 : AnonymousInterface14.t or_number) ->
+              Ojs.set_prop_ascii (t_to_js x1559) "limit"
+                (or_number_to_js AnonymousInterface14.t_to_js x1560)
       end
     module TimelineProvider =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1536 : Ojs.t) -> x1536
-        and t_to_js : t -> Ojs.t = fun (x1535 : Ojs.t) -> x1535
+        let rec t_of_js : Ojs.t -> t = fun (x1563 : Ojs.t) -> x1563
+        and t_to_js : t -> Ojs.t = fun (x1562 : Ojs.t) -> x1562
         let (on_did_change : t -> TimelineChangeEvent.t or_undefined Event.t)
           =
-          fun (x1537 : t) ->
+          fun (x1564 : t) ->
             Event.t_of_js
-              (fun (x1538 : Ojs.t) ->
-                 or_undefined_of_js TimelineChangeEvent.t_of_js x1538)
-              (Ojs.get_prop_ascii (t_to_js x1537) "onDidChange")
+              (fun (x1565 : Ojs.t) ->
+                 or_undefined_of_js TimelineChangeEvent.t_of_js x1565)
+              (Ojs.get_prop_ascii (t_to_js x1564) "onDidChange")
         let (set_on_did_change :
           t -> TimelineChangeEvent.t or_undefined Event.t -> unit) =
-          fun (x1540 : t) ->
-            fun (x1541 : TimelineChangeEvent.t or_undefined Event.t) ->
-              Ojs.set_prop_ascii (t_to_js x1540) "onDidChange"
+          fun (x1567 : t) ->
+            fun (x1568 : TimelineChangeEvent.t or_undefined Event.t) ->
+              Ojs.set_prop_ascii (t_to_js x1567) "onDidChange"
                 (Event.t_to_js
-                   (fun (x1542 : TimelineChangeEvent.t or_undefined) ->
-                      or_undefined_to_js TimelineChangeEvent.t_to_js x1542)
-                   x1541)
+                   (fun (x1569 : TimelineChangeEvent.t or_undefined) ->
+                      or_undefined_to_js TimelineChangeEvent.t_to_js x1569)
+                   x1568)
         let (id : t -> string) =
-          fun (x1544 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1544) "id")
+          fun (x1571 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1571) "id")
         let (label : t -> string) =
-          fun (x1545 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1545) "label")
+          fun (x1572 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1572) "label")
         let (provide_timeline :
           t ->
             uri:Uri.t ->
               options:TimelineOptions.t ->
                 token:CancellationToken.t -> Timeline.t ProviderResult.t)
           =
-          fun (x1549 : t) ->
-            fun ~uri:(x1546 : Uri.t) ->
-              fun ~options:(x1547 : TimelineOptions.t) ->
-                fun ~token:(x1548 : CancellationToken.t) ->
+          fun (x1576 : t) ->
+            fun ~uri:(x1573 : Uri.t) ->
+              fun ~options:(x1574 : TimelineOptions.t) ->
+                fun ~token:(x1575 : CancellationToken.t) ->
                   ProviderResult.t_of_js Timeline.t_of_js
-                    (Ojs.call (t_to_js x1549) "provideTimeline"
-                       [|(Uri.t_to_js x1546);(TimelineOptions.t_to_js x1547);(
-                         CancellationToken.t_to_js x1548)|])
+                    (Ojs.call (t_to_js x1576) "provideTimeline"
+                       [|(Uri.t_to_js x1573);(TimelineOptions.t_to_js x1574);(
+                         CancellationToken.t_to_js x1575)|])
       end
     module StandardTokenType =
       struct
         type t = [ `Other  | `Comment  | `String  | `RegEx ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1552 : Ojs.t) ->
-            let x1553 = x1552 in
-            match Ojs.int_of_js x1553 with
+          fun (x1579 : Ojs.t) ->
+            let x1580 = x1579 in
+            match Ojs.int_of_js x1580 with
             | 0 -> `Other
             | 1 -> `Comment
             | 2 -> `String
             | 4 -> `RegEx
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x1551 : [ `Other  | `Comment  | `String  | `RegEx ]) ->
-            match x1551 with
+          fun (x1578 : [ `Other  | `Comment  | `String  | `RegEx ]) ->
+            match x1578 with
             | `Other -> Ojs.int_to_js 0
             | `Comment -> Ojs.int_to_js 1
             | `String -> Ojs.int_to_js 2
@@ -4721,40 +4853,40 @@ module Vscode =
     module TokenInformation =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1555 : Ojs.t) -> x1555
-        and t_to_js : t -> Ojs.t = fun (x1554 : Ojs.t) -> x1554
+        let rec t_of_js : Ojs.t -> t = fun (x1582 : Ojs.t) -> x1582
+        and t_to_js : t -> Ojs.t = fun (x1581 : Ojs.t) -> x1581
         let (type_ : t -> StandardTokenType.t) =
-          fun (x1556 : t) ->
+          fun (x1583 : t) ->
             StandardTokenType.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1556) "type")
+              (Ojs.get_prop_ascii (t_to_js x1583) "type")
         let (set_type : t -> StandardTokenType.t -> unit) =
-          fun (x1557 : t) ->
-            fun (x1558 : StandardTokenType.t) ->
-              Ojs.set_prop_ascii (t_to_js x1557) "type"
-                (StandardTokenType.t_to_js x1558)
+          fun (x1584 : t) ->
+            fun (x1585 : StandardTokenType.t) ->
+              Ojs.set_prop_ascii (t_to_js x1584) "type"
+                (StandardTokenType.t_to_js x1585)
         let (range : t -> Range.t) =
-          fun (x1559 : t) ->
-            Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1559) "range")
+          fun (x1586 : t) ->
+            Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1586) "range")
         let (set_range : t -> Range.t -> unit) =
-          fun (x1560 : t) ->
-            fun (x1561 : Range.t) ->
-              Ojs.set_prop_ascii (t_to_js x1560) "range"
-                (Range.t_to_js x1561)
+          fun (x1587 : t) ->
+            fun (x1588 : Range.t) ->
+              Ojs.set_prop_ascii (t_to_js x1587) "range"
+                (Range.t_to_js x1588)
       end
     module InlineHintKind =
       struct
         type t = [ `Other  | `Type  | `Parameter ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1563 : Ojs.t) ->
-            let x1564 = x1563 in
-            match Ojs.int_of_js x1564 with
+          fun (x1590 : Ojs.t) ->
+            let x1591 = x1590 in
+            match Ojs.int_of_js x1591 with
             | 0 -> `Other
             | 1 -> `Type
             | 2 -> `Parameter
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x1562 : [ `Other  | `Type  | `Parameter ]) ->
-            match x1562 with
+          fun (x1589 : [ `Other  | `Type  | `Parameter ]) ->
+            match x1589 with
             | `Other -> Ojs.int_to_js 0
             | `Type -> Ojs.int_to_js 1
             | `Parameter -> Ojs.int_to_js 2
@@ -4762,101 +4894,103 @@ module Vscode =
     module InlineHint =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1566 : Ojs.t) -> x1566
-        and t_to_js : t -> Ojs.t = fun (x1565 : Ojs.t) -> x1565
+        let rec t_of_js : Ojs.t -> t = fun (x1593 : Ojs.t) -> x1593
+        and t_to_js : t -> Ojs.t = fun (x1592 : Ojs.t) -> x1592
         let (text : t -> string) =
-          fun (x1567 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1567) "text")
+          fun (x1594 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1594) "text")
         let (set_text : t -> string -> unit) =
-          fun (x1568 : t) ->
-            fun (x1569 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1568) "text"
-                (Ojs.string_to_js x1569)
+          fun (x1595 : t) ->
+            fun (x1596 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1595) "text"
+                (Ojs.string_to_js x1596)
         let (range : t -> Range.t) =
-          fun (x1570 : t) ->
-            Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1570) "range")
+          fun (x1597 : t) ->
+            Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1597) "range")
         let (set_range : t -> Range.t -> unit) =
-          fun (x1571 : t) ->
-            fun (x1572 : Range.t) ->
-              Ojs.set_prop_ascii (t_to_js x1571) "range"
-                (Range.t_to_js x1572)
+          fun (x1598 : t) ->
+            fun (x1599 : Range.t) ->
+              Ojs.set_prop_ascii (t_to_js x1598) "range"
+                (Range.t_to_js x1599)
         let (kind : t -> InlineHintKind.t) =
-          fun (x1573 : t) ->
+          fun (x1600 : t) ->
             InlineHintKind.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1573) "kind")
+              (Ojs.get_prop_ascii (t_to_js x1600) "kind")
         let (set_kind : t -> InlineHintKind.t -> unit) =
-          fun (x1574 : t) ->
-            fun (x1575 : InlineHintKind.t) ->
-              Ojs.set_prop_ascii (t_to_js x1574) "kind"
-                (InlineHintKind.t_to_js x1575)
+          fun (x1601 : t) ->
+            fun (x1602 : InlineHintKind.t) ->
+              Ojs.set_prop_ascii (t_to_js x1601) "kind"
+                (InlineHintKind.t_to_js x1602)
         let (description : t -> MarkdownString.t or_string) =
-          fun (x1576 : t) ->
+          fun (x1603 : t) ->
             or_string_of_js MarkdownString.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1576) "description")
+              (Ojs.get_prop_ascii (t_to_js x1603) "description")
         let (set_description : t -> MarkdownString.t or_string -> unit) =
-          fun (x1578 : t) ->
-            fun (x1579 : MarkdownString.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1578) "description"
-                (or_string_to_js MarkdownString.t_to_js x1579)
+          fun (x1605 : t) ->
+            fun (x1606 : MarkdownString.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1605) "description"
+                (or_string_to_js MarkdownString.t_to_js x1606)
         let (whitespace_before : t -> bool) =
-          fun (x1581 : t) ->
+          fun (x1608 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x1581) "whitespaceBefore")
+              (Ojs.get_prop_ascii (t_to_js x1608) "whitespaceBefore")
         let (set_whitespace_before : t -> bool -> unit) =
-          fun (x1582 : t) ->
-            fun (x1583 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1582) "whitespaceBefore"
-                (Ojs.bool_to_js x1583)
+          fun (x1609 : t) ->
+            fun (x1610 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1609) "whitespaceBefore"
+                (Ojs.bool_to_js x1610)
         let (whitespace_after : t -> bool) =
-          fun (x1584 : t) ->
+          fun (x1611 : t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x1584) "whitespaceAfter")
+              (Ojs.get_prop_ascii (t_to_js x1611) "whitespaceAfter")
         let (set_whitespace_after : t -> bool -> unit) =
-          fun (x1585 : t) ->
-            fun (x1586 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1585) "whitespaceAfter"
-                (Ojs.bool_to_js x1586)
+          fun (x1612 : t) ->
+            fun (x1613 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1612) "whitespaceAfter"
+                (Ojs.bool_to_js x1613)
         let (create :
           text:string -> range:Range.t -> ?kind:InlineHintKind.t -> unit -> t)
           =
-          fun ~text:(x1587 : string) ->
-            fun ~range:(x1588 : Range.t) ->
-              fun ?kind:(x1589 : InlineHintKind.t option) ->
+          fun ~text:(x1614 : string) ->
+            fun ~range:(x1615 : Range.t) ->
+              fun ?kind:(x1616 : InlineHintKind.t option) ->
                 fun () ->
                   t_of_js
                     (Ojs.new_obj_arr
                        (Ojs.get_prop_ascii
-                          (Ojs.get_prop_ascii Ojs.global
-                             "__LIB__VSCODE__IMPORTS.vscode") "InlineHint")
-                       (let x1590 =
+                          (Ojs.get_prop_ascii
+                             (Ojs.get_prop_ascii Ojs.global
+                                "__LIB__VSCODE__IMPORTS") "vscode")
+                          "InlineHint")
+                       (let x1617 =
                           Ojs.new_obj (Ojs.get_prop_ascii Ojs.global "Array")
                             [||] in
                         ignore
-                          (Ojs.call x1590 "push" [|(Ojs.string_to_js x1587)|]);
+                          (Ojs.call x1617 "push" [|(Ojs.string_to_js x1614)|]);
                         ignore
-                          (Ojs.call x1590 "push" [|(Range.t_to_js x1588)|]);
-                        (match x1589 with
-                         | Some x1591 ->
+                          (Ojs.call x1617 "push" [|(Range.t_to_js x1615)|]);
+                        (match x1616 with
+                         | Some x1618 ->
                              ignore
-                               (Ojs.call x1590 "push"
-                                  [|(InlineHintKind.t_to_js x1591)|])
+                               (Ojs.call x1617 "push"
+                                  [|(InlineHintKind.t_to_js x1618)|])
                          | None -> ());
-                        x1590))
+                        x1617))
       end
     module InlineHintsProvider =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1593 : Ojs.t) -> x1593
-        and t_to_js : t -> Ojs.t = fun (x1592 : Ojs.t) -> x1592
+        let rec t_of_js : Ojs.t -> t = fun (x1620 : Ojs.t) -> x1620
+        and t_to_js : t -> Ojs.t = fun (x1619 : Ojs.t) -> x1619
         let (on_did_change_inline_hints : t -> unit Event.t) =
-          fun (x1594 : t) ->
+          fun (x1621 : t) ->
             Event.t_of_js Ojs.unit_of_js
-              (Ojs.get_prop_ascii (t_to_js x1594) "onDidChangeInlineHints")
+              (Ojs.get_prop_ascii (t_to_js x1621) "onDidChangeInlineHints")
         let (set_on_did_change_inline_hints : t -> unit Event.t -> unit) =
-          fun (x1596 : t) ->
-            fun (x1597 : unit Event.t) ->
-              Ojs.set_prop_ascii (t_to_js x1596) "onDidChangeInlineHints"
-                (Event.t_to_js Ojs.unit_to_js x1597)
+          fun (x1623 : t) ->
+            fun (x1624 : unit Event.t) ->
+              Ojs.set_prop_ascii (t_to_js x1623) "onDidChangeInlineHints"
+                (Event.t_to_js Ojs.unit_to_js x1624)
         let (provide_inline_hints :
           t ->
             model:TextDocument.t ->
@@ -4864,16 +4998,16 @@ module Vscode =
                 token:CancellationToken.t ->
                   InlineHint.t list ProviderResult.t)
           =
-          fun (x1602 : t) ->
-            fun ~model:(x1599 : TextDocument.t) ->
-              fun ~range:(x1600 : Range.t) ->
-                fun ~token:(x1601 : CancellationToken.t) ->
+          fun (x1629 : t) ->
+            fun ~model:(x1626 : TextDocument.t) ->
+              fun ~range:(x1627 : Range.t) ->
+                fun ~token:(x1628 : CancellationToken.t) ->
                   ProviderResult.t_of_js
-                    (fun (x1603 : Ojs.t) ->
-                       Ojs.list_of_js InlineHint.t_of_js x1603)
-                    (Ojs.call (t_to_js x1602) "provideInlineHints"
-                       [|(TextDocument.t_to_js x1599);(Range.t_to_js x1600);(
-                         CancellationToken.t_to_js x1601)|])
+                    (fun (x1630 : Ojs.t) ->
+                       Ojs.list_of_js InlineHint.t_of_js x1630)
+                    (Ojs.call (t_to_js x1629) "provideInlineHints"
+                       [|(TextDocument.t_to_js x1626);(Range.t_to_js x1627);(
+                         CancellationToken.t_to_js x1628)|])
       end
     module Languages =
       struct
@@ -4881,113 +5015,115 @@ module Vscode =
           document:TextDocument.t ->
             position:Position.t -> TokenInformation.t Promise.t)
           =
-          fun ~document:(x1605 : TextDocument.t) ->
-            fun ~position:(x1606 : Position.t) ->
+          fun ~document:(x1632 : TextDocument.t) ->
+            fun ~position:(x1633 : Position.t) ->
               Promise.t_of_js TokenInformation.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "languages")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode") "languages")
                    "getTokenInformationAtPosition"
-                   [|(TextDocument.t_to_js x1605);(Position.t_to_js x1606)|])
+                   [|(TextDocument.t_to_js x1632);(Position.t_to_js x1633)|])
         let (register_inline_hints_provider :
           selector:DocumentSelector.t ->
             provider:InlineHintsProvider.t -> Disposable.t)
           =
-          fun ~selector:(x1608 : DocumentSelector.t) ->
-            fun ~provider:(x1609 : InlineHintsProvider.t) ->
+          fun ~selector:(x1635 : DocumentSelector.t) ->
+            fun ~provider:(x1636 : InlineHintsProvider.t) ->
               Disposable.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "languages")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode") "languages")
                    "registerInlineHintsProvider"
-                   [|(DocumentSelector.t_to_js x1608);(InlineHintsProvider.t_to_js
-                                                         x1609)|])
+                   [|(DocumentSelector.t_to_js x1635);(InlineHintsProvider.t_to_js
+                                                         x1636)|])
       end
     module ExtensionRuntime =
       struct
         type t = [ `Node  | `Webworker ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1611 : Ojs.t) ->
-            let x1612 = x1611 in
-            match Ojs.int_of_js x1612 with
+          fun (x1638 : Ojs.t) ->
+            let x1639 = x1638 in
+            match Ojs.int_of_js x1639 with
             | 1 -> `Node
             | 2 -> `Webworker
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x1610 : [ `Node  | `Webworker ]) ->
-            match x1610 with
+          fun (x1637 : [ `Node  | `Webworker ]) ->
+            match x1637 with
             | `Node -> Ojs.int_to_js 1
             | `Webworker -> Ojs.int_to_js 2
       end
     module ExtensionContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1614 : Ojs.t) -> x1614
-        and t_to_js : t -> Ojs.t = fun (x1613 : Ojs.t) -> x1613
+        let rec t_of_js : Ojs.t -> t = fun (x1641 : Ojs.t) -> x1641
+        and t_to_js : t -> Ojs.t = fun (x1640 : Ojs.t) -> x1640
         let (extension_runtime : t -> ExtensionRuntime.t) =
-          fun (x1615 : t) ->
+          fun (x1642 : t) ->
             ExtensionRuntime.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1615) "extensionRuntime")
+              (Ojs.get_prop_ascii (t_to_js x1642) "extensionRuntime")
       end
     module TextDocument =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1617 : Ojs.t) -> x1617
-        and t_to_js : t -> Ojs.t = fun (x1616 : Ojs.t) -> x1616
+        let rec t_of_js : Ojs.t -> t = fun (x1644 : Ojs.t) -> x1644
+        and t_to_js : t -> Ojs.t = fun (x1643 : Ojs.t) -> x1643
         let (notebook : t -> NotebookDocument.t or_undefined) =
-          fun (x1618 : t) ->
+          fun (x1645 : t) ->
             or_undefined_of_js NotebookDocument.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1618) "notebook")
+              (Ojs.get_prop_ascii (t_to_js x1645) "notebook")
         let (set_notebook : t -> NotebookDocument.t or_undefined -> unit) =
-          fun (x1620 : t) ->
-            fun (x1621 : NotebookDocument.t or_undefined) ->
-              Ojs.set_prop_ascii (t_to_js x1620) "notebook"
-                (or_undefined_to_js NotebookDocument.t_to_js x1621)
+          fun (x1647 : t) ->
+            fun (x1648 : NotebookDocument.t or_undefined) ->
+              Ojs.set_prop_ascii (t_to_js x1647) "notebook"
+                (or_undefined_to_js NotebookDocument.t_to_js x1648)
       end
     module TestChildrenCollection =
       struct
         include struct include Iterable end
         let (size : 'T t -> int) =
-          fun (x1623 : 'T t) ->
+          fun (x1650 : 'T t) ->
             Ojs.int_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1623) "size")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1650) "size")
         let (get : 'T t -> id:string -> 'T or_undefined) =
-          fun (x1626 : 'T t) ->
-            fun ~id:(x1625 : string) ->
+          fun (x1653 : 'T t) ->
+            fun ~id:(x1652 : string) ->
               or_undefined_of_js Obj.magic
-                (Ojs.call (t_to_js Obj.magic x1626) "get"
-                   [|(Ojs.string_to_js x1625)|])
+                (Ojs.call (t_to_js Obj.magic x1653) "get"
+                   [|(Ojs.string_to_js x1652)|])
         let (add : 'T t -> child:'T -> unit) =
-          fun (x1630 : 'T t) ->
-            fun ~child:(x1629 : 'T) ->
+          fun (x1657 : 'T t) ->
+            fun ~child:(x1656 : 'T) ->
               ignore
-                (Ojs.call (t_to_js Obj.magic x1630) "add"
-                   [|(Obj.magic x1629)|])
+                (Ojs.call (t_to_js Obj.magic x1657) "add"
+                   [|(Obj.magic x1656)|])
         let (delete : 'T t -> child:'T or_string -> unit) =
-          fun (x1634 : 'T t) ->
-            fun ~child:(x1632 : 'T or_string) ->
+          fun (x1661 : 'T t) ->
+            fun ~child:(x1659 : 'T or_string) ->
               ignore
-                (Ojs.call (t_to_js Obj.magic x1634) "delete"
-                   [|(or_string_to_js Obj.magic x1632)|])
+                (Ojs.call (t_to_js Obj.magic x1661) "delete"
+                   [|(or_string_to_js Obj.magic x1659)|])
         let (clear : 'T t -> unit) =
-          fun (x1636 : 'T t) ->
-            ignore (Ojs.call (t_to_js Obj.magic x1636) "clear" [||])
+          fun (x1663 : 'T t) ->
+            ignore (Ojs.call (t_to_js Obj.magic x1663) "clear" [||])
       end
     module AnonymousInterface0 =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1639 : Ojs.t) -> x1639
-        and t_to_js : t -> Ojs.t = fun (x1638 : Ojs.t) -> x1638
+        let rec t_of_js : Ojs.t -> t = fun (x1666 : Ojs.t) -> x1666
+        and t_to_js : t -> Ojs.t = fun (x1665 : Ojs.t) -> x1665
         let (busy : t -> bool) =
-          fun (x1640 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1640) "busy")
+          fun (x1667 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1667) "busy")
         let (set_busy : t -> bool -> unit) =
-          fun (x1641 : t) ->
-            fun (x1642 : bool) ->
-              Ojs.set_prop_ascii (t_to_js x1641) "busy"
-                (Ojs.bool_to_js x1642)
+          fun (x1668 : t) ->
+            fun (x1669 : bool) ->
+              Ojs.set_prop_ascii (t_to_js x1668) "busy"
+                (Ojs.bool_to_js x1669)
       end
     module TestItem =
       struct
@@ -4996,201 +5132,203 @@ module Vscode =
           'TChildren . (Ojs.t -> 'TChildren) -> Ojs.t -> 'TChildren t = fun
           (type __TChildren) ->
           fun (__TChildren_of_js : Ojs.t -> __TChildren) ->
-            fun (x1644 : Ojs.t) -> x1644
+            fun (x1671 : Ojs.t) -> x1671
         and t_to_js :
           'TChildren . ('TChildren -> Ojs.t) -> 'TChildren t -> Ojs.t = fun
           (type __TChildren) ->
           fun (__TChildren_to_js : __TChildren -> Ojs.t) ->
-            fun (x1643 : Ojs.t) -> x1643
+            fun (x1670 : Ojs.t) -> x1670
         type t_0 = any t
         let rec t_0_of_js : Ojs.t -> t_0 =
-          fun (x1647 : Ojs.t) -> t_of_js any_of_js x1647
+          fun (x1674 : Ojs.t) -> t_of_js any_of_js x1674
         and t_0_to_js : t_0 -> Ojs.t =
-          fun (x1645 : any t) -> t_to_js any_to_js x1645
+          fun (x1672 : any t) -> t_to_js any_to_js x1672
         let (id : 'TChildren t -> string) =
-          fun (x1649 : 'TChildren t) ->
+          fun (x1676 : 'TChildren t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1649) "id")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1676) "id")
         let (uri : 'TChildren t -> Uri.t) =
-          fun (x1651 : 'TChildren t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x1651) "uri")
+          fun (x1678 : 'TChildren t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js Obj.magic x1678) "uri")
         let (children : 'TChildren t -> 'TChildren TestChildrenCollection.t)
           =
-          fun (x1653 : 'TChildren t) ->
+          fun (x1680 : 'TChildren t) ->
             TestChildrenCollection.t_of_js Obj.magic
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1653) "children")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1680) "children")
         let (label : 'TChildren t -> string) =
-          fun (x1656 : 'TChildren t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1656) "label")
-        let (set_label : 'TChildren t -> string -> unit) =
-          fun (x1658 : 'TChildren t) ->
-            fun (x1659 : string) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1658) "label"
-                (Ojs.string_to_js x1659)
-        let (description : 'TChildren t -> string) =
-          fun (x1661 : 'TChildren t) ->
-            Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1661) "description")
-        let (set_description : 'TChildren t -> string -> unit) =
-          fun (x1663 : 'TChildren t) ->
-            fun (x1664 : string) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1663) "description"
-                (Ojs.string_to_js x1664)
-        let (range : 'TChildren t -> Range.t) =
-          fun (x1666 : 'TChildren t) ->
-            Range.t_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1666) "range")
-        let (set_range : 'TChildren t -> Range.t -> unit) =
-          fun (x1668 : 'TChildren t) ->
-            fun (x1669 : Range.t) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1668) "range"
-                (Range.t_to_js x1669)
-        let (runnable : 'TChildren t -> bool) =
-          fun (x1671 : 'TChildren t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1671) "runnable")
-        let (set_runnable : 'TChildren t -> bool -> unit) =
-          fun (x1673 : 'TChildren t) ->
-            fun (x1674 : bool) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1673) "runnable"
-                (Ojs.bool_to_js x1674)
-        let (debuggable : 'TChildren t -> bool) =
-          fun (x1676 : 'TChildren t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1676) "debuggable")
-        let (set_debuggable : 'TChildren t -> bool -> unit) =
-          fun (x1678 : 'TChildren t) ->
-            fun (x1679 : bool) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1678) "debuggable"
-                (Ojs.bool_to_js x1679)
-        let (expandable : 'TChildren t -> bool) =
-          fun (x1681 : 'TChildren t) ->
-            Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1681) "expandable")
-        let (set_expandable : 'TChildren t -> bool -> unit) =
           fun (x1683 : 'TChildren t) ->
-            fun (x1684 : bool) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1683) "expandable"
-                (Ojs.bool_to_js x1684)
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1683) "label")
+        let (set_label : 'TChildren t -> string -> unit) =
+          fun (x1685 : 'TChildren t) ->
+            fun (x1686 : string) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1685) "label"
+                (Ojs.string_to_js x1686)
+        let (description : 'TChildren t -> string) =
+          fun (x1688 : 'TChildren t) ->
+            Ojs.string_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1688) "description")
+        let (set_description : 'TChildren t -> string -> unit) =
+          fun (x1690 : 'TChildren t) ->
+            fun (x1691 : string) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1690) "description"
+                (Ojs.string_to_js x1691)
+        let (range : 'TChildren t -> Range.t) =
+          fun (x1693 : 'TChildren t) ->
+            Range.t_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1693) "range")
+        let (set_range : 'TChildren t -> Range.t -> unit) =
+          fun (x1695 : 'TChildren t) ->
+            fun (x1696 : Range.t) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1695) "range"
+                (Range.t_to_js x1696)
+        let (runnable : 'TChildren t -> bool) =
+          fun (x1698 : 'TChildren t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1698) "runnable")
+        let (set_runnable : 'TChildren t -> bool -> unit) =
+          fun (x1700 : 'TChildren t) ->
+            fun (x1701 : bool) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1700) "runnable"
+                (Ojs.bool_to_js x1701)
+        let (debuggable : 'TChildren t -> bool) =
+          fun (x1703 : 'TChildren t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1703) "debuggable")
+        let (set_debuggable : 'TChildren t -> bool -> unit) =
+          fun (x1705 : 'TChildren t) ->
+            fun (x1706 : bool) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1705) "debuggable"
+                (Ojs.bool_to_js x1706)
+        let (expandable : 'TChildren t -> bool) =
+          fun (x1708 : 'TChildren t) ->
+            Ojs.bool_of_js
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1708) "expandable")
+        let (set_expandable : 'TChildren t -> bool -> unit) =
+          fun (x1710 : 'TChildren t) ->
+            fun (x1711 : bool) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1710) "expandable"
+                (Ojs.bool_to_js x1711)
         let (create :
           id:string ->
             label:string -> uri:Uri.t -> expandable:bool -> 'TChildren t)
           =
-          fun ~id:(x1686 : string) ->
-            fun ~label:(x1687 : string) ->
-              fun ~uri:(x1688 : Uri.t) ->
-                fun ~expandable:(x1689 : bool) ->
+          fun ~id:(x1713 : string) ->
+            fun ~label:(x1714 : string) ->
+              fun ~uri:(x1715 : Uri.t) ->
+                fun ~expandable:(x1716 : bool) ->
                   t_of_js Obj.magic
                     (Ojs.new_obj
                        (Ojs.get_prop_ascii
-                          (Ojs.get_prop_ascii Ojs.global
-                             "__LIB__VSCODE__IMPORTS.vscode") "TestItem")
-                       [|(Ojs.string_to_js x1686);(Ojs.string_to_js x1687);(
-                         Uri.t_to_js x1688);(Ojs.bool_to_js x1689)|])
+                          (Ojs.get_prop_ascii
+                             (Ojs.get_prop_ascii Ojs.global
+                                "__LIB__VSCODE__IMPORTS") "vscode")
+                          "TestItem")
+                       [|(Ojs.string_to_js x1713);(Ojs.string_to_js x1714);(
+                         Uri.t_to_js x1715);(Ojs.bool_to_js x1716)|])
         let (invalidate : 'TChildren t -> unit) =
-          fun (x1691 : 'TChildren t) ->
-            ignore (Ojs.call (t_to_js Obj.magic x1691) "invalidate" [||])
+          fun (x1718 : 'TChildren t) ->
+            ignore (Ojs.call (t_to_js Obj.magic x1718) "invalidate" [||])
         let (discover_children :
           'TChildren t ->
             progress:AnonymousInterface0.t Progress.t ->
               token:CancellationToken.t -> unit)
           =
-          fun (x1696 : 'TChildren t) ->
-            fun ~progress:(x1693 : AnonymousInterface0.t Progress.t) ->
-              fun ~token:(x1695 : CancellationToken.t) ->
+          fun (x1723 : 'TChildren t) ->
+            fun ~progress:(x1720 : AnonymousInterface0.t Progress.t) ->
+              fun ~token:(x1722 : CancellationToken.t) ->
                 ignore
-                  (Ojs.call (t_to_js Obj.magic x1696) "discoverChildren"
-                     [|(Progress.t_to_js AnonymousInterface0.t_to_js x1693);(
-                       CancellationToken.t_to_js x1695)|])
+                  (Ojs.call (t_to_js Obj.magic x1723) "discoverChildren"
+                     [|(Progress.t_to_js AnonymousInterface0.t_to_js x1720);(
+                       CancellationToken.t_to_js x1722)|])
       end
     module TestsChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1699 : Ojs.t) -> x1699
-        and t_to_js : t -> Ojs.t = fun (x1698 : Ojs.t) -> x1698
+        let rec t_of_js : Ojs.t -> t = fun (x1726 : Ojs.t) -> x1726
+        and t_to_js : t -> Ojs.t = fun (x1725 : Ojs.t) -> x1725
         let (added : t -> any TestItem.t list) =
-          fun (x1700 : t) ->
+          fun (x1727 : t) ->
             Ojs.list_of_js
-              (fun (x1701 : Ojs.t) -> TestItem.t_of_js any_of_js x1701)
-              (Ojs.get_prop_ascii (t_to_js x1700) "added")
+              (fun (x1728 : Ojs.t) -> TestItem.t_of_js any_of_js x1728)
+              (Ojs.get_prop_ascii (t_to_js x1727) "added")
         let (updated : t -> any TestItem.t list) =
-          fun (x1703 : t) ->
+          fun (x1730 : t) ->
             Ojs.list_of_js
-              (fun (x1704 : Ojs.t) -> TestItem.t_of_js any_of_js x1704)
-              (Ojs.get_prop_ascii (t_to_js x1703) "updated")
+              (fun (x1731 : Ojs.t) -> TestItem.t_of_js any_of_js x1731)
+              (Ojs.get_prop_ascii (t_to_js x1730) "updated")
         let (removed : t -> any TestItem.t list) =
-          fun (x1706 : t) ->
+          fun (x1733 : t) ->
             Ojs.list_of_js
-              (fun (x1707 : Ojs.t) -> TestItem.t_of_js any_of_js x1707)
-              (Ojs.get_prop_ascii (t_to_js x1706) "removed")
+              (fun (x1734 : Ojs.t) -> TestItem.t_of_js any_of_js x1734)
+              (Ojs.get_prop_ascii (t_to_js x1733) "removed")
       end
     module TestObserver =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1710 : Ojs.t) -> x1710
-        and t_to_js : t -> Ojs.t = fun (x1709 : Ojs.t) -> x1709
+        let rec t_of_js : Ojs.t -> t = fun (x1737 : Ojs.t) -> x1737
+        and t_to_js : t -> Ojs.t = fun (x1736 : Ojs.t) -> x1736
         let (tests : t -> any TestItem.t list) =
-          fun (x1711 : t) ->
+          fun (x1738 : t) ->
             Ojs.list_of_js
-              (fun (x1712 : Ojs.t) -> TestItem.t_of_js any_of_js x1712)
-              (Ojs.get_prop_ascii (t_to_js x1711) "tests")
+              (fun (x1739 : Ojs.t) -> TestItem.t_of_js any_of_js x1739)
+              (Ojs.get_prop_ascii (t_to_js x1738) "tests")
         let (on_did_change_test : t -> TestsChangeEvent.t Event.t) =
-          fun (x1714 : t) ->
+          fun (x1741 : t) ->
             Event.t_of_js TestsChangeEvent.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1714) "onDidChangeTest")
+              (Ojs.get_prop_ascii (t_to_js x1741) "onDidChangeTest")
         let (on_did_discover_initial_tests : t -> unit Event.t) =
-          fun (x1716 : t) ->
+          fun (x1743 : t) ->
             Event.t_of_js Ojs.unit_of_js
-              (Ojs.get_prop_ascii (t_to_js x1716) "onDidDiscoverInitialTests")
+              (Ojs.get_prop_ascii (t_to_js x1743) "onDidDiscoverInitialTests")
         let (dispose : t -> unit) =
-          fun (x1718 : t) -> ignore (Ojs.call (t_to_js x1718) "dispose" [||])
+          fun (x1745 : t) -> ignore (Ojs.call (t_to_js x1745) "dispose" [||])
       end
     module TestRunRequest =
       struct
         type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
           __T) ->
-          fun (__T_of_js : Ojs.t -> __T) -> fun (x1720 : Ojs.t) -> x1720
+          fun (__T_of_js : Ojs.t -> __T) -> fun (x1747 : Ojs.t) -> x1747
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) -> fun (x1719 : Ojs.t) -> x1719
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x1746 : Ojs.t) -> x1746
         type t_0 = any TestItem.t t
         let rec t_0_of_js : Ojs.t -> t_0 =
-          fun (x1724 : Ojs.t) ->
-            t_of_js (fun (x1725 : Ojs.t) -> TestItem.t_of_js any_of_js x1725)
-              x1724
+          fun (x1751 : Ojs.t) ->
+            t_of_js (fun (x1752 : Ojs.t) -> TestItem.t_of_js any_of_js x1752)
+              x1751
         and t_0_to_js : t_0 -> Ojs.t =
-          fun (x1721 : any TestItem.t t) ->
+          fun (x1748 : any TestItem.t t) ->
             t_to_js
-              (fun (x1722 : any TestItem.t) ->
-                 TestItem.t_to_js any_to_js x1722) x1721
+              (fun (x1749 : any TestItem.t) ->
+                 TestItem.t_to_js any_to_js x1749) x1748
         let (tests : 'T t -> 'T list) =
-          fun (x1727 : 'T t) ->
+          fun (x1754 : 'T t) ->
             Ojs.list_of_js Obj.magic
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1727) "tests")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1754) "tests")
         let (set_tests : 'T t -> 'T list -> unit) =
-          fun (x1730 : 'T t) ->
-            fun (x1731 : 'T list) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1730) "tests"
-                (Ojs.list_to_js Obj.magic x1731)
+          fun (x1757 : 'T t) ->
+            fun (x1758 : 'T list) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1757) "tests"
+                (Ojs.list_to_js Obj.magic x1758)
         let (exclude : 'T t -> 'T list) =
-          fun (x1734 : 'T t) ->
+          fun (x1761 : 'T t) ->
             Ojs.list_of_js Obj.magic
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1734) "exclude")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1761) "exclude")
         let (set_exclude : 'T t -> 'T list -> unit) =
-          fun (x1737 : 'T t) ->
-            fun (x1738 : 'T list) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1737) "exclude"
-                (Ojs.list_to_js Obj.magic x1738)
+          fun (x1764 : 'T t) ->
+            fun (x1765 : 'T list) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1764) "exclude"
+                (Ojs.list_to_js Obj.magic x1765)
         let (debug : 'T t -> bool) =
-          fun (x1741 : 'T t) ->
+          fun (x1768 : 'T t) ->
             Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js Obj.magic x1741) "debug")
+              (Ojs.get_prop_ascii (t_to_js Obj.magic x1768) "debug")
         let (set_debug : 'T t -> bool -> unit) =
-          fun (x1743 : 'T t) ->
-            fun (x1744 : bool) ->
-              Ojs.set_prop_ascii (t_to_js Obj.magic x1743) "debug"
-                (Ojs.bool_to_js x1744)
+          fun (x1770 : 'T t) ->
+            fun (x1771 : bool) ->
+              Ojs.set_prop_ascii (t_to_js Obj.magic x1770) "debug"
+                (Ojs.bool_to_js x1771)
       end
     module TestResultState =
       struct
@@ -5198,9 +5336,9 @@ module Vscode =
           [ `Unset  | `Queued  | `Running  | `Passed  | `Failed  | `Skipped 
           | `Errored ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1747 : Ojs.t) ->
-            let x1748 = x1747 in
-            match Ojs.int_of_js x1748 with
+          fun (x1774 : Ojs.t) ->
+            let x1775 = x1774 in
+            match Ojs.int_of_js x1775 with
             | 0 -> `Unset
             | 1 -> `Queued
             | 2 -> `Running
@@ -5211,11 +5349,11 @@ module Vscode =
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x1746 :
+            (x1773 :
               [ `Unset  | `Queued  | `Running  | `Passed  | `Failed 
               | `Skipped  | `Errored ])
             ->
-            match x1746 with
+            match x1773 with
             | `Unset -> Ojs.int_to_js 0
             | `Queued -> Ojs.int_to_js 1
             | `Running -> Ojs.int_to_js 2
@@ -5228,17 +5366,17 @@ module Vscode =
       struct
         type t = [ `Error  | `Warning  | `Information  | `Hint ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1750 : Ojs.t) ->
-            let x1751 = x1750 in
-            match Ojs.int_of_js x1751 with
+          fun (x1777 : Ojs.t) ->
+            let x1778 = x1777 in
+            match Ojs.int_of_js x1778 with
             | 0 -> `Error
             | 1 -> `Warning
             | 2 -> `Information
             | 3 -> `Hint
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x1749 : [ `Error  | `Warning  | `Information  | `Hint ]) ->
-            match x1749 with
+          fun (x1776 : [ `Error  | `Warning  | `Information  | `Hint ]) ->
+            match x1776 with
             | `Error -> Ojs.int_to_js 0
             | `Warning -> Ojs.int_to_js 1
             | `Information -> Ojs.int_to_js 2
@@ -5247,380 +5385,388 @@ module Vscode =
     module TestMessage =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1753 : Ojs.t) -> x1753
-        and t_to_js : t -> Ojs.t = fun (x1752 : Ojs.t) -> x1752
+        let rec t_of_js : Ojs.t -> t = fun (x1780 : Ojs.t) -> x1780
+        and t_to_js : t -> Ojs.t = fun (x1779 : Ojs.t) -> x1779
         let (message : t -> MarkdownString.t or_string) =
-          fun (x1754 : t) ->
+          fun (x1781 : t) ->
             or_string_of_js MarkdownString.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1754) "message")
+              (Ojs.get_prop_ascii (t_to_js x1781) "message")
         let (set_message : t -> MarkdownString.t or_string -> unit) =
-          fun (x1756 : t) ->
-            fun (x1757 : MarkdownString.t or_string) ->
-              Ojs.set_prop_ascii (t_to_js x1756) "message"
-                (or_string_to_js MarkdownString.t_to_js x1757)
+          fun (x1783 : t) ->
+            fun (x1784 : MarkdownString.t or_string) ->
+              Ojs.set_prop_ascii (t_to_js x1783) "message"
+                (or_string_to_js MarkdownString.t_to_js x1784)
         let (severity : t -> TestMessageSeverity.t) =
-          fun (x1759 : t) ->
+          fun (x1786 : t) ->
             TestMessageSeverity.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1759) "severity")
+              (Ojs.get_prop_ascii (t_to_js x1786) "severity")
         let (set_severity : t -> TestMessageSeverity.t -> unit) =
-          fun (x1760 : t) ->
-            fun (x1761 : TestMessageSeverity.t) ->
-              Ojs.set_prop_ascii (t_to_js x1760) "severity"
-                (TestMessageSeverity.t_to_js x1761)
+          fun (x1787 : t) ->
+            fun (x1788 : TestMessageSeverity.t) ->
+              Ojs.set_prop_ascii (t_to_js x1787) "severity"
+                (TestMessageSeverity.t_to_js x1788)
         let (expected_output : t -> string) =
-          fun (x1762 : t) ->
+          fun (x1789 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1762) "expectedOutput")
+              (Ojs.get_prop_ascii (t_to_js x1789) "expectedOutput")
         let (set_expected_output : t -> string -> unit) =
-          fun (x1763 : t) ->
-            fun (x1764 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1763) "expectedOutput"
-                (Ojs.string_to_js x1764)
+          fun (x1790 : t) ->
+            fun (x1791 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1790) "expectedOutput"
+                (Ojs.string_to_js x1791)
         let (actual_output : t -> string) =
-          fun (x1765 : t) ->
+          fun (x1792 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1765) "actualOutput")
+              (Ojs.get_prop_ascii (t_to_js x1792) "actualOutput")
         let (set_actual_output : t -> string -> unit) =
-          fun (x1766 : t) ->
-            fun (x1767 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1766) "actualOutput"
-                (Ojs.string_to_js x1767)
+          fun (x1793 : t) ->
+            fun (x1794 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1793) "actualOutput"
+                (Ojs.string_to_js x1794)
         let (location : t -> Location.t) =
-          fun (x1768 : t) ->
-            Location.t_of_js (Ojs.get_prop_ascii (t_to_js x1768) "location")
+          fun (x1795 : t) ->
+            Location.t_of_js (Ojs.get_prop_ascii (t_to_js x1795) "location")
         let (set_location : t -> Location.t -> unit) =
-          fun (x1769 : t) ->
-            fun (x1770 : Location.t) ->
-              Ojs.set_prop_ascii (t_to_js x1769) "location"
-                (Location.t_to_js x1770)
+          fun (x1796 : t) ->
+            fun (x1797 : Location.t) ->
+              Ojs.set_prop_ascii (t_to_js x1796) "location"
+                (Location.t_to_js x1797)
         let (diff :
           message:MarkdownString.t or_string ->
             expected:string -> actual:string -> t)
           =
-          fun ~message:(x1771 : MarkdownString.t or_string) ->
-            fun ~expected:(x1773 : string) ->
-              fun ~actual:(x1774 : string) ->
+          fun ~message:(x1798 : MarkdownString.t or_string) ->
+            fun ~expected:(x1800 : string) ->
+              fun ~actual:(x1801 : string) ->
                 t_of_js
                   (Ojs.call
                      (Ojs.get_prop_ascii
-                        (Ojs.get_prop_ascii Ojs.global
-                           "__LIB__VSCODE__IMPORTS.vscode") "TestMessage")
-                     "diff"
-                     [|(or_string_to_js MarkdownString.t_to_js x1771);(
-                       Ojs.string_to_js x1773);(Ojs.string_to_js x1774)|])
+                        (Ojs.get_prop_ascii
+                           (Ojs.get_prop_ascii Ojs.global
+                              "__LIB__VSCODE__IMPORTS") "vscode")
+                        "TestMessage") "diff"
+                     [|(or_string_to_js MarkdownString.t_to_js x1798);(
+                       Ojs.string_to_js x1800);(Ojs.string_to_js x1801)|])
         let (create : message:MarkdownString.t or_string -> t) =
-          fun ~message:(x1775 : MarkdownString.t or_string) ->
+          fun ~message:(x1802 : MarkdownString.t or_string) ->
             t_of_js
               (Ojs.new_obj
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "TestMessage")
-                 [|(or_string_to_js MarkdownString.t_to_js x1775)|])
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "TestMessage")
+                 [|(or_string_to_js MarkdownString.t_to_js x1802)|])
       end
     module TestResultSnapshot =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1778 : Ojs.t) -> x1778
-        and t_to_js : t -> Ojs.t = fun (x1777 : Ojs.t) -> x1777
+        let rec t_of_js : Ojs.t -> t = fun (x1805 : Ojs.t) -> x1805
+        and t_to_js : t -> Ojs.t = fun (x1804 : Ojs.t) -> x1804
         let (id : t -> string) =
-          fun (x1779 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1779) "id")
+          fun (x1806 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1806) "id")
         let (uri : t -> Uri.t) =
-          fun (x1780 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1780) "uri")
+          fun (x1807 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1807) "uri")
         let (label : t -> string) =
-          fun (x1781 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1781) "label")
+          fun (x1808 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1808) "label")
         let (description : t -> string) =
-          fun (x1782 : t) ->
+          fun (x1809 : t) ->
             Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1782) "description")
+              (Ojs.get_prop_ascii (t_to_js x1809) "description")
         let (range : t -> Range.t) =
-          fun (x1783 : t) ->
-            Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1783) "range")
+          fun (x1810 : t) ->
+            Range.t_of_js (Ojs.get_prop_ascii (t_to_js x1810) "range")
         let (state : t -> TestResultState.t) =
-          fun (x1784 : t) ->
+          fun (x1811 : t) ->
             TestResultState.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1784) "state")
+              (Ojs.get_prop_ascii (t_to_js x1811) "state")
         let (duration : t -> int) =
-          fun (x1785 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1785) "duration")
+          fun (x1812 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1812) "duration")
         let (messages : t -> TestMessage.t list) =
-          fun (x1786 : t) ->
+          fun (x1813 : t) ->
             Ojs.list_of_js TestMessage.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1786) "messages")
+              (Ojs.get_prop_ascii (t_to_js x1813) "messages")
         let (children : t -> t Readonly.t list) =
-          fun (x1788 : t) ->
+          fun (x1815 : t) ->
             Ojs.list_of_js
-              (fun (x1789 : Ojs.t) -> Readonly.t_of_js t_of_js x1789)
-              (Ojs.get_prop_ascii (t_to_js x1788) "children")
+              (fun (x1816 : Ojs.t) -> Readonly.t_of_js t_of_js x1816)
+              (Ojs.get_prop_ascii (t_to_js x1815) "children")
       end
     module TestRunResult =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1792 : Ojs.t) -> x1792
-        and t_to_js : t -> Ojs.t = fun (x1791 : Ojs.t) -> x1791
+        let rec t_of_js : Ojs.t -> t = fun (x1819 : Ojs.t) -> x1819
+        and t_to_js : t -> Ojs.t = fun (x1818 : Ojs.t) -> x1818
         let (completed_at : t -> int) =
-          fun (x1793 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1793) "completedAt")
+          fun (x1820 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1820) "completedAt")
         let (set_completed_at : t -> int -> unit) =
-          fun (x1794 : t) ->
-            fun (x1795 : int) ->
-              Ojs.set_prop_ascii (t_to_js x1794) "completedAt"
-                (Ojs.int_to_js x1795)
+          fun (x1821 : t) ->
+            fun (x1822 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1821) "completedAt"
+                (Ojs.int_to_js x1822)
         let (output : t -> string) =
-          fun (x1796 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1796) "output")
+          fun (x1823 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1823) "output")
         let (set_output : t -> string -> unit) =
-          fun (x1797 : t) ->
-            fun (x1798 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1797) "output"
-                (Ojs.string_to_js x1798)
+          fun (x1824 : t) ->
+            fun (x1825 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1824) "output"
+                (Ojs.string_to_js x1825)
         let (results : t -> TestResultSnapshot.t Readonly.t list) =
-          fun (x1799 : t) ->
+          fun (x1826 : t) ->
             Ojs.list_of_js
-              (fun (x1800 : Ojs.t) ->
-                 Readonly.t_of_js TestResultSnapshot.t_of_js x1800)
-              (Ojs.get_prop_ascii (t_to_js x1799) "results")
+              (fun (x1827 : Ojs.t) ->
+                 Readonly.t_of_js TestResultSnapshot.t_of_js x1827)
+              (Ojs.get_prop_ascii (t_to_js x1826) "results")
         let (set_results : t -> TestResultSnapshot.t Readonly.t list -> unit)
           =
-          fun (x1802 : t) ->
-            fun (x1803 : TestResultSnapshot.t Readonly.t list) ->
-              Ojs.set_prop_ascii (t_to_js x1802) "results"
+          fun (x1829 : t) ->
+            fun (x1830 : TestResultSnapshot.t Readonly.t list) ->
+              Ojs.set_prop_ascii (t_to_js x1829) "results"
                 (Ojs.list_to_js
-                   (fun (x1804 : TestResultSnapshot.t Readonly.t) ->
-                      Readonly.t_to_js TestResultSnapshot.t_to_js x1804)
-                   x1803)
+                   (fun (x1831 : TestResultSnapshot.t Readonly.t) ->
+                      Readonly.t_to_js TestResultSnapshot.t_to_js x1831)
+                   x1830)
       end
     module TestRunOptions =
       struct
         include struct include TestRunRequest end
         type t_0 = any TestItem.t t
         let rec t_0_of_js : Ojs.t -> t_0 =
-          fun (x1809 : Ojs.t) ->
-            t_of_js (fun (x1810 : Ojs.t) -> TestItem.t_of_js any_of_js x1810)
-              x1809
+          fun (x1836 : Ojs.t) ->
+            t_of_js (fun (x1837 : Ojs.t) -> TestItem.t_of_js any_of_js x1837)
+              x1836
         and t_0_to_js : t_0 -> Ojs.t =
-          fun (x1806 : any TestItem.t t) ->
+          fun (x1833 : any TestItem.t t) ->
             t_to_js
-              (fun (x1807 : any TestItem.t) ->
-                 TestItem.t_to_js any_to_js x1807) x1806
+              (fun (x1834 : any TestItem.t) ->
+                 TestItem.t_to_js any_to_js x1834) x1833
         let (set_state :
           'T t ->
             test:'T ->
               state:TestResultState.t -> ?duration:int -> unit -> unit)
           =
-          fun (x1817 : 'T t) ->
-            fun ~test:(x1812 : 'T) ->
-              fun ~state:(x1813 : TestResultState.t) ->
-                fun ?duration:(x1814 : int option) ->
+          fun (x1844 : 'T t) ->
+            fun ~test:(x1839 : 'T) ->
+              fun ~state:(x1840 : TestResultState.t) ->
+                fun ?duration:(x1841 : int option) ->
                   fun () ->
                     ignore
-                      (let x1819 = t_to_js Obj.magic x1817 in
-                       Ojs.call (Ojs.get_prop_ascii x1819 "setState") "apply"
-                         [|x1819;((let x1815 =
+                      (let x1846 = t_to_js Obj.magic x1844 in
+                       Ojs.call (Ojs.get_prop_ascii x1846 "setState") "apply"
+                         [|x1846;((let x1842 =
                                      Ojs.new_obj
                                        (Ojs.get_prop_ascii Ojs.global "Array")
                                        [||] in
                                    ignore
-                                     (Ojs.call x1815 "push"
-                                        [|(Obj.magic x1812)|]);
+                                     (Ojs.call x1842 "push"
+                                        [|(Obj.magic x1839)|]);
                                    ignore
-                                     (Ojs.call x1815 "push"
-                                        [|(TestResultState.t_to_js x1813)|]);
-                                   (match x1814 with
-                                    | Some x1816 ->
+                                     (Ojs.call x1842 "push"
+                                        [|(TestResultState.t_to_js x1840)|]);
+                                   (match x1841 with
+                                    | Some x1843 ->
                                         ignore
-                                          (Ojs.call x1815 "push"
-                                             [|(Ojs.int_to_js x1816)|])
+                                          (Ojs.call x1842 "push"
+                                             [|(Ojs.int_to_js x1843)|])
                                     | None -> ());
-                                   x1815))|])
+                                   x1842))|])
         let (append_message :
           'T t -> test:'T -> message:TestMessage.t -> unit) =
-          fun (x1822 : 'T t) ->
-            fun ~test:(x1820 : 'T) ->
-              fun ~message:(x1821 : TestMessage.t) ->
+          fun (x1849 : 'T t) ->
+            fun ~test:(x1847 : 'T) ->
+              fun ~message:(x1848 : TestMessage.t) ->
                 ignore
-                  (Ojs.call (t_to_js Obj.magic x1822) "appendMessage"
-                     [|(Obj.magic x1820);(TestMessage.t_to_js x1821)|])
+                  (Ojs.call (t_to_js Obj.magic x1849) "appendMessage"
+                     [|(Obj.magic x1847);(TestMessage.t_to_js x1848)|])
         let (append_output : 'T t -> output:string -> unit) =
-          fun (x1825 : 'T t) ->
-            fun ~output:(x1824 : string) ->
+          fun (x1852 : 'T t) ->
+            fun ~output:(x1851 : string) ->
               ignore
-                (Ojs.call (t_to_js Obj.magic x1825) "appendOutput"
-                   [|(Ojs.string_to_js x1824)|])
+                (Ojs.call (t_to_js Obj.magic x1852) "appendOutput"
+                   [|(Ojs.string_to_js x1851)|])
       end
     module TestProvider =
       struct
         type 'T t = Ojs.t
         let rec t_of_js : 'T . (Ojs.t -> 'T) -> Ojs.t -> 'T t = fun (type
           __T) ->
-          fun (__T_of_js : Ojs.t -> __T) -> fun (x1828 : Ojs.t) -> x1828
+          fun (__T_of_js : Ojs.t -> __T) -> fun (x1855 : Ojs.t) -> x1855
         and t_to_js : 'T . ('T -> Ojs.t) -> 'T t -> Ojs.t = fun (type __T) ->
-          fun (__T_to_js : __T -> Ojs.t) -> fun (x1827 : Ojs.t) -> x1827
+          fun (__T_to_js : __T -> Ojs.t) -> fun (x1854 : Ojs.t) -> x1854
         type t_0 = any TestItem.t t
         let rec t_0_of_js : Ojs.t -> t_0 =
-          fun (x1832 : Ojs.t) ->
-            t_of_js (fun (x1833 : Ojs.t) -> TestItem.t_of_js any_of_js x1833)
-              x1832
+          fun (x1859 : Ojs.t) ->
+            t_of_js (fun (x1860 : Ojs.t) -> TestItem.t_of_js any_of_js x1860)
+              x1859
         and t_0_to_js : t_0 -> Ojs.t =
-          fun (x1829 : any TestItem.t t) ->
+          fun (x1856 : any TestItem.t t) ->
             t_to_js
-              (fun (x1830 : any TestItem.t) ->
-                 TestItem.t_to_js any_to_js x1830) x1829
+              (fun (x1857 : any TestItem.t) ->
+                 TestItem.t_to_js any_to_js x1857) x1856
         let (provide_workspace_test_root :
           'T t ->
             workspace:WorkspaceFolder.t ->
               token:CancellationToken.t -> 'T ProviderResult.t)
           =
-          fun (x1837 : 'T t) ->
-            fun ~workspace:(x1835 : WorkspaceFolder.t) ->
-              fun ~token:(x1836 : CancellationToken.t) ->
+          fun (x1864 : 'T t) ->
+            fun ~workspace:(x1862 : WorkspaceFolder.t) ->
+              fun ~token:(x1863 : CancellationToken.t) ->
                 ProviderResult.t_of_js Obj.magic
-                  (Ojs.call (t_to_js Obj.magic x1837)
+                  (Ojs.call (t_to_js Obj.magic x1864)
                      "provideWorkspaceTestRoot"
-                     [|(WorkspaceFolder.t_to_js x1835);(CancellationToken.t_to_js
-                                                          x1836)|])
+                     [|(WorkspaceFolder.t_to_js x1862);(CancellationToken.t_to_js
+                                                          x1863)|])
         let (provide_document_test_root :
           'T t ->
             document:TextDocument.t ->
               token:CancellationToken.t -> 'T ProviderResult.t)
           =
-          fun (x1842 : 'T t) ->
-            fun ~document:(x1840 : TextDocument.t) ->
-              fun ~token:(x1841 : CancellationToken.t) ->
+          fun (x1869 : 'T t) ->
+            fun ~document:(x1867 : TextDocument.t) ->
+              fun ~token:(x1868 : CancellationToken.t) ->
                 ProviderResult.t_of_js Obj.magic
-                  (Ojs.call (t_to_js Obj.magic x1842)
+                  (Ojs.call (t_to_js Obj.magic x1869)
                      "provideDocumentTestRoot"
-                     [|(TextDocument.t_to_js x1840);(CancellationToken.t_to_js
-                                                       x1841)|])
+                     [|(TextDocument.t_to_js x1867);(CancellationToken.t_to_js
+                                                       x1868)|])
         let (run_tests :
           'T t ->
             options:'T TestRunOptions.t ->
               token:CancellationToken.t -> unit ProviderResult.t)
           =
-          fun (x1848 : 'T t) ->
-            fun ~options:(x1845 : 'T TestRunOptions.t) ->
-              fun ~token:(x1847 : CancellationToken.t) ->
+          fun (x1875 : 'T t) ->
+            fun ~options:(x1872 : 'T TestRunOptions.t) ->
+              fun ~token:(x1874 : CancellationToken.t) ->
                 ProviderResult.t_of_js Ojs.unit_of_js
-                  (Ojs.call (t_to_js Obj.magic x1848) "runTests"
-                     [|(TestRunOptions.t_to_js Obj.magic x1845);(CancellationToken.t_to_js
-                                                                   x1847)|])
+                  (Ojs.call (t_to_js Obj.magic x1875) "runTests"
+                     [|(TestRunOptions.t_to_js Obj.magic x1872);(CancellationToken.t_to_js
+                                                                   x1874)|])
       end
     module Test =
       struct
         let (register_test_provider :
           test_provider:'T TestProvider.t -> Disposable.t) =
-          fun ~test_provider:(x1851 : 'T TestProvider.t) ->
+          fun ~test_provider:(x1878 : 'T TestProvider.t) ->
             Disposable.t_of_js
               (Ojs.call
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "test")
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "test")
                  "registerTestProvider"
-                 [|(TestProvider.t_to_js Obj.magic x1851)|])
+                 [|(TestProvider.t_to_js Obj.magic x1878)|])
         let (run_tests :
           run:'T TestRunRequest.t ->
             ?token:CancellationToken.t -> unit -> unit Promise.t)
           =
-          fun ~run:(x1853 : 'T TestRunRequest.t) ->
-            fun ?token:(x1854 : CancellationToken.t option) ->
+          fun ~run:(x1880 : 'T TestRunRequest.t) ->
+            fun ?token:(x1881 : CancellationToken.t option) ->
               fun () ->
                 Promise.t_of_js Ojs.unit_of_js
-                  (let x1858 =
+                  (let x1885 =
                      Ojs.get_prop_ascii
-                       (Ojs.get_prop_ascii Ojs.global
-                          "__LIB__VSCODE__IMPORTS.vscode") "test" in
-                   Ojs.call (Ojs.get_prop_ascii x1858 "runTests") "apply"
-                     [|x1858;((let x1855 =
+                       (Ojs.get_prop_ascii
+                          (Ojs.get_prop_ascii Ojs.global
+                             "__LIB__VSCODE__IMPORTS") "vscode") "test" in
+                   Ojs.call (Ojs.get_prop_ascii x1885 "runTests") "apply"
+                     [|x1885;((let x1882 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1855 "push"
-                                    [|(TestRunRequest.t_to_js Obj.magic x1853)|]);
-                               (match x1854 with
-                                | Some x1856 ->
+                                 (Ojs.call x1882 "push"
+                                    [|(TestRunRequest.t_to_js Obj.magic x1880)|]);
+                               (match x1881 with
+                                | Some x1883 ->
                                     ignore
-                                      (Ojs.call x1855 "push"
-                                         [|(CancellationToken.t_to_js x1856)|])
+                                      (Ojs.call x1882 "push"
+                                         [|(CancellationToken.t_to_js x1883)|])
                                 | None -> ());
-                               x1855))|])
+                               x1882))|])
         let (create_workspace_test_observer :
           workspace_folder:WorkspaceFolder.t -> TestObserver.t) =
-          fun ~workspace_folder:(x1860 : WorkspaceFolder.t) ->
+          fun ~workspace_folder:(x1887 : WorkspaceFolder.t) ->
             TestObserver.t_of_js
               (Ojs.call
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "test")
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "test")
                  "createWorkspaceTestObserver"
-                 [|(WorkspaceFolder.t_to_js x1860)|])
+                 [|(WorkspaceFolder.t_to_js x1887)|])
         let (create_document_test_observer :
           document:TextDocument.t -> TestObserver.t) =
-          fun ~document:(x1861 : TextDocument.t) ->
+          fun ~document:(x1888 : TextDocument.t) ->
             TestObserver.t_of_js
               (Ojs.call
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "test")
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "test")
                  "createDocumentTestObserver"
-                 [|(TextDocument.t_to_js x1861)|])
+                 [|(TextDocument.t_to_js x1888)|])
         let (publish_test_result :
           results:TestRunResult.t -> ?persist:bool -> unit -> unit) =
-          fun ~results:(x1862 : TestRunResult.t) ->
-            fun ?persist:(x1863 : bool option) ->
+          fun ~results:(x1889 : TestRunResult.t) ->
+            fun ?persist:(x1890 : bool option) ->
               fun () ->
                 ignore
-                  (let x1866 =
+                  (let x1893 =
                      Ojs.get_prop_ascii
-                       (Ojs.get_prop_ascii Ojs.global
-                          "__LIB__VSCODE__IMPORTS.vscode") "test" in
-                   Ojs.call (Ojs.get_prop_ascii x1866 "publishTestResult")
+                       (Ojs.get_prop_ascii
+                          (Ojs.get_prop_ascii Ojs.global
+                             "__LIB__VSCODE__IMPORTS") "vscode") "test" in
+                   Ojs.call (Ojs.get_prop_ascii x1893 "publishTestResult")
                      "apply"
-                     [|x1866;((let x1864 =
+                     [|x1893;((let x1891 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1864 "push"
-                                    [|(TestRunResult.t_to_js x1862)|]);
-                               (match x1863 with
-                                | Some x1865 ->
+                                 (Ojs.call x1891 "push"
+                                    [|(TestRunResult.t_to_js x1889)|]);
+                               (match x1890 with
+                                | Some x1892 ->
                                     ignore
-                                      (Ojs.call x1864 "push"
-                                         [|(Ojs.bool_to_js x1865)|])
+                                      (Ojs.call x1891 "push"
+                                         [|(Ojs.bool_to_js x1892)|])
                                 | None -> ());
-                               x1864))|])
+                               x1891))|])
         let (test_results : TestRunResult.t list) =
           Ojs.list_of_js TestRunResult.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "test") "testResults")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "test") "testResults")
         let (on_did_change_test_results : unit Event.t) =
           Event.t_of_js Ojs.unit_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "test")
-               "onDidChangeTestResults")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "test") "onDidChangeTestResults")
       end
     module ExternalUriOpenerPriority =
       struct
         type t = [ `None  | `Option  | `Default  | `Preferred ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1870 : Ojs.t) ->
-            let x1871 = x1870 in
-            match Ojs.int_of_js x1871 with
+          fun (x1897 : Ojs.t) ->
+            let x1898 = x1897 in
+            match Ojs.int_of_js x1898 with
             | 0 -> `None
             | 1 -> `Option
             | 2 -> `Default
             | 3 -> `Preferred
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x1869 : [ `None  | `Option  | `Default  | `Preferred ]) ->
-            match x1869 with
+          fun (x1896 : [ `None  | `Option  | `Default  | `Preferred ]) ->
+            match x1896 with
             | `None -> Ojs.int_to_js 0
             | `Option -> Ojs.int_to_js 1
             | `Default -> Ojs.int_to_js 2
@@ -5629,17 +5775,17 @@ module Vscode =
     module OpenExternalUriContext =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1873 : Ojs.t) -> x1873
-        and t_to_js : t -> Ojs.t = fun (x1872 : Ojs.t) -> x1872
+        let rec t_of_js : Ojs.t -> t = fun (x1900 : Ojs.t) -> x1900
+        and t_to_js : t -> Ojs.t = fun (x1899 : Ojs.t) -> x1899
         let (source_uri : t -> Uri.t) =
-          fun (x1874 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1874) "sourceUri")
+          fun (x1901 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1901) "sourceUri")
       end
     module ExternalUriOpener =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1876 : Ojs.t) -> x1876
-        and t_to_js : t -> Ojs.t = fun (x1875 : Ojs.t) -> x1875
+        let rec t_of_js : Ojs.t -> t = fun (x1903 : Ojs.t) -> x1903
+        and t_to_js : t -> Ojs.t = fun (x1902 : Ojs.t) -> x1902
         let (can_open_external_uri :
           t ->
             uri:Uri.t ->
@@ -5648,65 +5794,65 @@ module Vscode =
                    ExternalUriOpenerPriority.t Promise.t) union2,
                   [ `Default  | `None  | `Option  | `Preferred ]) or_enum)
           =
-          fun (x1879 : t) ->
-            fun ~uri:(x1877 : Uri.t) ->
-              fun ~token:(x1878 : CancellationToken.t) ->
+          fun (x1906 : t) ->
+            fun ~uri:(x1904 : Uri.t) ->
+              fun ~token:(x1905 : CancellationToken.t) ->
                 or_enum_of_js
-                  (fun (x1880 : Ojs.t) ->
+                  (fun (x1907 : Ojs.t) ->
                      union2_of_js ExternalUriOpenerPriority.t_of_js
-                       (fun (x1882 : Ojs.t) ->
+                       (fun (x1909 : Ojs.t) ->
                           Promise.t_of_js ExternalUriOpenerPriority.t_of_js
-                            x1882) x1880)
-                  (fun (x1884 : Ojs.t) ->
-                     let x1885 = x1884 in
-                     match Ojs.int_of_js x1885 with
+                            x1909) x1907)
+                  (fun (x1911 : Ojs.t) ->
+                     let x1912 = x1911 in
+                     match Ojs.int_of_js x1912 with
                      | 2 -> `Default
                      | 0 -> `None
                      | 1 -> `Option
                      | 3 -> `Preferred
                      | _ -> assert false)
-                  (Ojs.call (t_to_js x1879) "canOpenExternalUri"
-                     [|(Uri.t_to_js x1877);(CancellationToken.t_to_js x1878)|])
+                  (Ojs.call (t_to_js x1906) "canOpenExternalUri"
+                     [|(Uri.t_to_js x1904);(CancellationToken.t_to_js x1905)|])
         let (open_external_uri :
           t ->
             resolved_uri:Uri.t ->
               ctx:OpenExternalUriContext.t ->
                 token:CancellationToken.t -> (unit, unit Promise.t) union2)
           =
-          fun (x1889 : t) ->
-            fun ~resolved_uri:(x1886 : Uri.t) ->
-              fun ~ctx:(x1887 : OpenExternalUriContext.t) ->
-                fun ~token:(x1888 : CancellationToken.t) ->
+          fun (x1916 : t) ->
+            fun ~resolved_uri:(x1913 : Uri.t) ->
+              fun ~ctx:(x1914 : OpenExternalUriContext.t) ->
+                fun ~token:(x1915 : CancellationToken.t) ->
                   union2_of_js Ojs.unit_of_js
-                    (fun (x1891 : Ojs.t) ->
-                       Promise.t_of_js Ojs.unit_of_js x1891)
-                    (Ojs.call (t_to_js x1889) "openExternalUri"
-                       [|(Uri.t_to_js x1886);(OpenExternalUriContext.t_to_js
-                                                x1887);(CancellationToken.t_to_js
-                                                          x1888)|])
+                    (fun (x1918 : Ojs.t) ->
+                       Promise.t_of_js Ojs.unit_of_js x1918)
+                    (Ojs.call (t_to_js x1916) "openExternalUri"
+                       [|(Uri.t_to_js x1913);(OpenExternalUriContext.t_to_js
+                                                x1914);(CancellationToken.t_to_js
+                                                          x1915)|])
       end
     module ExternalUriOpenerMetadata =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1894 : Ojs.t) -> x1894
-        and t_to_js : t -> Ojs.t = fun (x1893 : Ojs.t) -> x1893
+        let rec t_of_js : Ojs.t -> t = fun (x1921 : Ojs.t) -> x1921
+        and t_to_js : t -> Ojs.t = fun (x1920 : Ojs.t) -> x1920
         let (schemes : t -> string list) =
-          fun (x1895 : t) ->
+          fun (x1922 : t) ->
             Ojs.list_of_js Ojs.string_of_js
-              (Ojs.get_prop_ascii (t_to_js x1895) "schemes")
+              (Ojs.get_prop_ascii (t_to_js x1922) "schemes")
         let (label : t -> string) =
-          fun (x1897 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1897) "label")
+          fun (x1924 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1924) "label")
       end
     module OpenExternalOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1899 : Ojs.t) -> x1899
-        and t_to_js : t -> Ojs.t = fun (x1898 : Ojs.t) -> x1898
+        let rec t_of_js : Ojs.t -> t = fun (x1926 : Ojs.t) -> x1926
+        and t_to_js : t -> Ojs.t = fun (x1925 : Ojs.t) -> x1925
         let (allow_contributed_openers : t -> bool or_string) =
-          fun (x1900 : t) ->
+          fun (x1927 : t) ->
             or_string_of_js Ojs.bool_of_js
-              (Ojs.get_prop_ascii (t_to_js x1900) "allowContributedOpeners")
+              (Ojs.get_prop_ascii (t_to_js x1927) "allowContributedOpeners")
       end
     module Env =
       struct
@@ -5714,66 +5860,67 @@ module Vscode =
           target:Uri.t ->
             ?options:OpenExternalOptions.t -> unit -> bool Promise.t)
           =
-          fun ~target:(x1902 : Uri.t) ->
-            fun ?options:(x1903 : OpenExternalOptions.t option) ->
+          fun ~target:(x1929 : Uri.t) ->
+            fun ?options:(x1930 : OpenExternalOptions.t option) ->
               fun () ->
                 Promise.t_of_js Ojs.bool_of_js
-                  (let x1906 =
+                  (let x1933 =
                      Ojs.get_prop_ascii
-                       (Ojs.get_prop_ascii Ojs.global
-                          "__LIB__VSCODE__IMPORTS.vscode") "env" in
-                   Ojs.call (Ojs.get_prop_ascii x1906 "openExternal") "apply"
-                     [|x1906;((let x1904 =
+                       (Ojs.get_prop_ascii
+                          (Ojs.get_prop_ascii Ojs.global
+                             "__LIB__VSCODE__IMPORTS") "vscode") "env" in
+                   Ojs.call (Ojs.get_prop_ascii x1933 "openExternal") "apply"
+                     [|x1933;((let x1931 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1904 "push"
-                                    [|(Uri.t_to_js x1902)|]);
-                               (match x1903 with
-                                | Some x1905 ->
+                                 (Ojs.call x1931 "push"
+                                    [|(Uri.t_to_js x1929)|]);
+                               (match x1930 with
+                                | Some x1932 ->
                                     ignore
-                                      (Ojs.call x1904 "push"
-                                         [|(OpenExternalOptions.t_to_js x1905)|])
+                                      (Ojs.call x1931 "push"
+                                         [|(OpenExternalOptions.t_to_js x1932)|])
                                 | None -> ());
-                               x1904))|])
+                               x1931))|])
       end
     module OpenEditorInfo =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1909 : Ojs.t) -> x1909
-        and t_to_js : t -> Ojs.t = fun (x1908 : Ojs.t) -> x1908
+        let rec t_of_js : Ojs.t -> t = fun (x1936 : Ojs.t) -> x1936
+        and t_to_js : t -> Ojs.t = fun (x1935 : Ojs.t) -> x1935
         let (name : t -> string) =
-          fun (x1910 : t) ->
-            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1910) "name")
+          fun (x1937 : t) ->
+            Ojs.string_of_js (Ojs.get_prop_ascii (t_to_js x1937) "name")
         let (set_name : t -> string -> unit) =
-          fun (x1911 : t) ->
-            fun (x1912 : string) ->
-              Ojs.set_prop_ascii (t_to_js x1911) "name"
-                (Ojs.string_to_js x1912)
+          fun (x1938 : t) ->
+            fun (x1939 : string) ->
+              Ojs.set_prop_ascii (t_to_js x1938) "name"
+                (Ojs.string_to_js x1939)
         let (resource : t -> Uri.t) =
-          fun (x1913 : t) ->
-            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1913) "resource")
+          fun (x1940 : t) ->
+            Uri.t_of_js (Ojs.get_prop_ascii (t_to_js x1940) "resource")
         let (set_resource : t -> Uri.t -> unit) =
-          fun (x1914 : t) ->
-            fun (x1915 : Uri.t) ->
-              Ojs.set_prop_ascii (t_to_js x1914) "resource"
-                (Uri.t_to_js x1915)
+          fun (x1941 : t) ->
+            fun (x1942 : Uri.t) ->
+              Ojs.set_prop_ascii (t_to_js x1941) "resource"
+                (Uri.t_to_js x1942)
       end
     module WorkspaceTrustState =
       struct
         type t = [ `Untrusted  | `Trusted  | `Unspecified ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1917 : Ojs.t) ->
-            let x1918 = x1917 in
-            match Ojs.int_of_js x1918 with
+          fun (x1944 : Ojs.t) ->
+            let x1945 = x1944 in
+            match Ojs.int_of_js x1945 with
             | 0 -> `Untrusted
             | 1 -> `Trusted
             | 2 -> `Unspecified
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
-          fun (x1916 : [ `Untrusted  | `Trusted  | `Unspecified ]) ->
-            match x1916 with
+          fun (x1943 : [ `Untrusted  | `Trusted  | `Unspecified ]) ->
+            match x1943 with
             | `Untrusted -> Ojs.int_to_js 0
             | `Trusted -> Ojs.int_to_js 1
             | `Unspecified -> Ojs.int_to_js 2
@@ -5781,41 +5928,41 @@ module Vscode =
     module WorkspaceTrustStateChangeEvent =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1920 : Ojs.t) -> x1920
-        and t_to_js : t -> Ojs.t = fun (x1919 : Ojs.t) -> x1919
+        let rec t_of_js : Ojs.t -> t = fun (x1947 : Ojs.t) -> x1947
+        and t_to_js : t -> Ojs.t = fun (x1946 : Ojs.t) -> x1946
         let (new_trust_state : t -> WorkspaceTrustState.t) =
-          fun (x1921 : t) ->
+          fun (x1948 : t) ->
             WorkspaceTrustState.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1921) "newTrustState")
+              (Ojs.get_prop_ascii (t_to_js x1948) "newTrustState")
       end
     module WorkspaceTrustRequestOptions =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1923 : Ojs.t) -> x1923
-        and t_to_js : t -> Ojs.t = fun (x1922 : Ojs.t) -> x1922
+        let rec t_of_js : Ojs.t -> t = fun (x1950 : Ojs.t) -> x1950
+        and t_to_js : t -> Ojs.t = fun (x1949 : Ojs.t) -> x1949
         let (modal : t -> bool) =
-          fun (x1924 : t) ->
-            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1924) "modal")
+          fun (x1951 : t) ->
+            Ojs.bool_of_js (Ojs.get_prop_ascii (t_to_js x1951) "modal")
       end
     module Webview =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1926 : Ojs.t) -> x1926
-        and t_to_js : t -> Ojs.t = fun (x1925 : Ojs.t) -> x1925
+        let rec t_of_js : Ojs.t -> t = fun (x1953 : Ojs.t) -> x1953
+        and t_to_js : t -> Ojs.t = fun (x1952 : Ojs.t) -> x1952
         let (post_message : t -> message:any -> bool Promise.t) =
-          fun (x1928 : t) ->
-            fun ~message:(x1927 : any) ->
+          fun (x1955 : t) ->
+            fun ~message:(x1954 : any) ->
               Promise.t_of_js Ojs.bool_of_js
-                (Ojs.call (t_to_js x1928) "postMessage" [|(any_to_js x1927)|])
+                (Ojs.call (t_to_js x1955) "postMessage" [|(any_to_js x1954)|])
       end
     module PortAutoForwardAction =
       struct
         type t =
           [ `Notify  | `OpenBrowser  | `OpenPreview  | `Silent  | `Ignore ]
         let rec t_of_js : Ojs.t -> t =
-          fun (x1931 : Ojs.t) ->
-            let x1932 = x1931 in
-            match Ojs.int_of_js x1932 with
+          fun (x1958 : Ojs.t) ->
+            let x1959 = x1958 in
+            match Ojs.int_of_js x1959 with
             | 1 -> `Notify
             | 2 -> `OpenBrowser
             | 3 -> `OpenPreview
@@ -5824,11 +5971,11 @@ module Vscode =
             | _ -> assert false
         and t_to_js : t -> Ojs.t =
           fun
-            (x1930 :
+            (x1957 :
               [ `Notify  | `OpenBrowser  | `OpenPreview  | `Silent 
               | `Ignore ])
             ->
-            match x1930 with
+            match x1957 with
             | `Notify -> Ojs.int_to_js 1
             | `OpenBrowser -> Ojs.int_to_js 2
             | `OpenPreview -> Ojs.int_to_js 3
@@ -5838,31 +5985,31 @@ module Vscode =
     module PortAttributes =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1934 : Ojs.t) -> x1934
-        and t_to_js : t -> Ojs.t = fun (x1933 : Ojs.t) -> x1933
+        let rec t_of_js : Ojs.t -> t = fun (x1961 : Ojs.t) -> x1961
+        and t_to_js : t -> Ojs.t = fun (x1960 : Ojs.t) -> x1960
         let (port : t -> int) =
-          fun (x1935 : t) ->
-            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1935) "port")
+          fun (x1962 : t) ->
+            Ojs.int_of_js (Ojs.get_prop_ascii (t_to_js x1962) "port")
         let (set_port : t -> int -> unit) =
-          fun (x1936 : t) ->
-            fun (x1937 : int) ->
-              Ojs.set_prop_ascii (t_to_js x1936) "port" (Ojs.int_to_js x1937)
+          fun (x1963 : t) ->
+            fun (x1964 : int) ->
+              Ojs.set_prop_ascii (t_to_js x1963) "port" (Ojs.int_to_js x1964)
         let (auto_forward_action : t -> PortAutoForwardAction.t) =
-          fun (x1938 : t) ->
+          fun (x1965 : t) ->
             PortAutoForwardAction.t_of_js
-              (Ojs.get_prop_ascii (t_to_js x1938) "autoForwardAction")
+              (Ojs.get_prop_ascii (t_to_js x1965) "autoForwardAction")
         let (set_auto_forward_action : t -> PortAutoForwardAction.t -> unit)
           =
-          fun (x1939 : t) ->
-            fun (x1940 : PortAutoForwardAction.t) ->
-              Ojs.set_prop_ascii (t_to_js x1939) "autoForwardAction"
-                (PortAutoForwardAction.t_to_js x1940)
+          fun (x1966 : t) ->
+            fun (x1967 : PortAutoForwardAction.t) ->
+              Ojs.set_prop_ascii (t_to_js x1966) "autoForwardAction"
+                (PortAutoForwardAction.t_to_js x1967)
       end
     module PortAttributesProvider =
       struct
         type t = Ojs.t
-        let rec t_of_js : Ojs.t -> t = fun (x1942 : Ojs.t) -> x1942
-        and t_to_js : t -> Ojs.t = fun (x1941 : Ojs.t) -> x1941
+        let rec t_of_js : Ojs.t -> t = fun (x1969 : Ojs.t) -> x1969
+        and t_to_js : t -> Ojs.t = fun (x1968 : Ojs.t) -> x1968
         let (provide_port_attributes :
           t ->
             port:int ->
@@ -5871,17 +6018,17 @@ module Vscode =
                   token:CancellationToken.t ->
                     PortAttributes.t ProviderResult.t)
           =
-          fun (x1949 : t) ->
-            fun ~port:(x1943 : int) ->
-              fun ~pid:(x1944 : int or_undefined) ->
-                fun ~command_line:(x1946 : string or_undefined) ->
-                  fun ~token:(x1948 : CancellationToken.t) ->
+          fun (x1976 : t) ->
+            fun ~port:(x1970 : int) ->
+              fun ~pid:(x1971 : int or_undefined) ->
+                fun ~command_line:(x1973 : string or_undefined) ->
+                  fun ~token:(x1975 : CancellationToken.t) ->
                     ProviderResult.t_of_js PortAttributes.t_of_js
-                      (Ojs.call (t_to_js x1949) "providePortAttributes"
-                         [|(Ojs.int_to_js x1943);(or_undefined_to_js
-                                                    Ojs.int_to_js x1944);(
-                           or_undefined_to_js Ojs.string_to_js x1946);(
-                           CancellationToken.t_to_js x1948)|])
+                      (Ojs.call (t_to_js x1976) "providePortAttributes"
+                         [|(Ojs.int_to_js x1970);(or_undefined_to_js
+                                                    Ojs.int_to_js x1971);(
+                           or_undefined_to_js Ojs.string_to_js x1973);(
+                           CancellationToken.t_to_js x1975)|])
       end
     module Window =
       struct
@@ -5891,329 +6038,344 @@ module Vscode =
               height:int ->
                 ?options:WebviewOptions.t -> unit -> WebviewEditorInset.t)
           =
-          fun ~editor:(x1951 : TextEditor.t) ->
-            fun ~line:(x1952 : int) ->
-              fun ~height:(x1953 : int) ->
-                fun ?options:(x1954 : WebviewOptions.t option) ->
+          fun ~editor:(x1978 : TextEditor.t) ->
+            fun ~line:(x1979 : int) ->
+              fun ~height:(x1980 : int) ->
+                fun ?options:(x1981 : WebviewOptions.t option) ->
                   fun () ->
                     WebviewEditorInset.t_of_js
-                      (let x1957 =
+                      (let x1984 =
                          Ojs.get_prop_ascii
-                           (Ojs.get_prop_ascii Ojs.global
-                              "__LIB__VSCODE__IMPORTS.vscode") "window" in
+                           (Ojs.get_prop_ascii
+                              (Ojs.get_prop_ascii Ojs.global
+                                 "__LIB__VSCODE__IMPORTS") "vscode") "window" in
                        Ojs.call
-                         (Ojs.get_prop_ascii x1957
+                         (Ojs.get_prop_ascii x1984
                             "createWebviewTextEditorInset") "apply"
-                         [|x1957;((let x1955 =
+                         [|x1984;((let x1982 =
                                      Ojs.new_obj
                                        (Ojs.get_prop_ascii Ojs.global "Array")
                                        [||] in
                                    ignore
-                                     (Ojs.call x1955 "push"
-                                        [|(TextEditor.t_to_js x1951)|]);
+                                     (Ojs.call x1982 "push"
+                                        [|(TextEditor.t_to_js x1978)|]);
                                    ignore
-                                     (Ojs.call x1955 "push"
-                                        [|(Ojs.int_to_js x1952)|]);
+                                     (Ojs.call x1982 "push"
+                                        [|(Ojs.int_to_js x1979)|]);
                                    ignore
-                                     (Ojs.call x1955 "push"
-                                        [|(Ojs.int_to_js x1953)|]);
-                                   (match x1954 with
-                                    | Some x1956 ->
+                                     (Ojs.call x1982 "push"
+                                        [|(Ojs.int_to_js x1980)|]);
+                                   (match x1981 with
+                                    | Some x1983 ->
                                         ignore
-                                          (Ojs.call x1955 "push"
-                                             [|(WebviewOptions.t_to_js x1956)|])
+                                          (Ojs.call x1982 "push"
+                                             [|(WebviewOptions.t_to_js x1983)|])
                                     | None -> ());
-                                   x1955))|])
+                                   x1982))|])
         let (on_did_write_terminal_data : TerminalDataWriteEvent.t Event.t) =
           Event.t_of_js TerminalDataWriteEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
-               "onDidWriteTerminalData")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "onDidWriteTerminalData")
         let (on_did_change_terminal_dimensions :
           TerminalDimensionsChangeEvent.t Event.t) =
           Event.t_of_js TerminalDimensionsChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
-               "onDidChangeTerminalDimensions")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "onDidChangeTerminalDimensions")
         let (create_status_bar_item :
           ?options:StatusBarItemOptions.t -> unit -> StatusBarItem.t) =
-          fun ?options:(x1960 : StatusBarItemOptions.t option) ->
+          fun ?options:(x1987 : StatusBarItemOptions.t option) ->
             fun () ->
               StatusBarItem.t_of_js
-                (let x1963 =
+                (let x1990 =
                    Ojs.get_prop_ascii
-                     (Ojs.get_prop_ascii Ojs.global
-                        "__LIB__VSCODE__IMPORTS.vscode") "window" in
-                 Ojs.call (Ojs.get_prop_ascii x1963 "createStatusBarItem")
+                     (Ojs.get_prop_ascii
+                        (Ojs.get_prop_ascii Ojs.global
+                           "__LIB__VSCODE__IMPORTS") "vscode") "window" in
+                 Ojs.call (Ojs.get_prop_ascii x1990 "createStatusBarItem")
                    "apply"
-                   [|x1963;((let x1961 =
+                   [|x1990;((let x1988 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x1960 with
-                              | Some x1962 ->
+                             (match x1987 with
+                              | Some x1989 ->
                                   ignore
-                                    (Ojs.call x1961 "push"
-                                       [|(StatusBarItemOptions.t_to_js x1962)|])
+                                    (Ojs.call x1988 "push"
+                                       [|(StatusBarItemOptions.t_to_js x1989)|])
                               | None -> ());
-                             x1961))|])
+                             x1988))|])
         let (visible_notebook_editors : NotebookEditor.t list) =
           Ojs.list_of_js NotebookEditor.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
-               "visibleNotebookEditors")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "visibleNotebookEditors")
         let (on_did_change_visible_notebook_editors :
           NotebookEditor.t list Event.t) =
           Event.t_of_js
-            (fun (x1965 : Ojs.t) ->
-               Ojs.list_of_js NotebookEditor.t_of_js x1965)
+            (fun (x1992 : Ojs.t) ->
+               Ojs.list_of_js NotebookEditor.t_of_js x1992)
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
-               "onDidChangeVisibleNotebookEditors")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "onDidChangeVisibleNotebookEditors")
         let (active_notebook_editor : NotebookEditor.t or_undefined) =
           or_undefined_of_js NotebookEditor.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
-               "activeNotebookEditor")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "activeNotebookEditor")
         let (on_did_change_active_notebook_editor :
           NotebookEditor.t or_undefined Event.t) =
           Event.t_of_js
-            (fun (x1968 : Ojs.t) ->
-               or_undefined_of_js NotebookEditor.t_of_js x1968)
+            (fun (x1995 : Ojs.t) ->
+               or_undefined_of_js NotebookEditor.t_of_js x1995)
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
-               "onDidChangeActiveNotebookEditor")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "onDidChangeActiveNotebookEditor")
         let (on_did_change_notebook_editor_selection :
           NotebookEditorSelectionChangeEvent.t Event.t) =
           Event.t_of_js NotebookEditorSelectionChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
-               "onDidChangeNotebookEditorSelection")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "onDidChangeNotebookEditorSelection")
         let (on_did_change_notebook_editor_visible_ranges :
           NotebookEditorVisibleRangesChangeEvent.t Event.t) =
           Event.t_of_js NotebookEditorVisibleRangesChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window")
                "onDidChangeNotebookEditorVisibleRanges")
         let (show_notebook_document :
           uri:Uri.t ->
             ?options:NotebookDocumentShowOptions.t ->
               unit -> NotebookEditor.t Promise.t)
           =
-          fun ~uri:(x1972 : Uri.t) ->
-            fun ?options:(x1973 : NotebookDocumentShowOptions.t option) ->
+          fun ~uri:(x1999 : Uri.t) ->
+            fun ?options:(x2000 : NotebookDocumentShowOptions.t option) ->
               fun () ->
                 Promise.t_of_js NotebookEditor.t_of_js
-                  (let x1976 =
+                  (let x2003 =
                      Ojs.get_prop_ascii
-                       (Ojs.get_prop_ascii Ojs.global
-                          "__LIB__VSCODE__IMPORTS.vscode") "window" in
-                   Ojs.call (Ojs.get_prop_ascii x1976 "showNotebookDocument")
+                       (Ojs.get_prop_ascii
+                          (Ojs.get_prop_ascii Ojs.global
+                             "__LIB__VSCODE__IMPORTS") "vscode") "window" in
+                   Ojs.call (Ojs.get_prop_ascii x2003 "showNotebookDocument")
                      "apply"
-                     [|x1976;((let x1974 =
+                     [|x2003;((let x2001 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1974 "push"
-                                    [|(Uri.t_to_js x1972)|]);
-                               (match x1973 with
-                                | Some x1975 ->
+                                 (Ojs.call x2001 "push"
+                                    [|(Uri.t_to_js x1999)|]);
+                               (match x2000 with
+                                | Some x2002 ->
                                     ignore
-                                      (Ojs.call x1974 "push"
+                                      (Ojs.call x2001 "push"
                                          [|(NotebookDocumentShowOptions.t_to_js
-                                              x1975)|])
+                                              x2002)|])
                                 | None -> ());
-                               x1974))|])
+                               x2001))|])
         let (show_notebook_document :
           document:NotebookDocument.t ->
             ?options:NotebookDocumentShowOptions.t ->
               unit -> NotebookEditor.t Promise.t)
           =
-          fun ~document:(x1978 : NotebookDocument.t) ->
-            fun ?options:(x1979 : NotebookDocumentShowOptions.t option) ->
+          fun ~document:(x2005 : NotebookDocument.t) ->
+            fun ?options:(x2006 : NotebookDocumentShowOptions.t option) ->
               fun () ->
                 Promise.t_of_js NotebookEditor.t_of_js
-                  (let x1982 =
+                  (let x2009 =
                      Ojs.get_prop_ascii
-                       (Ojs.get_prop_ascii Ojs.global
-                          "__LIB__VSCODE__IMPORTS.vscode") "window" in
-                   Ojs.call (Ojs.get_prop_ascii x1982 "showNotebookDocument")
+                       (Ojs.get_prop_ascii
+                          (Ojs.get_prop_ascii Ojs.global
+                             "__LIB__VSCODE__IMPORTS") "vscode") "window" in
+                   Ojs.call (Ojs.get_prop_ascii x2009 "showNotebookDocument")
                      "apply"
-                     [|x1982;((let x1980 =
+                     [|x2009;((let x2007 =
                                  Ojs.new_obj
                                    (Ojs.get_prop_ascii Ojs.global "Array")
                                    [||] in
                                ignore
-                                 (Ojs.call x1980 "push"
-                                    [|(NotebookDocument.t_to_js x1978)|]);
-                               (match x1979 with
-                                | Some x1981 ->
+                                 (Ojs.call x2007 "push"
+                                    [|(NotebookDocument.t_to_js x2005)|]);
+                               (match x2006 with
+                                | Some x2008 ->
                                     ignore
-                                      (Ojs.call x1980 "push"
+                                      (Ojs.call x2007 "push"
                                          [|(NotebookDocumentShowOptions.t_to_js
-                                              x1981)|])
+                                              x2008)|])
                                 | None -> ());
-                               x1980))|])
+                               x2007))|])
         let (register_external_uri_opener :
           id:string ->
             opener:ExternalUriOpener.t ->
               metadata:ExternalUriOpenerMetadata.t -> Disposable.t)
           =
-          fun ~id:(x1984 : string) ->
-            fun ~opener:(x1985 : ExternalUriOpener.t) ->
-              fun ~metadata:(x1986 : ExternalUriOpenerMetadata.t) ->
+          fun ~id:(x2011 : string) ->
+            fun ~opener:(x2012 : ExternalUriOpener.t) ->
+              fun ~metadata:(x2013 : ExternalUriOpenerMetadata.t) ->
                 Disposable.t_of_js
                   (Ojs.call
                      (Ojs.get_prop_ascii
-                        (Ojs.get_prop_ascii Ojs.global
-                           "__LIB__VSCODE__IMPORTS.vscode") "window")
+                        (Ojs.get_prop_ascii
+                           (Ojs.get_prop_ascii Ojs.global
+                              "__LIB__VSCODE__IMPORTS") "vscode") "window")
                      "registerExternalUriOpener"
-                     [|(Ojs.string_to_js x1984);(ExternalUriOpener.t_to_js
-                                                   x1985);(ExternalUriOpenerMetadata.t_to_js
-                                                             x1986)|])
+                     [|(Ojs.string_to_js x2011);(ExternalUriOpener.t_to_js
+                                                   x2012);(ExternalUriOpenerMetadata.t_to_js
+                                                             x2013)|])
         let (open_editors : OpenEditorInfo.t list) =
           Ojs.list_of_js OpenEditorInfo.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window") "openEditors")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "openEditors")
         let (on_did_change_open_editors : unit Event.t) =
           Event.t_of_js Ojs.unit_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "window")
-               "onDidChangeOpenEditors")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "window") "onDidChangeOpenEditors")
       end
     module Workspace =
       struct
         let (open_tunnel :
           tunnel_options:TunnelOptions.t -> Tunnel.t Promise.t) =
-          fun ~tunnel_options:(x1989 : TunnelOptions.t) ->
+          fun ~tunnel_options:(x2016 : TunnelOptions.t) ->
             Promise.t_of_js Tunnel.t_of_js
               (Ojs.call
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "workspace")
-                 "openTunnel" [|(TunnelOptions.t_to_js x1989)|])
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "workspace")
+                 "openTunnel" [|(TunnelOptions.t_to_js x2016)|])
         let (tunnels : TunnelDescription.t list Promise.t) =
           Promise.t_of_js
-            (fun (x1991 : Ojs.t) ->
-               Ojs.list_of_js TunnelDescription.t_of_js x1991)
+            (fun (x2018 : Ojs.t) ->
+               Ojs.list_of_js TunnelDescription.t_of_js x2018)
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "workspace") "tunnels")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "workspace") "tunnels")
         let (on_did_change_tunnels : unit Event.t) =
           Event.t_of_js Ojs.unit_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "workspace")
-               "onDidChangeTunnels")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "workspace") "onDidChangeTunnels")
         let (register_remote_authority_resolver :
           authority_prefix:string ->
             resolver:RemoteAuthorityResolver.t -> Disposable.t)
           =
-          fun ~authority_prefix:(x1994 : string) ->
-            fun ~resolver:(x1995 : RemoteAuthorityResolver.t) ->
+          fun ~authority_prefix:(x2021 : string) ->
+            fun ~resolver:(x2022 : RemoteAuthorityResolver.t) ->
               Disposable.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "workspace")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode") "workspace")
                    "registerRemoteAuthorityResolver"
-                   [|(Ojs.string_to_js x1994);(RemoteAuthorityResolver.t_to_js
-                                                 x1995)|])
+                   [|(Ojs.string_to_js x2021);(RemoteAuthorityResolver.t_to_js
+                                                 x2022)|])
         let (register_resource_label_formatter :
           formatter:ResourceLabelFormatter.t -> Disposable.t) =
-          fun ~formatter:(x1996 : ResourceLabelFormatter.t) ->
+          fun ~formatter:(x2023 : ResourceLabelFormatter.t) ->
             Disposable.t_of_js
               (Ojs.call
                  (Ojs.get_prop_ascii
-                    (Ojs.get_prop_ascii Ojs.global
-                       "__LIB__VSCODE__IMPORTS.vscode") "workspace")
+                    (Ojs.get_prop_ascii
+                       (Ojs.get_prop_ascii Ojs.global
+                          "__LIB__VSCODE__IMPORTS") "vscode") "workspace")
                  "registerResourceLabelFormatter"
-                 [|(ResourceLabelFormatter.t_to_js x1996)|])
+                 [|(ResourceLabelFormatter.t_to_js x2023)|])
         let (register_file_search_provider :
           scheme:string -> provider:FileSearchProvider.t -> Disposable.t) =
-          fun ~scheme:(x1997 : string) ->
-            fun ~provider:(x1998 : FileSearchProvider.t) ->
+          fun ~scheme:(x2024 : string) ->
+            fun ~provider:(x2025 : FileSearchProvider.t) ->
               Disposable.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "workspace")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode") "workspace")
                    "registerFileSearchProvider"
-                   [|(Ojs.string_to_js x1997);(FileSearchProvider.t_to_js
-                                                 x1998)|])
+                   [|(Ojs.string_to_js x2024);(FileSearchProvider.t_to_js
+                                                 x2025)|])
         let (register_text_search_provider :
           scheme:string -> provider:TextSearchProvider.t -> Disposable.t) =
-          fun ~scheme:(x1999 : string) ->
-            fun ~provider:(x2000 : TextSearchProvider.t) ->
+          fun ~scheme:(x2026 : string) ->
+            fun ~provider:(x2027 : TextSearchProvider.t) ->
               Disposable.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "workspace")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode") "workspace")
                    "registerTextSearchProvider"
-                   [|(Ojs.string_to_js x1999);(TextSearchProvider.t_to_js
-                                                 x2000)|])
+                   [|(Ojs.string_to_js x2026);(TextSearchProvider.t_to_js
+                                                 x2027)|])
         let (find_text_in_files :
           query:TextSearchQuery.t ->
             callback:(result:TextSearchResult.t -> unit) ->
               ?token:CancellationToken.t ->
                 unit -> TextSearchComplete.t Promise.t)
           =
-          fun ~query:(x2001 : TextSearchQuery.t) ->
-            fun ~callback:(x2002 : result:TextSearchResult.t -> unit) ->
-              fun ?token:(x2003 : CancellationToken.t option) ->
+          fun ~query:(x2028 : TextSearchQuery.t) ->
+            fun ~callback:(x2029 : result:TextSearchResult.t -> unit) ->
+              fun ?token:(x2030 : CancellationToken.t option) ->
                 fun () ->
                   Promise.t_of_js TextSearchComplete.t_of_js
-                    (let x2007 =
+                    (let x2034 =
                        Ojs.get_prop_ascii
-                         (Ojs.get_prop_ascii Ojs.global
-                            "__LIB__VSCODE__IMPORTS.vscode") "workspace" in
-                     Ojs.call (Ojs.get_prop_ascii x2007 "findTextInFiles")
+                         (Ojs.get_prop_ascii
+                            (Ojs.get_prop_ascii Ojs.global
+                               "__LIB__VSCODE__IMPORTS") "vscode")
+                         "workspace" in
+                     Ojs.call (Ojs.get_prop_ascii x2034 "findTextInFiles")
                        "apply"
-                       [|x2007;((let x2004 =
+                       [|x2034;((let x2031 =
                                    Ojs.new_obj
                                      (Ojs.get_prop_ascii Ojs.global "Array")
                                      [||] in
                                  ignore
-                                   (Ojs.call x2004 "push"
-                                      [|(TextSearchQuery.t_to_js x2001)|]);
+                                   (Ojs.call x2031 "push"
+                                      [|(TextSearchQuery.t_to_js x2028)|]);
                                  ignore
-                                   (Ojs.call x2004 "push"
+                                   (Ojs.call x2031 "push"
                                       [|(Ojs.fun_to_js 1
-                                           (fun (x2006 : Ojs.t) ->
-                                              x2002
+                                           (fun (x2033 : Ojs.t) ->
+                                              x2029
                                                 ~result:(TextSearchResult.t_of_js
-                                                           x2006)))|]);
-                                 (match x2003 with
-                                  | Some x2005 ->
+                                                           x2033)))|]);
+                                 (match x2030 with
+                                  | Some x2032 ->
                                       ignore
-                                        (Ojs.call x2004 "push"
-                                           [|(CancellationToken.t_to_js x2005)|])
+                                        (Ojs.call x2031 "push"
+                                           [|(CancellationToken.t_to_js x2032)|])
                                   | None -> ());
-                                 x2004))|])
+                                 x2031))|])
         let (find_text_in_files :
           query:TextSearchQuery.t ->
             options:FindTextInFilesOptions.t ->
@@ -6221,116 +6383,121 @@ module Vscode =
                 ?token:CancellationToken.t ->
                   unit -> TextSearchComplete.t Promise.t)
           =
-          fun ~query:(x2009 : TextSearchQuery.t) ->
-            fun ~options:(x2010 : FindTextInFilesOptions.t) ->
-              fun ~callback:(x2011 : result:TextSearchResult.t -> unit) ->
-                fun ?token:(x2012 : CancellationToken.t option) ->
+          fun ~query:(x2036 : TextSearchQuery.t) ->
+            fun ~options:(x2037 : FindTextInFilesOptions.t) ->
+              fun ~callback:(x2038 : result:TextSearchResult.t -> unit) ->
+                fun ?token:(x2039 : CancellationToken.t option) ->
                   fun () ->
                     Promise.t_of_js TextSearchComplete.t_of_js
-                      (let x2016 =
+                      (let x2043 =
                          Ojs.get_prop_ascii
-                           (Ojs.get_prop_ascii Ojs.global
-                              "__LIB__VSCODE__IMPORTS.vscode") "workspace" in
-                       Ojs.call (Ojs.get_prop_ascii x2016 "findTextInFiles")
+                           (Ojs.get_prop_ascii
+                              (Ojs.get_prop_ascii Ojs.global
+                                 "__LIB__VSCODE__IMPORTS") "vscode")
+                           "workspace" in
+                       Ojs.call (Ojs.get_prop_ascii x2043 "findTextInFiles")
                          "apply"
-                         [|x2016;((let x2013 =
+                         [|x2043;((let x2040 =
                                      Ojs.new_obj
                                        (Ojs.get_prop_ascii Ojs.global "Array")
                                        [||] in
                                    ignore
-                                     (Ojs.call x2013 "push"
-                                        [|(TextSearchQuery.t_to_js x2009)|]);
+                                     (Ojs.call x2040 "push"
+                                        [|(TextSearchQuery.t_to_js x2036)|]);
                                    ignore
-                                     (Ojs.call x2013 "push"
+                                     (Ojs.call x2040 "push"
                                         [|(FindTextInFilesOptions.t_to_js
-                                             x2010)|]);
+                                             x2037)|]);
                                    ignore
-                                     (Ojs.call x2013 "push"
+                                     (Ojs.call x2040 "push"
                                         [|(Ojs.fun_to_js 1
-                                             (fun (x2015 : Ojs.t) ->
-                                                x2011
+                                             (fun (x2042 : Ojs.t) ->
+                                                x2038
                                                   ~result:(TextSearchResult.t_of_js
-                                                             x2015)))|]);
-                                   (match x2012 with
-                                    | Some x2014 ->
+                                                             x2042)))|]);
+                                   (match x2039 with
+                                    | Some x2041 ->
                                         ignore
-                                          (Ojs.call x2013 "push"
+                                          (Ojs.call x2040 "push"
                                              [|(CancellationToken.t_to_js
-                                                  x2014)|])
+                                                  x2041)|])
                                     | None -> ());
-                                   x2013))|])
+                                   x2040))|])
         let (register_timeline_provider :
           scheme:string list or_string ->
             provider:TimelineProvider.t -> Disposable.t)
           =
-          fun ~scheme:(x2018 : string list or_string) ->
-            fun ~provider:(x2021 : TimelineProvider.t) ->
+          fun ~scheme:(x2045 : string list or_string) ->
+            fun ~provider:(x2048 : TimelineProvider.t) ->
               Disposable.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "workspace")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode") "workspace")
                    "registerTimelineProvider"
                    [|(or_string_to_js
-                        (fun (x2019 : string list) ->
-                           Ojs.list_to_js Ojs.string_to_js x2019) x2018);(
-                     TimelineProvider.t_to_js x2021)|])
+                        (fun (x2046 : string list) ->
+                           Ojs.list_to_js Ojs.string_to_js x2046) x2045);(
+                     TimelineProvider.t_to_js x2048)|])
         let (trust_state : WorkspaceTrustState.t) =
           WorkspaceTrustState.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "workspace")
-               "trustState")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "workspace") "trustState")
         let (request_workspace_trust :
           ?options:WorkspaceTrustRequestOptions.t ->
             unit -> WorkspaceTrustState.t or_undefined Promise.t)
           =
-          fun ?options:(x2022 : WorkspaceTrustRequestOptions.t option) ->
+          fun ?options:(x2049 : WorkspaceTrustRequestOptions.t option) ->
             fun () ->
               Promise.t_of_js
-                (fun (x2026 : Ojs.t) ->
-                   or_undefined_of_js WorkspaceTrustState.t_of_js x2026)
-                (let x2025 =
+                (fun (x2053 : Ojs.t) ->
+                   or_undefined_of_js WorkspaceTrustState.t_of_js x2053)
+                (let x2052 =
                    Ojs.get_prop_ascii
-                     (Ojs.get_prop_ascii Ojs.global
-                        "__LIB__VSCODE__IMPORTS.vscode") "workspace" in
-                 Ojs.call (Ojs.get_prop_ascii x2025 "requestWorkspaceTrust")
+                     (Ojs.get_prop_ascii
+                        (Ojs.get_prop_ascii Ojs.global
+                           "__LIB__VSCODE__IMPORTS") "vscode") "workspace" in
+                 Ojs.call (Ojs.get_prop_ascii x2052 "requestWorkspaceTrust")
                    "apply"
-                   [|x2025;((let x2023 =
+                   [|x2052;((let x2050 =
                                Ojs.new_obj
                                  (Ojs.get_prop_ascii Ojs.global "Array") 
                                  [||] in
-                             (match x2022 with
-                              | Some x2024 ->
+                             (match x2049 with
+                              | Some x2051 ->
                                   ignore
-                                    (Ojs.call x2023 "push"
+                                    (Ojs.call x2050 "push"
                                        [|(WorkspaceTrustRequestOptions.t_to_js
-                                            x2024)|])
+                                            x2051)|])
                               | None -> ());
-                             x2023))|])
+                             x2050))|])
         let (on_did_change_workspace_trust_state :
           WorkspaceTrustStateChangeEvent.t Event.t) =
           Event.t_of_js WorkspaceTrustStateChangeEvent.t_of_js
             (Ojs.get_prop_ascii
                (Ojs.get_prop_ascii
-                  (Ojs.get_prop_ascii Ojs.global
-                     "__LIB__VSCODE__IMPORTS.vscode") "workspace")
-               "onDidChangeWorkspaceTrustState")
+                  (Ojs.get_prop_ascii
+                     (Ojs.get_prop_ascii Ojs.global "__LIB__VSCODE__IMPORTS")
+                     "vscode") "workspace") "onDidChangeWorkspaceTrustState")
         let (register_port_attributes_provider :
           port_selector:AnonymousInterface10.t ->
             provider:PortAttributesProvider.t -> Disposable.t)
           =
-          fun ~port_selector:(x2029 : AnonymousInterface10.t) ->
-            fun ~provider:(x2030 : PortAttributesProvider.t) ->
+          fun ~port_selector:(x2056 : AnonymousInterface10.t) ->
+            fun ~provider:(x2057 : PortAttributesProvider.t) ->
               Disposable.t_of_js
                 (Ojs.call
                    (Ojs.get_prop_ascii
-                      (Ojs.get_prop_ascii Ojs.global
-                         "__LIB__VSCODE__IMPORTS.vscode") "workspace")
+                      (Ojs.get_prop_ascii
+                         (Ojs.get_prop_ascii Ojs.global
+                            "__LIB__VSCODE__IMPORTS") "vscode") "workspace")
                    "registerPortAttributesProvider"
-                   [|(AnonymousInterface10.t_to_js x2029);(PortAttributesProvider.t_to_js
-                                                             x2030)|])
+                   [|(AnonymousInterface10.t_to_js x2056);(PortAttributesProvider.t_to_js
+                                                             x2057)|])
       end
   end
 include struct include Vscode end

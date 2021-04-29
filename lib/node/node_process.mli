@@ -1333,27 +1333,27 @@ module Process : sig
 
   (* val listeners_before_exit : BeforeExitListener.t list
 
-  val listeners_disconnect : DisconnectListener.t list
+     val listeners_disconnect : DisconnectListener.t list
 
-  val listeners_exit : ExitListener.t list
+     val listeners_exit : ExitListener.t list
 
-  val listeners_rejection_handled : RejectionHandledListener.t list
+     val listeners_rejection_handled : RejectionHandledListener.t list
 
-  val listeners_uncaught_exception : UncaughtExceptionListener.t list
+     val listeners_uncaught_exception : UncaughtExceptionListener.t list
 
-  val listeners_uncaught_exception : UncaughtExceptionListener.t list
+     val listeners_uncaught_exception : UncaughtExceptionListener.t list
 
-  val listeners_unhandled_rejection : UnhandledRejectionListener.t list
+     val listeners_unhandled_rejection : UnhandledRejectionListener.t list
 
-  val listeners_warning : WarningListener.t list
+     val listeners_warning : WarningListener.t list
 
-  val listeners_message : MessageListener.t list
+     val listeners_message : MessageListener.t list
 
-  val listeners_new_listener : NewListenerListener.t list
+     val listeners_new_listener : NewListenerListener.t list
 
-  val listeners_remove_listener : RemoveListenerListener.t list
+     val listeners_remove_listener : RemoveListenerListener.t list
 
-  val listeners_multiple_resolves : MultipleResolvesListener.t list *)
+     val listeners_multiple_resolves : MultipleResolvesListener.t list *)
 
   [@@@js.start]
 
@@ -1405,45 +1405,43 @@ module Process : sig
 
   let prepend_once_listener = with_listener_fn prepend_once_listener
 
-  (* let listeners_before_exit =
-    listeners "beforeExit" |> List.map BeforeExitListener.t_of_js
+  (* let listeners_before_exit = listeners "beforeExit" |> List.map
+     BeforeExitListener.t_of_js
 
-  let listeners_disconnect =
-    listeners "disconnect" |> List.map DisconnectListener.t_of_js
+     let listeners_disconnect = listeners "disconnect" |> List.map
+     DisconnectListener.t_of_js
 
-  let listeners_exit = listeners "exit" |> List.map ExitListener.t_of_js
+     let listeners_exit = listeners "exit" |> List.map ExitListener.t_of_js
 
-  let listeners_rejection_handled =
-    listeners "rejectionHandled" |> List.map RejectionHandledListener.t_of_js
+     let listeners_rejection_handled = listeners "rejectionHandled" |> List.map
+     RejectionHandledListener.t_of_js
 
-  let listeners_uncaught_exception =
-    listeners "uncaughtException" |> List.map UncaughtExceptionListener.t_of_js
+     let listeners_uncaught_exception = listeners "uncaughtException" |>
+     List.map UncaughtExceptionListener.t_of_js
 
-  let listeners_uncaught_exception =
-    listeners "uncaughtException" |> List.map UncaughtExceptionListener.t_of_js
+     let listeners_uncaught_exception = listeners "uncaughtException" |>
+     List.map UncaughtExceptionListener.t_of_js
 
-  let listeners_unhandled_rejection =
-    listeners "unhandledRejection"
-    |> List.map UnhandledRejectionListener.t_of_js
+     let listeners_unhandled_rejection = listeners "unhandledRejection" |>
+     List.map UnhandledRejectionListener.t_of_js
 
-  let listeners_warning =
-    listeners "warning" |> List.map WarningListener.t_of_js
+     let listeners_warning = listeners "warning" |> List.map
+     WarningListener.t_of_js
 
-  let listeners_message =
-    listeners "message" |> List.map MessageListener.t_of_js
+     let listeners_message = listeners "message" |> List.map
+     MessageListener.t_of_js
 
-  let listeners_signals =
-    listeners "signals" |> List.map SignalsListener.t_of_js
+     let listeners_signals = listeners "signals" |> List.map
+     SignalsListener.t_of_js
 
-  let listeners_new_listener =
-    listeners "newListener" |> List.map NewListenerListener.t_of_js
+     let listeners_new_listener = listeners "newListener" |> List.map
+     NewListenerListener.t_of_js
 
-  let listeners_remove_listener =
-    listeners "removeListener" |> List.map RemoveListenerListener.t_of_js
+     let listeners_remove_listener = listeners "removeListener" |> List.map
+     RemoveListenerListener.t_of_js
 
-  let listeners_multiple_resolves =
-    listeners "multipleResolves" |> List.map MultipleResolvesListener.t_of_js *)
-    ]
+     let listeners_multiple_resolves = listeners "multipleResolves" |> List.map
+     MultipleResolvesListener.t_of_js *)]
 
   val emit_before_exit : event:([ `beforeExit ][@js.enum]) -> code:int -> bool
     [@@js.global "emit"]

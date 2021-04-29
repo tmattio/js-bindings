@@ -1,0 +1,11 @@
+(lang dune 2.7)
+
+(name notebook-sample)
+
+(package
+ (name notebook-sample)
+ (synopsis "Notebook example for VS Code")
+ (depends
+  (ocaml
+   (>= 4.11))
+  vscode))

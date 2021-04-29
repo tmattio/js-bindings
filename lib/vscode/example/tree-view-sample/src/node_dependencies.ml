@@ -84,7 +84,7 @@ module Provider = struct
             Vscode.Command.create
               ~title:""
               ~command:"extension.openPackageOnNpm"
-              ~arguments:[ module_name |> Ojs.string_to_js |> any_of_js ]
+              ~arguments:[ module_name |> Ojs.string_to_js ]
               ()
           in
           Dependency.create
@@ -94,12 +94,9 @@ module Provider = struct
             ~command
             ()
       in
-      let package_json_js = any_to_js package_json in
       let deps =
-        if Ojs.has_property package_json_js "dependencies" then
-          let dependencies =
-            Ojs.get_prop_ascii package_json_js "dependencies"
-          in
+        if Ojs.has_property package_json "dependencies" then
+          let dependencies = Ojs.get_prop_ascii package_json "dependencies" in
           Object.keys (untyped_object_of_js dependencies)
           |> List.map (fun dep ->
                  to_dep
@@ -109,9 +106,9 @@ module Provider = struct
           []
       in
       let dev_deps =
-        if Ojs.has_property package_json_js "devDependencies" then
+        if Ojs.has_property package_json "devDependencies" then
           let dependencies =
-            Ojs.get_prop_ascii package_json_js "devDependencies"
+            Ojs.get_prop_ascii package_json "devDependencies"
           in
           Object.keys (untyped_object_of_js dependencies)
           |> List.map (fun dep ->

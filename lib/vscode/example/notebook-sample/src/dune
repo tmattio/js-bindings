@@ -1,0 +1,4 @@
+(executable
+ (name extension)
+ (libraries node vscode vscode.proposed)
+ (modes js))

@@ -14,7 +14,7 @@
  (libraries vscode js_of_ocaml ojs es2015)
  (modes byte)
  (js_of_ocaml
-  (javascript_files stub_proposed.js)))
+  (javascript_files stub.js)))
 
 (rule
  (targets vscode.ml)

@@ -2,6 +2,8 @@
 
 [@@@js.implem [@@@ocaml.warning "-7-11-32-33-39"]]
 
+[@@@js.scope "__LIB__VSCODE__IMPORTS"]
+
 open Es2015
 open Vscode
 
@@ -94,34 +96,6 @@ module Vscode : sig
     val with_ : t -> change:AnonymousInterface6.t -> t [@@js.call "with"]
   end
   [@@js.scope "NotebookDocumentMetadata"]
-
-  module NotebookDocumentContentOptions : sig
-    type t
-
-    val t_to_js : t -> Ojs.t
-
-    val t_of_js : Ojs.t -> t
-
-    val transient_outputs : t -> bool [@@js.get "transientOutputs"]
-
-    val set_transient_outputs : t -> bool -> unit [@@js.set "transientOutputs"]
-
-    val transient_metadata
-      :  t
-      -> (* FIXME: unknown type '{ [K in keyof NotebookCellMetadata]?: boolean
-            }' *)
-         any
-      [@@js.get "transientMetadata"]
-
-    val set_transient_metadata
-      :  t
-      -> (* FIXME: unknown type '{ [K in keyof NotebookCellMetadata]?: boolean
-            }' *)
-         any
-      -> unit
-      [@@js.set "transientMetadata"]
-  end
-  [@@js.scope "NotebookDocumentContentOptions"]
 
   module AnonymousInterface13 : sig
     type t
@@ -384,6 +358,50 @@ module Vscode : sig
     val save : t -> bool Promise.t [@@js.call "save"]
   end
   [@@js.scope "NotebookDocument"]
+
+  module NotebookDocumentContentOptions : sig
+    module TransientMetadata : sig
+      type t
+
+      val t_to_js : t -> Ojs.t
+
+      val t_of_js : Ojs.t -> t
+
+      val create
+        :  ?editable:bool
+        -> ?cell_editable:bool
+        -> ?custom:bool
+        -> ?trusted:bool
+        -> ?runnable:bool
+        -> unit
+        -> t
+        [@@js.builder]
+    end
+
+    type t
+
+    val t_to_js : t -> Ojs.t
+
+    val t_of_js : Ojs.t -> t
+
+    val transient_outputs : t -> bool [@@js.get "transientOutputs"]
+
+    val set_transient_outputs : t -> bool -> unit [@@js.set "transientOutputs"]
+
+    val transient_metadata : t -> TransientMetadata.t
+      [@@js.get "transientMetadata"]
+
+    val set_transient_metadata : t -> TransientMetadata.t -> unit
+      [@@js.set "transientMetadata"]
+
+    val create
+      :  ?transient_outputs:bool
+      -> ?transient_metadata:TransientMetadata.t
+      -> unit
+      -> t
+      [@@js.builder]
+  end
+  [@@js.scope "NotebookDocumentContentOptions"]
 
   module NotebookKernel : sig
     type t
@@ -1988,6 +2006,18 @@ module Vscode : sig
       -> data:NotebookData.t
       -> (Uint8Array.t, Uint8Array.t Promise.t) union2
       [@@js.call "notebookToData"]
+
+    val create
+      :  deserialize_notebook:
+           (content:Uint8Array.t
+            -> token:CancellationToken.t
+            -> NotebookData.t Promise.t)
+      -> serialize_notebook:
+           (data:NotebookData.t
+            -> token:CancellationToken.t
+            -> Uint8Array.t Promise.t)
+      -> t
+      [@@js.builder]
   end
   [@@js.scope "NotebookSerializer"]
 
@@ -3711,7 +3741,7 @@ module Vscode : sig
   end
   [@@js.scope "workspace"]
 end
-[@@js.scope "__LIB__VSCODE__IMPORTS.vscode"]
+[@@js.scope "vscode"]
 
 include module type of struct
   include Vscode

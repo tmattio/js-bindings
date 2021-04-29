@@ -428,6 +428,15 @@ module Vscode : sig
 
     val set_line_numbers : t -> TextEditorLineNumbersStyle.t -> unit
       [@@js.set "lineNumbers"]
+
+    val create
+      :  ?tab_size:string or_number
+      -> ?insert_spaces:bool or_string
+      -> ?cursor_style:TextEditorCursorStyle.t
+      -> ?line_numbers:TextEditorLineNumbersStyle.t
+      -> unit
+      -> t
+      [@@js.builder]
   end
   [@@js.scope "TextEditorOptions"]
 
@@ -441,6 +450,8 @@ module Vscode : sig
     val key : t -> string [@@js.get "key"]
 
     val dispose : t -> unit [@@js.call "dispose"]
+
+    val create : key:string -> dispose:(unit -> unit) -> t [@@js.builder]
   end
   [@@js.scope "TextEditorDecorationType"]
 

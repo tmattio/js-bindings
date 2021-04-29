@@ -254,8 +254,8 @@ module WithImplicitCoercion =
 module Buffer =
   struct
     include struct include Uint8Array end
-    let (create : str:string -> ?encoding:BufferEncoding.t -> unit -> t) =
-      fun ~str:(x87 : string) ->
+    let (create : string -> ?encoding:BufferEncoding.t -> unit -> t) =
+      fun (x87 : string) ->
         fun ?encoding:(x88 : BufferEncoding.t option) ->
           fun () ->
             t_of_js

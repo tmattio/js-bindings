@@ -186,8 +186,7 @@ module Buffer : sig
     include Uint8Array
   end
 
-  val create : str:string -> ?encoding:BufferEncoding.t -> unit -> t
-    [@@js.create]
+  val create : string -> ?encoding:BufferEncoding.t -> unit -> t [@@js.create]
 
   val create' : size:int -> t [@@js.create]
 
